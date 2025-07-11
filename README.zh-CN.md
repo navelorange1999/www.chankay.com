@@ -1,6 +1,6 @@
 # www.navelorange1999.com
 
-[中文文档 | Chinese README](./README.zh-CN.md)
+[English README | 英文文档](./README.md)
 
 [![pnpm](https://img.shields.io/badge/package%20manager-pnpm-blue?logo=pnpm)](https://pnpm.io/)
 [![TurboRepo](https://img.shields.io/badge/monorepo-turbo-7B3DF9?logo=turbo)](https://turbo.build/)
@@ -15,14 +15,14 @@
 
 ## TODO
 
--   [ ] Design and implement the Next.js WWW site, including:
-    -   [ ] Home page
-    -   [ ] Blog list page
-    -   [ ] Blog detail page
-    -   [ ] Dark/Light mode toggle
-    -   [ ] Multi-language support
-    -   [ ] Site-wide search
-    -   [ ] Comments system
-    -   [ ] RSS feed
--   [ ] Integrate Payload CMS with the Next.js WWW site to fetch and display content (blogs, etc.) dynamically.
--   [ ] Enable real-time preview/review of content changes from Payload admin in the Next.js WWW site (live preview or similar).
+-   [ ] 设计并实现 Next.js WWW 站点，包括：
+    -   [ ] 首页
+    -   [ ] 博客列表页
+    -   [ ] 博客详情页
+    -   [ ] 深色/浅色模式切换
+    -   [ ] 多语言支持
+    -   [ ] 整站搜索
+    -   [ ] 评论系统
+    -   [ ] RSS 订阅
+-   [ ] 集成 Payload CMS 与 Next.js WWW，实现内容（如博客）动态获取与展示。
+-   [ ] 实现 Payload admin 内容变更在 Next.js WWW 的实时预览（如 live preview）。

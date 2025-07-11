@@ -2,9 +2,10 @@
   "name": "basic-fronted-template",
   "version": "1.0.0",
   "private": true,
-  "packageManager": "pnpm@10.0.0",
+  "packageManager": "pnpm@10.13.1",
   "scripts": {
-    "buld": "echo \"Error: no build specified\" && exit 1",
+    "dev": "turbo dev",
+    "build": "turbo build",
     "cz": "git cz",
     "prepare": "husky",
     "check-types": "tsc --noEmit"

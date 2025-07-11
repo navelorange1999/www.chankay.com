@@ -1,0 +1,11 @@
+{
+  "name": "@repo/ui",
+  "type": "module",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  }
+}

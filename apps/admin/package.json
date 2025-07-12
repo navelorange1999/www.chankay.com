@@ -5,15 +5,21 @@
     "dev": "next dev"
   },
   "dependencies": {
+    "@repo/ui": "workspace:*",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/tailwind-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
     "@payloadcms/db-mongodb": "^3.46.0",
     "@payloadcms/next": "^3.46.0",
     "@payloadcms/richtext-lexical": "^3.46.0",
-    "@repo/ui": "workspace:*",
     "graphql": "^16.11.0",
     "next": "^15.3.5",
     "payload": "^3.46.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "sharp": "^0.34.3"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.8"
   }
 }

@@ -10,10 +10,10 @@
 /coverage
 
 # production
-/build
-/dist
-/public/robots.txt
-/public/sitemap*.xml
+**/**/build
+**/**/dist
+**/**/public/robots.txt
+**/**/public/sitemap*.xml
 
 # misc
 .DS_Store

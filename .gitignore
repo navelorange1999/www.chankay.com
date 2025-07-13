@@ -33,3 +33,6 @@ tsconfig.tsbuildinfo
 
 # next
 **/**/.next/*
+
+# storybook
+storybook-static

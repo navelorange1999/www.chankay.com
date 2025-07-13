@@ -12,6 +12,7 @@
 [![ESLint](https://img.shields.io/badge/lint-eslint-4B32C3?logo=eslint)](https://eslint.org/)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen?logo=commitizen)](http://commitizen.github.io/cz-cli/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![Storybook](https://raw.githubusercontent.com/storybooks/brand/master/badge/badge-storybook.svg)](./apps/storybook/)
 
 ## TODO
 

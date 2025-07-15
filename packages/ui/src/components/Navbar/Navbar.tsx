@@ -1,90 +1,83 @@
 import * as React from "react";
+import ThemeToggle from "./ThemeToggle";
 
 export interface NavbarLink {
-	/** 链接显示文本 */
+	/** link text */
 	label: string;
-	/** 链接地址 */
+	/** link address */
 	href: string;
-	/** 是否为外部链接 */
+	/** is _blank open */
 	external?: boolean;
 }
 
 export interface NavbarProps {
-	/** Logo 组件 */
-	logo?: React.ReactNode;
-	/** 网站标题 */
+	/** Logo  */
+	logo?: string;
+	/** Website title */
 	title?: string;
-	/** 导航链接数组 */
+	/** Navigation links array */
 	links?: NavbarLink[];
-	/** 右侧内容 */
-	rightContent?: React.ReactNode;
-	/** 额外的 CSS 类名 */
+	/** Additional CSS class name */
 	className?: string;
-	/** 是否固定定位 */
-	sticky?: boolean;
-	/** 导航栏布局变体 */
-	variant?: "default" | "centered";
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
 	logo,
-	title = "Your Site",
+	title = "Chan Kay's Site",
 	links = [],
-	rightContent,
 	className = "",
-	sticky = false,
-	variant = "default",
 }) => {
-	const navClass = `w-full z-30 top-0 ${sticky ? "sticky" : ""} bg-backgroun- border-b border-border ${className}`;
-
-	const renderLinks = () => (
-		<nav className="flex space-x-4">
-			{links.map((link) => (
-				<a
-					key={link.label}
-					href={link.href}
-					target={link.external ? "_blank" : undefined}
-					rel={link.external ? "noopener noreferrer" : undefined}
-					className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-				>
-					{link.label}
-				</a>
-			))}
-		</nav>
-	);
-
-	if (variant === "centered") {
-		return (
-			<header className={navClass}>
-				<div className="container mx-auto px-4 flex flex-col items-center py-4">
-					{logo && <div className="mb-2">{logo}</div>}
-					<div className="flex flex-col items-center">
-						{title && (
-							<span className="text-lg font-bold text-foreground mb-2">
-								{title}
-							</span>
-						)}
-						{renderLinks()}
-					</div>
-					{rightContent && <div className="mt-2">{rightContent}</div>}
-				</div>
-			</header>
-		);
-	}
-
 	return (
-		<header className={navClass}>
-			<div className="container mx-auto px-4 flex items-center justify-between py-4">
-				<div className="flex items-center space-x-2">
-					{logo}
-					{title && (
-						<span className="text-lg font-bold text-foreground">
-							{title}
-						</span>
-					)}
+		<header className={`bg-amber-200 dark:bg-gray-900 ${className}`}>
+			<div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
+				<a className="block text-teal-600 dark:text-teal-300" href="#">
+					<span className="sr-only">{title}</span>
+					<img width={24} height={24} src={logo} />
+				</a>
+
+				<div className="flex flex-1 items-center justify-end md:justify-between">
+					<nav aria-label="Global" className="hidden md:block">
+						<ul className="flex items-center gap-6 text-sm">
+							{links.map((menu) => (
+								<li key={menu.href}>
+									<a
+										className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
+										href={menu.href}
+										target={
+											menu.external ? "_blank" : "_self"
+										}
+									>
+										{menu.label}
+									</a>
+								</li>
+							))}
+						</ul>
+					</nav>
+
+					<div className="flex items-center gap-4">
+						<div className="sm:flex sm:gap-4">
+							<ThemeToggle />
+						</div>
+
+						<button className="block rounded-sm bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden dark:bg-gray-800 dark:text-white dark:hover:text-white/75">
+							<span className="sr-only">Toggle menu</span>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								className="size-5"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+								strokeWidth="2"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									d="M4 6h16M4 12h16M4 18h16"
+								/>
+							</svg>
+						</button>
+					</div>
 				</div>
-				{renderLinks()}
-				{rightContent && <div>{rightContent}</div>}
 			</div>
 		</header>
 	);

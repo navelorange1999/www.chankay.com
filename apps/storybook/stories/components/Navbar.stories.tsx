@@ -19,6 +19,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
 	args: {
 		title: "Hello World",
+		logo: "https://www.svgrepo.com/show/530488/share.svg",
 		links: [
 			{label: "Home", href: "/"},
 			{label: "Blog", href: "/blog"},

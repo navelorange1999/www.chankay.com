@@ -1,164 +1,57 @@
-import * as React from "react";
-
-export interface FooterLink {
-	label: string;
-	href: string;
-	external?: boolean;
-}
-
-export interface FooterSection {
-	title: string;
-	links: FooterLink[];
-}
+import {LogoProps, Logo} from "../Logo";
 
 export interface FooterSocial {
 	name: string;
 	href: string;
-	icon: React.ComponentType<{className?: string}>;
+	icon: LogoProps;
 }
 
 export interface FooterProps {
+	logo?: LogoProps;
 	title?: string;
-	description?: string;
 	copyright?: string;
-	sections?: FooterSection[];
 	socials?: FooterSocial[];
 	className?: string;
-	showDivider?: boolean;
-	variant?: "default" | "minimal" | "centered";
 }
 
 export const Footer: React.FC<FooterProps> = (props: FooterProps) => {
 	const {
-		title = "Your Company",
-		description,
-		copyright = `© ${new Date().getFullYear()} ${props.title ?? "Your Company"}. All rights reserved.`,
-		sections = [],
+		title = "Chan Kay",
+		logo,
+		copyright = `© ${new Date().getFullYear()} ${props.title ?? "Chan Kay"}. All rights reserved.`,
 		socials = [],
 		className = "",
-		showDivider = true,
-		variant = "default",
 	} = props;
 
-	const renderMinimalFooter = () => (
-		<div className="py-6 text-center">
-			<p className="text-sm text-muted-foreground">{copyright}</p>
-		</div>
-	);
-
-	const renderCenteredFooter = () => (
-		<div className="py-12 text-center">
-			{title && (
-				<h3 className="text-lg font-semibold text-foreground mb-2">
-					{title}
-				</h3>
-			)}
-			{description && (
-				<p className="text-sm text-muted-foreground mb-4 max-w-md mx-auto">
-					{description}
-				</p>
-			)}
-			{socials.length > 0 && (
-				<div className="flex justify-center space-x-4 mb-6">
-					{socials.map((social) => (
-						<a
-							key={social.name}
-							href={social.href}
-							target="_blank"
-							rel="noopener noreferrer"
-							className="text-muted-foreground hover:text-foreground transition-colors"
-						>
-							<social.icon className="h-5 w-5" />
-							<span className="sr-only">{social.name}</span>
-						</a>
-					))}
-				</div>
-			)}
-			<p className="text-sm text-muted-foreground">{copyright}</p>
-		</div>
-	);
-
-	const renderDefaultFooter = () => (
-		<div className="py-12">
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-				{/* Company Info */}
-				<div className="space-y-4">
-					{title && (
-						<h3 className="text-lg font-semibold text-foreground">
-							{title}
-						</h3>
-					)}
-					{description && (
-						<p className="text-sm text-muted-foreground">
-							{description}
-						</p>
-					)}
-					{socials.length > 0 && (
-						<div className="flex space-x-4">
-							{socials.map((social) => (
+	return (
+		<footer className={`bg-gray-50 ${className}`}>
+			<div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
+				<div className="sm:flex sm:items-center sm:justify-between">
+					<div className="flex justify-center text-teal-600 sm:justify-start">
+						{logo && <img {...logo} />}
+						{title && <span>{title}</span>}
+					</div>
+					<ul className="mt-8 flex justify-center gap-6 sm:mt-0 lg:justify-end">
+						{socials.map((social) => (
+							<li>
 								<a
-									key={social.name}
 									href={social.href}
+									rel="noreferrer"
 									target="_blank"
-									rel="noopener noreferrer"
-									className="text-muted-foreground hover:text-foreground transition-colors"
+									className="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
 								>
-									<social.icon className="h-5 w-5" />
 									<span className="sr-only">
 										{social.name}
 									</span>
+									<Logo {...social.icon} />
 								</a>
-							))}
-						</div>
-					)}
+							</li>
+						))}
+					</ul>
 				</div>
-
-				{/* Sections */}
-				{sections.map((section, index) => (
-					<div key={index} className="space-y-4">
-						<h4 className="text-sm font-semibold text-foreground">
-							{section.title}
-						</h4>
-						<ul className="space-y-2">
-							{section.links.map((link, linkIndex) => (
-								<li key={linkIndex}>
-									<a
-										href={link.href}
-										target={
-											link.external ? "_blank" : undefined
-										}
-										rel={
-											link.external
-												? "noopener noreferrer"
-												: undefined
-										}
-										className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-									>
-										{link.label}
-									</a>
-								</li>
-							))}
-						</ul>
-					</div>
-				))}
-			</div>
-
-			{/* Copyright */}
-			<div className="mt-8 pt-8 border-t border-border">
-				<p className="text-sm text-muted-foreground text-center">
+				<p className="mt-4 text-center text-sm text-gray-500 lg:mt-0 lg:text-right">
 					{copyright}
 				</p>
-			</div>
-		</div>
-	);
-
-	return (
-		<footer className={`bg-background ${className}`}>
-			{showDivider && <div className="border-t border-border" />}
-			<div className="container mx-auto px-4">
-				{variant === "minimal" && renderMinimalFooter()}
-				{variant === "centered" && renderCenteredFooter()}
-				{variant === "default" && renderDefaultFooter()}
 			</div>
 		</footer>
 	);

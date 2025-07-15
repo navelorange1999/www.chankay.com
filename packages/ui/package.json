@@ -22,9 +22,6 @@
     },
     "./styles.css": "./dist/index.css"
   },
-  "imports": {
-    "#*": "./dist/*"
-  },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/tailwind-config": "workspace:*",

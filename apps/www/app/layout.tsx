@@ -7,7 +7,7 @@ export default function RootLayout({children}: {children: ReactNode}) {
 		<html lang="en">
 			<body className="bg-background text-foreground">
 				<Navbar
-					title="NavelOrange1999"
+					title="chankay"
 					links={[
 						{label: "Home", href: "/"},
 						{label: "Blog", href: "/blog"},
@@ -18,7 +18,7 @@ export default function RootLayout({children}: {children: ReactNode}) {
 					{children}
 				</main>
 				<Footer
-					title="NavelOrange1999"
+					title="chankay"
 					description="A modern website powered by Payload and Next.js."
 					sections={[
 						{
@@ -26,12 +26,12 @@ export default function RootLayout({children}: {children: ReactNode}) {
 							links: [
 								{
 									label: "GitHub",
-									href: "https://github.com/navelorange1999",
+									href: "https://github.com/chankay",
 									external: true,
 								},
 								{
 									label: "Twitter",
-									href: "https://twitter.com/navelorange1999",
+									href: "https://twitter.com/chankay",
 									external: true,
 								},
 							],

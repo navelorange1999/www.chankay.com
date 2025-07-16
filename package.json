@@ -7,10 +7,12 @@
   "scripts": {
     "dev": "turbo dev",
     "dev:ui": "turbo run dev --filter=@repo/ui --filter=storybook",
+    "start": "turbo start",
     "build": "turbo build",
     "cz": "git cz",
     "prepare": "husky",
-    "check-types": "tsc --noEmit"
+    "lint": "turbo run lint",
+    "check-types": "tsc"
   },
   "dependencies": {
     "react": "^19.1.0",
@@ -33,6 +35,11 @@
     }
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+    "*.{js,jsx,ts,tsx,json}": [
+      "prettier --write"
+    ],
+    "*.{css,md}": [
+      "prettier --write"
+    ]
   }
 }

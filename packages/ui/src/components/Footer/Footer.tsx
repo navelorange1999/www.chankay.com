@@ -33,7 +33,7 @@ export const Footer: React.FC<FooterProps> = (props: FooterProps) => {
 					</div>
 					<ul className="mt-8 flex justify-center gap-6 sm:mt-0 lg:justify-end">
 						{socials.map((social) => (
-							<li>
+							<li key={social.name}>
 								<a
 									href={social.href}
 									rel="noreferrer"

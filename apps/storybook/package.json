@@ -7,7 +7,7 @@
     "dev": "storybook dev -p 6006",
     "build": "storybook build --docs",
     "preview": "serve storybook-static",
-    "lint": "eslint ./stories/*.stories.tsx --max-warnings 0",
+    "lint": "eslint ./stories/**/*.stories.tsx --max-warnings 0 --fix",
     "clean": "rm -rf .turbo node_modules"
   },
   "dependencies": {

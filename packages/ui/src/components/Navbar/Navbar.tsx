@@ -46,6 +46,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 										target={
 											menu.external ? "_blank" : "_self"
 										}
+										rel="noreferrer"
 									>
 										{menu.label}
 									</a>

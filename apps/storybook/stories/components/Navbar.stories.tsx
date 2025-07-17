@@ -1,4 +1,4 @@
-import type {Meta, StoryObj} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react-vite";
 import {Navbar} from "@repo/ui";
 
 // Storybook 会自动从 TypeScript 类型推断出所有 props

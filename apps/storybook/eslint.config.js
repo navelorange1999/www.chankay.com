@@ -1,4 +1,4 @@
-import {nextJsConfig} from "@repo/eslint-config/storybook";
+import storybookConfig from "@repo/eslint-config/storybook";
 
 /** @type {import("eslint").Linter.Config} */
-export default nextJsConfig;
+export default storybookConfig;

@@ -1,16 +1,31 @@
 name: Admin Production Deployment
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_ADMIN_PROJECT_ID }}
+
 on:
     # Trigger the workflow on published
     release:
         types: [published]
+
 jobs:
   Deploy-Production:
     environment: Production
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Trigger Vercel Webhook
-        run: |
-          set -e
-          response=$(curl -f -X POST https://api.vercel.com/v1/integrations/deploy/${{secrets.VERCEL_ADMIN_PROJECT_ID}}/${{secrets.VERCEL_ADMIN_WEBHOOK_ID}})
-          echo "Response from Vercel: $response"
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install Vercel CLI
+        run: pnpm install --global vercel@latest
+
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Build Project Artifacts
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}

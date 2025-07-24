@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "turbo dev",
     "dev:ui": "turbo run dev --filter=@repo/ui --filter=storybook",
+    "dev:admin": "turbo run dev --filter=@repo/ui --filter=admin",
     "start": "turbo start",
     "build": "turbo build",
     "cz": "git cz",

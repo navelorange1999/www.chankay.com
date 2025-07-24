@@ -1,7 +1,14 @@
 import sharp from "sharp";
+import path from "path";
+import {fileURLToPath} from "url";
 import {lexicalEditor} from "@payloadcms/richtext-lexical";
 import {mongooseAdapter} from "@payloadcms/db-mongodb";
 import {buildConfig} from "payload";
+
+import {plugins} from "./plugins";
+
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
 export default buildConfig({
 	// If you'd like to use Rich Text, pass your editor here
@@ -22,4 +29,14 @@ export default buildConfig({
 	// This is optional - if you don't need to do these things,
 	// you don't need it!
 	sharp,
+
+	routes: {
+		admin: "/",
+	},
+
+	typescript: {
+		outputFile: path.resolve(dirname, "payload-types.ts"),
+	},
+
+	plugins: [...plugins],
 });

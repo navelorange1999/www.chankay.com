@@ -2,8 +2,11 @@
   "extends": "@repo/typescript-config/nextjs.json",
   "compilerOptions": {
     "outDir": "dist",
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "paths": {
+      "@payload-config": ["./src/payload.config.ts"]
+    }
   },
-  "include": ["src", ".next/types/**/*.ts"],
+  "include": ["src", ".next/types/**/*.ts", "src/app/(payload)"],
   "exclude": ["node_modules"]
 }

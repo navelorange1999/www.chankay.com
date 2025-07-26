@@ -36,3 +36,6 @@ tsconfig.tsbuildinfo
 
 # storybook
 storybook-static
+
+# env
+**/**/.env

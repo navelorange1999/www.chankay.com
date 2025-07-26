@@ -5,6 +5,8 @@ import {lexicalEditor} from "@payloadcms/richtext-lexical";
 import {mongooseAdapter} from "@payloadcms/db-mongodb";
 import {buildConfig} from "payload";
 
+import {Users} from "./collections/Users";
+
 import {plugins} from "./plugins";
 
 const filename = fileURLToPath(import.meta.url);
@@ -15,10 +17,11 @@ export default buildConfig({
 	editor: lexicalEditor(),
 
 	// Define and configure your collections in this array
-	collections: [],
+	collections: [Users],
 
 	// Your Payload secret - should be a complex and secure string, unguessable
 	secret: process.env.PAYLOAD_SECRET || "",
+
 	// Whichever Database Adapter you're using should go here
 	// Mongoose is shown as an example, but you can also use Postgres
 	db: mongooseAdapter({
@@ -39,4 +42,19 @@ export default buildConfig({
 	},
 
 	plugins: [...plugins],
+
+	admin: {
+		user: Users.slug,
+
+		autoLogin:
+			process.env.NODE_ENV === "development"
+				? {
+						username: "local",
+						password: "local",
+					}
+				: false,
+		importMap: {
+			baseDir: path.resolve(dirname),
+		},
+	},
 });

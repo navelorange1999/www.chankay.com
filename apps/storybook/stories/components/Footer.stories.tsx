@@ -22,6 +22,7 @@ export const Default: Story = {
 					src: "https://site-assets.fontawesome.com/releases/v6.7.2/svgs/brands/bilibili.svg",
 					width: 14,
 					height: 14,
+					alt: "Bilibili",
 				},
 			},
 		],

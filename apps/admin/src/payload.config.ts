@@ -6,6 +6,7 @@ import {mongooseAdapter} from "@payloadcms/db-mongodb";
 import {buildConfig} from "payload";
 
 import {Users} from "./collections/Users";
+import {Navbar} from "./globals/Navbar";
 
 import {plugins} from "./plugins";
 
@@ -18,6 +19,9 @@ export default buildConfig({
 
 	// Define and configure your collections in this array
 	collections: [Users],
+
+	// Define and configure your Globals in this array
+	globals: [Navbar],
 
 	// Your Payload secret - should be a complex and secure string, unguessable
 	secret: process.env.PAYLOAD_SECRET || "",

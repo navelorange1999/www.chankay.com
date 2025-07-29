@@ -1,13 +1,13 @@
-import {LogoProps, Logo} from "../Logo";
+import Image, {ImageProps} from "next/image";
 
 export interface FooterSocial {
 	name: string;
 	href: string;
-	icon: LogoProps;
+	icon: ImageProps;
 }
 
 export interface FooterProps {
-	logo?: LogoProps;
+	logo?: ImageProps;
 	title?: string;
 	copyright?: string;
 	socials?: FooterSocial[];
@@ -28,7 +28,7 @@ export const Footer: React.FC<FooterProps> = (props: FooterProps) => {
 			<div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
 				<div className="sm:flex sm:items-center sm:justify-between">
 					<div className="flex justify-center text-teal-600 sm:justify-start">
-						{logo && <img {...logo} />}
+						{logo && <Image {...logo} />}
 						{title && <span>{title}</span>}
 					</div>
 					<ul className="mt-8 flex justify-center gap-6 sm:mt-0 lg:justify-end">
@@ -43,7 +43,7 @@ export const Footer: React.FC<FooterProps> = (props: FooterProps) => {
 									<span className="sr-only">
 										{social.name}
 									</span>
-									<Logo {...social.icon} />
+									<Image {...social.icon} />
 								</a>
 							</li>
 						))}

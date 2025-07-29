@@ -7,7 +7,9 @@ import {handleServerFunctions, RootLayout} from "@payloadcms/next/layouts";
 import React from "react";
 
 import {importMap} from "./importMap.js";
-import "./global.css";
+
+// TODO: Fix @repo/ui styles and @payloadcms styles conflict
+// import "./global.css";
 
 type Args = {
 	children: React.ReactNode;

@@ -20,7 +20,7 @@ export const Default: Story = {
 	args: {
 		title: "Hello World",
 		logo: "https://www.svgrepo.com/show/530488/share.svg",
-		links: [
+		items: [
 			{label: "Home", href: "/"},
 			{label: "Blog", href: "/blog"},
 			{label: "About", href: "/about"},

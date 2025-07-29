@@ -88,8 +88,12 @@ export interface Config {
 	db: {
 		defaultIDType: string;
 	};
-	globals: {};
-	globalsSelect: {};
+	globals: {
+		navbar: Navbar;
+	};
+	globalsSelect: {
+		navbar: NavbarSelect<false> | NavbarSelect<true>;
+	};
 	locale: null;
 	user: User & {
 		collection: "users";
@@ -248,6 +252,34 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 	batch?: T;
 	updatedAt?: T;
 	createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navbar".
+ */
+export interface Navbar {
+	id: string;
+	items?:
+		| {
+				id?: string | null;
+		  }[]
+		| null;
+	updatedAt?: string | null;
+	createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navbar_select".
+ */
+export interface NavbarSelect<T extends boolean = true> {
+	items?:
+		| T
+		| {
+				id?: T;
+		  };
+	updatedAt?: T;
+	createdAt?: T;
+	globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

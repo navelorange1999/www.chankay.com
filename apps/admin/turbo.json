@@ -1,0 +1,12 @@
+{
+  "extends": ["//"],
+  "tasks": {
+    "dev": {
+      "with": ["gen"]
+    },
+    "gen": {
+      "cache": false,
+      "outputs": ["packages/typescript-config/typings/payload-types.ts"]
+    }
+  }
+}

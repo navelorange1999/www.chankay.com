@@ -9,7 +9,6 @@ export const Navbar: GlobalConfig = {
 	fields: [
 		{
 			name: "props",
-
 			interfaceName: "NavbarProps",
 			label: "Props",
 			type: "group",

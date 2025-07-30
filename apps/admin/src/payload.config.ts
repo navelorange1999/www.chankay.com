@@ -4,6 +4,7 @@ import {fileURLToPath} from "url";
 import {lexicalEditor} from "@payloadcms/richtext-lexical";
 import {mongooseAdapter} from "@payloadcms/db-mongodb";
 import {buildConfig} from "payload";
+import {Config} from "@repo/typescript-config/typings/payload-types";
 
 import {Users} from "./collections/Users";
 import {Navbar} from "./globals/Navbar";
@@ -42,6 +43,8 @@ export default buildConfig({
 	},
 
 	typescript: {
+		autoGenerate: true,
+		declare: false,
 		outputFile: path.resolve(
 			dirname,
 			"../../../packages/typescript-config/typings/payload-types.ts"
@@ -65,3 +68,7 @@ export default buildConfig({
 		},
 	},
 });
+
+declare module "payload" {
+	export interface GeneratedTypes extends Config {}
+}

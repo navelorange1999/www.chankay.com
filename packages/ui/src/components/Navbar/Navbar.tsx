@@ -8,27 +8,8 @@ import {Menu, X} from "lucide-react";
 import {motion, AnimatePresence} from "framer-motion";
 import Image from "next/image";
 
+import {NavbarProps} from "@repo/typescript-config/typings/payload-types";
 import {ThemeToggle} from "../ThemeProvider";
-
-export interface NavbarItem {
-	/** link text */
-	label: string;
-	/** link address */
-	href: string;
-	/** is _blank open */
-	external?: boolean;
-}
-
-export interface NavbarProps {
-	/** Logo  */
-	logo?: string;
-	/** Website title */
-	title?: string;
-	/** Navigation links array */
-	items?: NavbarItem[];
-	/** Additional CSS class name */
-	className?: string;
-}
 
 export const Navbar: React.FC<NavbarProps> = ({
 	logo,
@@ -77,7 +58,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 					{/* Desktop Navigation - Centered */}
 					<div className="hidden md:flex md:items-center md:space-x-8 flex-1 justify-center">
 						<AnimatePresence mode="wait">
-							{items.map((item, index) => {
+							{items?.map((item, index) => {
 								const isActive = pathname === item.href;
 								return (
 									<motion.div
@@ -156,7 +137,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 							transition={{duration: 0.3, ease: "easeInOut"}}
 						>
 							<div className="px-2 pt-2 pb-3 space-y-1 border-t border-gray-200 dark:border-gray-700">
-								{items.map((item, index) => {
+								{items?.map((item, index) => {
 									const isActive = pathname === item.href;
 									return (
 										<motion.div

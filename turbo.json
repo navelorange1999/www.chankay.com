@@ -19,13 +19,19 @@
     "check-types": {
       "dependsOn": ["^check-types"]
     },
+    "gen": {
+      "cache": false,
+      "outputs": ["packages/typescript-config/typings/payload-types.ts"]
+    },
     "dev": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "dependsOn": ["^gen"]
     },
     "start": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "dependsOn": ["gen"]
     }
   }
 }

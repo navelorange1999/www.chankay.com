@@ -1,3 +1,11 @@
 {
-  "name": "@repo/typescript-config"
+  "name": "@repo/typescript-config",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./base": "./configs/base.json",
+    "./nextjs": "./configs/nextjs.json",
+    "./react": "./configs/react.json",
+    "./typings/payload-types": "./typings/payload-types.ts"
+  }
 }

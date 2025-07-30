@@ -5,6 +5,7 @@
   "private": true,
   "packageManager": "pnpm@10.13.1",
   "scripts": {
+    "gen": "turbo run gen",
     "dev": "turbo dev",
     "dev:ui": "turbo run dev --filter=@repo/ui --filter=storybook",
     "dev:admin": "turbo run dev --filter=@repo/ui --filter=admin",

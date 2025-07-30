@@ -259,27 +259,53 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Navbar {
 	id: string;
+	props?: NavbarProps;
+	updatedAt?: string | null;
+	createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "NavbarProps".
+ */
+export interface NavbarProps {
+	logo?: string | null;
+	title?: string | null;
 	items?:
 		| {
+				label: string;
+				href: string;
+				external?: boolean | null;
 				id?: string | null;
 		  }[]
 		| null;
-	updatedAt?: string | null;
-	createdAt?: string | null;
+	className?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "navbar_select".
  */
 export interface NavbarSelect<T extends boolean = true> {
-	items?:
-		| T
-		| {
-				id?: T;
-		  };
+	props?: T | NavbarPropsSelect<T>;
 	updatedAt?: T;
 	createdAt?: T;
 	globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "NavbarProps_select".
+ */
+export interface NavbarPropsSelect<T extends boolean = true> {
+	logo?: T;
+	title?: T;
+	items?:
+		| T
+		| {
+				label?: T;
+				href?: T;
+				external?: T;
+				id?: T;
+		  };
+	className?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

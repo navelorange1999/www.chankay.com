@@ -5,16 +5,54 @@ export const Navbar: GlobalConfig = {
 	access: {
 		read: () => true,
 	},
+
 	fields: [
 		{
-			name: "items",
-			type: "array",
-			fields: [],
-			maxRows: 6,
-			admin: {
-				initCollapsed: true,
-				components: {},
-			},
+			name: "props",
+
+			interfaceName: "NavbarProps",
+			label: "Props",
+			type: "group",
+			fields: [
+				{
+					name: "logo",
+					label: "Logo Url",
+					type: "text",
+				},
+				{
+					name: "title",
+					type: "text",
+				},
+				{
+					name: "items",
+					type: "array",
+					fields: [
+						{
+							name: "label",
+							type: "text",
+							required: true,
+						},
+						{
+							name: "href",
+							type: "text",
+							required: true,
+						},
+						{
+							name: "external",
+							type: "checkbox",
+						},
+					],
+					maxRows: 6,
+					admin: {
+						initCollapsed: true,
+						components: {},
+					},
+				},
+				{
+					name: "className",
+					type: "text",
+				},
+			],
 		},
 	],
 	hooks: {

@@ -42,7 +42,10 @@ export default buildConfig({
 	},
 
 	typescript: {
-		outputFile: path.resolve(dirname, "payload-types.ts"),
+		outputFile: path.resolve(
+			dirname,
+			"../../../packages/typescript-config/typings/payload-types.ts"
+		),
 	},
 
 	plugins: [...plugins],

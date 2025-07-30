@@ -1,6 +1,10 @@
 {
   "extends": ["//"],
   "tasks": {
+    "dev": {
+      "cache": false,
+      "dependsOn": ["^gen"]
+    },
     "build:storybook": {
       "dependsOn": ["^build:storybook"],
       "outputs": ["storybook-static/**"]

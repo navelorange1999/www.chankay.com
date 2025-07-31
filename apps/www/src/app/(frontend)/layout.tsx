@@ -2,13 +2,15 @@ import type {ReactNode} from "react";
 
 import {Inter} from "next/font/google";
 
-import {ThemeProvider, Navbar, PageTransition} from "@repo/ui";
+import {ThemeProvider, PageTransition} from "@repo/ui";
+import {Navbar} from "@/components/Navbar";
+import {Footer} from "@/components/Footer";
 
 import "./global.css";
 
 const inter = Inter({subsets: ["latin"]});
 
-export default function RootLayout({children}: {children: ReactNode}) {
+export default async function RootLayout({children}: {children: ReactNode}) {
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body className={inter.className}>
@@ -22,6 +24,7 @@ export default function RootLayout({children}: {children: ReactNode}) {
 					<main className="min-h-screen bg-gray-50 dark:bg-gray-900">
 						<PageTransition>{children}</PageTransition>
 					</main>
+					<Footer />
 				</ThemeProvider>
 			</body>
 		</html>

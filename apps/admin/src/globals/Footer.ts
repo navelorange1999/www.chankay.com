@@ -1,10 +1,10 @@
 import {Media} from "@/collections";
 import type {GlobalConfig} from "payload";
 
-export const Navbar: GlobalConfig = {
-	slug: "navbar",
+export const Footer: GlobalConfig = {
+	slug: "footer",
 	typescript: {
-		interface: "NavbarInterface",
+		interface: "FooterInterface",
 	},
 	access: {
 		read: () => true,
@@ -13,9 +13,9 @@ export const Navbar: GlobalConfig = {
 	fields: [
 		{
 			name: "props",
-			interfaceName: "NavbarProps",
-			label: "Props",
 			type: "group",
+			label: "Props",
+			interfaceName: "FooterProps",
 			fields: [
 				{
 					name: "logo",
@@ -27,40 +27,50 @@ export const Navbar: GlobalConfig = {
 				{
 					name: "title",
 					type: "text",
+					label: "Title",
+					defaultValue: "Chan Kay's site",
+					required: false,
 				},
 				{
-					name: "items",
+					name: "copyright",
+					type: "text",
+					label: "Copyright",
+					required: false,
+				},
+				{
+					name: "socials",
 					type: "array",
+					label: "Social Links",
+					required: false,
 					fields: [
 						{
-							name: "label",
+							name: "name",
 							type: "text",
+							label: "Social Platform Name",
 							required: true,
 						},
 						{
 							name: "href",
 							type: "text",
+							label: "URL",
 							required: true,
 						},
 						{
-							name: "external",
-							type: "checkbox",
+							name: "icon",
+							label: "Icon",
+							// TODO: Use upload field and relationTo
+							type: "group",
+							fields: Media.fields,
+							required: true,
 						},
 					],
-					maxRows: 6,
-					admin: {
-						initCollapsed: true,
-						components: {},
-					},
 				},
 				{
 					name: "className",
 					type: "text",
+					required: false,
 				},
 			],
 		},
 	],
-	hooks: {
-		afterChange: [],
-	},
 };

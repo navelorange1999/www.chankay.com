@@ -68,6 +68,7 @@ export interface Config {
 	blocks: {};
 	collections: {
 		users: User;
+		media: MediaInterface;
 		"payload-locked-documents": PayloadLockedDocument;
 		"payload-preferences": PayloadPreference;
 		"payload-migrations": PayloadMigration;
@@ -75,6 +76,7 @@ export interface Config {
 	collectionsJoins: {};
 	collectionsSelect: {
 		users: UsersSelect<false> | UsersSelect<true>;
+		media: MediaSelect<false> | MediaSelect<true>;
 		"payload-locked-documents":
 			| PayloadLockedDocumentsSelect<false>
 			| PayloadLockedDocumentsSelect<true>;
@@ -89,10 +91,12 @@ export interface Config {
 		defaultIDType: string;
 	};
 	globals: {
-		navbar: Navbar;
+		navbar: NavbarInterface;
+		footer: FooterInterface;
 	};
 	globalsSelect: {
 		navbar: NavbarSelect<false> | NavbarSelect<true>;
+		footer: FooterSelect<false> | FooterSelect<true>;
 	};
 	locale: null;
 	user: User & {
@@ -147,14 +151,32 @@ export interface User {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface MediaInterface {
+	id: string;
+	src: string;
+	alt: string;
+	width: number;
+	height: number;
+	updatedAt: string;
+	createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
 	id: string;
-	document?: {
-		relationTo: "users";
-		value: string | User;
-	} | null;
+	document?:
+		| ({
+				relationTo: "users";
+				value: string | User;
+		  } | null)
+		| ({
+				relationTo: "media";
+				value: string | MediaInterface;
+		  } | null);
 	globalSlug?: string | null;
 	user: {
 		relationTo: "users";
@@ -223,6 +245,18 @@ export interface UsersSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media_select".
+ */
+export interface MediaSelect<T extends boolean = true> {
+	src?: T;
+	alt?: T;
+	width?: T;
+	height?: T;
+	updatedAt?: T;
+	createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents_select".
  */
 export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
@@ -257,9 +291,9 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "navbar".
  */
-export interface Navbar {
+export interface NavbarInterface {
 	id: string;
-	props?: NavbarProps;
+	props: NavbarProps;
 	updatedAt?: string | null;
 	createdAt?: string | null;
 }
@@ -268,13 +302,62 @@ export interface Navbar {
  * via the `definition` "NavbarProps".
  */
 export interface NavbarProps {
-	logo?: string | null;
+	logo: {
+		src: string;
+		alt: string;
+		width: number;
+		height: number;
+		updatedAt?: string | null;
+		createdAt?: string | null;
+	};
 	title?: string | null;
 	items?:
 		| {
 				label: string;
 				href: string;
 				external?: boolean | null;
+				id?: string | null;
+		  }[]
+		| null;
+	className?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer".
+ */
+export interface FooterInterface {
+	id: string;
+	props: FooterProps;
+	updatedAt?: string | null;
+	createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FooterProps".
+ */
+export interface FooterProps {
+	logo: {
+		src: string;
+		alt: string;
+		width: number;
+		height: number;
+		updatedAt?: string | null;
+		createdAt?: string | null;
+	};
+	title?: string | null;
+	copyright?: string | null;
+	socials?:
+		| {
+				name: string;
+				href: string;
+				icon: {
+					src: string;
+					alt: string;
+					width: number;
+					height: number;
+					updatedAt?: string | null;
+					createdAt?: string | null;
+				};
 				id?: string | null;
 		  }[]
 		| null;
@@ -295,7 +378,16 @@ export interface NavbarSelect<T extends boolean = true> {
  * via the `definition` "NavbarProps_select".
  */
 export interface NavbarPropsSelect<T extends boolean = true> {
-	logo?: T;
+	logo?:
+		| T
+		| {
+				src?: T;
+				alt?: T;
+				width?: T;
+				height?: T;
+				updatedAt?: T;
+				createdAt?: T;
+		  };
 	title?: T;
 	items?:
 		| T
@@ -303,6 +395,52 @@ export interface NavbarPropsSelect<T extends boolean = true> {
 				label?: T;
 				href?: T;
 				external?: T;
+				id?: T;
+		  };
+	className?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer_select".
+ */
+export interface FooterSelect<T extends boolean = true> {
+	props?: T | FooterPropsSelect<T>;
+	updatedAt?: T;
+	createdAt?: T;
+	globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FooterProps_select".
+ */
+export interface FooterPropsSelect<T extends boolean = true> {
+	logo?:
+		| T
+		| {
+				src?: T;
+				alt?: T;
+				width?: T;
+				height?: T;
+				updatedAt?: T;
+				createdAt?: T;
+		  };
+	title?: T;
+	copyright?: T;
+	socials?:
+		| T
+		| {
+				name?: T;
+				href?: T;
+				icon?:
+					| T
+					| {
+							src?: T;
+							alt?: T;
+							width?: T;
+							height?: T;
+							updatedAt?: T;
+							createdAt?: T;
+					  };
 				id?: T;
 		  };
 	className?: T;

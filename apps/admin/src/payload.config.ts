@@ -6,8 +6,8 @@ import {mongooseAdapter} from "@payloadcms/db-mongodb";
 import {buildConfig} from "payload";
 import {Config} from "@repo/typescript-config/typings/payload-types";
 
-import {Users} from "./collections/Users";
-import {Navbar} from "./globals/Navbar";
+import {Media, Users} from "./collections";
+import {Navbar, Footer} from "./globals";
 
 import {plugins} from "./plugins";
 
@@ -19,10 +19,10 @@ export default buildConfig({
 	editor: lexicalEditor(),
 
 	// Define and configure your collections in this array
-	collections: [Users],
+	collections: [Users, Media],
 
 	// Define and configure your Globals in this array
-	globals: [Navbar],
+	globals: [Navbar, Footer],
 
 	// Your Payload secret - should be a complex and secure string, unguessable
 	secret: process.env.PAYLOAD_SECRET || "",

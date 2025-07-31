@@ -10,6 +10,7 @@ import Image from "next/image";
 
 import {NavbarProps} from "@repo/typescript-config/typings/payload-types";
 import {ThemeToggle} from "../ThemeProvider";
+import {cn} from "#utils/classnames";
 
 export const Navbar: React.FC<NavbarProps> = ({
 	logo,
@@ -27,7 +28,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
 	return (
 		<nav
-			className={`${className} bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700`}
+			className={cn(
+				`bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700`,
+				className
+			)}
 		>
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="flex justify-between items-center h-16">
@@ -35,18 +39,12 @@ export const Navbar: React.FC<NavbarProps> = ({
 					<div className="flex-shrink-0">
 						<Link href="/" className="flex items-center">
 							{logo ? (
-								<Image
-									width={32}
-									height={32}
-									className="h-8 w-8"
-									src={logo}
-									alt={title || "Kay Chan Site"}
-								/>
+								<Image {...logo} />
 							) : (
 								<>
 									<div className="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
 										<span className="text-white font-bold text-lg">
-											L
+											Q
 										</span>
 									</div>
 									<span className="ml-2 text-xl font-semibold text-gray-900 dark:text-white"></span>

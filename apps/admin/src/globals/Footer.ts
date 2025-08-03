@@ -20,9 +20,8 @@ export const Footer: GlobalConfig = {
 				{
 					name: "logo",
 					label: "Logo",
-					// TODO: Use upload field and relationTo
-					type: "group",
-					fields: Media.fields,
+					type: "relationship",
+					relationTo: "media",
 				},
 				{
 					name: "title",
@@ -58,10 +57,8 @@ export const Footer: GlobalConfig = {
 						{
 							name: "icon",
 							label: "Icon",
-							// TODO: Use upload field and relationTo
-							type: "group",
-							fields: Media.fields,
-							required: true,
+							type: "relationship",
+							relationTo: "media",
 						},
 					],
 				},

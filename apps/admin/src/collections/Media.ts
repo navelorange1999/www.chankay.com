@@ -14,12 +14,6 @@ export const Media: CollectionConfig = {
 		interface: "MediaInterface",
 	},
 	fields: [
-		// TODO: Should use upload field
-		{
-			name: "src",
-			type: "text",
-			required: true,
-		},
 		{
 			name: "alt",
 			type: "text",

@@ -155,12 +155,19 @@ export interface User {
  */
 export interface MediaInterface {
 	id: string;
-	src: string;
 	alt: string;
-	width: number;
-	height: number;
+	prefix?: string | null;
 	updatedAt: string;
 	createdAt: string;
+	url?: string | null;
+	thumbnailURL?: string | null;
+	filename?: string | null;
+	mimeType?: string | null;
+	filesize?: number | null;
+	width: number;
+	height: number;
+	focalX?: number | null;
+	focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -248,12 +255,19 @@ export interface UsersSelect<T extends boolean = true> {
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
-	src?: T;
 	alt?: T;
-	width?: T;
-	height?: T;
+	prefix?: T;
 	updatedAt?: T;
 	createdAt?: T;
+	url?: T;
+	thumbnailURL?: T;
+	filename?: T;
+	mimeType?: T;
+	filesize?: T;
+	width?: T;
+	height?: T;
+	focalX?: T;
+	focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -293,7 +307,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface NavbarInterface {
 	id: string;
-	props: NavbarProps;
+	props?: NavbarProps;
 	updatedAt?: string | null;
 	createdAt?: string | null;
 }
@@ -302,14 +316,7 @@ export interface NavbarInterface {
  * via the `definition` "NavbarProps".
  */
 export interface NavbarProps {
-	logo: {
-		src: string;
-		alt: string;
-		width: number;
-		height: number;
-		updatedAt?: string | null;
-		createdAt?: string | null;
-	};
+	logo?: (string | null) | MediaInterface;
 	title?: string | null;
 	items?:
 		| {
@@ -327,7 +334,7 @@ export interface NavbarProps {
  */
 export interface FooterInterface {
 	id: string;
-	props: FooterProps;
+	props?: FooterProps;
 	updatedAt?: string | null;
 	createdAt?: string | null;
 }
@@ -336,28 +343,14 @@ export interface FooterInterface {
  * via the `definition` "FooterProps".
  */
 export interface FooterProps {
-	logo: {
-		src: string;
-		alt: string;
-		width: number;
-		height: number;
-		updatedAt?: string | null;
-		createdAt?: string | null;
-	};
+	logo?: (string | null) | MediaInterface;
 	title?: string | null;
 	copyright?: string | null;
 	socials?:
 		| {
 				name: string;
 				href: string;
-				icon: {
-					src: string;
-					alt: string;
-					width: number;
-					height: number;
-					updatedAt?: string | null;
-					createdAt?: string | null;
-				};
+				icon?: (string | null) | MediaInterface;
 				id?: string | null;
 		  }[]
 		| null;
@@ -378,16 +371,7 @@ export interface NavbarSelect<T extends boolean = true> {
  * via the `definition` "NavbarProps_select".
  */
 export interface NavbarPropsSelect<T extends boolean = true> {
-	logo?:
-		| T
-		| {
-				src?: T;
-				alt?: T;
-				width?: T;
-				height?: T;
-				updatedAt?: T;
-				createdAt?: T;
-		  };
+	logo?: T;
 	title?: T;
 	items?:
 		| T
@@ -414,16 +398,7 @@ export interface FooterSelect<T extends boolean = true> {
  * via the `definition` "FooterProps_select".
  */
 export interface FooterPropsSelect<T extends boolean = true> {
-	logo?:
-		| T
-		| {
-				src?: T;
-				alt?: T;
-				width?: T;
-				height?: T;
-				updatedAt?: T;
-				createdAt?: T;
-		  };
+	logo?: T;
 	title?: T;
 	copyright?: T;
 	socials?:
@@ -431,16 +406,7 @@ export interface FooterPropsSelect<T extends boolean = true> {
 		| {
 				name?: T;
 				href?: T;
-				icon?:
-					| T
-					| {
-							src?: T;
-							alt?: T;
-							width?: T;
-							height?: T;
-							updatedAt?: T;
-							createdAt?: T;
-					  };
+				icon?: T;
 				id?: T;
 		  };
 	className?: T;

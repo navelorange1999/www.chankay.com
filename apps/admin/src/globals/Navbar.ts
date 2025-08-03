@@ -20,9 +20,8 @@ export const Navbar: GlobalConfig = {
 				{
 					name: "logo",
 					label: "Logo",
-					// TODO: Use upload field and relationTo
-					type: "group",
-					fields: Media.fields,
+					type: "relationship",
+					relationTo: "media",
 				},
 				{
 					name: "title",

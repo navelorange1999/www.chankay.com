@@ -1,7 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
+
 import {FooterProps} from "@repo/typescript-config/typings/payload-types";
+
 import {cn} from "#utils/classnames";
+import {ImageMedia} from "#components/Media";
 
 export function Footer({
 	logo,
@@ -22,8 +24,8 @@ export function Footer({
 					{/* Left: Logo and Name */}
 					<div className="flex items-center gap-3">
 						{logo && (
-							<Image
-								{...logo}
+							<ImageMedia
+								resource={logo}
 								alt={`${title} logo`}
 								className="h-8 w-8 rounded-full object-cover"
 							/>
@@ -43,12 +45,9 @@ export function Footer({
 									target="_blank"
 									rel="noopener noreferrer"
 								>
-									<Image
-										{...social.icon}
-										alt={
-											social.icon.alt ||
-											`${social.name} icon`
-										}
+									<ImageMedia
+										resource={social.icon}
+										alt={`${social.name} icon`}
 										className="h-5 w-5"
 									/>
 								</Link>

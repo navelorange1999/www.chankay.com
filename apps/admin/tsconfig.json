@@ -8,6 +8,11 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", ".next/types/**/*.ts", "src/app/(payload)"],
+  "include": [
+    "src",
+    ".next/types/**/*.ts",
+    "src/app/(payload)",
+    "src/typings/**/*.d.ts"
+  ],
   "exclude": ["node_modules"]
 }

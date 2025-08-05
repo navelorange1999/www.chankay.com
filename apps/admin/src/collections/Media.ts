@@ -1,15 +1,11 @@
 import type {CollectionConfig} from "payload";
-import path from "path";
-import {fileURLToPath} from "url";
-
-const filename = fileURLToPath(import.meta.url);
-const dirname = path.dirname(filename);
 
 export const Media: CollectionConfig = {
 	slug: "media",
 	access: {
 		read: () => true,
 	},
+
 	typescript: {
 		interface: "MediaInterface",
 	},
@@ -26,4 +22,11 @@ export const Media: CollectionConfig = {
 		},
 		{name: "height", type: "number", required: true},
 	],
+	upload: {
+		// because we are using vercel blob storage, we need to disable local storage
+		disableLocalStorage: true,
+
+		adminThumbnail: ({doc}) =>
+			`${process.env.VERCEL_BLOB_PUBLIC_BASE_URL}/${doc.prefix}/${doc.filename}`,
+	},
 };

@@ -6,11 +6,12 @@ import Link from "next/link";
 import {usePathname} from "next/navigation";
 import {Menu, X} from "lucide-react";
 import {motion, AnimatePresence} from "framer-motion";
-import Image from "next/image";
 
 import {NavbarProps} from "@repo/typescript-config/typings/payload-types";
+
 import {ThemeToggle} from "../ThemeProvider";
 import {cn} from "#utils/classnames";
+import {ImageMedia} from "#components/Media";
 
 export const Navbar: React.FC<NavbarProps> = ({
 	logo,
@@ -37,9 +38,13 @@ export const Navbar: React.FC<NavbarProps> = ({
 				<div className="flex justify-between items-center h-16">
 					{/* Logo */}
 					<div className="flex-shrink-0">
-						<Link href="/" className="flex items-center">
+						<Link
+							aria-label={title || "Home"}
+							href="/"
+							className="flex items-center"
+						>
 							{logo ? (
-								<Image {...logo} />
+								<ImageMedia resource={logo} />
 							) : (
 								<>
 									<div className="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">

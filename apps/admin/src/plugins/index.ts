@@ -8,10 +8,11 @@ export const plugins: Plugin[] = [
 	 */
 	vercelBlobStorage({
 		enabled: true, // Optional, defaults to true
+		addRandomSuffix: true,
 		// Specify which collections should use Vercel Blob
 		collections: {
 			media: {
-				prefix: "www-",
+				prefix: "media",
 			},
 		},
 		// Token provided by Vercel once Blob storage is added to your Vercel project

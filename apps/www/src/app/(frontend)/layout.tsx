@@ -13,6 +13,9 @@ const inter = Inter({subsets: ["latin"]});
 export default async function RootLayout({children}: {children: ReactNode}) {
 	return (
 		<html lang="en" suppressHydrationWarning>
+			<head>
+				<link href="/favicon/favicon.ico" rel="icon" sizes="32x32" />
+			</head>
 			<body className={inter.className}>
 				<ThemeProvider
 					attribute="class"

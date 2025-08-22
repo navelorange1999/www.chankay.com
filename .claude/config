@@ -1,0 +1,19 @@
+# Claude Code Configuration
+
+## Package Manager Rules
+- Always use `pnpm` instead of `npm` for package management
+- **Install packages in the most specific scope possible:**
+  - **apps/** - Navigate to specific app: `cd apps/admin` or `cd apps/www` 
+  - **packages/** - Navigate to specific package: `cd packages/ui` or `cd packages/typescript-config`
+  - **root** - Only for packages that are truly global dependencies (build tools, linting, etc.)
+- Follow minimal dependency principle - only add necessary packages where they're actually needed
+- Examples:
+  - Use `pnpm add package-name` instead of `npm install package-name` 
+  - Use `pnpm install` instead of `npm install`
+  - Use `pnpm run script-name` instead of `npm run script-name`
+
+## Development Guidelines
+- Follow existing code patterns and conventions
+- Use TypeScript with proper typing
+- Prefer industry standard libraries over custom implementations
+- Always check if a dependency is already available in the workspace before adding it

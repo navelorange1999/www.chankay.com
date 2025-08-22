@@ -109,18 +109,20 @@ export interface Config {
 }
 export interface UserAuthOperations {
 	forgotPassword: {
-		username: string;
+		email: string;
+		password: string;
 	};
 	login: {
+		email: string;
 		password: string;
-		username: string;
 	};
 	registerFirstUser: {
+		email: string;
 		password: string;
-		username: string;
 	};
 	unlock: {
-		username: string;
+		email: string;
+		password: string;
 	};
 }
 /**
@@ -129,11 +131,33 @@ export interface UserAuthOperations {
  */
 export interface User {
 	id: string;
-	name?: string | null;
+	name: string;
+	/**
+	 * Primary authentication provider
+	 */
+	provider?: ("credentials" | "github" | "google" | "microsoft") | null;
+	/**
+	 * Connected OAuth accounts
+	 */
+	accounts?:
+		| {
+				provider: "github" | "google" | "microsoft";
+				/**
+				 * Provider's unique user ID (e.g., GitHub ID: 583231)
+				 */
+				providerAccountId: string;
+				/**
+				 * Provider username (may change, e.g., GitHub @username)
+				 */
+				providerUsername?: string | null;
+				connectedAt?: string | null;
+				id?: string | null;
+		  }[]
+		| null;
+	role?: ("admin" | "editor") | null;
 	updatedAt: string;
 	createdAt: string;
-	email?: string | null;
-	username: string;
+	email: string;
 	resetPasswordToken?: string | null;
 	resetPasswordExpiration?: string | null;
 	salt?: string | null;
@@ -232,10 +256,20 @@ export interface PayloadMigration {
  */
 export interface UsersSelect<T extends boolean = true> {
 	name?: T;
+	provider?: T;
+	accounts?:
+		| T
+		| {
+				provider?: T;
+				providerAccountId?: T;
+				providerUsername?: T;
+				connectedAt?: T;
+				id?: T;
+		  };
+	role?: T;
 	updatedAt?: T;
 	createdAt?: T;
 	email?: T;
-	username?: T;
 	resetPasswordToken?: T;
 	resetPasswordExpiration?: T;
 	salt?: T;

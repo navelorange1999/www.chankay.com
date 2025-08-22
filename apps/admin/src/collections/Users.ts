@@ -8,16 +8,86 @@ export const Users: CollectionConfig = {
 		admin: authenticated,
 	},
 	admin: {
-		defaultColumns: ["name", "email"],
+		defaultColumns: ["name", "email", "provider"],
 		useAsTitle: "name",
 	},
-	auth: {
-		loginWithUsername: true,
-	},
+	auth: true,
 	fields: [
 		{
 			name: "name",
 			type: "text",
+			required: true,
+		},
+		{
+			name: "email",
+			type: "email",
+			unique: true,
+			index: true,
+			required: true,
+		},
+		{
+			name: "provider",
+			type: "select",
+			options: [
+				{label: "Email/Password", value: "credentials"},
+				{label: "GitHub", value: "github"},
+				{label: "Google", value: "google"},
+				{label: "Microsoft", value: "microsoft"},
+			],
+			defaultValue: "credentials",
+			admin: {
+				description: "Primary authentication provider",
+			},
+		},
+		{
+			name: "accounts",
+			type: "array",
+			admin: {
+				description: "Connected OAuth accounts",
+			},
+			fields: [
+				{
+					name: "provider",
+					type: "select",
+					options: [
+						{label: "GitHub", value: "github"},
+						{label: "Google", value: "google"},
+						{label: "Microsoft", value: "microsoft"},
+					],
+					required: true,
+				},
+				{
+					name: "providerAccountId",
+					type: "text",
+					required: true,
+					admin: {
+						description:
+							"Provider's unique user ID (e.g., GitHub ID: 583231)",
+					},
+				},
+				{
+					name: "providerUsername",
+					type: "text",
+					admin: {
+						description:
+							"Provider username (may change, e.g., GitHub @username)",
+					},
+				},
+				{
+					name: "connectedAt",
+					type: "date",
+					defaultValue: () => new Date(),
+				},
+			],
+		},
+		{
+			name: "role",
+			type: "select",
+			options: [
+				{label: "Admin", value: "admin"},
+				{label: "Editor", value: "editor"},
+			],
+			defaultValue: "admin",
 		},
 	],
 	timestamps: true,

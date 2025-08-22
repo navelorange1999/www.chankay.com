@@ -11,8 +11,8 @@
   "include": [
     "src",
     ".next/types/**/*.ts",
-    "src/app/(payload)",
+    "src/app/(payload)/**/*.(ts|tsx)",
     "src/typings/**/*.d.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "src/app/(payload)/importMap.js"]
 }

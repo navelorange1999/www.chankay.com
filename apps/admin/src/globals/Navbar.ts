@@ -1,4 +1,3 @@
-import {Media} from "@/collections";
 import type {GlobalConfig} from "payload";
 
 export const Navbar: GlobalConfig = {

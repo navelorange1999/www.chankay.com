@@ -8,7 +8,6 @@ import {Config} from "@repo/typescript-config/typings/payload-types";
 
 import {Media, Users} from "./collections";
 import {Navbar, Footer} from "./globals";
-
 import {plugins} from "./plugins";
 
 const filename = fileURLToPath(import.meta.url);
@@ -54,8 +53,13 @@ export default buildConfig({
 	plugins: [...plugins],
 
 	admin: {
+		importMap: {
+			baseDir: path.resolve(dirname),
+		},
 		user: Users.slug,
-
+		routes: {
+			login: "/auth/login",
+		},
 		autoLogin:
 			process.env.NODE_ENV === "development"
 				? {
@@ -63,8 +67,14 @@ export default buildConfig({
 						password: "local",
 					}
 				: false,
-		importMap: {
-			baseDir: path.resolve(dirname),
+
+		components: {
+			views: {
+				login: {
+					Component: "/views/Login",
+					path: "/auth/login",
+				},
+			},
 		},
 	},
 });

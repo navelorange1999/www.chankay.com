@@ -11,6 +11,7 @@
     "gen:types": "payload generate:types"
   },
   "dependencies": {
+    "@auth/core": "^0.40.0",
     "@payloadcms/db-mongodb": "^3.46.0",
     "@payloadcms/next": "^3.46.0",
     "@payloadcms/richtext-lexical": "^3.46.0",
@@ -21,6 +22,7 @@
     "@repo/ui": "workspace:*",
     "graphql": "^16.11.0",
     "next": "^15.3.5",
+    "next-auth": "^4.24.11",
     "payload": "^3.46.0",
     "sharp": "^0.34.3"
   }

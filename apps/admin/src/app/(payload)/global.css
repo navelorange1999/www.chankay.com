@@ -1,2 +1,4 @@
-@import "@repo/tailwind-config";
-@import "@repo/ui/styles.css";
+@layer payload-default {
+	@import "@repo/tailwind-config";
+	@import "@repo/ui/styles.css";
+}

@@ -1,15 +1,14 @@
 /* THIS FILE WAS GENERATED AUTOMATICALLY BY PAYLOAD. */
 /* DO NOT MODIFY IT BECAUSE IT COULD BE REWRITTEN AT ANY TIME. */
 import config from "@payload-config";
-import "@payloadcms/next/css";
 import type {ServerFunctionClient} from "payload";
 import {handleServerFunctions, RootLayout} from "@payloadcms/next/layouts";
 import React from "react";
 
 import {importMap} from "./importMap.js";
 
-// TODO: Fix @repo/ui styles and @payloadcms styles conflict
-// import "./global.css";
+import "./global.css";
+import "@payloadcms/next/css";
 
 type Args = {
 	children: React.ReactNode;

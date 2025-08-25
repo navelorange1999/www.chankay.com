@@ -8,10 +8,13 @@ export const Users: CollectionConfig = {
 		admin: authenticated,
 	},
 	admin: {
-		defaultColumns: ["name", "email", "provider"],
+		defaultColumns: ["name", "email"],
 		useAsTitle: "name",
 	},
-	auth: true,
+	auth: {
+		useAPIKey: false,
+		loginWithUsername: false,
+	},
 	fields: [
 		{
 			name: "name",
@@ -24,20 +27,6 @@ export const Users: CollectionConfig = {
 			unique: true,
 			index: true,
 			required: true,
-		},
-		{
-			name: "provider",
-			type: "select",
-			options: [
-				{label: "Email/Password", value: "credentials"},
-				{label: "GitHub", value: "github"},
-				{label: "Google", value: "google"},
-				{label: "Microsoft", value: "microsoft"},
-			],
-			defaultValue: "credentials",
-			admin: {
-				description: "Primary authentication provider",
-			},
 		},
 		{
 			name: "accounts",
@@ -62,7 +51,7 @@ export const Users: CollectionConfig = {
 					required: true,
 					admin: {
 						description:
-							"Provider's unique user ID (e.g., GitHub ID: 583231)",
+							"Provider's unique user ID (e.g., GitHub ID: 583231), you can find this in https://api.github.com/users/{{your-github-username}}",
 					},
 				},
 				{
@@ -71,6 +60,14 @@ export const Users: CollectionConfig = {
 					admin: {
 						description:
 							"Provider username (may change, e.g., GitHub @username)",
+					},
+				},
+				{
+					name: "providerEmail",
+					type: "email",
+					admin: {
+						description:
+							"Email associated with this provider account",
 					},
 				},
 				{

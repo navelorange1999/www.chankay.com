@@ -133,23 +133,23 @@ export interface User {
 	id: string;
 	name: string;
 	/**
-	 * Primary authentication provider
-	 */
-	provider?: ("credentials" | "github" | "google" | "microsoft") | null;
-	/**
 	 * Connected OAuth accounts
 	 */
 	accounts?:
 		| {
 				provider: "github" | "google" | "microsoft";
 				/**
-				 * Provider's unique user ID (e.g., GitHub ID: 583231)
+				 * Provider's unique user ID (e.g., GitHub ID: 583231), you can find this in https://api.github.com/users/{{your-github-username}}
 				 */
 				providerAccountId: string;
 				/**
 				 * Provider username (may change, e.g., GitHub @username)
 				 */
 				providerUsername?: string | null;
+				/**
+				 * Email associated with this provider account
+				 */
+				providerEmail?: string | null;
 				connectedAt?: string | null;
 				id?: string | null;
 		  }[]
@@ -256,13 +256,13 @@ export interface PayloadMigration {
  */
 export interface UsersSelect<T extends boolean = true> {
 	name?: T;
-	provider?: T;
 	accounts?:
 		| T
 		| {
 				provider?: T;
 				providerAccountId?: T;
 				providerUsername?: T;
+				providerEmail?: T;
 				connectedAt?: T;
 				id?: T;
 		  };

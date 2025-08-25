@@ -63,7 +63,7 @@ export default buildConfig({
 		autoLogin:
 			process.env.NODE_ENV === "development"
 				? {
-						username: "local",
+						email: "local@test.com",
 						password: "local",
 					}
 				: false,

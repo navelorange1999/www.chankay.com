@@ -1,16 +1,8 @@
 import NextAuth from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
-import {getPayloadHMR} from "@payloadcms/next/utilities";
+import {getPayload} from "payload";
 import configPromise from "@payload-config";
-
-// GitHub profile interface
-interface GitHubProfile {
-	id: number;
-	login: string;
-	name?: string;
-	email?: string;
-}
 
 const handler = NextAuth({
 	providers: [
@@ -30,7 +22,7 @@ const handler = NextAuth({
 				}
 
 				try {
-					const payload = await getPayloadHMR({
+					const payload = await getPayload({
 						config: configPromise,
 					});
 
@@ -59,111 +51,55 @@ const handler = NextAuth({
 		}),
 	],
 	callbacks: {
-		async signIn({user, account, profile}) {
-			if (account?.provider === "github") {
+		async signIn({user, account}) {
+			if (account?.provider && account.provider !== "credentials") {
 				try {
-					const payload = await getPayloadHMR({
+					const payload = await getPayload({
 						config: configPromise,
 					});
-					const githubProfile = profile as GitHubProfile;
-
-					// Find existing user by email (primary identifier)
+					// Find user by OAuth account or email
 					const existingUsers = await payload.find({
 						collection: "users",
 						where: {
-							email: {equals: user.email},
+							or: [
+								{
+									"accounts.provider": {
+										equals: account?.provider,
+									},
+									"accounts.providerAccountId": {
+										equals: account?.providerAccountId,
+									},
+								},
+								{
+									email: {equals: user.email},
+								},
+							],
 						},
 						limit: 1,
 					});
 
 					if (existingUsers.docs.length === 0) {
 						console.log(
-							`Access denied: User ${user.email} not found in system`
+							`Access denied: No user found for ${account?.provider} account or email ${user.email}`
 						);
-						return false; // Only allow existing users for personal blog
-					}
-
-					const existingUser = existingUsers.docs[0];
-
-					// Check if GitHub account is already connected
-					const githubAccount = existingUser?.accounts?.find(
-						(acc) =>
-							acc.provider === "github" &&
-							acc.providerAccountId ===
-								githubProfile.id.toString()
-					);
-
-					if (!githubAccount) {
-						// Connect GitHub account to existing user
-						const updatedAccounts = [
-							...(existingUser?.accounts || []),
-							{
-								provider: "github" as const,
-								providerAccountId: githubProfile.id.toString(),
-								providerUsername: githubProfile.login,
-								connectedAt: new Date().toISOString(),
-							},
-						];
-
-						if (existingUser) {
-							await payload.update({
-								collection: "users",
-								id: existingUser.id,
-								data: {
-									accounts: updatedAccounts,
-									provider: "github" as const, // Update primary provider
-								},
-							});
-						}
-
-						console.log(
-							`GitHub account connected to user: ${user.email}`
-						);
-					} else {
-						// Update GitHub username if changed
-						if (
-							githubAccount.providerUsername !==
-								githubProfile.login &&
-							existingUser
-						) {
-							const updatedAccounts = existingUser.accounts?.map(
-								(acc) =>
-									acc.provider === "github" &&
-									acc.providerAccountId ===
-										githubProfile.id.toString()
-										? {
-												...acc,
-												providerUsername:
-													githubProfile.login,
-											}
-										: acc
-							);
-
-							await payload.update({
-								collection: "users",
-								id: existingUser.id,
-								data: {accounts: updatedAccounts},
-							});
-
-							console.log(
-								`GitHub username updated for user: ${user.email}`
-							);
-						}
+						return false;
 					}
 
 					return true;
 				} catch (error) {
-					console.error("Error during GitHub sign in:", error);
+					console.error(
+						`Error during ${account?.provider} sign in:`,
+						error
+					);
 					return false;
 				}
 			}
 			return true;
 		},
-		async jwt({token, account, profile}) {
-			if (account?.provider === "github") {
-				const githubProfile = profile as GitHubProfile;
-				token.githubId = githubProfile.id.toString();
-				token.provider = "github" as const;
+		async jwt({token, account}) {
+			if (account) {
+				token.provider = account.provider;
+				token.providerAccountId = account.providerAccountId;
 			}
 			return token;
 		},
@@ -172,7 +108,6 @@ const handler = NextAuth({
 				...session,
 				user: {
 					...session.user,
-					githubId: token.githubId as string,
 					provider: token.provider as string,
 				},
 			};
@@ -180,6 +115,8 @@ const handler = NextAuth({
 	},
 	pages: {
 		signIn: "/auth/login",
+		signOut: "/auth/login",
+		error: "/auth/login",
 	},
 });
 

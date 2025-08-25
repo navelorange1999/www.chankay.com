@@ -1,6 +1,9 @@
-import {LoginForm} from "./LoginForm";
+"use client";
 
-export default function LoginPage() {
+import {LoginForm} from "./LoginForm";
+import {SessionProvider} from "next-auth/react";
+
+function LoginPage() {
 	return (
 		<div className="grid min-h-svh lg:grid-cols-2">
 			<div className="flex flex-col gap-4 p-6 md:p-10">
@@ -26,3 +29,15 @@ export default function LoginPage() {
 		</div>
 	);
 }
+
+function withSession<P extends object>(Component: React.ComponentType<P>) {
+	return function WithSessionComponent(props: P) {
+		return (
+			<SessionProvider>
+				<Component {...props} />
+			</SessionProvider>
+		);
+	};
+}
+
+export default withSession(LoginPage);

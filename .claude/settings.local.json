@@ -10,7 +10,10 @@
       "Bash(pnpm run start:*)",
       "WebFetch(domain:payloadcms.com)",
       "WebSearch",
-      "Bash(pnpm run:*)"
+      "Bash(pnpm run:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []

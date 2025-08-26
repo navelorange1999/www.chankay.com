@@ -12,6 +12,11 @@
   - Use `pnpm install` instead of `npm install`
   - Use `pnpm run script-name` instead of `npm run script-name`
 
+## Search Guidelines
+- When searching for documentation or solutions, do NOT include specific year constraints (like "2024", "2025") in search queries
+- Focus on current/latest information by using terms like "latest", "current", or no time qualifier at all
+- Time constraints become outdated quickly and may exclude newer relevant results
+
 ## Development Guidelines
 - Follow existing code patterns and conventions
 - Use TypeScript with proper typing

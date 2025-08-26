@@ -1,2 +1,6 @@
 export {Users} from "./Users";
 export {Media} from "./Media";
+export {Posts} from "./Posts";
+export {Categories} from "./Categories";
+export {Tags} from "./Tags";
+export {Series} from "./Series";

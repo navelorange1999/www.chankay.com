@@ -69,6 +69,10 @@ export interface Config {
 	collections: {
 		users: User;
 		media: MediaInterface;
+		posts: Post;
+		categories: Category;
+		tags: Tag;
+		series: Series;
 		"payload-locked-documents": PayloadLockedDocument;
 		"payload-preferences": PayloadPreference;
 		"payload-migrations": PayloadMigration;
@@ -77,6 +81,10 @@ export interface Config {
 	collectionsSelect: {
 		users: UsersSelect<false> | UsersSelect<true>;
 		media: MediaSelect<false> | MediaSelect<true>;
+		posts: PostsSelect<false> | PostsSelect<true>;
+		categories: CategoriesSelect<false> | CategoriesSelect<true>;
+		tags: TagsSelect<false> | TagsSelect<true>;
+		series: SeriesSelect<false> | SeriesSelect<true>;
 		"payload-locked-documents":
 			| PayloadLockedDocumentsSelect<false>
 			| PayloadLockedDocumentsSelect<true>;
@@ -195,6 +203,216 @@ export interface MediaInterface {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts".
+ */
+export interface Post {
+	id: string;
+	title: string;
+	/**
+	 * URL-friendly version of the title
+	 */
+	slug: string;
+	/**
+	 * Brief summary for previews and SEO
+	 */
+	excerpt?: string | null;
+	/**
+	 * Main article content
+	 */
+	content: {
+		root: {
+			type: string;
+			children: {
+				type: string;
+				version: number;
+				[k: string]: unknown;
+			}[];
+			direction: ("ltr" | "rtl") | null;
+			format:
+				| "left"
+				| "start"
+				| "center"
+				| "right"
+				| "end"
+				| "justify"
+				| "";
+			indent: number;
+			version: number;
+		};
+		[k: string]: unknown;
+	};
+	/**
+	 * 自定义封面图（留空则自动从内容中提取第一张图片）
+	 */
+	featuredImage?: (string | null) | MediaInterface;
+	status: "draft" | "published" | "archived";
+	publishedAt?: string | null;
+	author: string | User;
+	/**
+	 * Associate this post with a series
+	 */
+	series?: (string | null) | Series;
+	/**
+	 * Order of this post within the series
+	 */
+	seriesOrder?: number | null;
+	categories?: (string | Category)[] | null;
+	/**
+	 * Tags for better discoverability
+	 */
+	tags?: (string | Tag)[] | null;
+	seo?: {
+		/**
+		 * Recommended: 50-60 characters
+		 */
+		title?: string | null;
+		/**
+		 * Recommended: 150-160 characters
+		 */
+		description?: string | null;
+		keywords?: string | null;
+		/**
+		 * Prevent search engines from indexing
+		 */
+		noIndex?: boolean | null;
+	};
+	/**
+	 * Estimated reading time in minutes
+	 */
+	readingTime?: number | null;
+	/**
+	 * Feature this post on homepage
+	 */
+	featured?: boolean | null;
+	/**
+	 * Total page views
+	 */
+	views?: number | null;
+	updatedAt: string;
+	createdAt: string;
+	_status?: ("draft" | "published") | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "series".
+ */
+export interface Series {
+	id: string;
+	title: string;
+	/**
+	 * URL-friendly version of the series title
+	 */
+	slug: string;
+	/**
+	 * Detailed description of the series content and goals
+	 */
+	description: {
+		root: {
+			type: string;
+			children: {
+				type: string;
+				version: number;
+				[k: string]: unknown;
+			}[];
+			direction: ("ltr" | "rtl") | null;
+			format:
+				| "left"
+				| "start"
+				| "center"
+				| "right"
+				| "end"
+				| "justify"
+				| "";
+			indent: number;
+			version: number;
+		};
+		[k: string]: unknown;
+	};
+	/**
+	 * Series cover image
+	 */
+	coverImage?: (string | null) | MediaInterface;
+	/**
+	 * Primary author of this series
+	 */
+	author: string | User;
+	status: "draft" | "in-progress" | "completed" | "on-hold";
+	difficulty?: ("beginner" | "intermediate" | "advanced") | null;
+	/**
+	 * Total estimated reading time in minutes
+	 */
+	estimatedReadTime?: number | null;
+	/**
+	 * Number of posts in this series
+	 */
+	postCount?: number | null;
+	/**
+	 * Feature this series prominently
+	 */
+	featured?: boolean | null;
+	/**
+	 * Date when series was completed
+	 */
+	completedAt?: string | null;
+	updatedAt: string;
+	createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+	id: string;
+	name: string;
+	/**
+	 * URL-friendly version of the category name
+	 */
+	slug: string;
+	description?: string | null;
+	/**
+	 * Hex color code for UI theming
+	 */
+	color?: string | null;
+	/**
+	 * Optional icon for the category
+	 */
+	icon?: (string | null) | MediaInterface;
+	/**
+	 * Number of posts in this category
+	 */
+	postCount?: number | null;
+	/**
+	 * Show this category prominently
+	 */
+	featured?: boolean | null;
+	updatedAt: string;
+	createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags".
+ */
+export interface Tag {
+	id: string;
+	name: string;
+	/**
+	 * URL-friendly version of the tag name
+	 */
+	slug: string;
+	description?: string | null;
+	/**
+	 * Hex color code for UI theming
+	 */
+	color?: string | null;
+	/**
+	 * Number of posts with this tag
+	 */
+	postCount?: number | null;
+	updatedAt: string;
+	createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -207,6 +425,22 @@ export interface PayloadLockedDocument {
 		| ({
 				relationTo: "media";
 				value: string | MediaInterface;
+		  } | null)
+		| ({
+				relationTo: "posts";
+				value: string | Post;
+		  } | null)
+		| ({
+				relationTo: "categories";
+				value: string | Category;
+		  } | null)
+		| ({
+				relationTo: "tags";
+				value: string | Tag;
+		  } | null)
+		| ({
+				relationTo: "series";
+				value: string | Series;
 		  } | null);
 	globalSlug?: string | null;
 	user: {
@@ -302,6 +536,85 @@ export interface MediaSelect<T extends boolean = true> {
 	height?: T;
 	focalX?: T;
 	focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "posts_select".
+ */
+export interface PostsSelect<T extends boolean = true> {
+	title?: T;
+	slug?: T;
+	excerpt?: T;
+	content?: T;
+	featuredImage?: T;
+	status?: T;
+	publishedAt?: T;
+	author?: T;
+	series?: T;
+	seriesOrder?: T;
+	categories?: T;
+	tags?: T;
+	seo?:
+		| T
+		| {
+				title?: T;
+				description?: T;
+				keywords?: T;
+				noIndex?: T;
+		  };
+	readingTime?: T;
+	featured?: T;
+	views?: T;
+	updatedAt?: T;
+	createdAt?: T;
+	_status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories_select".
+ */
+export interface CategoriesSelect<T extends boolean = true> {
+	name?: T;
+	slug?: T;
+	description?: T;
+	color?: T;
+	icon?: T;
+	postCount?: T;
+	featured?: T;
+	updatedAt?: T;
+	createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags_select".
+ */
+export interface TagsSelect<T extends boolean = true> {
+	name?: T;
+	slug?: T;
+	description?: T;
+	color?: T;
+	postCount?: T;
+	updatedAt?: T;
+	createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "series_select".
+ */
+export interface SeriesSelect<T extends boolean = true> {
+	title?: T;
+	slug?: T;
+	description?: T;
+	coverImage?: T;
+	author?: T;
+	status?: T;
+	difficulty?: T;
+	estimatedReadTime?: T;
+	postCount?: T;
+	featured?: T;
+	completedAt?: T;
+	updatedAt?: T;
+	createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

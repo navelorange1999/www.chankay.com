@@ -1,5 +1,6 @@
 import type {CollectionConfig} from "payload";
 import {authenticated} from "../access/authenticated";
+import {createBasicTranslationHook} from "../hooks/createTranslationHook";
 
 export const Tags: CollectionConfig = {
 	slug: "tags",
@@ -17,9 +18,11 @@ export const Tags: CollectionConfig = {
 		{
 			name: "name",
 			type: "text",
+			label: "Tag Name",
 			required: true,
 			unique: true,
 			index: true,
+			localized: true,
 			admin: {
 				placeholder: "e.g., react, javascript, tutorial",
 			},
@@ -51,6 +54,8 @@ export const Tags: CollectionConfig = {
 		{
 			name: "description",
 			type: "textarea",
+			label: "Description",
+			localized: true,
 			admin: {
 				placeholder: "Brief description of this tag",
 			},
@@ -74,4 +79,7 @@ export const Tags: CollectionConfig = {
 		},
 	],
 	timestamps: true,
+	hooks: {
+		beforeChange: [createBasicTranslationHook()],
+	},
 };

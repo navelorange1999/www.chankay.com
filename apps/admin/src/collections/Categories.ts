@@ -1,5 +1,6 @@
 import type {CollectionConfig} from "payload";
 import {authenticated} from "../access/authenticated";
+import {createBasicTranslationHook} from "../hooks/createTranslationHook";
 
 export const Categories: CollectionConfig = {
 	slug: "categories",
@@ -17,9 +18,11 @@ export const Categories: CollectionConfig = {
 		{
 			name: "name",
 			type: "text",
+			label: "Category Name",
 			required: true,
 			unique: true,
 			index: true,
+			localized: true,
 			admin: {
 				placeholder: "e.g., Technology, Design, Personal",
 			},
@@ -51,6 +54,8 @@ export const Categories: CollectionConfig = {
 		{
 			name: "description",
 			type: "textarea",
+			label: "Description",
+			localized: true,
 			admin: {
 				placeholder: "Brief description of this category",
 			},
@@ -89,4 +94,7 @@ export const Categories: CollectionConfig = {
 		},
 	],
 	timestamps: true,
+	hooks: {
+		beforeChange: [createBasicTranslationHook()],
+	},
 };

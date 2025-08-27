@@ -1,5 +1,7 @@
 import type {CollectionConfig} from "payload";
 import {authenticated} from "../access/authenticated";
+import {LOCALE_CONFIG, getLocaleOptions} from "../config/locales";
+import {createAdvancedTranslationHook} from "../hooks/createTranslationHook";
 
 export const Posts: CollectionConfig = {
 	slug: "posts",
@@ -17,7 +19,13 @@ export const Posts: CollectionConfig = {
 		delete: authenticated,
 	},
 	admin: {
-		defaultColumns: ["title", "status", "publishedAt", "author"],
+		defaultColumns: [
+			"title",
+			"status",
+			"publishedAt",
+			"author",
+			"primaryLanguage",
+		],
 		useAsTitle: "title",
 		preview: (doc) => {
 			return `${process.env.SITE_URL || "http://localhost:3000"}/posts/${doc.slug}`;
@@ -32,12 +40,28 @@ export const Posts: CollectionConfig = {
 		maxPerDoc: 10,
 	},
 	fields: [
+		// === Language Management ===
+		{
+			name: "primaryLanguage",
+			type: "select",
+			label: "Primary Language",
+			required: true,
+			defaultValue: LOCALE_CONFIG.locales[0].code,
+			options: getLocaleOptions(),
+			admin: {
+				position: "sidebar",
+				description: "The original language this post was written in",
+			},
+		},
+
 		// === Core Content ===
 		{
 			name: "title",
 			type: "text",
+			label: "Title",
 			required: true,
 			index: true,
+			localized: true,
 			admin: {
 				placeholder: "Enter post title...",
 			},
@@ -70,6 +94,8 @@ export const Posts: CollectionConfig = {
 		{
 			name: "excerpt",
 			type: "textarea",
+			label: "Excerpt",
+			localized: true,
 			admin: {
 				description: "Brief summary for previews and SEO",
 				placeholder: "Write a compelling excerpt...",
@@ -78,7 +104,9 @@ export const Posts: CollectionConfig = {
 		{
 			name: "content",
 			type: "richText",
+			label: "Content",
 			required: true,
+			localized: true,
 			admin: {
 				description: "Main article content",
 			},
@@ -199,6 +227,8 @@ export const Posts: CollectionConfig = {
 						{
 							name: "title",
 							type: "text",
+							label: "Meta Title",
+							localized: true,
 							admin: {
 								placeholder:
 									"Custom SEO title (leave empty to use post title)",
@@ -208,6 +238,8 @@ export const Posts: CollectionConfig = {
 						{
 							name: "description",
 							type: "textarea",
+							label: "Meta Description",
+							localized: true,
 							admin: {
 								placeholder:
 									"Meta description for search engines",
@@ -217,6 +249,8 @@ export const Posts: CollectionConfig = {
 						{
 							name: "keywords",
 							type: "text",
+							label: "Keywords",
+							localized: true,
 							admin: {
 								placeholder: "Comma-separated keywords",
 							},
@@ -298,4 +332,19 @@ export const Posts: CollectionConfig = {
 		},
 	],
 	timestamps: true,
+	hooks: {
+		beforeChange: [
+			createAdvancedTranslationHook(
+				[
+					"title",
+					"excerpt",
+					"content",
+					"seo.title",
+					"seo.description",
+					"seo.keywords",
+				],
+				"technical" // Blog posts are often technical content
+			),
+		],
+	},
 };

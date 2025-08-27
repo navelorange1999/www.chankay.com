@@ -8,7 +8,10 @@
     "lint": "next lint --fix",
     "gen": "pnpm gen:importmap && pnpm gen:types",
     "gen:importmap": "payload generate:importmap",
-    "gen:types": "payload generate:types"
+    "gen:types": "payload generate:types",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run"
   },
   "dependencies": {
     "@auth/core": "^0.40.0",
@@ -25,5 +28,9 @@
     "next-auth": "^4.24.11",
     "payload": "^3.46.0",
     "sharp": "^0.34.3"
+  },
+  "devDependencies": {
+    "@vitest/ui": "^3.2.4",
+    "vitest": "^3.2.4"
   }
 }

@@ -29,11 +29,19 @@ import {Config} from "@repo/typescript-config/typings/payload-types";
 import {Media, Users, Posts, Categories, Tags, Series} from "./collections";
 import {Navbar, Footer} from "./globals";
 import {plugins} from "./plugins";
+import {LOCALE_CONFIG} from "./config/locales";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
 export default buildConfig({
+	// Localization configuration
+	localization: {
+		locales: LOCALE_CONFIG.locales.map((locale) => locale.code),
+		defaultLocale: LOCALE_CONFIG.locales[0].code, // First locale as default
+		fallback: LOCALE_CONFIG.cms.fallback,
+	},
+
 	// Lexical editor with markdown support and optimized features
 	editor: lexicalEditor({
 		features: [

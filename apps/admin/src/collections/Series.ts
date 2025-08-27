@@ -1,5 +1,6 @@
 import type {CollectionConfig} from "payload";
 import {authenticated} from "../access/authenticated";
+import {createBasicTranslationHook} from "../hooks/createTranslationHook";
 
 export const Series: CollectionConfig = {
 	slug: "series",
@@ -17,8 +18,10 @@ export const Series: CollectionConfig = {
 		{
 			name: "title",
 			type: "text",
+			label: "Series Title",
 			required: true,
 			index: true,
+			localized: true,
 			admin: {
 				placeholder: "e.g., React Fundamentals, Design Systems Guide",
 			},
@@ -50,7 +53,9 @@ export const Series: CollectionConfig = {
 		{
 			name: "description",
 			type: "richText",
+			label: "Description",
 			required: true,
+			localized: true,
 			admin: {
 				description:
 					"Detailed description of the series content and goals",
@@ -131,4 +136,7 @@ export const Series: CollectionConfig = {
 		},
 	],
 	timestamps: true,
+	hooks: {
+		beforeChange: [createBasicTranslationHook()],
+	},
 };

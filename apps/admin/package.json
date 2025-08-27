@@ -11,7 +11,8 @@
     "gen:types": "payload generate:types",
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "test:run": "vitest run"
+    "test:run": "vitest run",
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
     "@auth/core": "^0.40.0",

@@ -6,6 +6,10 @@ const nextConfig = {
 	experimental: {
 		reactCompiler: false,
 	},
+	typescript: {
+		ignoreBuildErrors: false, // Keep type checking enabled
+		tsconfigPath: "./tsconfig.json",
+	},
 };
 
 // Make sure you wrap your `nextConfig`

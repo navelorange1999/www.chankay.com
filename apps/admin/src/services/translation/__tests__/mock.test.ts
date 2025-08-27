@@ -61,7 +61,7 @@ describe("MockTranslationAdapter", () => {
 			);
 
 			expect(result.text).toBe("[ZH-CN] Hello world");
-			expect(result.children[0].text).toBe("[ZH-CN] Nested text");
+			expect(result.children[0]?.text).toBe("[ZH-CN] Nested text");
 			expect(result.type).toBe("paragraph"); // Non-text fields preserved
 		});
 
@@ -89,9 +89,15 @@ describe("MockTranslationAdapter", () => {
 				"zh-CN"
 			);
 
-			expect(result.children[0].text).toBe("[ZH-CN] First paragraph");
-			expect(result.children[1].children[0].text).toBe("[ZH-CN] Item 1");
-			expect(result.children[1].children[1].text).toBe("[ZH-CN] Item 2");
+			expect((result as any).children[0]?.text).toBe(
+				"[ZH-CN] First paragraph"
+			);
+			expect((result as any).children[1]?.children[0]?.text).toBe(
+				"[ZH-CN] Item 1"
+			);
+			expect((result as any).children[1]?.children[1]?.text).toBe(
+				"[ZH-CN] Item 2"
+			);
 		});
 
 		it("should handle null and undefined content", async () => {

@@ -77,8 +77,8 @@ describe("Translation Detector", () => {
 			const fields = detectLocalizedFields(data);
 
 			expect(fields).toHaveLength(1);
-			expect(fields[0].path).toBe("title");
-			expect(fields[0].type).toBe("text");
+			expect(fields[0]?.path).toBe("title");
+			expect(fields[0]?.type).toBe("text");
 		});
 
 		it("should detect nested localized fields", () => {

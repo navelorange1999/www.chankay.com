@@ -3,6 +3,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "jsx": "preserve",
+    "skipLibCheck": true,
     "paths": {
       "@payload-config": ["./src/payload.config.ts"],
       "@/*": ["./src/*"]
@@ -14,5 +15,5 @@
     "src/app/(payload)/**/*.(ts|tsx)",
     "src/typings/**/*.d.ts"
   ],
-  "exclude": ["node_modules", "src/app/(payload)/importMap.js"]
+  "exclude": ["src/app/(payload)/importMap.js", "../../packages/ui/src/**/*"]
 }

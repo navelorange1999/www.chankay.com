@@ -15,5 +15,6 @@
     "src/app/(payload)/**/*.(ts|tsx)",
     "src/typings/**/*.d.ts"
   ],
-  "exclude": ["src/app/(payload)/importMap.js", "../../packages/ui/src/**/*"]
+  "exclude": ["src/app/(payload)/importMap.js"],
+  "references": [{"path": "../../packages/ui"}]
 }

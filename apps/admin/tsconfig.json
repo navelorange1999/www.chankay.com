@@ -4,17 +4,23 @@
     "outDir": "dist",
     "jsx": "preserve",
     "skipLibCheck": true,
+    "declaration": false,
+    "declarationMap": false,
     "paths": {
       "@payload-config": ["./src/payload.config.ts"],
       "@/*": ["./src/*"]
     }
   },
   "include": [
-    "src",
+    "src/**/*.ts",
+    "src/**/*.tsx",
     ".next/types/**/*.ts",
-    "src/app/(payload)/**/*.(ts|tsx)",
     "src/typings/**/*.d.ts"
   ],
-  "exclude": ["src/app/(payload)/importMap.js"],
+  "exclude": [
+    "node_modules",
+    "**/importMap.js",
+    "src/app/(payload)/importMap.js"
+  ],
   "references": [{"path": "../../packages/ui"}]
 }

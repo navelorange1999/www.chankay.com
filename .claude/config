@@ -22,3 +22,24 @@
 - Use TypeScript with proper typing
 - Prefer industry standard libraries over custom implementations
 - Always check if a dependency is already available in the workspace before adding it
+
+## TypeScript Coding Standards
+- **Avoid `any` type:** Use generics, union types, or proper interfaces instead
+- Prefer `<T>` generics for reusable components and functions
+- Use `Record<string, unknown>` instead of `any` for object types
+- Type assertions should be explicit: `value as TargetType`
+- Example: Use `translateRichText<T>(content: T): Promise<T>` instead of `translateRichText(content: any): Promise<any>`
+
+## PayloadCMS Auto-Generated Files
+- **NEVER modify PayloadCMS auto-generated files**
+- Files like `importMap.js` are automatically generated and will be overwritten
+- Any modifications to these files are meaningless and will be lost
+- Instead, work around these files through TypeScript configuration or exclude patterns
+- Common auto-generated files: `importMap.js`, type files in `.next/types/`, etc.
+
+## Git Commit Rules
+- **NEVER commit changes without explicit user approval**
+- Always ask the user to confirm before running `git commit`
+- Show a summary of changes and ask: "Should I commit these changes?"
+- Only proceed with commit after receiving explicit user confirmation
+- This applies to all commits including bug fixes, features, and configuration changes

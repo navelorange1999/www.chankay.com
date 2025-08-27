@@ -1,1 +1,3 @@
-# pnpm check-types
+# Run tests for all projects in monorepo
+# Note: TypeScript project references successfully resolve UI package alias imports
+pnpm test:run

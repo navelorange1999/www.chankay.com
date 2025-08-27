@@ -10,10 +10,13 @@
   "scripts": {
     "build:styles": "tailwindcss -i ./src/styles.css -o ./dist/index.css",
     "build:components": "tsc",
+    "build": "pnpm build:styles && pnpm build:components",
     "check-types": "tsc --noEmit",
     "dev:styles": "tailwindcss -i ./src/styles.css -o ./dist/index.css --watch",
     "dev:components": "tsc --watch",
-    "lint": "eslint src --max-warnings=20 --fix"
+    "lint": "eslint src --max-warnings=20 --fix",
+    "test": "echo \"No tests yet\"",
+    "test:run": "echo \"No tests yet\""
   },
   "imports": {
     "#*": "./src/*"

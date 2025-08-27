@@ -12,10 +12,12 @@
     "dev:www": "turbo run dev --filter=@repo/ui --filter=www",
     "start": "turbo start",
     "build": "turbo build",
+    "test": "turbo run test",
+    "test:run": "turbo run test:run",
     "cz": "git cz",
     "prepare": "husky",
     "lint": "turbo run lint",
-    "check-types": "tsc"
+    "check-types": "turbo run check-types"
   },
   "dependencies": {
     "react": "^19.1.0",

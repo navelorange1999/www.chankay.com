@@ -2,6 +2,11 @@
   "name": "@repo/tailwind-config",
   "type": "module",
   "private": true,
+  "scripts": {
+    "check-types": "echo \"Config package - no type checking needed\"",
+    "test": "echo \"No tests yet\"",
+    "test:run": "echo \"No tests yet\""
+  },
   "exports": {
     ".": "./shared-styles.css",
     "./postcss": "./postcss.config.js"

@@ -106,7 +106,7 @@ export interface Config {
 		navbar: NavbarSelect<false> | NavbarSelect<true>;
 		footer: FooterSelect<false> | FooterSelect<true>;
 	};
-	locale: null;
+	locale: "en" | "zh-CN";
 	user: User & {
 		collection: "users";
 	};
@@ -207,6 +207,10 @@ export interface MediaInterface {
  */
 export interface Post {
 	id: string;
+	/**
+	 * The original language this post was written in
+	 */
+	primaryLanguage: "en" | "zh-CN";
 	title: string;
 	/**
 	 * URL-friendly version of the title
@@ -542,6 +546,7 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "posts_select".
  */
 export interface PostsSelect<T extends boolean = true> {
+	primaryLanguage?: T;
 	title?: T;
 	slug?: T;
 	excerpt?: T;

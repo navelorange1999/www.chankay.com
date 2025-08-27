@@ -13,7 +13,17 @@
       "Bash(pnpm run:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(pnpm test:*)",
+      "Bash(pnpm gen:types:*)",
+      "Bash(pnpm build:*)",
+      "Bash(pnpm gen:importmap:*)",
+      "Bash(git checkout:*)",
+      "Bash(pnpm remove:*)",
+      "Bash(chmod:*)",
+      "Bash(pnpm check-types:*)",
+      "Bash(find:*)",
+      "WebFetch(domain:github.com)"
     ],
     "deny": [],
     "ask": []

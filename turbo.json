@@ -18,7 +18,15 @@
       "dependsOn": ["^lint"]
     },
     "check-types": {
-      "dependsOn": ["^check-types"]
+      "dependsOn": ["^build", "^check-types"]
+    },
+    "test": {
+      "dependsOn": ["^test"],
+      "inputs": ["$TURBO_DEFAULT$", "**/*.test.{ts,tsx,js,jsx}"]
+    },
+    "test:run": {
+      "dependsOn": ["^test:run"],
+      "inputs": ["$TURBO_DEFAULT$", "**/*.test.{ts,tsx,js,jsx}"]
     },
     "gen": {
       "cache": false

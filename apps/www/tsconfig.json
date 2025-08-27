@@ -6,8 +6,10 @@
     "types": ["next"],
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "skipLibCheck": true
   },
   "include": ["src", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "references": [{"path": "../../packages/ui"}]
 }

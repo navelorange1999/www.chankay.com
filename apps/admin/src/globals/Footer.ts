@@ -1,5 +1,5 @@
-import {Media} from "@/collections";
-import type {GlobalConfig} from "payload";
+import { Media } from "@/collections"
+import type { GlobalConfig } from "payload"
 
 export const Footer: GlobalConfig = {
 	slug: "footer",
@@ -70,4 +70,4 @@ export const Footer: GlobalConfig = {
 			],
 		},
 	],
-};
+}

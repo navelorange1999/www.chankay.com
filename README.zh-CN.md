@@ -16,14 +16,14 @@
 
 ## TODO
 
--   [ ] 设计并实现 Next.js WWW 站点，包括：
-    -   [ ] 首页
-    -   [ ] 博客列表页
-    -   [ ] 博客详情页
-    -   [ ] 深色/浅色模式切换
-    -   [ ] 多语言支持
-    -   [ ] 整站搜索
-    -   [ ] 评论系统
-    -   [ ] RSS 订阅
--   [ ] 集成 Payload CMS 与 Next.js WWW，实现内容（如博客）动态获取与展示。
--   [ ] 实现 Payload admin 内容变更在 Next.js WWW 的实时预览（如 live preview）。
+- [ ] 设计并实现 Next.js WWW 站点，包括：
+  - [ ] 首页
+  - [ ] 博客列表页
+  - [ ] 博客详情页
+  - [ ] 深色/浅色模式切换
+  - [ ] 多语言支持
+  - [ ] 整站搜索
+  - [ ] 评论系统
+  - [ ] RSS 订阅
+- [ ] 集成 Payload CMS 与 Next.js WWW，实现内容（如博客）动态获取与展示。
+- [ ] 实现 Payload admin 内容变更在 Next.js WWW 的实时预览（如 live preview）。

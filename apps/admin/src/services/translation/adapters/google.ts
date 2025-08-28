@@ -1,4 +1,4 @@
-import type {TranslationAdapter} from "../types";
+import type { TranslationAdapter } from "../types"
 
 /**
  * Google Translate adapter template
@@ -8,23 +8,18 @@ import type {TranslationAdapter} from "../types";
  * Usage: Set up Google Cloud credentials
  */
 export class GoogleTranslationAdapter implements TranslationAdapter {
-	name = "google";
-	private projectId: string;
-	private keyFile?: string;
+	name = "google"
+	private projectId: string
+	private keyFile?: string
 
-	constructor(options: {projectId?: string; keyFile?: string} = {}) {
-		this.projectId =
-			options.projectId || process.env.GOOGLE_CLOUD_PROJECT_ID || "";
-		this.keyFile = options.keyFile || process.env.GOOGLE_CLOUD_KEY_FILE;
+	constructor(options: { projectId?: string; keyFile?: string } = {}) {
+		this.projectId = options.projectId || process.env.GOOGLE_CLOUD_PROJECT_ID || ""
+		this.keyFile = options.keyFile || process.env.GOOGLE_CLOUD_KEY_FILE
 	}
 
-	async translateText(
-		text: string,
-		from: string,
-		to: string
-	): Promise<string> {
+	async translateText(text: string, from: string, to: string): Promise<string> {
 		if (!this.isAvailable()) {
-			throw new Error("Google Cloud credentials not configured");
+			throw new Error("Google Cloud credentials not configured")
 		}
 
 		/* 
@@ -47,14 +42,12 @@ export class GoogleTranslationAdapter implements TranslationAdapter {
     */
 
 		// Placeholder implementation
-		console.log(
-			`[Google Adapter] Would translate "${text}" from ${from} to ${to}`
-		);
-		return `[Google-${to.toUpperCase()}] ${text}`;
+		console.log(`[Google Adapter] Would translate "${text}" from ${from} to ${to}`)
+		return `[Google-${to.toUpperCase()}] ${text}`
 	}
 
 	isAvailable(): boolean {
-		return !!this.projectId;
+		return !!this.projectId
 	}
 
 	getConfig() {
@@ -63,6 +56,6 @@ export class GoogleTranslationAdapter implements TranslationAdapter {
 			projectId: this.projectId,
 			hasCredentials: this.isAvailable(),
 			description: "Google Cloud Translation (requires GCP setup)",
-		};
+		}
 	}
 }

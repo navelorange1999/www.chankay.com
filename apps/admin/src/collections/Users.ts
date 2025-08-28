@@ -1,5 +1,5 @@
-import type {CollectionConfig} from "payload";
-import {authenticated} from "../access/authenticated";
+import type { CollectionConfig } from "payload"
+import { authenticated } from "../access/authenticated"
 
 export const Users: CollectionConfig = {
 	slug: "users",
@@ -39,9 +39,9 @@ export const Users: CollectionConfig = {
 					name: "provider",
 					type: "select",
 					options: [
-						{label: "GitHub", value: "github"},
-						{label: "Google", value: "google"},
-						{label: "Microsoft", value: "microsoft"},
+						{ label: "GitHub", value: "github" },
+						{ label: "Google", value: "google" },
+						{ label: "Microsoft", value: "microsoft" },
 					],
 					required: true,
 				},
@@ -58,16 +58,14 @@ export const Users: CollectionConfig = {
 					name: "providerUsername",
 					type: "text",
 					admin: {
-						description:
-							"Provider username (may change, e.g., GitHub @username)",
+						description: "Provider username (may change, e.g., GitHub @username)",
 					},
 				},
 				{
 					name: "providerEmail",
 					type: "email",
 					admin: {
-						description:
-							"Email associated with this provider account",
+						description: "Email associated with this provider account",
 					},
 				},
 				{
@@ -81,11 +79,11 @@ export const Users: CollectionConfig = {
 			name: "role",
 			type: "select",
 			options: [
-				{label: "Admin", value: "admin"},
-				{label: "Editor", value: "editor"},
+				{ label: "Admin", value: "admin" },
+				{ label: "Editor", value: "editor" },
 			],
 			defaultValue: "admin",
 		},
 	],
 	timestamps: true,
-};
+}

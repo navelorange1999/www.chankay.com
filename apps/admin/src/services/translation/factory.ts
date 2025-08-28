@@ -3,15 +3,15 @@ import type {
 	TranslationProvider,
 	TranslationConfig,
 	TranslationAdapter,
-} from "./types";
-import {UniversalTranslator} from "./universal";
+} from "./types"
+import { UniversalTranslator } from "./universal"
 import {
 	MockTranslationAdapter,
 	OpenAITranslationAdapter,
 	DeepLTranslationAdapter,
 	GoogleTranslationAdapter,
 	BaiduTranslationAdapter,
-} from "./adapters";
+} from "./adapters"
 
 /**
  * Translation service factory
@@ -23,12 +23,12 @@ export function createTranslationService(
 		provider: "mock",
 	}
 ): TranslationService {
-	const adapter = createTranslationAdapter(provider, config);
+	const adapter = createTranslationAdapter(provider, config)
 	const fallbackAdapter = config.fallbackProvider
 		? createTranslationAdapter(config.fallbackProvider, config)
-		: new MockTranslationAdapter(); // Always fallback to mock
+		: new MockTranslationAdapter() // Always fallback to mock
 
-	return new UniversalTranslator(adapter, fallbackAdapter);
+	return new UniversalTranslator(adapter, fallbackAdapter)
 }
 
 /**
@@ -42,32 +42,30 @@ export function createTranslationAdapter(
 ): TranslationAdapter {
 	switch (provider) {
 		case "mock":
-			return new MockTranslationAdapter();
+			return new MockTranslationAdapter()
 
 		case "openai":
-			return new OpenAITranslationAdapter();
+			return new OpenAITranslationAdapter()
 
 		case "deepl":
-			return new DeepLTranslationAdapter();
+			return new DeepLTranslationAdapter()
 
 		case "google":
-			return new GoogleTranslationAdapter();
+			return new GoogleTranslationAdapter()
 
 		case "baidu":
-			return new BaiduTranslationAdapter();
+			return new BaiduTranslationAdapter()
 
 		case "custom":
 			// Look for custom adapters in config
 			if (config.adapters?.custom) {
-				return config.adapters.custom;
+				return config.adapters.custom
 			}
-			throw new Error("Custom adapter not provided in config");
+			throw new Error("Custom adapter not provided in config")
 
 		default:
-			console.warn(
-				`Unknown translation provider: ${provider}, falling back to mock`
-			);
-			return new MockTranslationAdapter();
+			console.warn(`Unknown translation provider: ${provider}, falling back to mock`)
+			return new MockTranslationAdapter()
 	}
 }
 
@@ -80,25 +78,25 @@ export function getOptimalTranslationService(
 	contentType: "technical" | "general" = "general"
 ): TranslationProvider {
 	// Language pair specific optimizations
-	const languagePair = `${from}-${to}`;
+	const languagePair = `${from}-${to}`
 	const languagePairMap: Record<string, TranslationProvider> = {
 		"en-zh-CN": "baidu", // English to Chinese: Baidu is good for Chinese
 		"zh-CN-en": "deepl", // Chinese to English: DeepL is generally good
 		"ja-en": "deepl", // Japanese to English: DeepL excels at this
 		"en-ja": "deepl", // English to Japanese: DeepL excels at this
-	};
+	}
 
 	if (languagePairMap[languagePair]) {
-		return languagePairMap[languagePair];
+		return languagePairMap[languagePair]
 	}
 
 	// Content type specific optimizations
 	if (contentType === "technical") {
-		return "openai"; // GPT models are better for technical content
+		return "openai" // GPT models are better for technical content
 	}
 
 	// Default to mock for development, deepl for production
-	return process.env.NODE_ENV === "development" ? "mock" : "mock"; // Keep mock as default for now
+	return process.env.NODE_ENV === "development" ? "mock" : "mock" // Keep mock as default for now
 }
 
 /**
@@ -111,5 +109,5 @@ export function createRedundantTranslationService(
 	return createTranslationService(primaryProvider, {
 		provider: primaryProvider,
 		fallbackProvider,
-	});
+	})
 }

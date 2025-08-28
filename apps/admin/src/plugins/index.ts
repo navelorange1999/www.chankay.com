@@ -1,5 +1,5 @@
-import {vercelBlobStorage} from "@payloadcms/storage-vercel-blob";
-import {Plugin} from "payload";
+import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob"
+import { Plugin } from "payload"
 
 export const plugins: Plugin[] = [
 	/**
@@ -18,4 +18,4 @@ export const plugins: Plugin[] = [
 		// Token provided by Vercel once Blob storage is added to your Vercel project
 		token: process.env.VERCEL_BLOB_READ_WRITE_TOKEN,
 	}),
-];
+]

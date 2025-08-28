@@ -1,5 +1,5 @@
-import tailwindcssAnimate from "tailwindcss-animate";
-import typography from "@tailwindcss/typography";
+import tailwindcssAnimate from "tailwindcss-animate"
+import typography from "@tailwindcss/typography"
 
 /** @type {import('tailwindcss').Config} */
 const config = {
@@ -94,12 +94,12 @@ const config = {
 			},
 			keyframes: {
 				"accordion-down": {
-					from: {height: "0"},
-					to: {height: "var(--radix-accordion-content-height)"},
+					from: { height: "0" },
+					to: { height: "var(--radix-accordion-content-height)" },
 				},
 				"accordion-up": {
-					from: {height: "var(--radix-accordion-content-height)"},
-					to: {height: "0"},
+					from: { height: "var(--radix-accordion-content-height)" },
+					to: { height: "0" },
 				},
 			},
 			typography: () => ({
@@ -143,6 +143,6 @@ const config = {
 			}),
 		},
 	},
-};
+}
 
-export default config;
+export default config

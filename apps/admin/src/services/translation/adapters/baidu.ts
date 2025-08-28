@@ -1,4 +1,4 @@
-import type {TranslationAdapter} from "../types";
+import type { TranslationAdapter } from "../types"
 
 /**
  * Baidu Translate adapter template
@@ -7,24 +7,19 @@ import type {TranslationAdapter} from "../types";
  * Usage: Set BAIDU_TRANSLATE_APP_ID and BAIDU_TRANSLATE_SECRET environment variables
  */
 export class BaiduTranslationAdapter implements TranslationAdapter {
-	name = "baidu";
-	private appId: string;
-	private secret: string;
-	private apiUrl = "https://fanyi-api.baidu.com/api/trans/vip/translate";
+	name = "baidu"
+	private appId: string
+	private secret: string
+	private apiUrl = "https://fanyi-api.baidu.com/api/trans/vip/translate"
 
-	constructor(options: {appId?: string; secret?: string} = {}) {
-		this.appId = options.appId || process.env.BAIDU_TRANSLATE_APP_ID || "";
-		this.secret =
-			options.secret || process.env.BAIDU_TRANSLATE_SECRET || "";
+	constructor(options: { appId?: string; secret?: string } = {}) {
+		this.appId = options.appId || process.env.BAIDU_TRANSLATE_APP_ID || ""
+		this.secret = options.secret || process.env.BAIDU_TRANSLATE_SECRET || ""
 	}
 
-	async translateText(
-		text: string,
-		from: string,
-		to: string
-	): Promise<string> {
+	async translateText(text: string, from: string, to: string): Promise<string> {
 		if (!this.isAvailable()) {
-			throw new Error("Baidu Translate credentials not configured");
+			throw new Error("Baidu Translate credentials not configured")
 		}
 
 		/* 
@@ -58,14 +53,12 @@ export class BaiduTranslationAdapter implements TranslationAdapter {
     */
 
 		// Placeholder implementation
-		console.log(
-			`[Baidu Adapter] Would translate "${text}" from ${from} to ${to}`
-		);
-		return `[百度-${to.toUpperCase()}] ${text}`;
+		console.log(`[Baidu Adapter] Would translate "${text}" from ${from} to ${to}`)
+		return `[百度-${to.toUpperCase()}] ${text}`
 	}
 
 	isAvailable(): boolean {
-		return !!(this.appId && this.secret);
+		return !!(this.appId && this.secret)
 	}
 
 	getConfig() {
@@ -73,7 +66,7 @@ export class BaiduTranslationAdapter implements TranslationAdapter {
 			type: "baidu",
 			hasCredentials: this.isAvailable(),
 			description: "Baidu Fanyi API (good for Chinese translations)",
-		};
+		}
 	}
 
 	/**
@@ -90,8 +83,8 @@ export class BaiduTranslationAdapter implements TranslationAdapter {
 			de: "de",
 			es: "spa",
 			ru: "ru",
-		};
+		}
 
-		return map[code] || code;
+		return map[code] || code
 	}
 }

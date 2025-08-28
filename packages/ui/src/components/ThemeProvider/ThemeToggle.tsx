@@ -1,32 +1,32 @@
-"use client";
+"use client"
 
-import {useTheme} from "next-themes";
-import {Sun, Moon} from "lucide-react";
-import {motion, AnimatePresence} from "framer-motion";
-import {useEffect, useState} from "react";
+import { useTheme } from "next-themes"
+import { Sun, Moon } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
+import { useEffect, useState } from "react"
 
 interface ThemeToggleProps {
-	className?: string;
+	className?: string
 }
 
-export function ThemeToggle({className = ""}: ThemeToggleProps) {
-	const [mounted, setMounted] = useState(false);
-	const {theme, setTheme} = useTheme();
+export function ThemeToggle({ className = "" }: ThemeToggleProps) {
+	const [mounted, setMounted] = useState(false)
+	const { theme, setTheme } = useTheme()
 
 	useEffect(() => {
-		setMounted(true);
-	}, []);
+		setMounted(true)
+	}, [])
 
 	const toggleTheme = () => {
-		setTheme(theme === "dark" ? "light" : "dark");
-	};
+		setTheme(theme === "dark" ? "light" : "dark")
+	}
 
 	if (!mounted) {
 		return (
 			<div className={`p-2 rounded-lg ${className}`}>
 				<div className="h-5 w-5" />
 			</div>
-		);
+		)
 	}
 
 	return (
@@ -34,8 +34,8 @@ export function ThemeToggle({className = ""}: ThemeToggleProps) {
 			onClick={toggleTheme}
 			className={`relative p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-150 overflow-hidden ${className}`}
 			aria-label="Toggle theme"
-			whileHover={{scale: 1.1}}
-			whileTap={{scale: 0.9}}
+			whileHover={{ scale: 1.1 }}
+			whileTap={{ scale: 0.9 }}
 		>
 			{/* Background glow effect */}
 			<motion.div
@@ -46,7 +46,7 @@ export function ThemeToggle({className = ""}: ThemeToggleProps) {
 							? "radial-gradient(circle, rgba(251, 191, 36, 0.1) 0%, transparent 70%)"
 							: "radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%)",
 				}}
-				transition={{duration: 0.2}}
+				transition={{ duration: 0.2 }}
 			/>
 
 			{/* Icon container */}
@@ -109,10 +109,10 @@ export function ThemeToggle({className = ""}: ThemeToggleProps) {
 			{/* Ripple effect */}
 			<motion.div
 				className="absolute inset-0 rounded-lg"
-				initial={{scale: 0, opacity: 0.5}}
-				animate={{scale: 0, opacity: 0.5}}
-				whileTap={{scale: 1.2, opacity: 0}}
-				transition={{duration: 0.2}}
+				initial={{ scale: 0, opacity: 0.5 }}
+				animate={{ scale: 0, opacity: 0.5 }}
+				whileTap={{ scale: 1.2, opacity: 0 }}
+				transition={{ duration: 0.2 }}
 				style={{
 					background:
 						theme === "dark"
@@ -121,5 +121,5 @@ export function ThemeToggle({className = ""}: ThemeToggleProps) {
 				}}
 			/>
 		</motion.button>
-	);
+	)
 }

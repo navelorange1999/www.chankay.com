@@ -1,1 +1,1 @@
-export * from "./ImageMedia";
+export * from "./ImageMedia"

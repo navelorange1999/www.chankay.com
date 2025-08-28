@@ -1,10 +1,8 @@
 export class PayloadClient {
-	private baseUrl: string;
+	private baseUrl: string
 
-	constructor(
-		baseUrl: string = process.env.PAYLOAD_API_URL || "http://localhost:3001"
-	) {
-		this.baseUrl = baseUrl;
+	constructor(baseUrl: string = process.env.PAYLOAD_API_URL || "http://localhost:3001") {
+		this.baseUrl = baseUrl
 	}
 
 	async getGlobal<T>(slug: string): Promise<T> {
@@ -17,14 +15,14 @@ export class PayloadClient {
 				revalidate: parseInt(process.env.PAYLOAD_REVALIDATE_TIME),
 				tags: [`global:${slug}`],
 			},
-		});
+		})
 
 		if (!response.ok) {
-			throw new Error(`Failed to fetch global ${slug}`);
+			throw new Error(`Failed to fetch global ${slug}`)
 		}
 
-		return response.json();
+		return response.json()
 	}
 }
 
-export const payloadClient = new PayloadClient();
+export const payloadClient = new PayloadClient()

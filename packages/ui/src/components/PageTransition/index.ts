@@ -1,1 +1,1 @@
-export {PageTransition} from "./PageTransition";
+export { PageTransition } from "./PageTransition"

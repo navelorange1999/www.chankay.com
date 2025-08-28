@@ -1,4 +1,4 @@
-import type {TranslationAdapter} from "../types";
+import type { TranslationAdapter } from "../types"
 
 /**
  * DeepL translation adapter template
@@ -8,24 +8,20 @@ import type {TranslationAdapter} from "../types";
  * Usage: Set DEEPL_API_KEY environment variable
  */
 export class DeepLTranslationAdapter implements TranslationAdapter {
-	name = "deepl";
-	private apiKey: string;
-	private apiUrl: string;
+	name = "deepl"
+	private apiKey: string
+	private apiUrl: string
 
-	constructor(options: {apiKey?: string; pro?: boolean} = {}) {
-		this.apiKey = options.apiKey || process.env.DEEPL_API_KEY || "";
+	constructor(options: { apiKey?: string; pro?: boolean } = {}) {
+		this.apiKey = options.apiKey || process.env.DEEPL_API_KEY || ""
 		this.apiUrl = options.pro
 			? "https://api.deepl.com/v2/translate"
-			: "https://api-free.deepl.com/v2/translate";
+			: "https://api-free.deepl.com/v2/translate"
 	}
 
-	async translateText(
-		text: string,
-		from: string,
-		to: string
-	): Promise<string> {
+	async translateText(text: string, from: string, to: string): Promise<string> {
 		if (!this.isAvailable()) {
-			throw new Error("DeepL API key not configured");
+			throw new Error("DeepL API key not configured")
 		}
 
 		/* 
@@ -54,14 +50,12 @@ export class DeepLTranslationAdapter implements TranslationAdapter {
     */
 
 		// Placeholder implementation
-		console.log(
-			`[DeepL Adapter] Would translate "${text}" from ${from} to ${to}`
-		);
-		return `[DeepL-${to.toUpperCase()}] ${text}`;
+		console.log(`[DeepL Adapter] Would translate "${text}" from ${from} to ${to}`)
+		return `[DeepL-${to.toUpperCase()}] ${text}`
 	}
 
 	isAvailable(): boolean {
-		return !!this.apiKey;
+		return !!this.apiKey
 	}
 
 	getConfig() {
@@ -70,6 +64,6 @@ export class DeepLTranslationAdapter implements TranslationAdapter {
 			apiUrl: this.apiUrl,
 			hasApiKey: !!this.apiKey,
 			description: "DeepL professional translation (requires API key)",
-		};
+		}
 	}
 }

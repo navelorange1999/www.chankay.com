@@ -1,4 +1,4 @@
-import type {CollectionConfig} from "payload";
+import type { CollectionConfig } from "payload"
 
 export const Media: CollectionConfig = {
 	slug: "media",
@@ -20,13 +20,13 @@ export const Media: CollectionConfig = {
 			type: "number",
 			required: true,
 		},
-		{name: "height", type: "number", required: true},
+		{ name: "height", type: "number", required: true },
 	],
 	upload: {
 		// because we are using vercel blob storage, we need to disable local storage
 		disableLocalStorage: true,
 
-		adminThumbnail: ({doc}) =>
+		adminThumbnail: ({ doc }) =>
 			`${process.env.VERCEL_BLOB_PUBLIC_BASE_URL}/${doc.prefix}/${doc.filename}`,
 	},
-};
+}

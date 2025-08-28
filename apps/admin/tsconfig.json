@@ -11,16 +11,7 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    ".next/types/**/*.ts",
-    "src/typings/**/*.d.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/importMap.js",
-    "src/app/(payload)/importMap.js"
-  ],
-  "references": [{"path": "../../packages/ui"}]
+  "include": ["src/**/*.ts", "src/**/*.tsx", ".next/types/**/*.ts", "src/typings/**/*.d.ts"],
+  "exclude": ["node_modules", "**/importMap.js", "src/app/(payload)/importMap.js"],
+  "references": [{ "path": "../../packages/ui" }]
 }

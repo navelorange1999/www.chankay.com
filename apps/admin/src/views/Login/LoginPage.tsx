@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
-import {LoginForm} from "./LoginForm";
-import {SessionProvider} from "next-auth/react";
+import { LoginForm } from "./LoginForm"
+import { SessionProvider } from "next-auth/react"
 
 function LoginPage() {
 	return (
@@ -27,7 +27,7 @@ function LoginPage() {
 				/>
 			</div>
 		</div>
-	);
+	)
 }
 
 function withSession<P extends object>(Component: React.ComponentType<P>) {
@@ -36,8 +36,8 @@ function withSession<P extends object>(Component: React.ComponentType<P>) {
 			<SessionProvider>
 				<Component {...props} />
 			</SessionProvider>
-		);
-	};
+		)
+	}
 }
 
-export default withSession(LoginPage);
+export default withSession(LoginPage)

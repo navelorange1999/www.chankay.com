@@ -1,6 +1,6 @@
-import type {CollectionConfig} from "payload";
-import {authenticated} from "../access/authenticated";
-import {createBasicTranslationHook} from "../hooks/createTranslationHook";
+import type { CollectionConfig } from "payload"
+import { authenticated } from "../access/authenticated"
+import { createBasicTranslationHook } from "../hooks/createTranslationHook"
 
 export const Series: CollectionConfig = {
 	slug: "series",
@@ -37,15 +37,15 @@ export const Series: CollectionConfig = {
 			},
 			hooks: {
 				beforeValidate: [
-					({data}) => {
+					({ data }) => {
 						if (data?.title && !data?.slug) {
 							return data.title
 								.toLowerCase()
 								.replace(/[^\w\s-]/g, "")
 								.replace(/\s+/g, "-")
-								.trim();
+								.trim()
 						}
-						return data?.slug;
+						return data?.slug
 					},
 				],
 			},
@@ -57,8 +57,7 @@ export const Series: CollectionConfig = {
 			required: true,
 			localized: true,
 			admin: {
-				description:
-					"Detailed description of the series content and goals",
+				description: "Detailed description of the series content and goals",
 			},
 		},
 		{
@@ -78,7 +77,7 @@ export const Series: CollectionConfig = {
 			admin: {
 				description: "Primary author of this series",
 			},
-			defaultValue: ({user}) => user?.id,
+			defaultValue: ({ user }) => user?.id,
 		},
 		{
 			name: "status",
@@ -87,10 +86,10 @@ export const Series: CollectionConfig = {
 			defaultValue: "draft",
 			index: true,
 			options: [
-				{label: "Draft", value: "draft"},
-				{label: "In Progress", value: "in-progress"},
-				{label: "Completed", value: "completed"},
-				{label: "On Hold", value: "on-hold"},
+				{ label: "Draft", value: "draft" },
+				{ label: "In Progress", value: "in-progress" },
+				{ label: "Completed", value: "completed" },
+				{ label: "On Hold", value: "on-hold" },
 			],
 		},
 		{
@@ -98,9 +97,9 @@ export const Series: CollectionConfig = {
 			type: "select",
 			defaultValue: "intermediate",
 			options: [
-				{label: "Beginner", value: "beginner"},
-				{label: "Intermediate", value: "intermediate"},
-				{label: "Advanced", value: "advanced"},
+				{ label: "Beginner", value: "beginner" },
+				{ label: "Intermediate", value: "intermediate" },
+				{ label: "Advanced", value: "advanced" },
 			],
 		},
 		{
@@ -139,4 +138,4 @@ export const Series: CollectionConfig = {
 	hooks: {
 		beforeChange: [createBasicTranslationHook()],
 	},
-};
+}

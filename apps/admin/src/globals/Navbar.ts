@@ -1,4 +1,4 @@
-import type {GlobalConfig} from "payload";
+import type { GlobalConfig } from "payload"
 
 export const Navbar: GlobalConfig = {
 	slug: "navbar",
@@ -61,4 +61,4 @@ export const Navbar: GlobalConfig = {
 	hooks: {
 		afterChange: [],
 	},
-};
+}

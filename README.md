@@ -16,14 +16,14 @@
 
 ## TODO
 
--   [ ] Design and implement the Next.js WWW site, including:
-    -   [ ] Home page
-    -   [ ] Blog list page
-    -   [ ] Blog detail page
-    -   [ ] Dark/Light mode toggle
-    -   [ ] Multi-language support
-    -   [ ] Site-wide search
-    -   [ ] Comments system
-    -   [ ] RSS feed
--   [ ] Integrate Payload CMS with the Next.js WWW site to fetch and display content (blogs, etc.) dynamically.
--   [ ] Enable real-time preview/review of content changes from Payload admin in the Next.js WWW site (live preview or similar).
+- [ ] Design and implement the Next.js WWW site, including:
+  - [ ] Home page
+  - [ ] Blog list page
+  - [ ] Blog detail page
+  - [ ] Dark/Light mode toggle
+  - [ ] Multi-language support
+  - [ ] Site-wide search
+  - [ ] Comments system
+  - [ ] RSS feed
+- [ ] Integrate Payload CMS with the Next.js WWW site to fetch and display content (blogs, etc.) dynamically.
+- [ ] Enable real-time preview/review of content changes from Payload admin in the Next.js WWW site (live preview or similar).

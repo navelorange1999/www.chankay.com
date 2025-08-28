@@ -1,31 +1,26 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import {useState} from "react";
-import Link from "next/link";
-import {usePathname} from "next/navigation";
-import {Menu, X} from "lucide-react";
-import {motion, AnimatePresence} from "framer-motion";
+import * as React from "react"
+import { useState } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { Menu, X } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
 
-import {NavbarProps} from "@repo/typescript-config/typings/payload-types";
+import { NavbarProps } from "@repo/typescript-config/typings/payload-types"
 
-import {ThemeToggle} from "../ThemeProvider";
-import {cn} from "#utils/classnames";
-import {ImageMedia} from "#components/Media";
+import { ThemeToggle } from "../ThemeProvider"
+import { cn } from "#utils/classnames"
+import { ImageMedia } from "#components/Media"
 
-export const Navbar: React.FC<NavbarProps> = ({
-	logo,
-	title,
-	items = [],
-	className = "",
-}) => {
-	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+export const Navbar: React.FC<NavbarProps> = ({ logo, title, items = [], className = "" }) => {
+	const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-	const pathname = usePathname();
+	const pathname = usePathname()
 
 	const toggleMobileMenu = () => {
-		setMobileMenuOpen(!mobileMenuOpen);
-	};
+		setMobileMenuOpen(!mobileMenuOpen)
+	}
 
 	return (
 		<nav
@@ -38,19 +33,13 @@ export const Navbar: React.FC<NavbarProps> = ({
 				<div className="flex justify-between items-center h-16">
 					{/* Logo */}
 					<div className="flex-shrink-0">
-						<Link
-							aria-label={title || "Home"}
-							href="/"
-							className="flex items-center"
-						>
+						<Link aria-label={title || "Home"} href="/" className="flex items-center">
 							{logo ? (
 								<ImageMedia resource={logo} />
 							) : (
 								<>
 									<div className="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
-										<span className="text-white font-bold text-lg">
-											Q
-										</span>
+										<span className="text-white font-bold text-lg">Q</span>
 									</div>
 									<span className="ml-2 text-xl font-semibold text-gray-900 dark:text-white"></span>
 								</>
@@ -62,20 +51,20 @@ export const Navbar: React.FC<NavbarProps> = ({
 					<div className="hidden md:flex md:items-center md:space-x-8 flex-1 justify-center">
 						<AnimatePresence mode="wait">
 							{items?.map((item, index) => {
-								const isActive = pathname === item.href;
+								const isActive = pathname === item.href
 								return (
 									<motion.div
 										key={item.label}
-										initial={{opacity: 0, x: -20}}
-										animate={{opacity: 1, x: 0}}
-										exit={{opacity: 0, x: 20}}
+										initial={{ opacity: 0, x: -20 }}
+										animate={{ opacity: 1, x: 0 }}
+										exit={{ opacity: 0, x: 20 }}
 										transition={{
 											duration: 0.3,
 											delay: index * 0.1,
 											ease: "easeInOut",
 										}}
-										whileHover={{scale: 1.05}}
-										whileTap={{scale: 0.95}}
+										whileHover={{ scale: 1.05 }}
+										whileTap={{ scale: 0.95 }}
 									>
 										<Link
 											href={item.href}
@@ -99,7 +88,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 											)}
 										</Link>
 									</motion.div>
-								);
+								)
 							})}
 						</AnimatePresence>
 					</div>
@@ -120,11 +109,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 							className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
 							aria-label="Toggle mobile menu"
 						>
-							{mobileMenuOpen ? (
-								<X className="h-6 w-6" />
-							) : (
-								<Menu className="h-6 w-6" />
-							)}
+							{mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
 						</button>
 					</div>
 				</div>
@@ -134,19 +119,19 @@ export const Navbar: React.FC<NavbarProps> = ({
 					{mobileMenuOpen && (
 						<motion.div
 							className="md:hidden"
-							initial={{opacity: 0, height: 0}}
-							animate={{opacity: 1, height: "auto"}}
-							exit={{opacity: 0, height: 0}}
-							transition={{duration: 0.3, ease: "easeInOut"}}
+							initial={{ opacity: 0, height: 0 }}
+							animate={{ opacity: 1, height: "auto" }}
+							exit={{ opacity: 0, height: 0 }}
+							transition={{ duration: 0.3, ease: "easeInOut" }}
 						>
 							<div className="px-2 pt-2 pb-3 space-y-1 border-t border-gray-200 dark:border-gray-700">
 								{items?.map((item, index) => {
-									const isActive = pathname === item.href;
+									const isActive = pathname === item.href
 									return (
 										<motion.div
 											key={item.label}
-											initial={{opacity: 0, x: -30}}
-											animate={{opacity: 1, x: 0}}
+											initial={{ opacity: 0, x: -30 }}
+											animate={{ opacity: 1, x: 0 }}
 											transition={{
 												duration: 0.3,
 												delay: index * 0.1,
@@ -155,9 +140,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 										>
 											<Link
 												href={item.href}
-												onClick={() =>
-													setMobileMenuOpen(false)
-												}
+												onClick={() => setMobileMenuOpen(false)}
 												className={`block px-3 py-2 text-base font-medium rounded-lg transition-colors duration-200 hover:text-yellow-600 hover:bg-gray-50 dark:hover:bg-gray-700 ${
 													isActive
 														? "text-yellow-600 dark:text-yellow-400 bg-yellow-50 dark:bg-gray-700"
@@ -167,7 +150,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 												{item.label}
 											</Link>
 										</motion.div>
-									);
+									)
 								})}
 							</div>
 						</motion.div>
@@ -175,5 +158,5 @@ export const Navbar: React.FC<NavbarProps> = ({
 				</AnimatePresence>
 			</div>
 		</nav>
-	);
-};
+	)
+}

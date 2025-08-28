@@ -1,9 +1,9 @@
-import Link from "next/link";
+import Link from "next/link"
 
-import {FooterProps} from "@repo/typescript-config/typings/payload-types";
+import { FooterProps } from "@repo/typescript-config/typings/payload-types"
 
-import {cn} from "#utils/classnames";
-import {ImageMedia} from "#components/Media";
+import { cn } from "#utils/classnames"
+import { ImageMedia } from "#components/Media"
 
 export function Footer({
 	logo,
@@ -12,8 +12,8 @@ export function Footer({
 	socials = [],
 	className = "",
 }: FooterProps) {
-	const currentYear = new Date().getFullYear();
-	const defaultCopyright = `© ${currentYear} ${title}`;
+	const currentYear = new Date().getFullYear()
+	const defaultCopyright = `© ${currentYear} ${title}`
 
 	return (
 		<footer className={cn(`bg-gray-900 text-white py-6`, className)}>
@@ -87,11 +87,9 @@ export function Footer({
 					</nav>
 
 					{/* Copyright */}
-					<p className="text-gray-400 text-sm">
-						{copyright || defaultCopyright}
-					</p>
+					<p className="text-gray-400 text-sm">{copyright || defaultCopyright}</p>
 				</div>
 			</div>
 		</footer>
-	);
+	)
 }

@@ -1,15 +1,15 @@
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type { Meta, StoryObj } from "@storybook/react-vite"
 
-import {Footer} from "@repo/ui";
+import { Footer } from "@repo/ui"
 
 const meta: Meta<typeof Footer> = {
 	title: "Components/Footer",
 	component: Footer,
 	tags: ["autodocs"],
-};
-export default meta;
+}
+export default meta
 
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
 	args: {
@@ -27,4 +27,4 @@ export const Default: Story = {
 			},
 		],
 	},
-};
+}

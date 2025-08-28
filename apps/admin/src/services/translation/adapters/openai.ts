@@ -1,4 +1,4 @@
-import type {TranslationAdapter} from "../types";
+import type { TranslationAdapter } from "../types"
 
 /**
  * OpenAI translation adapter template
@@ -8,22 +8,18 @@ import type {TranslationAdapter} from "../types";
  * Usage: Set OPENAI_API_KEY environment variable
  */
 export class OpenAITranslationAdapter implements TranslationAdapter {
-	name = "openai";
-	private apiKey: string;
-	private model: string;
+	name = "openai"
+	private apiKey: string
+	private model: string
 
-	constructor(options: {apiKey?: string; model?: string} = {}) {
-		this.apiKey = options.apiKey || process.env.OPENAI_API_KEY || "";
-		this.model = options.model || "gpt-4o-mini"; // Use the cheaper model by default
+	constructor(options: { apiKey?: string; model?: string } = {}) {
+		this.apiKey = options.apiKey || process.env.OPENAI_API_KEY || ""
+		this.model = options.model || "gpt-4o-mini" // Use the cheaper model by default
 	}
 
-	async translateText(
-		text: string,
-		from: string,
-		to: string
-	): Promise<string> {
+	async translateText(text: string, from: string, to: string): Promise<string> {
 		if (!this.isAvailable()) {
-			throw new Error("OpenAI API key not configured");
+			throw new Error("OpenAI API key not configured")
 		}
 
 		/* 
@@ -50,14 +46,12 @@ export class OpenAITranslationAdapter implements TranslationAdapter {
     */
 
 		// Placeholder implementation
-		console.log(
-			`[OpenAI Adapter] Would translate "${text}" from ${from} to ${to}`
-		);
-		return `[AI-${to.toUpperCase()}] ${text}`;
+		console.log(`[OpenAI Adapter] Would translate "${text}" from ${from} to ${to}`)
+		return `[AI-${to.toUpperCase()}] ${text}`
 	}
 
 	isAvailable(): boolean {
-		return !!this.apiKey;
+		return !!this.apiKey
 	}
 
 	getConfig() {
@@ -66,6 +60,6 @@ export class OpenAITranslationAdapter implements TranslationAdapter {
 			model: this.model,
 			hasApiKey: !!this.apiKey,
 			description: "OpenAI GPT-based translation (requires API key)",
-		};
+		}
 	}
 }

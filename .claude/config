@@ -20,8 +20,30 @@
 ## Development Guidelines
 - Follow existing code patterns and conventions
 - Use TypeScript with proper typing
+- **Styling:** Use TailwindCSS for all styling, avoid SCSS/CSS modules
+- **Code Formatting:** Use Prettier for consistent code formatting across all files
+- **Research First Approach:** Before implementing functionality, research existing open-source solutions
+- **Avoid reinventing the wheel:** Check for official plugins, libraries, or components
+- **Context Gathering:** When uncertain, ask for clarification or use WebSearch for context
 - Prefer industry standard libraries over custom implementations
 - Always check if a dependency is already available in the workspace before adding it
+
+## Code Formatting Standards
+- **Prettier Config:** Global .prettierrc applies to entire monorepo
+- **Format Commands:** Use `pnpm format` to format all files, `pnpm format:check` to check formatting
+- **Pre-commit Hook:** lint-staged automatically formats files before commit
+- **Consistent Style:** No semicolons, tabs for indentation, 100 character line width
+- **File Types:** Formats JS, TS, JSON, CSS, MD, YAML files automatically
+
+## PayloadCMS Custom Component Standards
+- **Client Components:** Use 'use client' directive for interactive components
+- **Form State Management:** Use useFormFields and useAllFormFields for form state access
+- **Type Safety:** Import proper client field props types (TextFieldClientProps, etc.)
+- **Component Size:** Keep components compact and user-friendly, avoid oversized interfaces
+- **Performance:** Use React best practices (memoization, lazy loading, avoid unnecessary re-renders)
+- **UI Consistency:** Recycle Payload styles and UI patterns for familiarity
+- **Server/Client Boundary:** Be explicit about client props to avoid large HTML sizes
+- **Field Structure:** Define each component config in separate files for reusability
 
 ## TypeScript Coding Standards
 - **Avoid `any` type:** Use generics, union types, or proper interfaces instead

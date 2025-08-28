@@ -23,7 +23,10 @@
       "Bash(chmod:*)",
       "Bash(pnpm check-types:*)",
       "Bash(find:*)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Bash(pnpm list:*)",
+      "Bash(pnpm format:check:*)",
+      "Bash(pnpm format:*)"
     ],
     "deny": [],
     "ask": []

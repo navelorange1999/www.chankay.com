@@ -37,16 +37,16 @@ export const LOCALE_CONFIG = {
 		defaultLocale: "en",
 		fallbackLocale: "en",
 	},
-} as const;
+} as const
 
-export type SupportedLocale = (typeof LOCALE_CONFIG.locales)[number]["code"];
-export const SUPPORTED_LOCALES = LOCALE_CONFIG.locales.map((l) => l.code);
+export type SupportedLocale = (typeof LOCALE_CONFIG.locales)[number]["code"]
+export const SUPPORTED_LOCALES = LOCALE_CONFIG.locales.map((l) => l.code)
 
 /**
  * Get locale configuration by code
  */
 export function getLocaleConfig(code: SupportedLocale) {
-	return LOCALE_CONFIG.locales.find((locale) => locale.code === code);
+	return LOCALE_CONFIG.locales.find((locale) => locale.code === code)
 }
 
 /**
@@ -56,5 +56,5 @@ export function getLocaleOptions() {
 	return LOCALE_CONFIG.locales.map((locale) => ({
 		label: `${locale.flag} ${locale.name}`,
 		value: locale.code,
-	}));
+	}))
 }

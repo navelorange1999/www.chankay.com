@@ -1,6 +1,7 @@
-import type {CollectionConfig} from "payload";
-import {authenticated} from "../access/authenticated";
-import {createBasicTranslationHook} from "../hooks/createTranslationHook";
+import type { CollectionConfig } from "payload"
+import { authenticated } from "../access/authenticated"
+import { createBasicTranslationHook } from "../hooks/createTranslationHook"
+import { colorPickerField } from "../fields/colorPickerField"
 
 export const Tags: CollectionConfig = {
 	slug: "tags",
@@ -38,15 +39,15 @@ export const Tags: CollectionConfig = {
 			},
 			hooks: {
 				beforeValidate: [
-					({data}) => {
+					({ data }) => {
 						if (data?.name && !data?.slug) {
 							return data.name
 								.toLowerCase()
 								.replace(/[^\w\s-]/g, "")
 								.replace(/\s+/g, "-")
-								.trim();
+								.trim()
 						}
-						return data?.slug;
+						return data?.slug
 					},
 				],
 			},
@@ -60,14 +61,14 @@ export const Tags: CollectionConfig = {
 				placeholder: "Brief description of this tag",
 			},
 		},
-		{
+		colorPickerField({
 			name: "color",
-			type: "text",
+			label: "Tag Color",
+			defaultValue: "#10B981",
 			admin: {
-				placeholder: "#10B981",
-				description: "Hex color code for UI theming",
+				description: "Color for UI theming and visual distinction",
 			},
-		},
+		}),
 		{
 			name: "postCount",
 			type: "number",
@@ -82,4 +83,4 @@ export const Tags: CollectionConfig = {
 	hooks: {
 		beforeChange: [createBasicTranslationHook()],
 	},
-};
+}

@@ -1,6 +1,7 @@
-import type {CollectionConfig} from "payload";
-import {authenticated} from "../access/authenticated";
-import {createBasicTranslationHook} from "../hooks/createTranslationHook";
+import type { CollectionConfig } from "payload"
+import { authenticated } from "../access/authenticated"
+import { createBasicTranslationHook } from "../hooks/createTranslationHook"
+import { colorPickerField } from "../fields/colorPickerField"
 
 export const Categories: CollectionConfig = {
 	slug: "categories",
@@ -38,15 +39,15 @@ export const Categories: CollectionConfig = {
 			},
 			hooks: {
 				beforeValidate: [
-					({data}) => {
+					({ data }) => {
 						if (data?.name && !data?.slug) {
 							return data.name
 								.toLowerCase()
 								.replace(/[^\w\s-]/g, "")
 								.replace(/\s+/g, "-")
-								.trim();
+								.trim()
 						}
-						return data?.slug;
+						return data?.slug
 					},
 				],
 			},
@@ -60,14 +61,14 @@ export const Categories: CollectionConfig = {
 				placeholder: "Brief description of this category",
 			},
 		},
-		{
+		colorPickerField({
 			name: "color",
-			type: "text",
+			label: "Category Color",
+			defaultValue: "#3B82F6",
 			admin: {
-				placeholder: "#3B82F6",
-				description: "Hex color code for UI theming",
+				description: "Color for UI theming and visual distinction",
 			},
-		},
+		}),
 		{
 			name: "icon",
 			type: "upload",
@@ -97,4 +98,4 @@ export const Categories: CollectionConfig = {
 	hooks: {
 		beforeChange: [createBasicTranslationHook()],
 	},
-};
+}

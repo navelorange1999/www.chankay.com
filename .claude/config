@@ -65,3 +65,20 @@
 - Show a summary of changes and ask: "Should I commit these changes?"
 - Only proceed with commit after receiving explicit user confirmation
 - This applies to all commits including bug fixes, features, and configuration changes
+
+## Commit Organization Guidelines
+- **Scope-based commits:** Always organize commits by functional scope for better traceability
+- **Separate concerns:** Split large changes into multiple focused commits
+- **Commit structure:**
+  - **Configuration:** Prettier, ESLint, build tools (e.g., `feat: Configure Prettier for monorepo`)
+  - **Features:** New functionality by scope (e.g., `feat: Implement ColorPicker component`)
+  - **Documentation:** Config updates, README changes (e.g., `docs: Update development standards`)
+  - **Styling:** Code formatting, style changes (e.g., `style: Apply Prettier formatting`)
+  - **Plugin/Library:** Third-party integrations (e.g., `feat: Integrate PayloadCMS SEO plugin`)
+- **Benefits of scope separation:**
+  - 🔍 **Easy traceability** - Find specific functionality changes quickly
+  - 🔄 **Precise rollbacks** - Revert individual features without affecting others  
+  - 📊 **Better code review** - Review related changes together
+  - 🚀 **Release management** - Generate focused changelogs
+- **Avoid merged commits:** Never combine unrelated changes in a single commit
+- **Use conventional commit format:** `type(scope): description` with detailed body when needed

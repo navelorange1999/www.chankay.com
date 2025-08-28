@@ -1,6 +1,6 @@
-import sharp from "sharp";
-import path from "path";
-import {fileURLToPath} from "url";
+import sharp from "sharp"
+import path from "path"
+import { fileURLToPath } from "url"
 import {
 	lexicalEditor,
 	BoldFeature,
@@ -21,23 +21,27 @@ import {
 	UploadFeature,
 	FixedToolbarFeature,
 	InlineToolbarFeature,
-} from "@payloadcms/richtext-lexical";
-import {mongooseAdapter} from "@payloadcms/db-mongodb";
-import {buildConfig} from "payload";
-import {Config} from "@repo/typescript-config/typings/payload-types";
+} from "@payloadcms/richtext-lexical"
+import { mongooseAdapter } from "@payloadcms/db-mongodb"
+import { buildConfig } from "payload"
+import { seoPlugin } from "@payloadcms/plugin-seo"
+import { Config } from "@repo/typescript-config/typings/payload-types"
 
-import {Media, Users, Posts, Categories, Tags, Series} from "./collections";
-import {Navbar, Footer} from "./globals";
-import {plugins} from "./plugins";
-import {LOCALE_CONFIG} from "./config/locales";
+import { Media, Users, Posts, Categories, Tags, Series } from "./collections"
+import { Navbar, Footer } from "./globals"
+import { plugins } from "./plugins"
+import { LOCALE_CONFIG } from "./config/locales"
 
-const filename = fileURLToPath(import.meta.url);
-const dirname = path.dirname(filename);
+const filename = fileURLToPath(import.meta.url)
+const dirname = path.dirname(filename)
 
 export default buildConfig({
 	// Localization configuration
 	localization: {
-		locales: LOCALE_CONFIG.locales.map((locale) => locale.code),
+		locales: LOCALE_CONFIG.locales.map((locale) => ({
+			code: locale.code,
+			label: `[${locale.code}]`,
+		})),
 		defaultLocale: LOCALE_CONFIG.locales[0].code, // First locale as default
 		fallback: LOCALE_CONFIG.cms.fallback,
 	},
@@ -128,7 +132,16 @@ export default buildConfig({
 		),
 	},
 
-	plugins: [...plugins],
+	plugins: [
+		...plugins,
+		seoPlugin({
+			collections: ["posts"],
+			uploadsCollection: "media",
+			generateTitle: ({ doc }) => doc?.title?.value || doc?.title,
+			generateDescription: ({ doc }) => doc?.excerpt?.value || doc?.excerpt,
+			tabbedUI: true,
+		}),
+	],
 
 	admin: {
 		importMap: {
@@ -155,7 +168,7 @@ export default buildConfig({
 			},
 		},
 	},
-});
+})
 
 declare module "payload" {
 	export interface GeneratedTypes extends Config {}

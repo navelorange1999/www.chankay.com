@@ -1,34 +1,28 @@
-import type {CollectionConfig} from "payload";
-import {authenticated} from "../access/authenticated";
-import {LOCALE_CONFIG, getLocaleOptions} from "../config/locales";
-import {createAdvancedTranslationHook} from "../hooks/createTranslationHook";
+import type { CollectionConfig } from "payload"
+import { authenticated } from "../access/authenticated"
+import { LOCALE_CONFIG, getLocaleOptions } from "../config/locales"
+import { createAdvancedTranslationHook } from "../hooks/createTranslationHook"
 
 export const Posts: CollectionConfig = {
 	slug: "posts",
 	access: {
-		read: ({req}) => {
+		read: ({ req }) => {
 			// Public posts are readable by anyone
 			// Draft posts only by authenticated users
-			if (req.user) return true;
+			if (req.user) return true
 			return {
-				status: {equals: "published"},
-			};
+				status: { equals: "published" },
+			}
 		},
 		create: authenticated,
 		update: authenticated,
 		delete: authenticated,
 	},
 	admin: {
-		defaultColumns: [
-			"title",
-			"status",
-			"publishedAt",
-			"author",
-			"primaryLanguage",
-		],
+		defaultColumns: ["title", "status", "publishedAt", "author", "primaryLanguage"],
 		useAsTitle: "title",
 		preview: (doc) => {
-			return `${process.env.SITE_URL || "http://localhost:3000"}/posts/${doc.slug}`;
+			return `${process.env.SITE_URL || "http://localhost:3000"}/posts/${doc.slug}`
 		},
 	},
 	versions: {
@@ -78,15 +72,15 @@ export const Posts: CollectionConfig = {
 			},
 			hooks: {
 				beforeValidate: [
-					({data}) => {
+					({ data }) => {
 						if (data?.title && !data?.slug) {
 							return data.title
 								.toLowerCase()
 								.replace(/[^\w\s-]/g, "")
 								.replace(/\s+/g, "-")
-								.trim();
+								.trim()
 						}
-						return data?.slug;
+						return data?.slug
 					},
 				],
 			},
@@ -134,9 +128,9 @@ export const Posts: CollectionConfig = {
 				position: "sidebar",
 			},
 			options: [
-				{label: "Draft", value: "draft"},
-				{label: "Published", value: "published"},
-				{label: "Archived", value: "archived"},
+				{ label: "Draft", value: "draft" },
+				{ label: "Published", value: "published" },
+				{ label: "Archived", value: "archived" },
 			],
 		},
 		{
@@ -152,11 +146,11 @@ export const Posts: CollectionConfig = {
 			},
 			hooks: {
 				beforeChange: [
-					({data, value}) => {
+					({ data, value }) => {
 						if (data?.status === "published" && !value) {
-							return new Date();
+							return new Date()
 						}
-						return value;
+						return value
 					},
 				],
 			},
@@ -170,7 +164,7 @@ export const Posts: CollectionConfig = {
 			admin: {
 				position: "sidebar",
 			},
-			defaultValue: ({user}) => user?.id,
+			defaultValue: ({ user }) => user?.id,
 		},
 		{
 			name: "series",
@@ -212,61 +206,7 @@ export const Posts: CollectionConfig = {
 			},
 		},
 
-		// === SEO ===
-		{
-			type: "collapsible",
-			label: "SEO",
-			admin: {
-				position: "sidebar",
-			},
-			fields: [
-				{
-					name: "seo",
-					type: "group",
-					fields: [
-						{
-							name: "title",
-							type: "text",
-							label: "Meta Title",
-							localized: true,
-							admin: {
-								placeholder:
-									"Custom SEO title (leave empty to use post title)",
-								description: "Recommended: 50-60 characters",
-							},
-						},
-						{
-							name: "description",
-							type: "textarea",
-							label: "Meta Description",
-							localized: true,
-							admin: {
-								placeholder:
-									"Meta description for search engines",
-								description: "Recommended: 150-160 characters",
-							},
-						},
-						{
-							name: "keywords",
-							type: "text",
-							label: "Keywords",
-							localized: true,
-							admin: {
-								placeholder: "Comma-separated keywords",
-							},
-						},
-						{
-							name: "noIndex",
-							type: "checkbox",
-							admin: {
-								description:
-									"Prevent search engines from indexing",
-							},
-						},
-					],
-				},
-			],
-		},
+		// SEO fields now handled by @payloadcms/plugin-seo
 
 		// === Performance ===
 		{
@@ -285,17 +225,15 @@ export const Posts: CollectionConfig = {
 					},
 					hooks: {
 						beforeChange: [
-							({data}) => {
+							({ data }) => {
 								if (data?.content) {
 									// Simple word count estimation: 200 WPM
-									const wordCount = JSON.stringify(
-										data.content
-									)
+									const wordCount = JSON.stringify(data.content)
 										.replace(/<[^>]*>/g, "")
-										.split(/\s+/).length;
-									return Math.ceil(wordCount / 200);
+										.split(/\s+/).length
+									return Math.ceil(wordCount / 200)
 								}
-								return 0;
+								return 0
 							},
 						],
 					},
@@ -335,16 +273,9 @@ export const Posts: CollectionConfig = {
 	hooks: {
 		beforeChange: [
 			createAdvancedTranslationHook(
-				[
-					"title",
-					"excerpt",
-					"content",
-					"seo.title",
-					"seo.description",
-					"seo.keywords",
-				],
+				["title", "excerpt", "content", "meta.title", "meta.description"],
 				"technical" // Blog posts are often technical content
 			),
 		],
 	},
-};
+}

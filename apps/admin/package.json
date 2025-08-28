@@ -18,8 +18,10 @@
     "@auth/core": "^0.40.0",
     "@payloadcms/db-mongodb": "^3.46.0",
     "@payloadcms/next": "^3.46.0",
+    "@payloadcms/plugin-seo": "3.46.0",
     "@payloadcms/richtext-lexical": "^3.46.0",
     "@payloadcms/storage-vercel-blob": "3.46.0",
+    "@payloadcms/ui": "^3.46.0",
     "@repo/eslint-config": "workspace:*",
     "@repo/tailwind-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
@@ -28,6 +30,7 @@
     "next": "^15.3.5",
     "next-auth": "^4.24.11",
     "payload": "^3.46.0",
+    "react-colorful": "^5.6.1",
     "sharp": "^0.34.3"
   },
   "devDependencies": {

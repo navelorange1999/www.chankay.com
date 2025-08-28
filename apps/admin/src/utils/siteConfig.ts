@@ -59,6 +59,29 @@ export const defaultSiteConfig: Partial<SiteConfig> = {
 	newsletter: {
 		enableNewsletter: false,
 	},
+	navigation: {
+		showLogo: true,
+		showSiteName: true,
+		showSearch: true,
+		showThemeToggle: true,
+		menuItems: [
+			{ label: "Home", url: "/", external: false, showInMobile: true },
+			{ label: "Blog", url: "/blog", external: false, showInMobile: true },
+			{ label: "About", url: "/about", external: false, showInMobile: true },
+		],
+	},
+	footer: {
+		showLogo: true,
+		showSiteName: true,
+		showSocialLinks: true,
+		showBackToTop: true,
+		copyrightText: undefined, // Will be auto-generated
+		customFooterText: "Built with Next.js and PayloadCMS",
+		additionalLinks: [
+			{ label: "Privacy Policy", url: "/privacy", external: false },
+			{ label: "Terms of Service", url: "/terms", external: false },
+		],
+	},
 	maintenance: {
 		maintenanceMode: false,
 	},
@@ -101,6 +124,14 @@ export function mergeSiteConfigWithDefaults(config: SiteConfig | null): Required
 			...defaultSiteConfig.newsletter,
 			...config.newsletter,
 		},
+		navigation: {
+			...defaultSiteConfig.navigation,
+			...config.navigation,
+		},
+		footer: {
+			...defaultSiteConfig.footer,
+			...config.footer,
+		},
 		maintenance: {
 			...defaultSiteConfig.maintenance,
 			...config.maintenance,
@@ -135,6 +166,103 @@ export function getSiteTitle(config: SiteConfig | null): string {
  */
 export function getSiteDescription(config: SiteConfig | null): string {
 	return config?.siteDescription || defaultSiteConfig.siteDescription || "A modern blog platform"
+}
+
+/**
+ * Get navigation menu items with fallback
+ */
+export function getNavigationItems(config: SiteConfig | null) {
+	return config?.navigation?.menuItems || defaultSiteConfig.navigation?.menuItems || []
+}
+
+/**
+ * Get footer additional links with fallback
+ */
+export function getFooterLinks(config: SiteConfig | null) {
+	return config?.footer?.additionalLinks || defaultSiteConfig.footer?.additionalLinks || []
+}
+
+/**
+ * Generate copyright text based on configuration
+ */
+export function generateCopyrightText(config: SiteConfig): string {
+	if (config.footer?.copyrightText) {
+		return config.footer.copyrightText
+	}
+
+	const currentYear = new Date().getFullYear()
+	const siteName = config.siteName || defaultSiteConfig.siteName
+	return `© ${currentYear} ${siteName}. All rights reserved.`
+}
+
+/**
+ * Check if navigation should show logo
+ */
+export function shouldShowNavigationLogo(config: SiteConfig | null): boolean {
+	return config?.navigation?.showLogo !== false // Default to true
+}
+
+/**
+ * Check if navigation should show site name
+ */
+export function shouldShowNavigationSiteName(config: SiteConfig | null): boolean {
+	return config?.navigation?.showSiteName !== false // Default to true
+}
+
+/**
+ * Check if navigation should show search button
+ */
+export function shouldShowSearchButton(config: SiteConfig | null): boolean {
+	return config?.navigation?.showSearch !== false // Default to true
+}
+
+/**
+ * Check if navigation should show theme toggle
+ */
+export function shouldShowThemeToggle(config: SiteConfig | null): boolean {
+	return config?.navigation?.showThemeToggle !== false // Default to true
+}
+
+/**
+ * Check if footer should show logo
+ */
+export function shouldShowFooterLogo(config: SiteConfig | null): boolean {
+	return config?.footer?.showLogo !== false // Default to true
+}
+
+/**
+ * Check if footer should show site name
+ */
+export function shouldShowFooterSiteName(config: SiteConfig | null): boolean {
+	return config?.footer?.showSiteName !== false // Default to true
+}
+
+/**
+ * Check if footer should show social links
+ */
+export function shouldShowFooterSocialLinks(config: SiteConfig | null): boolean {
+	return config?.footer?.showSocialLinks !== false // Default to true
+}
+
+/**
+ * Check if footer should show back to top button
+ */
+export function shouldShowBackToTop(config: SiteConfig | null): boolean {
+	return config?.footer?.showBackToTop !== false // Default to true
+}
+
+/**
+ * Get footer custom text
+ */
+export function getFooterCustomText(config: SiteConfig | null): string | null {
+	return config?.footer?.customFooterText || defaultSiteConfig.footer?.customFooterText || null
+}
+
+/**
+ * Get visible social profiles for footer
+ */
+export function getVisibleSocialProfiles(config: SiteConfig) {
+	return config.socialProfiles?.filter((profile) => profile.showInFooter !== false) || []
 }
 
 /**

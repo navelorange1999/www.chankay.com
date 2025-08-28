@@ -95,12 +95,10 @@ export interface Config {
 		defaultIDType: string
 	}
 	globals: {
-		navbar: NavbarInterface
-		footer: FooterInterface
+		"site-config": SiteConfig
 	}
 	globalsSelect: {
-		navbar: NavbarSelect<false> | NavbarSelect<true>
-		footer: FooterSelect<false> | FooterSelect<true>
+		"site-config": SiteConfigSelect<false> | SiteConfigSelect<true>
 	}
 	locale: "en" | "zh-CN"
 	user: User & {
@@ -628,114 +626,428 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 	createdAt?: T
 }
 /**
+ * Global site settings and configuration
+ *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "navbar".
+ * via the `definition` "site-config".
  */
-export interface NavbarInterface {
+export interface SiteConfig {
 	id: string
-	props?: NavbarProps
+	/**
+	 * The name of your website
+	 */
+	siteName: string
+	/**
+	 * Default meta description for SEO
+	 */
+	siteDescription?: string | null
+	/**
+	 * The primary URL of your website (used for canonical URLs and sitemaps)
+	 */
+	siteUrl: string
+	/**
+	 * Primary language for your site content
+	 */
+	defaultLanguage: "en" | "zh-CN"
+	/**
+	 * Timezone for content scheduling and display
+	 */
+	timezone?:
+		| (
+				| "Asia/Shanghai"
+				| "Asia/Tokyo"
+				| "America/New_York"
+				| "America/Los_Angeles"
+				| "Europe/London"
+				| "UTC"
+		  )
+		| null
+	/**
+	 * Main logo for header and branding (SVG recommended)
+	 */
+	logo?: (string | null) | MediaInterface
+	/**
+	 * Alternative text for the logo (accessibility)
+	 */
+	logoAlt?: string | null
+	/**
+	 * Site favicon (.ico or .png, 32x32px recommended)
+	 */
+	favicon?: (string | null) | MediaInterface
+	/**
+	 * Apple touch icon (180x180px PNG recommended)
+	 */
+	appleTouchIcon?: (string | null) | MediaInterface
+	/**
+	 * Default title tag for pages without specific SEO settings
+	 */
+	metaTitle?: string | null
+	/**
+	 * Default meta description for pages without specific SEO settings
+	 */
+	metaDescription?: string | null
+	/**
+	 * Comma-separated keywords for your site (optional)
+	 */
+	keywords?: string | null
+	/**
+	 * Default image for social sharing (1200x630px recommended)
+	 */
+	ogImage?: (string | null) | MediaInterface
+	robotsSettings?: {
+		/**
+		 * Allow search engines to index your site
+		 */
+		allowIndexing?: boolean | null
+		/**
+		 * Custom robots.txt content (optional)
+		 */
+		customRobotsTxt?: string | null
+	}
+	/**
+	 * Your social media profiles
+	 */
+	socialProfiles?:
+		| {
+				platform:
+					| "twitter"
+					| "github"
+					| "linkedin"
+					| "instagram"
+					| "youtube"
+					| "facebook"
+					| "medium"
+					| "devto"
+					| "discord"
+					| "telegram"
+				url: string
+				/**
+				 * Display username (optional)
+				 */
+				username?: string | null
+				/**
+				 * Display this profile link in site footer
+				 */
+				showInFooter?: boolean | null
+				id?: string | null
+		  }[]
+		| null
+	socialSharing?: {
+		/**
+		 * Show social sharing buttons on posts
+		 */
+		enableSharing?: boolean | null
+		/**
+		 * Your Twitter handle for Twitter Card metadata
+		 */
+		twitterHandle?: string | null
+	}
+	analytics?: {
+		/**
+		 * Google Analytics measurement ID
+		 */
+		googleAnalyticsId?: string | null
+		/**
+		 * Google Search Console verification meta tag
+		 */
+		googleSearchConsole?: string | null
+		/**
+		 * Microsoft Clarity tracking ID
+		 */
+		microsoftClarity?: string | null
+	}
+	performance?: {
+		/**
+		 * Optimize images for web performance
+		 */
+		enableImageOptimization?: boolean | null
+		/**
+		 * Lazy load images and content
+		 */
+		enableLazyLoading?: boolean | null
+		/**
+		 * Browser cache duration for static assets
+		 */
+		cacheMaxAge?: number | null
+	}
+	comments?: {
+		/**
+		 * Enable comments on blog posts
+		 */
+		enableComments?: boolean | null
+		commentProvider?: ("giscus" | "disqus" | "utterances" | "gitalk") | null
+		/**
+		 * JSON configuration for your chosen comment provider
+		 */
+		commentConfig?:
+			| {
+					[k: string]: unknown
+			  }
+			| unknown[]
+			| string
+			| number
+			| boolean
+			| null
+	}
+	/**
+	 * Primary contact email for your site
+	 */
+	contactEmail?: string | null
+	newsletter?: {
+		/**
+		 * Show newsletter signup forms
+		 */
+		enableNewsletter?: boolean | null
+		newsletterProvider?: ("mailchimp" | "convertkit" | "substack" | "buttondown" | "custom") | null
+		/**
+		 * Configuration for your newsletter provider
+		 */
+		newsletterConfig?:
+			| {
+					[k: string]: unknown
+			  }
+			| unknown[]
+			| string
+			| number
+			| boolean
+			| null
+	}
+	navigation?: {
+		/**
+		 * Display site logo in navigation bar
+		 */
+		showLogo?: boolean | null
+		/**
+		 * Display site name next to or instead of logo
+		 */
+		showSiteName?: boolean | null
+		/**
+		 * Main navigation menu items
+		 */
+		menuItems?:
+			| {
+					label: string
+					url: string
+					/**
+					 * Open link in new tab
+					 */
+					external?: boolean | null
+					/**
+					 * Include this item in mobile navigation
+					 */
+					showInMobile?: boolean | null
+					id?: string | null
+			  }[]
+			| null
+		/**
+		 * Display search button in navigation
+		 */
+		showSearch?: boolean | null
+		/**
+		 * Display dark/light mode toggle button
+		 */
+		showThemeToggle?: boolean | null
+	}
+	footer?: {
+		/**
+		 * Display site logo in footer
+		 */
+		showLogo?: boolean | null
+		/**
+		 * Display site name in footer
+		 */
+		showSiteName?: boolean | null
+		/**
+		 * Custom copyright notice (leave empty for auto-generated)
+		 */
+		copyrightText?: string | null
+		/**
+		 * Display social media links from Social Profiles above
+		 */
+		showSocialLinks?: boolean | null
+		/**
+		 * Extra links to show in footer (Privacy Policy, Terms, etc.)
+		 */
+		additionalLinks?:
+			| {
+					label: string
+					url: string
+					/**
+					 * Open link in new tab
+					 */
+					external?: boolean | null
+					id?: string | null
+			  }[]
+			| null
+		/**
+		 * Display scroll-to-top button in footer
+		 */
+		showBackToTop?: boolean | null
+		/**
+		 * Additional text to display in footer
+		 */
+		customFooterText?: string | null
+	}
+	/**
+	 * Custom CSS styles for your site
+	 */
+	customCSS?: string | null
+	/**
+	 * Custom JavaScript code (use with caution)
+	 */
+	customJS?: string | null
+	/**
+	 * Custom HTML to inject into <head> (scripts, meta tags, etc.)
+	 */
+	customHead?: string | null
+	/**
+	 * Custom HTML to inject before closing </body>
+	 */
+	customFooter?: string | null
+	maintenance?: {
+		/**
+		 * Show maintenance page to visitors
+		 */
+		maintenanceMode?: boolean | null
+		/**
+		 * Message to show during maintenance
+		 */
+		maintenanceMessage?: string | null
+		/**
+		 * IP addresses that can bypass maintenance mode
+		 */
+		allowedIPs?:
+			| {
+					ip?: string | null
+					id?: string | null
+			  }[]
+			| null
+	}
 	updatedAt?: string | null
 	createdAt?: string | null
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "NavbarProps".
+ * via the `definition` "site-config_select".
  */
-export interface NavbarProps {
-	logo?: (string | null) | MediaInterface
-	title?: string | null
-	items?:
+export interface SiteConfigSelect<T extends boolean = true> {
+	siteName?: T
+	siteDescription?: T
+	siteUrl?: T
+	defaultLanguage?: T
+	timezone?: T
+	logo?: T
+	logoAlt?: T
+	favicon?: T
+	appleTouchIcon?: T
+	metaTitle?: T
+	metaDescription?: T
+	keywords?: T
+	ogImage?: T
+	robotsSettings?:
+		| T
 		| {
-				label: string
-				href: string
-				external?: boolean | null
-				id?: string | null
-		  }[]
-		| null
-	className?: string | null
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "footer".
- */
-export interface FooterInterface {
-	id: string
-	props?: FooterProps
-	updatedAt?: string | null
-	createdAt?: string | null
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FooterProps".
- */
-export interface FooterProps {
-	logo?: (string | null) | MediaInterface
-	title?: string | null
-	copyright?: string | null
-	socials?:
+				allowIndexing?: T
+				customRobotsTxt?: T
+		  }
+	socialProfiles?:
+		| T
 		| {
-				name: string
-				href: string
-				icon?: (string | null) | MediaInterface
-				id?: string | null
-		  }[]
-		| null
-	className?: string | null
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "navbar_select".
- */
-export interface NavbarSelect<T extends boolean = true> {
-	props?: T | NavbarPropsSelect<T>
+				platform?: T
+				url?: T
+				username?: T
+				showInFooter?: T
+				id?: T
+		  }
+	socialSharing?:
+		| T
+		| {
+				enableSharing?: T
+				twitterHandle?: T
+		  }
+	analytics?:
+		| T
+		| {
+				googleAnalyticsId?: T
+				googleSearchConsole?: T
+				microsoftClarity?: T
+		  }
+	performance?:
+		| T
+		| {
+				enableImageOptimization?: T
+				enableLazyLoading?: T
+				cacheMaxAge?: T
+		  }
+	comments?:
+		| T
+		| {
+				enableComments?: T
+				commentProvider?: T
+				commentConfig?: T
+		  }
+	contactEmail?: T
+	newsletter?:
+		| T
+		| {
+				enableNewsletter?: T
+				newsletterProvider?: T
+				newsletterConfig?: T
+		  }
+	navigation?:
+		| T
+		| {
+				showLogo?: T
+				showSiteName?: T
+				menuItems?:
+					| T
+					| {
+							label?: T
+							url?: T
+							external?: T
+							showInMobile?: T
+							id?: T
+					  }
+				showSearch?: T
+				showThemeToggle?: T
+		  }
+	footer?:
+		| T
+		| {
+				showLogo?: T
+				showSiteName?: T
+				copyrightText?: T
+				showSocialLinks?: T
+				additionalLinks?:
+					| T
+					| {
+							label?: T
+							url?: T
+							external?: T
+							id?: T
+					  }
+				showBackToTop?: T
+				customFooterText?: T
+		  }
+	customCSS?: T
+	customJS?: T
+	customHead?: T
+	customFooter?: T
+	maintenance?:
+		| T
+		| {
+				maintenanceMode?: T
+				maintenanceMessage?: T
+				allowedIPs?:
+					| T
+					| {
+							ip?: T
+							id?: T
+					  }
+		  }
 	updatedAt?: T
 	createdAt?: T
 	globalType?: T
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "NavbarProps_select".
- */
-export interface NavbarPropsSelect<T extends boolean = true> {
-	logo?: T
-	title?: T
-	items?:
-		| T
-		| {
-				label?: T
-				href?: T
-				external?: T
-				id?: T
-		  }
-	className?: T
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "footer_select".
- */
-export interface FooterSelect<T extends boolean = true> {
-	props?: T | FooterPropsSelect<T>
-	updatedAt?: T
-	createdAt?: T
-	globalType?: T
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "FooterProps_select".
- */
-export interface FooterPropsSelect<T extends boolean = true> {
-	logo?: T
-	title?: T
-	copyright?: T
-	socials?:
-		| T
-		| {
-				name?: T
-				href?: T
-				icon?: T
-				id?: T
-		  }
-	className?: T
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

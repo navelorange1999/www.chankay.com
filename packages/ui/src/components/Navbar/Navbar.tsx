@@ -7,16 +7,29 @@ import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
-import { NavbarProps } from "@repo/typescript-config/typings/payload-types"
+import { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 
 import { ThemeToggle } from "../ThemeProvider"
 import { cn } from "#utils/classnames"
 import { ImageMedia } from "#components/Media"
 
-export const Navbar: React.FC<NavbarProps> = ({ logo, title, items = [], className = "" }) => {
+export interface NavbarProps {
+	siteConfig: SiteConfig
+	className?: string
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "" }) => {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
 	const pathname = usePathname()
+
+	// Extract configuration from siteConfig
+	const logo = siteConfig.logo
+	const title = siteConfig.siteName
+	const items = siteConfig.navigation?.menuItems || []
+	const showLogo = siteConfig.navigation?.showLogo !== false
+	const showSiteName = siteConfig.navigation?.showSiteName !== false
+	const showThemeToggle = siteConfig.navigation?.showThemeToggle !== false
 
 	const toggleMobileMenu = () => {
 		setMobileMenuOpen(!mobileMenuOpen)
@@ -34,15 +47,19 @@ export const Navbar: React.FC<NavbarProps> = ({ logo, title, items = [], classNa
 					{/* Logo */}
 					<div className="flex-shrink-0">
 						<Link aria-label={title || "Home"} href="/" className="flex items-center">
-							{logo ? (
+							{showLogo && logo ? (
 								<ImageMedia resource={logo} />
 							) : (
-								<>
+								!showLogo && (
 									<div className="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
-										<span className="text-white font-bold text-lg">Q</span>
+										<span className="text-white font-bold text-lg">C</span>
 									</div>
-									<span className="ml-2 text-xl font-semibold text-gray-900 dark:text-white"></span>
-								</>
+								)
+							)}
+							{showSiteName && (
+								<span className="ml-2 text-xl font-semibold text-gray-900 dark:text-white">
+									{title}
+								</span>
 							)}
 						</Link>
 					</div>
@@ -50,8 +67,8 @@ export const Navbar: React.FC<NavbarProps> = ({ logo, title, items = [], classNa
 					{/* Desktop Navigation - Centered */}
 					<div className="hidden md:flex md:items-center md:space-x-8 flex-1 justify-center">
 						<AnimatePresence mode="wait">
-							{items?.map((item, index) => {
-								const isActive = pathname === item.href
+							{items.map((item: any, index: number) => {
+								const isActive = pathname === item.url
 								return (
 									<motion.div
 										key={item.label}
@@ -125,33 +142,35 @@ export const Navbar: React.FC<NavbarProps> = ({ logo, title, items = [], classNa
 							transition={{ duration: 0.3, ease: "easeInOut" }}
 						>
 							<div className="px-2 pt-2 pb-3 space-y-1 border-t border-gray-200 dark:border-gray-700">
-								{items?.map((item, index) => {
-									const isActive = pathname === item.href
-									return (
-										<motion.div
-											key={item.label}
-											initial={{ opacity: 0, x: -30 }}
-											animate={{ opacity: 1, x: 0 }}
-											transition={{
-												duration: 0.3,
-												delay: index * 0.1,
-												ease: "easeOut",
-											}}
-										>
-											<Link
-												href={item.href}
-												onClick={() => setMobileMenuOpen(false)}
-												className={`block px-3 py-2 text-base font-medium rounded-lg transition-colors duration-200 hover:text-yellow-600 hover:bg-gray-50 dark:hover:bg-gray-700 ${
-													isActive
-														? "text-yellow-600 dark:text-yellow-400 bg-yellow-50 dark:bg-gray-700"
-														: "text-gray-700 dark:text-gray-300"
-												}`}
+								{items
+									.filter((item: any) => item.showInMobile !== false)
+									.map((item: any, index: number) => {
+										const isActive = pathname === item.url
+										return (
+											<motion.div
+												key={item.label}
+												initial={{ opacity: 0, x: -30 }}
+												animate={{ opacity: 1, x: 0 }}
+												transition={{
+													duration: 0.3,
+													delay: index * 0.1,
+													ease: "easeOut",
+												}}
 											>
-												{item.label}
-											</Link>
-										</motion.div>
-									)
-								})}
+												<Link
+													href={item.href}
+													onClick={() => setMobileMenuOpen(false)}
+													className={`block px-3 py-2 text-base font-medium rounded-lg transition-colors duration-200 hover:text-yellow-600 hover:bg-gray-50 dark:hover:bg-gray-700 ${
+														isActive
+															? "text-yellow-600 dark:text-yellow-400 bg-yellow-50 dark:bg-gray-700"
+															: "text-gray-700 dark:text-gray-300"
+													}`}
+												>
+													{item.label}
+												</Link>
+											</motion.div>
+										)
+									})}
 							</div>
 						</motion.div>
 					)}

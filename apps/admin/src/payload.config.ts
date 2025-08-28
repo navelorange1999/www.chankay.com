@@ -28,7 +28,7 @@ import { seoPlugin } from "@payloadcms/plugin-seo"
 import { Config } from "@repo/typescript-config/typings/payload-types"
 
 import { Media, Users, Posts, Categories, Tags, Series } from "./collections"
-import { Navbar, Footer, SiteConfig } from "./globals"
+import { SiteConfig } from "./globals"
 import { plugins } from "./plugins"
 import { LOCALE_CONFIG } from "./config/locales"
 
@@ -103,7 +103,7 @@ export default buildConfig({
 	collections: [Users, Media, Posts, Categories, Tags, Series],
 
 	// Define and configure your Globals in this array
-	globals: [SiteConfig, Navbar, Footer],
+	globals: [SiteConfig],
 
 	// Your Payload secret - should be a complex and secure string, unguessable
 	secret: process.env.PAYLOAD_SECRET || "",

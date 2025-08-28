@@ -26,7 +26,8 @@
       "WebFetch(domain:github.com)",
       "Bash(pnpm list:*)",
       "Bash(pnpm format:check:*)",
-      "Bash(pnpm format:*)"
+      "Bash(pnpm format:*)",
+      "Bash(pnpm lint:*)"
     ],
     "deny": [],
     "ask": []

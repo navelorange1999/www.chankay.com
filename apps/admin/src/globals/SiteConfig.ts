@@ -498,6 +498,220 @@ export const SiteConfig: GlobalConfig = {
 			],
 		},
 
+		// === Navigation Configuration ===
+		{
+			type: "collapsible",
+			label: "Navigation",
+			admin: {
+				initCollapsed: true,
+				description: "Header navigation and menu settings",
+			},
+			fields: [
+				{
+					name: "navigation",
+					type: "group",
+					label: "Header Navigation",
+					fields: [
+						{
+							name: "showLogo",
+							type: "checkbox",
+							label: "Show Logo in Header",
+							defaultValue: true,
+							admin: {
+								description: "Display site logo in navigation bar",
+							},
+						},
+						{
+							name: "showSiteName",
+							type: "checkbox",
+							label: "Show Site Name in Header",
+							defaultValue: true,
+							admin: {
+								description: "Display site name next to or instead of logo",
+							},
+						},
+						{
+							name: "menuItems",
+							type: "array",
+							label: "Menu Items",
+							admin: {
+								description: "Main navigation menu items",
+							},
+							fields: [
+								{
+									name: "label",
+									type: "text",
+									label: "Label",
+									required: true,
+									admin: {
+										placeholder: "About",
+									},
+								},
+								{
+									name: "url",
+									type: "text",
+									label: "URL",
+									required: true,
+									admin: {
+										placeholder: "/about",
+									},
+								},
+								{
+									name: "external",
+									type: "checkbox",
+									label: "External Link",
+									defaultValue: false,
+									admin: {
+										description: "Open link in new tab",
+									},
+								},
+								{
+									name: "showInMobile",
+									type: "checkbox",
+									label: "Show in Mobile Menu",
+									defaultValue: true,
+									admin: {
+										description: "Include this item in mobile navigation",
+									},
+								},
+							],
+							maxRows: 10,
+						},
+						{
+							name: "showSearch",
+							type: "checkbox",
+							label: "Show Search Button",
+							defaultValue: true,
+							admin: {
+								description: "Display search button in navigation",
+							},
+						},
+						{
+							name: "showThemeToggle",
+							type: "checkbox",
+							label: "Show Theme Toggle",
+							defaultValue: true,
+							admin: {
+								description: "Display dark/light mode toggle button",
+							},
+						},
+					],
+				},
+			],
+		},
+
+		// === Footer Configuration ===
+		{
+			type: "collapsible",
+			label: "Footer",
+			admin: {
+				initCollapsed: true,
+				description: "Footer content and layout settings",
+			},
+			fields: [
+				{
+					name: "footer",
+					type: "group",
+					label: "Footer Settings",
+					fields: [
+						{
+							name: "showLogo",
+							type: "checkbox",
+							label: "Show Logo in Footer",
+							defaultValue: true,
+							admin: {
+								description: "Display site logo in footer",
+							},
+						},
+						{
+							name: "showSiteName",
+							type: "checkbox",
+							label: "Show Site Name in Footer",
+							defaultValue: true,
+							admin: {
+								description: "Display site name in footer",
+							},
+						},
+						{
+							name: "copyrightText",
+							type: "text",
+							label: "Copyright Text",
+							admin: {
+								placeholder: "© 2024 Your Site Name. All rights reserved.",
+								description: "Custom copyright notice (leave empty for auto-generated)",
+							},
+						},
+						{
+							name: "showSocialLinks",
+							type: "checkbox",
+							label: "Show Social Links",
+							defaultValue: true,
+							admin: {
+								description: "Display social media links from Social Profiles above",
+							},
+						},
+						{
+							name: "additionalLinks",
+							type: "array",
+							label: "Additional Footer Links",
+							admin: {
+								description: "Extra links to show in footer (Privacy Policy, Terms, etc.)",
+							},
+							fields: [
+								{
+									name: "label",
+									type: "text",
+									label: "Label",
+									required: true,
+									admin: {
+										placeholder: "Privacy Policy",
+									},
+								},
+								{
+									name: "url",
+									type: "text",
+									label: "URL",
+									required: true,
+									admin: {
+										placeholder: "/privacy",
+									},
+								},
+								{
+									name: "external",
+									type: "checkbox",
+									label: "External Link",
+									defaultValue: false,
+									admin: {
+										description: "Open link in new tab",
+									},
+								},
+							],
+							maxRows: 8,
+						},
+						{
+							name: "showBackToTop",
+							type: "checkbox",
+							label: "Show Back to Top Button",
+							defaultValue: true,
+							admin: {
+								description: "Display scroll-to-top button in footer",
+							},
+						},
+						{
+							name: "customFooterText",
+							type: "textarea",
+							label: "Custom Footer Text",
+							localized: true,
+							admin: {
+								description: "Additional text to display in footer",
+								placeholder: "Built with Next.js and PayloadCMS",
+							},
+						},
+					],
+				},
+			],
+		},
+
 		// === Advanced Settings ===
 		{
 			type: "collapsible",

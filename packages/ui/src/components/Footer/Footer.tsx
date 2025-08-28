@@ -1,18 +1,28 @@
 import Link from "next/link"
 
-import { FooterProps } from "@repo/typescript-config/typings/payload-types"
+import { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 
 import { cn } from "#utils/classnames"
 import { ImageMedia } from "#components/Media"
 
-export function Footer({
-	logo,
-	title = "Chan Kay's site",
-	copyright,
-	socials = [],
-	className = "",
-}: FooterProps) {
+export interface FooterProps {
+	siteConfig: SiteConfig
+	className?: string
+}
+
+export function Footer({ siteConfig, className = "" }: FooterProps) {
 	const currentYear = new Date().getFullYear()
+	const title = siteConfig.siteName
+	const logo = siteConfig.logo
+	const copyright = siteConfig.footer?.copyrightText
+	const socials =
+		siteConfig.socialProfiles?.filter((profile) => profile.showInFooter !== false) || []
+	const customFooterText = siteConfig.footer?.customFooterText
+	const additionalLinks = siteConfig.footer?.additionalLinks || []
+	const showLogo = siteConfig.footer?.showLogo !== false
+	const showSiteName = siteConfig.footer?.showSiteName !== false
+	const showSocialLinks = siteConfig.footer?.showSocialLinks !== false
+
 	const defaultCopyright = `© ${currentYear} ${title}`
 
 	return (
@@ -23,33 +33,29 @@ export function Footer({
 				<div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-4">
 					{/* Left: Logo and Name */}
 					<div className="flex items-center gap-3">
-						{logo && (
+						{showLogo && logo && (
 							<ImageMedia
 								resource={logo}
 								alt={`${title} logo`}
 								className="h-8 w-8 rounded-full object-cover"
 							/>
 						)}
-						<span className="text-lg font-semibold">{title}</span>
+						{showSiteName && <span className="text-lg font-semibold">{title}</span>}
 					</div>
 
 					{/* Right: Social Links */}
-					{(socials ?? []).length > 0 && (
+					{showSocialLinks && socials.length > 0 && (
 						<div className="flex gap-4">
-							{socials?.map((social) => (
+							{socials.map((social) => (
 								<Link
-									key={social.name}
-									href={social.href}
+									key={social.platform}
+									href={social.url}
 									className="text-gray-400 hover:text-white transition-colors duration-200"
-									aria-label={`Follow me on ${social.name}`}
+									aria-label={`Follow us on ${social.platform}`}
 									target="_blank"
 									rel="noopener noreferrer"
 								>
-									<ImageMedia
-										resource={social.icon}
-										alt={`${social.name} icon`}
-										className="h-5 w-5"
-									/>
+									{social.platform}
 								</Link>
 							))}
 						</div>
@@ -58,36 +64,31 @@ export function Footer({
 
 				{/* Bottom: Navigation and Copyright */}
 				<div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-4 border-t border-gray-800">
-					{/* Navigation Links */}
-					<nav className="flex gap-6 text-sm">
-						<Link
-							href="/about"
-							className="text-gray-400 hover:text-white transition-colors duration-200"
-						>
-							About
-						</Link>
-						<Link
-							href="/projects"
-							className="text-gray-400 hover:text-white transition-colors duration-200"
-						>
-							Projects
-						</Link>
-						<Link
-							href="/blog"
-							className="text-gray-400 hover:text-white transition-colors duration-200"
-						>
-							Blog
-						</Link>
-						<Link
-							href="/contact"
-							className="text-gray-400 hover:text-white transition-colors duration-200"
-						>
-							Contact
-						</Link>
-					</nav>
+					{/* Additional Links */}
+					{additionalLinks.length > 0 && (
+						<nav className="flex gap-6 text-sm">
+							{additionalLinks.map((link) => (
+								<Link
+									key={link.label}
+									href={link.url}
+									className="text-gray-400 hover:text-white transition-colors duration-200"
+									{...(link.external && {
+										target: "_blank",
+										rel: "noopener noreferrer",
+									})}
+								>
+									{link.label}
+								</Link>
+							))}
+						</nav>
+					)}
 
-					{/* Copyright */}
-					<p className="text-gray-400 text-sm">{copyright || defaultCopyright}</p>
+					<div className="flex flex-col items-center md:items-end gap-2">
+						{/* Copyright */}
+						<p className="text-gray-400 text-sm">{copyright || defaultCopyright}</p>
+						{/* Custom Footer Text */}
+						{customFooterText && <p className="text-gray-500 text-xs">{customFooterText}</p>}
+					</div>
 				</div>
 			</div>
 		</footer>

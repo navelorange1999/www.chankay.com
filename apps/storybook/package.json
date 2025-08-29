@@ -8,7 +8,7 @@
     "build": "storybook build --docs",
     "preview": "serve storybook-static",
     "lint": "eslint ./stories/**/*.stories.tsx --max-warnings 0 --fix",
-    "clean": "rm -rf .turbo node_modules",
+    "clean": "rm -rf storybook-static && rm -rf .turbo",
     "check-types": "echo \"No TypeScript files to check\"",
     "test": "echo \"No tests yet\"",
     "test:run": "echo \"No tests yet\""

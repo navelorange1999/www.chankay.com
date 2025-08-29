@@ -27,7 +27,8 @@
       "Bash(pnpm list:*)",
       "Bash(pnpm format:check:*)",
       "Bash(pnpm format:*)",
-      "Bash(pnpm lint:*)"
+      "Bash(pnpm lint:*)",
+      "Bash(turbo run:*)"
     ],
     "deny": [],
     "ask": []

@@ -8,7 +8,8 @@
     "lint": "next lint --fix",
     "check-types": "tsc --noEmit",
     "test": "echo \"No tests yet\"",
-    "test:run": "echo \"No tests yet\""
+    "test:run": "echo \"No tests yet\"",
+    "clean": "rm -rf .next && rm -rf .turbo"
   },
   "dependencies": {
     "@repo/ui": "workspace:*",

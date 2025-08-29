@@ -19,7 +19,10 @@
     "lint": "turbo run lint",
     "check-types": "turbo run check-types",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md,yml,yaml}\"",
-    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,md,yml,yaml}\""
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,md,yml,yaml}\"",
+    "clean": "turbo run clean && pnpm clean:root",
+    "clean:root": "rm -rf node_modules/.cache && rm -rf .turbo",
+    "clean:all": "pnpm clean && rm -rf node_modules && pnpm install"
   },
   "dependencies": {
     "react": "^19.1.0",

@@ -5,7 +5,8 @@
   "scripts": {
     "check-types": "echo \"Config package - no type checking needed\"",
     "test": "echo \"No tests yet\"",
-    "test:run": "echo \"No tests yet\""
+    "test:run": "echo \"No tests yet\"",
+    "clean": "rm -rf .turbo"
   },
   "exports": {
     "./base": "./configs/base.json",

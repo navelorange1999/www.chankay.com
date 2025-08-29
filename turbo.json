@@ -39,6 +39,9 @@
     },
     "format:check": {
       "cache": false
+    },
+    "clean": {
+      "cache": false
     }
   }
 }

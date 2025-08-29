@@ -2,7 +2,7 @@ import type { ReactNode } from "react"
 
 import { Inter } from "next/font/google"
 
-import { ThemeProvider, PageTransition } from "@repo/ui"
+import { ThemeProvider, PageTransition, ThemeScript } from "@repo/ui"
 import { Navbar } from "@/components/Navbar"
 import { Footer } from "@/components/Footer"
 
@@ -14,6 +14,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head>
+				<ThemeScript />
 				<link href="/favicon/favicon.ico" rel="icon" sizes="32x32" />
 			</head>
 			<body className={inter.className}>

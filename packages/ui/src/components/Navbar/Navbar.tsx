@@ -10,8 +10,8 @@ import { motion, AnimatePresence } from "framer-motion"
 import { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 
 import { ThemeToggle } from "../ThemeProvider"
-import { cn } from "#utils/classnames"
-import { ImageMedia } from "#components/Media"
+import { cn } from "../../utils/classnames"
+import { ImageMedia } from "../Media"
 
 export interface NavbarProps {
 	siteConfig: SiteConfig

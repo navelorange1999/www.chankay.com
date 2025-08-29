@@ -16,7 +16,8 @@
     "dev:components": "tsc --watch",
     "lint": "eslint src --max-warnings=20 --fix",
     "test": "echo \"No tests yet\"",
-    "test:run": "echo \"No tests yet\""
+    "test:run": "echo \"No tests yet\"",
+    "clean": "rm -rf dist && rm -rf .turbo"
   },
   "imports": {
     "#*": "./src/*"
@@ -24,7 +25,7 @@
   "exports": {
     ".": {
       "types": "./src/index.ts",
-      "default": "./dist/index.js"
+      "default": "./dist/src/index.js"
     },
     "./styles.css": "./dist/index.css"
   },

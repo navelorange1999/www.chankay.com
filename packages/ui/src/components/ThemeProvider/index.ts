@@ -1,2 +1,3 @@
 export { ThemeProvider } from "./ThemeProvider"
-export { ThemeToggle } from "./ThemeToggle"
+export { ThemeToggle, type ThemeToggleProps } from "./ThemeToggle"
+export { ThemeScript } from "./ThemeScript"

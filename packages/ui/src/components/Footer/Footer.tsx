@@ -2,8 +2,8 @@ import Link from "next/link"
 
 import { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 
-import { cn } from "#utils/classnames"
-import { ImageMedia } from "#components/Media"
+import { cn } from "../../utils/classnames"
+import { ImageMedia } from "../Media"
 
 export interface FooterProps {
 	siteConfig: SiteConfig

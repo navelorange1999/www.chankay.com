@@ -2,14 +2,15 @@
 
 ## Critical Rules
 
-1. **UI COMPONENTS FIRST** - Create stateless UI in `packages/ui` before app-specific components
-2. **CMS-DRIVEN DESIGN** - All content and styling must be configurable via Payload CMS
-3. **NO SUMMARY DOCS** - Never create *_SUMMARY.md or *_IMPLEMENTATION.md files
-4. **NO SEMICOLONS** - This project uses Prettier with `semi: false`
-5. **USE TABS** - Not spaces (except in JSON/Markdown files)
-6. **DOUBLE QUOTES** - For strings, not single quotes
-7. **TYPE SAFETY** - Never use `any`, prefer `unknown` or proper types
-8. **SERVER FIRST** - Default to Server Components unless client interaction needed
+1. **ENGLISH ONLY** - All code comments, documentation, commit messages, and technical writing must be in English
+2. **UI COMPONENTS FIRST** - Create stateless UI in `packages/ui` before app-specific components
+3. **CMS-DRIVEN DESIGN** - All content and styling must be configurable via Payload CMS
+4. **NO SUMMARY DOCS** - Never create *_SUMMARY.md or *_IMPLEMENTATION.md files
+5. **NO SEMICOLONS** - This project uses Prettier with `semi: false`
+6. **USE TABS** - Not spaces (except in JSON/Markdown files)
+7. **DOUBLE QUOTES** - For strings, not single quotes
+8. **TYPE SAFETY** - Never use `any`, prefer `unknown` or proper types
+9. **SERVER FIRST** - Default to Server Components unless client interaction needed
 
 ## Component Location Strategy
 

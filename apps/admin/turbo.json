@@ -2,7 +2,17 @@
   "extends": ["//"],
   "tasks": {
     "dev": {
-      "with": ["gen"]
+      "with": ["gen"],
+      "env": [
+        "NODE_ENV",
+        "PAYLOAD_SECRET",
+        "DATABASE_URI",
+        "NEXT_PUBLIC_SERVER_URL",
+        "VERCEL_BLOB_READ_WRITE_TOKEN",
+        "VERCEL_BLOB_PUBLIC_BASE_URL",
+        "GITHUB_CLIENT_ID",
+        "GITHUB_CLIENT_SECRET"
+      ]
     },
     "gen": {
       "cache": false,

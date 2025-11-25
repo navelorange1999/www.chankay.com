@@ -44,6 +44,21 @@ This is a **personal website and technical blog** built with modern web technolo
 
 **⚠️ CRITICAL PRINCIPLES**
 
+#### 0. English-Only Communication
+
+**All technical content must be written in English:**
+
+- ✅ Code comments
+- ✅ Documentation files (README, ARCHITECTURE, etc.)
+- ✅ Commit messages
+- ✅ Function/variable names
+- ✅ Type definitions and interfaces
+- ✅ Error messages and logs
+- ✅ API documentation
+- ❌ No Chinese or other languages in technical content
+
+**Rationale**: Ensures consistency, international collaboration, and better tooling support.
+
 #### 1. CMS-First Design Principle
 
 All components must be designed with Payload CMS configurability in mind:
@@ -81,8 +96,8 @@ Step 4: HeroSection fetches data from CMS and passes to UI components
 - ❌ No `*_IMPLEMENTATION.md` files
 - ❌ No `COMPLETED.md` or similar
 - ✅ Update README if needed
-- ✅ Add inline code comments for complex logic
-- ✅ Update CLAUDE.md for new patterns/conventions
+- ✅ Add inline code comments for complex logic (in English)
+- ✅ Update CLAUDE.md for new patterns/conventions (in English)
 
 ---
 

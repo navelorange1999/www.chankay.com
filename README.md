@@ -139,16 +139,26 @@ pnpm run test:watch   # Run tests in watch mode
 pnpm run storybook    # Start Storybook development server
 ```
 
+## 📚 Documentation
+
+### For AI-Assisted Development
+
+- **[CLAUDE.md](./CLAUDE.md)** - Comprehensive AI code generation guidelines
+- **[.cursorrules](./.cursorrules)** - Quick reference for Cursor AI
+
+These documents ensure consistent, high-quality code generation and provide essential context about the project's architecture, conventions, and best practices.
+
 ## 🔧 Development
 
 ### Adding New Features
 
-1. **Create Feature Branch**: Follow git flow with descriptive branch names
-2. **Develop with Types**: Use TypeScript throughout for type safety
-3. **Component Development**: Use Storybook for isolated component development
-4. **Testing**: Write tests for new functionality
-5. **Code Quality**: Ensure ESLint and Prettier compliance
-6. **Commit**: Follow conventional commit format with scope-based commits
+1. **Review Guidelines**: Read `CLAUDE.md` for coding standards and patterns
+2. **Create Feature Branch**: Follow git flow with descriptive branch names
+3. **Develop with Types**: Use TypeScript throughout for type safety
+4. **Component Development**: Use Storybook for isolated component development
+5. **Testing**: Write tests for new functionality
+6. **Code Quality**: Ensure ESLint and Prettier compliance
+7. **Commit**: Follow conventional commit format with scope-based commits
 
 ### PayloadCMS Customization
 

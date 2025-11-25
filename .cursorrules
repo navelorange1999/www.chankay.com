@@ -1,0 +1,146 @@
+# Cursor AI Rules for www.chankay.com
+
+## Critical Rules
+
+1. **UI COMPONENTS FIRST** - Create stateless UI in `packages/ui` before app-specific components
+2. **CMS-DRIVEN DESIGN** - All content and styling must be configurable via Payload CMS
+3. **NO SUMMARY DOCS** - Never create *_SUMMARY.md or *_IMPLEMENTATION.md files
+4. **NO SEMICOLONS** - This project uses Prettier with `semi: false`
+5. **USE TABS** - Not spaces (except in JSON/Markdown files)
+6. **DOUBLE QUOTES** - For strings, not single quotes
+7. **TYPE SAFETY** - Never use `any`, prefer `unknown` or proper types
+8. **SERVER FIRST** - Default to Server Components unless client interaction needed
+
+## Component Location Strategy
+
+**packages/ui** - Stateless, reusable UI components:
+- ✅ Button, Card, Input, Dialog, etc.
+- ✅ Pure presentational components
+- ✅ No data fetching or business logic
+
+**apps/www or apps/admin** - Application components:
+- ✅ Sections that fetch CMS data
+- ✅ App-specific layouts
+- ✅ Business logic components
+
+## CMS-First Principle
+
+When designing components, always ask:
+- Can this content be edited in CMS?
+- Can this style be configured in CMS?
+- Can this layout be changed in CMS?
+
+**If yes, make it a CMS field. If no, reconsider the design.**
+
+## Import Pattern
+
+```typescript
+import * as React from "react"              // 1. React
+import Link from "next/link"                // 2. Next.js
+import { motion } from "framer-motion"      // 3. Third-party
+import { Button } from "@repo/ui"           // 4. Internal packages
+import type { Props } from "./types"        // 5. Local types
+import { Component } from "./Component"     // 6. Local components
+import { cn } from "@/utils/classnames"     // 7. Local utils
+```
+
+## Component Template
+
+```typescript
+import * as React from "react"
+import { cn } from "@/utils/classnames"
+
+export interface ComponentProps extends React.ComponentProps<"div"> {
+	variant?: "default" | "primary"
+	// Add props here
+}
+
+export function Component({ 
+	variant = "default",
+	className,
+	children,
+	...props 
+}: ComponentProps) {
+	return (
+		<div 
+			className={cn(
+				"base-classes",
+				variant === "primary" && "primary-classes",
+				className
+			)}
+			{...props}
+		>
+			{children}
+		</div>
+	)
+}
+```
+
+## Styling Order
+
+```typescript
+className={cn(
+	"flex items-center",              // Layout
+	"px-4 py-2 gap-2",               // Spacing
+	"w-full h-10",                   // Sizing
+	"text-sm font-medium",           // Typography
+	"bg-white text-gray-900",        // Colors
+	"rounded-lg shadow-sm",          // Effects
+	"hover:bg-gray-50",              // States
+	"dark:bg-gray-800",              // Dark mode
+	"md:w-auto",                     // Responsive
+	className                        // Custom
+)}
+```
+
+## Key Commands
+
+- `pnpm dev:www` - Start frontend
+- `pnpm dev:admin` - Start CMS
+- `pnpm gen` - Generate Payload types
+- `pnpm lint` - Fix linting
+- `pnpm format` - Format code
+
+## File Naming
+
+- Components: `PascalCase.tsx`
+- Utilities: `camelCase.ts`
+- Types: Import from `@repo/typescript-config/typings/payload-types`
+
+## Common Imports
+
+```typescript
+// Utils
+import { cn } from "@/utils/classnames"
+import { payloadClient } from "@/utils/payloadClient"
+
+// Components
+import { Button, Card, ThemeToggle } from "@repo/ui"
+
+// Types
+import type { User, Post } from "@repo/typescript-config/typings/payload-types"
+
+// Next.js
+import Link from "next/link"
+import Image from "next/image"
+```
+
+## Client Components
+
+Only use `"use client"` when you need:
+- Browser APIs (window, localStorage)
+- Event handlers (onClick, onChange)
+- React hooks (useState, useEffect)
+- Third-party client libraries (framer-motion, next-themes)
+
+## Package Structure
+
+- `@repo/ui` - Shared components
+- `@repo/typescript-config` - TS configs & types
+- `@repo/eslint-config` - ESLint configs
+- `@repo/tailwind-config` - Tailwind configs
+
+## Reference
+
+See `CLAUDE.md` for complete guidelines.
+

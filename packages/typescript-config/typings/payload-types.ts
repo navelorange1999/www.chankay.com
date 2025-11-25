@@ -73,6 +73,7 @@ export interface Config {
 		categories: Category
 		tags: Tag
 		series: Series
+		pages: Page
 		"payload-locked-documents": PayloadLockedDocument
 		"payload-preferences": PayloadPreference
 		"payload-migrations": PayloadMigration
@@ -85,6 +86,7 @@ export interface Config {
 		categories: CategoriesSelect<false> | CategoriesSelect<true>
 		tags: TagsSelect<false> | TagsSelect<true>
 		series: SeriesSelect<false> | SeriesSelect<true>
+		pages: PagesSelect<false> | PagesSelect<true>
 		"payload-locked-documents":
 			| PayloadLockedDocumentsSelect<false>
 			| PayloadLockedDocumentsSelect<true>
@@ -390,6 +392,111 @@ export interface Tag {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+	id: string
+	title: string
+	/**
+	 * URL path for this page (e.g., 'home', 'about')
+	 */
+	slug: string
+	status: "draft" | "published"
+	/**
+	 * Build your page by adding and arranging sections
+	 */
+	sections?:
+		| {
+				sectionType: "hero" | "features" | "content" | "stats" | "cta"
+				hero?: {
+					title: string
+					subtitle?: string | null
+					alignment?: ("left" | "center" | "right") | null
+					size?: ("sm" | "md" | "lg") | null
+					backgroundStyle?: ("solid" | "gradient" | "none") | null
+					buttons?:
+						| {
+								label: string
+								href: string
+								variant?: ("primary" | "secondary") | null
+								external?: boolean | null
+								id?: string | null
+						  }[]
+						| null
+				}
+				features?: {
+					title?: string | null
+					subtitle?: string | null
+					layout?: ("grid" | "list") | null
+					items?:
+						| {
+								/**
+								 * e.g., 'Rocket', 'Zap', 'Code'
+								 */
+								icon?: string | null
+								title: string
+								description: string
+								id?: string | null
+						  }[]
+						| null
+				}
+				content?: {
+					title?: string | null
+					body: {
+						root: {
+							type: string
+							children: {
+								type: string
+								version: number
+								[k: string]: unknown
+							}[]
+							direction: ("ltr" | "rtl") | null
+							format: "left" | "start" | "center" | "right" | "end" | "justify" | ""
+							indent: number
+							version: number
+						}
+						[k: string]: unknown
+					}
+					width?: ("narrow" | "normal" | "wide" | "full") | null
+				}
+				stats?: {
+					items?:
+						| {
+								/**
+								 * e.g., '100+', '5K', '99%'
+								 */
+								number: string
+								label: string
+								id?: string | null
+						  }[]
+						| null
+				}
+				cta?: {
+					title: string
+					description?: string | null
+					buttonLabel: string
+					buttonHref: string
+					style?: ("primary" | "accent") | null
+				}
+				spacing?: {
+					paddingTop?: ("none" | "sm" | "md" | "lg") | null
+					paddingBottom?: ("none" | "sm" | "md" | "lg") | null
+				}
+				id?: string | null
+		  }[]
+		| null
+	seo?: {
+		/**
+		 * Override the page title for SEO
+		 */
+		metaTitle?: string | null
+		metaDescription?: string | null
+	}
+	updatedAt: string
+	createdAt: string
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -418,6 +525,10 @@ export interface PayloadLockedDocument {
 		| ({
 				relationTo: "series"
 				value: string | Series
+		  } | null)
+		| ({
+				relationTo: "pages"
+				value: string | Page
 		  } | null)
 	globalSlug?: string | null
 	user: {
@@ -590,6 +701,95 @@ export interface SeriesSelect<T extends boolean = true> {
 	postCount?: T
 	featured?: T
 	completedAt?: T
+	updatedAt?: T
+	createdAt?: T
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+	title?: T
+	slug?: T
+	status?: T
+	sections?:
+		| T
+		| {
+				sectionType?: T
+				hero?:
+					| T
+					| {
+							title?: T
+							subtitle?: T
+							alignment?: T
+							size?: T
+							backgroundStyle?: T
+							buttons?:
+								| T
+								| {
+										label?: T
+										href?: T
+										variant?: T
+										external?: T
+										id?: T
+								  }
+					  }
+				features?:
+					| T
+					| {
+							title?: T
+							subtitle?: T
+							layout?: T
+							items?:
+								| T
+								| {
+										icon?: T
+										title?: T
+										description?: T
+										id?: T
+								  }
+					  }
+				content?:
+					| T
+					| {
+							title?: T
+							body?: T
+							width?: T
+					  }
+				stats?:
+					| T
+					| {
+							items?:
+								| T
+								| {
+										number?: T
+										label?: T
+										id?: T
+								  }
+					  }
+				cta?:
+					| T
+					| {
+							title?: T
+							description?: T
+							buttonLabel?: T
+							buttonHref?: T
+							style?: T
+					  }
+				spacing?:
+					| T
+					| {
+							paddingTop?: T
+							paddingBottom?: T
+					  }
+				id?: T
+		  }
+	seo?:
+		| T
+		| {
+				metaTitle?: T
+				metaDescription?: T
+		  }
 	updatedAt?: T
 	createdAt?: T
 }

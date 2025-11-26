@@ -34,7 +34,11 @@ const config: StorybookConfig = {
 						find: "next/navigation",
 						replacement: resolve(__dirname, "../mocks/next-navigation.ts"),
 					},
-					// 样式 alias 必须在组件 alias 之前，否则会被前者覆盖
+					{
+						find: "next-themes",
+						replacement: resolve(__dirname, "../mocks/next-themes.tsx"),
+					},
+					// style aliases must come before component aliases to avoid being overridden
 					{
 						find: "@repo/ui/styles.css",
 						replacement: resolve(__dirname, "../../../packages/ui/dist/index.css"),

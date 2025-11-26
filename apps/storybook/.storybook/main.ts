@@ -25,6 +25,15 @@ const config: StorybookConfig = {
 			define: { "process.env": {} },
 			resolve: {
 				alias: [
+					// Mock Next.js modules for Storybook
+					{
+						find: "next/link",
+						replacement: resolve(__dirname, "../mocks/next-link.tsx"),
+					},
+					{
+						find: "next/navigation",
+						replacement: resolve(__dirname, "../mocks/next-navigation.ts"),
+					},
 					// 样式 alias 必须在组件 alias 之前，否则会被前者覆盖
 					{
 						find: "@repo/ui/styles.css",

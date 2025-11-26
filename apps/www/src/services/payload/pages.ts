@@ -6,10 +6,10 @@ import type { Page } from "@repo/typescript-config/typings/payload-types"
  */
 export async function getHomePage(): Promise<Page | null> {
 	try {
-		const page = await payloadClient.getBySlug<Page>("pages", "home", {
+		const page = await payloadClient.getBySlug<Page>("pages", "/", {
 			depth: 2,
 			revalidate: 60,
-			tags: ["page:home"],
+			tags: ["page:/"],
 		})
 
 		return page

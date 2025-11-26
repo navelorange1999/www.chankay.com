@@ -13,6 +13,8 @@ import { ThemeToggle } from "../ThemeProvider"
 import { cn } from "../../utils/classnames"
 import { ImageMedia } from "../Media"
 
+type MenuItem = NonNullable<NonNullable<NonNullable<SiteConfig["navigation"]>["menuItems"]>>[number]
+
 export interface NavbarProps {
 	siteConfig: SiteConfig
 	className?: string
@@ -29,7 +31,6 @@ export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "" }) =>
 	const items = siteConfig.navigation?.menuItems || []
 	const showLogo = siteConfig.navigation?.showLogo !== false
 	const showSiteName = siteConfig.navigation?.showSiteName !== false
-	const showThemeToggle = siteConfig.navigation?.showThemeToggle !== false
 
 	const toggleMobileMenu = () => {
 		setMobileMenuOpen(!mobileMenuOpen)
@@ -67,7 +68,7 @@ export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "" }) =>
 					{/* Desktop Navigation - Centered */}
 					<div className="hidden md:flex md:items-center md:space-x-8 flex-1 justify-center">
 						<AnimatePresence mode="wait">
-							{items.map((item: any, index: number) => {
+							{items.map((item: MenuItem, index: number) => {
 								const isActive = pathname === item.url
 								return (
 									<motion.div
@@ -84,7 +85,7 @@ export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "" }) =>
 										whileTap={{ scale: 0.95 }}
 									>
 										<Link
-											href={item.href}
+											href={item.url}
 											className={`relative px-3 py-2 text-sm font-medium transition-colors duration-200 hover:text-yellow-600 ${
 												isActive
 													? "text-yellow-600 dark:text-yellow-400"
@@ -143,8 +144,8 @@ export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "" }) =>
 						>
 							<div className="px-2 pt-2 pb-3 space-y-1 border-t border-gray-200 dark:border-gray-700">
 								{items
-									.filter((item: any) => item.showInMobile !== false)
-									.map((item: any, index: number) => {
+									.filter((item: MenuItem) => item.showInMobile !== false)
+									.map((item: MenuItem, index: number) => {
 										const isActive = pathname === item.url
 										return (
 											<motion.div
@@ -158,7 +159,7 @@ export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "" }) =>
 												}}
 											>
 												<Link
-													href={item.href}
+													href={item.url}
 													onClick={() => setMobileMenuOpen(false)}
 													className={`block px-3 py-2 text-base font-medium rounded-lg transition-colors duration-200 hover:text-yellow-600 hover:bg-gray-50 dark:hover:bg-gray-700 ${
 														isActive

@@ -7,12 +7,12 @@ export interface PayloadQueryOptions {
 export class PayloadClient {
 	private baseUrl: string
 
-	constructor(baseUrl: string = process.env.PAYLOAD_API_URL || "http://localhost:3001") {
+	constructor(baseUrl: string = process.env.PAYLOAD_API_URL || "http://localhost:3001/api") {
 		this.baseUrl = baseUrl
 	}
 
 	async getGlobal<T>(slug: string, options?: PayloadQueryOptions): Promise<T> {
-		const response = await fetch(`${this.baseUrl}/api/globals/${slug}`, {
+		const response = await fetch(`${this.baseUrl}/globals/${slug}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -59,7 +59,7 @@ export class PayloadClient {
 		if (options?.limit !== undefined) params.append("limit", String(options.limit))
 		if (options?.page !== undefined) params.append("page", String(options.page))
 
-		const url = `${this.baseUrl}/api/${collection}?${params.toString()}`
+		const url = `${this.baseUrl}/${collection}?${params.toString()}`
 
 		const response = await fetch(url, {
 			method: "GET",

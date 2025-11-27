@@ -26,7 +26,7 @@ export function Footer({ siteConfig, className = "" }: FooterProps) {
 	const defaultCopyright = `© ${currentYear} ${title}`
 
 	return (
-		<footer className={cn(`bg-gray-900 text-white py-6`, className)}>
+		<footer className={cn(`bg-card text-card-foreground py-6 border-t border-border`, className)}>
 			{/* Container for the footer content */}
 			<div className="container mx-auto px-4 md:px-6">
 				{/* Main Footer Content */}
@@ -50,7 +50,7 @@ export function Footer({ siteConfig, className = "" }: FooterProps) {
 								<Link
 									key={social.platform}
 									href={social.url}
-									className="text-gray-400 hover:text-white transition-colors duration-200"
+									className="text-muted-foreground hover:text-foreground transition-colors duration-200"
 									aria-label={`Follow us on ${social.platform}`}
 									target="_blank"
 									rel="noopener noreferrer"
@@ -63,7 +63,7 @@ export function Footer({ siteConfig, className = "" }: FooterProps) {
 				</div>
 
 				{/* Bottom: Navigation and Copyright */}
-				<div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-4 border-t border-gray-800">
+				<div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-4 border-t border-border">
 					{/* Additional Links */}
 					{additionalLinks.length > 0 && (
 						<nav className="flex gap-6 text-sm">
@@ -71,7 +71,7 @@ export function Footer({ siteConfig, className = "" }: FooterProps) {
 								<Link
 									key={link.label}
 									href={link.url}
-									className="text-gray-400 hover:text-white transition-colors duration-200"
+									className="text-muted-foreground hover:text-foreground transition-colors duration-200"
 									{...(link.external && {
 										target: "_blank",
 										rel: "noopener noreferrer",
@@ -85,9 +85,11 @@ export function Footer({ siteConfig, className = "" }: FooterProps) {
 
 					<div className="flex flex-col items-center md:items-end gap-2">
 						{/* Copyright */}
-						<p className="text-gray-400 text-sm">{copyright || defaultCopyright}</p>
+						<p className="text-muted-foreground text-sm">{copyright || defaultCopyright}</p>
 						{/* Custom Footer Text */}
-						{customFooterText && <p className="text-gray-500 text-xs">{customFooterText}</p>}
+						{customFooterText && (
+							<p className="text-muted-foreground/80 text-xs">{customFooterText}</p>
+						)}
 					</div>
 				</div>
 			</div>

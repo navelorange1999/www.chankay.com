@@ -36,8 +36,7 @@ const alignmentMap = {
 
 const backgroundMap = {
 	solid: "bg-background",
-	gradient:
-		"bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-purple-950 dark:to-blue-950",
+	gradient: "bg-gradient-to-br from-secondary via-muted to-accent",
 	none: "bg-transparent",
 }
 
@@ -67,11 +66,11 @@ export function HeroSection({
 			className={cn("relative", sizeMap[size], backgroundMap[backgroundStyle], paddingClasses)}
 		>
 			<div className={cn("container mx-auto px-4 flex flex-col", alignmentMap[alignment])}>
-				<h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent">
+				<h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
 					{title}
 				</h1>
 				{subtitle && (
-					<p className="text-lg md:text-xl lg:text-2xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl">
+					<p className="text-lg md:text-xl lg:text-2xl text-muted-foreground mb-8 max-w-3xl">
 						{subtitle}
 					</p>
 				)}
@@ -81,8 +80,8 @@ export function HeroSection({
 							const buttonClasses = cn(
 								"px-8 py-3 rounded-lg font-medium transition-all duration-200",
 								button.variant === "primary"
-									? "bg-blue-600 text-white hover:bg-blue-700 shadow-lg hover:shadow-xl"
-									: "border-2 border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
+									? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl"
+									: "border-2 border-border hover:bg-secondary"
 							)
 
 							return button.external ? (

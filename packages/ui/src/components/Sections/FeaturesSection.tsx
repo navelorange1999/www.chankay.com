@@ -3,7 +3,7 @@ import { cn } from "../../utils/classnames"
 import * as LucideIcons from "lucide-react"
 
 interface FeatureItem {
-	icon?: string
+	icon?: keyof typeof LucideIcons
 	title: string
 	description: string
 }
@@ -37,23 +37,24 @@ export function FeaturesSection({
 		.filter(Boolean)
 		.join(" ")
 
-	const getIcon = (iconName?: string): React.ReactNode => {
+	const getIcon = (iconName?: keyof typeof LucideIcons): React.ReactNode => {
 		if (!iconName) return null
-		const iconsMap = LucideIcons as Record<string, unknown>
+		const iconsMap = LucideIcons as Record<keyof typeof LucideIcons, unknown>
 		const IconComponent = iconsMap[iconName]
-		if (!IconComponent || typeof IconComponent !== "function") return null
+
+		if (!IconComponent) return null
 		const Icon = IconComponent as React.ComponentType<{ className?: string }>
 		return <Icon className="w-8 h-8" />
 	}
 
 	return (
-		<section className={cn("py-16 md:py-24 bg-white dark:bg-gray-900", paddingClasses)}>
+		<section className={cn("py-16 md:py-24 bg-background", paddingClasses)}>
 			<div className="container mx-auto px-4">
 				{(title || subtitle) && (
 					<div className="text-center mb-12 md:mb-16">
 						{title && <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{title}</h2>}
 						{subtitle && (
-							<p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+							<p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
 								{subtitle}
 							</p>
 						)}
@@ -71,16 +72,16 @@ export function FeaturesSection({
 						<div
 							key={index}
 							className={cn(
-								"p-6 rounded-xl border border-gray-200 dark:border-gray-700",
-								"bg-gray-50 dark:bg-gray-800",
+								"p-6 rounded-xl border border-border",
+								"bg-card",
 								"hover:shadow-lg transition-shadow duration-200"
 							)}
 						>
-							{item.icon && (
-								<div className="mb-4 text-blue-600 dark:text-blue-400">{getIcon(item.icon)}</div>
-							)}
-							<h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-							<p className="text-gray-600 dark:text-gray-400">{item.description}</p>
+							<div className="flex items-center gap-2 mb-2">
+								{item.icon && <div className="text-primary">{getIcon(item.icon)}</div>}
+								<h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+							</div>
+							<p className="text-muted-foreground">{item.description}</p>
 						</div>
 					))}
 				</div>

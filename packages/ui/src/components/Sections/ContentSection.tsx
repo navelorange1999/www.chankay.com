@@ -1,4 +1,3 @@
-import * as React from "react"
 import { cn } from "../../utils/classnames"
 
 export interface ContentSectionProps {

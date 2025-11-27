@@ -58,16 +58,16 @@ export function ThemeToggle({
 
 		switch (currentTheme) {
 			case "system":
-				return <Monitor className={cn(iconSizes[size], "text-purple-500")} />
+				return <Monitor className={cn(iconSizes[size], "text-primary")} />
 			case "dark":
-				return <Sun className={cn(iconSizes[size], "text-yellow-500")} />
+				return <Sun className={cn(iconSizes[size], "text-primary")} />
 			case "light":
-				return <Moon className={cn(iconSizes[size], "text-blue-500")} />
+				return <Moon className={cn(iconSizes[size], "text-primary")} />
 			default:
 				return displayTheme === "dark" ? (
-					<Sun className={cn(iconSizes[size], "text-yellow-500")} />
+					<Sun className={cn(iconSizes[size], "text-primary")} />
 				) : (
-					<Moon className={cn(iconSizes[size], "text-blue-500")} />
+					<Moon className={cn(iconSizes[size], "text-primary")} />
 				)
 		}
 	}
@@ -84,7 +84,7 @@ export function ThemeToggle({
 				<motion.button
 					onClick={() => setIsOpen(!isOpen)}
 					className={cn(
-						"relative flex items-center gap-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-150 overflow-hidden",
+						"relative flex items-center gap-2 rounded-lg text-foreground hover:bg-secondary transition-colors duration-150 overflow-hidden",
 						sizeClasses[size],
 						className
 					)}
@@ -121,7 +121,7 @@ export function ThemeToggle({
 							animate={{ opacity: 1, scale: 1, y: 0 }}
 							exit={{ opacity: 0, scale: 0.95, y: -10 }}
 							transition={{ duration: 0.15 }}
-							className="absolute right-0 top-full mt-2 w-32 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg z-50"
+							className="absolute right-0 top-full mt-2 w-32 bg-card border border-border rounded-lg shadow-lg z-50"
 						>
 							{themes.map((themeOption) => (
 								<button
@@ -130,13 +130,13 @@ export function ThemeToggle({
 										setTheme(themeOption.key as any)
 										setIsOpen(false)
 									}}
-									className="w-full flex items-center gap-3 px-3 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 first:rounded-t-lg last:rounded-b-lg transition-colors"
+									className="w-full flex items-center gap-3 px-3 py-2 text-sm text-foreground hover:bg-secondary first:rounded-t-lg last:rounded-b-lg transition-colors"
 								>
 									<div className="flex items-center gap-2 flex-1">
 										{themeOption.icon}
 										<span>{themeOption.label}</span>
 									</div>
-									{theme === themeOption.key && <Check className="h-4 w-4 text-blue-500" />}
+									{theme === themeOption.key && <Check className="h-4 w-4 text-primary" />}
 								</button>
 							))}
 						</motion.div>
@@ -155,7 +155,7 @@ export function ThemeToggle({
 				showSystemOption ? toggleTheme : () => setTheme(resolvedTheme === "dark" ? "light" : "dark")
 			}
 			className={cn(
-				"relative rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-150 overflow-hidden",
+				"relative rounded-lg text-foreground hover:bg-secondary transition-colors duration-150 overflow-hidden",
 				sizeClasses[size],
 				className
 			)}
@@ -165,13 +165,7 @@ export function ThemeToggle({
 		>
 			{/* Background glow effect */}
 			<motion.div
-				className="absolute inset-0 rounded-lg"
-				animate={{
-					background:
-						resolvedTheme === "dark"
-							? "radial-gradient(circle, rgba(251, 191, 36, 0.1) 0%, transparent 70%)"
-							: "radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%)",
-				}}
+				className="absolute inset-0 rounded-lg opacity-0"
 				transition={{ duration: 0.2 }}
 			/>
 
@@ -212,7 +206,7 @@ export function ThemeToggle({
 									ease: "linear",
 								}}
 							>
-								<Sun className={cn(iconSizes[size], "text-yellow-500")} />
+								<Sun className={cn(iconSizes[size], "text-primary")} />
 							</motion.div>
 						) : (
 							<motion.div
@@ -223,7 +217,7 @@ export function ThemeToggle({
 									ease: "easeInOut",
 								}}
 							>
-								<Moon className={cn(iconSizes[size], "text-blue-500")} />
+								<Moon className={cn(iconSizes[size], "text-primary")} />
 							</motion.div>
 						)}
 					</motion.div>
@@ -232,17 +226,11 @@ export function ThemeToggle({
 
 			{/* Ripple effect */}
 			<motion.div
-				className="absolute inset-0 rounded-lg"
-				initial={{ scale: 0, opacity: 0.5 }}
-				animate={{ scale: 0, opacity: 0.5 }}
+				className="absolute inset-0 rounded-lg opacity-0"
+				initial={{ scale: 0, opacity: 0 }}
+				animate={{ scale: 0, opacity: 0 }}
 				whileTap={{ scale: 1.2, opacity: 0 }}
 				transition={{ duration: 0.2 }}
-				style={{
-					background:
-						resolvedTheme === "dark"
-							? "radial-gradient(circle, rgba(251, 191, 36, 0.3) 0%, transparent 70%)"
-							: "radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%)",
-				}}
 			/>
 		</motion.button>
 	)

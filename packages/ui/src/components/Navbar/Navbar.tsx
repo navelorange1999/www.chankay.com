@@ -37,12 +37,7 @@ export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "" }) =>
 	}
 
 	return (
-		<nav
-			className={cn(
-				`bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700`,
-				className
-			)}
-		>
+		<nav className={cn(`bg-background shadow-sm border-b border-border`, className)}>
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="flex justify-between items-center h-16">
 					{/* Logo */}
@@ -52,15 +47,13 @@ export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "" }) =>
 								<ImageMedia resource={logo} />
 							) : (
 								!showLogo && (
-									<div className="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
-										<span className="text-white font-bold text-lg">C</span>
+									<div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center">
+										<span className="text-primary-foreground font-bold text-lg">C</span>
 									</div>
 								)
 							)}
 							{showSiteName && (
-								<span className="ml-2 text-xl font-semibold text-gray-900 dark:text-white">
-									{title}
-								</span>
+								<span className="ml-2 text-xl font-semibold text-foreground">{title}</span>
 							)}
 						</Link>
 					</div>
@@ -86,16 +79,14 @@ export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "" }) =>
 									>
 										<Link
 											href={item.url}
-											className={`relative px-3 py-2 text-sm font-medium transition-colors duration-200 hover:text-yellow-600 ${
-												isActive
-													? "text-yellow-600 dark:text-yellow-400"
-													: "text-gray-700 dark:text-gray-300"
+											className={`relative px-3 py-2 text-sm font-medium transition-colors duration-200 hover:text-primary ${
+												isActive ? "text-primary" : "text-muted-foreground"
 											}`}
 										>
 											{item.label}
 											{isActive && (
 												<motion.span
-													className="absolute bottom-0 left-0 right-0 h-0.5 bg-yellow-600 dark:bg-yellow-400 rounded-full"
+													className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full"
 													layoutId="activeIndicator"
 													transition={{
 														type: "spring",
@@ -124,7 +115,7 @@ export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "" }) =>
 						{/* Hamburger Menu */}
 						<button
 							onClick={toggleMobileMenu}
-							className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200"
+							className="p-2 rounded-lg text-foreground hover:bg-secondary transition-colors duration-200"
 							aria-label="Toggle mobile menu"
 						>
 							{mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -142,7 +133,7 @@ export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "" }) =>
 							exit={{ opacity: 0, height: 0 }}
 							transition={{ duration: 0.3, ease: "easeInOut" }}
 						>
-							<div className="px-2 pt-2 pb-3 space-y-1 border-t border-gray-200 dark:border-gray-700">
+							<div className="px-2 pt-2 pb-3 space-y-1 border-t border-border">
 								{items
 									.filter((item: MenuItem) => item.showInMobile !== false)
 									.map((item: MenuItem, index: number) => {
@@ -161,10 +152,8 @@ export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "" }) =>
 												<Link
 													href={item.url}
 													onClick={() => setMobileMenuOpen(false)}
-													className={`block px-3 py-2 text-base font-medium rounded-lg transition-colors duration-200 hover:text-yellow-600 hover:bg-gray-50 dark:hover:bg-gray-700 ${
-														isActive
-															? "text-yellow-600 dark:text-yellow-400 bg-yellow-50 dark:bg-gray-700"
-															: "text-gray-700 dark:text-gray-300"
+													className={`block px-3 py-2 text-base font-medium rounded-lg transition-colors duration-200 hover:text-primary hover:bg-secondary ${
+														isActive ? "text-primary bg-secondary" : "text-muted-foreground"
 													}`}
 												>
 													{item.label}

@@ -170,87 +170,26 @@ export const NoIcons: Story = {
 	},
 }
 
-export const DeveloperFeatures: Story = {
+export const WithIcons: Story = {
 	args: {
-		title: "Developer Tools",
-		subtitle: "Built for developers, by developers",
+		title: "Features",
+		subtitle: "Focus on what matters",
 		layout: "grid",
 		items: [
 			{
-				icon: "Terminal",
-				title: "CLI Tools",
-				description: "Powerful command-line interface for automation and scripting.",
+				icon: "AArrowDown",
+				title: "Easy to Use",
+				description: "Intuitive interface that anyone can master in minutes.",
 			},
 			{
-				icon: "GitBranch",
-				title: "Version Control",
-				description: "Git integration with automatic deployments and rollbacks.",
+				icon: "ZoomIn",
+				title: "Reliable",
+				description: "99.99% uptime guarantee with automated monitoring.",
 			},
 			{
-				icon: "FileCode",
-				title: "API First",
-				description: "RESTful and GraphQL APIs with comprehensive documentation.",
-			},
-			{
-				icon: "Webhook",
-				title: "Webhooks",
-				description: "Real-time notifications and integrations with webhooks.",
-			},
-			{
-				icon: "BookOpen",
-				title: "Documentation",
-				description: "Detailed guides, tutorials, and API references.",
-			},
-			{
-				icon: "Bug",
-				title: "Error Tracking",
-				description: "Built-in monitoring and debugging tools for production.",
-			},
-		],
-	},
-}
-
-export const MinimalFeatures: Story = {
-	args: {
-		title: "Key Benefits",
-		layout: "grid",
-		items: [
-			{
-				icon: "Check",
-				title: "Easy",
-				description: "Simple setup and configuration.",
-			},
-			{
-				icon: "Check",
-				title: "Fast",
-				description: "Blazing fast performance.",
-			},
-			{
-				icon: "Check",
-				title: "Secure",
-				description: "Enterprise-grade security.",
-			},
-		],
-	},
-}
-
-export const DetailedFeatures: Story = {
-	args: {
-		title: "Enterprise Solutions",
-		subtitle: "Comprehensive tools for large-scale deployments",
-		layout: "list",
-		items: [
-			{
-				icon: "Building",
-				title: "Enterprise Infrastructure",
-				description:
-					"Dedicated infrastructure with SLA guarantees, priority support, and custom configurations tailored to your organization's needs. Includes advanced load balancing, auto-scaling, and disaster recovery capabilities.",
-			},
-			{
-				icon: "Shield",
-				title: "Advanced Security & Compliance",
-				description:
-					"SOC 2 Type II certified with GDPR, HIPAA, and ISO 27001 compliance. Features include SSO/SAML, advanced threat detection, automated security scanning, and comprehensive audit logs for regulatory requirements.",
+				icon: "AirplayIcon",
+				title: "Affordable",
+				description: "Transparent pricing with no hidden fees or surprises.",
 			},
 		],
 	},

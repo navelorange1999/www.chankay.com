@@ -27,7 +27,7 @@ export function StatsSection({ items, spacing }: StatsSectionProps) {
 		.join(" ")
 
 	return (
-		<section className={cn("py-16 md:py-24 bg-blue-600 dark:bg-blue-700", paddingClasses)}>
+		<section className={cn("py-16 md:py-24 bg-primary", paddingClasses)}>
 			<div className="container mx-auto px-4">
 				<div
 					className={cn(
@@ -39,10 +39,10 @@ export function StatsSection({ items, spacing }: StatsSectionProps) {
 				>
 					{items.map((item, index) => (
 						<div key={index} className="text-center">
-							<div className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2">
+							<div className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground mb-2">
 								{item.number}
 							</div>
-							<div className="text-lg md:text-xl text-blue-100">{item.label}</div>
+							<div className="text-lg md:text-xl text-primary-foreground/80">{item.label}</div>
 						</div>
 					))}
 				</div>

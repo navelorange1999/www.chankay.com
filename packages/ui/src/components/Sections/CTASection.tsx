@@ -16,12 +16,12 @@ export interface CTASectionProps {
 
 const styleMap = {
 	primary: {
-		background: "bg-blue-600 dark:bg-blue-700",
-		button: "bg-white text-blue-600 hover:bg-gray-100",
+		background: "bg-primary",
+		button: "bg-primary-foreground text-primary hover:bg-secondary hover:text-accent-foreground",
 	},
 	accent: {
-		background: "bg-purple-600 dark:bg-purple-700",
-		button: "bg-white text-purple-600 hover:bg-gray-100",
+		background: "bg-accent",
+		button: "bg-accent-foreground text-accent hover:bg-secondary hover:text-primary",
 	},
 }
 
@@ -47,7 +47,11 @@ export function CTASection({
 
 	return (
 		<section
-			className={cn("py-16 md:py-24 text-white", styleMap[style].background, paddingClasses)}
+			className={cn(
+				"py-16 md:py-24 text-primary-foreground",
+				styleMap[style].background,
+				paddingClasses
+			)}
 		>
 			<div className="container mx-auto px-4 text-center">
 				<h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{title}</h2>

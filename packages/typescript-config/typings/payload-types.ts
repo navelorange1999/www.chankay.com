@@ -403,87 +403,152 @@ export interface Page {
 	slug: string
 	status: "draft" | "published"
 	/**
-	 * Build your page by adding and arranging sections
+	 * Build your page by adding, arranging, and configuring blocks
 	 */
 	sections?:
-		| {
-				sectionType: "hero" | "features" | "content" | "stats" | "cta"
-				hero?: {
-					title: string
-					subtitle?: string | null
-					alignment?: ("left" | "center" | "right") | null
-					size?: ("sm" | "md" | "lg") | null
-					backgroundStyle?: ("solid" | "gradient" | "none") | null
-					buttons?:
-						| {
-								label: string
-								href: string
-								variant?: ("primary" | "secondary") | null
-								external?: boolean | null
-								id?: string | null
-						  }[]
-						| null
-				}
-				features?: {
-					title?: string | null
-					subtitle?: string | null
-					layout?: ("grid" | "list") | null
-					items?:
-						| {
-								/**
-								 * e.g., 'Rocket', 'Zap', 'Code'
-								 */
-								icon?: string | null
-								title: string
-								description: string
-								id?: string | null
-						  }[]
-						| null
-				}
-				content?: {
-					title?: string | null
-					body: {
-						root: {
-							type: string
-							children: {
-								type: string
-								version: number
-								[k: string]: unknown
-							}[]
-							direction: ("ltr" | "rtl") | null
-							format: "left" | "start" | "center" | "right" | "end" | "justify" | ""
-							indent: number
-							version: number
+		| (
+				| {
+						hero: {
+							title: string
+							subtitle?: string | null
+							/**
+							 * Add optional blocks inside the hero (e.g. HandWriting, Media, Card). Order matters.
+							 */
+							contentBlocks?:
+								| (
+										| {
+												speed?: number | null
+												id?: string | null
+												blockName?: string | null
+												blockType: "handWriting"
+										  }
+										| {
+												media: string | MediaInterface
+												id?: string | null
+												blockName?: string | null
+												blockType: "mediaImage"
+										  }
+										| {
+												title: string
+												description?: string | null
+												id?: string | null
+												blockName?: string | null
+												blockType: "card"
+										  }
+								  )[]
+								| null
+							alignment?: ("left" | "center" | "right") | null
+							size?: ("sm" | "md" | "lg") | null
+							backgroundStyle?: ("solid" | "gradient" | "none") | null
+							buttons?:
+								| {
+										label: string
+										href: string
+										variant?: ("primary" | "secondary") | null
+										external?: boolean | null
+										id?: string | null
+								  }[]
+								| null
 						}
-						[k: string]: unknown
-					}
-					width?: ("narrow" | "normal" | "wide" | "full") | null
-				}
-				stats?: {
-					items?:
-						| {
-								/**
-								 * e.g., '100+', '5K', '99%'
-								 */
-								number: string
-								label: string
-								id?: string | null
-						  }[]
-						| null
-				}
-				cta?: {
-					title: string
-					description?: string | null
-					buttonLabel: string
-					buttonHref: string
-					style?: ("primary" | "accent") | null
-				}
-				spacing?: {
-					paddingTop?: ("none" | "sm" | "md" | "lg") | null
-					paddingBottom?: ("none" | "sm" | "md" | "lg") | null
-				}
-				id?: string | null
-		  }[]
+						spacing?: {
+							paddingTop?: ("none" | "sm" | "md" | "lg") | null
+							paddingBottom?: ("none" | "sm" | "md" | "lg") | null
+						}
+						id?: string | null
+						blockName?: string | null
+						blockType: "hero"
+				  }
+				| {
+						features?: {
+							title?: string | null
+							subtitle?: string | null
+							layout?: ("grid" | "list") | null
+							items?:
+								| {
+										/**
+										 * e.g., 'Rocket', 'Zap', 'Code'
+										 */
+										icon?: string | null
+										title: string
+										description: string
+										id?: string | null
+								  }[]
+								| null
+						}
+						spacing?: {
+							paddingTop?: ("none" | "sm" | "md" | "lg") | null
+							paddingBottom?: ("none" | "sm" | "md" | "lg") | null
+						}
+						id?: string | null
+						blockName?: string | null
+						blockType: "features"
+				  }
+				| {
+						content: {
+							title?: string | null
+							body: {
+								root: {
+									type: string
+									children: {
+										type: string
+										version: number
+										[k: string]: unknown
+									}[]
+									direction: ("ltr" | "rtl") | null
+									format: "left" | "start" | "center" | "right" | "end" | "justify" | ""
+									indent: number
+									version: number
+								}
+								[k: string]: unknown
+							}
+							width?: ("narrow" | "normal" | "wide" | "full") | null
+						}
+						spacing?: {
+							paddingTop?: ("none" | "sm" | "md" | "lg") | null
+							paddingBottom?: ("none" | "sm" | "md" | "lg") | null
+						}
+						id?: string | null
+						blockName?: string | null
+						blockType: "content"
+				  }
+				| {
+						stats?: {
+							items?:
+								| {
+										/**
+										 * e.g., '100+', '5K', '99%'
+										 */
+										number: string
+										label: string
+										id?: string | null
+								  }[]
+								| null
+						}
+						spacing?: {
+							paddingTop?: ("none" | "sm" | "md" | "lg") | null
+							paddingBottom?: ("none" | "sm" | "md" | "lg") | null
+						}
+						id?: string | null
+						blockName?: string | null
+						blockType: "stats"
+				  }
+				| {
+						cta: {
+							title: string
+							description?: string | null
+							buttonLabel: string
+							buttonHref: string
+							style?: ("primary" | "accent") | null
+						}
+						spacing?: {
+							paddingTop?: ("none" | "sm" | "md" | "lg") | null
+							paddingBottom?: ("none" | "sm" | "md" | "lg") | null
+						}
+						id?: string | null
+						blockName?: string | null
+						blockType: "cta"
+				  }
+		  )[]
 		| null
 	seo?: {
 		/**
@@ -715,74 +780,152 @@ export interface PagesSelect<T extends boolean = true> {
 	sections?:
 		| T
 		| {
-				sectionType?: T
 				hero?:
 					| T
 					| {
-							title?: T
-							subtitle?: T
-							alignment?: T
-							size?: T
-							backgroundStyle?: T
-							buttons?:
+							hero?:
 								| T
 								| {
-										label?: T
-										href?: T
-										variant?: T
-										external?: T
-										id?: T
+										title?: T
+										subtitle?: T
+										contentBlocks?:
+											| T
+											| {
+													handWriting?:
+														| T
+														| {
+																speed?: T
+																id?: T
+																blockName?: T
+														  }
+													mediaImage?:
+														| T
+														| {
+																media?: T
+																id?: T
+																blockName?: T
+														  }
+													card?:
+														| T
+														| {
+																title?: T
+																description?: T
+																id?: T
+																blockName?: T
+														  }
+											  }
+										alignment?: T
+										size?: T
+										backgroundStyle?: T
+										buttons?:
+											| T
+											| {
+													label?: T
+													href?: T
+													variant?: T
+													external?: T
+													id?: T
+											  }
 								  }
+							spacing?:
+								| T
+								| {
+										paddingTop?: T
+										paddingBottom?: T
+								  }
+							id?: T
+							blockName?: T
 					  }
 				features?:
 					| T
 					| {
-							title?: T
-							subtitle?: T
-							layout?: T
-							items?:
+							features?:
 								| T
 								| {
-										icon?: T
 										title?: T
-										description?: T
-										id?: T
+										subtitle?: T
+										layout?: T
+										items?:
+											| T
+											| {
+													icon?: T
+													title?: T
+													description?: T
+													id?: T
+											  }
 								  }
+							spacing?:
+								| T
+								| {
+										paddingTop?: T
+										paddingBottom?: T
+								  }
+							id?: T
+							blockName?: T
 					  }
 				content?:
 					| T
 					| {
-							title?: T
-							body?: T
-							width?: T
+							content?:
+								| T
+								| {
+										title?: T
+										body?: T
+										width?: T
+								  }
+							spacing?:
+								| T
+								| {
+										paddingTop?: T
+										paddingBottom?: T
+								  }
+							id?: T
+							blockName?: T
 					  }
 				stats?:
 					| T
 					| {
-							items?:
+							stats?:
 								| T
 								| {
-										number?: T
-										label?: T
-										id?: T
+										items?:
+											| T
+											| {
+													number?: T
+													label?: T
+													id?: T
+											  }
 								  }
+							spacing?:
+								| T
+								| {
+										paddingTop?: T
+										paddingBottom?: T
+								  }
+							id?: T
+							blockName?: T
 					  }
 				cta?:
 					| T
 					| {
-							title?: T
-							description?: T
-							buttonLabel?: T
-							buttonHref?: T
-							style?: T
+							cta?:
+								| T
+								| {
+										title?: T
+										description?: T
+										buttonLabel?: T
+										buttonHref?: T
+										style?: T
+								  }
+							spacing?:
+								| T
+								| {
+										paddingTop?: T
+										paddingBottom?: T
+								  }
+							id?: T
+							blockName?: T
 					  }
-				spacing?:
-					| T
-					| {
-							paddingTop?: T
-							paddingBottom?: T
-					  }
-				id?: T
 		  }
 	seo?:
 		| T

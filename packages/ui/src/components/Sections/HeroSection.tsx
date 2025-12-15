@@ -15,6 +15,7 @@ export interface HeroSectionProps {
 	size?: "sm" | "md" | "lg"
 	backgroundStyle?: "solid" | "gradient" | "none"
 	buttons?: Button[]
+	children?: React.ReactNode
 	spacing?: {
 		paddingTop?: "none" | "sm" | "md" | "lg"
 		paddingBottom?: "none" | "sm" | "md" | "lg"
@@ -47,6 +48,7 @@ export function HeroSection({
 	size = "md",
 	backgroundStyle = "gradient",
 	buttons = [],
+	children,
 	spacing,
 	LinkComponent = "a",
 }: HeroSectionProps) {
@@ -74,6 +76,7 @@ export function HeroSection({
 						{subtitle}
 					</p>
 				)}
+				{children && <div className="mb-8">{children}</div>}
 				{buttons.length > 0 && (
 					<div className={cn("flex flex-wrap gap-4", alignment === "center" && "justify-center")}>
 						{buttons.map((button, index) => {

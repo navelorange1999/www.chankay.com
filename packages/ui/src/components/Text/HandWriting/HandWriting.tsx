@@ -1,7 +1,7 @@
 "use client"
 
-import { motion, Variants } from "motion/react"
-import { useMemo } from "react"
+import * as React from "react"
+import { motion, type Variants } from "motion/react"
 
 import { HELLO_WORLD_VIEW_BOX, HELLO_WORLD_PATHS } from "./constants/hello-world"
 
@@ -10,7 +10,7 @@ type Props = React.ComponentProps<typeof motion.svg> & {
 }
 
 function HandWriting({ className, speed = 1, ...props }: Props) {
-	const cumulativeDelays = useMemo(() => {
+	const cumulativeDelays = React.useMemo(() => {
 		const delays: number[] = []
 		let totalDuration = 0
 

@@ -17,5 +17,10 @@ export default async function HomePage() {
 
 	// Type assertion: Payload CMS ensures that when sectionType is set,
 	// the corresponding data field (hero, features, etc.) exists
-	return <Section sections={pageData.sections as SectionProps["sections"]} />
+
+	return (
+		<>
+			<Section sections={pageData.sections as SectionProps["sections"]} />
+		</>
+	)
 }

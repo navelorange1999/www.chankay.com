@@ -5,7 +5,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence } from "motion/react"
 
 import { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 
@@ -37,7 +37,14 @@ export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "" }) =>
 	}
 
 	return (
-		<nav className={cn(`bg-background shadow-sm border-b border-border`, className)}>
+		<nav
+			className={cn(
+				"sticky top-0 z-50",
+				"bg-background shadow-sm border-b border-border",
+				"backdrop-blur supports-[backdrop-filter]:bg-background/80",
+				className
+			)}
+		>
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="flex justify-between items-center h-16">
 					{/* Logo */}

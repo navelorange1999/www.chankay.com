@@ -802,7 +802,7 @@ import Link from "next/link"
 import Image from "next/image"
 
 // 3. Third-party libraries
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 
 // 4. Internal packages
 import { Button } from "@repo/ui"
@@ -861,7 +861,7 @@ Create components in app directories when they are:
 apps/www/src/components/
 ├── sections/        # Page sections that use data
 │   ├── HeroSection.tsx
-│   └── FeaturesSection.tsx
+│   └── (other sections as needed)
 ├── Footer.tsx       # App-specific footer
 └── Navbar.tsx       # App-specific navbar
 ```
@@ -1304,10 +1304,10 @@ const HeavyComponent = dynamic(() => import("./HeavyComponent"), {
 
 ### Animations
 
-**Use Framer Motion efficiently:**
+**Use Motion efficiently:**
 
 ```typescript
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 
 // ✅ Good - Reuse animation variants
 const fadeIn = {

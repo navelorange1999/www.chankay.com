@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { motion, AnimatePresence, Transition } from "framer-motion"
+import { motion, AnimatePresence, type Transition } from "motion/react"
 import { usePathname } from "next/navigation"
 
 interface PageTransitionProps {

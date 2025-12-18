@@ -12,6 +12,7 @@ const meta: Meta<typeof HandWriting> = {
 		},
 		className: {
 			control: "text",
+			defaultValue: "min-h-[260px]",
 			description: "Additional CSS classes",
 		},
 	},
@@ -43,14 +44,5 @@ export const CustomSize: Story = {
 	args: {
 		speed: 1,
 		className: "h-32",
-	},
-}
-
-export const WithCallback: Story = {
-	args: {
-		speed: 1,
-		onAnimationComplete: () => {
-			console.log("Animation completed!")
-		},
 	},
 }

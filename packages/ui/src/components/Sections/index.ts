@@ -1,11 +1,3 @@
 export { HeroSection } from "./HeroSection"
-export { FeaturesSection } from "./FeaturesSection"
-export { ContentSection } from "./ContentSection"
-export { StatsSection } from "./StatsSection"
-export { CTASection } from "./CTASection"
 
 export type { HeroSectionProps } from "./HeroSection"
-export type { FeaturesSectionProps } from "./FeaturesSection"
-export type { ContentSectionProps } from "./ContentSection"
-export type { StatsSectionProps } from "./StatsSection"
-export type { CTASectionProps } from "./CTASection"

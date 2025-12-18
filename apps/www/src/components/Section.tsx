@@ -1,23 +1,17 @@
 import * as React from "react"
 import Link from "next/link"
 import {
+	Button,
 	Card,
 	CardContent,
 	CardDescription,
 	CardHeader,
 	CardTitle,
 	HeroSection,
-	FeaturesSection,
-	ContentSection,
-	StatsSection,
-	CTASection,
 	HandWriting,
 	ImageMedia,
+	Text,
 	type HeroSectionProps,
-	type FeaturesSectionProps,
-	type ContentSectionProps,
-	type StatsSectionProps,
-	type CTASectionProps,
 } from "@repo/ui"
 import type { MediaInterface } from "@repo/typescript-config/typings/payload-types"
 
@@ -29,47 +23,29 @@ type SpacingConfig = {
 type HeroSectionData = {
 	blockType: "hero"
 	hero: Omit<HeroSectionProps, "LinkComponent" | "spacing" | "children"> & {
-		contentBlocks?: HeroContentBlock[]
+		contentBlocks?: SectionContentBlock[]
 	}
 	spacing?: SpacingConfig
 }
 
-type FeaturesSectionData = {
-	blockType: "features"
-	features: Omit<FeaturesSectionProps, "spacing">
-	spacing?: SpacingConfig
-}
+type Section = HeroSectionData
 
-type ContentSectionData = {
-	blockType: "content"
-	content: Omit<ContentSectionProps, "spacing">
-	spacing?: SpacingConfig
-}
-
-type StatsSectionData = {
-	blockType: "stats"
-	stats: Omit<StatsSectionProps, "spacing">
-	spacing?: SpacingConfig
-}
-
-type CTASectionData = {
-	blockType: "cta"
-	cta: Omit<CTASectionProps, "LinkComponent" | "spacing">
-	spacing?: SpacingConfig
-}
-
-type Section =
-	| HeroSectionData
-	| FeaturesSectionData
-	| ContentSectionData
-	| StatsSectionData
-	| CTASectionData
-
-type HeroContentBlock =
+type SectionContentBlock =
+	| {
+			id?: string
+			blockType: "text"
+			content?: string
+			as?: "p" | "span" | "div" | "h1" | "h2" | "h3" | "h4"
+			size?: "xs" | "sm" | "base" | "lg" | "xl" | "2xl"
+			weight?: "normal" | "medium" | "semibold" | "bold"
+			tone?: "default" | "muted" | "primary" | "accent"
+			align?: "left" | "center" | "right"
+	  }
 	| {
 			id?: string
 			blockType: "handWriting"
 			speed?: number
+			as?: "p" | "span" | "div" | "h1" | "h2" | "h3" | "h4"
 	  }
 	| {
 			id?: string
@@ -82,8 +58,16 @@ type HeroContentBlock =
 			title: string
 			description?: string
 	  }
+	| {
+			id?: string
+			blockType: "button"
+			label: string
+			href: string
+			variant?: "primary" | "secondary"
+			external?: boolean
+	  }
 
-function renderHeroContentBlocks(blocks: HeroContentBlock[] | undefined) {
+function renderContentBlocks(blocks: SectionContentBlock[] | undefined) {
 	if (!blocks || blocks.length === 0) return null
 
 	return (
@@ -92,6 +76,24 @@ function renderHeroContentBlocks(blocks: HeroContentBlock[] | undefined) {
 				const key = block.id ?? `${block.blockType}-${index}`
 
 				switch (block.blockType) {
+					case "text": {
+						if (!block.content) return null
+
+						return (
+							<Text
+								key={key}
+								as={block.as ?? "p"}
+								size={block.size ?? "base"}
+								weight={block.weight ?? "normal"}
+								tone={block.tone ?? "default"}
+								align={block.align ?? "left"}
+								className="whitespace-pre-wrap"
+							>
+								{block.content}
+							</Text>
+						)
+					}
+
 					case "handWriting":
 						return (
 							<div key={key} className="flex justify-center text-primary">
@@ -123,9 +125,20 @@ function renderHeroContentBlocks(blocks: HeroContentBlock[] | undefined) {
 							</Card>
 						)
 
+					case "button":
+						return (
+							<div key={key} className="flex justify-center">
+								<Button asChild variant={block.variant === "secondary" ? "secondary" : "default"}>
+									<Link href={block.href} target={block.external ? "_blank" : undefined}>
+										{block.label}
+									</Link>
+								</Button>
+							</div>
+						)
+
 					default: {
 						const exhaustiveCheck: never = block
-						console.warn(`Unknown hero block type:`, exhaustiveCheck)
+						console.warn(`Unknown content block type:`, exhaustiveCheck)
 						return null
 					}
 				}
@@ -146,44 +159,13 @@ export function Section({ sections }: SectionProps) {
 	return (
 		<>
 			{sections.map((section, index) => {
-				switch (section.blockType) {
-					case "hero":
-						return (
-							<HeroSection
-								key={index}
-								{...section.hero}
-								spacing={section.spacing}
-								LinkComponent={Link}
-							>
-								{renderHeroContentBlocks(section.hero.contentBlocks)}
-							</HeroSection>
-						)
+				if (section.blockType !== "hero") return null
 
-					case "features":
-						return <FeaturesSection key={index} {...section.features} spacing={section.spacing} />
-
-					case "content":
-						return <ContentSection key={index} {...section.content} spacing={section.spacing} />
-
-					case "stats":
-						return <StatsSection key={index} {...section.stats} spacing={section.spacing} />
-
-					case "cta":
-						return (
-							<CTASection
-								key={index}
-								{...section.cta}
-								spacing={section.spacing}
-								LinkComponent={Link}
-							/>
-						)
-
-					default: {
-						const exhaustiveCheck: never = section
-						console.warn(`Unknown section block type:`, exhaustiveCheck)
-						return null
-					}
-				}
+				return (
+					<HeroSection key={index} {...section.hero} spacing={section.spacing} LinkComponent={Link}>
+						{renderContentBlocks(section.hero.contentBlocks)}
+					</HeroSection>
+				)
 			})}
 		</>
 	)

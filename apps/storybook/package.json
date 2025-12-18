@@ -26,6 +26,7 @@
     "@storybook/react-vite": "^9.0.16",
     "@vitejs/plugin-react": "^4.6.0",
     "globals": "^16.3.0",
+    "lucide-react": "^0.526.0",
     "storybook": "^9.0.16",
     "vite": "^7.0.4"
   }

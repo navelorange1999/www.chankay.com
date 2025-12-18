@@ -406,149 +406,67 @@ export interface Page {
 	 * Build your page by adding, arranging, and configuring blocks
 	 */
 	sections?:
-		| (
-				| {
-						hero: {
-							title: string
-							subtitle?: string | null
-							/**
-							 * Add optional blocks inside the hero (e.g. HandWriting, Media, Card). Order matters.
-							 */
-							contentBlocks?:
-								| (
-										| {
-												speed?: number | null
-												id?: string | null
-												blockName?: string | null
-												blockType: "handWriting"
-										  }
-										| {
-												media: string | MediaInterface
-												id?: string | null
-												blockName?: string | null
-												blockType: "mediaImage"
-										  }
-										| {
-												title: string
-												description?: string | null
-												id?: string | null
-												blockName?: string | null
-												blockType: "card"
-										  }
-								  )[]
-								| null
-							alignment?: ("left" | "center" | "right") | null
-							size?: ("sm" | "md" | "lg") | null
-							backgroundStyle?: ("solid" | "gradient" | "none") | null
-							buttons?:
+		| {
+				hero?: {
+					/**
+					 * Add optional blocks inside the hero (e.g. Text, HandWriting, Media, Card, Button). Order matters.
+					 */
+					contentBlocks?:
+						| (
+								| {
+										content?: string | null
+										as?: ("p" | "span" | "h1" | "h2" | "h3" | "h4") | null
+										size?: ("xs" | "sm" | "base" | "lg" | "xl" | "2xl") | null
+										weight?: ("normal" | "medium" | "semibold" | "bold") | null
+										tone?: ("default" | "muted" | "primary" | "accent") | null
+										align?: ("left" | "center" | "right") | null
+										id?: string | null
+										blockName?: string | null
+										blockType: "text"
+								  }
+								| {
+										speed?: number | null
+										as?: ("p" | "span" | "h1" | "h2" | "h3" | "h4" | "div") | null
+										id?: string | null
+										blockName?: string | null
+										blockType: "handWriting"
+								  }
+								| {
+										media: string | MediaInterface
+										id?: string | null
+										blockName?: string | null
+										blockType: "mediaImage"
+								  }
+								| {
+										title: string
+										description?: string | null
+										id?: string | null
+										blockName?: string | null
+										blockType: "card"
+								  }
 								| {
 										label: string
 										href: string
 										variant?: ("primary" | "secondary") | null
 										external?: boolean | null
 										id?: string | null
-								  }[]
-								| null
-						}
-						spacing?: {
-							paddingTop?: ("none" | "sm" | "md" | "lg") | null
-							paddingBottom?: ("none" | "sm" | "md" | "lg") | null
-						}
-						id?: string | null
-						blockName?: string | null
-						blockType: "hero"
-				  }
-				| {
-						features?: {
-							title?: string | null
-							subtitle?: string | null
-							layout?: ("grid" | "list") | null
-							items?:
-								| {
-										/**
-										 * e.g., 'Rocket', 'Zap', 'Code'
-										 */
-										icon?: string | null
-										title: string
-										description: string
-										id?: string | null
-								  }[]
-								| null
-						}
-						spacing?: {
-							paddingTop?: ("none" | "sm" | "md" | "lg") | null
-							paddingBottom?: ("none" | "sm" | "md" | "lg") | null
-						}
-						id?: string | null
-						blockName?: string | null
-						blockType: "features"
-				  }
-				| {
-						content: {
-							title?: string | null
-							body: {
-								root: {
-									type: string
-									children: {
-										type: string
-										version: number
-										[k: string]: unknown
-									}[]
-									direction: ("ltr" | "rtl") | null
-									format: "left" | "start" | "center" | "right" | "end" | "justify" | ""
-									indent: number
-									version: number
-								}
-								[k: string]: unknown
-							}
-							width?: ("narrow" | "normal" | "wide" | "full") | null
-						}
-						spacing?: {
-							paddingTop?: ("none" | "sm" | "md" | "lg") | null
-							paddingBottom?: ("none" | "sm" | "md" | "lg") | null
-						}
-						id?: string | null
-						blockName?: string | null
-						blockType: "content"
-				  }
-				| {
-						stats?: {
-							items?:
-								| {
-										/**
-										 * e.g., '100+', '5K', '99%'
-										 */
-										number: string
-										label: string
-										id?: string | null
-								  }[]
-								| null
-						}
-						spacing?: {
-							paddingTop?: ("none" | "sm" | "md" | "lg") | null
-							paddingBottom?: ("none" | "sm" | "md" | "lg") | null
-						}
-						id?: string | null
-						blockName?: string | null
-						blockType: "stats"
-				  }
-				| {
-						cta: {
-							title: string
-							description?: string | null
-							buttonLabel: string
-							buttonHref: string
-							style?: ("primary" | "accent") | null
-						}
-						spacing?: {
-							paddingTop?: ("none" | "sm" | "md" | "lg") | null
-							paddingBottom?: ("none" | "sm" | "md" | "lg") | null
-						}
-						id?: string | null
-						blockName?: string | null
-						blockType: "cta"
-				  }
-		  )[]
+										blockName?: string | null
+										blockType: "button"
+								  }
+						  )[]
+						| null
+					alignment?: ("left" | "center" | "right") | null
+					size?: ("sm" | "md" | "lg") | null
+					backgroundStyle?: ("solid" | "gradient" | "none") | null
+				}
+				spacing?: {
+					paddingTop?: ("none" | "sm" | "md" | "lg") | null
+					paddingBottom?: ("none" | "sm" | "md" | "lg") | null
+				}
+				id?: string | null
+				blockName?: string | null
+				blockType: "hero"
+		  }[]
 		| null
 	seo?: {
 		/**
@@ -786,15 +704,26 @@ export interface PagesSelect<T extends boolean = true> {
 							hero?:
 								| T
 								| {
-										title?: T
-										subtitle?: T
 										contentBlocks?:
 											| T
 											| {
+													text?:
+														| T
+														| {
+																content?: T
+																as?: T
+																size?: T
+																weight?: T
+																tone?: T
+																align?: T
+																id?: T
+																blockName?: T
+														  }
 													handWriting?:
 														| T
 														| {
 																speed?: T
+																as?: T
 																id?: T
 																blockName?: T
 														  }
@@ -813,109 +742,20 @@ export interface PagesSelect<T extends boolean = true> {
 																id?: T
 																blockName?: T
 														  }
+													button?:
+														| T
+														| {
+																label?: T
+																href?: T
+																variant?: T
+																external?: T
+																id?: T
+																blockName?: T
+														  }
 											  }
 										alignment?: T
 										size?: T
 										backgroundStyle?: T
-										buttons?:
-											| T
-											| {
-													label?: T
-													href?: T
-													variant?: T
-													external?: T
-													id?: T
-											  }
-								  }
-							spacing?:
-								| T
-								| {
-										paddingTop?: T
-										paddingBottom?: T
-								  }
-							id?: T
-							blockName?: T
-					  }
-				features?:
-					| T
-					| {
-							features?:
-								| T
-								| {
-										title?: T
-										subtitle?: T
-										layout?: T
-										items?:
-											| T
-											| {
-													icon?: T
-													title?: T
-													description?: T
-													id?: T
-											  }
-								  }
-							spacing?:
-								| T
-								| {
-										paddingTop?: T
-										paddingBottom?: T
-								  }
-							id?: T
-							blockName?: T
-					  }
-				content?:
-					| T
-					| {
-							content?:
-								| T
-								| {
-										title?: T
-										body?: T
-										width?: T
-								  }
-							spacing?:
-								| T
-								| {
-										paddingTop?: T
-										paddingBottom?: T
-								  }
-							id?: T
-							blockName?: T
-					  }
-				stats?:
-					| T
-					| {
-							stats?:
-								| T
-								| {
-										items?:
-											| T
-											| {
-													number?: T
-													label?: T
-													id?: T
-											  }
-								  }
-							spacing?:
-								| T
-								| {
-										paddingTop?: T
-										paddingBottom?: T
-								  }
-							id?: T
-							blockName?: T
-					  }
-				cta?:
-					| T
-					| {
-							cta?:
-								| T
-								| {
-										title?: T
-										description?: T
-										buttonLabel?: T
-										buttonHref?: T
-										style?: T
 								  }
 							spacing?:
 								| T

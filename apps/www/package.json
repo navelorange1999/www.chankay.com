@@ -16,7 +16,6 @@
     "@repo/tailwind-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@repo/ui": "workspace:*",
-    "animejs": "^4.1.3",
     "next": "^15.3.5"
   },
   "devDependencies": {

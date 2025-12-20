@@ -5,6 +5,10 @@ const meta: Meta<typeof HandWriting> = {
 	title: "Components/Text/HandWriting",
 	component: HandWriting,
 	tags: ["autodocs"],
+	args: {
+		speed: 1,
+		className: "min-h-[260px] min-w-[260px]",
+	},
 	argTypes: {
 		speed: {
 			control: "number",
@@ -12,8 +16,10 @@ const meta: Meta<typeof HandWriting> = {
 		},
 		className: {
 			control: "text",
-			defaultValue: "min-h-[260px]",
 			description: "Additional CSS classes",
+			table: {
+				defaultValue: { summary: "min-h-[260px] min-w-[260px]" },
+			},
 		},
 	},
 }
@@ -23,9 +29,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
-	args: {
-		speed: 1,
-	},
+	args: {},
 }
 
 export const Slow: Story = {
@@ -42,7 +46,6 @@ export const Fast: Story = {
 
 export const CustomSize: Story = {
 	args: {
-		speed: 1,
 		className: "h-32",
 	},
 }

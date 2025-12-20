@@ -79,8 +79,6 @@ function HandWriting({ as = "div", text, speed = 1, className, svgClassName }: H
 				</span>
 			)}
 			<motion.svg
-				initial="hidden"
-				animate="visible"
 				viewBox={HELLO_WORLD_VIEW_BOX}
 				xmlns="http://www.w3.org/2000/svg"
 				fill="transparent"
@@ -103,6 +101,8 @@ function HandWriting({ as = "div", text, speed = 1, className, svgClassName }: H
 					<motion.path
 						key={index}
 						d={path}
+						initial="hidden"
+						animate="visible"
 						variants={draw}
 						custom={{
 							delay: cumulativeDelays[index],

@@ -1,8 +1,8 @@
 "use client"
 
-import type React from "react"
+import * as React from "react"
 
-import { motion, AnimatePresence, type Transition } from "motion/react"
+import { AnimatePresence, motion, type Transition } from "motion/react"
 import { usePathname } from "next/navigation"
 
 interface PageTransitionProps {
@@ -35,12 +35,17 @@ const pageTransition: Transition = {
 
 export function PageTransition({ children }: PageTransitionProps) {
 	const pathname = usePathname()
+	const isFirstRender = React.useRef(true)
+
+	React.useEffect(() => {
+		isFirstRender.current = false
+	}, [])
 
 	return (
-		<AnimatePresence mode="wait" initial={false}>
+		<AnimatePresence mode="wait">
 			<motion.div
 				key={pathname}
-				initial="initial"
+				initial={isFirstRender.current ? false : "initial"}
 				animate="in"
 				exit="out"
 				variants={pageVariants}

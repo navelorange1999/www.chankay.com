@@ -21,6 +21,13 @@ const meta: Meta<typeof HandWriting> = {
 				defaultValue: { summary: "min-h-[260px] min-w-[260px]" },
 			},
 		},
+		svgClassName: {
+			control: "text",
+			description: "Additional CSS classes for the SVG element",
+			table: {
+				defaultValue: { summary: "w-[260px] md:w-[360px]" },
+			},
+		},
 	},
 }
 
@@ -46,6 +53,7 @@ export const Fast: Story = {
 
 export const CustomSize: Story = {
 	args: {
-		className: "h-32",
+		className: "h-64 w-128",
+		svgClassName: "w-128 md:w-[360px]",
 	},
 }

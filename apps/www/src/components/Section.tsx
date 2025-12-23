@@ -97,7 +97,11 @@ function renderContentBlocks(blocks: SectionContentBlock[] | undefined) {
 					case "handWriting":
 						return (
 							<div key={key} className="flex justify-center text-primary">
-								<HandWriting className="w-[260px] md:w-[360px]" speed={block.speed ?? 1} />
+								<HandWriting
+									className="h-64 w-128"
+									speed={block.speed ?? 1}
+									as={block.as ?? "div"}
+								/>
 							</div>
 						)
 

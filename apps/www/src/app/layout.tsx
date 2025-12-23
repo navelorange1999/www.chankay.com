@@ -2,9 +2,9 @@ import type { ReactNode } from "react"
 
 import { Inter } from "next/font/google"
 
-import { ThemeProvider, PageTransition, ThemeScript } from "@repo/ui"
-import { Navbar } from "@/components/Navbar"
+import { PageTransition, ThemeProvider, ThemeScript } from "@repo/ui"
 import { Footer } from "@/components/Footer"
+import { Navbar } from "@/components/Navbar"
 
 import "./global.css"
 

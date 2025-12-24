@@ -9,6 +9,7 @@ This directory contains all business logic related to Payload CMS data fetching.
 ```typescript
 // app/(frontend)/page.tsx
 import { getHomePage } from "@/services/payload/pages"
+import { Nodes } from "@/components/Nodes"
 
 export default async function HomePage() {
 	const pageData = await getHomePage()
@@ -17,7 +18,7 @@ export default async function HomePage() {
 		return <div>Page not found</div>
 	}
 
-	return <Section sections={pageData.sections} />
+	return <Nodes nodes={pageData.structure} />
 }
 ```
 

@@ -1,5 +1,5 @@
 import type { CollectionConfig } from "payload"
-import { HeroBlock } from "@/blocks/HeroBlock"
+import { structureBlocks } from "@/blocks/StructureBlocks"
 
 export const Pages: CollectionConfig = {
 	slug: "pages",
@@ -38,13 +38,13 @@ export const Pages: CollectionConfig = {
 			],
 		},
 		{
-			name: "sections",
+			name: "structure",
 			type: "blocks",
-			label: "Page Sections",
+			label: "Page Structure",
 			admin: {
-				description: "Build your page by adding, arranging, and configuring blocks",
+				description: "Build your page by nesting Structure and Content blocks (max depth: 4)",
 			},
-			blocks: [HeroBlock],
+			blocks: structureBlocks,
 		},
 		{
 			name: "seo",

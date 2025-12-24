@@ -22,7 +22,7 @@ interface ImageMediaProps {
 	ref?: Ref<HTMLImageElement | HTMLVideoElement | null>
 	resource?: MediaInterface | string | null // for Payload media
 	size?: string // for NextImage only
-	src?: StaticImageData // for static media
+	src?: StaticImageData | string // for static media or external URL
 	videoClassName?: string
 }
 

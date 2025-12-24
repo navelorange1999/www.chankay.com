@@ -4,7 +4,7 @@ import { cache } from "react"
 import { Inter } from "next/font/google"
 import NextTopLoader from "nextjs-toploader"
 
-import { Container, PageTransition, ThemeProvider, ThemeScript } from "@repo/ui"
+import { Container, ThemeProvider, ThemeScript } from "@repo/ui"
 import { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 
 import { Footer } from "@/components/Footer"
@@ -40,9 +40,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
 				>
 					<Navbar siteConfig={siteConfig} />
 					<main className="min-h-screen bg-background">
-						<Container className="py-8">
-							<PageTransition>{children}</PageTransition>
-						</Container>
+						<Container className="py-8">{children}</Container>
 					</main>
 					<Footer />
 				</ThemeProvider>

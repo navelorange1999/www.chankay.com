@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 
+import { Container } from "../Container"
 import { cn } from "../../utils/classnames"
 import { ImageMedia } from "../Media"
 
@@ -28,7 +29,7 @@ export function Footer({ siteConfig, className = "" }: FooterProps) {
 	return (
 		<footer className={cn(`bg-card text-card-foreground py-6 border-t border-border`, className)}>
 			{/* Container for the footer content */}
-			<div className="container mx-auto px-4 md:px-6">
+			<Container>
 				{/* Main Footer Content */}
 				<div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-4">
 					{/* Left: Logo and Name */}
@@ -92,7 +93,7 @@ export function Footer({ siteConfig, className = "" }: FooterProps) {
 						)}
 					</div>
 				</div>
-			</div>
+			</Container>
 		</footer>
 	)
 }

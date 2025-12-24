@@ -5,10 +5,11 @@ import { useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
-import { motion, AnimatePresence } from "motion/react"
+import { AnimatePresence, motion } from "motion/react"
 
 import { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 
+import { Container } from "../Container"
 import { ThemeToggle } from "../ThemeProvider"
 import { cn } from "../../utils/classnames"
 import { ImageMedia } from "../Media"
@@ -45,7 +46,7 @@ export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "" }) =>
 				className
 			)}
 		>
-			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<Container>
 				<div className="flex justify-between items-center h-16">
 					{/* Logo */}
 					<div className="flex-shrink-0">
@@ -65,48 +66,38 @@ export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "" }) =>
 						</Link>
 					</div>
 
-					{/* Desktop Navigation - Centered */}
-					<div className="hidden md:flex md:items-center md:space-x-8 flex-1 justify-center">
-						<AnimatePresence mode="wait">
-							{items.map((item: MenuItem, index: number) => {
-								const isActive = pathname === item.url
-								return (
-									<motion.div
-										key={item.label}
-										initial={{ opacity: 0, x: -20 }}
-										animate={{ opacity: 1, x: 0 }}
-										exit={{ opacity: 0, x: 20 }}
-										transition={{
-											duration: 0.3,
-											delay: index * 0.1,
-											ease: "easeInOut",
-										}}
-										whileHover={{ scale: 1.05 }}
-										whileTap={{ scale: 0.95 }}
+					{/* Desktop Navigation */}
+					<div className="hidden md:flex md:flex-1 md:items-center md:justify-start md:pl-10 md:gap-2">
+						{items.map((item: MenuItem) => {
+							const isActive = pathname === item.url
+							return (
+								<motion.div
+									key={item.label}
+									whileHover={{ scale: 1.05 }}
+									whileTap={{ scale: 0.95 }}
+								>
+									<Link
+										href={item.url}
+										className={`relative px-3 py-2 text-sm font-medium transition-colors duration-200 hover:text-primary ${
+											isActive ? "text-primary" : "text-muted-foreground"
+										}`}
 									>
-										<Link
-											href={item.url}
-											className={`relative px-3 py-2 text-sm font-medium transition-colors duration-200 hover:text-primary ${
-												isActive ? "text-primary" : "text-muted-foreground"
-											}`}
-										>
-											{item.label}
-											{isActive && (
-												<motion.span
-													className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full"
-													layoutId="activeIndicator"
-													transition={{
-														type: "spring",
-														stiffness: 300,
-														damping: 30,
-													}}
-												/>
-											)}
-										</Link>
-									</motion.div>
-								)
-							})}
-						</AnimatePresence>
+										{item.label}
+										{isActive && (
+											<motion.span
+												className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full"
+												layoutId="activeIndicator"
+												transition={{
+													type: "spring",
+													stiffness: 300,
+													damping: 30,
+												}}
+											/>
+										)}
+									</Link>
+								</motion.div>
+							)
+						})}
 					</div>
 
 					{/* Theme Toggle - Desktop */}
@@ -172,7 +163,7 @@ export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "" }) =>
 						</motion.div>
 					)}
 				</AnimatePresence>
-			</div>
+			</Container>
 		</nav>
 	)
 }

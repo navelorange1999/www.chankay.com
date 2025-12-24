@@ -1,10 +1,10 @@
 import { Navbar as NavbarUI } from "@repo/ui"
 import { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 
-import { payloadClient } from "../utils/payloadClient"
+export interface NavbarProps {
+	siteConfig: SiteConfig
+}
 
-export const Navbar = async () => {
-	const siteConfig = await payloadClient.getGlobal<SiteConfig>("site-config")
-
+export const Navbar = ({ siteConfig }: NavbarProps) => {
 	return <NavbarUI siteConfig={siteConfig} />
 }

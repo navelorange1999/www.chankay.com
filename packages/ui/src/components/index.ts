@@ -1,4 +1,5 @@
 export * from "./Footer"
+export * from "./Container"
 export * from "./Navbar"
 export * from "./ThemeProvider"
 export * from "./PageTransition"

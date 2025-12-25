@@ -29,6 +29,10 @@ function asBool(value: unknown): boolean | undefined {
 	return typeof value === "boolean" ? value : undefined
 }
 
+function asNumber(value: unknown): number | undefined {
+	return typeof value === "number" && Number.isFinite(value) ? value : undefined
+}
+
 function normalizeCustomDays(customData: unknown): HeatmapDay[] {
 	if (!customData || typeof customData !== "object") return []
 	const obj = customData as Record<string, unknown>
@@ -81,6 +85,9 @@ export async function HeatmapNode({ block }: HeatmapNodeProps) {
 	const size = asSize(block.display?.size) ?? "md"
 	const showLegend = asBool(block.display?.showLegend) ?? true
 	const showTotal = asBool(block.display?.showTotal) ?? false
+	const animateFill = asNumber(block.display?.animateFill)
+
+	console.log("animateFill", animateFill)
 
 	let days: HeatmapDay[] = []
 
@@ -107,7 +114,13 @@ export async function HeatmapNode({ block }: HeatmapNodeProps) {
 				</CardHeader>
 			)}
 			<CardContent className={title ? undefined : "pt-6"}>
-				<Heatmap days={days} size={size} showLegend={showLegend} showTotal={showTotal} />
+				<Heatmap
+					days={days}
+					size={size}
+					showLegend={showLegend}
+					showTotal={showTotal}
+					animateFill={animateFill}
+				/>
 			</CardContent>
 		</Card>
 	)

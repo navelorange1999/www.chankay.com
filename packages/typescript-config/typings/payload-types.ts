@@ -517,6 +517,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -666,6 +670,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -807,6 +815,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -923,6 +935,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -1015,6 +1031,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -1162,6 +1182,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -1311,6 +1335,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -1452,6 +1480,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -1568,6 +1600,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -1660,6 +1696,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -1808,6 +1848,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -1957,6 +2001,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -2098,6 +2146,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -2214,6 +2266,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -2306,6 +2362,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -2433,6 +2493,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -2582,6 +2646,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -2723,6 +2791,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -2839,6 +2911,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -2931,6 +3007,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -3013,6 +3093,10 @@ export interface Page {
 																		| null
 																}
 																display?: {
+																	/**
+																	 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																	 */
+																	animateFill?: number | null
 																	size?: ("sm" | "md" | "lg") | null
 																	showLegend?: boolean | null
 																	showTotal?: boolean | null
@@ -3171,6 +3255,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -3320,6 +3408,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -3461,6 +3553,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -3577,6 +3673,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -3669,6 +3769,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -3816,6 +3920,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -3965,6 +4073,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -4106,6 +4218,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -4222,6 +4338,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -4314,6 +4434,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -4462,6 +4586,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -4611,6 +4739,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -4752,6 +4884,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -4868,6 +5004,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -4960,6 +5100,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -5087,6 +5231,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -5236,6 +5384,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -5377,6 +5529,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -5493,6 +5649,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -5585,6 +5745,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -5667,6 +5831,10 @@ export interface Page {
 																		| null
 																}
 																display?: {
+																	/**
+																	 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																	 */
+																	animateFill?: number | null
 																	size?: ("sm" | "md" | "lg") | null
 																	showLegend?: boolean | null
 																	showTotal?: boolean | null
@@ -5824,6 +5992,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -5973,6 +6145,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -6114,6 +6290,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -6230,6 +6410,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -6322,6 +6506,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -6469,6 +6657,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -6618,6 +6810,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -6759,6 +6955,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -6875,6 +7075,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -6967,6 +7171,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -7115,6 +7323,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -7264,6 +7476,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -7405,6 +7621,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -7521,6 +7741,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -7613,6 +7837,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -7740,6 +7968,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -7889,6 +8121,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -8030,6 +8266,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -8146,6 +8386,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -8238,6 +8482,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -8320,6 +8568,10 @@ export interface Page {
 																		| null
 																}
 																display?: {
+																	/**
+																	 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																	 */
+																	animateFill?: number | null
 																	size?: ("sm" | "md" | "lg") | null
 																	showLegend?: boolean | null
 																	showTotal?: boolean | null
@@ -8458,6 +8710,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -8607,6 +8863,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -8748,6 +9008,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -8864,6 +9128,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -8956,6 +9224,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -9103,6 +9375,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -9252,6 +9528,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -9393,6 +9673,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -9509,6 +9793,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -9601,6 +9889,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -9749,6 +10041,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -9898,6 +10194,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -10039,6 +10339,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -10155,6 +10459,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -10247,6 +10555,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -10374,6 +10686,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -10523,6 +10839,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -10664,6 +10984,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -10780,6 +11104,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -10872,6 +11200,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -10954,6 +11286,10 @@ export interface Page {
 																		| null
 																}
 																display?: {
+																	/**
+																	 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																	 */
+																	animateFill?: number | null
 																	size?: ("sm" | "md" | "lg") | null
 																	showLegend?: boolean | null
 																	showTotal?: boolean | null
@@ -11034,6 +11370,10 @@ export interface Page {
 													| null
 											}
 											display?: {
+												/**
+												 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+												 */
+												animateFill?: number | null
 												size?: ("sm" | "md" | "lg") | null
 												showLegend?: boolean | null
 												showTotal?: boolean | null
@@ -11192,6 +11532,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -11341,6 +11685,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -11482,6 +11830,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -11598,6 +11950,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -11690,6 +12046,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -11837,6 +12197,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -11986,6 +12350,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -12127,6 +12495,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -12243,6 +12615,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -12335,6 +12711,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -12483,6 +12863,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -12632,6 +13016,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -12773,6 +13161,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -12889,6 +13281,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -12981,6 +13377,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -13108,6 +13508,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -13257,6 +13661,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -13398,6 +13806,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -13514,6 +13926,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -13606,6 +14022,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -13688,6 +14108,10 @@ export interface Page {
 																		| null
 																}
 																display?: {
+																	/**
+																	 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																	 */
+																	animateFill?: number | null
 																	size?: ("sm" | "md" | "lg") | null
 																	showLegend?: boolean | null
 																	showTotal?: boolean | null
@@ -13846,6 +14270,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -13995,6 +14423,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -14136,6 +14568,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -14252,6 +14688,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -14344,6 +14784,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -14491,6 +14935,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -14640,6 +15088,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -14781,6 +15233,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -14897,6 +15353,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -14989,6 +15449,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -15137,6 +15601,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -15286,6 +15754,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -15427,6 +15899,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -15543,6 +16019,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -15635,6 +16115,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -15762,6 +16246,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -15911,6 +16399,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -16052,6 +16544,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -16168,6 +16664,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -16260,6 +16760,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -16342,6 +16846,10 @@ export interface Page {
 																		| null
 																}
 																display?: {
+																	/**
+																	 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																	 */
+																	animateFill?: number | null
 																	size?: ("sm" | "md" | "lg") | null
 																	showLegend?: boolean | null
 																	showTotal?: boolean | null
@@ -16499,6 +17007,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -16648,6 +17160,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -16789,6 +17305,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -16905,6 +17425,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -16997,6 +17521,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -17144,6 +17672,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -17293,6 +17825,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -17434,6 +17970,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -17550,6 +18090,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -17642,6 +18186,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -17790,6 +18338,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -17939,6 +18491,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -18080,6 +18636,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -18196,6 +18756,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -18288,6 +18852,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -18415,6 +18983,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -18564,6 +19136,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -18705,6 +19281,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -18821,6 +19401,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -18913,6 +19497,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -18995,6 +19583,10 @@ export interface Page {
 																		| null
 																}
 																display?: {
+																	/**
+																	 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																	 */
+																	animateFill?: number | null
 																	size?: ("sm" | "md" | "lg") | null
 																	showLegend?: boolean | null
 																	showTotal?: boolean | null
@@ -19133,6 +19725,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -19282,6 +19878,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -19423,6 +20023,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -19539,6 +20143,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -19631,6 +20239,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -19778,6 +20390,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -19927,6 +20543,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -20068,6 +20688,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -20184,6 +20808,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -20276,6 +20904,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -20424,6 +21056,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -20573,6 +21209,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -20714,6 +21354,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -20830,6 +21474,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -20922,6 +21570,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -21049,6 +21701,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -21198,6 +21854,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -21339,6 +21999,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -21455,6 +22119,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -21547,6 +22215,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -21629,6 +22301,10 @@ export interface Page {
 																		| null
 																}
 																display?: {
+																	/**
+																	 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																	 */
+																	animateFill?: number | null
 																	size?: ("sm" | "md" | "lg") | null
 																	showLegend?: boolean | null
 																	showTotal?: boolean | null
@@ -21709,6 +22385,10 @@ export interface Page {
 													| null
 											}
 											display?: {
+												/**
+												 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+												 */
+												animateFill?: number | null
 												size?: ("sm" | "md" | "lg") | null
 												showLegend?: boolean | null
 												showTotal?: boolean | null
@@ -21868,6 +22548,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -22017,6 +22701,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -22158,6 +22846,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -22274,6 +22966,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -22366,6 +23062,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -22513,6 +23213,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -22662,6 +23366,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -22803,6 +23511,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -22919,6 +23631,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -23011,6 +23727,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -23159,6 +23879,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -23308,6 +24032,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -23449,6 +24177,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -23565,6 +24297,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -23657,6 +24393,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -23784,6 +24524,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -23933,6 +24677,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -24074,6 +24822,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -24190,6 +24942,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -24282,6 +25038,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -24364,6 +25124,10 @@ export interface Page {
 																		| null
 																}
 																display?: {
+																	/**
+																	 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																	 */
+																	animateFill?: number | null
 																	size?: ("sm" | "md" | "lg") | null
 																	showLegend?: boolean | null
 																	showTotal?: boolean | null
@@ -24522,6 +25286,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -24671,6 +25439,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -24812,6 +25584,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -24928,6 +25704,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -25020,6 +25800,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -25167,6 +25951,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -25316,6 +26104,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -25457,6 +26249,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -25573,6 +26369,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -25665,6 +26465,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -25813,6 +26617,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -25962,6 +26770,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -26103,6 +26915,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -26219,6 +27035,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -26311,6 +27131,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -26438,6 +27262,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -26587,6 +27415,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -26728,6 +27560,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -26844,6 +27680,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -26936,6 +27776,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -27018,6 +27862,10 @@ export interface Page {
 																		| null
 																}
 																display?: {
+																	/**
+																	 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																	 */
+																	animateFill?: number | null
 																	size?: ("sm" | "md" | "lg") | null
 																	showLegend?: boolean | null
 																	showTotal?: boolean | null
@@ -27175,6 +28023,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -27324,6 +28176,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -27465,6 +28321,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -27581,6 +28441,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -27673,6 +28537,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -27820,6 +28688,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -27969,6 +28841,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -28110,6 +28986,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -28226,6 +29106,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -28318,6 +29202,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -28466,6 +29354,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -28615,6 +29507,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -28756,6 +29652,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -28872,6 +29772,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -28964,6 +29868,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -29091,6 +29999,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -29240,6 +30152,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -29381,6 +30297,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -29497,6 +30417,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -29589,6 +30513,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -29671,6 +30599,10 @@ export interface Page {
 																		| null
 																}
 																display?: {
+																	/**
+																	 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																	 */
+																	animateFill?: number | null
 																	size?: ("sm" | "md" | "lg") | null
 																	showLegend?: boolean | null
 																	showTotal?: boolean | null
@@ -29809,6 +30741,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -29958,6 +30894,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -30099,6 +31039,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -30215,6 +31159,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -30307,6 +31255,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -30454,6 +31406,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -30603,6 +31559,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -30744,6 +31704,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -30860,6 +31824,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -30952,6 +31920,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -31100,6 +32072,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -31249,6 +32225,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -31390,6 +32370,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -31506,6 +32490,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -31598,6 +32586,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -31725,6 +32717,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -31874,6 +32870,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -32015,6 +33015,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -32131,6 +33135,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -32223,6 +33231,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -32305,6 +33317,10 @@ export interface Page {
 																		| null
 																}
 																display?: {
+																	/**
+																	 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																	 */
+																	animateFill?: number | null
 																	size?: ("sm" | "md" | "lg") | null
 																	showLegend?: boolean | null
 																	showTotal?: boolean | null
@@ -32385,6 +33401,10 @@ export interface Page {
 													| null
 											}
 											display?: {
+												/**
+												 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+												 */
+												animateFill?: number | null
 												size?: ("sm" | "md" | "lg") | null
 												showLegend?: boolean | null
 												showTotal?: boolean | null
@@ -32534,6 +33554,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -32683,6 +33707,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -32824,6 +33852,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -32940,6 +33972,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -33032,6 +34068,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -33179,6 +34219,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -33328,6 +34372,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -33469,6 +34517,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -33585,6 +34637,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -33677,6 +34733,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -33825,6 +34885,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -33974,6 +35038,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -34115,6 +35183,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -34231,6 +35303,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -34323,6 +35399,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -34450,6 +35530,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -34599,6 +35683,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -34740,6 +35828,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -34856,6 +35948,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -34948,6 +36044,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -35030,6 +36130,10 @@ export interface Page {
 																		| null
 																}
 																display?: {
+																	/**
+																	 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																	 */
+																	animateFill?: number | null
 																	size?: ("sm" | "md" | "lg") | null
 																	showLegend?: boolean | null
 																	showTotal?: boolean | null
@@ -35188,6 +36292,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -35337,6 +36445,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -35478,6 +36590,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -35594,6 +36710,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -35686,6 +36806,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -35833,6 +36957,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -35982,6 +37110,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -36123,6 +37255,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -36239,6 +37375,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -36331,6 +37471,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -36479,6 +37623,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -36628,6 +37776,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -36769,6 +37921,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -36885,6 +38041,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -36977,6 +38137,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -37104,6 +38268,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -37253,6 +38421,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -37394,6 +38566,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -37510,6 +38686,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -37602,6 +38782,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -37684,6 +38868,10 @@ export interface Page {
 																		| null
 																}
 																display?: {
+																	/**
+																	 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																	 */
+																	animateFill?: number | null
 																	size?: ("sm" | "md" | "lg") | null
 																	showLegend?: boolean | null
 																	showTotal?: boolean | null
@@ -37841,6 +39029,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -37990,6 +39182,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -38131,6 +39327,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -38247,6 +39447,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -38339,6 +39543,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -38486,6 +39694,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -38635,6 +39847,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -38776,6 +39992,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -38892,6 +40112,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -38984,6 +40208,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -39132,6 +40360,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -39281,6 +40513,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -39422,6 +40658,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -39538,6 +40778,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -39630,6 +40874,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -39757,6 +41005,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -39906,6 +41158,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -40047,6 +41303,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -40163,6 +41423,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -40255,6 +41519,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -40337,6 +41605,10 @@ export interface Page {
 																		| null
 																}
 																display?: {
+																	/**
+																	 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																	 */
+																	animateFill?: number | null
 																	size?: ("sm" | "md" | "lg") | null
 																	showLegend?: boolean | null
 																	showTotal?: boolean | null
@@ -40475,6 +41747,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -40624,6 +41900,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -40765,6 +42045,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -40881,6 +42165,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -40973,6 +42261,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -41120,6 +42412,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -41269,6 +42565,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -41410,6 +42710,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -41526,6 +42830,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -41618,6 +42926,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -41766,6 +43078,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -41915,6 +43231,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -42056,6 +43376,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -42172,6 +43496,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -42264,6 +43592,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -42391,6 +43723,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -42540,6 +43876,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -42681,6 +44021,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -42797,6 +44141,10 @@ export interface Page {
 																												| null
 																										}
 																										display?: {
+																											/**
+																											 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																											 */
+																											animateFill?: number | null
 																											size?: ("sm" | "md" | "lg") | null
 																											showLegend?: boolean | null
 																											showTotal?: boolean | null
@@ -42889,6 +44237,10 @@ export interface Page {
 																							| null
 																					}
 																					display?: {
+																						/**
+																						 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																						 */
+																						animateFill?: number | null
 																						size?: ("sm" | "md" | "lg") | null
 																						showLegend?: boolean | null
 																						showTotal?: boolean | null
@@ -42971,6 +44323,10 @@ export interface Page {
 																		| null
 																}
 																display?: {
+																	/**
+																	 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+																	 */
+																	animateFill?: number | null
 																	size?: ("sm" | "md" | "lg") | null
 																	showLegend?: boolean | null
 																	showTotal?: boolean | null
@@ -43051,6 +44407,10 @@ export interface Page {
 													| null
 											}
 											display?: {
+												/**
+												 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+												 */
+												animateFill?: number | null
 												size?: ("sm" | "md" | "lg") | null
 												showLegend?: boolean | null
 												showTotal?: boolean | null
@@ -43131,6 +44491,10 @@ export interface Page {
 								| null
 						}
 						display?: {
+							/**
+							 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+							 */
+							animateFill?: number | null
 							size?: ("sm" | "md" | "lg") | null
 							showLegend?: boolean | null
 							showTotal?: boolean | null
@@ -43468,6 +44832,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -43558,6 +44923,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -43649,6 +45015,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -43732,6 +45099,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -43808,6 +45176,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -43906,6 +45275,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -43996,6 +45366,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -44087,6 +45458,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -44170,6 +45542,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -44246,6 +45619,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -44345,6 +45719,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -44435,6 +45810,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -44526,6 +45902,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -44609,6 +45986,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -44685,6 +46063,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -44776,6 +46155,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -44866,6 +46246,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -44957,6 +46338,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -45040,6 +46422,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -45116,6 +46499,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -45192,6 +46576,7 @@ export interface PagesSelect<T extends boolean = true> {
 																			display?:
 																				| T
 																				| {
+																						animateFill?: T
 																						size?: T
 																						showLegend?: T
 																						showTotal?: T
@@ -45298,6 +46683,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -45388,6 +46774,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -45479,6 +46866,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -45562,6 +46950,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -45638,6 +47027,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -45736,6 +47126,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -45826,6 +47217,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -45917,6 +47309,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -46000,6 +47393,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -46076,6 +47470,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -46175,6 +47570,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -46265,6 +47661,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -46356,6 +47753,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -46439,6 +47837,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -46515,6 +47914,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -46606,6 +48006,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -46696,6 +48097,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -46787,6 +48189,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -46870,6 +48273,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -46946,6 +48350,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -47022,6 +48427,7 @@ export interface PagesSelect<T extends boolean = true> {
 																			display?:
 																				| T
 																				| {
+																						animateFill?: T
 																						size?: T
 																						showLegend?: T
 																						showTotal?: T
@@ -47129,6 +48535,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -47219,6 +48626,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -47310,6 +48718,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -47393,6 +48802,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -47469,6 +48879,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -47567,6 +48978,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -47657,6 +49069,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -47748,6 +49161,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -47831,6 +49245,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -47907,6 +49322,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -48006,6 +49422,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -48096,6 +49513,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -48187,6 +49605,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -48270,6 +49689,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -48346,6 +49766,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -48437,6 +49858,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -48527,6 +49949,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -48618,6 +50041,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -48701,6 +50125,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -48777,6 +50202,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -48853,6 +50279,7 @@ export interface PagesSelect<T extends boolean = true> {
 																			display?:
 																				| T
 																				| {
+																						animateFill?: T
 																						size?: T
 																						showLegend?: T
 																						showTotal?: T
@@ -48952,6 +50379,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -49042,6 +50470,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -49133,6 +50562,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -49216,6 +50646,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -49292,6 +50723,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -49390,6 +50822,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -49480,6 +50913,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -49571,6 +51005,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -49654,6 +51089,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -49730,6 +51166,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -49829,6 +51266,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -49919,6 +51357,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -50010,6 +51449,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -50093,6 +51533,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -50169,6 +51610,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -50260,6 +51702,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -50350,6 +51793,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -50441,6 +51885,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -50524,6 +51969,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -50600,6 +52046,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -50676,6 +52123,7 @@ export interface PagesSelect<T extends boolean = true> {
 																			display?:
 																				| T
 																				| {
+																						animateFill?: T
 																						size?: T
 																						showLegend?: T
 																						showTotal?: T
@@ -50752,6 +52200,7 @@ export interface PagesSelect<T extends boolean = true> {
 													display?:
 														| T
 														| {
+																animateFill?: T
 																size?: T
 																showLegend?: T
 																showTotal?: T
@@ -50866,6 +52315,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -50956,6 +52406,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -51047,6 +52498,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -51130,6 +52582,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -51206,6 +52659,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -51304,6 +52758,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -51394,6 +52849,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -51485,6 +52941,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -51568,6 +53025,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -51644,6 +53102,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -51743,6 +53202,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -51833,6 +53293,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -51924,6 +53385,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -52007,6 +53469,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -52083,6 +53546,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -52174,6 +53638,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -52264,6 +53729,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -52355,6 +53821,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -52438,6 +53905,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -52514,6 +53982,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -52590,6 +54059,7 @@ export interface PagesSelect<T extends boolean = true> {
 																			display?:
 																				| T
 																				| {
+																						animateFill?: T
 																						size?: T
 																						showLegend?: T
 																						showTotal?: T
@@ -52696,6 +54166,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -52786,6 +54257,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -52877,6 +54349,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -52960,6 +54433,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -53036,6 +54510,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -53134,6 +54609,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -53224,6 +54700,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -53315,6 +54792,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -53398,6 +54876,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -53474,6 +54953,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -53573,6 +55053,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -53663,6 +55144,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -53754,6 +55236,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -53837,6 +55320,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -53913,6 +55397,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -54004,6 +55489,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -54094,6 +55580,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -54185,6 +55672,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -54268,6 +55756,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -54344,6 +55833,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -54420,6 +55910,7 @@ export interface PagesSelect<T extends boolean = true> {
 																			display?:
 																				| T
 																				| {
+																						animateFill?: T
 																						size?: T
 																						showLegend?: T
 																						showTotal?: T
@@ -54527,6 +56018,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -54617,6 +56109,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -54708,6 +56201,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -54791,6 +56285,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -54867,6 +56362,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -54965,6 +56461,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -55055,6 +56552,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -55146,6 +56644,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -55229,6 +56728,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -55305,6 +56805,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -55404,6 +56905,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -55494,6 +56996,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -55585,6 +57088,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -55668,6 +57172,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -55744,6 +57249,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -55835,6 +57341,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -55925,6 +57432,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -56016,6 +57524,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -56099,6 +57608,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -56175,6 +57685,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -56251,6 +57762,7 @@ export interface PagesSelect<T extends boolean = true> {
 																			display?:
 																				| T
 																				| {
+																						animateFill?: T
 																						size?: T
 																						showLegend?: T
 																						showTotal?: T
@@ -56350,6 +57862,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -56440,6 +57953,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -56531,6 +58045,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -56614,6 +58129,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -56690,6 +58206,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -56788,6 +58305,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -56878,6 +58396,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -56969,6 +58488,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -57052,6 +58572,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -57128,6 +58649,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -57227,6 +58749,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -57317,6 +58840,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -57408,6 +58932,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -57491,6 +59016,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -57567,6 +59093,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -57658,6 +59185,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -57748,6 +59276,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -57839,6 +59368,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -57922,6 +59452,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -57998,6 +59529,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -58074,6 +59606,7 @@ export interface PagesSelect<T extends boolean = true> {
 																			display?:
 																				| T
 																				| {
+																						animateFill?: T
 																						size?: T
 																						showLegend?: T
 																						showTotal?: T
@@ -58150,6 +59683,7 @@ export interface PagesSelect<T extends boolean = true> {
 													display?:
 														| T
 														| {
+																animateFill?: T
 																size?: T
 																showLegend?: T
 																showTotal?: T
@@ -58265,6 +59799,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -58355,6 +59890,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -58446,6 +59982,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -58529,6 +60066,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -58605,6 +60143,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -58703,6 +60242,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -58793,6 +60333,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -58884,6 +60425,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -58967,6 +60509,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -59043,6 +60586,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -59142,6 +60686,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -59232,6 +60777,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -59323,6 +60869,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -59406,6 +60953,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -59482,6 +61030,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -59573,6 +61122,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -59663,6 +61213,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -59754,6 +61305,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -59837,6 +61389,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -59913,6 +61466,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -59989,6 +61543,7 @@ export interface PagesSelect<T extends boolean = true> {
 																			display?:
 																				| T
 																				| {
+																						animateFill?: T
 																						size?: T
 																						showLegend?: T
 																						showTotal?: T
@@ -60095,6 +61650,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -60185,6 +61741,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -60276,6 +61833,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -60359,6 +61917,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -60435,6 +61994,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -60533,6 +62093,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -60623,6 +62184,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -60714,6 +62276,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -60797,6 +62360,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -60873,6 +62437,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -60972,6 +62537,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -61062,6 +62628,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -61153,6 +62720,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -61236,6 +62804,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -61312,6 +62881,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -61403,6 +62973,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -61493,6 +63064,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -61584,6 +63156,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -61667,6 +63240,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -61743,6 +63317,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -61819,6 +63394,7 @@ export interface PagesSelect<T extends boolean = true> {
 																			display?:
 																				| T
 																				| {
+																						animateFill?: T
 																						size?: T
 																						showLegend?: T
 																						showTotal?: T
@@ -61926,6 +63502,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -62016,6 +63593,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -62107,6 +63685,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -62190,6 +63769,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -62266,6 +63846,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -62364,6 +63945,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -62454,6 +64036,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -62545,6 +64128,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -62628,6 +64212,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -62704,6 +64289,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -62803,6 +64389,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -62893,6 +64480,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -62984,6 +64572,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -63067,6 +64656,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -63143,6 +64733,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -63234,6 +64825,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -63324,6 +64916,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -63415,6 +65008,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -63498,6 +65092,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -63574,6 +65169,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -63650,6 +65246,7 @@ export interface PagesSelect<T extends boolean = true> {
 																			display?:
 																				| T
 																				| {
+																						animateFill?: T
 																						size?: T
 																						showLegend?: T
 																						showTotal?: T
@@ -63749,6 +65346,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -63839,6 +65437,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -63930,6 +65529,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -64013,6 +65613,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -64089,6 +65690,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -64187,6 +65789,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -64277,6 +65880,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -64368,6 +65972,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -64451,6 +66056,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -64527,6 +66133,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -64626,6 +66233,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -64716,6 +66324,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -64807,6 +66416,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -64890,6 +66500,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -64966,6 +66577,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -65057,6 +66669,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -65147,6 +66760,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -65238,6 +66852,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -65321,6 +66936,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -65397,6 +67013,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -65473,6 +67090,7 @@ export interface PagesSelect<T extends boolean = true> {
 																			display?:
 																				| T
 																				| {
+																						animateFill?: T
 																						size?: T
 																						showLegend?: T
 																						showTotal?: T
@@ -65549,6 +67167,7 @@ export interface PagesSelect<T extends boolean = true> {
 													display?:
 														| T
 														| {
+																animateFill?: T
 																size?: T
 																showLegend?: T
 																showTotal?: T
@@ -65656,6 +67275,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -65746,6 +67366,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -65837,6 +67458,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -65920,6 +67542,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -65996,6 +67619,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -66094,6 +67718,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -66184,6 +67809,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -66275,6 +67901,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -66358,6 +67985,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -66434,6 +68062,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -66533,6 +68162,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -66623,6 +68253,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -66714,6 +68345,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -66797,6 +68429,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -66873,6 +68506,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -66964,6 +68598,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -67054,6 +68689,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -67145,6 +68781,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -67228,6 +68865,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -67304,6 +68942,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -67380,6 +69019,7 @@ export interface PagesSelect<T extends boolean = true> {
 																			display?:
 																				| T
 																				| {
+																						animateFill?: T
 																						size?: T
 																						showLegend?: T
 																						showTotal?: T
@@ -67486,6 +69126,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -67576,6 +69217,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -67667,6 +69309,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -67750,6 +69393,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -67826,6 +69470,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -67924,6 +69569,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -68014,6 +69660,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -68105,6 +69752,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -68188,6 +69836,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -68264,6 +69913,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -68363,6 +70013,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -68453,6 +70104,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -68544,6 +70196,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -68627,6 +70280,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -68703,6 +70357,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -68794,6 +70449,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -68884,6 +70540,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -68975,6 +70632,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -69058,6 +70716,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -69134,6 +70793,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -69210,6 +70870,7 @@ export interface PagesSelect<T extends boolean = true> {
 																			display?:
 																				| T
 																				| {
+																						animateFill?: T
 																						size?: T
 																						showLegend?: T
 																						showTotal?: T
@@ -69317,6 +70978,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -69407,6 +71069,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -69498,6 +71161,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -69581,6 +71245,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -69657,6 +71322,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -69755,6 +71421,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -69845,6 +71512,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -69936,6 +71604,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -70019,6 +71688,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -70095,6 +71765,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -70194,6 +71865,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -70284,6 +71956,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -70375,6 +72048,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -70458,6 +72132,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -70534,6 +72209,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -70625,6 +72301,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -70715,6 +72392,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -70806,6 +72484,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -70889,6 +72568,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -70965,6 +72645,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -71041,6 +72722,7 @@ export interface PagesSelect<T extends boolean = true> {
 																			display?:
 																				| T
 																				| {
+																						animateFill?: T
 																						size?: T
 																						showLegend?: T
 																						showTotal?: T
@@ -71140,6 +72822,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -71230,6 +72913,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -71321,6 +73005,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -71404,6 +73089,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -71480,6 +73166,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -71578,6 +73265,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -71668,6 +73356,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -71759,6 +73448,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -71842,6 +73532,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -71918,6 +73609,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -72017,6 +73709,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -72107,6 +73800,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -72198,6 +73892,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -72281,6 +73976,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -72357,6 +74053,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -72448,6 +74145,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -72538,6 +74236,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -72629,6 +74328,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -72712,6 +74412,7 @@ export interface PagesSelect<T extends boolean = true> {
 																															display?:
 																																| T
 																																| {
+																																		animateFill?: T
 																																		size?: T
 																																		showLegend?: T
 																																		showTotal?: T
@@ -72788,6 +74489,7 @@ export interface PagesSelect<T extends boolean = true> {
 																									display?:
 																										| T
 																										| {
+																												animateFill?: T
 																												size?: T
 																												showLegend?: T
 																												showTotal?: T
@@ -72864,6 +74566,7 @@ export interface PagesSelect<T extends boolean = true> {
 																			display?:
 																				| T
 																				| {
+																						animateFill?: T
 																						size?: T
 																						showLegend?: T
 																						showTotal?: T
@@ -72940,6 +74643,7 @@ export interface PagesSelect<T extends boolean = true> {
 													display?:
 														| T
 														| {
+																animateFill?: T
 																size?: T
 																showLegend?: T
 																showTotal?: T
@@ -73016,6 +74720,7 @@ export interface PagesSelect<T extends boolean = true> {
 							display?:
 								| T
 								| {
+										animateFill?: T
 										size?: T
 										showLegend?: T
 										showTotal?: T

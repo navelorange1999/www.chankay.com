@@ -23,6 +23,9 @@ const meta: Meta<typeof Heatmap> = {
 		showTotal: {
 			control: "boolean",
 		},
+		animateFill: {
+			control: "number",
+		},
 	},
 }
 
@@ -156,6 +159,22 @@ export const YearView: Story = {
 		showLegend: true,
 		showTotal: true,
 	},
+}
+
+export const NarrowContainer: Story = {
+	render: () => (
+		<div className="max-w-sm">
+			<Heatmap days={generateYearData()} size="md" showLegend showTotal />
+		</div>
+	),
+}
+
+export const MobilePreview: Story = {
+	render: () => (
+		<div className="max-w-xs">
+			<Heatmap days={generateYearData()} size="md" showLegend showTotal />
+		</div>
+	),
 }
 
 export const SparseData: Story = {

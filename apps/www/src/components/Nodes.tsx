@@ -17,6 +17,8 @@ import {
 } from "@repo/ui"
 import type { MediaInterface, Page } from "@repo/typescript-config/typings/payload-types"
 
+import { HeatmapNode } from "@/components/nodes/HeatmapNode"
+
 type StructureBlocks = NonNullable<Page["structure"]>
 type StructureBlock = StructureBlocks[number]
 
@@ -252,6 +254,9 @@ function renderBlock(block: StructureBlock, key: string): React.ReactNode {
 					</Button>
 				</div>
 			)
+
+		case "heatmap":
+			return <HeatmapNode key={key} block={block} />
 
 		default:
 			return null

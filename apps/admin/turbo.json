@@ -1,6 +1,12 @@
 {
   "extends": ["//"],
   "tasks": {
+    "lint": {
+      "env": ["GITHUB_TOKEN"]
+    },
+    "build": {
+      "env": ["GITHUB_TOKEN"]
+    },
     "dev": {
       "with": ["gen"],
       "env": [
@@ -11,7 +17,8 @@
         "VERCEL_BLOB_READ_WRITE_TOKEN",
         "VERCEL_BLOB_PUBLIC_BASE_URL",
         "GITHUB_CLIENT_ID",
-        "GITHUB_CLIENT_SECRET"
+        "GITHUB_CLIENT_SECRET",
+        "GITHUB_TOKEN"
       ]
     },
     "gen": {

@@ -55,13 +55,13 @@ export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "" }) =>
 								<ImageMedia resource={logo} />
 							) : (
 								!showLogo && (
-									<div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center">
+									<div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center mr-2">
 										<span className="text-primary-foreground font-bold text-lg">C</span>
 									</div>
 								)
 							)}
 							{showSiteName && (
-								<span className="ml-2 text-xl font-semibold text-foreground">{title}</span>
+								<span className="text-xl font-semibold text-foreground">{title}</span>
 							)}
 						</Link>
 					</div>

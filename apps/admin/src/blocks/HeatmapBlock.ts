@@ -8,11 +8,6 @@ export const HeatmapBlock: BlockDefinition = {
 	},
 	fields: [
 		{
-			name: "title",
-			type: "text",
-			label: "Title",
-		},
-		{
 			name: "source",
 			type: "radio",
 			label: "Source",

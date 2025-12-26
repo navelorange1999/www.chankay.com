@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle, Heatmap } from "@repo/ui"
+import { Heatmap } from "@repo/ui"
 import type { Page } from "@repo/typescript-config/typings/payload-types"
 
 type HeatmapSize = "sm" | "md" | "lg"
@@ -79,15 +79,11 @@ export interface HeatmapNodeProps {
 
 export async function HeatmapNode({ block }: HeatmapNodeProps) {
 	const source = block.source === "custom" ? "custom" : "github"
-	const title = asOptionalString(block.title)
-	const className = asOptionalString(block.className)
 
 	const size = asSize(block.display?.size) ?? "md"
 	const showLegend = asBool(block.display?.showLegend) ?? true
 	const showTotal = asBool(block.display?.showTotal) ?? false
 	const animateFill = asNumber(block.display?.animateFill)
-
-	console.log("animateFill", animateFill)
 
 	let days: HeatmapDay[] = []
 
@@ -107,21 +103,12 @@ export async function HeatmapNode({ block }: HeatmapNodeProps) {
 	if (!days || days.length === 0) return null
 
 	return (
-		<Card className={className}>
-			{title && (
-				<CardHeader>
-					<CardTitle>{title}</CardTitle>
-				</CardHeader>
-			)}
-			<CardContent className={title ? undefined : "pt-6"}>
-				<Heatmap
-					days={days}
-					size={size}
-					showLegend={showLegend}
-					showTotal={showTotal}
-					animateFill={animateFill}
-				/>
-			</CardContent>
-		</Card>
+		<Heatmap
+			days={days}
+			size={size}
+			showLegend={showLegend}
+			showTotal={showTotal}
+			animateFill={animateFill}
+		/>
 	)
 }

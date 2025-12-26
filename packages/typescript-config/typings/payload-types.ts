@@ -74198,17 +74198,7 @@ export interface SiteConfig {
 	 */
 	socialProfiles?:
 		| {
-				platform:
-					| "twitter"
-					| "github"
-					| "linkedin"
-					| "instagram"
-					| "youtube"
-					| "facebook"
-					| "medium"
-					| "devto"
-					| "discord"
-					| "telegram"
+				platform: "twitter" | "github" | "linkedin" | "bilibili"
 				url: string
 				/**
 				 * Display username (optional)

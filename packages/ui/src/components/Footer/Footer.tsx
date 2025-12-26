@@ -5,6 +5,12 @@ import { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 import { Container } from "../Container"
 import { cn } from "../../utils/classnames"
 import { ImageMedia } from "../Media"
+import { SimpleIcon } from "../Icon"
+
+const socialIcons = {
+	github: <SimpleIcon name="github" className="w-4 h-4" />,
+	bilibili: <SimpleIcon name="bilibili" className="w-4 h-4" />,
+}
 
 export interface FooterProps {
 	siteConfig: SiteConfig
@@ -56,7 +62,7 @@ export function Footer({ siteConfig, className = "" }: FooterProps) {
 									target="_blank"
 									rel="noopener noreferrer"
 								>
-									{social.platform}
+									{socialIcons[social.platform as keyof typeof socialIcons] || social.platform}
 								</Link>
 							))}
 						</div>

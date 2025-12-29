@@ -4,6 +4,7 @@ import { CardBlock } from "./CardBlock"
 import { HandWritingBlock } from "./HandWritingBlock"
 import { HeatmapBlock } from "./HeatmapBlock"
 import { MediaImageBlock } from "./MediaImageBlock"
+import { SpotifyIframeBlock } from "./SpotifyIframeBlock"
 import { TextBlock } from "./TextBlock"
 
 export const sharedContentBlocks: BlockDefinition[] = [
@@ -13,4 +14,5 @@ export const sharedContentBlocks: BlockDefinition[] = [
 	MediaImageBlock,
 	CardBlock,
 	ButtonBlock,
+	SpotifyIframeBlock,
 ]

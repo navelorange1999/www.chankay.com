@@ -2,6 +2,8 @@
 
 import * as React from "react"
 
+import SpotifyIframeSkeleton from "./SpotifyIframeSkeleton"
+
 type SpotifyPlaybackEvent = {
 	data: {
 		position: number
@@ -157,8 +159,14 @@ export default function SpotifyIframe({
 
 	return (
 		<div className={className} {...props}>
-			<div ref={embedRef} />
-			{!playerLoaded && <p>Loading...</p>}
+			<div className="relative" style={{ height }}>
+				<div ref={embedRef} className={!playerLoaded ? "invisible" : undefined} />
+				{!playerLoaded && (
+					<div className="absolute inset-0">
+						<SpotifyIframeSkeleton height={height} />
+					</div>
+				)}
+			</div>
 		</div>
 	)
 }

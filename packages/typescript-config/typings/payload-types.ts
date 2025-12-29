@@ -554,6 +554,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -706,6 +719,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -850,6 +876,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -969,6 +1008,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -1063,6 +1115,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -1214,6 +1279,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -1366,6 +1444,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -1510,6 +1601,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -1629,6 +1733,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -1723,6 +1840,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -1875,6 +2005,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -2027,6 +2170,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -2171,6 +2327,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -2290,6 +2459,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -2384,6 +2566,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -2515,6 +2710,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -2667,6 +2875,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -2811,6 +3032,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -2930,6 +3164,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -3025,6 +3272,19 @@ export interface Page {
 																					blockName?: string | null
 																					blockType: "button"
 																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
+																			  }
 																	  )[]
 																	| null
 																id?: string | null
@@ -3109,6 +3369,19 @@ export interface Page {
 																id?: string | null
 																blockName?: string | null
 																blockType: "button"
+														  }
+														| {
+																/**
+																 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																 */
+																uri: string
+																/**
+																 * Iframe height in pixels
+																 */
+																height?: number | null
+																id?: string | null
+																blockName?: string | null
+																blockType: "spotifyIframe"
 														  }
 												  )[]
 												| null
@@ -3271,6 +3544,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -3423,6 +3709,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -3567,6 +3866,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -3686,6 +3998,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -3780,6 +4105,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -3931,6 +4269,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -4083,6 +4434,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -4227,6 +4591,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -4346,6 +4723,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -4440,6 +4830,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -4592,6 +4995,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -4744,6 +5160,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -4888,6 +5317,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -5007,6 +5449,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -5101,6 +5556,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -5232,6 +5700,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -5384,6 +5865,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -5528,6 +6022,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -5647,6 +6154,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -5742,6 +6262,19 @@ export interface Page {
 																					blockName?: string | null
 																					blockType: "button"
 																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
+																			  }
 																	  )[]
 																	| null
 																id?: string | null
@@ -5826,6 +6359,19 @@ export interface Page {
 																id?: string | null
 																blockName?: string | null
 																blockType: "button"
+														  }
+														| {
+																/**
+																 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																 */
+																uri: string
+																/**
+																 * Iframe height in pixels
+																 */
+																height?: number | null
+																id?: string | null
+																blockName?: string | null
+																blockType: "spotifyIframe"
 														  }
 												  )[]
 												| null
@@ -5987,6 +6533,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -6139,6 +6698,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -6283,6 +6855,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -6402,6 +6987,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -6496,6 +7094,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -6647,6 +7258,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -6799,6 +7423,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -6943,6 +7580,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -7062,6 +7712,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -7156,6 +7819,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -7308,6 +7984,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -7460,6 +8149,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -7604,6 +8306,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -7723,6 +8438,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -7817,6 +8545,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -7948,6 +8689,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -8100,6 +8854,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -8244,6 +9011,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -8363,6 +9143,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -8458,6 +9251,19 @@ export interface Page {
 																					blockName?: string | null
 																					blockType: "button"
 																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
+																			  }
 																	  )[]
 																	| null
 																id?: string | null
@@ -8542,6 +9348,19 @@ export interface Page {
 																id?: string | null
 																blockName?: string | null
 																blockType: "button"
+														  }
+														| {
+																/**
+																 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																 */
+																uri: string
+																/**
+																 * Iframe height in pixels
+																 */
+																height?: number | null
+																id?: string | null
+																blockName?: string | null
+																blockType: "spotifyIframe"
 														  }
 												  )[]
 												| null
@@ -8684,6 +9503,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -8836,6 +9668,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -8980,6 +9825,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -9099,6 +9957,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -9193,6 +10064,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -9344,6 +10228,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -9496,6 +10393,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -9640,6 +10550,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -9759,6 +10682,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -9853,6 +10789,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -10005,6 +10954,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -10157,6 +11119,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -10301,6 +11276,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -10420,6 +11408,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -10514,6 +11515,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -10645,6 +11659,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -10797,6 +11824,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -10941,6 +11981,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -11060,6 +12113,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -11155,6 +12221,19 @@ export interface Page {
 																					blockName?: string | null
 																					blockType: "button"
 																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
+																			  }
 																	  )[]
 																	| null
 																id?: string | null
@@ -11240,6 +12319,19 @@ export interface Page {
 																blockName?: string | null
 																blockType: "button"
 														  }
+														| {
+																/**
+																 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																 */
+																uri: string
+																/**
+																 * Iframe height in pixels
+																 */
+																height?: number | null
+																id?: string | null
+																blockName?: string | null
+																blockType: "spotifyIframe"
+														  }
 												  )[]
 												| null
 											id?: string | null
@@ -11322,6 +12414,19 @@ export interface Page {
 											id?: string | null
 											blockName?: string | null
 											blockType: "button"
+									  }
+									| {
+											/**
+											 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+											 */
+											uri: string
+											/**
+											 * Iframe height in pixels
+											 */
+											height?: number | null
+											id?: string | null
+											blockName?: string | null
+											blockType: "spotifyIframe"
 									  }
 							  )[]
 							| null
@@ -11484,6 +12589,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -11636,6 +12754,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -11780,6 +12911,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -11899,6 +13043,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -11993,6 +13150,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -12144,6 +13314,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -12296,6 +13479,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -12440,6 +13636,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -12559,6 +13768,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -12653,6 +13875,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -12805,6 +14040,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -12957,6 +14205,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -13101,6 +14362,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -13220,6 +14494,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -13314,6 +14601,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -13445,6 +14745,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -13597,6 +14910,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -13741,6 +15067,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -13860,6 +15199,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -13955,6 +15307,19 @@ export interface Page {
 																					blockName?: string | null
 																					blockType: "button"
 																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
+																			  }
 																	  )[]
 																	| null
 																id?: string | null
@@ -14039,6 +15404,19 @@ export interface Page {
 																id?: string | null
 																blockName?: string | null
 																blockType: "button"
+														  }
+														| {
+																/**
+																 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																 */
+																uri: string
+																/**
+																 * Iframe height in pixels
+																 */
+																height?: number | null
+																id?: string | null
+																blockName?: string | null
+																blockType: "spotifyIframe"
 														  }
 												  )[]
 												| null
@@ -14201,6 +15579,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -14353,6 +15744,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -14497,6 +15901,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -14616,6 +16033,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -14710,6 +16140,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -14861,6 +16304,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -15013,6 +16469,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -15157,6 +16626,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -15276,6 +16758,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -15370,6 +16865,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -15522,6 +17030,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -15674,6 +17195,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -15818,6 +17352,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -15937,6 +17484,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -16031,6 +17591,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -16162,6 +17735,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -16314,6 +17900,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -16458,6 +18057,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -16577,6 +18189,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -16672,6 +18297,19 @@ export interface Page {
 																					blockName?: string | null
 																					blockType: "button"
 																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
+																			  }
 																	  )[]
 																	| null
 																id?: string | null
@@ -16756,6 +18394,19 @@ export interface Page {
 																id?: string | null
 																blockName?: string | null
 																blockType: "button"
+														  }
+														| {
+																/**
+																 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																 */
+																uri: string
+																/**
+																 * Iframe height in pixels
+																 */
+																height?: number | null
+																id?: string | null
+																blockName?: string | null
+																blockType: "spotifyIframe"
 														  }
 												  )[]
 												| null
@@ -16917,6 +18568,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -17069,6 +18733,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -17213,6 +18890,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -17332,6 +19022,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -17426,6 +19129,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -17577,6 +19293,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -17729,6 +19458,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -17873,6 +19615,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -17992,6 +19747,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -18086,6 +19854,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -18238,6 +20019,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -18390,6 +20184,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -18534,6 +20341,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -18653,6 +20473,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -18747,6 +20580,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -18878,6 +20724,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -19030,6 +20889,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -19174,6 +21046,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -19293,6 +21178,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -19388,6 +21286,19 @@ export interface Page {
 																					blockName?: string | null
 																					blockType: "button"
 																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
+																			  }
 																	  )[]
 																	| null
 																id?: string | null
@@ -19472,6 +21383,19 @@ export interface Page {
 																id?: string | null
 																blockName?: string | null
 																blockType: "button"
+														  }
+														| {
+																/**
+																 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																 */
+																uri: string
+																/**
+																 * Iframe height in pixels
+																 */
+																height?: number | null
+																id?: string | null
+																blockName?: string | null
+																blockType: "spotifyIframe"
 														  }
 												  )[]
 												| null
@@ -19614,6 +21538,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -19766,6 +21703,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -19910,6 +21860,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -20029,6 +21992,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -20123,6 +22099,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -20274,6 +22263,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -20426,6 +22428,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -20570,6 +22585,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -20689,6 +22717,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -20783,6 +22824,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -20935,6 +22989,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -21087,6 +23154,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -21231,6 +23311,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -21350,6 +23443,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -21444,6 +23550,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -21575,6 +23694,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -21727,6 +23859,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -21871,6 +24016,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -21990,6 +24148,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -22085,6 +24256,19 @@ export interface Page {
 																					blockName?: string | null
 																					blockType: "button"
 																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
+																			  }
 																	  )[]
 																	| null
 																id?: string | null
@@ -22170,6 +24354,19 @@ export interface Page {
 																blockName?: string | null
 																blockType: "button"
 														  }
+														| {
+																/**
+																 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																 */
+																uri: string
+																/**
+																 * Iframe height in pixels
+																 */
+																height?: number | null
+																id?: string | null
+																blockName?: string | null
+																blockType: "spotifyIframe"
+														  }
 												  )[]
 												| null
 											id?: string | null
@@ -22252,6 +24449,19 @@ export interface Page {
 											id?: string | null
 											blockName?: string | null
 											blockType: "button"
+									  }
+									| {
+											/**
+											 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+											 */
+											uri: string
+											/**
+											 * Iframe height in pixels
+											 */
+											height?: number | null
+											id?: string | null
+											blockName?: string | null
+											blockType: "spotifyIframe"
 									  }
 							  )[]
 							| null
@@ -22415,6 +24625,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -22567,6 +24790,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -22711,6 +24947,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -22830,6 +25079,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -22924,6 +25186,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -23075,6 +25350,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -23227,6 +25515,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -23371,6 +25672,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -23490,6 +25804,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -23584,6 +25911,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -23736,6 +26076,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -23888,6 +26241,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -24032,6 +26398,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -24151,6 +26530,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -24245,6 +26637,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -24376,6 +26781,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -24528,6 +26946,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -24672,6 +27103,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -24791,6 +27235,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -24886,6 +27343,19 @@ export interface Page {
 																					blockName?: string | null
 																					blockType: "button"
 																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
+																			  }
 																	  )[]
 																	| null
 																id?: string | null
@@ -24970,6 +27440,19 @@ export interface Page {
 																id?: string | null
 																blockName?: string | null
 																blockType: "button"
+														  }
+														| {
+																/**
+																 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																 */
+																uri: string
+																/**
+																 * Iframe height in pixels
+																 */
+																height?: number | null
+																id?: string | null
+																blockName?: string | null
+																blockType: "spotifyIframe"
 														  }
 												  )[]
 												| null
@@ -25132,6 +27615,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -25284,6 +27780,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -25428,6 +27937,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -25547,6 +28069,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -25641,6 +28176,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -25792,6 +28340,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -25944,6 +28505,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -26088,6 +28662,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -26207,6 +28794,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -26301,6 +28901,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -26453,6 +29066,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -26605,6 +29231,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -26749,6 +29388,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -26868,6 +29520,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -26962,6 +29627,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -27093,6 +29771,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -27245,6 +29936,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -27389,6 +30093,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -27508,6 +30225,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -27603,6 +30333,19 @@ export interface Page {
 																					blockName?: string | null
 																					blockType: "button"
 																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
+																			  }
 																	  )[]
 																	| null
 																id?: string | null
@@ -27687,6 +30430,19 @@ export interface Page {
 																id?: string | null
 																blockName?: string | null
 																blockType: "button"
+														  }
+														| {
+																/**
+																 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																 */
+																uri: string
+																/**
+																 * Iframe height in pixels
+																 */
+																height?: number | null
+																id?: string | null
+																blockName?: string | null
+																blockType: "spotifyIframe"
 														  }
 												  )[]
 												| null
@@ -27848,6 +30604,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -28000,6 +30769,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -28144,6 +30926,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -28263,6 +31058,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -28357,6 +31165,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -28508,6 +31329,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -28660,6 +31494,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -28804,6 +31651,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -28923,6 +31783,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -29017,6 +31890,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -29169,6 +32055,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -29321,6 +32220,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -29465,6 +32377,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -29584,6 +32509,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -29678,6 +32616,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -29809,6 +32760,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -29961,6 +32925,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -30105,6 +33082,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -30224,6 +33214,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -30319,6 +33322,19 @@ export interface Page {
 																					blockName?: string | null
 																					blockType: "button"
 																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
+																			  }
 																	  )[]
 																	| null
 																id?: string | null
@@ -30403,6 +33419,19 @@ export interface Page {
 																id?: string | null
 																blockName?: string | null
 																blockType: "button"
+														  }
+														| {
+																/**
+																 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																 */
+																uri: string
+																/**
+																 * Iframe height in pixels
+																 */
+																height?: number | null
+																id?: string | null
+																blockName?: string | null
+																blockType: "spotifyIframe"
 														  }
 												  )[]
 												| null
@@ -30545,6 +33574,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -30697,6 +33739,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -30841,6 +33896,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -30960,6 +34028,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -31054,6 +34135,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -31205,6 +34299,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -31357,6 +34464,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -31501,6 +34621,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -31620,6 +34753,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -31714,6 +34860,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -31866,6 +35025,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -32018,6 +35190,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -32162,6 +35347,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -32281,6 +35479,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -32375,6 +35586,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -32506,6 +35730,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -32658,6 +35895,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -32802,6 +36052,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -32921,6 +36184,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -33016,6 +36292,19 @@ export interface Page {
 																					blockName?: string | null
 																					blockType: "button"
 																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
+																			  }
 																	  )[]
 																	| null
 																id?: string | null
@@ -33101,6 +36390,19 @@ export interface Page {
 																blockName?: string | null
 																blockType: "button"
 														  }
+														| {
+																/**
+																 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																 */
+																uri: string
+																/**
+																 * Iframe height in pixels
+																 */
+																height?: number | null
+																id?: string | null
+																blockName?: string | null
+																blockType: "spotifyIframe"
+														  }
 												  )[]
 												| null
 											id?: string | null
@@ -33183,6 +36485,19 @@ export interface Page {
 											id?: string | null
 											blockName?: string | null
 											blockType: "button"
+									  }
+									| {
+											/**
+											 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+											 */
+											uri: string
+											/**
+											 * Iframe height in pixels
+											 */
+											height?: number | null
+											id?: string | null
+											blockName?: string | null
+											blockType: "spotifyIframe"
 									  }
 							  )[]
 							| null
@@ -33336,6 +36651,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -33488,6 +36816,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -33632,6 +36973,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -33751,6 +37105,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -33845,6 +37212,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -33996,6 +37376,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -34148,6 +37541,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -34292,6 +37698,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -34411,6 +37830,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -34505,6 +37937,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -34657,6 +38102,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -34809,6 +38267,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -34953,6 +38424,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -35072,6 +38556,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -35166,6 +38663,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -35297,6 +38807,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -35449,6 +38972,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -35593,6 +39129,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -35712,6 +39261,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -35807,6 +39369,19 @@ export interface Page {
 																					blockName?: string | null
 																					blockType: "button"
 																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
+																			  }
 																	  )[]
 																	| null
 																id?: string | null
@@ -35891,6 +39466,19 @@ export interface Page {
 																id?: string | null
 																blockName?: string | null
 																blockType: "button"
+														  }
+														| {
+																/**
+																 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																 */
+																uri: string
+																/**
+																 * Iframe height in pixels
+																 */
+																height?: number | null
+																id?: string | null
+																blockName?: string | null
+																blockType: "spotifyIframe"
 														  }
 												  )[]
 												| null
@@ -36053,6 +39641,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -36205,6 +39806,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -36349,6 +39963,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -36468,6 +40095,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -36562,6 +40202,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -36713,6 +40366,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -36865,6 +40531,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -37009,6 +40688,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -37128,6 +40820,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -37222,6 +40927,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -37374,6 +41092,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -37526,6 +41257,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -37670,6 +41414,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -37789,6 +41546,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -37883,6 +41653,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -38014,6 +41797,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -38166,6 +41962,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -38310,6 +42119,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -38429,6 +42251,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -38524,6 +42359,19 @@ export interface Page {
 																					blockName?: string | null
 																					blockType: "button"
 																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
+																			  }
 																	  )[]
 																	| null
 																id?: string | null
@@ -38608,6 +42456,19 @@ export interface Page {
 																id?: string | null
 																blockName?: string | null
 																blockType: "button"
+														  }
+														| {
+																/**
+																 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																 */
+																uri: string
+																/**
+																 * Iframe height in pixels
+																 */
+																height?: number | null
+																id?: string | null
+																blockName?: string | null
+																blockType: "spotifyIframe"
 														  }
 												  )[]
 												| null
@@ -38769,6 +42630,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -38921,6 +42795,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -39065,6 +42952,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -39184,6 +43084,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -39278,6 +43191,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -39429,6 +43355,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -39581,6 +43520,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -39725,6 +43677,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -39844,6 +43809,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -39938,6 +43916,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -40090,6 +44081,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -40242,6 +44246,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -40386,6 +44403,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -40505,6 +44535,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -40599,6 +44642,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -40730,6 +44786,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -40882,6 +44951,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -41026,6 +45108,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -41145,6 +45240,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -41240,6 +45348,19 @@ export interface Page {
 																					blockName?: string | null
 																					blockType: "button"
 																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
+																			  }
 																	  )[]
 																	| null
 																id?: string | null
@@ -41324,6 +45445,19 @@ export interface Page {
 																id?: string | null
 																blockName?: string | null
 																blockType: "button"
+														  }
+														| {
+																/**
+																 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																 */
+																uri: string
+																/**
+																 * Iframe height in pixels
+																 */
+																height?: number | null
+																id?: string | null
+																blockName?: string | null
+																blockType: "spotifyIframe"
 														  }
 												  )[]
 												| null
@@ -41466,6 +45600,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -41618,6 +45765,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -41762,6 +45922,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -41881,6 +46054,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -41975,6 +46161,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -42126,6 +46325,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -42278,6 +46490,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -42422,6 +46647,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -42541,6 +46779,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -42635,6 +46886,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -42787,6 +47051,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -42939,6 +47216,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -43083,6 +47373,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -43202,6 +47505,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -43296,6 +47612,19 @@ export interface Page {
 																					id?: string | null
 																					blockName?: string | null
 																					blockType: "button"
+																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
 																			  }
 																	  )[]
 																	| null
@@ -43427,6 +47756,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -43579,6 +47921,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -43723,6 +48078,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -43842,6 +48210,19 @@ export interface Page {
 																										blockName?: string | null
 																										blockType: "button"
 																								  }
+																								| {
+																										/**
+																										 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																										 */
+																										uri: string
+																										/**
+																										 * Iframe height in pixels
+																										 */
+																										height?: number | null
+																										id?: string | null
+																										blockName?: string | null
+																										blockType: "spotifyIframe"
+																								  }
 																						  )[]
 																						| null
 																					id?: string | null
@@ -43937,6 +48318,19 @@ export interface Page {
 																					blockName?: string | null
 																					blockType: "button"
 																			  }
+																			| {
+																					/**
+																					 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																					 */
+																					uri: string
+																					/**
+																					 * Iframe height in pixels
+																					 */
+																					height?: number | null
+																					id?: string | null
+																					blockName?: string | null
+																					blockType: "spotifyIframe"
+																			  }
 																	  )[]
 																	| null
 																id?: string | null
@@ -44022,6 +48416,19 @@ export interface Page {
 																blockName?: string | null
 																blockType: "button"
 														  }
+														| {
+																/**
+																 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+																 */
+																uri: string
+																/**
+																 * Iframe height in pixels
+																 */
+																height?: number | null
+																id?: string | null
+																blockName?: string | null
+																blockType: "spotifyIframe"
+														  }
 												  )[]
 												| null
 											id?: string | null
@@ -44105,6 +48512,19 @@ export interface Page {
 											blockName?: string | null
 											blockType: "button"
 									  }
+									| {
+											/**
+											 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+											 */
+											uri: string
+											/**
+											 * Iframe height in pixels
+											 */
+											height?: number | null
+											id?: string | null
+											blockName?: string | null
+											blockType: "spotifyIframe"
+									  }
 							  )[]
 							| null
 						id?: string | null
@@ -44187,6 +48607,19 @@ export interface Page {
 						id?: string | null
 						blockName?: string | null
 						blockType: "button"
+				  }
+				| {
+						/**
+						 * Spotify URI (e.g. spotify:playlist:..., spotify:album:..., spotify:track:...)
+						 */
+						uri: string
+						/**
+						 * Iframe height in pixels
+						 */
+						height?: number | null
+						id?: string | null
+						blockName?: string | null
+						blockType: "spotifyIframe"
 				  }
 		  )[]
 		| null
@@ -44524,6 +48957,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -44611,6 +49052,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -44705,6 +49154,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -44788,6 +49245,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -44861,6 +49326,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -44962,6 +49435,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -45049,6 +49530,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -45143,6 +49632,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -45226,6 +49723,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -45299,6 +49804,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -45401,6 +49914,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -45488,6 +50009,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -45582,6 +50111,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -45665,6 +50202,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -45738,6 +50283,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -45832,6 +50385,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -45919,6 +50480,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -46013,6 +50582,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -46096,6 +50673,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -46172,6 +50757,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									id?: T
 																									blockName?: T
 																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
+																									id?: T
+																									blockName?: T
+																							  }
 																				  }
 																			id?: T
 																			blockName?: T
@@ -46245,6 +50838,14 @@ export interface PagesSelect<T extends boolean = true> {
 																			href?: T
 																			variant?: T
 																			external?: T
+																			id?: T
+																			blockName?: T
+																	  }
+																spotifyIframe?:
+																	| T
+																	| {
+																			uri?: T
+																			height?: T
 																			id?: T
 																			blockName?: T
 																	  }
@@ -46354,6 +50955,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -46441,6 +51050,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -46535,6 +51152,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -46618,6 +51243,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -46691,6 +51324,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -46792,6 +51433,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -46879,6 +51528,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -46973,6 +51630,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -47056,6 +51721,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -47129,6 +51802,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -47231,6 +51912,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -47318,6 +52007,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -47412,6 +52109,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -47495,6 +52200,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -47568,6 +52281,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -47662,6 +52383,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -47749,6 +52478,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -47843,6 +52580,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -47926,6 +52671,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -48002,6 +52755,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									id?: T
 																									blockName?: T
 																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
+																									id?: T
+																									blockName?: T
+																							  }
 																				  }
 																			id?: T
 																			blockName?: T
@@ -48075,6 +52836,14 @@ export interface PagesSelect<T extends boolean = true> {
 																			href?: T
 																			variant?: T
 																			external?: T
+																			id?: T
+																			blockName?: T
+																	  }
+																spotifyIframe?:
+																	| T
+																	| {
+																			uri?: T
+																			height?: T
 																			id?: T
 																			blockName?: T
 																	  }
@@ -48185,6 +52954,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -48272,6 +53049,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -48366,6 +53151,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -48449,6 +53242,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -48522,6 +53323,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -48623,6 +53432,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -48710,6 +53527,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -48804,6 +53629,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -48887,6 +53720,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -48960,6 +53801,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -49062,6 +53911,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -49149,6 +54006,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -49243,6 +54108,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -49326,6 +54199,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -49399,6 +54280,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -49493,6 +54382,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -49580,6 +54477,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -49674,6 +54579,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -49757,6 +54670,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -49833,6 +54754,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									id?: T
 																									blockName?: T
 																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
+																									id?: T
+																									blockName?: T
+																							  }
 																				  }
 																			id?: T
 																			blockName?: T
@@ -49906,6 +54835,14 @@ export interface PagesSelect<T extends boolean = true> {
 																			href?: T
 																			variant?: T
 																			external?: T
+																			id?: T
+																			blockName?: T
+																	  }
+																spotifyIframe?:
+																	| T
+																	| {
+																			uri?: T
+																			height?: T
 																			id?: T
 																			blockName?: T
 																	  }
@@ -50008,6 +54945,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -50095,6 +55040,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -50189,6 +55142,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -50272,6 +55233,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -50345,6 +55314,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -50446,6 +55423,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -50533,6 +55518,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -50627,6 +55620,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -50710,6 +55711,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -50783,6 +55792,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -50885,6 +55902,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -50972,6 +55997,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -51066,6 +56099,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -51149,6 +56190,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -51222,6 +56271,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -51316,6 +56373,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -51403,6 +56468,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -51497,6 +56570,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -51580,6 +56661,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -51653,6 +56742,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -51732,6 +56829,14 @@ export interface PagesSelect<T extends boolean = true> {
 																			id?: T
 																			blockName?: T
 																	  }
+																spotifyIframe?:
+																	| T
+																	| {
+																			uri?: T
+																			height?: T
+																			id?: T
+																			blockName?: T
+																	  }
 														  }
 													id?: T
 													blockName?: T
@@ -51805,6 +56910,14 @@ export interface PagesSelect<T extends boolean = true> {
 													href?: T
 													variant?: T
 													external?: T
+													id?: T
+													blockName?: T
+											  }
+										spotifyIframe?:
+											| T
+											| {
+													uri?: T
+													height?: T
 													id?: T
 													blockName?: T
 											  }
@@ -51922,6 +57035,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -52009,6 +57130,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -52103,6 +57232,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -52186,6 +57323,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -52259,6 +57404,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -52360,6 +57513,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -52447,6 +57608,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -52541,6 +57710,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -52624,6 +57801,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -52697,6 +57882,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -52799,6 +57992,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -52886,6 +58087,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -52980,6 +58189,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -53063,6 +58280,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -53136,6 +58361,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -53230,6 +58463,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -53317,6 +58558,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -53411,6 +58660,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -53494,6 +58751,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -53570,6 +58835,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									id?: T
 																									blockName?: T
 																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
+																									id?: T
+																									blockName?: T
+																							  }
 																				  }
 																			id?: T
 																			blockName?: T
@@ -53643,6 +58916,14 @@ export interface PagesSelect<T extends boolean = true> {
 																			href?: T
 																			variant?: T
 																			external?: T
+																			id?: T
+																			blockName?: T
+																	  }
+																spotifyIframe?:
+																	| T
+																	| {
+																			uri?: T
+																			height?: T
 																			id?: T
 																			blockName?: T
 																	  }
@@ -53752,6 +59033,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -53839,6 +59128,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -53933,6 +59230,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -54016,6 +59321,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -54089,6 +59402,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -54190,6 +59511,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -54277,6 +59606,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -54371,6 +59708,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -54454,6 +59799,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -54527,6 +59880,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -54629,6 +59990,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -54716,6 +60085,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -54810,6 +60187,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -54893,6 +60278,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -54966,6 +60359,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -55060,6 +60461,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -55147,6 +60556,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -55241,6 +60658,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -55324,6 +60749,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -55400,6 +60833,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									id?: T
 																									blockName?: T
 																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
+																									id?: T
+																									blockName?: T
+																							  }
 																				  }
 																			id?: T
 																			blockName?: T
@@ -55473,6 +60914,14 @@ export interface PagesSelect<T extends boolean = true> {
 																			href?: T
 																			variant?: T
 																			external?: T
+																			id?: T
+																			blockName?: T
+																	  }
+																spotifyIframe?:
+																	| T
+																	| {
+																			uri?: T
+																			height?: T
 																			id?: T
 																			blockName?: T
 																	  }
@@ -55583,6 +61032,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -55670,6 +61127,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -55764,6 +61229,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -55847,6 +61320,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -55920,6 +61401,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -56021,6 +61510,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -56108,6 +61605,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -56202,6 +61707,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -56285,6 +61798,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -56358,6 +61879,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -56460,6 +61989,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -56547,6 +62084,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -56641,6 +62186,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -56724,6 +62277,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -56797,6 +62358,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -56891,6 +62460,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -56978,6 +62555,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -57072,6 +62657,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -57155,6 +62748,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -57231,6 +62832,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									id?: T
 																									blockName?: T
 																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
+																									id?: T
+																									blockName?: T
+																							  }
 																				  }
 																			id?: T
 																			blockName?: T
@@ -57304,6 +62913,14 @@ export interface PagesSelect<T extends boolean = true> {
 																			href?: T
 																			variant?: T
 																			external?: T
+																			id?: T
+																			blockName?: T
+																	  }
+																spotifyIframe?:
+																	| T
+																	| {
+																			uri?: T
+																			height?: T
 																			id?: T
 																			blockName?: T
 																	  }
@@ -57406,6 +63023,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -57493,6 +63118,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -57587,6 +63220,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -57670,6 +63311,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -57743,6 +63392,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -57844,6 +63501,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -57931,6 +63596,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -58025,6 +63698,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -58108,6 +63789,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -58181,6 +63870,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -58283,6 +63980,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -58370,6 +64075,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -58464,6 +64177,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -58547,6 +64268,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -58620,6 +64349,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -58714,6 +64451,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -58801,6 +64546,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -58895,6 +64648,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -58978,6 +64739,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -59051,6 +64820,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -59130,6 +64907,14 @@ export interface PagesSelect<T extends boolean = true> {
 																			id?: T
 																			blockName?: T
 																	  }
+																spotifyIframe?:
+																	| T
+																	| {
+																			uri?: T
+																			height?: T
+																			id?: T
+																			blockName?: T
+																	  }
 														  }
 													id?: T
 													blockName?: T
@@ -59203,6 +64988,14 @@ export interface PagesSelect<T extends boolean = true> {
 													href?: T
 													variant?: T
 													external?: T
+													id?: T
+													blockName?: T
+											  }
+										spotifyIframe?:
+											| T
+											| {
+													uri?: T
+													height?: T
 													id?: T
 													blockName?: T
 											  }
@@ -59321,6 +65114,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -59408,6 +65209,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -59502,6 +65311,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -59585,6 +65402,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -59658,6 +65483,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -59759,6 +65592,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -59846,6 +65687,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -59940,6 +65789,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -60023,6 +65880,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -60096,6 +65961,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -60198,6 +66071,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -60285,6 +66166,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -60379,6 +66268,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -60462,6 +66359,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -60535,6 +66440,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -60629,6 +66542,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -60716,6 +66637,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -60810,6 +66739,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -60893,6 +66830,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -60969,6 +66914,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									id?: T
 																									blockName?: T
 																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
+																									id?: T
+																									blockName?: T
+																							  }
 																				  }
 																			id?: T
 																			blockName?: T
@@ -61042,6 +66995,14 @@ export interface PagesSelect<T extends boolean = true> {
 																			href?: T
 																			variant?: T
 																			external?: T
+																			id?: T
+																			blockName?: T
+																	  }
+																spotifyIframe?:
+																	| T
+																	| {
+																			uri?: T
+																			height?: T
 																			id?: T
 																			blockName?: T
 																	  }
@@ -61151,6 +67112,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -61238,6 +67207,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -61332,6 +67309,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -61415,6 +67400,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -61488,6 +67481,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -61589,6 +67590,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -61676,6 +67685,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -61770,6 +67787,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -61853,6 +67878,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -61926,6 +67959,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -62028,6 +68069,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -62115,6 +68164,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -62209,6 +68266,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -62292,6 +68357,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -62365,6 +68438,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -62459,6 +68540,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -62546,6 +68635,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -62640,6 +68737,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -62723,6 +68828,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -62799,6 +68912,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									id?: T
 																									blockName?: T
 																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
+																									id?: T
+																									blockName?: T
+																							  }
 																				  }
 																			id?: T
 																			blockName?: T
@@ -62872,6 +68993,14 @@ export interface PagesSelect<T extends boolean = true> {
 																			href?: T
 																			variant?: T
 																			external?: T
+																			id?: T
+																			blockName?: T
+																	  }
+																spotifyIframe?:
+																	| T
+																	| {
+																			uri?: T
+																			height?: T
 																			id?: T
 																			blockName?: T
 																	  }
@@ -62982,6 +69111,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -63069,6 +69206,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -63163,6 +69308,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -63246,6 +69399,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -63319,6 +69480,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -63420,6 +69589,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -63507,6 +69684,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -63601,6 +69786,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -63684,6 +69877,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -63757,6 +69958,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -63859,6 +70068,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -63946,6 +70163,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -64040,6 +70265,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -64123,6 +70356,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -64196,6 +70437,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -64290,6 +70539,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -64377,6 +70634,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -64471,6 +70736,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -64554,6 +70827,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -64630,6 +70911,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									id?: T
 																									blockName?: T
 																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
+																									id?: T
+																									blockName?: T
+																							  }
 																				  }
 																			id?: T
 																			blockName?: T
@@ -64703,6 +70992,14 @@ export interface PagesSelect<T extends boolean = true> {
 																			href?: T
 																			variant?: T
 																			external?: T
+																			id?: T
+																			blockName?: T
+																	  }
+																spotifyIframe?:
+																	| T
+																	| {
+																			uri?: T
+																			height?: T
 																			id?: T
 																			blockName?: T
 																	  }
@@ -64805,6 +71102,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -64892,6 +71197,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -64986,6 +71299,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -65069,6 +71390,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -65142,6 +71471,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -65243,6 +71580,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -65330,6 +71675,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -65424,6 +71777,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -65507,6 +71868,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -65580,6 +71949,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -65682,6 +72059,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -65769,6 +72154,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -65863,6 +72256,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -65946,6 +72347,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -66019,6 +72428,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -66113,6 +72530,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -66200,6 +72625,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -66294,6 +72727,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -66377,6 +72818,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -66450,6 +72899,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -66529,6 +72986,14 @@ export interface PagesSelect<T extends boolean = true> {
 																			id?: T
 																			blockName?: T
 																	  }
+																spotifyIframe?:
+																	| T
+																	| {
+																			uri?: T
+																			height?: T
+																			id?: T
+																			blockName?: T
+																	  }
 														  }
 													id?: T
 													blockName?: T
@@ -66602,6 +73067,14 @@ export interface PagesSelect<T extends boolean = true> {
 													href?: T
 													variant?: T
 													external?: T
+													id?: T
+													blockName?: T
+											  }
+										spotifyIframe?:
+											| T
+											| {
+													uri?: T
+													height?: T
 													id?: T
 													blockName?: T
 											  }
@@ -66712,6 +73185,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -66799,6 +73280,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -66893,6 +73382,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -66976,6 +73473,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -67049,6 +73554,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -67150,6 +73663,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -67237,6 +73758,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -67331,6 +73860,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -67414,6 +73951,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -67487,6 +74032,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -67589,6 +74142,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -67676,6 +74237,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -67770,6 +74339,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -67853,6 +74430,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -67926,6 +74511,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -68020,6 +74613,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -68107,6 +74708,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -68201,6 +74810,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -68284,6 +74901,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -68360,6 +74985,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									id?: T
 																									blockName?: T
 																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
+																									id?: T
+																									blockName?: T
+																							  }
 																				  }
 																			id?: T
 																			blockName?: T
@@ -68433,6 +75066,14 @@ export interface PagesSelect<T extends boolean = true> {
 																			href?: T
 																			variant?: T
 																			external?: T
+																			id?: T
+																			blockName?: T
+																	  }
+																spotifyIframe?:
+																	| T
+																	| {
+																			uri?: T
+																			height?: T
 																			id?: T
 																			blockName?: T
 																	  }
@@ -68542,6 +75183,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -68629,6 +75278,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -68723,6 +75380,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -68806,6 +75471,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -68879,6 +75552,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -68980,6 +75661,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -69067,6 +75756,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -69161,6 +75858,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -69244,6 +75949,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -69317,6 +76030,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -69419,6 +76140,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -69506,6 +76235,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -69600,6 +76337,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -69683,6 +76428,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -69756,6 +76509,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -69850,6 +76611,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -69937,6 +76706,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -70031,6 +76808,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -70114,6 +76899,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -70190,6 +76983,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									id?: T
 																									blockName?: T
 																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
+																									id?: T
+																									blockName?: T
+																							  }
 																				  }
 																			id?: T
 																			blockName?: T
@@ -70263,6 +77064,14 @@ export interface PagesSelect<T extends boolean = true> {
 																			href?: T
 																			variant?: T
 																			external?: T
+																			id?: T
+																			blockName?: T
+																	  }
+																spotifyIframe?:
+																	| T
+																	| {
+																			uri?: T
+																			height?: T
 																			id?: T
 																			blockName?: T
 																	  }
@@ -70373,6 +77182,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -70460,6 +77277,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -70554,6 +77379,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -70637,6 +77470,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -70710,6 +77551,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -70811,6 +77660,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -70898,6 +77755,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -70992,6 +77857,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -71075,6 +77948,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -71148,6 +78029,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -71250,6 +78139,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -71337,6 +78234,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -71431,6 +78336,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -71514,6 +78427,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -71587,6 +78508,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -71681,6 +78610,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -71768,6 +78705,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -71862,6 +78807,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -71945,6 +78898,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -72021,6 +78982,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									id?: T
 																									blockName?: T
 																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
+																									id?: T
+																									blockName?: T
+																							  }
 																				  }
 																			id?: T
 																			blockName?: T
@@ -72094,6 +79063,14 @@ export interface PagesSelect<T extends boolean = true> {
 																			href?: T
 																			variant?: T
 																			external?: T
+																			id?: T
+																			blockName?: T
+																	  }
+																spotifyIframe?:
+																	| T
+																	| {
+																			uri?: T
+																			height?: T
 																			id?: T
 																			blockName?: T
 																	  }
@@ -72196,6 +79173,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -72283,6 +79268,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -72377,6 +79370,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -72460,6 +79461,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -72533,6 +79542,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -72634,6 +79651,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -72721,6 +79746,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -72815,6 +79848,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -72898,6 +79939,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -72971,6 +80020,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -73073,6 +80130,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -73160,6 +80225,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -73254,6 +80327,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -73337,6 +80418,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -73410,6 +80499,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -73504,6 +80601,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -73591,6 +80696,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															href?: T
 																															variant?: T
 																															external?: T
+																															id?: T
+																															blockName?: T
+																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
 																															id?: T
 																															blockName?: T
 																													  }
@@ -73685,6 +80798,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -73768,6 +80889,14 @@ export interface PagesSelect<T extends boolean = true> {
 																															id?: T
 																															blockName?: T
 																													  }
+																												spotifyIframe?:
+																													| T
+																													| {
+																															uri?: T
+																															height?: T
+																															id?: T
+																															blockName?: T
+																													  }
 																										  }
 																									id?: T
 																									blockName?: T
@@ -73841,6 +80970,14 @@ export interface PagesSelect<T extends boolean = true> {
 																									href?: T
 																									variant?: T
 																									external?: T
+																									id?: T
+																									blockName?: T
+																							  }
+																						spotifyIframe?:
+																							| T
+																							| {
+																									uri?: T
+																									height?: T
 																									id?: T
 																									blockName?: T
 																							  }
@@ -73920,6 +81057,14 @@ export interface PagesSelect<T extends boolean = true> {
 																			id?: T
 																			blockName?: T
 																	  }
+																spotifyIframe?:
+																	| T
+																	| {
+																			uri?: T
+																			height?: T
+																			id?: T
+																			blockName?: T
+																	  }
 														  }
 													id?: T
 													blockName?: T
@@ -73996,6 +81141,14 @@ export interface PagesSelect<T extends boolean = true> {
 													id?: T
 													blockName?: T
 											  }
+										spotifyIframe?:
+											| T
+											| {
+													uri?: T
+													height?: T
+													id?: T
+													blockName?: T
+											  }
 								  }
 							id?: T
 							blockName?: T
@@ -74069,6 +81222,14 @@ export interface PagesSelect<T extends boolean = true> {
 							href?: T
 							variant?: T
 							external?: T
+							id?: T
+							blockName?: T
+					  }
+				spotifyIframe?:
+					| T
+					| {
+							uri?: T
+							height?: T
 							id?: T
 							blockName?: T
 					  }

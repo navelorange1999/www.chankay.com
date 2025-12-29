@@ -13,6 +13,7 @@ import {
 	Grid,
 	HandWriting,
 	ImageMedia,
+	SpotifyIframe,
 	Text,
 } from "@repo/ui"
 import type { MediaInterface, Page } from "@repo/typescript-config/typings/payload-types"
@@ -59,6 +60,10 @@ function asGridColumns(value: unknown, fallback: GridColumns): GridColumns {
 
 function isOneOf<T extends string>(value: unknown, allowed: readonly T[]): value is T {
 	return typeof value === "string" && allowed.includes(value as T)
+}
+
+function asNumber(value: unknown): number | undefined {
+	return typeof value === "number" && Number.isFinite(value) ? value : undefined
 }
 
 function renderBlocks(blocks: StructureBlock[] | null | undefined) {
@@ -257,6 +262,20 @@ function renderBlock(block: StructureBlock, key: string): React.ReactNode {
 
 		case "heatmap":
 			return <HeatmapNode key={key} block={block} />
+
+		case "spotifyIframe": {
+			const data = block as unknown as Record<string, unknown>
+			const uri = asOptionalString(data.uri)
+			const height = asNumber(data.height) ?? 352
+
+			if (!uri) return null
+
+			return (
+				<div key={key} className="mx-auto w-full max-w-3xl">
+					<SpotifyIframe uri={uri} height={height} />
+				</div>
+			)
+		}
 
 		default:
 			return null

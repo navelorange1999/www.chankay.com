@@ -267,7 +267,10 @@ export function Heatmap({
 	let cellIndex = 0
 
 	return (
-		<div className={cn("flex flex-col gap-3", "text-foreground", className)} {...props}>
+		<div
+			className={cn("flex min-w-0 max-w-full flex-col gap-3", "text-foreground", className)}
+			{...props}
+		>
 			{showTotal && (
 				<div className="text-muted-foreground text-sm">
 					{calendar.total.toLocaleString()} contributions
@@ -275,9 +278,9 @@ export function Heatmap({
 			)}
 
 			{/* GitHub-like layout (weeks as columns) */}
-			<div className="w-fit max-w-full" style={style}>
+			<div className="w-full min-w-0 max-w-full" style={style}>
 				<div className="flex flex-col gap-3">
-					<div className="flex gap-3">
+					<div className="flex min-w-0 gap-3">
 						{/* Weekday labels (left) */}
 						<div className="shrink-0">
 							<div className="h-5" aria-hidden="true" />
@@ -301,7 +304,7 @@ export function Heatmap({
 						</div>
 
 						{/* Month labels + grid inside scroll container */}
-						<div className="min-w-0 max-w-full overflow-x-auto overscroll-x-contain">
+						<div className="min-w-0 flex-1 overflow-x-auto overscroll-x-contain">
 							<div className="inline-flex flex-col gap-[var(--heatmap-gap)]">
 								{/* Month labels (top) */}
 								<div className="grid grid-flow-col auto-cols-max gap-[var(--heatmap-gap)] h-5">

@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { motion, type Variants } from "motion/react"
-import { cn } from "#/utils/classnames"
+import { cn } from "#utils/classnames"
 
 import { HELLO_WORLD_VIEW_BOX, HELLO_WORLD_PATHS } from "./constants/hello-world"
 
@@ -85,7 +85,7 @@ function HandWriting({ as = "div", text, speed = 1, className, svgClassName }: H
 				strokeWidth={6}
 				stroke="currentColor"
 				strokeLinecap="round"
-				className={svgClassName}
+				className={cn("h-full w-full", svgClassName)}
 				aria-label={text || "Handwriting animation"}
 				aria-labelledby={text ? titleId : undefined}
 				role="img"

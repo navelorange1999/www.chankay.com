@@ -220,8 +220,12 @@ function renderBlock(block: StructureBlock, key: string): React.ReactNode {
 
 		case "handWriting":
 			return (
-				<div key={key} className="flex justify-center text-primary">
-					<HandWriting className="h-64 w-128" speed={block.speed ?? 1} as={block.as ?? "div"} />
+				<div key={key} className="flex justify-center px-4 text-primary">
+					<HandWriting
+						className="h-40 w-full max-w-[32rem] sm:h-52 md:h-64"
+						speed={block.speed ?? 1}
+						as={block.as ?? "div"}
+					/>
 				</div>
 			)
 

@@ -1,24 +1,9 @@
 import * as React from "react"
-import Link from "next/link"
 
-import {
-	Button,
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle,
-	Container,
-	Flex,
-	Grid,
-	HandWriting,
-	ImageMedia,
-	SpotifyIframe,
-	Text,
-} from "@repo/ui"
-import type { MediaInterface, Page } from "@repo/typescript-config/typings/payload-types"
+import { Card, CardContent, Container, Flex, Grid } from "@repo/ui"
+import type { Page } from "@repo/typescript-config/typings/payload-types"
 
-import { HeatmapNode } from "@/components/nodes/HeatmapNode"
+import { isLeafBlock, renderLeafBlock } from "@/components/nodes/leafRenderers"
 
 type StructureBlocks = NonNullable<Page["structure"]>
 type StructureBlock = StructureBlocks[number]
@@ -31,6 +16,11 @@ type StructureLike = StructureBlock & { children?: StructureBlock[] | null }
 
 function asOptionalString(value: unknown): string | undefined {
 	return typeof value === "string" && value.length > 0 ? value : undefined
+}
+
+function asRecord(value: unknown): Record<string, unknown> {
+	if (!value || typeof value !== "object") return {}
+	return value as Record<string, unknown>
 }
 
 function asGap(value: unknown, fallback: Gap): Gap {
@@ -62,10 +52,6 @@ function isOneOf<T extends string>(value: unknown, allowed: readonly T[]): value
 	return typeof value === "string" && allowed.includes(value as T)
 }
 
-function asNumber(value: unknown): number | undefined {
-	return typeof value === "number" && Number.isFinite(value) ? value : undefined
-}
-
 function renderBlocks(blocks: StructureBlock[] | null | undefined) {
 	if (!blocks || blocks.length === 0) return null
 	return blocks.map((block, index) => renderBlock(block, block.id ?? `${block.blockType}-${index}`))
@@ -85,6 +71,7 @@ function renderBlock(block: StructureBlock, key: string): React.ReactNode {
 
 	if (isStructureBlockType(block.blockType)) {
 		const node = block as unknown as StructureLike
+		const data = asRecord(node)
 		const children = node.children
 
 		if (block.blockType.startsWith("structureContainer")) {
@@ -92,11 +79,11 @@ function renderBlock(block: StructureBlock, key: string): React.ReactNode {
 				<Container
 					key={key}
 					size={
-						isOneOf((node as any).size, ["default", "wide", "full"] as const)
-							? (node as any).size
+						isOneOf(asOptionalString(data.size), ["default", "wide", "full"] as const)
+							? (asOptionalString(data.size) as "default" | "wide" | "full")
 							: "default"
 					}
-					className={asOptionalString((node as any).className)}
+					className={asOptionalString(data.className)}
 				>
 					{renderBlocks(children)}
 				</Container>
@@ -107,25 +94,41 @@ function renderBlock(block: StructureBlock, key: string): React.ReactNode {
 			return (
 				<Flex
 					key={key}
-					as={asElementAs((node as any).as, "div")}
-					inline={Boolean((node as any).inline)}
+					as={asElementAs(data.as, "div")}
+					inline={Boolean(data.inline)}
 					direction={
-						isOneOf((node as any).direction, ["row", "rowReverse", "col", "colReverse"] as const)
-							? (node as any).direction
+						isOneOf(asOptionalString(data.direction), [
+							"row",
+							"rowReverse",
+							"col",
+							"colReverse",
+						] as const)
+							? (asOptionalString(data.direction) as "row" | "rowReverse" | "col" | "colReverse")
 							: "row"
 					}
 					wrap={
-						isOneOf((node as any).wrap, ["nowrap", "wrap", "wrapReverse"] as const)
-							? (node as any).wrap
+						isOneOf(asOptionalString(data.wrap), ["nowrap", "wrap", "wrapReverse"] as const)
+							? (asOptionalString(data.wrap) as "nowrap" | "wrap" | "wrapReverse")
 							: "nowrap"
 					}
 					align={
-						isOneOf((node as any).align, ["start", "center", "end", "stretch", "baseline"] as const)
-							? (node as any).align
+						isOneOf(asOptionalString(data.align), [
+							"start",
+							"center",
+							"end",
+							"stretch",
+							"baseline",
+						] as const)
+							? (asOptionalString(data.align) as
+									| "start"
+									| "center"
+									| "end"
+									| "stretch"
+									| "baseline")
 							: "stretch"
 					}
 					justify={
-						isOneOf((node as any).justify, [
+						isOneOf(asOptionalString(data.justify), [
 							"start",
 							"center",
 							"end",
@@ -133,11 +136,17 @@ function renderBlock(block: StructureBlock, key: string): React.ReactNode {
 							"around",
 							"evenly",
 						] as const)
-							? (node as any).justify
+							? (asOptionalString(data.justify) as
+									| "start"
+									| "center"
+									| "end"
+									| "between"
+									| "around"
+									| "evenly")
 							: "start"
 					}
-					gap={asGap((node as any).gap, "md")}
-					className={asOptionalString((node as any).className)}
+					gap={asGap(data.gap, "md")}
+					className={asOptionalString(data.className)}
 				>
 					{renderBlocks(children)}
 				</Flex>
@@ -148,41 +157,45 @@ function renderBlock(block: StructureBlock, key: string): React.ReactNode {
 			return (
 				<Grid
 					key={key}
-					as={asElementAs((node as any).as, "div")}
-					columns={asGridColumns((node as any).columns, 1)}
+					as={asElementAs(data.as, "div")}
+					columns={asGridColumns(data.columns, 1)}
 					columnsSm={
-						typeof (node as any).columnsSm === "number"
-							? asGridColumns((node as any).columnsSm, 1)
-							: undefined
+						typeof data.columnsSm === "number" ? asGridColumns(data.columnsSm, 1) : undefined
 					}
 					columnsMd={
-						typeof (node as any).columnsMd === "number"
-							? asGridColumns((node as any).columnsMd, 1)
-							: undefined
+						typeof data.columnsMd === "number" ? asGridColumns(data.columnsMd, 1) : undefined
 					}
 					columnsLg={
-						typeof (node as any).columnsLg === "number"
-							? asGridColumns((node as any).columnsLg, 1)
-							: undefined
+						typeof data.columnsLg === "number" ? asGridColumns(data.columnsLg, 1) : undefined
 					}
-					gap={asGap((node as any).gap, "md")}
+					gap={asGap(data.gap, "md")}
 					alignItems={
-						isOneOf((node as any).alignItems, [
+						isOneOf(asOptionalString(data.alignItems), [
 							"start",
 							"center",
 							"end",
 							"stretch",
 							"baseline",
 						] as const)
-							? (node as any).alignItems
+							? (asOptionalString(data.alignItems) as
+									| "start"
+									| "center"
+									| "end"
+									| "stretch"
+									| "baseline")
 							: "stretch"
 					}
 					justifyItems={
-						isOneOf((node as any).justifyItems, ["start", "center", "end", "stretch"] as const)
-							? (node as any).justifyItems
+						isOneOf(asOptionalString(data.justifyItems), [
+							"start",
+							"center",
+							"end",
+							"stretch",
+						] as const)
+							? (asOptionalString(data.justifyItems) as "start" | "center" | "end" | "stretch")
 							: "stretch"
 					}
-					className={asOptionalString((node as any).className)}
+					className={asOptionalString(data.className)}
 				>
 					{renderBlocks(children)}
 				</Grid>
@@ -191,99 +204,18 @@ function renderBlock(block: StructureBlock, key: string): React.ReactNode {
 
 		if (block.blockType.startsWith("structureCard")) {
 			return (
-				<Card key={key} className={asOptionalString((node as any).className)}>
+				<Card key={key} className={asOptionalString(data.className)}>
 					<CardContent className="flex flex-col gap-6">{renderBlocks(children)}</CardContent>
 				</Card>
 			)
 		}
 	}
 
-	switch (block.blockType) {
-		case "text": {
-			const content = block.content
-			if (!content) return null
-
-			return (
-				<Text
-					key={key}
-					as={block.as ?? "p"}
-					size={block.size ?? "base"}
-					weight={block.weight ?? "normal"}
-					tone={block.tone ?? "default"}
-					align={block.align ?? "left"}
-					className="whitespace-pre-wrap"
-				>
-					{content}
-				</Text>
-			)
-		}
-
-		case "handWriting":
-			return (
-				<div key={key} className="flex justify-center px-4 text-primary">
-					<HandWriting
-						className="h-40 w-full max-w-[32rem] sm:h-52 md:h-64"
-						speed={block.speed ?? 1}
-						as={block.as ?? "div"}
-					/>
-				</div>
-			)
-
-		case "mediaImage":
-			return (
-				<div key={key} className="mx-auto w-full max-w-3xl">
-					<ImageMedia
-						pictureClassName="block relative w-full aspect-[16/9] overflow-hidden rounded-xl border"
-						imgClassName="object-cover"
-						fill
-						resource={block.media as MediaInterface | string}
-						priority
-					/>
-				</div>
-			)
-
-		case "card":
-			return (
-				<Card key={key} className="mx-auto w-full max-w-2xl">
-					<CardHeader>
-						<CardTitle>{block.title}</CardTitle>
-						{block.description && <CardDescription>{block.description}</CardDescription>}
-					</CardHeader>
-					<CardContent />
-				</Card>
-			)
-
-		case "button":
-			return (
-				<div key={key} className="flex justify-center">
-					<Button asChild variant={block.variant === "secondary" ? "secondary" : "default"}>
-						<Link href={block.href} target={block.external ? "_blank" : undefined}>
-							{block.label}
-						</Link>
-					</Button>
-				</div>
-			)
-
-		case "heatmap":
-			return <HeatmapNode key={key} block={block} />
-
-		case "spotifyIframe": {
-			const data = block as unknown as Record<string, unknown>
-			const uri = asOptionalString(data.uri)
-			const height = asNumber(data.height) ?? 352
-
-			if (!uri) return null
-
-			return (
-				<div key={key} className="mx-auto w-full max-w-3xl">
-					<SpotifyIframe uri={uri} height={height} />
-				</div>
-			)
-		}
-
-		default:
-			return null
+	if (isLeafBlock(block)) {
+		return renderLeafBlock(block, key)
 	}
+
+	return null
 }
 
 export interface NodesProps {

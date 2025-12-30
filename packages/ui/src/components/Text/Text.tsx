@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { cn } from "../../utils/classnames"
+import { cn } from "#utils/classnames"
 
 export interface TextProps extends React.ComponentPropsWithoutRef<"p"> {
 	as?: "p" | "span" | "div" | "h1" | "h2" | "h3" | "h4"

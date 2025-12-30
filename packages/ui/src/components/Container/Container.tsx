@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { cn } from "../../utils/classnames"
+import { cn } from "#utils/classnames"
 
 export interface ContainerProps extends React.ComponentProps<"div"> {
 	size?: "default" | "wide" | "full"

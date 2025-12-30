@@ -11,7 +11,7 @@ import { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 
 import { Container } from "../Container"
 import { ThemeToggle } from "../ThemeProvider"
-import { cn } from "../../utils/classnames"
+import { cn } from "#utils/classnames"
 import { ImageMedia } from "../Media"
 
 type MenuItem = NonNullable<NonNullable<NonNullable<SiteConfig["navigation"]>["menuItems"]>>[number]

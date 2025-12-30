@@ -3,7 +3,7 @@
 import * as React from "react"
 import { motion } from "motion/react"
 
-import { cn } from "../../utils/classnames"
+import { cn } from "#utils/classnames"
 
 export type HeatmapLevel = 0 | 1 | 2 | 3 | 4
 

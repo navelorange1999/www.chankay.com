@@ -882,7 +882,7 @@ Is the component purely UI without data/business logic?
 
 ```typescript
 import * as React from "react"
-import { cn } from "../../utils/classnames"
+import { cn } from "#utils/classnames"
 
 // 1. Type definitions
 export interface ComponentProps extends React.ComponentProps<"div"> {

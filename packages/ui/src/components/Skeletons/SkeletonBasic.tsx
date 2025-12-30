@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { cn } from "../../utils/classnames"
+import { cn } from "#utils/classnames"
 
 export type SkeletonBasicProps = React.ComponentProps<"div">
 

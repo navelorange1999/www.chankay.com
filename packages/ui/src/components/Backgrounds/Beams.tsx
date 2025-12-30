@@ -2,7 +2,7 @@
 
 import React from "react"
 import { motion } from "motion/react"
-import { cn } from "../../utils/classnames"
+import { cn } from "#utils/classnames"
 
 export interface BackgroundBeamsProps {
 	className?: string

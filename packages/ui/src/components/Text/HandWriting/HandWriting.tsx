@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { motion, type Variants } from "motion/react"
-import { cn } from "../../../utils/classnames"
+import { cn } from "#/utils/classnames"
 
 import { HELLO_WORLD_VIEW_BOX, HELLO_WORLD_PATHS } from "./constants/hello-world"
 

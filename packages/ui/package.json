@@ -20,7 +20,7 @@
     "clean": "rm -rf dist && rm -rf .turbo"
   },
   "imports": {
-    "#*": "./src/*"
+    "#*": "./dist/src/*"
   },
   "exports": {
     ".": {

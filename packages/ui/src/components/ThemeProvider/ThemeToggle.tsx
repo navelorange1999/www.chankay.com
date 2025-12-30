@@ -4,7 +4,7 @@ import { useTheme } from "../../hooks/useTheme"
 import { Sun, Moon, Monitor, ChevronDown, Check } from "lucide-react"
 import { motion, AnimatePresence } from "motion/react"
 import { useState } from "react"
-import { cn } from "../../utils/classnames"
+import { cn } from "#utils/classnames"
 
 export interface ThemeToggleProps {
 	className?: string

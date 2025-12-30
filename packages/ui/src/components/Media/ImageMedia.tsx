@@ -4,7 +4,7 @@ import type { StaticImageData } from "next/image"
 import NextImage from "next/image"
 import React, { ElementType, Ref } from "react"
 
-import { cn } from "../../utils/classnames"
+import { cn } from "#utils/classnames"
 
 import { MediaInterface } from "@repo/typescript-config/typings/payload-types"
 

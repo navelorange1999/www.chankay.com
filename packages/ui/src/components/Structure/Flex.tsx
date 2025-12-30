@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { cn } from "../../utils/classnames"
+import { cn } from "#utils/classnames"
 
 export interface FlexProps extends React.ComponentPropsWithoutRef<"div"> {
 	as?: "div" | "section" | "main" | "article" | "header" | "footer" | "nav" | "aside"

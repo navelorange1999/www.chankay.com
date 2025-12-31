@@ -39,6 +39,8 @@ storybook-static
 
 # env
 **/**/.env
+# except example files
+!**/**/.env.example
 
 # claude
 .claude

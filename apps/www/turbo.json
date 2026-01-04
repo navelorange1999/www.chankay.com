@@ -2,6 +2,7 @@
   "extends": ["//"],
   "tasks": {
     "dev": {
+      "dependsOn": ["@repo/ui#build"],
       "env": ["PAYLOAD_API_URL", "PAYLOAD_REVALIDATE_TIME"]
     }
   }

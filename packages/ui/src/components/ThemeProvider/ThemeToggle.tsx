@@ -1,6 +1,7 @@
 "use client"
 
 import { useTheme } from "../../hooks/useTheme"
+import type { ThemeMode } from "../../hooks/useTheme"
 import { Sun, Moon, Monitor, ChevronDown, Check } from "lucide-react"
 import { motion, AnimatePresence } from "motion/react"
 import { useState } from "react"
@@ -22,25 +23,6 @@ export function ThemeToggle({
 	const { theme, resolvedTheme, mounted, toggleTheme, setTheme } = useTheme()
 	const [isOpen, setIsOpen] = useState(false)
 
-	if (!mounted) {
-		const sizeClasses = {
-			sm: "p-1.5",
-			md: "p-2",
-			lg: "p-3",
-		}
-		const iconSizes = {
-			sm: "h-4 w-4",
-			md: "h-5 w-5",
-			lg: "h-6 w-6",
-		}
-
-		return (
-			<div className={cn(sizeClasses[size], "rounded-lg", className)}>
-				<div className={iconSizes[size]} />
-			</div>
-		)
-	}
-
 	const sizeClasses = {
 		sm: "p-1.5",
 		md: "p-2",
@@ -53,7 +35,7 @@ export function ThemeToggle({
 		lg: "h-6 w-6",
 	}
 
-	const getThemeIcon = (currentTheme: string, isResolved?: boolean) => {
+	const getThemeIcon = (currentTheme: ThemeMode, isResolved?: boolean) => {
 		const displayTheme = isResolved ? resolvedTheme : currentTheme
 
 		switch (currentTheme) {
@@ -73,10 +55,18 @@ export function ThemeToggle({
 	}
 
 	if (variant === "dropdown" && showSystemOption) {
+		if (!mounted) {
+			return (
+				<div className={cn(sizeClasses[size], "rounded-lg", className)}>
+					<div className={iconSizes[size]} />
+				</div>
+			)
+		}
+
 		const themes = [
-			{ key: "light", label: "Light", icon: <Sun className={iconSizes[size]} /> },
-			{ key: "dark", label: "Dark", icon: <Moon className={iconSizes[size]} /> },
-			{ key: "system", label: "System", icon: <Monitor className={iconSizes[size]} /> },
+			{ key: "light" as const, label: "Light", icon: <Sun className={iconSizes[size]} /> },
+			{ key: "dark" as const, label: "Dark", icon: <Moon className={iconSizes[size]} /> },
+			{ key: "system" as const, label: "System", icon: <Monitor className={iconSizes[size]} /> },
 		]
 
 		return (
@@ -127,7 +117,7 @@ export function ThemeToggle({
 								<button
 									key={themeOption.key}
 									onClick={() => {
-										setTheme(themeOption.key as any)
+										setTheme(themeOption.key)
 										setIsOpen(false)
 									}}
 									className="w-full flex items-center gap-3 px-3 py-2 text-sm text-foreground hover:bg-secondary first:rounded-t-lg last:rounded-b-lg transition-colors"
@@ -171,57 +161,60 @@ export function ThemeToggle({
 
 			{/* Icon container */}
 			<div className="relative z-10">
-				<AnimatePresence mode="wait" initial={false}>
-					<motion.div
-						key={showSystemOption ? theme : resolvedTheme}
-						initial={{
-							rotate: resolvedTheme === "dark" ? -90 : 90,
-							opacity: 0,
-							scale: 0.3,
-						}}
-						animate={{
-							rotate: 0,
-							opacity: 1,
-							scale: 1,
-						}}
-						exit={{
-							rotate: resolvedTheme === "dark" ? 90 : -90,
-							opacity: 0,
-							scale: 0.3,
-						}}
-						transition={{
-							duration: 0.25,
-							ease: [0.4, 0, 0.2, 1],
-						}}
-						className="flex items-center justify-center"
-					>
-						{showSystemOption ? (
-							getThemeIcon(theme)
-						) : resolvedTheme === "dark" ? (
-							<motion.div
-								animate={{ rotate: [0, 360] }}
-								transition={{
-									duration: 15,
-									repeat: Number.POSITIVE_INFINITY,
-									ease: "linear",
-								}}
-							>
-								<Sun className={cn(iconSizes[size], "text-primary")} />
-							</motion.div>
-						) : (
-							<motion.div
-								animate={{ rotate: [0, -5, 5, 0] }}
-								transition={{
-									duration: 3,
-									repeat: Number.POSITIVE_INFINITY,
-									ease: "easeInOut",
-								}}
-							>
-								<Moon className={cn(iconSizes[size], "text-primary")} />
-							</motion.div>
-						)}
-					</motion.div>
-				</AnimatePresence>
+				{showSystemOption ? (
+					<AnimatePresence mode="wait" initial={false}>
+						<motion.div
+							key={theme}
+							initial={{
+								rotate: resolvedTheme === "dark" ? -90 : 90,
+								opacity: 0,
+								scale: 0.3,
+							}}
+							animate={{
+								rotate: 0,
+								opacity: 1,
+								scale: 1,
+							}}
+							exit={{
+								rotate: resolvedTheme === "dark" ? 90 : -90,
+								opacity: 0,
+								scale: 0.3,
+							}}
+							transition={{
+								duration: 0.25,
+								ease: [0.4, 0, 0.2, 1],
+							}}
+							className="flex items-center justify-center"
+						>
+							{getThemeIcon(theme)}
+						</motion.div>
+					</AnimatePresence>
+				) : (
+					<div className="flex items-center justify-center">
+						<motion.div
+							animate={{ rotate: [0, 360] }}
+							transition={{
+								duration: 15,
+								repeat: Number.POSITIVE_INFINITY,
+								ease: "linear",
+							}}
+							className="hidden dark:block"
+						>
+							<Sun className={cn(iconSizes[size], "text-primary")} />
+						</motion.div>
+						<motion.div
+							animate={{ rotate: [0, -5, 5, 0] }}
+							transition={{
+								duration: 3,
+								repeat: Number.POSITIVE_INFINITY,
+								ease: "easeInOut",
+							}}
+							className="block dark:hidden"
+						>
+							<Moon className={cn(iconSizes[size], "text-primary")} />
+						</motion.div>
+					</div>
+				)}
 			</div>
 
 			{/* Ripple effect */}

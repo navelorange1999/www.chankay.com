@@ -139,6 +139,21 @@ pnpm run test:watch   # 在监视模式下运行测试
 pnpm run storybook    # 启动 Storybook 开发服务器
 ```
 
+### 生产发布标签
+
+生产部署在 GitHub 发布 Release 时按标签前缀触发：
+
+- `admin-v*` 触发 Admin 生产工作流
+- `www-v*` 触发 WWW 生产工作流
+
+操作步骤（GitHub 页面）：
+
+1. 打开 `Releases` -> `Draft a new release`
+2. 创建或选择标签：
+   - `admin-v1.2.3` 发布 Admin
+   - `www-v1.2.3` 发布 WWW
+3. 点击 `Publish release`
+
 ## 🔧 开发指南
 
 ### 添加新功能

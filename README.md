@@ -139,6 +139,21 @@ pnpm run test:watch   # Run tests in watch mode
 pnpm run storybook    # Start Storybook development server
 ```
 
+### Production Release Tags
+
+Production deployments are triggered when a GitHub Release is published with tag prefix:
+
+- `admin-v*` for Admin production workflow
+- `www-v*` for WWW production workflow
+
+Steps (GitHub UI):
+
+1. Open `Releases` -> `Draft a new release`
+2. Create/select a tag:
+   - `admin-v1.2.3` to deploy Admin
+   - `www-v1.2.3` to deploy WWW
+3. Click `Publish release`
+
 ## 📚 Documentation
 
 ### For AI-Assisted Development

@@ -7,7 +7,7 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "env": ["GITHUB_TOKEN"],
+      "env": ["GITHUB_TOKEN", "PAYLOAD_API_URL", "PAYLOAD_REVALIDATE_TIME"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**", "storybook-static/**"]
     },
     "build:storybook": {},

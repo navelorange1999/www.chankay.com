@@ -4,10 +4,26 @@ export interface PayloadQueryOptions {
 	cache?: RequestCache
 }
 
+function resolvePayloadBaseUrl(): string {
+	const configuredBaseUrl = process.env.PAYLOAD_API_URL?.trim()
+
+	if (configuredBaseUrl) {
+		return configuredBaseUrl
+	}
+
+	if (process.env.NODE_ENV === "production") {
+		throw new Error(
+			"Missing PAYLOAD_API_URL in production. Set PAYLOAD_API_URL to a reachable Payload API endpoint (for example, https://admin.example.com/api)."
+		)
+	}
+
+	return "http://localhost:3001/api"
+}
+
 export class PayloadClient {
 	private baseUrl: string
 
-	constructor(baseUrl: string = process.env.PAYLOAD_API_URL || "http://localhost:3001/api") {
+	constructor(baseUrl: string = resolvePayloadBaseUrl()) {
 		this.baseUrl = baseUrl
 	}
 

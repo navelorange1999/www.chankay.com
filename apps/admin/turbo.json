@@ -5,7 +5,7 @@
       "env": ["GITHUB_TOKEN"]
     },
     "build": {
-      "env": ["GITHUB_TOKEN", "NEXTAUTH_URL", "NEXTAUTH_SECRET"]
+      "env": ["GITHUB_TOKEN"]
     },
     "dev": {
       "with": ["gen"],
@@ -14,8 +14,6 @@
         "PAYLOAD_SECRET",
         "DATABASE_URI",
         "NEXT_PUBLIC_SERVER_URL",
-        "NEXTAUTH_URL",
-        "NEXTAUTH_SECRET",
         "VERCEL_BLOB_READ_WRITE_TOKEN",
         "VERCEL_BLOB_PUBLIC_BASE_URL",
         "GITHUB_CLIENT_ID",

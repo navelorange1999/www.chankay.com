@@ -11,6 +11,7 @@ import { MediaInterface } from "@repo/typescript-config/typings/payload-types"
 interface ImageMediaProps {
 	alt?: string
 	className?: string
+	placeholder?: "blur" | "empty"
 	fill?: boolean // for NextImage only
 	htmlElement?: ElementType | null
 	pictureClassName?: string
@@ -33,7 +34,9 @@ const placeholderBlur =
 export const ImageMedia: React.FC<ImageMediaProps> = (props) => {
 	const {
 		alt: altFromProps,
+		className,
 		fill,
+		placeholder = "blur",
 		pictureClassName,
 		imgClassName,
 		priority,
@@ -64,13 +67,13 @@ export const ImageMedia: React.FC<ImageMediaProps> = (props) => {
 	const sizes = sizeFromProps || ""
 
 	return (
-		<picture className={cn(pictureClassName)}>
+		<picture className={cn(className, pictureClassName)}>
 			<NextImage
 				alt={alt || ""}
 				className={cn(imgClassName)}
 				fill={fill}
 				height={!fill ? height : undefined}
-				placeholder="blur"
+				placeholder={placeholder}
 				blurDataURL={placeholderBlur}
 				priority={priority}
 				quality={100}

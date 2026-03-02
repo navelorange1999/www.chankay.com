@@ -12,6 +12,7 @@ import { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 import { Container } from "../Container"
 import { ThemeToggle } from "../ThemeProvider"
 import { cn } from "#utils/classnames"
+import { resolveLogoNode } from "#utils/resolveLogoNode"
 import { ImageMedia } from "../Media"
 
 type MenuItem = NonNullable<NonNullable<NonNullable<SiteConfig["navigation"]>["menuItems"]>>[number]
@@ -19,9 +20,10 @@ type MenuItem = NonNullable<NonNullable<NonNullable<SiteConfig["navigation"]>["m
 export interface NavbarProps {
 	siteConfig: SiteConfig
 	className?: string
+	fallbackLogo?: React.ReactNode
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "" }) => {
+export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "", fallbackLogo }) => {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
 	const pathname = usePathname()
@@ -32,6 +34,15 @@ export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "" }) =>
 	const items = siteConfig.navigation?.menuItems || []
 	const showLogo = siteConfig.navigation?.showLogo !== false
 	const showSiteName = siteConfig.navigation?.showSiteName !== false
+
+	const logoNode = resolveLogoNode({
+		showLogo,
+		logo,
+		fallbackLogo,
+		renderImageLogo: (imageLogo) => (
+			<ImageMedia resource={imageLogo} placeholder="empty" priority />
+		),
+	})
 
 	const toggleMobileMenu = () => {
 		setMobileMenuOpen(!mobileMenuOpen)
@@ -51,7 +62,7 @@ export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "" }) =>
 					{/* Logo */}
 					<div className="flex-shrink-0">
 						<Link aria-label={title || "Home"} href="/" className="flex items-center gap-1">
-							{showLogo && logo && <ImageMedia resource={logo} />}
+							{logoNode}
 							{showSiteName && (
 								<span className="text-xl font-semibold text-foreground">{title}</span>
 							)}

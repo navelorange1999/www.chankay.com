@@ -4,6 +4,7 @@ import { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 
 import { Container } from "../Container"
 import { cn } from "#utils/classnames"
+import { resolveLogoNode } from "#utils/resolveLogoNode"
 import { ImageMedia } from "../Media"
 import { SimpleIcon } from "../Icon"
 
@@ -15,9 +16,10 @@ const socialIcons = {
 export interface FooterProps {
 	siteConfig: SiteConfig
 	className?: string
+	fallbackLogo?: React.ReactNode
 }
 
-export function Footer({ siteConfig, className = "" }: FooterProps) {
+export function Footer({ siteConfig, className = "", fallbackLogo }: FooterProps) {
 	const currentYear = new Date().getFullYear()
 	const title = siteConfig.siteName
 	const logo = siteConfig.logo
@@ -30,6 +32,22 @@ export function Footer({ siteConfig, className = "" }: FooterProps) {
 	const showSiteName = siteConfig.footer?.showSiteName !== false
 	const showSocialLinks = siteConfig.footer?.showSocialLinks !== false
 
+	const logoNode = resolveLogoNode({
+		showLogo,
+		logo,
+		fallbackLogo,
+		renderImageLogo: (imageLogo) => (
+			<ImageMedia
+				resource={imageLogo}
+				alt={`${title} logo`}
+				className="h-8 w-8"
+				imgClassName={cn("h-8 w-8 object-contain")}
+				placeholder="empty"
+				priority
+			/>
+		),
+	})
+
 	const defaultCopyright = `© ${currentYear} ${title}`
 
 	return (
@@ -40,13 +58,7 @@ export function Footer({ siteConfig, className = "" }: FooterProps) {
 				<div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-4">
 					{/* Left: Logo and Name */}
 					<div className="flex items-center gap-1">
-						{showLogo && logo && (
-							<ImageMedia
-								resource={logo}
-								alt={`${title} logo`}
-								className="h-8 w-8 rounded-full object-cover"
-							/>
-						)}
+						{logoNode}
 						{showSiteName && <span className="text-lg font-semibold">{title}</span>}
 					</div>
 

@@ -2,6 +2,7 @@
 
 import { useTheme } from "../../hooks/useTheme"
 import type { ThemeMode } from "../../hooks/useTheme"
+import { useThemeTransition } from "../../hooks/useThemeTransition"
 import { Sun, Moon, Monitor, ChevronDown, Check } from "lucide-react"
 import { motion, AnimatePresence } from "motion/react"
 import { useState } from "react"
@@ -20,7 +21,11 @@ export function ThemeToggle({
 	variant = "button",
 	size = "md",
 }: ThemeToggleProps) {
-	const { theme, resolvedTheme, mounted, toggleTheme, setTheme } = useTheme()
+	const { theme, resolvedTheme, mounted, setTheme } = useTheme()
+	const { getBinaryNextTheme, runThemeTransition } = useThemeTransition({
+		resolvedTheme,
+		setTheme,
+	})
 	const [isOpen, setIsOpen] = useState(false)
 
 	const sizeClasses = {
@@ -116,8 +121,8 @@ export function ThemeToggle({
 							{themes.map((themeOption) => (
 								<button
 									key={themeOption.key}
-									onClick={() => {
-										setTheme(themeOption.key)
+									onClick={(event) => {
+										runThemeTransition(themeOption.key, event)
 										setIsOpen(false)
 									}}
 									className="w-full flex items-center gap-3 px-3 py-2 text-sm text-foreground hover:bg-secondary first:rounded-t-lg last:rounded-b-lg transition-colors"
@@ -141,9 +146,9 @@ export function ThemeToggle({
 
 	return (
 		<motion.button
-			onClick={
-				showSystemOption ? toggleTheme : () => setTheme(resolvedTheme === "dark" ? "light" : "dark")
-			}
+			onClick={(event) => {
+				runThemeTransition(getBinaryNextTheme(), event)
+			}}
 			className={cn(
 				"relative rounded-lg text-foreground hover:bg-secondary transition-colors duration-150 overflow-hidden",
 				sizeClasses[size],

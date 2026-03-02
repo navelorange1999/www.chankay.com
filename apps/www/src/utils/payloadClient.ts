@@ -99,11 +99,17 @@ export class PayloadClient {
 	async getBySlug<T>(
 		collection: string,
 		slug: string,
-		options?: PayloadQueryOptions & { depth?: number }
+		options?: PayloadQueryOptions & {
+			depth?: number
+			where?: Record<string, unknown>
+		}
 	): Promise<T | null> {
 		const result = await this.getCollection<T>(collection, {
 			...options,
-			where: { slug: { equals: slug } },
+			where: {
+				...(options?.where ?? {}),
+				slug: { equals: slug },
+			},
 			limit: 1,
 		})
 

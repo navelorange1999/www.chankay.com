@@ -1,21 +1,13 @@
 import { payloadClient } from "@/utils/payloadClient"
 import type { Page } from "@repo/typescript-config/typings/payload-types"
 
-/**
- * Get homepage data
- */
-export async function getHomePage(): Promise<Page | null> {
-	try {
-		const page = await payloadClient.getBySlug<Page>("pages", "/", {
-			depth: 2,
-			revalidate: 60,
-			tags: ["page:/"],
-		})
+function getPageVisibilityWhere(): Record<string, { equals: string }> | undefined {
+	if (process.env.NODE_ENV === "development") {
+		return undefined
+	}
 
-		return page
-	} catch (error) {
-		console.error("Error fetching homepage:", error)
-		return null
+	return {
+		status: { equals: "published" },
 	}
 }
 
@@ -28,6 +20,7 @@ export async function getPageBySlug(slug: string): Promise<Page | null> {
 			depth: 2,
 			revalidate: 60,
 			tags: [`page:${slug}`],
+			where: getPageVisibilityWhere(),
 		})
 	} catch (error) {
 		console.error(`Error fetching page ${slug}:`, error)
@@ -43,6 +36,7 @@ export async function getAllPages(): Promise<Page[]> {
 		const result = await payloadClient.getCollection<Page>("pages", {
 			limit: 100,
 			revalidate: 3600, // 1 hour
+			where: getPageVisibilityWhere(),
 		})
 
 		return result.docs

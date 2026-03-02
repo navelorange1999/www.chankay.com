@@ -14,6 +14,7 @@ import { ThemeToggle } from "../ThemeProvider"
 import { cn } from "#utils/classnames"
 import { resolveLogoNode } from "#utils/resolveLogoNode"
 import { ImageMedia } from "../Media"
+import { useSlidingIndicator } from "#hooks/useSlidingIndicator"
 
 type MenuItem = NonNullable<NonNullable<NonNullable<SiteConfig["navigation"]>["menuItems"]>>[number]
 
@@ -25,8 +26,8 @@ export interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "", fallbackLogo }) => {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
 	const pathname = usePathname()
+	const { containerRef, setItemRef, indicator } = useSlidingIndicator(pathname)
 
 	// Extract configuration from siteConfig
 	const logo = siteConfig.logo
@@ -70,37 +71,42 @@ export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "", fall
 					</div>
 
 					{/* Desktop Navigation */}
-					<div className="hidden md:flex md:flex-1 md:items-center md:justify-start md:pl-10 md:gap-2">
+					<div
+						ref={containerRef}
+						className="relative hidden md:flex md:flex-1 md:items-center md:justify-start md:pl-10 md:gap-2"
+					>
 						{items.map((item: MenuItem) => {
 							const isActive = pathname === item.url
 							return (
-								<motion.div
+								<Link
 									key={item.label}
-									whileHover={{ scale: 1.05 }}
-									whileTap={{ scale: 0.95 }}
+									ref={(el) => setItemRef(item.url, el)}
+									href={item.url}
+									className={cn(
+										"relative px-3 py-2 text-sm font-medium transition-colors duration-200 hover:text-primary",
+										isActive ? "text-primary" : "text-muted-foreground"
+									)}
 								>
-									<Link
-										href={item.url}
-										className={`relative px-3 py-2 text-sm font-medium transition-colors duration-200 hover:text-primary ${
-											isActive ? "text-primary" : "text-muted-foreground"
-										}`}
-									>
-										{item.label}
-										{isActive && (
-											<motion.span
-												className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full"
-												layoutId="activeIndicator"
-												transition={{
-													type: "spring",
-													stiffness: 300,
-													damping: 30,
-												}}
-											/>
-										)}
-									</Link>
-								</motion.div>
+									{item.label}
+								</Link>
 							)
 						})}
+
+						{/* Sliding active indicator */}
+						{indicator && (
+							<motion.span
+								className="absolute bottom-0 h-0.5 bg-primary rounded-full pointer-events-none"
+								animate={{
+									left: indicator.left,
+									width: indicator.width,
+								}}
+								transition={{
+									type: "spring",
+									stiffness: 350,
+									damping: 30,
+								}}
+							/>
+						)}
 					</div>
 
 					{/* Theme Toggle - Desktop */}

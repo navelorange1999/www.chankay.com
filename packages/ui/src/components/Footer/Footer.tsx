@@ -39,7 +39,7 @@ export function Footer({ siteConfig, className = "" }: FooterProps) {
 				{/* Main Footer Content */}
 				<div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-4">
 					{/* Left: Logo and Name */}
-					<div className="flex items-center gap-3">
+					<div className="flex items-center gap-1">
 						{showLogo && logo && (
 							<ImageMedia
 								resource={logo}

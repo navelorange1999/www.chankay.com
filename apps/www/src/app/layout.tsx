@@ -3,6 +3,8 @@ import { cache } from "react"
 
 import { Inter } from "next/font/google"
 import NextTopLoader from "nextjs-toploader"
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import { Container, ThemeProvider, ThemeScript } from "@repo/ui"
 import { SiteConfig } from "@repo/typescript-config/typings/payload-types"
@@ -43,6 +45,8 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
 						<Container className="py-8">{children}</Container>
 					</main>
 					<Footer />
+					<Analytics />
+					<SpeedInsights />
 				</ThemeProvider>
 			</body>
 		</html>

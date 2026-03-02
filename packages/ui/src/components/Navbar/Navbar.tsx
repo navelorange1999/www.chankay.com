@@ -50,16 +50,8 @@ export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "" }) =>
 				<div className="flex justify-between items-center h-16">
 					{/* Logo */}
 					<div className="flex-shrink-0">
-						<Link aria-label={title || "Home"} href="/" className="flex items-center">
-							{showLogo && logo ? (
-								<ImageMedia resource={logo} />
-							) : (
-								!showLogo && (
-									<div className="h-8 w-8 bg-primary rounded-lg flex items-center justify-center mr-2">
-										<span className="text-primary-foreground font-bold text-lg">C</span>
-									</div>
-								)
-							)}
+						<Link aria-label={title || "Home"} href="/" className="flex items-center gap-1">
+							{showLogo && logo && <ImageMedia resource={logo} />}
 							{showSiteName && (
 								<span className="text-xl font-semibold text-foreground">{title}</span>
 							)}

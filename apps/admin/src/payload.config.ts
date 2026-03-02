@@ -152,13 +152,13 @@ export default buildConfig({
 			login: "/auth/login",
 			logout: "/auth/logout",
 		},
-		// autoLogin:
-		// 	process.env.NODE_ENV === "development"
-		// 		? {
-		// 				email: "local@test.com",
-		// 				password: "local",
-		// 			}
-		// 		: false,
+		autoLogin:
+			process.env.NODE_ENV === "development"
+				? {
+						email: "local@test.com",
+						password: "local",
+					}
+				: false,
 
 		components: {
 			views: {

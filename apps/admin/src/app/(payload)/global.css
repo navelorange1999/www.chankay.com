@@ -1,4 +1,12 @@
 @layer payload-default {
 	@import "@repo/tailwind-config";
 	@import "@repo/ui/styles.css";
+
+	input[type="radio"] {
+		& + span {
+			&::before {
+				@apply border-2 border-muted bg-popover;
+			}
+		}
+	}
 }

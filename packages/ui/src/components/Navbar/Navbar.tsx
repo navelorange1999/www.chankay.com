@@ -59,7 +59,7 @@ export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "", fall
 			)}
 		>
 			<Container>
-				<div className="flex justify-between items-center h-16">
+				<div className="flex justify-between items-center h-[var(--navbar-height,4rem)]">
 					{/* Logo */}
 					<div className="flex-shrink-0">
 						<Link aria-label={title || "Home"} href="/" className="flex items-center gap-1">

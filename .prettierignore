@@ -20,6 +20,7 @@ coverage/
 # PayloadCMS generated files
 importMap.js
 **/importMap.js
+packages/typescript-config/typings/payload-types.ts
 
 # Package manager
 pnpm-lock.yaml

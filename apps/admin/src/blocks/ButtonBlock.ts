@@ -1,4 +1,5 @@
 import type { BlockDefinition } from "./types"
+import { buttonIconOptions } from "@repo/ui"
 
 export const ButtonBlock: BlockDefinition = {
 	slug: "button",
@@ -10,8 +11,10 @@ export const ButtonBlock: BlockDefinition = {
 		{
 			name: "label",
 			type: "text",
-			required: true,
 			label: "Label",
+			admin: {
+				description: "Optional when size is Icon and an icon is selected.",
+			},
 		},
 		{
 			name: "href",
@@ -22,11 +25,57 @@ export const ButtonBlock: BlockDefinition = {
 		{
 			name: "variant",
 			type: "radio",
-			defaultValue: "primary",
+			label: "Variant",
+			defaultValue: "default",
 			options: [
-				{ label: "Primary", value: "primary" },
+				{ label: "Default", value: "default" },
 				{ label: "Secondary", value: "secondary" },
+				{ label: "Outline", value: "outline" },
+				{ label: "Ghost", value: "ghost" },
+				{ label: "Link", value: "link" },
+				{ label: "Destructive", value: "destructive" },
+				{ label: "Primary (Legacy)", value: "primary" },
 			],
+		},
+		{
+			name: "size",
+			type: "radio",
+			label: "Size",
+			defaultValue: "default",
+			options: [
+				{ label: "Default", value: "default" },
+				{ label: "Small", value: "sm" },
+				{ label: "Large", value: "lg" },
+				{ label: "Icon", value: "icon" },
+			],
+		},
+		{
+			name: "icon",
+			type: "select",
+			label: "Icon",
+			defaultValue: "none",
+			options: [...buttonIconOptions],
+		},
+		{
+			name: "iconPosition",
+			type: "radio",
+			label: "Icon Position",
+			defaultValue: "left",
+			options: [
+				{ label: "Left", value: "left" },
+				{ label: "Right", value: "right" },
+			],
+			admin: {
+				condition: (_, siblingData) => siblingData?.icon && siblingData?.icon !== "none",
+			},
+		},
+		{
+			name: "className",
+			type: "text",
+			label: "Button Class Name",
+			admin: {
+				description: "Tailwind classes for advanced customization.",
+			},
 		},
 		{
 			name: "external",

@@ -270,43 +270,12 @@ function containerBlock(slug: string, childBlocks: BlockDefinition[]): BlockDefi
 	}
 }
 
-function cardBlock(slug: string, childBlocks: BlockDefinition[]): BlockDefinition {
-	return {
-		slug,
-		labels: {
-			singular: "Card (Structure)",
-			plural: "Cards (Structure)",
-		},
-		fields: [
-			{
-				name: "className",
-				type: "text",
-				label: "Class Name",
-				admin: {
-					description:
-						"Tailwind classes (advanced). Prefer using the config options above when possible.",
-				},
-			},
-			{
-				name: "children",
-				type: "blocks",
-				label: "Children",
-				admin: {
-					description: "Nest Structure and Content blocks (max depth: 4)",
-				},
-				blocks: childBlocks,
-			},
-		],
-	}
-}
-
 // Depth 4: structure nodes can contain only leaf content blocks (no more structure nesting)
 const childBlocksLevel4: BlockDefinition[] = [...sharedContentBlocks]
 const structureBlocksLevel4: BlockDefinition[] = [
 	containerBlock("structureContainer4", childBlocksLevel4),
 	flexBlock("structureFlex4", childBlocksLevel4),
 	gridBlock("structureGrid4", childBlocksLevel4),
-	cardBlock("structureCard4", childBlocksLevel4),
 ]
 
 // Depth 3
@@ -315,7 +284,6 @@ const structureBlocksLevel3: BlockDefinition[] = [
 	containerBlock("structureContainer3", childBlocksLevel3),
 	flexBlock("structureFlex3", childBlocksLevel3),
 	gridBlock("structureGrid3", childBlocksLevel3),
-	cardBlock("structureCard3", childBlocksLevel3),
 ]
 
 // Depth 2
@@ -324,7 +292,6 @@ const structureBlocksLevel2: BlockDefinition[] = [
 	containerBlock("structureContainer2", childBlocksLevel2),
 	flexBlock("structureFlex2", childBlocksLevel2),
 	gridBlock("structureGrid2", childBlocksLevel2),
-	cardBlock("structureCard2", childBlocksLevel2),
 ]
 
 // Depth 1 (top-level)
@@ -333,7 +300,6 @@ export const structureBlocksLevel1: BlockDefinition[] = [
 	containerBlock("structureContainer1", childBlocksLevel1),
 	flexBlock("structureFlex1", childBlocksLevel1),
 	gridBlock("structureGrid1", childBlocksLevel1),
-	cardBlock("structureCard1", childBlocksLevel1),
 ]
 
 export const structureBlocks: BlockDefinition[] = [...structureBlocksLevel1, ...sharedContentBlocks]

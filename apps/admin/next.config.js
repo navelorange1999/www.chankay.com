@@ -1,8 +1,16 @@
+import path from "path"
+import { fileURLToPath } from "url"
 import { withPayload } from "@payloadcms/next/withPayload"
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const repoRoot = path.join(__dirname, "../..")
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	// Your Next.js config here
+	turbopack: {
+		root: repoRoot,
+	},
 	experimental: {
 		reactCompiler: false,
 	},

@@ -70,14 +70,6 @@ export const ButtonBlock: BlockDefinition = {
 			},
 		},
 		{
-			name: "className",
-			type: "text",
-			label: "Button Class Name",
-			admin: {
-				description: "Tailwind classes for advanced customization.",
-			},
-		},
-		{
 			name: "external",
 			type: "checkbox",
 			label: "External Link",

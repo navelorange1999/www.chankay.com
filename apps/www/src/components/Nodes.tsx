@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { Card, CardContent, Container, Flex, Grid } from "@repo/ui"
+import { Container, Flex, Grid } from "@repo/ui"
 import type { Page } from "@repo/typescript-config/typings/payload-types"
 
 import { isLeafBlock, renderLeafBlock } from "@/components/nodes/leafRenderers"
@@ -83,7 +83,6 @@ function renderBlock(block: StructureBlock, key: string): React.ReactNode {
 							? (asOptionalString(data.size) as "default" | "wide" | "full")
 							: "default"
 					}
-					className={asOptionalString(data.className)}
 				>
 					{renderBlocks(children)}
 				</Container>
@@ -146,7 +145,6 @@ function renderBlock(block: StructureBlock, key: string): React.ReactNode {
 							: "start"
 					}
 					gap={asGap(data.gap, "md")}
-					className={asOptionalString(data.className)}
 				>
 					{renderBlocks(children)}
 				</Flex>
@@ -195,18 +193,9 @@ function renderBlock(block: StructureBlock, key: string): React.ReactNode {
 							? (asOptionalString(data.justifyItems) as "start" | "center" | "end" | "stretch")
 							: "stretch"
 					}
-					className={asOptionalString(data.className)}
 				>
 					{renderBlocks(children)}
 				</Grid>
-			)
-		}
-
-		if (block.blockType.startsWith("structureCard")) {
-			return (
-				<Card key={key} className={asOptionalString(data.className)}>
-					<CardContent className="flex flex-col gap-6">{renderBlocks(children)}</CardContent>
-				</Card>
 			)
 		}
 	}

@@ -56,13 +56,7 @@ export function renderButtonBlock(blockData: Record<string, unknown>, key?: stri
 	if (!iconNode && !hasText) return null
 
 	return (
-		<Button
-			key={key}
-			asChild
-			variant={variant}
-			size={size}
-			className={asOptionalString(blockData.className)}
-		>
+		<Button key={key} asChild variant={variant} size={size}>
 			<Link href={href} target={external ? "_blank" : undefined}>
 				{iconPosition === "left" && iconNode}
 				{hasText ? label : null}

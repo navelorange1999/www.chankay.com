@@ -115,13 +115,5 @@ export const HeatmapBlock: BlockDefinition = {
 				},
 			],
 		},
-		{
-			name: "className",
-			type: "text",
-			label: "Class Name",
-			admin: {
-				description: "Tailwind classes (advanced). Prefer using the options above when possible.",
-			},
-		},
 	],
 }

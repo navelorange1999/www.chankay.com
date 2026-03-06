@@ -101,15 +101,6 @@ function flexBlock(slug: string, childBlocks: BlockDefinition[]): BlockDefinitio
 				options: gapOptions,
 			},
 			{
-				name: "className",
-				type: "text",
-				label: "Class Name",
-				admin: {
-					description:
-						"Tailwind classes (advanced). Prefer using the config options above when possible.",
-				},
-			},
-			{
 				name: "children",
 				type: "blocks",
 				label: "Children",
@@ -208,15 +199,6 @@ function gridBlock(slug: string, childBlocks: BlockDefinition[]): BlockDefinitio
 				],
 			},
 			{
-				name: "className",
-				type: "text",
-				label: "Class Name",
-				admin: {
-					description:
-						"Tailwind classes (advanced). Prefer using the config options above when possible.",
-				},
-			},
-			{
 				name: "children",
 				type: "blocks",
 				label: "Children",
@@ -247,15 +229,6 @@ function containerBlock(slug: string, childBlocks: BlockDefinition[]): BlockDefi
 					{ label: "Wide", value: "wide" },
 					{ label: "Full", value: "full" },
 				],
-			},
-			{
-				name: "className",
-				type: "text",
-				label: "Class Name",
-				admin: {
-					description:
-						"Tailwind classes (advanced). Prefer using the config options above when possible.",
-				},
 			},
 			{
 				name: "children",

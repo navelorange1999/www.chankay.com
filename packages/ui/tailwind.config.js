@@ -3,7 +3,7 @@ import typography from "@tailwindcss/typography"
 
 /** @type {import('tailwindcss').Config} */
 const config = {
-	content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
+	content: ["./src/**/*.{ts,tsx}"],
 	darkMode: ["selector", '[data-theme="dark"]'],
 	plugins: [tailwindcssAnimate, typography],
 	prefix: "",
@@ -106,10 +106,58 @@ const config = {
 				DEFAULT: {
 					css: [
 						{
-							"--tw-prose-body": "var(--text)",
-							"--tw-prose-headings": "var(--text)",
+							"--tw-prose-body": "var(--color-foreground)",
+							"--tw-prose-headings": "var(--color-foreground)",
+							"--tw-prose-links": "var(--color-primary)",
+							"--tw-prose-bold": "var(--color-foreground)",
+							"--tw-prose-counters": "var(--color-muted-foreground)",
+							"--tw-prose-bullets": "var(--color-muted-foreground)",
+							"--tw-prose-hr": "var(--color-border)",
+							"--tw-prose-quotes": "var(--color-muted-foreground)",
+							"--tw-prose-quote-borders":
+								"color-mix(in oklab, var(--color-primary) 30%, transparent)",
+							"--tw-prose-captions": "var(--color-muted-foreground)",
+							"--tw-prose-code": "var(--color-foreground)",
+							"--tw-prose-pre-code": "var(--color-foreground)",
+							"--tw-prose-pre-bg": "var(--color-muted)",
+							"--tw-prose-th-borders": "var(--color-border)",
+							"--tw-prose-td-borders": "var(--color-border)",
+							a: {
+								fontWeight: "500",
+								textDecorationThickness: "0.08em",
+								textUnderlineOffset: "0.18em",
+							},
+							blockquote: {
+								fontStyle: "normal",
+								backgroundColor: "color-mix(in oklab, var(--color-muted) 55%, transparent)",
+								borderRadius: "0 var(--radius-md) var(--radius-md) 0",
+								paddingTop: "0.25rem",
+								paddingBottom: "0.25rem",
+								paddingRight: "1rem",
+							},
+							code: {
+								backgroundColor: "color-mix(in oklab, var(--color-muted) 82%, transparent)",
+								border: "1px solid color-mix(in oklab, var(--color-border) 85%, transparent)",
+								borderRadius: "var(--radius-sm)",
+								padding: "0.15rem 0.35rem",
+							},
+							pre: {
+								border: "1px solid var(--color-border)",
+								borderRadius: "var(--radius-lg)",
+								boxShadow: "var(--shadow-xs)",
+							},
+							"pre code": {
+								backgroundColor: "transparent",
+								border: "0",
+								padding: "0",
+							},
+							table: {
+								borderCollapse: "collapse",
+								overflow: "hidden",
+								borderRadius: "var(--radius-lg)",
+							},
 							h1: {
-								fontWeight: "normal",
+								fontWeight: 700,
 								marginBottom: "0.25em",
 							},
 						},

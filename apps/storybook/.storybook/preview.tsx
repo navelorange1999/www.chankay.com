@@ -7,6 +7,8 @@ import "../src/styles/global.css"
 const ThemeWrapper = ({ children, theme }: { children: React.ReactNode; theme: string }) => {
 	React.useEffect(() => {
 		const root = document.documentElement
+		root.setAttribute("data-theme", theme)
+
 		if (theme === "dark") {
 			root.classList.add("dark")
 			root.style.colorScheme = "dark"
@@ -17,7 +19,7 @@ const ThemeWrapper = ({ children, theme }: { children: React.ReactNode; theme: s
 	}, [theme])
 
 	return (
-		<ThemeProvider attribute="class" defaultTheme={theme} enableSystem={false}>
+		<ThemeProvider key={theme} attribute="class" defaultTheme={theme} enableSystem={false}>
 			{children}
 		</ThemeProvider>
 	)

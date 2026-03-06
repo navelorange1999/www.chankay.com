@@ -1,5 +1,6 @@
 export * from "./types"
 export * from "./TextBlock"
+export * from "./MarkdownBlock"
 export * from "./HandWritingBlock"
 export * from "./HeatmapBlock"
 export * from "./MediaImageBlock"

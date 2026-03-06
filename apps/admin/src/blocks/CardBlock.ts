@@ -1,6 +1,21 @@
 import type { BlockDefinition } from "./types"
 import { ButtonBlock } from "./ButtonBlock"
+import { HandWritingBlock } from "./HandWritingBlock"
+import { HeatmapBlock } from "./HeatmapBlock"
+import { MarkdownBlock } from "./MarkdownBlock"
+import { MediaImageBlock } from "./MediaImageBlock"
+import { SpotifyIframeBlock } from "./SpotifyIframeBlock"
 import { TextBlock } from "./TextBlock"
+
+const cardContentBlocks: BlockDefinition[] = [
+	TextBlock,
+	MarkdownBlock,
+	HandWritingBlock,
+	HeatmapBlock,
+	MediaImageBlock,
+	ButtonBlock,
+	SpotifyIframeBlock,
+]
 
 export const CardBlock: BlockDefinition = {
 	slug: "card",
@@ -9,14 +24,6 @@ export const CardBlock: BlockDefinition = {
 		plural: "Cards",
 	},
 	fields: [
-		{
-			name: "className",
-			type: "text",
-			label: "Card Class Name",
-			admin: {
-				description: "Tailwind classes for the outer Card container. Leave empty to use defaults.",
-			},
-		},
 		{
 			name: "showHeader",
 			type: "checkbox",
@@ -40,30 +47,6 @@ export const CardBlock: BlockDefinition = {
 			},
 		},
 		{
-			name: "headerClassName",
-			type: "text",
-			label: "Header Class Name",
-			admin: {
-				condition: (_, siblingData) => siblingData?.showHeader !== false,
-			},
-		},
-		{
-			name: "titleClassName",
-			type: "text",
-			label: "Title Class Name",
-			admin: {
-				condition: (_, siblingData) => siblingData?.showHeader !== false,
-			},
-		},
-		{
-			name: "descriptionClassName",
-			type: "text",
-			label: "Description Class Name",
-			admin: {
-				condition: (_, siblingData) => siblingData?.showHeader !== false,
-			},
-		},
-		{
 			name: "actionBlocks",
 			type: "blocks",
 			label: "Header Action Blocks",
@@ -80,18 +63,12 @@ export const CardBlock: BlockDefinition = {
 			defaultValue: true,
 		},
 		{
-			name: "content",
-			type: "textarea",
-			label: "Card Content",
+			name: "contentBlocks",
+			type: "blocks",
+			label: "Content Blocks",
+			blocks: cardContentBlocks,
 			admin: {
-				condition: (_, siblingData) => siblingData?.showContent !== false,
-			},
-		},
-		{
-			name: "contentClassName",
-			type: "text",
-			label: "Content Class Name",
-			admin: {
+				description: "Use content blocks inside the card body.",
 				condition: (_, siblingData) => siblingData?.showContent !== false,
 			},
 		},
@@ -100,14 +77,6 @@ export const CardBlock: BlockDefinition = {
 			type: "checkbox",
 			label: "Show Footer",
 			defaultValue: false,
-		},
-		{
-			name: "footerClassName",
-			type: "text",
-			label: "Footer Class Name",
-			admin: {
-				condition: (_, siblingData) => siblingData?.showFooter === true,
-			},
 		},
 		{
 			name: "footerBlocks",

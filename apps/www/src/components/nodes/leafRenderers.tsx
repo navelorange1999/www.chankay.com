@@ -6,6 +6,7 @@ import { ButtonNode } from "@/components/nodes/ButtonNode"
 import { CardNode } from "@/components/nodes/CardNode"
 import { HandWritingNode } from "@/components/nodes/HandWritingNode"
 import { HeatmapNode } from "@/components/nodes/HeatmapNode"
+import { MarkdownNode } from "@/components/nodes/MarkdownNode"
 import { MediaImageNode } from "@/components/nodes/MediaImageNode"
 import { SpotifyIframeNode } from "@/components/nodes/SpotifyIframeNode"
 import { TextNode } from "@/components/nodes/TextNode"
@@ -15,6 +16,7 @@ type StructureBlock = StructureBlocks[number]
 
 export const leafBlockTypes = [
 	"text",
+	"markdown",
 	"handWriting",
 	"mediaImage",
 	"card",
@@ -35,6 +37,7 @@ export function isLeafBlock(block: StructureBlock): block is LeafBlock {
 }
 
 type TextLeafBlock = Extract<LeafBlock, { blockType: "text" }>
+type MarkdownLeafBlock = Extract<LeafBlock, { blockType: "markdown" }>
 type HandWritingLeafBlock = Extract<LeafBlock, { blockType: "handWriting" }>
 type MediaImageLeafBlock = Extract<LeafBlock, { blockType: "mediaImage" }>
 type CardLeafBlock = Extract<LeafBlock, { blockType: "card" }>
@@ -46,6 +49,7 @@ type LeafRenderer = (block: LeafBlock, key: string) => React.ReactNode
 
 const leafRenderers: Record<LeafBlockType, LeafRenderer> = {
 	text: (block, key) => <TextNode key={key} block={block as TextLeafBlock} />,
+	markdown: (block, key) => <MarkdownNode key={key} block={block as MarkdownLeafBlock} />,
 	handWriting: (block, key) => <HandWritingNode key={key} block={block as HandWritingLeafBlock} />,
 	mediaImage: (block, key) => <MediaImageNode key={key} block={block as MediaImageLeafBlock} />,
 	card: (block, key) => <CardNode key={key} block={block as CardLeafBlock} />,

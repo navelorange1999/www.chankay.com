@@ -9,11 +9,18 @@ import {
 	CardHeader,
 	CardTitle,
 	Text,
-	cn,
 } from "@repo/ui"
 import type { Page } from "@repo/typescript-config/typings/payload-types"
 
 import { renderButtonBlock } from "@/components/nodes/ButtonNode"
+import { HandWritingNode, type HandWritingNodeProps } from "@/components/nodes/HandWritingNode"
+import { HeatmapNode, type HeatmapNodeProps } from "@/components/nodes/HeatmapNode"
+import { MarkdownNode, type MarkdownNodeProps } from "@/components/nodes/MarkdownNode"
+import { MediaImageNode, type MediaImageNodeProps } from "@/components/nodes/MediaImageNode"
+import {
+	SpotifyIframeNode,
+	type SpotifyIframeNodeProps,
+} from "@/components/nodes/SpotifyIframeNode"
 
 type CardBlock = Extract<NonNullable<Page["structure"]>[number], { blockType: "card" }>
 
@@ -73,6 +80,36 @@ function renderSupportedBlock(block: Record<string, unknown>, key: string) {
 	return null
 }
 
+function renderCardContentBlock(block: Record<string, unknown>, key: string) {
+	const blockType = asOptionalString(block.blockType)
+
+	if (blockType === "text" || blockType === "button") {
+		return renderSupportedBlock(block, key)
+	}
+
+	if (blockType === "markdown") {
+		return <MarkdownNode key={key} block={block as MarkdownNodeProps["block"]} />
+	}
+
+	if (blockType === "handWriting") {
+		return <HandWritingNode key={key} block={block as HandWritingNodeProps["block"]} />
+	}
+
+	if (blockType === "mediaImage") {
+		return <MediaImageNode key={key} block={block as MediaImageNodeProps["block"]} />
+	}
+
+	if (blockType === "spotifyIframe") {
+		return <SpotifyIframeNode key={key} block={block as SpotifyIframeNodeProps["block"]} />
+	}
+
+	if (blockType === "heatmap") {
+		return <HeatmapNode key={key} block={block as HeatmapNodeProps["block"]} />
+	}
+
+	return null
+}
+
 export function CardNode({ block }: CardNodeProps) {
 	const blockData = block as unknown as Record<string, unknown>
 
@@ -82,13 +119,17 @@ export function CardNode({ block }: CardNodeProps) {
 
 	const title = asOptionalString(blockData.title)
 	const description = asOptionalString(blockData.description)
-	const content = asOptionalString(blockData.content)
 
 	const actionBlocks = asArray(blockData.actionBlocks)
+	const contentBlocks = asArray(blockData.contentBlocks)
 	const footerBlocks = asArray(blockData.footerBlocks)
 
 	const actionNodes = actionBlocks
 		.map((nestedBlock, index) => renderSupportedBlock(nestedBlock, `action-${index}`))
+		.filter(Boolean)
+
+	const contentNodes = contentBlocks
+		.map((nestedBlock, index) => renderCardContentBlock(nestedBlock, `content-${index}`))
 		.filter(Boolean)
 
 	const footerNodes = footerBlocks
@@ -96,21 +137,15 @@ export function CardNode({ block }: CardNodeProps) {
 		.filter(Boolean)
 
 	const shouldRenderHeader = showHeader && Boolean(title || description || actionNodes.length > 0)
-	const shouldRenderContent = showContent && Boolean(content)
+	const shouldRenderContent = showContent && contentNodes.length > 0
 	const shouldRenderFooter = showFooter && footerNodes.length > 0
 
 	return (
-		<Card className={cn("mx-auto w-full max-w-2xl", asOptionalString(blockData.className))}>
+		<Card className="mx-auto w-full max-w-2xl">
 			{shouldRenderHeader && (
-				<CardHeader className={asOptionalString(blockData.headerClassName)}>
-					{title && (
-						<CardTitle className={asOptionalString(blockData.titleClassName)}>{title}</CardTitle>
-					)}
-					{description && (
-						<CardDescription className={asOptionalString(blockData.descriptionClassName)}>
-							{description}
-						</CardDescription>
-					)}
+				<CardHeader>
+					{title && <CardTitle>{title}</CardTitle>}
+					{description && <CardDescription>{description}</CardDescription>}
 					{actionNodes.length > 0 && (
 						<CardAction>
 							<div className="flex flex-col items-end gap-2">{actionNodes}</div>
@@ -119,14 +154,10 @@ export function CardNode({ block }: CardNodeProps) {
 				</CardHeader>
 			)}
 
-			{shouldRenderContent && (
-				<CardContent className={asOptionalString(blockData.contentClassName)}>
-					{content}
-				</CardContent>
-			)}
+			{shouldRenderContent && <CardContent>{contentNodes}</CardContent>}
 
 			{shouldRenderFooter && (
-				<CardFooter className={asOptionalString(blockData.footerClassName)}>
+				<CardFooter>
 					<div className="flex w-full flex-wrap items-center gap-2">{footerNodes}</div>
 				</CardFooter>
 			)}

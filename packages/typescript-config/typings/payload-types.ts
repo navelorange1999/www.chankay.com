@@ -502,6 +502,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -961,6 +982,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -1423,6 +1465,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -1854,6 +1917,27 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'mediaImage';
+                                        }
+                                      | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
                                         }
                                       | {
                                           showHeader?: boolean | null;
@@ -2287,6 +2371,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -2746,6 +2851,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -3208,6 +3334,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -3639,6 +3786,27 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'mediaImage';
+                                        }
+                                      | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
                                         }
                                       | {
                                           showHeader?: boolean | null;
@@ -4073,6 +4241,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -4532,6 +4721,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -4994,6 +5204,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -5427,6 +5658,27 @@ export interface Page {
                                           blockType: 'mediaImage';
                                         }
                                       | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
+                                        }
+                                      | {
                                           showHeader?: boolean | null;
                                           title?: string | null;
                                           description?: string | null;
@@ -5832,6 +6084,27 @@ export interface Page {
                                 id?: string | null;
                                 blockName?: string | null;
                                 blockType: 'mediaImage';
+                              }
+                            | {
+                                /**
+                                 * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                 */
+                                previewUrl: string;
+                                /**
+                                 * Milliseconds to wait before capturing the preview screenshot.
+                                 */
+                                waitForMs?: number | null;
+                                /**
+                                 * Managed automatically after the page is saved.
+                                 */
+                                previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                /**
+                                 * Generated automatically from the Preview URL.
+                                 */
+                                previewImage?: (string | null) | MediaInterface;
+                                id?: string | null;
+                                blockName?: string | null;
+                                blockType: 'previewUrl';
                               }
                             | {
                                 showHeader?: boolean | null;
@@ -6260,6 +6533,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -6719,6 +7013,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -7181,6 +7496,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -7612,6 +7948,27 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'mediaImage';
+                                        }
+                                      | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
                                         }
                                       | {
                                           showHeader?: boolean | null;
@@ -8045,6 +8402,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -8504,6 +8882,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -8966,6 +9365,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -9397,6 +9817,27 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'mediaImage';
+                                        }
+                                      | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
                                         }
                                       | {
                                           showHeader?: boolean | null;
@@ -9831,6 +10272,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -10290,6 +10752,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -10752,6 +11235,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -11185,6 +11689,27 @@ export interface Page {
                                           blockType: 'mediaImage';
                                         }
                                       | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
+                                        }
+                                      | {
                                           showHeader?: boolean | null;
                                           title?: string | null;
                                           description?: string | null;
@@ -11590,6 +12115,27 @@ export interface Page {
                                 id?: string | null;
                                 blockName?: string | null;
                                 blockType: 'mediaImage';
+                              }
+                            | {
+                                /**
+                                 * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                 */
+                                previewUrl: string;
+                                /**
+                                 * Milliseconds to wait before capturing the preview screenshot.
+                                 */
+                                waitForMs?: number | null;
+                                /**
+                                 * Managed automatically after the page is saved.
+                                 */
+                                previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                /**
+                                 * Generated automatically from the Preview URL.
+                                 */
+                                previewImage?: (string | null) | MediaInterface;
+                                id?: string | null;
+                                blockName?: string | null;
+                                blockType: 'previewUrl';
                               }
                             | {
                                 showHeader?: boolean | null;
@@ -12019,6 +12565,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -12478,6 +13045,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -12940,6 +13528,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -13371,6 +13980,27 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'mediaImage';
+                                        }
+                                      | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
                                         }
                                       | {
                                           showHeader?: boolean | null;
@@ -13804,6 +14434,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -14263,6 +14914,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -14725,6 +15397,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -15156,6 +15849,27 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'mediaImage';
+                                        }
+                                      | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
                                         }
                                       | {
                                           showHeader?: boolean | null;
@@ -15590,6 +16304,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -16049,6 +16784,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -16511,6 +17267,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -16944,6 +17721,27 @@ export interface Page {
                                           blockType: 'mediaImage';
                                         }
                                       | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
+                                        }
+                                      | {
                                           showHeader?: boolean | null;
                                           title?: string | null;
                                           description?: string | null;
@@ -17351,6 +18149,27 @@ export interface Page {
                                 blockType: 'mediaImage';
                               }
                             | {
+                                /**
+                                 * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                 */
+                                previewUrl: string;
+                                /**
+                                 * Milliseconds to wait before capturing the preview screenshot.
+                                 */
+                                waitForMs?: number | null;
+                                /**
+                                 * Managed automatically after the page is saved.
+                                 */
+                                previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                /**
+                                 * Generated automatically from the Preview URL.
+                                 */
+                                previewImage?: (string | null) | MediaInterface;
+                                id?: string | null;
+                                blockName?: string | null;
+                                blockType: 'previewUrl';
+                              }
+                            | {
                                 showHeader?: boolean | null;
                                 title?: string | null;
                                 description?: string | null;
@@ -17746,6 +18565,27 @@ export interface Page {
                       id?: string | null;
                       blockName?: string | null;
                       blockType: 'mediaImage';
+                    }
+                  | {
+                      /**
+                       * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                       */
+                      previewUrl: string;
+                      /**
+                       * Milliseconds to wait before capturing the preview screenshot.
+                       */
+                      waitForMs?: number | null;
+                      /**
+                       * Managed automatically after the page is saved.
+                       */
+                      previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                      /**
+                       * Generated automatically from the Preview URL.
+                       */
+                      previewImage?: (string | null) | MediaInterface;
+                      id?: string | null;
+                      blockName?: string | null;
+                      blockType: 'previewUrl';
                     }
                   | {
                       showHeader?: boolean | null;
@@ -18157,6 +18997,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -18616,6 +19477,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -19078,6 +19960,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -19509,6 +20412,27 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'mediaImage';
+                                        }
+                                      | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
                                         }
                                       | {
                                           showHeader?: boolean | null;
@@ -19942,6 +20866,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -20401,6 +21346,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -20863,6 +21829,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -21294,6 +22281,27 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'mediaImage';
+                                        }
+                                      | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
                                         }
                                       | {
                                           showHeader?: boolean | null;
@@ -21728,6 +22736,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -22187,6 +23216,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -22649,6 +23699,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -23082,6 +24153,27 @@ export interface Page {
                                           blockType: 'mediaImage';
                                         }
                                       | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
+                                        }
+                                      | {
                                           showHeader?: boolean | null;
                                           title?: string | null;
                                           description?: string | null;
@@ -23487,6 +24579,27 @@ export interface Page {
                                 id?: string | null;
                                 blockName?: string | null;
                                 blockType: 'mediaImage';
+                              }
+                            | {
+                                /**
+                                 * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                 */
+                                previewUrl: string;
+                                /**
+                                 * Milliseconds to wait before capturing the preview screenshot.
+                                 */
+                                waitForMs?: number | null;
+                                /**
+                                 * Managed automatically after the page is saved.
+                                 */
+                                previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                /**
+                                 * Generated automatically from the Preview URL.
+                                 */
+                                previewImage?: (string | null) | MediaInterface;
+                                id?: string | null;
+                                blockName?: string | null;
+                                blockType: 'previewUrl';
                               }
                             | {
                                 showHeader?: boolean | null;
@@ -23915,6 +25028,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -24374,6 +25508,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -24836,6 +25991,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -25267,6 +26443,27 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'mediaImage';
+                                        }
+                                      | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
                                         }
                                       | {
                                           showHeader?: boolean | null;
@@ -25700,6 +26897,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -26159,6 +27377,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -26621,6 +27860,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -27052,6 +28312,27 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'mediaImage';
+                                        }
+                                      | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
                                         }
                                       | {
                                           showHeader?: boolean | null;
@@ -27486,6 +28767,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -27945,6 +29247,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -28407,6 +29730,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -28840,6 +30184,27 @@ export interface Page {
                                           blockType: 'mediaImage';
                                         }
                                       | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
+                                        }
+                                      | {
                                           showHeader?: boolean | null;
                                           title?: string | null;
                                           description?: string | null;
@@ -29245,6 +30610,27 @@ export interface Page {
                                 id?: string | null;
                                 blockName?: string | null;
                                 blockType: 'mediaImage';
+                              }
+                            | {
+                                /**
+                                 * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                 */
+                                previewUrl: string;
+                                /**
+                                 * Milliseconds to wait before capturing the preview screenshot.
+                                 */
+                                waitForMs?: number | null;
+                                /**
+                                 * Managed automatically after the page is saved.
+                                 */
+                                previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                /**
+                                 * Generated automatically from the Preview URL.
+                                 */
+                                previewImage?: (string | null) | MediaInterface;
+                                id?: string | null;
+                                blockName?: string | null;
+                                blockType: 'previewUrl';
                               }
                             | {
                                 showHeader?: boolean | null;
@@ -29674,6 +31060,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -30133,6 +31540,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -30595,6 +32023,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -31026,6 +32475,27 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'mediaImage';
+                                        }
+                                      | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
                                         }
                                       | {
                                           showHeader?: boolean | null;
@@ -31459,6 +32929,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -31918,6 +33409,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -32380,6 +33892,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -32811,6 +34344,27 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'mediaImage';
+                                        }
+                                      | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
                                         }
                                       | {
                                           showHeader?: boolean | null;
@@ -33245,6 +34799,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -33704,6 +35279,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -34166,6 +35762,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -34599,6 +36216,27 @@ export interface Page {
                                           blockType: 'mediaImage';
                                         }
                                       | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
+                                        }
+                                      | {
                                           showHeader?: boolean | null;
                                           title?: string | null;
                                           description?: string | null;
@@ -35006,6 +36644,27 @@ export interface Page {
                                 blockType: 'mediaImage';
                               }
                             | {
+                                /**
+                                 * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                 */
+                                previewUrl: string;
+                                /**
+                                 * Milliseconds to wait before capturing the preview screenshot.
+                                 */
+                                waitForMs?: number | null;
+                                /**
+                                 * Managed automatically after the page is saved.
+                                 */
+                                previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                /**
+                                 * Generated automatically from the Preview URL.
+                                 */
+                                previewImage?: (string | null) | MediaInterface;
+                                id?: string | null;
+                                blockName?: string | null;
+                                blockType: 'previewUrl';
+                              }
+                            | {
                                 showHeader?: boolean | null;
                                 title?: string | null;
                                 description?: string | null;
@@ -35401,6 +37060,27 @@ export interface Page {
                       id?: string | null;
                       blockName?: string | null;
                       blockType: 'mediaImage';
+                    }
+                  | {
+                      /**
+                       * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                       */
+                      previewUrl: string;
+                      /**
+                       * Milliseconds to wait before capturing the preview screenshot.
+                       */
+                      waitForMs?: number | null;
+                      /**
+                       * Managed automatically after the page is saved.
+                       */
+                      previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                      /**
+                       * Generated automatically from the Preview URL.
+                       */
+                      previewImage?: (string | null) | MediaInterface;
+                      id?: string | null;
+                      blockName?: string | null;
+                      blockType: 'previewUrl';
                     }
                   | {
                       showHeader?: boolean | null;
@@ -35813,6 +37493,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -36272,6 +37973,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -36734,6 +38456,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -37165,6 +38908,27 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'mediaImage';
+                                        }
+                                      | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
                                         }
                                       | {
                                           showHeader?: boolean | null;
@@ -37598,6 +39362,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -38057,6 +39842,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -38519,6 +40325,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -38950,6 +40777,27 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'mediaImage';
+                                        }
+                                      | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
                                         }
                                       | {
                                           showHeader?: boolean | null;
@@ -39384,6 +41232,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -39843,6 +41712,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -40305,6 +42195,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -40738,6 +42649,27 @@ export interface Page {
                                           blockType: 'mediaImage';
                                         }
                                       | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
+                                        }
+                                      | {
                                           showHeader?: boolean | null;
                                           title?: string | null;
                                           description?: string | null;
@@ -41143,6 +43075,27 @@ export interface Page {
                                 id?: string | null;
                                 blockName?: string | null;
                                 blockType: 'mediaImage';
+                              }
+                            | {
+                                /**
+                                 * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                 */
+                                previewUrl: string;
+                                /**
+                                 * Milliseconds to wait before capturing the preview screenshot.
+                                 */
+                                waitForMs?: number | null;
+                                /**
+                                 * Managed automatically after the page is saved.
+                                 */
+                                previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                /**
+                                 * Generated automatically from the Preview URL.
+                                 */
+                                previewImage?: (string | null) | MediaInterface;
+                                id?: string | null;
+                                blockName?: string | null;
+                                blockType: 'previewUrl';
                               }
                             | {
                                 showHeader?: boolean | null;
@@ -41571,6 +43524,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -42030,6 +44004,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -42492,6 +44487,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -42923,6 +44939,27 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'mediaImage';
+                                        }
+                                      | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
                                         }
                                       | {
                                           showHeader?: boolean | null;
@@ -43356,6 +45393,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -43815,6 +45873,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -44277,6 +46356,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -44708,6 +46808,27 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'mediaImage';
+                                        }
+                                      | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
                                         }
                                       | {
                                           showHeader?: boolean | null;
@@ -45142,6 +47263,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -45601,6 +47743,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -46063,6 +48226,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -46496,6 +48680,27 @@ export interface Page {
                                           blockType: 'mediaImage';
                                         }
                                       | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
+                                        }
+                                      | {
                                           showHeader?: boolean | null;
                                           title?: string | null;
                                           description?: string | null;
@@ -46901,6 +49106,27 @@ export interface Page {
                                 id?: string | null;
                                 blockName?: string | null;
                                 blockType: 'mediaImage';
+                              }
+                            | {
+                                /**
+                                 * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                 */
+                                previewUrl: string;
+                                /**
+                                 * Milliseconds to wait before capturing the preview screenshot.
+                                 */
+                                waitForMs?: number | null;
+                                /**
+                                 * Managed automatically after the page is saved.
+                                 */
+                                previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                /**
+                                 * Generated automatically from the Preview URL.
+                                 */
+                                previewImage?: (string | null) | MediaInterface;
+                                id?: string | null;
+                                blockName?: string | null;
+                                blockType: 'previewUrl';
                               }
                             | {
                                 showHeader?: boolean | null;
@@ -47330,6 +49556,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -47789,6 +50036,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -48251,6 +50519,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -48682,6 +50971,27 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'mediaImage';
+                                        }
+                                      | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
                                         }
                                       | {
                                           showHeader?: boolean | null;
@@ -49115,6 +51425,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -49574,6 +51905,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -50036,6 +52388,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -50467,6 +52840,27 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'mediaImage';
+                                        }
+                                      | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
                                         }
                                       | {
                                           showHeader?: boolean | null;
@@ -50901,6 +53295,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -51360,6 +53775,27 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'mediaImage';
+                                                  }
+                                                | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
                                                   }
                                                 | {
                                                     showHeader?: boolean | null;
@@ -51822,6 +54258,27 @@ export interface Page {
                                                     blockType: 'mediaImage';
                                                   }
                                                 | {
+                                                    /**
+                                                     * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                                     */
+                                                    previewUrl: string;
+                                                    /**
+                                                     * Milliseconds to wait before capturing the preview screenshot.
+                                                     */
+                                                    waitForMs?: number | null;
+                                                    /**
+                                                     * Managed automatically after the page is saved.
+                                                     */
+                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    /**
+                                                     * Generated automatically from the Preview URL.
+                                                     */
+                                                    previewImage?: (string | null) | MediaInterface;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'previewUrl';
+                                                  }
+                                                | {
                                                     showHeader?: boolean | null;
                                                     title?: string | null;
                                                     description?: string | null;
@@ -52255,6 +54712,27 @@ export interface Page {
                                           blockType: 'mediaImage';
                                         }
                                       | {
+                                          /**
+                                           * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                           */
+                                          previewUrl: string;
+                                          /**
+                                           * Milliseconds to wait before capturing the preview screenshot.
+                                           */
+                                          waitForMs?: number | null;
+                                          /**
+                                           * Managed automatically after the page is saved.
+                                           */
+                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          /**
+                                           * Generated automatically from the Preview URL.
+                                           */
+                                          previewImage?: (string | null) | MediaInterface;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'previewUrl';
+                                        }
+                                      | {
                                           showHeader?: boolean | null;
                                           title?: string | null;
                                           description?: string | null;
@@ -52662,6 +55140,27 @@ export interface Page {
                                 blockType: 'mediaImage';
                               }
                             | {
+                                /**
+                                 * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                                 */
+                                previewUrl: string;
+                                /**
+                                 * Milliseconds to wait before capturing the preview screenshot.
+                                 */
+                                waitForMs?: number | null;
+                                /**
+                                 * Managed automatically after the page is saved.
+                                 */
+                                previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                /**
+                                 * Generated automatically from the Preview URL.
+                                 */
+                                previewImage?: (string | null) | MediaInterface;
+                                id?: string | null;
+                                blockName?: string | null;
+                                blockType: 'previewUrl';
+                              }
+                            | {
                                 showHeader?: boolean | null;
                                 title?: string | null;
                                 description?: string | null;
@@ -53059,6 +55558,27 @@ export interface Page {
                       blockType: 'mediaImage';
                     }
                   | {
+                      /**
+                       * An HTTPS URL that will be screenshotted and rendered as a preview card.
+                       */
+                      previewUrl: string;
+                      /**
+                       * Milliseconds to wait before capturing the preview screenshot.
+                       */
+                      waitForMs?: number | null;
+                      /**
+                       * Managed automatically after the page is saved.
+                       */
+                      previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                      /**
+                       * Generated automatically from the Preview URL.
+                       */
+                      previewImage?: (string | null) | MediaInterface;
+                      id?: string | null;
+                      blockName?: string | null;
+                      blockType: 'previewUrl';
+                    }
+                  | {
                       showHeader?: boolean | null;
                       title?: string | null;
                       description?: string | null;
@@ -53432,6 +55952,27 @@ export interface Page {
             blockType: 'mediaImage';
           }
         | {
+            /**
+             * An HTTPS URL that will be screenshotted and rendered as a preview card.
+             */
+            previewUrl: string;
+            /**
+             * Milliseconds to wait before capturing the preview screenshot.
+             */
+            waitForMs?: number | null;
+            /**
+             * Managed automatically after the page is saved.
+             */
+            previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+            /**
+             * Generated automatically from the Preview URL.
+             */
+            previewImage?: (string | null) | MediaInterface;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'previewUrl';
+          }
+        | {
             showHeader?: boolean | null;
             title?: string | null;
             description?: string | null;
@@ -53738,6 +56279,22 @@ export interface Page {
      */
     metaTitle?: string | null;
     metaDescription?: string | null;
+    /**
+     * Generate a screenshot-based OG image from the latest preview page after saving.
+     */
+    autoGenerateOgImage?: boolean | null;
+    /**
+     * Milliseconds to wait before capturing the auto-generated OG image.
+     */
+    waitForMs?: number | null;
+    /**
+     * Managed automatically after save when auto generation is enabled.
+     */
+    ogGenerationStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+    /**
+     * When auto generation is enabled this field is updated automatically after save.
+     */
+    ogImage?: (string | null) | MediaInterface;
   };
   updatedAt: string;
   createdAt: string;
@@ -54050,6 +56607,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -54299,6 +56866,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -54555,6 +57132,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -54791,6 +57378,16 @@ export interface PagesSelect<T extends boolean = true> {
                                               | T
                                               | {
                                                   media?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -55053,6 +57650,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -55302,6 +57909,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -55558,6 +58175,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -55794,6 +58421,16 @@ export interface PagesSelect<T extends boolean = true> {
                                               | T
                                               | {
                                                   media?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -56057,6 +58694,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -56306,6 +58953,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -56562,6 +59219,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -56801,6 +59468,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                   id?: T;
                                                   blockName?: T;
                                                 };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
                                             card?:
                                               | T
                                               | {
@@ -57037,6 +59714,16 @@ export interface PagesSelect<T extends boolean = true> {
                                   | T
                                   | {
                                       media?: T;
+                                      id?: T;
+                                      blockName?: T;
+                                    };
+                                previewUrl?:
+                                  | T
+                                  | {
+                                      previewUrl?: T;
+                                      waitForMs?: T;
+                                      previewStatus?: T;
+                                      previewImage?: T;
                                       id?: T;
                                       blockName?: T;
                                     };
@@ -57306,6 +59993,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -57555,6 +60252,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -57811,6 +60518,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -58047,6 +60764,16 @@ export interface PagesSelect<T extends boolean = true> {
                                               | T
                                               | {
                                                   media?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -58309,6 +61036,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -58558,6 +61295,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -58814,6 +61561,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -59050,6 +61807,16 @@ export interface PagesSelect<T extends boolean = true> {
                                               | T
                                               | {
                                                   media?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -59313,6 +62080,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -59562,6 +62339,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -59818,6 +62605,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -60057,6 +62854,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                   id?: T;
                                                   blockName?: T;
                                                 };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
                                             card?:
                                               | T
                                               | {
@@ -60293,6 +63100,16 @@ export interface PagesSelect<T extends boolean = true> {
                                   | T
                                   | {
                                       media?: T;
+                                      id?: T;
+                                      blockName?: T;
+                                    };
+                                previewUrl?:
+                                  | T
+                                  | {
+                                      previewUrl?: T;
+                                      waitForMs?: T;
+                                      previewStatus?: T;
+                                      previewImage?: T;
                                       id?: T;
                                       blockName?: T;
                                     };
@@ -60563,6 +63380,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -60812,6 +63639,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -61068,6 +63905,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -61304,6 +64151,16 @@ export interface PagesSelect<T extends boolean = true> {
                                               | T
                                               | {
                                                   media?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -61566,6 +64423,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -61815,6 +64682,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -62071,6 +64948,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -62307,6 +65194,16 @@ export interface PagesSelect<T extends boolean = true> {
                                               | T
                                               | {
                                                   media?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -62570,6 +65467,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -62819,6 +65726,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -63075,6 +65992,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -63311,6 +66238,16 @@ export interface PagesSelect<T extends boolean = true> {
                                               | T
                                               | {
                                                   media?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -63553,6 +66490,16 @@ export interface PagesSelect<T extends boolean = true> {
                                       id?: T;
                                       blockName?: T;
                                     };
+                                previewUrl?:
+                                  | T
+                                  | {
+                                      previewUrl?: T;
+                                      waitForMs?: T;
+                                      previewStatus?: T;
+                                      previewImage?: T;
+                                      id?: T;
+                                      blockName?: T;
+                                    };
                                 card?:
                                   | T
                                   | {
@@ -63789,6 +66736,16 @@ export interface PagesSelect<T extends boolean = true> {
                       | T
                       | {
                           media?: T;
+                          id?: T;
+                          blockName?: T;
+                        };
+                    previewUrl?:
+                      | T
+                      | {
+                          previewUrl?: T;
+                          waitForMs?: T;
+                          previewStatus?: T;
+                          previewImage?: T;
                           id?: T;
                           blockName?: T;
                         };
@@ -64065,6 +67022,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -64314,6 +67281,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -64570,6 +67547,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -64806,6 +67793,16 @@ export interface PagesSelect<T extends boolean = true> {
                                               | T
                                               | {
                                                   media?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -65068,6 +68065,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -65317,6 +68324,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -65573,6 +68590,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -65809,6 +68836,16 @@ export interface PagesSelect<T extends boolean = true> {
                                               | T
                                               | {
                                                   media?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -66072,6 +69109,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -66321,6 +69368,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -66577,6 +69634,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -66816,6 +69883,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                   id?: T;
                                                   blockName?: T;
                                                 };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
                                             card?:
                                               | T
                                               | {
@@ -67052,6 +70129,16 @@ export interface PagesSelect<T extends boolean = true> {
                                   | T
                                   | {
                                       media?: T;
+                                      id?: T;
+                                      blockName?: T;
+                                    };
+                                previewUrl?:
+                                  | T
+                                  | {
+                                      previewUrl?: T;
+                                      waitForMs?: T;
+                                      previewStatus?: T;
+                                      previewImage?: T;
                                       id?: T;
                                       blockName?: T;
                                     };
@@ -67321,6 +70408,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -67570,6 +70667,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -67826,6 +70933,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -68062,6 +71179,16 @@ export interface PagesSelect<T extends boolean = true> {
                                               | T
                                               | {
                                                   media?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -68324,6 +71451,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -68573,6 +71710,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -68829,6 +71976,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -69065,6 +72222,16 @@ export interface PagesSelect<T extends boolean = true> {
                                               | T
                                               | {
                                                   media?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -69328,6 +72495,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -69577,6 +72754,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -69833,6 +73020,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -70072,6 +73269,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                   id?: T;
                                                   blockName?: T;
                                                 };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
                                             card?:
                                               | T
                                               | {
@@ -70308,6 +73515,16 @@ export interface PagesSelect<T extends boolean = true> {
                                   | T
                                   | {
                                       media?: T;
+                                      id?: T;
+                                      blockName?: T;
+                                    };
+                                previewUrl?:
+                                  | T
+                                  | {
+                                      previewUrl?: T;
+                                      waitForMs?: T;
+                                      previewStatus?: T;
+                                      previewImage?: T;
                                       id?: T;
                                       blockName?: T;
                                     };
@@ -70578,6 +73795,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -70827,6 +74054,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -71083,6 +74320,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -71319,6 +74566,16 @@ export interface PagesSelect<T extends boolean = true> {
                                               | T
                                               | {
                                                   media?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -71581,6 +74838,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -71830,6 +75097,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -72086,6 +75363,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -72322,6 +75609,16 @@ export interface PagesSelect<T extends boolean = true> {
                                               | T
                                               | {
                                                   media?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -72585,6 +75882,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -72834,6 +76141,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -73090,6 +76407,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -73326,6 +76653,16 @@ export interface PagesSelect<T extends boolean = true> {
                                               | T
                                               | {
                                                   media?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -73568,6 +76905,16 @@ export interface PagesSelect<T extends boolean = true> {
                                       id?: T;
                                       blockName?: T;
                                     };
+                                previewUrl?:
+                                  | T
+                                  | {
+                                      previewUrl?: T;
+                                      waitForMs?: T;
+                                      previewStatus?: T;
+                                      previewImage?: T;
+                                      id?: T;
+                                      blockName?: T;
+                                    };
                                 card?:
                                   | T
                                   | {
@@ -73804,6 +77151,16 @@ export interface PagesSelect<T extends boolean = true> {
                       | T
                       | {
                           media?: T;
+                          id?: T;
+                          blockName?: T;
+                        };
+                    previewUrl?:
+                      | T
+                      | {
+                          previewUrl?: T;
+                          waitForMs?: T;
+                          previewStatus?: T;
+                          previewImage?: T;
                           id?: T;
                           blockName?: T;
                         };
@@ -74081,6 +77438,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -74330,6 +77697,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -74586,6 +77963,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -74822,6 +78209,16 @@ export interface PagesSelect<T extends boolean = true> {
                                               | T
                                               | {
                                                   media?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -75084,6 +78481,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -75333,6 +78740,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -75589,6 +79006,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -75825,6 +79252,16 @@ export interface PagesSelect<T extends boolean = true> {
                                               | T
                                               | {
                                                   media?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -76088,6 +79525,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -76337,6 +79784,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -76593,6 +80050,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -76832,6 +80299,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                   id?: T;
                                                   blockName?: T;
                                                 };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
                                             card?:
                                               | T
                                               | {
@@ -77068,6 +80545,16 @@ export interface PagesSelect<T extends boolean = true> {
                                   | T
                                   | {
                                       media?: T;
+                                      id?: T;
+                                      blockName?: T;
+                                    };
+                                previewUrl?:
+                                  | T
+                                  | {
+                                      previewUrl?: T;
+                                      waitForMs?: T;
+                                      previewStatus?: T;
+                                      previewImage?: T;
                                       id?: T;
                                       blockName?: T;
                                     };
@@ -77337,6 +80824,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -77586,6 +81083,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -77842,6 +81349,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -78078,6 +81595,16 @@ export interface PagesSelect<T extends boolean = true> {
                                               | T
                                               | {
                                                   media?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -78340,6 +81867,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -78589,6 +82126,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -78845,6 +82392,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -79081,6 +82638,16 @@ export interface PagesSelect<T extends boolean = true> {
                                               | T
                                               | {
                                                   media?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -79344,6 +82911,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -79593,6 +83170,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -79849,6 +83436,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -80088,6 +83685,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                   id?: T;
                                                   blockName?: T;
                                                 };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
                                             card?:
                                               | T
                                               | {
@@ -80324,6 +83931,16 @@ export interface PagesSelect<T extends boolean = true> {
                                   | T
                                   | {
                                       media?: T;
+                                      id?: T;
+                                      blockName?: T;
+                                    };
+                                previewUrl?:
+                                  | T
+                                  | {
+                                      previewUrl?: T;
+                                      waitForMs?: T;
+                                      previewStatus?: T;
+                                      previewImage?: T;
                                       id?: T;
                                       blockName?: T;
                                     };
@@ -80594,6 +84211,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -80843,6 +84470,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -81099,6 +84736,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -81335,6 +84982,16 @@ export interface PagesSelect<T extends boolean = true> {
                                               | T
                                               | {
                                                   media?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -81597,6 +85254,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -81846,6 +85513,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -82102,6 +85779,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -82338,6 +86025,16 @@ export interface PagesSelect<T extends boolean = true> {
                                               | T
                                               | {
                                                   media?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -82601,6 +86298,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -82850,6 +86557,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                           | T
                                                           | {
                                                               media?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -83106,6 +86823,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        previewUrl?:
+                                                          | T
+                                                          | {
+                                                              previewUrl?: T;
+                                                              waitForMs?: T;
+                                                              previewStatus?: T;
+                                                              previewImage?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         card?:
                                                           | T
                                                           | {
@@ -83342,6 +87069,16 @@ export interface PagesSelect<T extends boolean = true> {
                                               | T
                                               | {
                                                   media?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            previewUrl?:
+                                              | T
+                                              | {
+                                                  previewUrl?: T;
+                                                  waitForMs?: T;
+                                                  previewStatus?: T;
+                                                  previewImage?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -83584,6 +87321,16 @@ export interface PagesSelect<T extends boolean = true> {
                                       id?: T;
                                       blockName?: T;
                                     };
+                                previewUrl?:
+                                  | T
+                                  | {
+                                      previewUrl?: T;
+                                      waitForMs?: T;
+                                      previewStatus?: T;
+                                      previewImage?: T;
+                                      id?: T;
+                                      blockName?: T;
+                                    };
                                 card?:
                                   | T
                                   | {
@@ -83820,6 +87567,16 @@ export interface PagesSelect<T extends boolean = true> {
                       | T
                       | {
                           media?: T;
+                          id?: T;
+                          blockName?: T;
+                        };
+                    previewUrl?:
+                      | T
+                      | {
+                          previewUrl?: T;
+                          waitForMs?: T;
+                          previewStatus?: T;
+                          previewImage?: T;
                           id?: T;
                           blockName?: T;
                         };
@@ -84062,6 +87819,16 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        previewUrl?:
+          | T
+          | {
+              previewUrl?: T;
+              waitForMs?: T;
+              previewStatus?: T;
+              previewImage?: T;
+              id?: T;
+              blockName?: T;
+            };
         card?:
           | T
           | {
@@ -84243,6 +88010,10 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         metaTitle?: T;
         metaDescription?: T;
+        autoGenerateOgImage?: T;
+        waitForMs?: T;
+        ogGenerationStatus?: T;
+        ogImage?: T;
       };
   updatedAt?: T;
   createdAt?: T;

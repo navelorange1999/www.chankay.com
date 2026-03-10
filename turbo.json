@@ -2,7 +2,13 @@
   "$schema": "./node_modules/turbo/schema.json",
   "ui": "tui",
   "globalDependencies": [".env*"],
-  "globalEnv": ["GITHUB_TOKEN"],
+  "globalEnv": [
+    "GITHUB_TOKEN",
+    "PREVIEW_CAPTURE_API_KEY",
+    "PREVIEW_CAPTURE_API_URL",
+    "WWW_SITE_URL",
+    "WWW_INTERNAL_SECRET"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],

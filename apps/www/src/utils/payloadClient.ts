@@ -28,15 +28,21 @@ export class PayloadClient {
 	}
 
 	async getGlobal<T>(slug: string, options?: PayloadQueryOptions): Promise<T> {
+		const nextOptions =
+			options?.cache === "no-store"
+				? undefined
+				: {
+						revalidate:
+							options?.revalidate ?? parseInt(process.env.PAYLOAD_REVALIDATE_TIME || "60"),
+						tags: options?.tags ?? [`global:${slug}`],
+					}
+
 		const response = await fetch(`${this.baseUrl}/globals/${slug}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
 			},
-			next: {
-				revalidate: options?.revalidate ?? parseInt(process.env.PAYLOAD_REVALIDATE_TIME || "60"),
-				tags: options?.tags ?? [`global:${slug}`],
-			},
+			next: nextOptions,
 			cache: options?.cache,
 		})
 
@@ -77,15 +83,21 @@ export class PayloadClient {
 
 		const url = `${this.baseUrl}/${collection}?${params.toString()}`
 
+		const nextOptions =
+			options?.cache === "no-store"
+				? undefined
+				: {
+						revalidate:
+							options?.revalidate ?? parseInt(process.env.PAYLOAD_REVALIDATE_TIME || "60"),
+						tags: options?.tags ?? [`collection:${collection}`],
+					}
+
 		const response = await fetch(url, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
 			},
-			next: {
-				revalidate: options?.revalidate ?? parseInt(process.env.PAYLOAD_REVALIDATE_TIME || "60"),
-				tags: options?.tags ?? [`collection:${collection}`],
-			},
+			next: nextOptions,
 			cache: options?.cache,
 		})
 

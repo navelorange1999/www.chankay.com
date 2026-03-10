@@ -1,5 +1,6 @@
 import type { CollectionConfig } from "payload"
 import { structureBlocks } from "@/blocks/StructureBlocks"
+import { syncPageGeneratedAssets } from "@/services/pageAssets"
 
 export const Pages: CollectionConfig = {
 	slug: "pages",
@@ -64,8 +65,58 @@ export const Pages: CollectionConfig = {
 					type: "textarea",
 					label: "Meta Description",
 				},
+				{
+					name: "autoGenerateOgImage",
+					type: "checkbox",
+					label: "Auto Generate OG Image",
+					defaultValue: false,
+					admin: {
+						description:
+							"Generate a screenshot-based OG image from the latest preview page after saving.",
+					},
+				},
+				{
+					name: "waitForMs",
+					type: "number",
+					label: "OG Wait Before Capture (ms)",
+					defaultValue: 1500,
+					min: 0,
+					admin: {
+						condition: (_, siblingData) => siblingData?.autoGenerateOgImage === true,
+						description: "Milliseconds to wait before capturing the auto-generated OG image.",
+					},
+				},
+				{
+					name: "ogGenerationStatus",
+					type: "select",
+					label: "OG Generation Status",
+					defaultValue: "idle",
+					admin: {
+						readOnly: true,
+						description: "Managed automatically after save when auto generation is enabled.",
+					},
+					options: [
+						{ label: "Idle", value: "idle" },
+						{ label: "Generating", value: "generating" },
+						{ label: "Ready", value: "ready" },
+						{ label: "Failed", value: "failed" },
+					],
+				},
+				{
+					name: "ogImage",
+					type: "upload",
+					label: "Open Graph Image",
+					relationTo: "media",
+					admin: {
+						description:
+							"When auto generation is enabled this field is updated automatically after save.",
+					},
+				},
 			],
 		},
 	],
 	timestamps: true,
+	hooks: {
+		afterChange: [syncPageGeneratedAssets],
+	},
 }

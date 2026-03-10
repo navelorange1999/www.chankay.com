@@ -22,7 +22,7 @@ export const Posts: CollectionConfig = {
 		defaultColumns: ["title", "status", "publishedAt", "author", "primaryLanguage"],
 		useAsTitle: "title",
 		preview: (doc) => {
-			return `${process.env.SITE_URL || "http://localhost:3000"}/posts/${doc.slug}`
+			return `${process.env.WWW_SITE_URL || "http://localhost:3000"}/posts/${doc.slug}`
 		},
 	},
 	versions: {

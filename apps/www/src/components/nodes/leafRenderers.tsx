@@ -8,6 +8,7 @@ import { HandWritingNode } from "@/components/nodes/HandWritingNode"
 import { HeatmapNode } from "@/components/nodes/HeatmapNode"
 import { MarkdownNode } from "@/components/nodes/MarkdownNode"
 import { MediaImageNode } from "@/components/nodes/MediaImageNode"
+import { PreviewUrlNode, type PreviewUrlNodeProps } from "@/components/nodes/PreviewUrlNode"
 import { SpotifyIframeNode } from "@/components/nodes/SpotifyIframeNode"
 import { TextNode } from "@/components/nodes/TextNode"
 
@@ -21,6 +22,7 @@ export const leafBlockTypes = [
 	"mediaImage",
 	"card",
 	"button",
+	"previewUrl",
 	"spotifyIframe",
 	"heatmap",
 ] as const
@@ -42,6 +44,7 @@ type HandWritingLeafBlock = Extract<LeafBlock, { blockType: "handWriting" }>
 type MediaImageLeafBlock = Extract<LeafBlock, { blockType: "mediaImage" }>
 type CardLeafBlock = Extract<LeafBlock, { blockType: "card" }>
 type ButtonLeafBlock = Extract<LeafBlock, { blockType: "button" }>
+type PreviewUrlLeafBlock = PreviewUrlNodeProps["block"]
 type SpotifyIframeLeafBlock = Extract<LeafBlock, { blockType: "spotifyIframe" }>
 type HeatmapLeafBlock = Extract<LeafBlock, { blockType: "heatmap" }>
 
@@ -54,6 +57,7 @@ const leafRenderers: Record<LeafBlockType, LeafRenderer> = {
 	mediaImage: (block, key) => <MediaImageNode key={key} block={block as MediaImageLeafBlock} />,
 	card: (block, key) => <CardNode key={key} block={block as CardLeafBlock} />,
 	button: (block, key) => <ButtonNode key={key} block={block as ButtonLeafBlock} />,
+	previewUrl: (block, key) => <PreviewUrlNode key={key} block={block as PreviewUrlLeafBlock} />,
 	spotifyIframe: (block, key) => (
 		<SpotifyIframeNode key={key} block={block as SpotifyIframeLeafBlock} />
 	),

@@ -1,7 +1,13 @@
 import { payloadClient } from "@/utils/payloadClient"
 import type { Page } from "@repo/typescript-config/typings/payload-types"
 
-function getPageVisibilityWhere(): Record<string, { equals: string }> | undefined {
+function getPageVisibilityWhere(
+	includeDraft?: boolean
+): Record<string, { equals: string }> | undefined {
+	if (includeDraft) {
+		return undefined
+	}
+
 	if (process.env.NODE_ENV === "development") {
 		return undefined
 	}
@@ -14,13 +20,21 @@ function getPageVisibilityWhere(): Record<string, { equals: string }> | undefine
 /**
  * Get page by slug
  */
-export async function getPageBySlug(slug: string): Promise<Page | null> {
+export async function getPageBySlug(
+	slug: string,
+	options?: {
+		cache?: RequestCache
+		includeDraft?: boolean
+		revalidate?: number
+	}
+): Promise<Page | null> {
 	try {
 		return await payloadClient.getBySlug<Page>("pages", slug, {
 			depth: 2,
-			revalidate: 60,
+			cache: options?.cache,
+			revalidate: options?.revalidate ?? 60,
 			tags: [`page:${slug}`],
-			where: getPageVisibilityWhere(),
+			where: getPageVisibilityWhere(options?.includeDraft),
 		})
 	} catch (error) {
 		console.error(`Error fetching page ${slug}:`, error)

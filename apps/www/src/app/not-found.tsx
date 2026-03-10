@@ -3,7 +3,9 @@ import type { Metadata } from "next"
 import { BackgroundBeams } from "@repo/ui"
 
 export const metadata: Metadata = {
-	title: "404 - Page Not Found",
+	title: {
+		absolute: "404 - Page Not Found | ChanKay Blog",
+	},
 	description: "The page you are looking for does not exist.",
 }
 

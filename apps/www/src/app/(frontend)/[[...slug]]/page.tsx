@@ -2,13 +2,28 @@ import { cache } from "react"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { Nodes } from "@/components/Nodes"
+import { getSiteConfig } from "@/services/payload/site-config"
 import { getAllPages, getPageBySlug } from "@/services/payload/pages"
+import {
+	resolveMedia,
+	resolveMediaUrl,
+	resolvePageAbsoluteUrl,
+	resolveSiteDescription,
+	resolveTwitterHandle,
+} from "@/utils/seo"
 
 type PageParams = {
 	slug?: string[]
 }
 
-const DEFAULT_DESCRIPTION = "Personal website and blog of Chan Kay - Full-stack developer"
+function asRecord(value: unknown): Record<string, unknown> {
+	if (!value || typeof value !== "object") return {}
+	return value as Record<string, unknown>
+}
+
+function asOptionalString(value: unknown): string | undefined {
+	return typeof value === "string" && value.trim().length > 0 ? value.trim() : undefined
+}
 
 function normalizePageSlug(slug: string): string[] {
 	if (slug === "/") {
@@ -55,18 +70,48 @@ export async function generateMetadata({
 	const resolvedParams = await params
 
 	const slug = resolveSlug(resolvedParams)
-	const pageData = await getPageBySlugCached(slug)
+	const [pageData, siteConfig] = await Promise.all([getPageBySlugCached(slug), getSiteConfig()])
 
 	if (!pageData) {
 		return {
-			title: "Page Not Found | Chan Kay",
-			description: DEFAULT_DESCRIPTION,
+			title: {
+				absolute: "Page Not Found",
+			},
+			description: resolveSiteDescription(siteConfig),
 		}
 	}
 
+	const seo = asRecord(pageData.seo)
+	const title = asOptionalString(seo.metaTitle) || pageData.title
+	const description = asOptionalString(seo.metaDescription) || resolveSiteDescription(siteConfig)
+	const canonicalUrl = resolvePageAbsoluteUrl(siteConfig, slug)
+	const ogImageUrl = resolveMediaUrl({
+		media: resolveMedia(seo.ogImage) || resolveMedia(siteConfig.ogImage),
+		siteConfig,
+	})
+	const twitterHandle = resolveTwitterHandle(siteConfig)
+
 	return {
-		title: pageData.seo?.metaTitle || pageData.title,
-		description: pageData.seo?.metaDescription || DEFAULT_DESCRIPTION,
+		title,
+		description,
+		alternates: {
+			canonical: canonicalUrl,
+		},
+		openGraph: {
+			description,
+			images: ogImageUrl ? [{ url: ogImageUrl }] : undefined,
+			title,
+			type: "website",
+			url: canonicalUrl,
+		},
+		twitter: {
+			card: ogImageUrl ? "summary_large_image" : "summary",
+			creator: twitterHandle,
+			description,
+			images: ogImageUrl ? [ogImageUrl] : undefined,
+			site: twitterHandle,
+			title,
+		},
 	}
 }
 

@@ -1,11 +1,23 @@
-@layer payload-default {
-	@import "@repo/tailwind-config";
-	@import "@repo/ui/styles.css";
+/* CRITICAL FIX: Tailwind CSS imports must be at root level
+ * These imports CANNOT be inside @layer directives
+ * Otherwise Tailwind v4 won't process them correctly
+ * and CSS variables won't be available
+ */
+@import "@repo/tailwind-config";
+@import "@repo/ui/styles.css";
 
+/* Payload-specific style overrides
+ * Only custom overrides should be in layers
+ * Note: Using direct CSS instead of @apply to avoid Tailwind v4 issues
+ */
+@layer payload-default {
 	input[type="radio"] {
 		& + span {
 			&::before {
-				@apply border-2 border-muted bg-popover;
+				/* Using CSS variables directly instead of @apply */
+				border-width: 2px;
+				border-color: var(--color-muted);
+				background-color: var(--color-popover);
 			}
 		}
 	}

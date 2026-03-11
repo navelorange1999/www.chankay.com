@@ -2,8 +2,6 @@
 
 > A modern, full-stack blog platform built with Next.js, PayloadCMS, and TypeScript in a monorepo architecture.
 
-[中文文档 | Chinese README](./README.zh-CN.md)
-
 [![pnpm](https://img.shields.io/badge/package%20manager-pnpm-blue?logo=pnpm)](https://pnpm.io/)
 [![TurboRepo](https://img.shields.io/badge/monorepo-turbo-7B3DF9?logo=turbo)](https://turbo.build/)
 [![Next.js](https://img.shields.io/badge/frontend-next.js-000?logo=next.js)](https://nextjs.org/)
@@ -34,6 +32,28 @@ www.chankay.com/
 │   ├── typescript-config/ # TypeScript configurations & types
 │   └── ui/             # Shared UI component library
 └── 🔧 Configuration files
+```
+
+## 🔀 Turbo Build Graph
+
+```mermaid
+flowchart TD
+  turbo["turbo build"]
+  uiStyles["@repo/ui#build:styles"]
+  uiComponents["@repo/ui#build:components"]
+  ui["@repo/ui#build"]
+  admin["admin#build"]
+  www["www#build"]
+  storybook["storybook#build"]
+
+  turbo --> uiStyles
+  turbo --> uiComponents
+  uiStyles --> ui
+  uiComponents --> ui
+
+  ui --> admin
+  ui --> www
+  ui --> storybook
 ```
 
 ## ✨ Features
@@ -107,36 +127,37 @@ cp apps/www/.env.example apps/www/.env.local
 # Fill in your environment variables
 
 # Generate TypeScript types
-pnpm run gen:types
+pnpm run gen
 
 # Start development servers
 pnpm run dev
 ```
 
-### Available Scripts
+### Common Commands
 
 ```bash
 # Development
-pnpm run dev          # Start all development servers
-pnpm run dev:admin    # Start admin dashboard only
-pnpm run dev:www      # Start public website only
+pnpm run dev                  # Start all development servers
+pnpm run dev:admin            # Start admin dashboard only
+pnpm run dev:www              # Start public website only
+pnpm run dev:ui               # Start Storybook with @repo/ui watch tasks
 
 # Building
-pnpm run build        # Build all applications
-pnpm run build:admin  # Build admin dashboard
-pnpm run build:www    # Build public website
+pnpm run build                # Build the entire workspace
+pnpm --filter @repo/ui build  # Build shared UI package only
+pnpm --filter admin build     # Build admin app only
+pnpm --filter www build       # Build website only
+pnpm --filter storybook build # Build Storybook only
 
 # Code Quality
-pnpm run lint         # Run ESLint on all packages
-pnpm run format       # Format code with Prettier
-pnpm run check-types  # TypeScript type checking
+pnpm run lint                 # Run ESLint on all packages
+pnpm run format               # Format code with Prettier
+pnpm run format:check         # Check formatting without writing
+pnpm run check-types          # TypeScript type checking
 
 # Testing
-pnpm run test         # Run all tests
-pnpm run test:watch   # Run tests in watch mode
-
-# Storybook
-pnpm run storybook    # Start Storybook development server
+pnpm run test                 # Run all tests
+pnpm run test:run             # Run tests once
 ```
 
 ### Production Release Tags
@@ -191,43 +212,6 @@ The translation system supports multiple providers:
 - **Google Translate**: Wide language support
 - **Baidu Translate**: Optimized for Chinese translations
 - **Mock**: Development and testing
-
-## 📈 Current Progress
-
-### ✅ Completed (Infrastructure Phase)
-
-- [x] **Monorepo Setup**: Turborepo with shared packages
-- [x] **PayloadCMS Integration**: Admin dashboard with collections
-- [x] **Authentication System**: NextAuth.js with OAuth
-- [x] **TypeScript Configuration**: Strict typing across monorepo
-- [x] **Code Quality Tools**: ESLint, Prettier, pre-commit hooks
-- [x] **SEO Plugin**: Automated meta tag management
-- [x] **Custom Components**: Color picker and form fields
-- [x] **Translation System**: Multi-provider translation architecture
-- [x] **Development Workflow**: Testing, building, and deployment pipelines
-
-### 🚧 In Progress (Frontend Phase)
-
-- [ ] **Public Website Design**: Homepage and layout implementation
-- [ ] **Blog Interface**: Post listing and detail pages
-- [ ] **Content Integration**: Dynamic content fetching from PayloadCMS
-- [ ] **Theme System**: Dark/light mode toggle implementation
-
-### 📋 Planned (Enhancement Phase)
-
-- [ ] **Advanced Features**:
-  - [ ] Site-wide search functionality
-  - [ ] Comment system integration
-  - [ ] RSS feed generation
-  - [ ] Real-time preview system
-- [ ] **Performance Optimization**:
-  - [ ] Image optimization and lazy loading
-  - [ ] Content caching strategies
-  - [ ] Progressive web app features
-- [ ] **Analytics & Monitoring**:
-  - [ ] Performance monitoring
-  - [ ] Error tracking
-  - [ ] User analytics integration
 
 ## 🤝 Contributing
 

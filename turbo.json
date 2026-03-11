@@ -33,9 +33,19 @@
       "inputs": ["$TURBO_DEFAULT$", "**/*.test.{ts,tsx,js,jsx}"]
     },
     "gen": {
-      "cache": false
+      "cache": false,
+      "dependsOn": ["^build"]
     },
     "dev": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["^build"]
+    },
+    "dev:styles": {
+      "cache": false,
+      "persistent": true
+    },
+    "dev:components": {
       "cache": false,
       "persistent": true
     },

@@ -10,7 +10,9 @@
   },
   "exports": {
     ".": "./shared-styles.css",
-    "./postcss": "./postcss.config.js"
+    "./postcss": "./postcss.config.js",
+    "./theme": "./theme.css",
+    "./utilities": "./utilities.css"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.11",

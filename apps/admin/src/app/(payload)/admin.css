@@ -1,0 +1,9 @@
+@import "@repo/tailwind-config/theme";
+@import "@repo/ui/tokens.css";
+
+@source "../../**/*.{ts,tsx}";
+@source "../../../../../packages/ui/src/**/*.{ts,tsx}";
+
+@custom-variant dark (&:is(.dark *, [data-theme="dark"] *));
+
+@import "@repo/tailwind-config/utilities";

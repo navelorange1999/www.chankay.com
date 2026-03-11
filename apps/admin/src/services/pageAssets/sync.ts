@@ -253,7 +253,21 @@ async function syncGeneratedOgImage(args: {
 			id: args.doc.id,
 			overrideAccess: true,
 		})) as unknown as MaybeDoc
-	} catch {
+	} catch (error) {
+		// Log the actual error to help debug production issues
+		const errorMessage = error instanceof Error ? error.message : String(error)
+		const errorStack = error instanceof Error ? error.stack : undefined
+
+		args.req.payload.logger.error(
+			`OG image generation failed for page ${args.doc.id} (slug: ${slug})`,
+			{
+				error: errorMessage,
+				stack: errorStack,
+				url: previewUrl.toString(),
+				waitForMs: waitForTimeoutMs,
+			}
+		)
+
 		const nextStatus = seo.ogGenerationStatus === "failed" ? seo.ogGenerationStatus : "failed"
 
 		return (await args.req.payload.update({

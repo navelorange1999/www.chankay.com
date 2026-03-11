@@ -4,5 +4,13 @@
     "deploymentEnabled": {
       "master": false
     }
+  },
+  "functions": {
+    "apps/admin/src/app/api/**/*.ts": {
+      "maxDuration": 60
+    },
+    "apps/www/src/app/api/**/*.ts": {
+      "maxDuration": 60
+    }
   }
 }

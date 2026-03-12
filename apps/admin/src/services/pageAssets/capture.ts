@@ -52,13 +52,14 @@ export async function captureScreenshot(args: {
 		waitForTimeout: args.waitForTimeoutMs ?? DEFAULT_WAIT_FOR_MS,
 	}
 
-	const sanitizedRequestBody = {
-		...requestBody,
-		setExtraHTTPHeaders: redactRequestHeaders(args.requestHeaders),
-	}
-
+	// Log as JSON string for structured data in Vercel
 	args.logger?.info(
-		`Browserless screenshot request: ${redactUrlToken(endpoint)} body=${JSON.stringify(sanitizedRequestBody)}`
+		`Browserless screenshot request: ${JSON.stringify({
+			endpoint: redactUrlToken(endpoint),
+			targetUrl: args.url,
+			viewport: `${args.width}x${args.height}`,
+			waitForMs: args.waitForTimeoutMs,
+		})}`
 	)
 
 	// Add timeout control for Vercel environment (25 seconds to stay under 30s limit)
@@ -100,7 +101,10 @@ export async function captureScreenshot(args: {
 		}
 
 		args.logger?.info(
-			`Browserless screenshot received: ${(arrayBuffer.byteLength / 1024).toFixed(2)}KB`
+			`Browserless screenshot received: ${JSON.stringify({
+				sizeKB: Number((arrayBuffer.byteLength / 1024).toFixed(2)),
+				contentType: contentType,
+			})}`
 		)
 
 		return {
@@ -131,16 +135,16 @@ export async function persistGeneratedMedia(args: {
 	const tempFilePath = join(tmpdir(), filename)
 
 	try {
-		// Log file write attempt
+		// Log file write attempt with structured data
 		args.req.payload.logger?.info(
-			`Writing screenshot to temp file: ${tempFilePath} (${(args.screenshot.buffer.length / 1024).toFixed(2)}KB)`
+			`Writing screenshot to temp: ${filename} (${(args.screenshot.buffer.length / 1024).toFixed(2)}KB)`
 		)
 
 		await fs.writeFile(tempFilePath, args.screenshot.buffer)
 
 		try {
 			// Log media creation attempt
-			args.req.payload.logger?.info(`Creating media document for: ${filename}`)
+			args.req.payload.logger?.info(`Creating media document: ${filename}`)
 
 			const media = await args.req.payload.create({
 				collection: "media",
@@ -153,24 +157,21 @@ export async function persistGeneratedMedia(args: {
 				overrideAccess: true,
 			})
 
-			args.req.payload.logger?.info(`Media document created successfully: ${media.id}`)
+			args.req.payload.logger?.info(`Media created successfully: ${media.id} (${filename})`)
 
 			return media
 		} finally {
 			await fs.rm(tempFilePath, { force: true }).catch((error) => {
 				// Log but don't throw on cleanup failure
-				args.req.payload.logger?.warn(`Failed to clean up temp file ${tempFilePath}: ${error}`)
+				args.req.payload.logger?.warn(`Failed to clean up temp file ${filename}: ${String(error)}`)
 			})
 		}
 	} catch (error) {
 		// Log detailed error information
 		const errorMessage = error instanceof Error ? error.message : String(error)
-		args.req.payload.logger?.error(`Failed to persist generated media: ${errorMessage}`, {
-			filename,
-			tempFilePath,
-			bufferSize: args.screenshot.buffer.length,
-			subject: args.subject,
-		})
+		args.req.payload.logger?.error(
+			`Failed to persist media: ${errorMessage} [${filename}, ${(args.screenshot.buffer.length / 1024).toFixed(2)}KB, subject: ${args.subject}]`
+		)
 		throw error
 	}
 }

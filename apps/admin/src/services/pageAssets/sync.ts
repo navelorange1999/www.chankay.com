@@ -256,17 +256,17 @@ async function syncGeneratedOgImage(args: {
 	} catch (error) {
 		// Log the actual error to help debug production issues
 		const errorMessage = error instanceof Error ? error.message : String(error)
-		const errorStack = error instanceof Error ? error.stack : undefined
 
+		// Log error with all relevant context
 		args.req.payload.logger.error(
-			`OG image generation failed for page ${args.doc.id} (slug: ${slug})`,
-			{
-				error: errorMessage,
-				stack: errorStack,
-				url: previewUrl.toString(),
-				waitForMs: waitForTimeoutMs,
-			}
+			`OG image generation failed for page ${args.doc.id} (slug: ${slug}) - Error: ${errorMessage} - URL: ${previewUrl.toString()} - Wait: ${waitForTimeoutMs}ms`
 		)
+
+		// Log stack trace separately if available (first 3 lines only to avoid truncation)
+		if (error instanceof Error && error.stack) {
+			const stackLines = error.stack.split("\n").slice(0, 3).join(" | ")
+			args.req.payload.logger.error(`Stack trace for ${args.doc.id}: ${stackLines}`)
+		}
 
 		const nextStatus = seo.ogGenerationStatus === "failed" ? seo.ogGenerationStatus : "failed"
 

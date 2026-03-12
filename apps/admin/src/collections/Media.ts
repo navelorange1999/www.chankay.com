@@ -64,7 +64,6 @@ export const Media: CollectionConfig = {
 			const mediaDoc = doc as MediaDocLike
 
 			return (
-				mediaDoc.url ||
 				buildBlobFileUrl({
 					baseUrl: process.env.VERCEL_BLOB_PUBLIC_BASE_URL,
 					filename: mediaDoc.filename,
@@ -76,6 +75,7 @@ export const Media: CollectionConfig = {
 					filename: mediaDoc.filename,
 					prefix: mediaDoc.prefix,
 				}) ||
+				mediaDoc.url ||
 				null
 			)
 		},

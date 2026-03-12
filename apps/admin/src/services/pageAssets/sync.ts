@@ -200,6 +200,7 @@ async function syncPreviewUrlBlocks(args: {
 		depth: 1,
 		id: args.doc.id,
 		overrideAccess: true,
+		req: args.req,
 	})) as unknown as MaybeDoc
 }
 
@@ -265,6 +266,7 @@ async function syncGeneratedOgImage(args: {
 			depth: 1,
 			id: args.doc.id,
 			overrideAccess: true,
+			req: args.req,
 		})) as unknown as MaybeDoc
 	} catch (error) {
 		// Log the actual error to help debug production issues
@@ -298,6 +300,7 @@ async function syncGeneratedOgImage(args: {
 			depth: 1,
 			id: args.doc.id,
 			overrideAccess: true,
+			req: args.req,
 		})) as unknown as MaybeDoc
 	}
 }

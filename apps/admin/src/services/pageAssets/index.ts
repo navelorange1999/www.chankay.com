@@ -58,10 +58,8 @@ export const syncPageGeneratedAssets: CollectionAfterChangeHook = async ({
 		req,
 	})
 
-	// Vercel serverless functions do not reliably keep running after the response is sent.
-	if (process.env.VERCEL === "1") {
-		await scheduledJob
-	}
+	// This hook performs follow-up local API writes using the same req / transaction context.
+	await scheduledJob
 
 	return doc
 }

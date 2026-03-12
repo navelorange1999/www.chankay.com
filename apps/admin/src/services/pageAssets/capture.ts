@@ -188,6 +188,7 @@ export async function persistGeneratedMedia(args: {
 				},
 				filePath: tempFilePath,
 				overrideAccess: true,
+				req: args.req,
 			})
 
 			args.req.payload.logger?.info(`Media created successfully: ${media.id} (${filename})`)

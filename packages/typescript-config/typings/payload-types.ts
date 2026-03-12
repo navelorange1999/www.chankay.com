@@ -181,7 +181,18 @@ export interface User {
  */
 export interface MediaInterface {
   id: string;
+  /**
+   * Accessible description for the uploaded or generated image.
+   */
   alt: string;
+  /**
+   * Optional. Leave file upload empty and save to generate an image from this HTTPS URL via Browserless.
+   */
+  captureUrl?: string | null;
+  /**
+   * Milliseconds to wait before Browserless captures the page.
+   */
+  captureWaitForMs?: number | null;
   prefix?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -190,8 +201,8 @@ export interface MediaInterface {
   filename?: string | null;
   mimeType?: string | null;
   filesize?: number | null;
-  width: number;
-  height: number;
+  width?: number | null;
+  height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
 }
@@ -56416,6 +56427,8 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  captureUrl?: T;
+  captureWaitForMs?: T;
   prefix?: T;
   updatedAt?: T;
   createdAt?: T;

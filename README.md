@@ -179,8 +179,9 @@ Steps (GitHub UI):
 
 ### For AI-Assisted Development
 
-- **[CLAUDE.md](./CLAUDE.md)** - Comprehensive AI code generation guidelines
-- **[.cursorrules](./.cursorrules)** - Quick reference for Cursor AI
+- **[AGENTS.md](./AGENTS.md)** - Primary entry point and document router for LLMs
+- **[CLAUDE.md](./CLAUDE.md)** - Compatibility pointer to the split guidance documents
+- **[docs/](./docs/)** - Topic-based project guidance and conventions
 
 These documents ensure consistent, high-quality code generation and provide essential context about the project's architecture, conventions, and best practices.
 
@@ -188,7 +189,7 @@ These documents ensure consistent, high-quality code generation and provide esse
 
 ### Adding New Features
 
-1. **Review Guidelines**: Read `CLAUDE.md` for coding standards and patterns
+1. **Review Guidelines**: Start with `AGENTS.md`, then open the relevant files in `docs/`
 2. **Create Feature Branch**: Follow git flow with descriptive branch names
 3. **Develop with Types**: Use TypeScript throughout for type safety
 4. **Component Development**: Use Storybook for isolated component development

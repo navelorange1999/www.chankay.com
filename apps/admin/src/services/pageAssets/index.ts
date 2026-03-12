@@ -20,7 +20,6 @@ function schedulePageGeneratedAssets(args: {
 	const nextJob = previousJob
 		.catch(() => undefined)
 		.then(async () => {
-			await new Promise((resolve) => setTimeout(resolve, 0))
 			await runPageGeneratedAssets({
 				doc: docSnapshot,
 				previousDoc: previousDocSnapshot,
@@ -40,6 +39,8 @@ function schedulePageGeneratedAssets(args: {
 		})
 
 	queuedPageAssetJobs.set(pageId, nextJob)
+
+	return nextJob
 }
 
 export const syncPageGeneratedAssets: CollectionAfterChangeHook = async ({
@@ -51,11 +52,16 @@ export const syncPageGeneratedAssets: CollectionAfterChangeHook = async ({
 		return doc
 	}
 
-	schedulePageGeneratedAssets({
+	const scheduledJob = schedulePageGeneratedAssets({
 		doc: doc as unknown as MaybeDoc,
 		previousDoc: (previousDoc as unknown as MaybeDoc | null) ?? null,
 		req,
 	})
+
+	// Vercel serverless functions do not reliably keep running after the response is sent.
+	if (process.env.VERCEL === "1") {
+		await scheduledJob
+	}
 
 	return doc
 }

@@ -24,4 +24,6 @@ export type MaybeDoc = GenericDoc & Record<string, unknown>
 
 export type LoggerLike = {
 	info: (message: string) => void
+	warn?: (message: string) => void
+	error?: (message: string) => void
 }

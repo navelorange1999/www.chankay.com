@@ -6,7 +6,7 @@ import { DEFAULT_WAIT_FOR_MS } from "./constants"
 import type { GeneratedImage, LoggerLike, PageAssetsRequest } from "./types"
 import { asOptionalString, buildGeneratedFilename, redactUrlToken } from "./utils"
 
-const CAPTURE_RESPONSE_TIMEOUT_MS = 50000
+const CAPTURE_RESPONSE_TIMEOUT_MS = 50_000
 
 export async function captureScreenshot(args: {
 	height: number
@@ -61,9 +61,19 @@ export async function captureScreenshot(args: {
 
 	// Add timeout control for Vercel environment (50 seconds to stay under 60s limit)
 	const controller = new AbortController()
+	const startedAt = Date.now()
 	let didTimeout = false
+	let stage: "request" | "headers" | "body" = "request"
 	const timeoutId = setTimeout(() => {
 		didTimeout = true
+		args.logger?.error?.(
+			`Browserless screenshot timeout: ${JSON.stringify({
+				targetUrl: args.url,
+				elapsedMs: Date.now() - startedAt,
+				stage,
+				timeoutMs: CAPTURE_RESPONSE_TIMEOUT_MS,
+			})}`
+		)
 		controller.abort()
 	}, CAPTURE_RESPONSE_TIMEOUT_MS)
 
@@ -77,7 +87,15 @@ export async function captureScreenshot(args: {
 			body: JSON.stringify(requestBody),
 			signal: controller.signal,
 		})
-		clearTimeout(timeoutId)
+		stage = "headers"
+
+		args.logger?.info(
+			`Browserless screenshot headers received: ${JSON.stringify({
+				targetUrl: args.url,
+				status: response.status,
+				elapsedMs: Date.now() - startedAt,
+			})}`
+		)
 
 		if (!response.ok) {
 			const errorText = (await response.text().catch(() => "")).trim()
@@ -88,6 +106,7 @@ export async function captureScreenshot(args: {
 			)
 		}
 
+		stage = "body"
 		const contentType = response.headers.get("content-type") || "image/png"
 		const arrayBuffer = await response.arrayBuffer()
 
@@ -105,6 +124,7 @@ export async function captureScreenshot(args: {
 			`Browserless screenshot received: ${JSON.stringify({
 				sizeKB: Number((arrayBuffer.byteLength / 1024).toFixed(2)),
 				contentType: contentType,
+				elapsedMs: Date.now() - startedAt,
 			})}`
 		)
 
@@ -115,14 +135,24 @@ export async function captureScreenshot(args: {
 			width: args.width,
 		}
 	} catch (error) {
-		clearTimeout(timeoutId)
-		// Re-throw with more context
 		if (didTimeout || (error instanceof Error && error.name === "AbortError")) {
 			throw new Error(
-				`Browserless did not return a result within ${CAPTURE_RESPONSE_TIMEOUT_MS / 1000} seconds`
+				`Browserless did not return a result within ${CAPTURE_RESPONSE_TIMEOUT_MS / 1000} seconds (stage: ${stage})`
 			)
 		}
+
+		args.logger?.error?.(
+			`Browserless screenshot failed: ${JSON.stringify({
+				targetUrl: args.url,
+				elapsedMs: Date.now() - startedAt,
+				stage,
+				error: error instanceof Error ? error.message : String(error),
+			})}`
+		)
+
 		throw error
+	} finally {
+		clearTimeout(timeoutId)
 	}
 }
 

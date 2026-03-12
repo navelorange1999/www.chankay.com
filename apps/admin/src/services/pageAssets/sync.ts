@@ -125,6 +125,7 @@ async function syncPreviewUrlBlocks(args: {
 			) {
 				const previewUrl = asOptionalString(nextBlock.previewUrl)
 				const waitForTimeoutMs = resolveWaitForMs(nextBlock.waitForMs)
+				const blockId = asOptionalString(nextBlock.id) || "unknown"
 
 				if (previewUrl) {
 					try {
@@ -150,7 +151,19 @@ async function syncPreviewUrlBlocks(args: {
 						nextBlock.previewImage = media.id
 						nextBlock.previewStatus = "ready"
 						changed = true
-					} catch {
+					} catch (error) {
+						const errorMessage = error instanceof Error ? error.message : String(error)
+						args.req.payload.logger.error(
+							`Preview image generation failed for page ${args.doc.id} block ${blockId} - Error: ${errorMessage} - URL: ${previewUrl} - Wait: ${waitForTimeoutMs}ms`
+						)
+
+						if (error instanceof Error && error.stack) {
+							const stackLines = error.stack.split("\n").slice(0, 3).join(" | ")
+							args.req.payload.logger.error(
+								`Preview block stack trace for ${args.doc.id}/${blockId}: ${stackLines}`
+							)
+						}
+
 						if (nextBlock.previewStatus !== "failed") {
 							nextBlock.previewStatus = "failed"
 							changed = true

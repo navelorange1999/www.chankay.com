@@ -6,7 +6,7 @@ type PageAssetsQueueMessage = {
 	pageId: string
 }
 
-export const POST = handleCallback<PageAssetsQueueMessage>(
+const queueCallback = handleCallback<PageAssetsQueueMessage>(
 	async (message) => {
 		await processPageAssetsJob({
 			pageId: message.pageId,
@@ -19,3 +19,7 @@ export const POST = handleCallback<PageAssetsQueueMessage>(
 		visibilityTimeoutSeconds: 300,
 	}
 )
+
+export async function POST(request: Request) {
+	return queueCallback(request)
+}

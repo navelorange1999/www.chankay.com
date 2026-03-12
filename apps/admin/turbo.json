@@ -2,10 +2,10 @@
   "extends": ["//"],
   "tasks": {
     "lint": {
-      "env": ["GITHUB_TOKEN"]
+      "env": ["GITHUB_TOKEN", "VERCEL"]
     },
     "build": {
-      "env": ["GITHUB_TOKEN"]
+      "env": ["GITHUB_TOKEN", "VERCEL"]
     },
     "dev": {
       "with": ["gen"],

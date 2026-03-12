@@ -4,12 +4,9 @@ import { join } from "path"
 
 import { DEFAULT_WAIT_FOR_MS } from "./constants"
 import type { GeneratedImage, LoggerLike, PageAssetsRequest } from "./types"
-import {
-	asOptionalString,
-	buildGeneratedFilename,
-	redactRequestHeaders,
-	redactUrlToken,
-} from "./utils"
+import { asOptionalString, buildGeneratedFilename, redactUrlToken } from "./utils"
+
+const CAPTURE_RESPONSE_TIMEOUT_MS = 50000
 
 export async function captureScreenshot(args: {
 	height: number
@@ -62,9 +59,13 @@ export async function captureScreenshot(args: {
 		})}`
 	)
 
-	// Add timeout control for Vercel environment (25 seconds to stay under 30s limit)
+	// Add timeout control for Vercel environment (50 seconds to stay under 60s limit)
 	const controller = new AbortController()
-	const timeoutId = setTimeout(() => controller.abort(), 25000)
+	let didTimeout = false
+	const timeoutId = setTimeout(() => {
+		didTimeout = true
+		controller.abort()
+	}, CAPTURE_RESPONSE_TIMEOUT_MS)
 
 	try {
 		const response = await fetch(endpoint, {
@@ -116,8 +117,10 @@ export async function captureScreenshot(args: {
 	} catch (error) {
 		clearTimeout(timeoutId)
 		// Re-throw with more context
-		if (error instanceof Error && error.name === "AbortError") {
-			throw new Error(`Browserless request timeout after 25 seconds`)
+		if (didTimeout || (error instanceof Error && error.name === "AbortError")) {
+			throw new Error(
+				`Browserless did not return a result within ${CAPTURE_RESPONSE_TIMEOUT_MS / 1000} seconds`
+			)
 		}
 		throw error
 	}

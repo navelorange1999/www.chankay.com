@@ -1,7 +1,10 @@
 import type { CollectionBeforeOperationHook, PayloadRequest } from "payload"
 
 import { captureScreenshot } from "@/services/pageAssets/capture"
-import { DEFAULT_WAIT_FOR_MS } from "@/services/pageAssets/constants"
+import {
+	DEFAULT_WAIT_FOR_MS,
+	SKIP_MEDIA_SOURCE_CAPTURE_FLAG,
+} from "@/services/pageAssets/constants"
 import {
 	asOptionalString,
 	buildGeneratedFilename,
@@ -169,6 +172,10 @@ export const mediaCaptureBeforeOperation: CollectionBeforeOperationHook = async 
 	operation,
 	req,
 }) => {
+	if ((req.context as Record<string, unknown> | undefined)?.[SKIP_MEDIA_SOURCE_CAPTURE_FLAG]) {
+		return args
+	}
+
 	if (operation !== "create" && operation !== "update") {
 		return args
 	}

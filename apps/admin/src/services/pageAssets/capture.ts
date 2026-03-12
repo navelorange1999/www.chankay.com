@@ -2,8 +2,8 @@ import { promises as fs } from "fs"
 import { tmpdir } from "os"
 import { join } from "path"
 
-import { DEFAULT_WAIT_FOR_MS } from "./constants"
-import type { GeneratedImage, LoggerLike, PageAssetsRequest } from "./types"
+import { DEFAULT_WAIT_FOR_MS, SKIP_MEDIA_SOURCE_CAPTURE_FLAG } from "./constants"
+import type { GeneratedImage, LoggerLike, PageAssetsRuntime } from "./types"
 import { asOptionalString, buildGeneratedFilename, redactUrlToken } from "./utils"
 
 const CAPTURE_RESPONSE_TIMEOUT_MS = 50_000
@@ -160,7 +160,7 @@ export async function persistGeneratedMedia(args: {
 	alt: string
 	contentType: string
 	filenamePrefix: string
-	req: PageAssetsRequest
+	runtime: PageAssetsRuntime
 	screenshot: GeneratedImage
 	subject: string
 }) {
@@ -169,7 +169,7 @@ export async function persistGeneratedMedia(args: {
 
 	try {
 		// Log file write attempt with structured data
-		args.req.payload.logger?.info(
+		args.runtime.logger.info(
 			`Writing screenshot to temp: ${filename} (${(args.screenshot.buffer.length / 1024).toFixed(2)}KB)`
 		)
 
@@ -177,10 +177,14 @@ export async function persistGeneratedMedia(args: {
 
 		try {
 			// Log media creation attempt
-			args.req.payload.logger?.info(`Creating media document: ${filename}`)
+			args.runtime.logger.info(`Creating media document: ${filename}`)
 
-			const media = await args.req.payload.create({
+			const media = await args.runtime.payload.create({
 				collection: "media",
+				context: {
+					...(args.runtime.context || {}),
+					[SKIP_MEDIA_SOURCE_CAPTURE_FLAG]: true,
+				},
 				data: {
 					alt: args.alt,
 					height: args.screenshot.height,
@@ -188,22 +192,22 @@ export async function persistGeneratedMedia(args: {
 				},
 				filePath: tempFilePath,
 				overrideAccess: true,
-				req: args.req,
+				req: args.runtime.request,
 			})
 
-			args.req.payload.logger?.info(`Media created successfully: ${media.id} (${filename})`)
+			args.runtime.logger.info(`Media created successfully: ${media.id} (${filename})`)
 
 			return media
 		} finally {
 			await fs.rm(tempFilePath, { force: true }).catch((error) => {
 				// Log but don't throw on cleanup failure
-				args.req.payload.logger?.warn(`Failed to clean up temp file ${filename}: ${String(error)}`)
+				args.runtime.logger.warn?.(`Failed to clean up temp file ${filename}: ${String(error)}`)
 			})
 		}
 	} catch (error) {
 		// Log detailed error information
 		const errorMessage = error instanceof Error ? error.message : String(error)
-		args.req.payload.logger?.error(
+		args.runtime.logger.error?.(
 			`Failed to persist media: ${errorMessage} [${filename}, ${(args.screenshot.buffer.length / 1024).toFixed(2)}KB, subject: ${args.subject}]`
 		)
 		throw error

@@ -1,46 +1,40 @@
 import type { CollectionAfterChangeHook } from "payload"
 
-import { GENERATION_CONTEXT_FLAG } from "./constants"
-import { runPageGeneratedAssets } from "./sync"
+import { enqueuePageAssetsJob } from "./dispatcher"
+import { resolveQueuedPageAssetPlan } from "./planner"
+import { triggerFrontendRevalidation } from "./processor"
+import { createPageAssetsRuntime, updatePageWithGenerationContext } from "./state"
 import type { MaybeDoc } from "./types"
-import { asRecord, cloneMaybeDoc } from "./utils"
+import { asRecord } from "./utils"
+import { GENERATION_CONTEXT_FLAG } from "./constants"
 
-const queuedPageAssetJobs = new Map<string, Promise<void>>()
-
-function schedulePageGeneratedAssets(args: {
+function buildFailedData(args: {
 	doc: MaybeDoc
-	previousDoc: MaybeDoc | null
-	req: Parameters<CollectionAfterChangeHook>[0]["req"]
+	plan: ReturnType<typeof resolveQueuedPageAssetPlan>
 }) {
-	const pageId = args.doc.id
-	const docSnapshot = cloneMaybeDoc(args.doc)
-	const previousDocSnapshot = cloneMaybeDoc(args.previousDoc)
-	const previousJob = queuedPageAssetJobs.get(pageId) ?? Promise.resolve()
+	return {
+		seo: args.plan.queuedOg
+			? {
+					...asRecord(args.doc.seo),
+					ogGenerationStatus: "failed",
+				}
+			: args.doc.seo,
+		structure:
+			args.plan.queuedPreviewBlocks > 0
+				? args.plan.structure?.map(function visit(block) {
+						const nextBlock = { ...block }
+						if (nextBlock.previewStatus === "queued") {
+							nextBlock.previewStatus = "failed"
+						}
 
-	const nextJob = previousJob
-		.catch(() => undefined)
-		.then(async () => {
-			await runPageGeneratedAssets({
-				doc: docSnapshot,
-				previousDoc: previousDocSnapshot,
-				req: args.req,
-			})
-		})
-		.catch((error) => {
-			const message = error instanceof Error ? error.stack || error.message : String(error)
-			args.req.payload.logger.error(
-				`Failed to sync generated page assets for ${pageId}: ${message}`
-			)
-		})
-		.finally(() => {
-			if (queuedPageAssetJobs.get(pageId) === nextJob) {
-				queuedPageAssetJobs.delete(pageId)
-			}
-		})
+						if (Array.isArray(block.children)) {
+							nextBlock.children = block.children.map((child) => visit(child as typeof block))
+						}
 
-	queuedPageAssetJobs.set(pageId, nextJob)
-
-	return nextJob
+						return nextBlock
+					})
+				: args.doc.structure,
+	}
 }
 
 export const syncPageGeneratedAssets: CollectionAfterChangeHook = async ({
@@ -52,14 +46,59 @@ export const syncPageGeneratedAssets: CollectionAfterChangeHook = async ({
 		return doc
 	}
 
-	const scheduledJob = schedulePageGeneratedAssets({
-		doc: doc as unknown as MaybeDoc,
-		previousDoc: (previousDoc as unknown as MaybeDoc | null) ?? null,
-		req,
+	const currentDoc = doc as unknown as MaybeDoc
+	const previousDocSnapshot = (previousDoc as unknown as MaybeDoc | null) ?? null
+	const runtime = await createPageAssetsRuntime(req)
+	const plan = resolveQueuedPageAssetPlan({
+		doc: currentDoc,
+		previousDoc: previousDocSnapshot,
 	})
 
-	// This hook performs follow-up local API writes using the same req / transaction context.
-	await scheduledJob
+	try {
+		await triggerFrontendRevalidation({
+			currentSlug: currentDoc.slug,
+			previousSlug: previousDocSnapshot?.slug,
+			runtime,
+		})
+	} catch {
+		// Best effort only. Content changes are still persisted even if revalidation fails.
+	}
 
-	return doc
+	if (!plan.hasWork) {
+		return doc
+	}
+
+	const queuedDoc = await updatePageWithGenerationContext({
+		data: {
+			seo: plan.seo ?? currentDoc.seo,
+			structure: plan.structure ?? currentDoc.structure,
+		},
+		id: currentDoc.id,
+		runtime,
+	})
+
+	try {
+		await enqueuePageAssetsJob({
+			logger: runtime.logger,
+			pageId: currentDoc.id,
+		})
+
+		return queuedDoc as unknown as typeof doc
+	} catch (error) {
+		const failedDoc = await updatePageWithGenerationContext({
+			data: buildFailedData({
+				doc: queuedDoc,
+				plan,
+			}),
+			id: currentDoc.id,
+			runtime,
+		})
+
+		const message = error instanceof Error ? error.stack || error.message : String(error)
+		runtime.logger.error?.(
+			`Failed to enqueue generated page assets for ${currentDoc.id}: ${message}`
+		)
+
+		return failedDoc as unknown as typeof doc
+	}
 }

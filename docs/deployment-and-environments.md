@@ -136,6 +136,28 @@ Configured limits:
 
 If future features need longer execution time, update the deployment design intentionally rather than assuming background-style work will fit inside current API limits.
 
+## Background Page Assets
+
+`apps/admin` now uses an asynchronous page-assets pipeline for generated preview and OG images.
+
+Current behavior:
+
+- `pages.afterChange` marks generated assets as `queued`
+- the save request triggers immediate frontend revalidation for page content
+- page asset generation is dispatched separately
+- a queue consumer route exists at `apps/admin/src/app/api/queue/page-assets/route.ts`
+- dispatch is inferred automatically:
+  - local development uses an in-process queue
+  - deployed Vercel runtimes publish to the `page-assets` queue topic
+  - non-Vercel runtimes fall back to the in-process queue
+
+Operational implications:
+
+- the in-process queue improves save latency but is not durable across process restarts
+- queue mode uses Vercel Queues topic `page-assets` and requires the matching trigger in `vercel.json`
+- no page-assets-specific dispatch secret or mode variable is required
+- if durable background execution is required outside Vercel, replace the dispatcher intentionally rather than assuming in-memory dispatch is sufficient
+
 ## Operational Notes
 
 1. Treat each app as an independently deployable Vercel project.

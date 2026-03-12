@@ -54,6 +54,7 @@ export const PreviewUrlBlock: BlockDefinition = {
 			},
 			options: [
 				{ label: "Idle", value: "idle" },
+				{ label: "Queued", value: "queued" },
 				{ label: "Generating", value: "generating" },
 				{ label: "Ready", value: "ready" },
 				{ label: "Failed", value: "failed" },

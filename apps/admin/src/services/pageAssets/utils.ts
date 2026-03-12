@@ -95,8 +95,12 @@ export function collectBlocksById(value: unknown, map: Map<string, GenericBlock>
 	}
 }
 
-export function resolvePreviewStatus(value: unknown): "idle" | "generating" | "ready" | "failed" {
-	return value === "generating" || value === "ready" || value === "failed" ? value : "idle"
+export function resolvePreviewStatus(
+	value: unknown
+): "idle" | "queued" | "generating" | "ready" | "failed" {
+	return value === "queued" || value === "generating" || value === "ready" || value === "failed"
+		? value
+		: "idle"
 }
 
 export function redactUrlToken(url: URL): string {

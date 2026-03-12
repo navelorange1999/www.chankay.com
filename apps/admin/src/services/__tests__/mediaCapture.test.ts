@@ -1,6 +1,8 @@
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
+import { SKIP_MEDIA_SOURCE_CAPTURE_FLAG } from "@/services/pageAssets/constants"
 import {
+	mediaCaptureBeforeOperation,
 	prepareMediaSourceCapture,
 	resolveMediaCapturePlan,
 	validateCaptureUrl,
@@ -87,5 +89,33 @@ describe("mediaCapture", () => {
 		expect(req.file?.mimetype).toBe("image/png")
 		expect(req.file?.size).toBe(5)
 		expect(req.file?.name).toMatch(/^capture-https-example-com-/)
+	})
+
+	it("skips media URL capture when the skip flag is present", async () => {
+		const args = {
+			data: {
+				captureUrl: "https://example.com",
+			},
+		}
+
+		const req = {
+			context: {
+				[SKIP_MEDIA_SOURCE_CAPTURE_FLAG]: true,
+			},
+			payload: {
+				logger: {
+					info: vi.fn(),
+				},
+			},
+		} as any
+
+		const result = await mediaCaptureBeforeOperation({
+			args,
+			operation: "create",
+			req,
+		} as any)
+
+		expect(result).toBe(args)
+		expect(captureScreenshot).not.toHaveBeenCalled()
 	})
 })

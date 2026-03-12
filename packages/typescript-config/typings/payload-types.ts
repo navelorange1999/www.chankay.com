@@ -524,7 +524,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -1006,7 +1008,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -1487,7 +1491,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -1941,7 +1947,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -2393,7 +2401,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -2875,7 +2885,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -3356,7 +3368,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -3810,7 +3824,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -4263,7 +4279,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -4745,7 +4763,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -5226,7 +5246,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -5680,7 +5702,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -6108,7 +6132,7 @@ export interface Page {
                                 /**
                                  * Managed automatically after the page is saved.
                                  */
-                                previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                previewStatus?: ('idle' | 'queued' | 'generating' | 'ready' | 'failed') | null;
                                 /**
                                  * Generated automatically from the Preview URL.
                                  */
@@ -6555,7 +6579,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -7037,7 +7063,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -7518,7 +7546,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -7972,7 +8002,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -8424,7 +8456,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -8906,7 +8940,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -9387,7 +9423,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -9841,7 +9879,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -10294,7 +10334,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -10776,7 +10818,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -11257,7 +11301,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -11711,7 +11757,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -12139,7 +12187,7 @@ export interface Page {
                                 /**
                                  * Managed automatically after the page is saved.
                                  */
-                                previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                previewStatus?: ('idle' | 'queued' | 'generating' | 'ready' | 'failed') | null;
                                 /**
                                  * Generated automatically from the Preview URL.
                                  */
@@ -12587,7 +12635,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -13069,7 +13119,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -13550,7 +13602,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -14004,7 +14058,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -14456,7 +14512,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -14938,7 +14996,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -15419,7 +15479,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -15873,7 +15935,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -16326,7 +16390,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -16808,7 +16874,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -17289,7 +17357,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -17743,7 +17813,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -18171,7 +18243,7 @@ export interface Page {
                                 /**
                                  * Managed automatically after the page is saved.
                                  */
-                                previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                previewStatus?: ('idle' | 'queued' | 'generating' | 'ready' | 'failed') | null;
                                 /**
                                  * Generated automatically from the Preview URL.
                                  */
@@ -18589,7 +18661,7 @@ export interface Page {
                       /**
                        * Managed automatically after the page is saved.
                        */
-                      previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                      previewStatus?: ('idle' | 'queued' | 'generating' | 'ready' | 'failed') | null;
                       /**
                        * Generated automatically from the Preview URL.
                        */
@@ -19019,7 +19091,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -19501,7 +19575,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -19982,7 +20058,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -20436,7 +20514,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -20888,7 +20968,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -21370,7 +21452,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -21851,7 +21935,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -22305,7 +22391,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -22758,7 +22846,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -23240,7 +23330,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -23721,7 +23813,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -24175,7 +24269,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -24603,7 +24699,7 @@ export interface Page {
                                 /**
                                  * Managed automatically after the page is saved.
                                  */
-                                previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                previewStatus?: ('idle' | 'queued' | 'generating' | 'ready' | 'failed') | null;
                                 /**
                                  * Generated automatically from the Preview URL.
                                  */
@@ -25050,7 +25146,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -25532,7 +25630,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -26013,7 +26113,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -26467,7 +26569,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -26919,7 +27023,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -27401,7 +27507,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -27882,7 +27990,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -28336,7 +28446,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -28789,7 +28901,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -29271,7 +29385,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -29752,7 +29868,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -30206,7 +30324,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -30634,7 +30754,7 @@ export interface Page {
                                 /**
                                  * Managed automatically after the page is saved.
                                  */
-                                previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                previewStatus?: ('idle' | 'queued' | 'generating' | 'ready' | 'failed') | null;
                                 /**
                                  * Generated automatically from the Preview URL.
                                  */
@@ -31082,7 +31202,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -31564,7 +31686,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -32045,7 +32169,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -32499,7 +32625,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -32951,7 +33079,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -33433,7 +33563,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -33914,7 +34046,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -34368,7 +34502,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -34821,7 +34957,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -35303,7 +35441,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -35784,7 +35924,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -36238,7 +36380,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -36666,7 +36810,7 @@ export interface Page {
                                 /**
                                  * Managed automatically after the page is saved.
                                  */
-                                previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                previewStatus?: ('idle' | 'queued' | 'generating' | 'ready' | 'failed') | null;
                                 /**
                                  * Generated automatically from the Preview URL.
                                  */
@@ -37084,7 +37228,7 @@ export interface Page {
                       /**
                        * Managed automatically after the page is saved.
                        */
-                      previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                      previewStatus?: ('idle' | 'queued' | 'generating' | 'ready' | 'failed') | null;
                       /**
                        * Generated automatically from the Preview URL.
                        */
@@ -37515,7 +37659,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -37997,7 +38143,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -38478,7 +38626,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -38932,7 +39082,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -39384,7 +39536,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -39866,7 +40020,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -40347,7 +40503,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -40801,7 +40959,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -41254,7 +41414,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -41736,7 +41898,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -42217,7 +42381,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -42671,7 +42837,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -43099,7 +43267,7 @@ export interface Page {
                                 /**
                                  * Managed automatically after the page is saved.
                                  */
-                                previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                previewStatus?: ('idle' | 'queued' | 'generating' | 'ready' | 'failed') | null;
                                 /**
                                  * Generated automatically from the Preview URL.
                                  */
@@ -43546,7 +43714,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -44028,7 +44198,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -44509,7 +44681,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -44963,7 +45137,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -45415,7 +45591,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -45897,7 +46075,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -46378,7 +46558,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -46832,7 +47014,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -47285,7 +47469,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -47767,7 +47953,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -48248,7 +48436,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -48702,7 +48892,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -49130,7 +49322,7 @@ export interface Page {
                                 /**
                                  * Managed automatically after the page is saved.
                                  */
-                                previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                previewStatus?: ('idle' | 'queued' | 'generating' | 'ready' | 'failed') | null;
                                 /**
                                  * Generated automatically from the Preview URL.
                                  */
@@ -49578,7 +49770,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -50060,7 +50254,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -50541,7 +50737,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -50995,7 +51193,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -51447,7 +51647,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -51929,7 +52131,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -52410,7 +52614,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -52864,7 +53070,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -53317,7 +53525,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -53799,7 +54009,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -54280,7 +54492,9 @@ export interface Page {
                                                     /**
                                                      * Managed automatically after the page is saved.
                                                      */
-                                                    previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                                    previewStatus?:
+                                                      | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                                      | null;
                                                     /**
                                                      * Generated automatically from the Preview URL.
                                                      */
@@ -54734,7 +54948,9 @@ export interface Page {
                                           /**
                                            * Managed automatically after the page is saved.
                                            */
-                                          previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                          previewStatus?:
+                                            | ('idle' | 'queued' | 'generating' | 'ready' | 'failed')
+                                            | null;
                                           /**
                                            * Generated automatically from the Preview URL.
                                            */
@@ -55162,7 +55378,7 @@ export interface Page {
                                 /**
                                  * Managed automatically after the page is saved.
                                  */
-                                previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                                previewStatus?: ('idle' | 'queued' | 'generating' | 'ready' | 'failed') | null;
                                 /**
                                  * Generated automatically from the Preview URL.
                                  */
@@ -55580,7 +55796,7 @@ export interface Page {
                       /**
                        * Managed automatically after the page is saved.
                        */
-                      previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+                      previewStatus?: ('idle' | 'queued' | 'generating' | 'ready' | 'failed') | null;
                       /**
                        * Generated automatically from the Preview URL.
                        */
@@ -55974,7 +56190,7 @@ export interface Page {
             /**
              * Managed automatically after the page is saved.
              */
-            previewStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+            previewStatus?: ('idle' | 'queued' | 'generating' | 'ready' | 'failed') | null;
             /**
              * Generated automatically from the Preview URL.
              */
@@ -56301,7 +56517,7 @@ export interface Page {
     /**
      * Managed automatically after save when auto generation is enabled.
      */
-    ogGenerationStatus?: ('idle' | 'generating' | 'ready' | 'failed') | null;
+    ogGenerationStatus?: ('idle' | 'queued' | 'generating' | 'ready' | 'failed') | null;
     /**
      * When auto generation is enabled this field is updated automatically after save.
      */

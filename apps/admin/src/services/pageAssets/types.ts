@@ -1,6 +1,7 @@
-import type { CollectionAfterChangeHook } from "payload"
+import type { CollectionAfterChangeHook, Payload, PayloadRequest } from "payload"
 
 export type PageAssetsRequest = Parameters<CollectionAfterChangeHook>[0]["req"]
+export type PayloadLike = Payload
 
 export type GenericDoc = {
 	id: string
@@ -26,4 +27,11 @@ export type LoggerLike = {
 	info: (message: string) => void
 	warn?: (message: string) => void
 	error?: (message: string) => void
+}
+
+export type PageAssetsRuntime = {
+	context?: Record<string, unknown>
+	logger: LoggerLike
+	payload: PayloadLike
+	request?: PayloadRequest
 }

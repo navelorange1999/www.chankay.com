@@ -204,6 +204,7 @@ Dispatch is inferred from the current runtime instead of being configured manual
 
 - Publishes `{ pageId }` to the Vercel Queue topic `page-assets`.
 - Consumed by `app/api/queue/page-assets/route.ts`.
+- Registered through `apps/admin/vercel.json`, which must live inside the admin Vercel project's Root Directory.
 - Used automatically on deployed Vercel runtimes.
 - Delivery is at-least-once, so processor logic must tolerate retries.
 

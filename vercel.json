@@ -4,22 +4,5 @@
     "deploymentEnabled": {
       "master": false
     }
-  },
-  "functions": {
-    "apps/admin/src/app/api/queue/page-assets/route.ts": {
-      "experimentalTriggers": [
-        {
-          "type": "queue/v2beta",
-          "topic": "page-assets"
-        }
-      ],
-      "maxDuration": 60
-    },
-    "apps/admin/src/app/api/**/*.ts": {
-      "maxDuration": 60
-    },
-    "apps/www/src/app/api/**/*.ts": {
-      "maxDuration": 60
-    }
   }
 }

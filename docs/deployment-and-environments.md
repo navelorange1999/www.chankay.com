@@ -127,12 +127,17 @@ Primary variables documented today:
 
 ## Runtime Constraints
 
-The repository currently defines API function duration limits in `vercel.json`.
+The repository currently defines Vercel function settings in app-local `vercel.json` files.
 
 Configured limits:
 
 - `apps/admin/src/app/api/**/*.ts`: `maxDuration: 60`
 - `apps/www/src/app/api/**/*.ts`: `maxDuration: 60`
+
+Relevant config files:
+
+- `apps/admin/vercel.json`
+- `apps/www/vercel.json`
 
 If future features need longer execution time, update the deployment design intentionally rather than assuming background-style work will fit inside current API limits.
 
@@ -146,6 +151,7 @@ Current behavior:
 - the save request triggers immediate frontend revalidation for page content
 - page asset generation is dispatched separately
 - a queue consumer route exists at `apps/admin/src/app/api/queue/page-assets/route.ts`
+- the `page-assets` queue trigger is registered in `apps/admin/vercel.json`
 - dispatch is inferred automatically:
   - local development uses an in-process queue
   - deployed Vercel runtimes publish to the `page-assets` queue topic
@@ -154,7 +160,7 @@ Current behavior:
 Operational implications:
 
 - the in-process queue improves save latency but is not durable across process restarts
-- queue mode uses Vercel Queues topic `page-assets` and requires the matching trigger in `vercel.json`
+- queue mode uses Vercel Queues topic `page-assets` and requires the matching trigger in `apps/admin/vercel.json`
 - no page-assets-specific dispatch secret or mode variable is required
 - if durable background execution is required outside Vercel, replace the dispatcher intentionally rather than assuming in-memory dispatch is sufficient
 
@@ -169,7 +175,8 @@ Operational implications:
 
 If this document diverges from the code, trust these files first:
 
-1. `vercel.json`
-2. `.github/workflows/*`
-3. `apps/admin/.env.example`
-4. `apps/www/.env.example`
+1. `apps/admin/vercel.json`
+2. `apps/www/vercel.json`
+3. `.github/workflows/*`
+4. `apps/admin/.env.example`
+5. `apps/www/.env.example`

@@ -27,7 +27,7 @@ import { buildConfig } from "payload"
 import { seoPlugin } from "@payloadcms/plugin-seo"
 import { Config } from "@repo/typescript-config/typings/payload-types"
 
-import { Media, Users, Posts, Categories, Tags, Series, Pages } from "./collections"
+import { Media, Users, Posts, Tags, Series, Pages } from "./collections"
 import { SiteConfig } from "./globals"
 import { plugins } from "./plugins"
 import { LOCALE_CONFIG } from "./config/locales"
@@ -100,7 +100,7 @@ export default buildConfig({
 	}),
 
 	// Define and configure your collections in this array
-	collections: [Users, Media, Posts, Categories, Tags, Series, Pages],
+	collections: [Users, Media, Posts, Tags, Series, Pages],
 
 	// Define and configure your Globals in this array
 	globals: [SiteConfig],

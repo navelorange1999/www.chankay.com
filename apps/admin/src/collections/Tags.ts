@@ -78,6 +78,21 @@ export const Tags: CollectionConfig = {
 				description: "Number of posts with this tag",
 			},
 		},
+		{
+			name: "priority",
+			type: "number",
+			defaultValue: 0,
+			admin: {
+				description: "Higher priority tags appear first (0-100)",
+			},
+		},
+		{
+			name: "featured",
+			type: "checkbox",
+			admin: {
+				description: "Show this tag prominently in tag clouds and filters",
+			},
+		},
 	],
 	timestamps: true,
 	hooks: {

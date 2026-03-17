@@ -70,7 +70,6 @@ export interface Config {
     users: User;
     media: MediaInterface;
     posts: Post;
-    categories: Category;
     tags: Tag;
     series: Series;
     pages: Page;
@@ -83,7 +82,6 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
-    categories: CategoriesSelect<false> | CategoriesSelect<true>;
     tags: TagsSelect<false> | TagsSelect<true>;
     series: SeriesSelect<false> | SeriesSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
@@ -249,7 +247,6 @@ export interface Post {
   featuredImage?: (string | null) | MediaInterface;
   status: 'draft' | 'published' | 'archived';
   publishedAt?: string | null;
-  author: string | User;
   /**
    * Associate this post with a series
    */
@@ -258,11 +255,14 @@ export interface Post {
    * Order of this post within the series
    */
   seriesOrder?: number | null;
-  categories?: (string | Category)[] | null;
   /**
-   * Tags for better discoverability
+   * Tags for categorization and discovery (first tag is treated as primary)
    */
   tags?: (string | Tag)[] | null;
+  /**
+   * Main topic/category of this post (optional, defaults to first tag)
+   */
+  primaryTag?: (string | null) | Tag;
   /**
    * Estimated reading time in minutes
    */
@@ -347,37 +347,6 @@ export interface Series {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories".
- */
-export interface Category {
-  id: string;
-  name: string;
-  /**
-   * URL-friendly version of the category name
-   */
-  slug: string;
-  description?: string | null;
-  /**
-   * Color for UI theming and visual distinction
-   */
-  color?: string | null;
-  /**
-   * Optional icon for the category
-   */
-  icon?: (string | null) | MediaInterface;
-  /**
-   * Number of posts in this category
-   */
-  postCount?: number | null;
-  /**
-   * Show this category prominently
-   */
-  featured?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "tags".
  */
 export interface Tag {
@@ -396,6 +365,14 @@ export interface Tag {
    * Number of posts with this tag
    */
   postCount?: number | null;
+  /**
+   * Higher priority tags appear first (0-100)
+   */
+  priority?: number | null;
+  /**
+   * Show this tag prominently in tag clouds and filters
+   */
+  featured?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -56546,10 +56523,6 @@ export interface PayloadLockedDocument {
         value: string | Post;
       } | null)
     | ({
-        relationTo: 'categories';
-        value: string | Category;
-      } | null)
-    | ({
         relationTo: 'tags';
         value: string | Tag;
       } | null)
@@ -56671,11 +56644,10 @@ export interface PostsSelect<T extends boolean = true> {
   featuredImage?: T;
   status?: T;
   publishedAt?: T;
-  author?: T;
   series?: T;
   seriesOrder?: T;
-  categories?: T;
   tags?: T;
+  primaryTag?: T;
   readingTime?: T;
   featured?: T;
   views?: T;
@@ -56692,21 +56664,6 @@ export interface PostsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories_select".
- */
-export interface CategoriesSelect<T extends boolean = true> {
-  name?: T;
-  slug?: T;
-  description?: T;
-  color?: T;
-  icon?: T;
-  postCount?: T;
-  featured?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "tags_select".
  */
 export interface TagsSelect<T extends boolean = true> {
@@ -56715,6 +56672,8 @@ export interface TagsSelect<T extends boolean = true> {
   description?: T;
   color?: T;
   postCount?: T;
+  priority?: T;
+  featured?: T;
   updatedAt?: T;
   createdAt?: T;
 }

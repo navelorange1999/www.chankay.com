@@ -19,7 +19,7 @@ export const Posts: CollectionConfig = {
 		delete: authenticated,
 	},
 	admin: {
-		defaultColumns: ["title", "status", "publishedAt", "author", "primaryLanguage"],
+		defaultColumns: ["title", "status", "publishedAt", "primaryLanguage"],
 		useAsTitle: "title",
 		preview: (doc) => {
 			return `${process.env.WWW_SITE_URL || "http://localhost:3000"}/posts/${doc.slug}`
@@ -156,17 +156,6 @@ export const Posts: CollectionConfig = {
 			},
 		},
 		{
-			name: "author",
-			type: "relationship",
-			relationTo: "users",
-			required: true,
-			index: true,
-			admin: {
-				position: "sidebar",
-			},
-			defaultValue: ({ user }) => user?.id,
-		},
-		{
 			name: "series",
 			type: "relationship",
 			relationTo: "series",
@@ -187,22 +176,22 @@ export const Posts: CollectionConfig = {
 
 		// === Categorization ===
 		{
-			name: "categories",
-			type: "relationship",
-			relationTo: "categories",
-			hasMany: true,
-			admin: {
-				position: "sidebar",
-			},
-		},
-		{
 			name: "tags",
 			type: "relationship",
 			relationTo: "tags",
 			hasMany: true,
 			admin: {
 				position: "sidebar",
-				description: "Tags for better discoverability",
+				description: "Tags for categorization and discovery (first tag is treated as primary)",
+			},
+		},
+		{
+			name: "primaryTag",
+			type: "relationship",
+			relationTo: "tags",
+			admin: {
+				position: "sidebar",
+				description: "Main topic/category of this post (optional, defaults to first tag)",
 			},
 		},
 

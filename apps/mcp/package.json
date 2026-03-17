@@ -1,0 +1,14 @@
+{
+  "name": "@chankay/mcp",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Writable MCP server for www.chankay.com",
+  "scripts": {
+    "dev:stdio": "",
+    "dev:http": "",
+    "build": "",
+    "start": ""
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

@@ -113,6 +113,29 @@ Use regular imports only for runtime values:
 import { useState } from "react"
 ```
 
+## Workspace Package Resolution
+
+When an app consumes a local workspace package and needs stable editor types during active package
+development, map the package root to its source entry in the app-level `tsconfig.json`.
+
+Example:
+
+```json
+{
+  "compilerOptions": {
+    "paths": {
+      "@repo/ui": ["../../packages/ui/src/index.ts"]
+    }
+  }
+}
+```
+
+Keep the package's published `exports` and `types` fields pointing to built output. Use `paths`
+only for app-local development ergonomics.
+
+Do not map asset subpaths such as `@repo/ui/styles.css` unless the consuming runtime is meant to
+process source assets directly.
+
 ## Payload CMS Types
 
 Payload generated types live in:

@@ -5,6 +5,7 @@
     "jsx": "preserve",
     "types": ["next"],
     "paths": {
+      "@repo/ui": ["../../packages/ui/src/index.ts"],
       "@/*": ["./src/*"]
     },
     "skipLibCheck": true

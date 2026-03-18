@@ -60,6 +60,7 @@ export class PayloadClient {
 			depth?: number
 			limit?: number
 			page?: number
+			sort?: string
 		}
 	): Promise<{ docs: T[]; totalDocs: number; limit: number; page: number }> {
 		const params = new URLSearchParams()
@@ -80,6 +81,7 @@ export class PayloadClient {
 		if (options?.depth !== undefined) params.append("depth", String(options.depth))
 		if (options?.limit !== undefined) params.append("limit", String(options.limit))
 		if (options?.page !== undefined) params.append("page", String(options.page))
+		if (options?.sort) params.append("sort", options.sort)
 
 		const url = `${this.baseUrl}/${collection}?${params.toString()}`
 

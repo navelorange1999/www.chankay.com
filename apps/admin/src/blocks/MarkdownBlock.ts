@@ -1,4 +1,5 @@
 import type { BlockDefinition } from "./types"
+import { markdownField } from "@/fields/markdownField"
 
 export const MarkdownBlock: BlockDefinition = {
 	slug: "markdown",
@@ -7,14 +8,14 @@ export const MarkdownBlock: BlockDefinition = {
 		plural: "Markdown",
 	},
 	fields: [
-		{
+		markdownField({
 			name: "content",
-			type: "textarea",
 			label: "Markdown Content",
 			required: true,
 			admin: {
-				description: "Supports standard Markdown syntax.",
+				description: "Supports standard Markdown syntax with preview and media insertion.",
+				rows: 18,
 			},
-		},
+		}),
 	],
 }

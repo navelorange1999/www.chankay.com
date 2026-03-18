@@ -1,7 +1,36 @@
 import type { CollectionConfig } from "payload"
 import { authenticated } from "../access/authenticated"
-import { LOCALE_CONFIG, getLocaleOptions } from "../config/locales"
-import { createAdvancedTranslationHook } from "../hooks/createTranslationHook"
+import { markdownField } from "../fields/markdownField"
+
+function getLocalizedContent(value: unknown): string {
+	if (typeof value === "string") return value
+
+	if (!value || typeof value !== "object") return ""
+
+	const record = value as Record<string, unknown>
+	const firstString = Object.values(record).find((entry) => typeof entry === "string")
+	return typeof firstString === "string" ? firstString : ""
+}
+
+function estimateReadingTimeFromMarkdown(content: string): number {
+	if (!content.trim()) return 0
+
+	const plainText = content
+		.replace(/```[\s\S]*?```/g, " ")
+		.replace(/`[^`]*`/g, " ")
+		.replace(/!\[[^\]]*\]\([^)]+\)/g, " ")
+		.replace(/\[[^\]]*\]\([^)]+\)/g, " ")
+		.replace(/^>\s+/gm, " ")
+		.replace(/^#{1,6}\s+/gm, " ")
+		.replace(/[*_~#>-]/g, " ")
+
+	const wordCount = plainText
+		.split(/\s+/)
+		.map((word) => word.trim())
+		.filter(Boolean).length
+
+	return wordCount > 0 ? Math.ceil(wordCount / 200) : 0
+}
 
 export const Posts: CollectionConfig = {
 	slug: "posts",
@@ -19,7 +48,7 @@ export const Posts: CollectionConfig = {
 		delete: authenticated,
 	},
 	admin: {
-		defaultColumns: ["title", "status", "publishedAt", "primaryLanguage"],
+		defaultColumns: ["title", "status", "publishedAt"],
 		useAsTitle: "title",
 		preview: (doc) => {
 			return `${process.env.WWW_SITE_URL || "http://localhost:3000"}/posts/${doc.slug}`
@@ -34,20 +63,6 @@ export const Posts: CollectionConfig = {
 		maxPerDoc: 10,
 	},
 	fields: [
-		// === Language Management ===
-		{
-			name: "primaryLanguage",
-			type: "select",
-			label: "Primary Language",
-			required: true,
-			defaultValue: LOCALE_CONFIG.locales[0].code,
-			options: getLocaleOptions(),
-			admin: {
-				position: "sidebar",
-				description: "The original language this post was written in",
-			},
-		},
-
 		// === Core Content ===
 		{
 			name: "title",
@@ -95,16 +110,17 @@ export const Posts: CollectionConfig = {
 				placeholder: "Write a compelling excerpt...",
 			},
 		},
-		{
+		markdownField({
 			name: "content",
-			type: "richText",
 			label: "Content",
 			required: true,
 			localized: true,
 			admin: {
-				description: "Main article content",
+				description: "Main article content written in Markdown.",
+				placeholder: "# Write your post\n\nStart with Markdown. Use Insert Media for assets.",
+				rows: 24,
 			},
-		},
+		}),
 
 		// === Media ===
 		{
@@ -113,7 +129,7 @@ export const Posts: CollectionConfig = {
 			relationTo: "media",
 			admin: {
 				position: "sidebar",
-				description: "自定义封面图（留空则自动从内容中提取第一张图片）",
+				description: "Custom cover image. Leave empty to derive from the first image in content.",
 			},
 		},
 
@@ -216,11 +232,7 @@ export const Posts: CollectionConfig = {
 						beforeChange: [
 							({ data }) => {
 								if (data?.content) {
-									// Simple word count estimation: 200 WPM
-									const wordCount = JSON.stringify(data.content)
-										.replace(/<[^>]*>/g, "")
-										.split(/\s+/).length
-									return Math.ceil(wordCount / 200)
+									return estimateReadingTimeFromMarkdown(getLocalizedContent(data.content))
 								}
 								return 0
 							},
@@ -259,12 +271,4 @@ export const Posts: CollectionConfig = {
 		},
 	],
 	timestamps: true,
-	hooks: {
-		beforeChange: [
-			createAdvancedTranslationHook(
-				["title", "excerpt", "content", "meta.title", "meta.description"],
-				"technical" // Blog posts are often technical content
-			),
-		],
-	},
 }

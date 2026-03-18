@@ -1,5 +1,10 @@
 {
-  "extends": "@repo/typescript-config/react"
+  "extends": "@repo/typescript-config/react",
+  "compilerOptions": {
+    "paths": {
+      "@repo/ui": ["../../packages/ui/src/index.ts"]
+    }
+  }
   // "include": ["."],
   // "exclude": ["dist", "build"]
 }

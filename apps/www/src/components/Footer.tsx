@@ -1,11 +1,12 @@
-import { payloadClient } from "@/utils/payloadClient"
 import { WebsiteLogo } from "@/components/WebsiteLogo"
 import { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 import { Footer as FooterUI } from "@repo/ui"
 
-export const Footer = async () => {
-	const siteConfig = await payloadClient.getGlobal<SiteConfig>("site-config")
+export interface FooterProps {
+	siteConfig: SiteConfig
+}
 
+export function Footer({ siteConfig }: FooterProps) {
 	return (
 		<FooterUI
 			siteConfig={siteConfig}

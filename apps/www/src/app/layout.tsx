@@ -88,7 +88,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
 					<main className="min-h-[calc(100dvh-var(--navbar-height,4rem))] bg-background">
 						<Container className="py-8">{children}</Container>
 					</main>
-					<Footer />
+					<Footer siteConfig={siteConfig} />
 					<Analytics />
 					<SpeedInsights />
 				</ThemeProvider>

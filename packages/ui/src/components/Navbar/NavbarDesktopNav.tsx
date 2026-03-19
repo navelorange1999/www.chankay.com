@@ -8,6 +8,7 @@ import type { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 
 import { cn } from "#utils/classnames"
 import { useSlidingIndicator } from "#hooks/useSlidingIndicator"
+import { resolveActiveNavUrl } from "./utils"
 
 type MenuItem = NonNullable<NonNullable<NonNullable<SiteConfig["navigation"]>["menuItems"]>>[number]
 
@@ -17,7 +18,8 @@ export interface NavbarDesktopNavProps {
 
 export function NavbarDesktopNav({ items }: NavbarDesktopNavProps) {
 	const pathname = usePathname()
-	const { containerRef, setItemRef, indicator } = useSlidingIndicator(pathname)
+	const activeUrl = resolveActiveNavUrl(pathname, items)
+	const { containerRef, setItemRef, indicator } = useSlidingIndicator(activeUrl)
 
 	return (
 		<div
@@ -25,7 +27,7 @@ export function NavbarDesktopNav({ items }: NavbarDesktopNavProps) {
 			className="relative hidden md:flex md:flex-1 md:items-center md:justify-start md:pl-10 md:gap-2"
 		>
 			{items.map((item: MenuItem) => {
-				const isActive = pathname === item.url
+				const isActive = activeUrl === item.url
 
 				return (
 					<Link

@@ -1,6 +1,7 @@
+import * as React from "react"
 import Link from "next/link"
 
-import { SiteConfig } from "@repo/typescript-config/typings/payload-types"
+import type { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 
 import { Container } from "../Container"
 import { cn } from "#utils/classnames"

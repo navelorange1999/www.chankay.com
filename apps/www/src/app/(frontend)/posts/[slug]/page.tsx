@@ -2,8 +2,11 @@ import { cache } from "react"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import { ArrowLeft } from "lucide-react"
 
 import {
+	Button,
+	createMarkdownDocument,
 	ImageMedia,
 	Post,
 	PostContent,
@@ -16,6 +19,9 @@ import {
 	PostTag,
 	PostThumbnail,
 	PostTitle,
+	PostToc,
+	PostTocDrawer,
+	PostTocLayout,
 } from "@repo/ui"
 
 import { getAllPosts, getPostBySlug, getSiteConfig } from "@/services/payload"
@@ -28,10 +34,12 @@ import {
 import {
 	formatPostDate,
 	resolvePostAbsoluteUrl,
-	resolvePostExcerpt,
+	resolvePostDisplayExcerpt,
 	resolvePostImage,
+	resolvePostSeoDescription,
+	resolvePostSeoTitle,
 	resolvePostTags,
-	resolvePostTitle,
+	resolvePostDisplayTitle,
 } from "@/utils/posts"
 
 type PostPageParams = {
@@ -72,8 +80,8 @@ export async function generateMetadata({
 		}
 	}
 
-	const title = resolvePostTitle(post)
-	const description = resolvePostExcerpt(post)
+	const title = resolvePostSeoTitle(post)
+	const description = resolvePostSeoDescription(post)
 	const canonicalUrl = resolvePostAbsoluteUrl(siteConfig, post.slug)
 	const ogImageUrl = resolveMediaUrl({
 		media: resolvePostImage(post) || resolveMedia(siteConfig.ogImage),
@@ -115,65 +123,105 @@ export default async function PostPage({ params }: { params: Promise<PostPagePar
 
 	const postImage = resolvePostImage(post)
 	const postDate = formatPostDate(post.publishedAt || post.updatedAt)
-	const postExcerpt = post.excerpt?.trim() || post.meta?.description?.trim() || null
+	const postExcerpt = resolvePostDisplayExcerpt(post) || null
+	const postTitle = resolvePostDisplayTitle(post)
 	const postTags = resolvePostTags(post)
+	const postDocument = createMarkdownDocument(post.content)
+	const tocHeadings = postDocument.headings.filter((heading) => [2, 3].includes(heading.level))
 	const series =
 		post.series && typeof post.series === "object" && "title" in post.series
 			? post.series.title
 			: null
 	const hasReadingMeta = Boolean(postDate || post.readingTime)
+	const desktopBackButton = (
+		<Button
+			asChild
+			size="icon"
+			variant="outline"
+			className="rounded-lg text-foreground/70 hover:text-foreground"
+		>
+			<Link aria-label="Back to posts" href="/posts">
+				<ArrowLeft className="h-4 w-4" />
+			</Link>
+		</Button>
+	)
 
 	return (
-		<article className="mx-auto flex max-w-3xl flex-col gap-6">
-			<div>
-				<Link
-					className="text-sm font-medium text-muted-foreground hover:text-foreground"
-					href="/posts"
-				>
-					All posts
-				</Link>
-			</div>
-
-			<Post className="overflow-hidden border-0 bg-transparent shadow-none">
-				{postImage ? (
-					<PostThumbnail className="aspect-[16/9] rounded-2xl">
-						<ImageMedia
-							fill
-							priority
-							resource={postImage}
-							size="(min-width: 1024px) 768px, 100vw"
-							imgClassName="object-cover"
-						/>
-					</PostThumbnail>
-				) : null}
-
+		<article className="flex w-full flex-col gap-6">
+			<Post className="border-0 bg-transparent shadow-none">
 				<div className="space-y-8 px-0 py-2">
-					<PostHeader className="gap-4">
-						<PostTitle className="text-4xl md:text-5xl">{resolvePostTitle(post)}</PostTitle>
+					<PostTocLayout headings={tocHeadings} startAside={desktopBackButton}>
+						<div className="w-full min-w-0 space-y-8">
+							<div className="sticky top-[calc(var(--navbar-height,4rem)+0.75rem)] z-20 flex items-center justify-between py-1 lg:hidden">
+								<Button
+									asChild
+									size="icon"
+									variant="outline"
+									className="rounded-lg text-foreground/70 hover:text-foreground"
+								>
+									<Link aria-label="Back to posts" href="/posts">
+										<ArrowLeft className="h-4 w-4" />
+									</Link>
+								</Button>
 
-						<PostMetaInline>
-							{postDate ? <PostDate>{postDate}</PostDate> : null}
-							{postDate && post.readingTime ? <PostMetaSeparator /> : null}
-							{post.readingTime ? (
-								<PostReadingTime>{post.readingTime} min read</PostReadingTime>
+								{tocHeadings.length > 0 ? (
+									<PostTocDrawer title="On this page">
+										<PostToc headings={tocHeadings} showTitle={false} />
+									</PostTocDrawer>
+								) : (
+									<div className="h-9 w-9" aria-hidden="true" />
+								)}
+							</div>
+
+							{postImage ? (
+								<PostThumbnail className="aspect-[16/9] rounded-2xl">
+									<ImageMedia
+										fill
+										priority
+										resource={postImage}
+										size="(min-width: 1024px) 768px, 100vw"
+										imgClassName="object-cover"
+									/>
+								</PostThumbnail>
 							) : null}
-							{series && hasReadingMeta ? <PostMetaSeparator /> : null}
-							{series ? <span>{series}</span> : null}
-							{postTags.map((tag) => (
-								<PostTag key={tag.id} variant="outline">
-									{tag.name}
-								</PostTag>
-							))}
-						</PostMetaInline>
 
-						{postExcerpt ? (
-							<PostExcerpt className="line-clamp-none text-base md:text-lg">
-								{postExcerpt}
-							</PostExcerpt>
-						) : null}
-					</PostHeader>
+							<PostHeader className="gap-4">
+								<div className="space-y-3">
+									<PostTitle className="text-4xl md:text-5xl">{postTitle}</PostTitle>
+								</div>
 
-					<PostContent asMarkdown content={post.content} className="px-0 py-0" />
+								<PostMetaInline>
+									{postDate ? <PostDate>{postDate}</PostDate> : null}
+									{postDate && post.readingTime ? <PostMetaSeparator /> : null}
+									{post.readingTime ? (
+										<PostReadingTime>{post.readingTime} min read</PostReadingTime>
+									) : null}
+									{series && hasReadingMeta ? <PostMetaSeparator /> : null}
+									{series ? <span>{series}</span> : null}
+									{postTags.map((tag) => (
+										<PostTag key={tag.id} variant="outline">
+											{tag.name}
+										</PostTag>
+									))}
+								</PostMetaInline>
+
+								{postExcerpt ? (
+									<PostExcerpt
+										asMarkdown
+										content={postExcerpt}
+										className="line-clamp-none text-base md:text-lg"
+									/>
+								) : null}
+							</PostHeader>
+
+							<PostContent
+								asMarkdown
+								content={post.content}
+								html={postDocument.html}
+								className="px-0 py-0"
+							/>
+						</div>
+					</PostTocLayout>
 				</div>
 			</Post>
 		</article>

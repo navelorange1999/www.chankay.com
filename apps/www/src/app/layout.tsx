@@ -77,7 +77,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
 			</head>
 
 			<body className={inter.className}>
-				<NextTopLoader color="currentColor" showSpinner={false} />
+				<NextTopLoader color="currentColor" showForHashAnchor={false} showSpinner={false} />
 				<ThemeProvider
 					attribute="class"
 					defaultTheme="system"
@@ -86,7 +86,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
 				>
 					<Navbar siteConfig={siteConfig} />
 					<main className="min-h-[calc(100dvh-var(--navbar-height,4rem))] bg-background">
-						<Container className="py-8">{children}</Container>
+						<Container className="py-5 md:py-8">{children}</Container>
 					</main>
 					<Footer siteConfig={siteConfig} />
 					<Analytics />

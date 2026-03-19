@@ -204,6 +204,12 @@ const HeavyComponent = dynamic(() => import("./HeavyComponent"), {
 })
 ```
 
+### Markdown and Mermaid
+
+Keep Markdown parsing and syntax highlighting on the server when possible. If a Markdown surface
+contains Mermaid diagrams, isolate only the Mermaid hydration in a small Client Component instead of
+marking the entire Markdown renderer as client-only.
+
 ### Animations
 
 Reuse animation variants instead of inlining animation objects repeatedly:

@@ -1,7 +1,11 @@
 import * as React from "react"
+import { List } from "lucide-react"
 
 import { cn } from "#utils/classnames"
 import { Markdown, type MarkdownProps } from "../Markdown"
+import type { MarkdownHeading } from "../Markdown/markdownRenderer"
+import { PostTocDrawer } from "./PostTocDrawer"
+import { PostTocNav } from "./PostTocNav"
 
 function Post({ className, ...props }: React.ComponentProps<"article">) {
 	return (
@@ -103,13 +107,137 @@ function PostReadingTime({ className, ...props }: React.ComponentProps<"span">) 
 	return <span data-slot="post-reading-time" className={cn("", className)} {...props} />
 }
 
-function PostExcerpt({ className, ...props }: React.ComponentProps<"p">) {
+interface PostTocProps extends React.ComponentProps<"nav"> {
+	headings: MarkdownHeading[]
+	showTitle?: boolean
+	title?: string
+}
+
+function PostToc({
+	headings,
+	showTitle = true,
+	title = "On this page",
+	className,
+	...props
+}: PostTocProps) {
+	if (headings.length === 0) return null
+
+	return (
+		<nav data-slot="post-toc" className={cn("space-y-3", className)} {...props}>
+			{showTitle ? (
+				<div className="flex items-center gap-2">
+					<List className="h-4 w-4 text-muted-foreground" />
+					<p className="text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+						{title}
+					</p>
+				</div>
+			) : null}
+
+			<PostTocNav headings={headings} />
+		</nav>
+	)
+}
+
+interface PostTocLayoutProps extends React.ComponentProps<"div"> {
+	children: React.ReactNode
+	headings: MarkdownHeading[]
+	startAside?: React.ReactNode
+	title?: string
+}
+
+function PostTocLayout({
+	children,
+	headings,
+	startAside,
+	title = "On this page",
+	className,
+	...props
+}: PostTocLayoutProps) {
+	const hasStartAside = Boolean(startAside)
+	const hasToc = headings.length > 0
+
+	return (
+		<div data-slot="post-toc-layout" className={cn("relative", className)} {...props}>
+			<div
+				className={cn(
+					"min-w-0",
+					hasStartAside &&
+						hasToc &&
+						"lg:grid lg:grid-cols-[3rem_minmax(0,1fr)_16rem] lg:items-start lg:gap-8 xl:gap-10",
+					hasStartAside &&
+						!hasToc &&
+						"lg:grid lg:grid-cols-[3rem_minmax(0,1fr)] lg:items-start lg:gap-8",
+					!hasStartAside &&
+						hasToc &&
+						"lg:grid lg:grid-cols-[minmax(0,1fr)_16rem] lg:items-start lg:gap-8"
+				)}
+			>
+				{hasStartAside ? (
+					<aside
+						data-slot="post-start-aside"
+						className="hidden lg:flex lg:self-start lg:sticky lg:top-[calc(var(--navbar-height,4rem)+1.5rem)]"
+					>
+						{startAside}
+					</aside>
+				) : null}
+
+				<div className="min-w-0">{children}</div>
+
+				{hasToc ? (
+					<aside
+						data-slot="post-toc-desktop"
+						className="hidden lg:block lg:self-start lg:sticky lg:top-[calc(var(--navbar-height,4rem)+1.5rem)]"
+					>
+						<div className="rounded-xl border border-border bg-card/40 p-4">
+							<PostToc headings={headings} title={title} />
+						</div>
+					</aside>
+				) : null}
+			</div>
+		</div>
+	)
+}
+
+interface PostExcerptProps extends Omit<MarkdownProps, "content"> {
+	children?: React.ReactNode
+	content?: string
+	asMarkdown?: boolean
+}
+
+function PostExcerpt({
+	className,
+	children,
+	content,
+	asMarkdown = false,
+	...props
+}: PostExcerptProps) {
+	if (asMarkdown && content) {
+		return (
+			<div data-slot="post-excerpt">
+				<Markdown
+					content={content}
+					className={cn(
+						"prose-sm max-w-none text-muted-foreground",
+						"prose-p:my-0 prose-p:text-muted-foreground",
+						"prose-headings:my-0 prose-headings:text-foreground",
+						"prose-strong:text-foreground prose-li:text-muted-foreground",
+						"prose-ul:my-2 prose-ol:my-2",
+						className
+					)}
+					{...props}
+				/>
+			</div>
+		)
+	}
+
 	return (
 		<p
 			data-slot="post-excerpt"
 			className={cn("text-muted-foreground line-clamp-3", className)}
 			{...props}
-		/>
+		>
+			{children ?? content}
+		</p>
 	)
 }
 
@@ -200,6 +328,9 @@ export {
 	PostMetaSeparator,
 	PostDate,
 	PostReadingTime,
+	PostToc,
+	PostTocDrawer,
+	PostTocLayout,
 	PostExcerpt,
 	PostContent,
 	PostFooter,

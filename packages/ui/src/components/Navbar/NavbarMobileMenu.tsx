@@ -10,6 +10,7 @@ import type { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 
 import { cn } from "#utils/classnames"
 import { ThemeToggle } from "../ThemeProvider"
+import { resolveActiveNavUrl } from "./utils"
 
 type MenuItem = NonNullable<NonNullable<NonNullable<SiteConfig["navigation"]>["menuItems"]>>[number]
 
@@ -20,6 +21,7 @@ export interface NavbarMobileMenuProps {
 export function NavbarMobileMenu({ items }: NavbarMobileMenuProps) {
 	const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
 	const pathname = usePathname()
+	const activeUrl = resolveActiveNavUrl(pathname, items)
 
 	const toggleMobileMenu = () => {
 		setMobileMenuOpen((isOpen) => !isOpen)
@@ -54,7 +56,7 @@ export function NavbarMobileMenu({ items }: NavbarMobileMenuProps) {
 								{items
 									.filter((item: MenuItem) => item.showInMobile !== false)
 									.map((item: MenuItem, index: number) => {
-										const isActive = pathname === item.url
+										const isActive = activeUrl === item.url
 
 										return (
 											<motion.div

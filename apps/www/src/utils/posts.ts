@@ -41,16 +41,24 @@ export function formatPostDate(value?: string | null): string | undefined {
 	}).format(date)
 }
 
-export function resolvePostExcerpt(post: Pick<Post, "excerpt" | "meta">): string {
+export function resolvePostDisplayExcerpt(post: Pick<Post, "excerpt">): string | undefined {
+	return asOptionalString(post.excerpt)
+}
+
+export function resolvePostSeoDescription(post: Pick<Post, "excerpt" | "meta">): string {
 	return (
 		asOptionalString(post.meta?.description) ||
-		asOptionalString(post.excerpt) ||
+		resolvePostDisplayExcerpt(post) ||
 		resolveSiteDescription(undefined)
 	)
 }
 
-export function resolvePostTitle(post: Pick<Post, "title" | "meta">): string {
-	return asOptionalString(post.meta?.title) || post.title
+export function resolvePostDisplayTitle(post: Pick<Post, "title">): string {
+	return asOptionalString(post.title) || "Untitled post"
+}
+
+export function resolvePostSeoTitle(post: Pick<Post, "title" | "meta">): string {
+	return asOptionalString(post.meta?.title) || resolvePostDisplayTitle(post)
 }
 
 export function resolvePostImage(

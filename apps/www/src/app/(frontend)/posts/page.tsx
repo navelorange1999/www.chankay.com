@@ -12,7 +12,6 @@ import {
 	PostReadingTime,
 	PostTag,
 	PostThumbnail,
-	PostTitle,
 } from "@repo/ui"
 
 import { getAllPosts, getSiteConfig } from "@/services/payload"
@@ -20,17 +19,17 @@ import { resolveTwitterHandle } from "@/utils/seo"
 import {
 	formatPostDate,
 	resolvePostAbsoluteUrl,
-	resolvePostExcerpt,
+	resolvePostDisplayExcerpt,
+	resolvePostDisplayTitle,
 	resolvePostImage,
 	resolvePostPath,
 	resolvePostTags,
-	resolvePostTitle,
 } from "@/utils/posts"
 
 export async function generateMetadata(): Promise<Metadata> {
 	const siteConfig = await getSiteConfig()
 	const title = "Posts"
-	const description = "Markdown-first posts, notes, and experiments."
+	const description = "Thoughts, experiments, and practical notes from building on the web."
 	const canonicalUrl = resolvePostAbsoluteUrl(siteConfig)
 	const twitterHandle = resolveTwitterHandle(siteConfig)
 
@@ -63,11 +62,11 @@ export default async function PostsPage() {
 		<section className="mx-auto flex max-w-4xl flex-col gap-8">
 			<header className="space-y-3">
 				<p className="text-sm font-medium uppercase tracking-[0.24em] text-muted-foreground">
-					Writing
+					Notes
 				</p>
 				<h1 className="text-4xl font-semibold tracking-tight md:text-5xl">Posts</h1>
 				<p className="max-w-2xl text-base text-muted-foreground md:text-lg">
-					Markdown-first articles with code, notes, and media pulled from Payload.
+					Thoughts, experiments, and practical notes from building on the web.
 				</p>
 			</header>
 
@@ -81,7 +80,8 @@ export default async function PostsPage() {
 						const postUrl = resolvePostPath(post.slug)
 						const postImage = resolvePostImage(post)
 						const postDate = formatPostDate(post.publishedAt || post.updatedAt)
-						const postExcerpt = resolvePostExcerpt(post)
+						const postExcerpt = resolvePostDisplayExcerpt(post)
+						const postTitle = resolvePostDisplayTitle(post)
 						const postTags = resolvePostTags(post)
 
 						return (
@@ -100,11 +100,11 @@ export default async function PostsPage() {
 
 								<div className="space-y-4 px-6 py-6">
 									<PostHeader>
-										<PostTitle className="text-2xl md:text-3xl">
-											<Link className="hover:underline" href={postUrl}>
-												{resolvePostTitle(post)}
+										<strong className="block">
+											<Link className="text-[1.0625rem] hover:underline" href={postUrl}>
+												{postTitle}
 											</Link>
-										</PostTitle>
+										</strong>
 
 										<PostMetaInline>
 											{postDate ? <PostDate>{postDate}</PostDate> : null}
@@ -119,7 +119,13 @@ export default async function PostsPage() {
 											))}
 										</PostMetaInline>
 
-										<PostExcerpt className="line-clamp-none text-base">{postExcerpt}</PostExcerpt>
+										{postExcerpt ? (
+											<PostExcerpt
+												asMarkdown
+												content={postExcerpt}
+												className="line-clamp-none text-base"
+											/>
+										) : null}
 									</PostHeader>
 
 									<div>

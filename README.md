@@ -197,6 +197,14 @@ These documents ensure consistent, high-quality code generation and provide esse
 6. **Code Quality**: Ensure ESLint and Prettier compliance
 7. **Commit**: Follow conventional commit format with scope-based commits
 
+### Current Frontend Priorities
+
+- Decouple `@repo/ui` from `next/*` so framework-specific wiring stays in the app layer.
+- Tighten `use client` boundaries and keep non-interactive surfaces server-rendered.
+- Audit hydration and image strategy before considering a frontend framework migration.
+
+See [todo.md](./todo.md) for the working checklist.
+
 ### PayloadCMS Customization
 
 Custom field components are located in `apps/admin/src/components/fields/`:

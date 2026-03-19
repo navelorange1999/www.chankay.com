@@ -10,6 +10,7 @@ interface PostTocNavProps extends React.ComponentProps<"ul"> {
 }
 
 const ACTIVE_HEADING_TOLERANCE = 12
+const ACTIVE_HEADING_VIEWPORT_RATIO = 0.32
 
 function resolveTocDepth(level: number, baseLevel: number): number {
 	return Math.max(0, level - baseLevel)
@@ -18,12 +19,11 @@ function resolveTocDepth(level: number, baseLevel: number): number {
 function resolveTocItemClass(depth: number, previousDepth: number | null): string {
 	if (depth <= 0) {
 		if (previousDepth === null) return "mt-0"
-		if (previousDepth > 0) return "mt-3"
-		return "mt-4"
+		return "mt-1"
 	}
 
-	if (depth === 1) return "mt-1.5 ml-4"
-	return "mt-1 ml-6"
+	if (depth === 1) return "mt-1 ml-4"
+	return "mt-0.5 ml-6"
 }
 
 function resolveTocLinkClass(depth: number): string {
@@ -91,14 +91,17 @@ export function PostTocNav({ headings, className, ...props }: PostTocNavProps) {
 			return headings[0]?.id ?? ""
 		}
 
-		const offset = resolveNavbarOffset() + ACTIVE_HEADING_TOLERANCE
+		const activationLine = Math.max(
+			resolveNavbarOffset() + ACTIVE_HEADING_TOLERANCE,
+			window.innerHeight * ACTIVE_HEADING_VIEWPORT_RATIO
+		)
 		let currentId = headings[0]?.id ?? ""
 
 		for (const heading of headings) {
 			const element = document.getElementById(heading.id)
 			if (!element) continue
 
-			if (element.getBoundingClientRect().top - offset <= 0) {
+			if (element.getBoundingClientRect().top <= activationLine) {
 				currentId = heading.id
 			} else {
 				break

@@ -15,6 +15,7 @@ import {
 	PostHeader,
 	PostMetaInline,
 	PostMetaSeparator,
+	PostReadingProgress,
 	PostReadingTime,
 	PostTag,
 	PostThumbnail,
@@ -133,6 +134,7 @@ export default async function PostPage({ params }: { params: Promise<PostPagePar
 			? post.series.title
 			: null
 	const hasReadingMeta = Boolean(postDate || post.readingTime)
+	const postReadingTargetId = "post-reading-target"
 	const desktopBackButton = (
 		<Button
 			asChild
@@ -148,10 +150,12 @@ export default async function PostPage({ params }: { params: Promise<PostPagePar
 
 	return (
 		<article className="flex w-full flex-col gap-6">
+			<PostReadingProgress targetId={postReadingTargetId} />
+
 			<Post className="border-0 bg-transparent shadow-none">
 				<div className="space-y-8 px-0 py-2">
 					<PostTocLayout headings={tocHeadings} startAside={desktopBackButton}>
-						<div className="w-full min-w-0 space-y-8">
+						<div id={postReadingTargetId} className="w-full min-w-0 space-y-8">
 							<div className="sticky top-[calc(var(--navbar-height,4rem)+0.75rem)] z-20 flex items-center justify-between py-1 lg:hidden">
 								<Button
 									asChild

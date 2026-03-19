@@ -22,6 +22,7 @@ type CSSVars = React.CSSProperties & {
 export interface HeatmapProps extends React.ComponentPropsWithoutRef<"div"> {
 	days: HeatmapDay[]
 	size?: HeatmapSize
+	orientation?: "horizontal" | "vertical"
 	cellSize?: number
 	gap?: number
 	showLegend?: boolean
@@ -155,10 +156,10 @@ function getMonthTicks(weeks: HeatmapDay[][], minGapWeeks: number = 4) {
 	return ticks
 }
 
-const WEEKDAY_LABELS: Array<{ rowIndex: number; label: "Mon" | "Wed" | "Fri" }> = [
-	{ rowIndex: 1, label: "Mon" },
-	{ rowIndex: 3, label: "Wed" },
-	{ rowIndex: 5, label: "Fri" },
+const WEEKDAY_TICKS: Array<{ dayIndex: number; label: "Mon" | "Wed" | "Fri" }> = [
+	{ dayIndex: 1, label: "Mon" },
+	{ dayIndex: 3, label: "Wed" },
+	{ dayIndex: 5, label: "Fri" },
 ]
 
 function normalizeDays(days: HeatmapDay[]) {
@@ -235,6 +236,7 @@ function buildCalendar(normalized: {
 export function Heatmap({
 	days,
 	size = "md",
+	orientation = "horizontal",
 	cellSize,
 	gap,
 	showLegend = true,
@@ -266,6 +268,50 @@ export function Heatmap({
 	const cellDurationSeconds = shouldAnimate ? 0.25 : 0
 	let cellIndex = 0
 
+	const renderDayCell = (day: HeatmapDay) => {
+		const level = day.level ?? 0
+		const label = `${day.count} contributions on ${day.date}`
+		const delay = shouldAnimate ? initialDelaySeconds + cellIndex * perCellDelay : 0
+		cellIndex += 1
+
+		return (
+			<div
+				key={day.date}
+				className={cn(
+					"relative overflow-hidden rounded-[4px] ring-1 ring-inset",
+					"h-[var(--heatmap-cell-size)] w-[var(--heatmap-cell-size)]",
+					ringClass[0],
+					levelClass[0]
+				)}
+				title={label}
+				aria-label={label}
+			>
+				{level > 0 && (
+					<motion.div
+						key={day.date}
+						className={cn(
+							"absolute inset-0 rounded-[4px] ring-1 ring-inset",
+							ringClass[level],
+							levelClass[level]
+						)}
+						aria-hidden="true"
+						initial={shouldAnimate ? { opacity: 0 } : false}
+						animate={{ opacity: 1 }}
+						transition={
+							shouldAnimate
+								? {
+										delay,
+										duration: cellDurationSeconds,
+										ease: "easeOut",
+									}
+								: undefined
+						}
+					/>
+				)}
+			</div>
+		)
+	}
+
 	return (
 		<div
 			className={cn("flex min-w-0 max-w-full flex-col gap-3", "text-foreground", className)}
@@ -280,111 +326,117 @@ export function Heatmap({
 			{/* GitHub-like layout (weeks as columns) */}
 			<div className="w-full min-w-0 max-w-full" style={style}>
 				<div className="flex flex-col gap-3">
-					<div className="flex min-w-0 gap-3">
-						{/* Weekday labels (left) */}
-						<div className="shrink-0">
-							<div className="h-5" aria-hidden="true" />
-							<div className="grid grid-rows-7 gap-[var(--heatmap-gap)]">
-								{Array.from({ length: 7 }).map((_, rowIndex) => {
-									const tick = WEEKDAY_LABELS.find((t) => t.rowIndex === rowIndex)
-									return (
-										<div
-											key={rowIndex}
-											className={cn(
-												"h-[var(--heatmap-cell-size)]",
-												"w-8",
-												"text-muted-foreground text-[10px] leading-[var(--heatmap-cell-size)]"
-											)}
-										>
-											{tick?.label ?? null}
-										</div>
-									)
-								})}
-							</div>
-						</div>
-
-						{/* Month labels + grid inside scroll container */}
-						<div className="min-w-0 flex-1 overflow-x-auto overscroll-x-contain">
+					{orientation === "vertical" ? (
+						<div className="min-w-0 overflow-y-auto overscroll-y-contain">
 							<div className="inline-flex flex-col gap-[var(--heatmap-gap)]">
-								{/* Month labels (top) */}
-								<div className="grid grid-flow-col auto-cols-max gap-[var(--heatmap-gap)] h-5">
-									{calendar.weeks.map((_, weekIndex) => (
-										<div
-											key={weekIndex}
-											className={cn(
-												"w-[var(--heatmap-cell-size)]",
-												"text-muted-foreground text-[10px] leading-5"
-											)}
-										>
-											{monthTicks.get(weekIndex) ?? null}
-										</div>
-									))}
+								<div className="flex gap-3">
+									<div className="w-8 shrink-0" aria-hidden="true" />
+									<div className={cn("grid grid-cols-7", "gap-[var(--heatmap-gap)]")}>
+										{Array.from({ length: 7 }).map((_, dayIndex) => {
+											const tick = WEEKDAY_TICKS.find((item) => item.dayIndex === dayIndex)
+											return (
+												<div
+													key={dayIndex}
+													className={cn(
+														"w-[var(--heatmap-cell-size)] text-center",
+														"text-muted-foreground text-[10px] leading-5"
+													)}
+												>
+													{tick?.label ?? null}
+												</div>
+											)
+										})}
+									</div>
 								</div>
 
 								<div
-									className={cn("grid grid-flow-col auto-cols-max", "gap-[var(--heatmap-gap)]")}
+									className="grid gap-[var(--heatmap-gap)]"
 									aria-label="Contributions heatmap"
 									role="group"
 								>
 									{calendar.weeks.map((week, weekIndex) => (
-										<div
-											key={weekIndex}
-											className={cn("grid grid-rows-7", "gap-[var(--heatmap-gap)]")}
-										>
-											{week.map((day) => {
-												const level = day.level ?? 0
-												const label = `${day.count} contributions on ${day.date}`
-												const delay = shouldAnimate
-													? initialDelaySeconds + cellIndex * perCellDelay
-													: 0
-												cellIndex += 1
-
-												return (
-													<div
-														key={day.date}
-														className={cn(
-															"relative overflow-hidden rounded-[4px] ring-1 ring-inset",
-															"h-[var(--heatmap-cell-size)] w-[var(--heatmap-cell-size)]",
-															ringClass[0],
-															levelClass[0]
-														)}
-														title={label}
-														aria-label={label}
-													>
-														{level > 0 && (
-															<motion.div
-																key={day.date}
-																className={cn(
-																	"absolute inset-0 rounded-[4px] ring-1 ring-inset",
-																	ringClass[level],
-																	levelClass[level]
-																)}
-																aria-hidden="true"
-																initial={shouldAnimate ? { opacity: 0 } : false}
-																animate={{ opacity: 1 }}
-																transition={
-																	shouldAnimate
-																		? {
-																				delay,
-																				duration: cellDurationSeconds,
-																				ease: "easeOut",
-																			}
-																		: undefined
-																}
-															/>
-														)}
-													</div>
-												)
-											})}
+										<div key={weekIndex} className="flex items-center gap-3">
+											<div
+												className={cn(
+													"w-8 shrink-0",
+													"text-muted-foreground text-[10px] leading-[var(--heatmap-cell-size)]"
+												)}
+											>
+												{monthTicks.get(weekIndex) ?? null}
+											</div>
+											<div className={cn("grid grid-cols-7", "gap-[var(--heatmap-gap)]")}>
+												{week.map(renderDayCell)}
+											</div>
 										</div>
 									))}
 								</div>
 							</div>
 						</div>
-					</div>
+					) : (
+						<div className="flex min-w-0 gap-3">
+							<div className="shrink-0">
+								<div className="h-5" aria-hidden="true" />
+								<div className="grid grid-rows-7 gap-[var(--heatmap-gap)]">
+									{Array.from({ length: 7 }).map((_, dayIndex) => {
+										const tick = WEEKDAY_TICKS.find((item) => item.dayIndex === dayIndex)
+										return (
+											<div
+												key={dayIndex}
+												className={cn(
+													"h-[var(--heatmap-cell-size)]",
+													"w-8",
+													"text-muted-foreground text-[10px] leading-[var(--heatmap-cell-size)]"
+												)}
+											>
+												{tick?.label ?? null}
+											</div>
+										)
+									})}
+								</div>
+							</div>
+
+							<div className="min-w-0 flex-1 overflow-x-auto overscroll-x-contain">
+								<div className="inline-flex flex-col gap-[var(--heatmap-gap)]">
+									<div className="grid h-5 grid-flow-col auto-cols-max gap-[var(--heatmap-gap)]">
+										{calendar.weeks.map((_, weekIndex) => (
+											<div
+												key={weekIndex}
+												className={cn(
+													"w-[var(--heatmap-cell-size)]",
+													"text-muted-foreground text-[10px] leading-5"
+												)}
+											>
+												{monthTicks.get(weekIndex) ?? null}
+											</div>
+										))}
+									</div>
+
+									<div
+										className={cn("grid grid-flow-col auto-cols-max", "gap-[var(--heatmap-gap)]")}
+										aria-label="Contributions heatmap"
+										role="group"
+									>
+										{calendar.weeks.map((week, weekIndex) => (
+											<div
+												key={weekIndex}
+												className={cn("grid grid-rows-7", "gap-[var(--heatmap-gap)]")}
+											>
+												{week.map(renderDayCell)}
+											</div>
+										))}
+									</div>
+								</div>
+							</div>
+						</div>
+					)}
 
 					{showLegend && (
-						<div className="flex w-full items-center justify-end gap-2 text-muted-foreground text-xs">
+						<div
+							className={cn(
+								"flex w-full items-center gap-2 text-muted-foreground text-xs",
+								orientation === "vertical" ? "justify-start" : "justify-end"
+							)}
+						>
 							<span>Less</span>
 							<div className="flex items-center gap-1">
 								{([0, 1, 2, 3, 4] as const).map((lvl) => (

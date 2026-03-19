@@ -1,6 +1,7 @@
-"use client"
+import { Heatmap } from "@repo/ui"
 
 import { LoginForm } from "./LoginForm"
+import { loginHeatmapDays } from "./loginHeatmap"
 
 export default function LoginPage() {
 	return (
@@ -19,11 +20,14 @@ export default function LoginPage() {
 				</div>
 			</div>
 			<div className="bg-muted relative hidden lg:block">
-				<img
-					src="/placeholder.svg"
-					alt="Image"
-					className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
-				/>
+				<div className="absolute inset-0 flex items-center justify-center p-8 xl:p-10">
+					<Heatmap
+						days={loginHeatmapDays}
+						orientation="vertical"
+						showLegend={false}
+						className="max-h-full"
+					/>
+				</div>
 			</div>
 		</div>
 	)

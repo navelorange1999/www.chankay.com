@@ -1,6 +1,7 @@
 import * as React from "react"
 
-import { Container, Flex, Grid } from "@repo/ui"
+import { Container } from "@repo/ui/components/Container"
+import { Flex, Grid } from "@repo/ui/components/Structure"
 import type { Page } from "@repo/typescript-config/typings/payload-types"
 
 import { isLeafBlock, renderLeafBlock } from "@/components/nodes/leafRenderers"
@@ -52,9 +53,11 @@ function isOneOf<T extends string>(value: unknown, allowed: readonly T[]): value
 	return typeof value === "string" && allowed.includes(value as T)
 }
 
-function renderBlocks(blocks: StructureBlock[] | null | undefined) {
+async function renderBlocks(blocks: StructureBlock[] | null | undefined) {
 	if (!blocks || blocks.length === 0) return null
-	return blocks.map((block, index) => renderBlock(block, block.id ?? `${block.blockType}-${index}`))
+	return Promise.all(
+		blocks.map((block, index) => renderBlock(block, block.id ?? `${block.blockType}-${index}`))
+	)
 }
 
 function isStructureBlockType(blockType: string) {
@@ -66,7 +69,7 @@ function isStructureBlockType(blockType: string) {
 	)
 }
 
-function renderBlock(block: StructureBlock, key: string): React.ReactNode {
+async function renderBlock(block: StructureBlock, key: string): Promise<React.ReactNode> {
 	if (!block) return null
 
 	if (isStructureBlockType(block.blockType)) {
@@ -84,7 +87,7 @@ function renderBlock(block: StructureBlock, key: string): React.ReactNode {
 							: "default"
 					}
 				>
-					{renderBlocks(children)}
+					{await renderBlocks(children)}
 				</Container>
 			)
 		}
@@ -146,7 +149,7 @@ function renderBlock(block: StructureBlock, key: string): React.ReactNode {
 					}
 					gap={asGap(data.gap, "md")}
 				>
-					{renderBlocks(children)}
+					{await renderBlocks(children)}
 				</Flex>
 			)
 		}
@@ -194,7 +197,7 @@ function renderBlock(block: StructureBlock, key: string): React.ReactNode {
 							: "stretch"
 					}
 				>
-					{renderBlocks(children)}
+					{await renderBlocks(children)}
 				</Grid>
 			)
 		}
@@ -211,13 +214,11 @@ export interface NodesProps {
 	nodes: Page["structure"]
 }
 
-export function Nodes({ nodes }: NodesProps) {
+export async function Nodes({ nodes }: NodesProps) {
 	if (!nodes) return null
 	if (nodes.length === 0) return null
 
-	return (
-		<>
-			{nodes.map((block, index) => renderBlock(block, block.id ?? `${block.blockType}-${index}`))}
-		</>
-	)
+	const renderedNodes = await renderBlocks(nodes)
+
+	return <>{renderedNodes}</>
 }

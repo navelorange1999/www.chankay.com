@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { SpotifyIframe } from "@repo/ui"
+import SpotifyIframe from "@repo/ui/components/SpotifyIframe"
 import type { Page } from "@repo/typescript-config/typings/payload-types"
 
 type SpotifyIframeBlock = Extract<

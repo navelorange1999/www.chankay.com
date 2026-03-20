@@ -1,4 +1,5 @@
 import * as React from "react"
+import { cache } from "react"
 
 import {
 	Card,
@@ -8,21 +9,17 @@ import {
 	CardFooter,
 	CardHeader,
 	CardTitle,
-	Text,
-} from "@repo/ui"
+} from "@repo/ui/components/Card"
+import { Text } from "@repo/ui/components/Text"
 import type { Page } from "@repo/typescript-config/typings/payload-types"
 
 import { renderButtonBlock } from "@/components/nodes/ButtonNode"
-import { HandWritingNode, type HandWritingNodeProps } from "@/components/nodes/HandWritingNode"
-import { HeatmapNode, type HeatmapNodeProps } from "@/components/nodes/HeatmapNode"
-import { MarkdownNode, type MarkdownNodeProps } from "@/components/nodes/MarkdownNode"
-import { MediaImageNode, type MediaImageNodeProps } from "@/components/nodes/MediaImageNode"
-import {
-	SpotifyIframeNode,
-	type SpotifyIframeNodeProps,
-} from "@/components/nodes/SpotifyIframeNode"
 
 type CardBlock = Extract<NonNullable<Page["structure"]>[number], { blockType: "card" }>
+type CardContentBlockType = "markdown" | "handWriting" | "mediaImage" | "spotifyIframe" | "heatmap"
+type CardContentRenderer = (props: {
+	block: Record<string, unknown>
+}) => React.ReactNode | Promise<React.ReactNode>
 
 export interface CardNodeProps {
 	block: CardBlock
@@ -80,37 +77,55 @@ function renderSupportedBlock(block: Record<string, unknown>, key: string) {
 	return null
 }
 
-function renderCardContentBlock(block: Record<string, unknown>, key: string) {
+const loadCardContentRenderer = cache(
+	async (blockType: CardContentBlockType): Promise<CardContentRenderer> => {
+		switch (blockType) {
+			case "markdown": {
+				const { MarkdownNode } = await import("@/components/nodes/MarkdownNode")
+				return MarkdownNode as CardContentRenderer
+			}
+			case "handWriting": {
+				const { HandWritingNode } = await import("@/components/nodes/HandWritingNode")
+				return HandWritingNode as CardContentRenderer
+			}
+			case "mediaImage": {
+				const { MediaImageNode } = await import("@/components/nodes/MediaImageNode")
+				return MediaImageNode as CardContentRenderer
+			}
+			case "spotifyIframe": {
+				const { SpotifyIframeNode } = await import("@/components/nodes/SpotifyIframeNode")
+				return SpotifyIframeNode as CardContentRenderer
+			}
+			case "heatmap": {
+				const { HeatmapNode } = await import("@/components/nodes/HeatmapNode")
+				return HeatmapNode as CardContentRenderer
+			}
+		}
+	}
+)
+
+async function renderCardContentBlock(block: Record<string, unknown>, key: string) {
 	const blockType = asOptionalString(block.blockType)
 
 	if (blockType === "text" || blockType === "button") {
 		return renderSupportedBlock(block, key)
 	}
 
-	if (blockType === "markdown") {
-		return <MarkdownNode key={key} block={block as MarkdownNodeProps["block"]} />
-	}
-
-	if (blockType === "handWriting") {
-		return <HandWritingNode key={key} block={block as HandWritingNodeProps["block"]} />
-	}
-
-	if (blockType === "mediaImage") {
-		return <MediaImageNode key={key} block={block as MediaImageNodeProps["block"]} />
-	}
-
-	if (blockType === "spotifyIframe") {
-		return <SpotifyIframeNode key={key} block={block as SpotifyIframeNodeProps["block"]} />
-	}
-
-	if (blockType === "heatmap") {
-		return <HeatmapNode key={key} block={block as HeatmapNodeProps["block"]} />
+	if (
+		blockType === "markdown" ||
+		blockType === "handWriting" ||
+		blockType === "mediaImage" ||
+		blockType === "spotifyIframe" ||
+		blockType === "heatmap"
+	) {
+		const Renderer = await loadCardContentRenderer(blockType)
+		return <Renderer key={key} block={block} />
 	}
 
 	return null
 }
 
-export function CardNode({ block }: CardNodeProps) {
+export async function CardNode({ block }: CardNodeProps) {
 	const blockData = block as unknown as Record<string, unknown>
 
 	const showHeader = asBooleanWithDefault(blockData.showHeader, true)
@@ -128,9 +143,13 @@ export function CardNode({ block }: CardNodeProps) {
 		.map((nestedBlock, index) => renderSupportedBlock(nestedBlock, `action-${index}`))
 		.filter(Boolean)
 
-	const contentNodes = contentBlocks
-		.map((nestedBlock, index) => renderCardContentBlock(nestedBlock, `content-${index}`))
-		.filter(Boolean)
+	const contentNodes = (
+		await Promise.all(
+			contentBlocks.map((nestedBlock, index) =>
+				renderCardContentBlock(nestedBlock, `content-${index}`)
+			)
+		)
+	).filter((node) => node !== null && node !== undefined)
 
 	const footerNodes = footerBlocks
 		.map((nestedBlock, index) => renderSupportedBlock(nestedBlock, `footer-${index}`))

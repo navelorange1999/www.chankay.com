@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { cn } from "@repo/ui"
+import { cn } from "@repo/ui/utils/classnames"
 
 export interface WebsiteLogoProps extends React.HTMLAttributes<HTMLSpanElement> {
 	title?: string

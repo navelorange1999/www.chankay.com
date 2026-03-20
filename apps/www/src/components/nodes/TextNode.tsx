@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { Text } from "@repo/ui"
+import { Text } from "@repo/ui/components/Text"
 import type { Page } from "@repo/typescript-config/typings/payload-types"
 
 type TextBlock = Extract<NonNullable<Page["structure"]>[number], { blockType: "text" }>

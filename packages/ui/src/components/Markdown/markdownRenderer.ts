@@ -1,4 +1,15 @@
-import hljs from "highlight.js/lib/common"
+import hljs from "highlight.js/lib/core"
+import bash from "highlight.js/lib/languages/bash"
+import css from "highlight.js/lib/languages/css"
+import diff from "highlight.js/lib/languages/diff"
+import javascript from "highlight.js/lib/languages/javascript"
+import json from "highlight.js/lib/languages/json"
+import markdown from "highlight.js/lib/languages/markdown"
+import scss from "highlight.js/lib/languages/scss"
+import sql from "highlight.js/lib/languages/sql"
+import typescript from "highlight.js/lib/languages/typescript"
+import xml from "highlight.js/lib/languages/xml"
+import yaml from "highlight.js/lib/languages/yaml"
 import { marked } from "marked"
 
 export interface MarkdownHeading {
@@ -16,6 +27,63 @@ export interface MarkdownDocument {
 const renderer = new marked.Renderer()
 const headingTagPattern = /<h([1-6])>([\s\S]*?)<\/h\1>/g
 
+const highlightLanguages = {
+	bash,
+	css,
+	diff,
+	javascript,
+	json,
+	markdown,
+	scss,
+	sql,
+	typescript,
+	xml,
+	yaml,
+} as const
+
+type HighlightLanguage = keyof typeof highlightLanguages
+
+const highlightLanguageAliases: Record<string, HighlightLanguage> = {
+	cjs: "javascript",
+	htm: "xml",
+	html: "xml",
+	js: "javascript",
+	jsonc: "json",
+	jsx: "javascript",
+	md: "markdown",
+	mjs: "javascript",
+	sh: "bash",
+	shell: "bash",
+	svg: "xml",
+	ts: "typescript",
+	tsx: "typescript",
+	yml: "yaml",
+	zsh: "bash",
+}
+
+const registeredHighlightLanguages = Object.keys(highlightLanguages) as HighlightLanguage[]
+
+Object.entries(highlightLanguages).forEach(([name, language]) => {
+	hljs.registerLanguage(name, language)
+})
+
+function resolveHighlightLanguage(value: string): HighlightLanguage | null {
+	const normalized = highlightLanguageAliases[value] ?? value
+
+	return registeredHighlightLanguages.includes(normalized as HighlightLanguage)
+		? (normalized as HighlightLanguage)
+		: null
+}
+
+function escapeHtml(value: string): string {
+	return value
+		.replaceAll("&", "&amp;")
+		.replaceAll("<", "&lt;")
+		.replaceAll(">", "&gt;")
+		.replaceAll('"', "&quot;")
+		.replaceAll("'", "&#39;")
+}
+
 renderer.code = ({ text, lang }) => {
 	const language = typeof lang === "string" ? lang.trim().toLowerCase() : ""
 
@@ -23,10 +91,15 @@ renderer.code = ({ text, lang }) => {
 		return `<div class="not-prose my-6 overflow-x-auto rounded-lg border border-border bg-muted/30 p-4"><div data-mermaid-definition="${encodeURIComponent(text)}"></div></div>`
 	}
 
-	const result =
-		language && hljs.getLanguage(language)
-			? hljs.highlight(text, { language, ignoreIllegals: true })
-			: hljs.highlightAuto(text)
+	const resolvedLanguage = language ? resolveHighlightLanguage(language) : null
+
+	if (language && !resolvedLanguage) {
+		return `<pre><code class="hljs language-plaintext">${escapeHtml(text)}</code></pre>`
+	}
+
+	const result = resolvedLanguage
+		? hljs.highlight(text, { language: resolvedLanguage, ignoreIllegals: true })
+		: hljs.highlightAuto(text, registeredHighlightLanguages)
 
 	const languageClass = result.language ? ` language-${result.language}` : ""
 

@@ -29,8 +29,28 @@
       "types": "./dist/src/index.d.ts",
       "default": "./dist/src/index.js"
     },
+    "./components/*": {
+      "types": "./dist/src/components/*/index.d.ts",
+      "default": "./dist/src/components/*/index.js"
+    },
+    "./hooks/*": {
+      "types": "./dist/src/hooks/*.d.ts",
+      "default": "./dist/src/hooks/*.js"
+    },
+    "./pages/*": {
+      "types": "./dist/src/pages/*/index.d.ts",
+      "default": "./dist/src/pages/*/index.js"
+    },
     "./styles.css": "./dist/index.css",
-    "./tokens.css": "./src/tokens.css"
+    "./tokens.css": "./src/tokens.css",
+    "./typings/*": {
+      "types": "./dist/src/typings/*.d.ts",
+      "default": "./dist/src/typings/*.js"
+    },
+    "./utils/*": {
+      "types": "./dist/src/utils/*.d.ts",
+      "default": "./dist/src/utils/*.js"
+    }
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

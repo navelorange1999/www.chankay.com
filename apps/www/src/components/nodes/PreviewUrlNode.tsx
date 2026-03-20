@@ -1,4 +1,4 @@
-import { ImageMedia } from "@repo/ui"
+import { ImageMedia } from "@repo/ui/components/Media"
 import type { MediaInterface, Page } from "@repo/typescript-config/typings/payload-types"
 
 type PreviewUrlBlock = Extract<NonNullable<Page["structure"]>[number], { blockType: "previewUrl" }>

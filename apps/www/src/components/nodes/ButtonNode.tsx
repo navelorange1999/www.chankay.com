@@ -1,7 +1,12 @@
 import * as React from "react"
 import Link from "next/link"
 
-import { Button, buttonIconComponentMap, buttonIconValues, type ButtonIconName } from "@repo/ui"
+import { Button } from "@repo/ui/components/Button"
+import {
+	buttonIconComponentMap,
+	buttonIconValues,
+	type ButtonIconName,
+} from "@repo/ui/typings/buttonIcons"
 import type { Page } from "@repo/typescript-config/typings/payload-types"
 
 type ButtonBlock = Extract<NonNullable<Page["structure"]>[number], { blockType: "button" }>
@@ -30,9 +35,6 @@ const buttonVariants = [
 
 const buttonSizes = ["default", "sm", "lg", "icon"] as const
 const iconPositions = ["left", "right"] as const
-
-type ButtonVariant = (typeof buttonVariants)[number]
-type ButtonSize = (typeof buttonSizes)[number]
 
 function asOneOf<T extends string>(value: unknown, allowed: readonly T[], fallback: T): T {
 	return typeof value === "string" && allowed.includes(value as T) ? (value as T) : fallback

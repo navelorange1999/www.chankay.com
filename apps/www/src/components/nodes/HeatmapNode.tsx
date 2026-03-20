@@ -1,5 +1,6 @@
-import { Heatmap } from "@repo/ui"
 import type { Page } from "@repo/typescript-config/typings/payload-types"
+
+import { HeatmapClient } from "@/components/lazy/HeatmapClient"
 
 type HeatmapSize = "sm" | "md" | "lg"
 
@@ -103,7 +104,7 @@ export async function HeatmapNode({ block }: HeatmapNodeProps) {
 	if (!days || days.length === 0) return null
 
 	return (
-		<Heatmap
+		<HeatmapClient
 			days={days}
 			size={size}
 			showLegend={showLegend}

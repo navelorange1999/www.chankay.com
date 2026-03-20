@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 
+import { ImageMedia } from "@repo/ui/components/Media"
 import {
-	ImageMedia,
 	Post,
 	PostDate,
 	PostExcerpt,
@@ -12,7 +12,7 @@ import {
 	PostReadingTime,
 	PostTag,
 	PostThumbnail,
-} from "@repo/ui"
+} from "@repo/ui/components/Post"
 
 import { getAllPosts, getSiteConfig } from "@/services/payload"
 import { resolveTwitterHandle } from "@/utils/seo"

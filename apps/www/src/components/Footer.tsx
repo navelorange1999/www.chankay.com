@@ -1,6 +1,6 @@
 import { WebsiteLogo } from "@/components/WebsiteLogo"
 import { SiteConfig } from "@repo/typescript-config/typings/payload-types"
-import { Footer as FooterUI } from "@repo/ui"
+import { Footer as FooterUI } from "@repo/ui/components/Footer"
 
 export interface FooterProps {
 	siteConfig: SiteConfig

@@ -8,7 +8,7 @@ import { AnimatePresence, motion } from "motion/react"
 import { cn } from "#utils/classnames"
 import { Button } from "../Button"
 
-interface PostTocDrawerProps {
+export interface PostTocDrawerProps {
 	children: React.ReactNode
 	className?: string
 	title?: string

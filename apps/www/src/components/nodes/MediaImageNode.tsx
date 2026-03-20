@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { ImageMedia } from "@repo/ui"
+import { ImageMedia } from "@repo/ui/components/Media"
 import type { MediaInterface, Page } from "@repo/typescript-config/typings/payload-types"
 
 type MediaImageBlock = Extract<NonNullable<Page["structure"]>[number], { blockType: "mediaImage" }>

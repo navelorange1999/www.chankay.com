@@ -4,10 +4,10 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowLeft } from "lucide-react"
 
+import { Button } from "@repo/ui/components/Button"
+import { createMarkdownDocument } from "@repo/ui/components/Markdown"
+import { ImageMedia } from "@repo/ui/components/Media"
 import {
-	Button,
-	createMarkdownDocument,
-	ImageMedia,
 	Post,
 	PostContent,
 	PostDate,
@@ -15,16 +15,16 @@ import {
 	PostHeader,
 	PostMetaInline,
 	PostMetaSeparator,
-	PostReadingProgress,
 	PostReadingTime,
 	PostTag,
 	PostThumbnail,
 	PostTitle,
 	PostToc,
-	PostTocDrawer,
 	PostTocLayout,
-} from "@repo/ui"
+	PostReadingProgress,
+} from "@repo/ui/components/Post"
 
+import { PostTocDrawerClient } from "@/components/lazy/PostTocDrawerClient"
 import { getAllPosts, getPostBySlug, getSiteConfig } from "@/services/payload"
 import {
 	resolveMedia,
@@ -169,9 +169,9 @@ export default async function PostPage({ params }: { params: Promise<PostPagePar
 								</Button>
 
 								{tocHeadings.length > 0 ? (
-									<PostTocDrawer title="On this page">
+									<PostTocDrawerClient title="On this page">
 										<PostToc headings={tocHeadings} showTitle={false} />
-									</PostTocDrawer>
+									</PostTocDrawerClient>
 								) : (
 									<div className="h-9 w-9" aria-hidden="true" />
 								)}

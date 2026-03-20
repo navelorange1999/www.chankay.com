@@ -4,7 +4,6 @@ import { List } from "lucide-react"
 import { cn } from "#utils/classnames"
 import { Markdown, type MarkdownProps } from "../Markdown"
 import type { MarkdownHeading } from "../Markdown/markdownRenderer"
-import { PostTocDrawer } from "./PostTocDrawer"
 import { PostTocNav } from "./PostTocNav"
 
 function Post({ className, ...props }: React.ComponentProps<"article">) {
@@ -329,7 +328,6 @@ export {
 	PostDate,
 	PostReadingTime,
 	PostToc,
-	PostTocDrawer,
 	PostTocLayout,
 	PostExcerpt,
 	PostContent,

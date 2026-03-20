@@ -1,4 +1,4 @@
-import { Navbar as NavbarUI } from "@repo/ui"
+import { Navbar as NavbarUI } from "@repo/ui/components/Navbar"
 import { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 
 import { WebsiteLogo } from "@/components/WebsiteLogo"

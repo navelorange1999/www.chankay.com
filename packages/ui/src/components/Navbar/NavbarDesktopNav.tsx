@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { motion } from "motion/react"
 
 import type { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 
@@ -24,7 +23,7 @@ export function NavbarDesktopNav({ items }: NavbarDesktopNavProps) {
 	return (
 		<div
 			ref={containerRef}
-			className="relative hidden md:flex md:flex-1 md:items-center md:justify-start md:pl-10 md:gap-2"
+			className="relative hidden md:flex md:flex-1 md:items-center md:justify-start md:gap-2 md:pl-10"
 		>
 			{items.map((item: MenuItem) => {
 				const isActive = activeUrl === item.url
@@ -45,17 +44,13 @@ export function NavbarDesktopNav({ items }: NavbarDesktopNavProps) {
 			})}
 
 			{indicator ? (
-				<motion.span
-					className="absolute bottom-0 h-0.5 rounded-full bg-primary pointer-events-none"
-					animate={{
+				<span
+					className="pointer-events-none absolute bottom-0 h-0.5 rounded-full bg-primary transition-[left,width] duration-300 ease-out"
+					style={{
 						left: indicator.left,
 						width: indicator.width,
 					}}
-					transition={{
-						type: "spring",
-						stiffness: 350,
-						damping: 30,
-					}}
+					aria-hidden="true"
 				/>
 			) : null}
 		</div>

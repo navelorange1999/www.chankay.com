@@ -13,7 +13,9 @@ import type { MarkdownMode, SelectionRange } from "./MarkdownField.types"
 import { getMarkdownFieldCustom, getString, normalizeLabel } from "./MarkdownField.utils"
 import { useMarkdownFieldMedia } from "./useMarkdownFieldMedia"
 
-const MarkdownField: TextareaFieldClientComponent = ({ field, path }) => {
+type MarkdownFieldProps = React.ComponentProps<TextareaFieldClientComponent>
+
+const MarkdownField = ({ field, path }: MarkdownFieldProps) => {
 	const { value, setValue } = useField<string>({ path })
 	const { config } = useConfig()
 
@@ -153,4 +155,4 @@ const MarkdownField: TextareaFieldClientComponent = ({ field, path }) => {
 	)
 }
 
-export default MarkdownField
+export default MarkdownField satisfies TextareaFieldClientComponent

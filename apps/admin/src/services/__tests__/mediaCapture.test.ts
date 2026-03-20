@@ -1,3 +1,4 @@
+import type { PayloadRequest } from "payload"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
 import { SKIP_MEDIA_SOURCE_CAPTURE_FLAG } from "@/services/pageAssets/constants"
@@ -68,7 +69,7 @@ describe("mediaCapture", () => {
 					info: vi.fn(),
 				},
 			},
-		} as any
+		} as unknown as PayloadRequest
 
 		await prepareMediaSourceCapture({
 			data: {
@@ -107,13 +108,13 @@ describe("mediaCapture", () => {
 					info: vi.fn(),
 				},
 			},
-		} as any
+		} as unknown as PayloadRequest
 
 		const result = await mediaCaptureBeforeOperation({
 			args,
 			operation: "create",
 			req,
-		} as any)
+		} as Parameters<typeof mediaCaptureBeforeOperation>[0])
 
 		expect(result).toBe(args)
 		expect(captureScreenshot).not.toHaveBeenCalled()

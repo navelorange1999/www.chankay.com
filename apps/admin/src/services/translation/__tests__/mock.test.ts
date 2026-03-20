@@ -2,6 +2,12 @@ import { describe, it, expect } from "vitest"
 import { MockTranslationAdapter } from "../adapters"
 import { UniversalTranslator } from "../universal"
 
+interface RichTextNode {
+	children?: RichTextNode[]
+	text?: string
+	type: string
+}
+
 describe("MockTranslationAdapter", () => {
 	const adapter = new MockTranslationAdapter()
 	const translator = new UniversalTranslator(adapter)
@@ -50,7 +56,7 @@ describe("MockTranslationAdapter", () => {
 		})
 
 		it("should handle complex nested structures", async () => {
-			const content = {
+			const content: RichTextNode = {
 				type: "root",
 				children: [
 					{
@@ -69,9 +75,9 @@ describe("MockTranslationAdapter", () => {
 
 			const result = await translator.translateRichText(content, "en", "zh-CN")
 
-			expect((result as any).children[0]?.text).toBe("[ZH-CN] First paragraph")
-			expect((result as any).children[1]?.children[0]?.text).toBe("[ZH-CN] Item 1")
-			expect((result as any).children[1]?.children[1]?.text).toBe("[ZH-CN] Item 2")
+			expect(result.children?.[0]?.text).toBe("[ZH-CN] First paragraph")
+			expect(result.children?.[1]?.children?.[0]?.text).toBe("[ZH-CN] Item 1")
+			expect(result.children?.[1]?.children?.[1]?.text).toBe("[ZH-CN] Item 2")
 		})
 
 		it("should handle null and undefined content", async () => {

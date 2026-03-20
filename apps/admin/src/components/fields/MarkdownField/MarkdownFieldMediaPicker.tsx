@@ -174,6 +174,8 @@ export function MarkdownFieldMediaPicker(props: MarkdownFieldMediaPickerProps) {
 										{previewUrl ? (
 											<div className="flex h-36 items-center justify-center overflow-hidden rounded bg-gray-100 dark:bg-gray-900">
 												{media.mimeType?.startsWith("image/") ? (
+													// Arbitrary media URLs are previewed directly in the admin picker.
+													// eslint-disable-next-line @next/next/no-img-element
 													<img
 														src={previewUrl}
 														alt={label}

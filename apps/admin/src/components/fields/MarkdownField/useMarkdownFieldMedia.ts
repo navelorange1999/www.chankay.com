@@ -89,8 +89,6 @@ export function useMarkdownFieldMedia(args: {
 			}
 
 			setMediaRequestKey((currentValue) => currentValue + 1)
-		} catch (error) {
-			throw error
 		} finally {
 			setIsUploadingMedia(false)
 		}

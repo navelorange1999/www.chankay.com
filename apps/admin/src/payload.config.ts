@@ -172,5 +172,7 @@ export default buildConfig({
 })
 
 declare module "payload" {
+	// Payload requires interface augmentation here to expose generated config types.
+	// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 	export interface GeneratedTypes extends Config {}
 }

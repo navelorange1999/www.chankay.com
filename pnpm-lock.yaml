@@ -103,6 +103,9 @@ importers:
         specifier: ^3.25.76
         version: 3.25.76
     devDependencies:
+      '@repo/brand-assets':
+        specifier: workspace:*
+        version: link:../../packages/brand-assets
       '@types/node':
         specifier: 25.0.3
         version: 25.0.3
@@ -189,9 +192,14 @@ importers:
         specifier: ^3.9.17
         version: 3.9.17(next@15.5.9(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.77.4))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
     devDependencies:
+      '@repo/brand-assets':
+        specifier: workspace:*
+        version: link:../../packages/brand-assets
       '@types/node':
         specifier: 25.0.3
         version: 25.0.3
+
+  packages/brand-assets: {}
 
   packages/eslint-config:
     devDependencies:
@@ -229,7 +237,11 @@ importers:
         specifier: ^8.36.0
         version: 8.36.0(eslint@9.30.1(jiti@2.4.2))(typescript@5.8.3)
 
-  packages/site-shell: {}
+  packages/site-shell:
+    devDependencies:
+      '@repo/brand-assets':
+        specifier: workspace:*
+        version: link:../brand-assets
 
   packages/tailwind-config:
     devDependencies:

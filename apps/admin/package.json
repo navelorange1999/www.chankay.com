@@ -2,9 +2,10 @@
   "name": "admin",
   "type": "module",
   "scripts": {
-    "dev": "next dev -p 3001 --turbopack",
-    "build": "next build",
+    "dev": "pnpm sync:brand-assets && next dev -p 3001 --turbopack",
+    "build": "pnpm sync:brand-assets && next build",
     "start": "next start -p 3001",
+    "sync:brand-assets": "node ../../packages/brand-assets/scripts/sync-assets.mjs admin",
     "lint": "next lint --fix",
     "gen": "pnpm gen:importmap && pnpm gen:types",
     "gen:importmap": "payload generate:importmap",
@@ -36,6 +37,7 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@repo/brand-assets": "workspace:*",
     "@types/node": "25.0.3",
     "@vitest/ui": "^3.2.4",
     "vitest": "^3.2.4"

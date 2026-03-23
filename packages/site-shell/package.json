@@ -1,6 +1,6 @@
 {
   "name": "@chankay/site-shell",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Static Web Component shell for Chankay demo sites",
   "type": "module",
   "types": "./dist/index.d.ts",
@@ -35,5 +35,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "devDependencies": {
+    "@repo/brand-assets": "workspace:*"
   }
 }

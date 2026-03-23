@@ -2,9 +2,10 @@
   "name": "www",
   "type": "module",
   "scripts": {
-    "dev": "next dev -p 3000 --turbopack",
-    "build": "next build",
+    "dev": "pnpm sync:brand-assets && next dev -p 3000 --turbopack",
+    "build": "pnpm sync:brand-assets && next build",
     "start": "next start -p 3000",
+    "sync:brand-assets": "node ../../packages/brand-assets/scripts/sync-assets.mjs www",
     "lint": "next lint --fix",
     "check-types": "tsc --noEmit",
     "test": "echo \"No tests yet\"",
@@ -24,6 +25,7 @@
     "nextjs-toploader": "^3.9.17"
   },
   "devDependencies": {
+    "@repo/brand-assets": "workspace:*",
     "@types/node": "25.0.3"
   }
 }

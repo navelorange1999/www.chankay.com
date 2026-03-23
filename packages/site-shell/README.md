@@ -30,6 +30,7 @@ pnpm add @chankay/site-shell
 - bundled demos: install the package and use either the custom element or `mountSiteShell()`
 
 Always pin an explicit version. Do not consume `latest` implicitly.
+The published package already embeds the Chankay brand logo, so host demos do not need any extra logo or favicon fetch from `chankay.com`.
 
 ### 2. Reserve shell slots in the host demo
 
@@ -48,10 +49,10 @@ You can also use a single element with `position="both"` when the host page does
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@chankay/site-shell@1.0.1/dist/tokens.css"
+  href="https://cdn.jsdelivr.net/npm/@chankay/site-shell@1.0.2/dist/tokens.css"
 />
 <script type="module">
-  import "https://cdn.jsdelivr.net/npm/@chankay/site-shell@1.0.1/dist/register.js"
+  import "https://cdn.jsdelivr.net/npm/@chankay/site-shell@1.0.2/dist/register.js"
 </script>
 
 <chankay-site-shell
@@ -154,7 +155,7 @@ Use `preview` when you want a one-off local server without watch mode.
 - `src/render/`: static navbar and footer markup and styles
 - `src/tokens.aliases.css`: `site-shell`-specific CSS variable aliases
 - `scripts/copy-tokens.mjs`: builds `dist/tokens.css` from the shared token source
-- `scripts/generate-brand-logo.mjs`: embeds the local favicon asset into the package build
+- `scripts/generate-brand-logo.mjs`: embeds the shared brand favicon asset into the package build
 - `dev/preview.html`: local preview host page
 
 ## Release workflow

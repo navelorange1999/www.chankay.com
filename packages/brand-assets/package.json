@@ -1,0 +1,13 @@
+{
+  "name": "@repo/brand-assets",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "echo \"Brand assets package - no build required\"",
+    "check-types": "echo \"Brand assets package - no type checking needed\"",
+    "sync:app": "node scripts/sync-assets.mjs",
+    "test": "echo \"No tests yet\"",
+    "test:run": "echo \"No tests yet\"",
+    "clean": "rm -rf .turbo"
+  }
+}

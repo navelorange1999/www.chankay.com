@@ -147,6 +147,30 @@ export default buildConfig({
 		importMap: {
 			baseDir: path.resolve(dirname),
 		},
+		meta: {
+			description: "Content management workspace for www.chankay.com.",
+			icons: [
+				{
+					rel: "icon",
+					type: "image/x-icon",
+					url: "/favicon/favicon.ico",
+				},
+				{
+					rel: "icon",
+					sizes: "32x32",
+					type: "image/png",
+					url: "/favicon/favicon-32x32.png",
+				},
+				{
+					rel: "apple-touch-icon",
+					sizes: "180x180",
+					type: "image/png",
+					url: "/favicon/apple-touch-icon.png",
+				},
+			],
+			title: "Chankay CMS",
+			titleSuffix: " | Chankay CMS",
+		},
 		user: Users.slug,
 		routes: {
 			login: "/auth/login",
@@ -164,6 +188,10 @@ export default buildConfig({
 			views: {
 				login: {
 					Component: "/views/Login",
+					meta: {
+						description: "Sign in to manage content for www.chankay.com.",
+						title: "Login",
+					},
 					path: "/auth/login",
 				},
 			},

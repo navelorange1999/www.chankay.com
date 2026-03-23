@@ -11,6 +11,7 @@ www.chankay.com/
 │   ├── admin/        # CMS admin panel (Next.js + Payload)
 │   └── storybook/    # Component documentation
 ├── packages/
+│   ├── brand-assets/        # Shared favicon and logo source assets
 │   ├── site-shell/          # Static Web Component shell for demo subdomains
 │   ├── ui/                  # Shared UI component library
 │   ├── typescript-config/   # Shared TypeScript configuration and generated types
@@ -84,5 +85,6 @@ Common commands:
 - `apps/admin` is the canonical source for CMS schema and admin behavior.
 - `apps/www` consumes CMS data through service helpers and Payload API access.
 - `packages/ui` contains presentation-focused components with minimal business logic.
+- `packages/brand-assets` is the source of truth for shared favicon and logo files.
 - `packages/site-shell` contains a static, framework-agnostic Web Component shell for demo sites.
 - Shared configuration packages should remain generic and app-agnostic.

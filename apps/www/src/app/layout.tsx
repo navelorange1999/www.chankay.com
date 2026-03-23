@@ -74,7 +74,6 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
 		<html lang="en" suppressHydrationWarning>
 			<head>
 				<ThemeScript />
-				<link href="/favicon/favicon.ico" rel="icon" sizes="32x32" />
 			</head>
 
 			<body className={inter.className}>

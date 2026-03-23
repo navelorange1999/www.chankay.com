@@ -84,6 +84,7 @@ pnpm gen
 ## Important File Locations
 
 - UI components: `packages/ui/src/components/`
+- Static demo shell: `packages/site-shell/src/`
 - Payload collections: `apps/admin/src/collections/`
 - Payload globals: `apps/admin/src/globals/`
 - Frontend routes: `apps/www/src/app/(frontend)/`

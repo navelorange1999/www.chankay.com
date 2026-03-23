@@ -28,6 +28,7 @@ www.chankay.com/
 │   └── www/            # Public-facing website
 ├── 📦 packages/
 │   ├── eslint-config/  # Shared ESLint configurations
+│   ├── site-shell/     # Static cross-site shell for demo subdomains
 │   ├── tailwind-config/ # Shared Tailwind CSS setup
 │   ├── typescript-config/ # TypeScript configurations & types
 │   └── ui/             # Shared UI component library
@@ -144,6 +145,7 @@ pnpm run dev:ui               # Start Storybook with @repo/ui watch tasks
 
 # Building
 pnpm run build                # Build the entire workspace
+pnpm --filter @chankay/site-shell build # Build the static demo shell package only
 pnpm --filter @repo/ui build  # Build shared UI package only
 pnpm --filter admin build     # Build admin app only
 pnpm --filter www build       # Build website only

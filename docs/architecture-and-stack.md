@@ -1,6 +1,6 @@
 # Architecture and Stack
 
-> Last Updated: March 12, 2026
+> Last Updated: March 23, 2026
 
 ## Monorepo Structure
 
@@ -11,6 +11,7 @@ www.chankay.com/
 │   ├── admin/        # CMS admin panel (Next.js + Payload)
 │   └── storybook/    # Component documentation
 ├── packages/
+│   ├── site-shell/          # Static Web Component shell for demo subdomains
 │   ├── ui/                  # Shared UI component library
 │   ├── typescript-config/   # Shared TypeScript configuration and generated types
 │   ├── eslint-config/       # Shared ESLint configuration
@@ -74,6 +75,7 @@ Common commands:
 - `apps/www/src/app/`: App Router routes
 - `apps/www/src/services/payload/`: Frontend Payload data access
 - `packages/ui/src/components/`: Shared UI components
+- `packages/site-shell/src/`: Static demo shell package sources
 - `packages/typescript-config/typings/payload-types.ts`: Generated Payload types
 
 ## Architecture Notes
@@ -81,4 +83,5 @@ Common commands:
 - `apps/admin` is the canonical source for CMS schema and admin behavior.
 - `apps/www` consumes CMS data through service helpers and Payload API access.
 - `packages/ui` contains presentation-focused components with minimal business logic.
+- `packages/site-shell` contains a static, framework-agnostic Web Component shell for demo sites.
 - Shared configuration packages should remain generic and app-agnostic.

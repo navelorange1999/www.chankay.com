@@ -1,0 +1,15 @@
+:root {
+	--site-shell-background: var(--background);
+	--site-shell-foreground: var(--foreground);
+	--site-shell-card: var(--card);
+	--site-shell-border: var(--border);
+	--site-shell-primary: var(--primary);
+	--site-shell-primary-foreground: var(--primary-foreground);
+	--site-shell-accent: var(--accent);
+	--site-shell-accent-foreground: var(--accent-foreground);
+	--site-shell-muted-foreground: var(--muted-foreground);
+	--site-shell-navbar-height: var(--navbar-height);
+	--site-shell-font-sans: var(--font-sans);
+	--site-shell-radius: var(--radius);
+	--site-shell-shadow: var(--shadow-sm);
+}

@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/dist/tokens.css" />
+		<script type="module" src="/dist/register.js"></script>
+		<title>site-shell preview</title>
+		<style>
+			:root {
+				color-scheme: light;
+			}
+
+			body {
+				margin: 0;
+				background: var(--background);
+				color: var(--foreground);
+				font-family: var(--font-sans);
+			}
+
+			.preview-layout {
+				min-height: 100vh;
+				display: grid;
+				grid-template-rows: auto 1fr auto;
+			}
+
+			.preview-main {
+				width: min(1120px, calc(100% - 2rem));
+				margin: 0 auto;
+				padding: 2rem 0 4rem;
+			}
+
+			.preview-panel {
+				display: grid;
+				gap: 1rem;
+				padding: 1.25rem;
+				border: 1px solid var(--border);
+				border-radius: calc(var(--radius) * 1.25);
+				background: color-mix(in oklab, var(--card) 92%, white);
+				box-shadow: var(--shadow-sm);
+			}
+
+			.preview-panel h1,
+			.preview-panel h2,
+			.preview-panel p {
+				margin: 0;
+			}
+
+			.preview-controls {
+				display: grid;
+				gap: 0.9rem;
+				grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+			}
+
+			.preview-field {
+				display: grid;
+				gap: 0.35rem;
+			}
+
+			.preview-field label {
+				font-size: 0.92rem;
+				font-weight: 600;
+			}
+
+			.preview-field input,
+			.preview-field select {
+				width: 100%;
+				padding: 0.7rem 0.8rem;
+				border: 1px solid var(--border);
+				border-radius: calc(var(--radius) * 1.1);
+				background: white;
+				color: var(--foreground);
+				font: inherit;
+			}
+
+			.preview-note {
+				font-size: 0.92rem;
+				color: var(--muted-foreground);
+			}
+
+			.preview-card-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+				gap: 1rem;
+			}
+
+			.preview-card {
+				padding: 1rem;
+				border-radius: calc(var(--radius) * 1.25);
+				border: 1px solid var(--border);
+				background: color-mix(in oklab, var(--card) 94%, white);
+			}
+
+			.preview-card strong {
+				display: block;
+				margin-bottom: 0.35rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="preview-layout">
+			<chankay-site-shell
+				id="preview-header"
+				position="header"
+				site-name="Bezier Playground"
+				repo-url="https://github.com/chankay/bezier-demo"
+			></chankay-site-shell>
+
+			<main class="preview-main">
+				<section class="preview-panel">
+					<h1>site-shell local preview</h1>
+					<p>
+						Use this page to preview the static Chankay shell in a demo-like layout.
+						TypeScript and token updates rebuild automatically while the dev server is running.
+						Refresh the browser after each edit.
+					</p>
+
+					<div class="preview-controls">
+						<div class="preview-field">
+							<label for="site-name">site-name</label>
+							<input id="site-name" name="site-name" type="text" value="Bezier Playground" />
+						</div>
+
+						<div class="preview-field">
+							<label for="repo-url">repo-url</label>
+							<input
+								id="repo-url"
+								name="repo-url"
+								type="url"
+								value="https://github.com/chankay/bezier-demo"
+							/>
+						</div>
+
+						<div class="preview-field">
+							<label for="position">position</label>
+							<select id="position" name="position">
+								<option value="separate" selected>separate header + footer</option>
+								<option value="both">single element with both sections</option>
+							</select>
+						</div>
+					</div>
+
+					<p class="preview-note">
+						The cards below consume the shared token file directly, so you can preview how host
+						demos align with the shell palette.
+					</p>
+
+					<div class="preview-card-grid">
+						<article class="preview-card">
+							<strong>Token-aligned host styling</strong>
+							<span>Host pages can reuse the same variables from <code>tokens.css</code>.</span>
+						</article>
+
+						<article class="preview-card">
+							<strong>Fixed shell structure</strong>
+							<span>The navbar and footer stay static in v1, while demo identity comes from attributes.</span>
+						</article>
+					</div>
+				</section>
+			</main>
+
+			<chankay-site-shell
+				id="preview-footer"
+				position="footer"
+				site-name="Bezier Playground"
+				repo-url="https://github.com/chankay/bezier-demo"
+			></chankay-site-shell>
+		</div>
+
+		<script type="module">
+			const shellHeader = document.getElementById("preview-header")
+			const shellFooter = document.getElementById("preview-footer")
+			const siteNameInput = document.getElementById("site-name")
+			const repoUrlInput = document.getElementById("repo-url")
+			const positionInput = document.getElementById("position")
+
+			const updateAttributes = () => {
+				const siteName = siteNameInput.value.trim()
+				const repoUrl = repoUrlInput.value.trim()
+				const position = positionInput.value
+
+				if (position === "both") {
+					shellHeader.setAttribute("position", "both")
+					shellFooter.hidden = true
+				} else {
+					shellHeader.setAttribute("position", "header")
+					shellFooter.hidden = false
+					shellFooter.setAttribute("position", "footer")
+				}
+
+				for (const element of [shellHeader, shellFooter]) {
+					if (siteName) {
+						element.setAttribute("site-name", siteName)
+					} else {
+						element.removeAttribute("site-name")
+					}
+
+					if (repoUrl) {
+						element.setAttribute("repo-url", repoUrl)
+					} else {
+						element.removeAttribute("repo-url")
+					}
+				}
+			}
+
+			for (const element of [siteNameInput, repoUrlInput, positionInput]) {
+				element.addEventListener("input", updateAttributes)
+				element.addEventListener("change", updateAttributes)
+			}
+
+			updateAttributes()
+		</script>
+	</body>
+</html>

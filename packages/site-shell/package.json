@@ -1,6 +1,6 @@
 {
   "name": "@chankay/site-shell",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Static Web Component shell for Chankay demo sites",
   "type": "module",
   "types": "./dist/index.d.ts",

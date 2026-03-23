@@ -47,10 +47,10 @@ You can also use a single element with `position="both"` when the host page does
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@chankay/site-shell@0.1.0/dist/tokens.css"
+  href="https://cdn.jsdelivr.net/npm/@chankay/site-shell@1.0.0/dist/tokens.css"
 />
 <script type="module">
-  import "https://cdn.jsdelivr.net/npm/@chankay/site-shell@0.1.0/dist/register.js"
+  import "https://cdn.jsdelivr.net/npm/@chankay/site-shell@1.0.0/dist/register.js"
 </script>
 
 <chankay-site-shell

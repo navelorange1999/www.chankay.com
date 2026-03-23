@@ -32,6 +32,18 @@ test("renderSiteShell omits the header when the footer-only position is selected
 	assert.match(html, /site-shell-footer/)
 })
 
+test("renderSiteShell footer stays compact and does not repeat top navigation", () => {
+	const html = renderSiteShell({
+		position: "both",
+		repoUrl: null,
+		siteName: "Bezier Visualizer",
+	})
+
+	assert.doesNotMatch(html, /Chankay footer navigation/)
+	assert.doesNotMatch(html, /Shared navigation shell for Chankay demo projects\./)
+	assert.match(html, /© \d{4} Chan Kay/)
+})
+
 test("helpers normalize position and discard invalid repository URLs", () => {
 	assert.equal(normalizeSiteShellPosition("Header"), "header")
 	assert.equal(normalizeSiteShellPosition("invalid-value"), "both")

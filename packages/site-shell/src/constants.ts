@@ -5,7 +5,6 @@ export const BRAND_NAME = "Chan Kay"
 export const BRAND_LOGO_URL = `${MAIN_SITE_URL}/favicon/website-logo.svg`
 export const POSTS_URL = `${MAIN_SITE_URL}/posts`
 export const DEMOS_URL = `${MAIN_SITE_URL}/demos`
-export const FOOTER_NOTE = "Shared navigation shell for Chankay demo projects."
 
 export const GITHUB_ICON_SVG = `
 <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">

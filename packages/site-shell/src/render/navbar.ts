@@ -14,7 +14,10 @@ function renderSiteName(siteName: SiteShellAttributes["siteName"]) {
 		return ""
 	}
 
-	return `<span class="site-shell-site-name">${escapeHtml(siteName)}</span>`
+	return `
+		<span class="site-shell-site-separator" aria-hidden="true">/</span>
+		<span class="site-shell-site-name">${escapeHtml(siteName)}</span>
+	`
 }
 
 function renderRepoLink(repoUrl: SiteShellAttributes["repoUrl"]) {

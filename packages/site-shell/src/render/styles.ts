@@ -51,13 +51,10 @@ a {
 }
 
 .site-shell-footer-inner {
-	display: grid;
-	gap: 1rem;
-	padding: 1.5rem 0;
+	padding: 1rem 0;
 }
 
-.site-shell-footer-top,
-.site-shell-footer-bottom {
+.site-shell-footer-bar {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -77,6 +74,7 @@ a {
 	width: 2rem;
 	height: 2rem;
 	flex: none;
+	display: block;
 	object-fit: contain;
 }
 
@@ -85,27 +83,29 @@ a {
 	align-items: center;
 	gap: 0.5rem;
 	min-width: 0;
+	line-height: 1;
 }
 
 .site-shell-brand-name {
 	font-size: 1rem;
 	font-weight: 700;
 	letter-spacing: 0.02em;
+	line-height: 1;
+}
+
+.site-shell-site-separator {
+	color: var(--site-shell-border-strong, color-mix(in oklab, var(--site-shell-border, var(--border, #e4ddd2)) 80%, var(--site-shell-foreground, #26231f)));
+	flex: none;
+	line-height: 1;
 }
 
 .site-shell-site-name {
 	color: var(--site-shell-muted-foreground, var(--muted-foreground, #6a6358));
 	font-size: 0.92rem;
+	line-height: 1;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-}
-
-.site-shell-site-name::before {
-	content: "/";
-	display: inline-block;
-	margin-right: 0.5rem;
-	color: var(--site-shell-border-strong, color-mix(in oklab, var(--site-shell-border, var(--border, #e4ddd2)) 80%, var(--site-shell-foreground, #26231f)));
 }
 
 .site-shell-nav,
@@ -136,8 +136,9 @@ a {
 .site-shell-link:focus-visible,
 .site-shell-icon-link:hover,
 .site-shell-icon-link:focus-visible {
-	background: var(--site-shell-accent, var(--accent, #e7f0df));
-	color: var(--site-shell-accent-foreground, var(--accent-foreground, #2f5f44));
+	background: var(--site-shell-primary, var(--primary, #3a8542));
+	color: var(--site-shell-primary-foreground, var(--primary-foreground, #ffffff));
+	border-color: transparent;
 	outline: none;
 	transform: translateY(-1px);
 }
@@ -164,7 +165,6 @@ a {
 	height: 1.15rem;
 }
 
-.site-shell-footnote,
 .site-shell-copyright {
 	margin: 0;
 	color: var(--site-shell-muted-foreground, var(--muted-foreground, #6a6358));
@@ -174,8 +174,7 @@ a {
 
 @media (max-width: 640px) {
 	.site-shell-header-inner,
-	.site-shell-footer-top,
-	.site-shell-footer-bottom {
+	.site-shell-footer-bar {
 		align-items: flex-start;
 	}
 

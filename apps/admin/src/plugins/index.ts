@@ -1,9 +1,11 @@
 import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob"
-import { Plugin } from "payload"
+import type { Plugin } from "payload"
 
+import { payloadMcpPlugin } from "@/plugins/mcp"
 import { buildBlobFileUrl, buildPayloadMediaFileUrl } from "@/utils/mediaStorage"
 
 export const plugins: Plugin[] = [
+	payloadMcpPlugin,
 	/**
 	 * https://payloadcms.com/docs/upload/storage-adapters#vercel-blob-storage
 	 * https://vercel.com/docs/vercel-blob

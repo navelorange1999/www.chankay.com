@@ -123,7 +123,7 @@ import { mountSiteShell } from "@chankay/site-shell"
 From the repository root:
 
 ```bash
-pnpm --filter @chankay/site-shell dev
+pnpm run dev:site-shell
 ```
 
 Then open `http://127.0.0.1:4310/dev/preview.html`.
@@ -135,9 +135,11 @@ Then open `http://127.0.0.1:4310/dev/preview.html`.
 ### Common package commands
 
 ```bash
+pnpm run dev:site-shell
 pnpm --filter @chankay/site-shell build
 pnpm --filter @chankay/site-shell check-types
 pnpm --filter @chankay/site-shell test:run
+pnpm --filter @chankay/site-shell preview:dev
 pnpm --filter @chankay/site-shell preview
 ```
 

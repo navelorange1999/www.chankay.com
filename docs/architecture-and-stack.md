@@ -36,6 +36,7 @@ Common commands:
 - `pnpm dev:www`: Start only the public site
 - `pnpm dev:admin`: Start only the admin app
 - `pnpm dev:ui`: Start Storybook and UI watch tasks
+- `pnpm dev:site-shell`: Start the `site-shell` local preview in watch mode
 - `pnpm build`: Build all apps
 - `pnpm lint`: Lint the workspace
 - `pnpm check-types`: Run TypeScript checks

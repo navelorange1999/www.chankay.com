@@ -14,9 +14,9 @@
     "build:components": "tsc -p tsconfig.json",
     "build:tokens": "node scripts/copy-tokens.mjs",
     "check-types": "tsc --noEmit",
-    "dev": "node scripts/dev.mjs",
     "lint": "eslint src tests --max-warnings=20 --fix",
     "preview": "pnpm build && node scripts/serve-preview.mjs",
+    "preview:dev": "node scripts/dev.mjs",
     "test": "pnpm test:run",
     "test:run": "pnpm build && node --test tests/site-shell.test.js",
     "clean": "rm -rf dist && rm -rf .turbo"

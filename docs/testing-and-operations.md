@@ -61,9 +61,10 @@ Common commit types:
 
 ```bash
 # Development
-pnpm dev
+pnpm dev                  # Starts the default app dev graph
 pnpm dev:www
 pnpm dev:admin
+pnpm dev:site-shell
 
 # Build
 pnpm build

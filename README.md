@@ -142,6 +142,7 @@ pnpm run dev                  # Start all development servers
 pnpm run dev:admin            # Start admin dashboard only
 pnpm run dev:www              # Start public website only
 pnpm run dev:ui               # Start Storybook with @repo/ui watch tasks
+pnpm run dev:site-shell       # Start the site-shell local preview in watch mode
 
 # Building
 pnpm run build                # Build the entire workspace

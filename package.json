@@ -10,6 +10,7 @@
     "dev:ui": "turbo run dev --filter=@repo/ui --filter=storybook",
     "dev:admin": "turbo run dev --filter=@repo/ui --filter=admin",
     "dev:www": "turbo run dev --filter=@repo/ui --filter=www",
+    "dev:site-shell": "pnpm --filter @chankay/site-shell preview:dev",
     "start": "turbo start",
     "build": "turbo build",
     "test": "turbo run test",

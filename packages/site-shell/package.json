@@ -35,8 +35,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "devDependencies": {
-    "@repo/brand-assets": "workspace:*"
   }
 }

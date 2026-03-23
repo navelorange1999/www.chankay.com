@@ -2,7 +2,6 @@ export const SITE_SHELL_TAG_NAME = "chankay-site-shell"
 
 export const MAIN_SITE_URL = "https://chankay.com"
 export const BRAND_NAME = "Chan Kay"
-export const BRAND_LOGO_URL = `${MAIN_SITE_URL}/favicon/website-logo.svg`
 export const POSTS_URL = `${MAIN_SITE_URL}/posts`
 export const DEMOS_URL = `${MAIN_SITE_URL}/demos`
 

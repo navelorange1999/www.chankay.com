@@ -8,6 +8,7 @@ Static Web Component shell for Chankay demo sites.
 - fixed Chankay navbar and footer for demo sites
 - shared token stylesheet for host apps
 - browser-ready registration entry for static sites
+- bundled brand logo asset with no runtime fetch to `chankay.com`
 
 ## Package outputs
 
@@ -47,10 +48,10 @@ You can also use a single element with `position="both"` when the host page does
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@chankay/site-shell@1.0.0/dist/tokens.css"
+  href="https://cdn.jsdelivr.net/npm/@chankay/site-shell@1.0.1/dist/tokens.css"
 />
 <script type="module">
-  import "https://cdn.jsdelivr.net/npm/@chankay/site-shell@1.0.0/dist/register.js"
+  import "https://cdn.jsdelivr.net/npm/@chankay/site-shell@1.0.1/dist/register.js"
 </script>
 
 <chankay-site-shell
@@ -138,6 +139,7 @@ Then open `http://127.0.0.1:4310/dev/preview.html`.
 pnpm run dev:site-shell
 pnpm --filter @chankay/site-shell build
 pnpm --filter @chankay/site-shell check-types
+pnpm --filter @chankay/site-shell generate:brand-logo
 pnpm --filter @chankay/site-shell test:run
 pnpm --filter @chankay/site-shell preview:dev
 pnpm --filter @chankay/site-shell preview
@@ -148,9 +150,11 @@ Use `preview` when you want a one-off local server without watch mode.
 ### Source layout
 
 - `src/custom-element/`: custom element definition and registration
+- `src/generated/brandLogo.ts`: generated local brand logo data URL used by the shell
 - `src/render/`: static navbar and footer markup and styles
 - `src/tokens.aliases.css`: `site-shell`-specific CSS variable aliases
 - `scripts/copy-tokens.mjs`: builds `dist/tokens.css` from the shared token source
+- `scripts/generate-brand-logo.mjs`: embeds the local favicon asset into the package build
 - `dev/preview.html`: local preview host page
 
 ## Release workflow

@@ -2,6 +2,7 @@ import assert from "node:assert/strict"
 import test from "node:test"
 
 import { renderSiteShell } from "../dist/render/index.js"
+import { siteShellStyles } from "../dist/render/styles.js"
 import {
 	asOptionalHttpUrl,
 	normalizeSiteShellPosition,
@@ -19,6 +20,9 @@ test("renderSiteShell includes the fixed Chankay links and escaped site name", (
 	assert.match(html, /https:\/\/chankay\.com\/demos/)
 	assert.match(html, /Bezier &lt;Lab&gt;/)
 	assert.match(html, /Open the demo repository on GitHub/)
+	assert.match(html, /site-shell-brand-logo/)
+	assert.doesNotMatch(html, /https:\/\/chankay\.com\/favicon\/website-logo\.svg/)
+	assert.doesNotMatch(siteShellStyles, /https:\/\/chankay\.com\/favicon\/website-logo\.svg/)
 })
 
 test("renderSiteShell omits the header when the footer-only position is selected", () => {

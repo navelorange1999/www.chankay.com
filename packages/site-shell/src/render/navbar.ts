@@ -1,11 +1,4 @@
-import {
-	BRAND_LOGO_URL,
-	BRAND_NAME,
-	DEMOS_URL,
-	GITHUB_ICON_SVG,
-	MAIN_SITE_URL,
-	POSTS_URL,
-} from "../constants.js"
+import { BRAND_NAME, DEMOS_URL, GITHUB_ICON_SVG, MAIN_SITE_URL, POSTS_URL } from "../constants.js"
 import type { SiteShellAttributes } from "../types.js"
 import { escapeHtml } from "../utils.js"
 
@@ -44,13 +37,7 @@ export function renderNavbar(attributes: SiteShellAttributes): string {
 		<header class="site-shell-header">
 			<div class="site-shell-container site-shell-header-inner">
 				<a class="site-shell-brand" href="${MAIN_SITE_URL}" aria-label="${BRAND_NAME} home">
-					<img
-						class="site-shell-brand-logo"
-						src="${BRAND_LOGO_URL}"
-						alt="${BRAND_NAME} logo"
-						loading="lazy"
-						decoding="async"
-					/>
+					<span class="site-shell-brand-logo" aria-hidden="true"></span>
 					<span class="site-shell-brand-copy">
 						<span class="site-shell-brand-name">${BRAND_NAME}</span>
 						${renderSiteName(attributes.siteName)}

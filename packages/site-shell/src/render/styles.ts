@@ -1,3 +1,5 @@
+import { BRAND_LOGO_DATA_URL } from "../generated/brandLogo.js"
+
 export const siteShellStyles = `
 :host {
 	display: block;
@@ -75,7 +77,10 @@ a {
 	height: 2rem;
 	flex: none;
 	display: block;
-	object-fit: contain;
+	background-image: url("${BRAND_LOGO_DATA_URL}");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
 }
 
 .site-shell-brand-copy {

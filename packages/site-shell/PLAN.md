@@ -97,7 +97,7 @@ Do not add config parsing, remote data loading, schema versioning, or adapter la
 Release trigger:
 
 - create and publish a GitHub Release with tag prefix `site-shell-v*`
-- example tag: `site-shell-v1.0.0`
+- example tag: `site-shell-v1.0.1`
 
 Release workflow responsibilities:
 

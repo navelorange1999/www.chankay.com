@@ -1,6 +1,6 @@
 {
   "name": "@chankay/site-shell",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Static Web Component shell for Chankay demo sites",
   "type": "module",
   "types": "./dist/index.d.ts",
@@ -11,12 +11,13 @@
   ],
   "scripts": {
     "build": "pnpm build:components && pnpm build:tokens",
-    "build:components": "tsc -p tsconfig.json",
+    "build:components": "pnpm generate:brand-logo && tsc -p tsconfig.json",
     "build:tokens": "node scripts/copy-tokens.mjs",
     "check-types": "tsc --noEmit",
     "lint": "eslint src tests --max-warnings=20 --fix",
     "preview": "pnpm build && node scripts/serve-preview.mjs",
     "preview:dev": "node scripts/dev.mjs",
+    "generate:brand-logo": "node scripts/generate-brand-logo.mjs",
     "test": "pnpm test:run",
     "test:run": "pnpm build && node --test tests/site-shell.test.js",
     "clean": "rm -rf dist && rm -rf .turbo"

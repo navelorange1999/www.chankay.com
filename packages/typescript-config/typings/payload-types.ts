@@ -56571,6 +56571,22 @@ export interface PayloadMcpApiKey {
      * Publish an existing post by id or slug without exposing the generic update tool.
      */
     publishPost?: boolean | null;
+    /**
+     * Create a page draft using a narrow page schema instead of raw Payload block data.
+     */
+    createPageDraft?: boolean | null;
+    /**
+     * Replace the full page structure using a validated V1 schema for container, flex, grid, text, and markdown blocks.
+     */
+    replacePageStructure?: boolean | null;
+    /**
+     * Update page SEO fields without exposing the generic page update operation.
+     */
+    updatePageSeo?: boolean | null;
+    /**
+     * Publish an existing page by id or slug without exposing the generic update tool.
+     */
+    publishPage?: boolean | null;
   };
   updatedAt: string;
   createdAt: string;
@@ -88333,6 +88349,10 @@ export interface PayloadMcpApiKeysSelect<T extends boolean = true> {
         getSiteConfig?: T;
         createPostDraft?: T;
         publishPost?: T;
+        createPageDraft?: T;
+        replacePageStructure?: T;
+        updatePageSeo?: T;
+        publishPage?: T;
       };
   updatedAt?: T;
   createdAt?: T;

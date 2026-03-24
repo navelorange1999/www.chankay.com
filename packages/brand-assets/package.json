@@ -1,7 +1,16 @@
 {
-  "name": "@repo/brand-assets",
+  "name": "@chankay/brand-assets",
+  "version": "1.0.0",
+  "description": "Shared brand favicon and logo assets for Chankay projects",
   "type": "module",
-  "private": true,
+  "files": [
+    "assets",
+    "README.md"
+  ],
+  "exports": {
+    "./favicon/*": "./assets/favicon/*",
+    "./package.json": "./package.json"
+  },
   "scripts": {
     "build": "echo \"Brand assets package - no build required\"",
     "check-types": "echo \"Brand assets package - no type checking needed\"",
@@ -9,5 +18,8 @@
     "test": "echo \"No tests yet\"",
     "test:run": "echo \"No tests yet\"",
     "clean": "rm -rf .turbo"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

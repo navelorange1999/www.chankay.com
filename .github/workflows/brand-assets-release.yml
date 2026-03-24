@@ -1,0 +1,46 @@
+name: Brand Assets Release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.event.release.tag_name, 'brand-assets-v') }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.16.0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build brand-assets
+        run: pnpm --filter @chankay/brand-assets build
+
+      - name: Check types
+        run: pnpm --filter @chankay/brand-assets check-types
+
+      - name: Run tests
+        run: pnpm --filter @chankay/brand-assets test:run
+
+      - name: Publish package
+        if: ${{ github.event_name == 'release' }}
+        run: pnpm --filter @chankay/brand-assets publish --no-git-checks --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

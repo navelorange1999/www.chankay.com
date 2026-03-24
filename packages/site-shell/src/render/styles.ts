@@ -1,5 +1,3 @@
-import { BRAND_LOGO_DATA_URL } from "../generated/brandLogo.js"
-
 export const siteShellStyles = `
 :host {
 	display: block;
@@ -77,7 +75,7 @@ a {
 	height: 2rem;
 	flex: none;
 	display: block;
-	background-image: url("${BRAND_LOGO_DATA_URL}");
+	background-image: var(--site-shell-brand-logo-url, url("/favicon/website-logo.svg"));
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: contain;

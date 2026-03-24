@@ -8,7 +8,7 @@ Static Web Component shell for Chankay demo sites.
 - fixed Chankay navbar and footer for demo sites
 - shared token stylesheet for host apps
 - browser-ready registration entry for static sites
-- bundled brand logo asset with no runtime fetch to `chankay.com`
+- brand logo slot that reads from `--site-shell-brand-logo-url` or `/favicon/website-logo.svg`
 
 ## Package outputs
 
@@ -30,9 +30,22 @@ pnpm add @chankay/site-shell
 - bundled demos: install the package and use either the custom element or `mountSiteShell()`
 
 Always pin an explicit version. Do not consume `latest` implicitly.
-The published package already embeds the Chankay brand logo, so host demos do not need any extra logo or favicon fetch from `chankay.com`.
+Install `@chankay/brand-assets` alongside `@chankay/site-shell` when the host demo needs the shared favicon and logo files.
 
-### 2. Reserve shell slots in the host demo
+### 2. Provide brand assets in the host app
+
+The shell no longer embeds the brand logo as a data URL.
+
+Preferred host setup:
+
+- copy `@chankay/brand-assets/favicon/website-logo.svg` to `/favicon/website-logo.svg`
+- copy the favicon files you need from `@chankay/brand-assets/favicon/*` into `/favicon/`
+
+Optional override:
+
+- set `--site-shell-brand-logo-url` on the custom element or a parent scope when the logo lives at a different static path
+
+### 3. Reserve shell slots in the host demo
 
 For the clearest layout control, reserve separate header and footer slots in the demo page:
 
@@ -44,16 +57,17 @@ For the clearest layout control, reserve separate header and footer slots in the
 
 You can also use a single element with `position="both"` when the host page does not need separate mounting points.
 
-### 3. Static demo integration
+### 4. Static demo integration
 
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@chankay/site-shell@1.0.2/dist/tokens.css"
+  href="https://cdn.jsdelivr.net/npm/@chankay/site-shell@2.0.0/dist/tokens.css"
 />
 <script type="module">
-  import "https://cdn.jsdelivr.net/npm/@chankay/site-shell@1.0.2/dist/register.js"
+  import "https://cdn.jsdelivr.net/npm/@chankay/site-shell@2.0.0/dist/register.js"
 </script>
+<link rel="icon" href="/favicon/favicon.ico" sizes="32x32" />
 
 <chankay-site-shell
   position="header"
@@ -64,12 +78,14 @@ You can also use a single element with `position="both"` when the host page does
 <chankay-site-shell position="footer"></chankay-site-shell>
 ```
 
-### 4. Bundled demo integration
+### 5. Bundled demo integration
 
 ```ts
 import "@chankay/site-shell/register"
-
 import { mountSiteShell } from "@chankay/site-shell"
+import logoUrl from "@chankay/brand-assets/favicon/website-logo.svg?url"
+
+document.documentElement.style.setProperty("--site-shell-brand-logo-url", `url("${logoUrl}")`)
 
 mountSiteShell({
   target: "#demo-shell-header",
@@ -84,7 +100,7 @@ mountSiteShell({
 })
 ```
 
-### 5. Optional shared token usage
+### 6. Optional shared token usage
 
 Import `@chankay/site-shell/tokens.css` into the host demo when you want host content to reuse the same palette and spacing baseline as the shell.
 
@@ -140,7 +156,6 @@ Then open `http://127.0.0.1:4310/dev/preview.html`.
 pnpm run dev:site-shell
 pnpm --filter @chankay/site-shell build
 pnpm --filter @chankay/site-shell check-types
-pnpm --filter @chankay/site-shell generate:brand-logo
 pnpm --filter @chankay/site-shell test:run
 pnpm --filter @chankay/site-shell preview:dev
 pnpm --filter @chankay/site-shell preview
@@ -151,11 +166,9 @@ Use `preview` when you want a one-off local server without watch mode.
 ### Source layout
 
 - `src/custom-element/`: custom element definition and registration
-- `src/generated/brandLogo.ts`: generated local brand logo data URL used by the shell
 - `src/render/`: static navbar and footer markup and styles
 - `src/tokens.aliases.css`: `site-shell`-specific CSS variable aliases
 - `scripts/copy-tokens.mjs`: builds `dist/tokens.css` from the shared token source
-- `scripts/generate-brand-logo.mjs`: embeds the shared brand favicon asset into the package build
 - `dev/preview.html`: local preview host page
 
 ## Release workflow

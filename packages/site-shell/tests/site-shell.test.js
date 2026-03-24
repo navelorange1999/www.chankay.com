@@ -22,7 +22,9 @@ test("renderSiteShell includes the fixed Chankay links and escaped site name", (
 	assert.match(html, /Open the demo repository on GitHub/)
 	assert.match(html, /site-shell-brand-logo/)
 	assert.doesNotMatch(html, /https:\/\/chankay\.com\/favicon\/website-logo\.svg/)
-	assert.doesNotMatch(siteShellStyles, /https:\/\/chankay\.com\/favicon\/website-logo\.svg/)
+	assert.match(siteShellStyles, /\/favicon\/website-logo\.svg/)
+	assert.match(siteShellStyles, /--site-shell-brand-logo-url/)
+	assert.doesNotMatch(siteShellStyles, /data:image\//)
 })
 
 test("renderSiteShell omits the header when the footer-only position is selected", () => {

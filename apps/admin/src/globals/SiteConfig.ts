@@ -1,6 +1,7 @@
 import type { GlobalConfig } from "payload"
 import { authenticated } from "../access/authenticated"
 import { LOCALE_CONFIG } from "../config/locales"
+import { createGlobalRevalidationHook } from "../hooks/revalidateWww"
 
 export const SiteConfig: GlobalConfig = {
 	slug: "site-config",
@@ -799,5 +800,8 @@ export const SiteConfig: GlobalConfig = {
 	],
 	versions: {
 		drafts: false,
+	},
+	hooks: {
+		afterChange: [createGlobalRevalidationHook("site-config")],
 	},
 }

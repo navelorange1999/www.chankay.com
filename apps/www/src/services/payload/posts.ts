@@ -18,7 +18,7 @@ export async function getPosts(options?: {
 			page: options?.page ?? 1,
 			depth: options?.depth,
 			sort: options?.sort ?? "-publishedAt",
-			revalidate: options?.revalidate ?? 60,
+			revalidate: options?.revalidate,
 			cache: options?.cache,
 			tags: ["posts"],
 		})
@@ -37,7 +37,6 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
 	try {
 		return await payloadClient.getBySlug<Post>("posts", slug, {
 			depth: 2,
-			revalidate: 60,
 			tags: [`post:${slug}`],
 		})
 	} catch (error) {
@@ -61,7 +60,6 @@ export async function getAllPosts(): Promise<Post[]> {
 				limit,
 				page,
 				sort: "-publishedAt",
-				revalidate: 300,
 				tags: ["posts:all"],
 			})
 
@@ -85,7 +83,6 @@ export async function getLatestPosts(limit: number = 5): Promise<Post[]> {
 		const result = await payloadClient.getCollection<Post>("posts", {
 			limit,
 			sort: "-publishedAt",
-			revalidate: 300, // 5 minutes
 			tags: ["posts:latest"],
 		})
 

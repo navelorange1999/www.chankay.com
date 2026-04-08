@@ -89,6 +89,7 @@ export async function triggerFrontendRevalidation(args: {
 			[WWW_INTERNAL_SECRET_HEADER]: sharedSecret,
 		},
 		body: JSON.stringify({
+			collection: "pages",
 			slugs,
 		}),
 	})

@@ -6,7 +6,6 @@ import { payloadClient } from "@/utils/payloadClient"
 
 export const getSiteConfig = cache(async (): Promise<SiteConfig> => {
 	return payloadClient.getGlobal<SiteConfig>("site-config", {
-		revalidate: 300,
 		tags: ["global:site-config"],
 	})
 })

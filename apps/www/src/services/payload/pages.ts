@@ -32,7 +32,7 @@ export async function getPageBySlug(
 		return await payloadClient.getBySlug<Page>("pages", slug, {
 			depth: 2,
 			cache: options?.cache,
-			revalidate: options?.revalidate ?? 60,
+			revalidate: options?.revalidate,
 			tags: [`page:${slug}`],
 			where: getPageVisibilityWhere(options?.includeDraft),
 		})
@@ -49,7 +49,6 @@ export async function getAllPages(): Promise<Page[]> {
 	try {
 		const result = await payloadClient.getCollection<Page>("pages", {
 			limit: 100,
-			revalidate: 3600, // 1 hour
 			where: getPageVisibilityWhere(),
 		})
 

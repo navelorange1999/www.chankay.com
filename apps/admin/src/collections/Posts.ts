@@ -1,6 +1,7 @@
 import type { CollectionConfig } from "payload"
 import { authenticated } from "../access/authenticated"
 import { markdownField } from "../fields/markdownField"
+import { createRevalidationHook } from "../hooks/revalidateWww"
 
 function getLocalizedContent(value: unknown): string {
 	if (typeof value === "string") return value
@@ -271,4 +272,7 @@ export const Posts: CollectionConfig = {
 		},
 	],
 	timestamps: true,
+	hooks: {
+		afterChange: [createRevalidationHook("posts")],
+	},
 }

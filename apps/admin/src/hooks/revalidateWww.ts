@@ -31,6 +31,9 @@ async function triggerRevalidation(collection: string, slugs: string[]) {
 
 export function createRevalidationHook(collection: string): CollectionAfterChangeHook {
 	return async ({ doc, previousDoc }) => {
+		// Only revalidate when the document is published (skip draft autosaves)
+		if (doc._status && doc._status !== "published") return doc
+
 		const slugs = [doc?.slug, previousDoc?.slug]
 			.filter((s): s is string => typeof s === "string" && s.trim().length > 0)
 			.filter((s, i, arr) => arr.indexOf(s) === i)

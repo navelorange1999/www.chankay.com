@@ -47,6 +47,11 @@ export class PayloadClient {
 		})
 
 		if (!response.ok) {
+			const body = await response.text().catch(() => "")
+			console.error(
+				`[PayloadClient] ${response.status} from ${this.baseUrl}/globals/${slug}`,
+				body.slice(0, 200)
+			)
 			throw new Error(`Failed to fetch global ${slug}`)
 		}
 
@@ -104,6 +109,8 @@ export class PayloadClient {
 		})
 
 		if (!response.ok) {
+			const body = await response.text().catch(() => "")
+			console.error(`[PayloadClient] ${response.status} from ${url}`, body.slice(0, 200))
 			throw new Error(`Failed to fetch collection ${collection}`)
 		}
 

@@ -4,14 +4,7 @@ import { getSiteConfig } from "@/services/payload/site-config"
 import { resolveAllowIndexing, resolveCustomRobotsTxt, resolveSiteUrl } from "@/utils/seo"
 
 export async function GET() {
-	const siteConfig = await getSiteConfig().catch(() => null)
-
-	if (!siteConfig) {
-		return new NextResponse("User-agent: *\nAllow: /\n", {
-			headers: { "Content-Type": "text/plain; charset=utf-8" },
-		})
-	}
-
+	const siteConfig = await getSiteConfig()
 	const customRobotsTxt = resolveCustomRobotsTxt(siteConfig)
 
 	if (customRobotsTxt) {

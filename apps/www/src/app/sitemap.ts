@@ -8,10 +8,14 @@ import { resolvePostAbsoluteUrl } from "@/utils/posts"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const [siteConfig, pages, posts] = await Promise.all([
-		getSiteConfig(),
+		getSiteConfig().catch(() => null),
 		getAllPages(),
 		getAllPosts(),
 	])
+
+	if (!siteConfig) {
+		return []
+	}
 
 	const pageEntries = pages
 		.filter((page) => Boolean(page.slug))

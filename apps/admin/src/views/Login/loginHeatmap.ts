@@ -38,4 +38,4 @@ function buildLoginHeatmap(days: number): LoginHeatmapDay[] {
 	})
 }
 
-export const loginHeatmapDays = buildLoginHeatmap(365)
+export const loginHeatmapDays = buildLoginHeatmap(182)

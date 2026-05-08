@@ -4,6 +4,8 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowLeft } from "lucide-react"
 
+import { buildRouteAlternates, SUPPORTED_LOCALES, type SupportedLocale } from "@repo/i18n"
+
 import { Button } from "@repo/ui/components/Button"
 import { createMarkdownDocument } from "@repo/ui/components/Markdown"
 import { ImageMedia } from "@repo/ui/components/Media"
@@ -25,40 +27,46 @@ import {
 } from "@repo/ui/components/Post"
 
 import { PostTocDrawerClient } from "@/components/lazy/PostTocDrawerClient"
-import { getAllPosts, getPostBySlug, getSiteConfig } from "@/services/payload"
+import { getAllPosts, getPostBySlug } from "@/services/payload/posts"
+import { getSiteConfig } from "@/services/payload/site-config"
 import {
 	resolveMedia,
 	resolveMediaUrl,
-	resolveTwitterHandle,
 	resolveSiteDescription,
+	resolveSiteUrl,
+	resolveTwitterHandle,
 } from "@/utils/seo"
 import {
 	formatPostDate,
-	resolvePostAbsoluteUrl,
 	resolvePostDisplayExcerpt,
+	resolvePostDisplayTitle,
 	resolvePostImage,
+	resolvePostPath,
 	resolvePostSeoDescription,
 	resolvePostSeoTitle,
 	resolvePostTags,
-	resolvePostDisplayTitle,
 } from "@/utils/posts"
 
 type PostPageParams = {
+	locale: SupportedLocale
 	slug: string
 }
 
-const getPostBySlugCached = cache(async (slug: string) => {
-	return getPostBySlug(slug)
+const getPostBySlugCached = cache(async (slug: string, locale: SupportedLocale) => {
+	return getPostBySlug(slug, { locale })
 })
 
 export async function generateStaticParams(): Promise<PostPageParams[]> {
-	const posts = await getAllPosts()
-
-	return posts
-		.filter((post) => Boolean(post.slug))
-		.map((post) => ({
-			slug: post.slug,
-		}))
+	const params: PostPageParams[] = []
+	for (const locale of SUPPORTED_LOCALES) {
+		const posts = await getAllPosts({ locale })
+		for (const post of posts) {
+			if (post.slug) {
+				params.push({ locale, slug: post.slug })
+			}
+		}
+	}
+	return params
 }
 
 export async function generateMetadata({
@@ -66,24 +74,27 @@ export async function generateMetadata({
 }: {
 	params: Promise<PostPageParams>
 }): Promise<Metadata> {
-	const resolvedParams = await params
+	const { locale, slug } = await params
 	const [post, siteConfig] = await Promise.all([
-		getPostBySlugCached(resolvedParams.slug),
-		getSiteConfig(),
+		getPostBySlugCached(slug, locale),
+		getSiteConfig(locale),
 	])
 
 	if (!post) {
 		return {
-			title: {
-				absolute: "Post Not Found",
-			},
+			title: { absolute: "Post Not Found" },
 			description: resolveSiteDescription(siteConfig),
 		}
 	}
 
 	const title = resolvePostSeoTitle(post)
 	const description = resolvePostSeoDescription(post)
-	const canonicalUrl = resolvePostAbsoluteUrl(siteConfig, post.slug)
+	const alternates = buildRouteAlternates({
+		currentLocale: locale,
+		domain: "posts",
+		siteUrl: resolveSiteUrl(siteConfig),
+		slug: post.slug,
+	})
 	const ogImageUrl = resolveMediaUrl({
 		media: resolvePostImage(post) || resolveMedia(siteConfig.ogImage),
 		siteConfig,
@@ -94,14 +105,15 @@ export async function generateMetadata({
 		title,
 		description,
 		alternates: {
-			canonical: canonicalUrl,
+			canonical: alternates.canonical,
+			languages: alternates.languages,
 		},
 		openGraph: {
 			description,
 			images: ogImageUrl ? [{ url: ogImageUrl }] : undefined,
 			title,
 			type: "article",
-			url: canonicalUrl,
+			url: alternates.canonical,
 		},
 		twitter: {
 			card: ogImageUrl ? "summary_large_image" : "summary",
@@ -115,13 +127,14 @@ export async function generateMetadata({
 }
 
 export default async function PostPage({ params }: { params: Promise<PostPageParams> }) {
-	const resolvedParams = await params
-	const post = await getPostBySlugCached(resolvedParams.slug)
+	const { locale, slug } = await params
+	const post = await getPostBySlugCached(slug, locale)
 
 	if (!post) {
 		notFound()
 	}
 
+	const postsIndexHref = resolvePostPath(undefined, locale)
 	const postImage = resolvePostImage(post)
 	const postDate = formatPostDate(post.publishedAt || post.updatedAt)
 	const postExcerpt = resolvePostDisplayExcerpt(post) || null
@@ -142,7 +155,7 @@ export default async function PostPage({ params }: { params: Promise<PostPagePar
 			variant="outline"
 			className="rounded-lg text-foreground/70 hover:text-foreground"
 		>
-			<Link aria-label="Back to posts" href="/posts">
+			<Link aria-label="Back to posts" href={postsIndexHref}>
 				<ArrowLeft className="h-4 w-4" />
 			</Link>
 		</Button>
@@ -163,7 +176,7 @@ export default async function PostPage({ params }: { params: Promise<PostPagePar
 									variant="outline"
 									className="rounded-lg text-foreground/70 hover:text-foreground"
 								>
-									<Link aria-label="Back to posts" href="/posts">
+									<Link aria-label="Back to posts" href={postsIndexHref}>
 										<ArrowLeft className="h-4 w-4" />
 									</Link>
 								</Button>

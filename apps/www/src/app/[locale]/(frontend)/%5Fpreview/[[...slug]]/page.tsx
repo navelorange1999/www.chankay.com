@@ -2,10 +2,13 @@ import { headers } from "next/headers"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 
+import type { SupportedLocale } from "@repo/i18n"
+
 import { Nodes } from "@/components/Nodes"
 import { getPageBySlug } from "@/services/payload/pages"
 
 type PageParams = {
+	locale: SupportedLocale
 	slug?: string[]
 }
 
@@ -51,6 +54,7 @@ export default async function PreviewPage({ params }: { params: Promise<PagePara
 
 	const slug = resolveSlug(resolvedParams)
 	const pageData = await getPageBySlug(slug, {
+		locale: resolvedParams.locale,
 		cache: "no-store",
 		includeDraft: true,
 	})

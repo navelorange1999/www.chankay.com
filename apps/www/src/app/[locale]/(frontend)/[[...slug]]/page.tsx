@@ -1,18 +1,22 @@
 import { cache } from "react"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
+
+import { buildRouteAlternates, SUPPORTED_LOCALES, type SupportedLocale } from "@repo/i18n"
+
 import { Nodes } from "@/components/Nodes"
 import { getSiteConfig } from "@/services/payload/site-config"
 import { getAllPages, getPageBySlug } from "@/services/payload/pages"
 import {
 	resolveMedia,
 	resolveMediaUrl,
-	resolvePageAbsoluteUrl,
 	resolveSiteDescription,
+	resolveSiteUrl,
 	resolveTwitterHandle,
 } from "@/utils/seo"
 
 type PageParams = {
+	locale: SupportedLocale
 	slug?: string[]
 }
 
@@ -40,26 +44,26 @@ function resolveSlug(params: PageParams): string {
 	return params.slug?.length ? params.slug.join("/") : "/"
 }
 
-const getPageBySlugCached = cache(async (slug: string) => {
-	return getPageBySlug(slug)
+const getPageBySlugCached = cache(async (slug: string, locale: SupportedLocale) => {
+	return getPageBySlug(slug, { locale })
 })
 
 export async function generateStaticParams(): Promise<PageParams[]> {
-	const pages = await getAllPages()
-	const paramsMap = new Map<string, PageParams>()
+	const allParams: PageParams[] = []
+	for (const locale of SUPPORTED_LOCALES) {
+		const pages = await getAllPages({ locale })
+		const paramsMap = new Map<string, PageParams>()
 
-	for (const page of pages) {
-		if (!page.slug) {
-			continue
+		for (const page of pages) {
+			if (!page.slug) continue
+			const segments = normalizePageSlug(page.slug)
+			const key = segments.join("/")
+			paramsMap.set(key, segments.length > 0 ? { locale, slug: segments } : { locale, slug: [] })
 		}
 
-		const segments = normalizePageSlug(page.slug)
-
-		const key = segments.join("/")
-		paramsMap.set(key, segments.length > 0 ? { slug: segments } : { slug: [] })
+		allParams.push(...paramsMap.values())
 	}
-
-	return Array.from(paramsMap.values())
+	return allParams
 }
 
 export async function generateMetadata({
@@ -68,15 +72,15 @@ export async function generateMetadata({
 	params: Promise<PageParams>
 }): Promise<Metadata> {
 	const resolvedParams = await params
-
 	const slug = resolveSlug(resolvedParams)
-	const [pageData, siteConfig] = await Promise.all([getPageBySlugCached(slug), getSiteConfig()])
+	const [pageData, siteConfig] = await Promise.all([
+		getPageBySlugCached(slug, resolvedParams.locale),
+		getSiteConfig(resolvedParams.locale),
+	])
 
 	if (!pageData) {
 		return {
-			title: {
-				absolute: "Page Not Found",
-			},
+			title: { absolute: "Page Not Found" },
 			description: resolveSiteDescription(siteConfig),
 		}
 	}
@@ -84,7 +88,12 @@ export async function generateMetadata({
 	const seo = asRecord(pageData.seo)
 	const title = asOptionalString(seo.metaTitle) || pageData.title
 	const description = asOptionalString(seo.metaDescription) || resolveSiteDescription(siteConfig)
-	const canonicalUrl = resolvePageAbsoluteUrl(siteConfig, slug)
+	const alternates = buildRouteAlternates({
+		currentLocale: resolvedParams.locale,
+		domain: "pages",
+		siteUrl: resolveSiteUrl(siteConfig),
+		slug,
+	})
 	const ogImageUrl = resolveMediaUrl({
 		media: resolveMedia(seo.ogImage) || resolveMedia(siteConfig.ogImage),
 		siteConfig,
@@ -95,14 +104,15 @@ export async function generateMetadata({
 		title,
 		description,
 		alternates: {
-			canonical: canonicalUrl,
+			canonical: alternates.canonical,
+			languages: alternates.languages,
 		},
 		openGraph: {
 			description,
 			images: ogImageUrl ? [{ url: ogImageUrl }] : undefined,
 			title,
 			type: "website",
-			url: canonicalUrl,
+			url: alternates.canonical,
 		},
 		twitter: {
 			card: ogImageUrl ? "summary_large_image" : "summary",
@@ -119,7 +129,7 @@ export default async function Page({ params }: { params: Promise<PageParams> }) 
 	const resolvedParams = await params
 	const slug = resolveSlug(resolvedParams)
 
-	const pageData = await getPageBySlugCached(slug)
+	const pageData = await getPageBySlugCached(slug, resolvedParams.locale)
 
 	if (!pageData) {
 		notFound()

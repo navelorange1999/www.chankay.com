@@ -1,3 +1,4 @@
+import { DEFAULT_LOCALE, resolveLocalizedPath, type SupportedLocale } from "@repo/i18n"
 import type { MediaInterface, SiteConfig } from "@repo/typescript-config/typings/payload-types"
 
 const DEFAULT_SITE_NAME = "Chan Kay"
@@ -38,20 +39,21 @@ export function resolveSiteUrl(siteConfig?: SiteConfig | null): string {
 	return configured.replace(/\/+$/g, "")
 }
 
-export function resolvePagePath(slug?: string | null): string {
+export function resolvePagePath(
+	slug?: string | null,
+	locale: SupportedLocale = DEFAULT_LOCALE
+): string {
 	const value = asOptionalString(slug)
-	if (!value || value === "/") {
-		return "/"
-	}
-
-	return `/${value.replace(/^\/+|\/+$/g, "")}`
+	const unprefixed = !value || value === "/" ? "/" : `/${value.replace(/^\/+|\/+$/g, "")}`
+	return resolveLocalizedPath(locale, unprefixed)
 }
 
 export function resolvePageAbsoluteUrl(
 	siteConfig: SiteConfig | null | undefined,
-	slug?: string | null
+	slug?: string | null,
+	locale: SupportedLocale = DEFAULT_LOCALE
 ): string {
-	return new URL(resolvePagePath(slug), `${resolveSiteUrl(siteConfig)}/`).toString()
+	return new URL(resolvePagePath(slug, locale), `${resolveSiteUrl(siteConfig)}/`).toString()
 }
 
 export function resolveMedia(value: unknown): MediaInterface | null {

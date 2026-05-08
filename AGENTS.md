@@ -161,6 +161,25 @@ Use when:
 - You are preparing commits or validating delivery steps
 - You need deployment-related command context
 
+### Multilingual Content and URL Structure
+
+Read:
+
+- [`docs/multilingual-architecture.md`](./docs/multilingual-architecture.md)
+- [`docs/multilingual-rollout-runbook.md`](./docs/multilingual-rollout-runbook.md)
+- [`packages/i18n/src/*`](./packages/i18n/src)
+- [`apps/admin/src/config/locales.ts`](./apps/admin/src/config/locales.ts)
+- [`apps/admin/src/payload.config.ts`](./apps/admin/src/payload.config.ts)
+
+Use when:
+
+- You are adding or removing a supported locale
+- You are adding `localized: true` fields to a collection or global
+- You are touching routing under `apps/www/src/app/[locale]/`
+- You need to emit `hreflang`, canonical, or sitemap alternates
+- You need to add the locale parameter to a Payload query
+- You are running or revising the data normalization migration (see runbook)
+
 ### Deployment, Environments, and Vercel
 
 Read:
@@ -197,6 +216,8 @@ When multiple sources overlap, use this priority order:
 - [`docs/code-style-and-typescript.md`](./docs/code-style-and-typescript.md): Formatting, naming, imports, and TypeScript rules.
 - [`docs/component-guidelines.md`](./docs/component-guidelines.md): Component placement, structure, props, and server/client boundaries.
 - [`docs/frontend-guidelines.md`](./docs/frontend-guidelines.md): Styling, data fetching, environment variables, performance, and common UI patterns.
+- [`docs/multilingual-architecture.md`](./docs/multilingual-architecture.md): Locale set, URL strategy, Payload localization, routing, middleware, and SEO.
+- [`docs/multilingual-rollout-runbook.md`](./docs/multilingual-rollout-runbook.md): Operational checklist for migrating clusters, smoke tests, deferred code follow-ups, and rollback.
 - [`docs/payload-cms-patterns.md`](./docs/payload-cms-patterns.md): Payload collection and global conventions.
 - [`docs/testing-and-operations.md`](./docs/testing-and-operations.md): Testing guidance, commit workflow, quick commands, and important file locations.
 - [`docs/deployment-and-environments.md`](./docs/deployment-and-environments.md): Current Vercel deployment model, environments, shared secrets, and runtime constraints.

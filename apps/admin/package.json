@@ -25,6 +25,7 @@
     "@payloadcms/storage-vercel-blob": "3.61.1",
     "@payloadcms/ui": "^3.61.1",
     "@repo/eslint-config": "workspace:*",
+    "@repo/i18n": "workspace:*",
     "@repo/tailwind-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@repo/ui": "workspace:*",

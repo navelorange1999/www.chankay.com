@@ -1,4 +1,7 @@
+import type { SupportedLocale } from "@repo/i18n"
+
 export interface PayloadQueryOptions {
+	locale?: SupportedLocale
 	revalidate?: number
 	tags?: string[]
 	cache?: RequestCache
@@ -20,6 +23,20 @@ function resolvePayloadBaseUrl(): string {
 	return "http://localhost:3001/api"
 }
 
+function localeSuffix(locale: SupportedLocale | undefined): string {
+	return locale ? `:${locale}` : ""
+}
+
+function appendLocale(
+	params: URLSearchParams,
+	locale: SupportedLocale | undefined
+): URLSearchParams {
+	if (locale) {
+		params.append("locale", locale)
+	}
+	return params
+}
+
 export class PayloadClient {
 	private baseUrl: string
 
@@ -28,16 +45,20 @@ export class PayloadClient {
 	}
 
 	async getGlobal<T>(slug: string, options?: PayloadQueryOptions): Promise<T> {
+		const params = appendLocale(new URLSearchParams(), options?.locale)
+		const query = params.toString()
+		const url = `${this.baseUrl}/globals/${slug}${query ? `?${query}` : ""}`
+
 		const nextOptions =
 			options?.cache === "no-store"
 				? undefined
 				: {
 						revalidate:
 							options?.revalidate ?? parseInt(process.env.PAYLOAD_REVALIDATE_TIME || "60"),
-						tags: options?.tags ?? [`global:${slug}`],
+						tags: options?.tags ?? [`global:${slug}${localeSuffix(options?.locale)}`],
 					}
 
-		const response = await fetch(`${this.baseUrl}/globals/${slug}`, {
+		const response = await fetch(url, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -48,10 +69,7 @@ export class PayloadClient {
 
 		if (!response.ok) {
 			const body = await response.text().catch(() => "")
-			console.error(
-				`[PayloadClient] ${response.status} from ${this.baseUrl}/globals/${slug}`,
-				body.slice(0, 200)
-			)
+			console.error(`[PayloadClient] ${response.status} from ${url}`, body.slice(0, 200))
 			throw new Error(`Failed to fetch global ${slug}`)
 		}
 
@@ -73,7 +91,6 @@ export class PayloadClient {
 		if (options?.where) {
 			Object.entries(options.where).forEach(([key, value]) => {
 				if (typeof value === "object" && value !== null) {
-					// Handle nested where conditions like { equals: "value" }
 					Object.entries(value).forEach(([operator, val]) => {
 						params.append(`where[${key}][${operator}]`, String(val))
 					})
@@ -87,6 +104,7 @@ export class PayloadClient {
 		if (options?.limit !== undefined) params.append("limit", String(options.limit))
 		if (options?.page !== undefined) params.append("page", String(options.page))
 		if (options?.sort) params.append("sort", options.sort)
+		appendLocale(params, options?.locale)
 
 		const url = `${this.baseUrl}/${collection}?${params.toString()}`
 
@@ -96,7 +114,7 @@ export class PayloadClient {
 				: {
 						revalidate:
 							options?.revalidate ?? parseInt(process.env.PAYLOAD_REVALIDATE_TIME || "60"),
-						tags: options?.tags ?? [`collection:${collection}`],
+						tags: options?.tags ?? [`collection:${collection}${localeSuffix(options?.locale)}`],
 					}
 
 		const response = await fetch(url, {

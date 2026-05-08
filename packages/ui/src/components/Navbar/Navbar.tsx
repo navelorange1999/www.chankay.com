@@ -1,9 +1,11 @@
 import * as React from "react"
 import Link from "next/link"
 
+import type { SupportedLocale } from "@repo/i18n"
 import { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 
 import { Container } from "../Container"
+import { LanguageSwitcher } from "../LanguageSwitcher"
 import { ThemeToggle } from "../ThemeProvider"
 import { cn } from "#utils/classnames"
 import { resolveLogoNode } from "#utils/resolveLogoNode"
@@ -15,9 +17,17 @@ export interface NavbarProps {
 	siteConfig: SiteConfig
 	className?: string
 	fallbackLogo?: React.ReactNode
+	homeHref?: string
+	currentLocale?: SupportedLocale
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "", fallbackLogo }) => {
+export const Navbar: React.FC<NavbarProps> = ({
+	siteConfig,
+	className = "",
+	fallbackLogo,
+	homeHref = "/",
+	currentLocale,
+}) => {
 	const logo = siteConfig.logo
 	const title = siteConfig.siteName
 	const items = siteConfig.navigation?.menuItems || []
@@ -45,7 +55,7 @@ export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "", fall
 			<Container>
 				<div className="flex justify-between items-center h-[var(--navbar-height,4rem)]">
 					<div className="flex-shrink-0">
-						<Link aria-label={title || "Home"} href="/" className="flex items-center gap-1">
+						<Link aria-label={title || "Home"} href={homeHref} className="flex items-center gap-1">
 							{logoNode}
 							{showSiteName && (
 								<span className="text-xl font-semibold text-foreground">{title}</span>
@@ -55,7 +65,8 @@ export const Navbar: React.FC<NavbarProps> = ({ siteConfig, className = "", fall
 
 					<NavbarDesktopNav items={items} />
 
-					<div className="hidden md:flex md:items-center">
+					<div className="hidden md:flex md:items-center md:gap-1">
+						{currentLocale ? <LanguageSwitcher currentLocale={currentLocale} /> : null}
 						<ThemeToggle />
 					</div>
 

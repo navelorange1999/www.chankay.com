@@ -1,3 +1,4 @@
+import { DEFAULT_LOCALE, resolveLocalizedPath, type SupportedLocale } from "@repo/i18n"
 import type {
 	MediaInterface,
 	Post,
@@ -11,20 +12,21 @@ function asOptionalString(value: unknown): string | undefined {
 	return typeof value === "string" && value.trim().length > 0 ? value.trim() : undefined
 }
 
-export function resolvePostPath(slug?: string | null): string {
+export function resolvePostPath(
+	slug?: string | null,
+	locale: SupportedLocale = DEFAULT_LOCALE
+): string {
 	const value = asOptionalString(slug)
-	if (!value) {
-		return "/posts"
-	}
-
-	return `/posts/${value.replace(/^\/+|\/+$/g, "")}`
+	const unprefixed = value ? `/posts/${value.replace(/^\/+|\/+$/g, "")}` : "/posts"
+	return resolveLocalizedPath(locale, unprefixed)
 }
 
 export function resolvePostAbsoluteUrl(
 	siteConfig: SiteConfig | null | undefined,
-	slug?: string | null
+	slug?: string | null,
+	locale: SupportedLocale = DEFAULT_LOCALE
 ): string {
-	return new URL(resolvePostPath(slug), `${resolveSiteUrl(siteConfig)}/`).toString()
+	return new URL(resolvePostPath(slug, locale), `${resolveSiteUrl(siteConfig)}/`).toString()
 }
 
 export function formatPostDate(value?: string | null): string | undefined {

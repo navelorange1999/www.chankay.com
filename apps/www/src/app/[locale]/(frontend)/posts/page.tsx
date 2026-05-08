@@ -1,6 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 
+import { buildRouteIndexAlternates, type SupportedLocale } from "@repo/i18n"
+
 import { ImageMedia } from "@repo/ui/components/Media"
 import {
 	Post,
@@ -14,11 +16,11 @@ import {
 	PostThumbnail,
 } from "@repo/ui/components/Post"
 
-import { getAllPosts, getSiteConfig } from "@/services/payload"
-import { resolveTwitterHandle } from "@/utils/seo"
+import { getAllPosts } from "@/services/payload/posts"
+import { getSiteConfig } from "@/services/payload/site-config"
+import { resolveSiteUrl, resolveTwitterHandle } from "@/utils/seo"
 import {
 	formatPostDate,
-	resolvePostAbsoluteUrl,
 	resolvePostDisplayExcerpt,
 	resolvePostDisplayTitle,
 	resolvePostImage,
@@ -26,24 +28,36 @@ import {
 	resolvePostTags,
 } from "@/utils/posts"
 
-export async function generateMetadata(): Promise<Metadata> {
-	const siteConfig = await getSiteConfig()
+type PostsIndexParams = { locale: SupportedLocale }
+
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<PostsIndexParams>
+}): Promise<Metadata> {
+	const { locale } = await params
+	const siteConfig = await getSiteConfig(locale)
 	const title = "Posts"
 	const description = "Thoughts, experiments, and practical notes from building on the web."
-	const canonicalUrl = resolvePostAbsoluteUrl(siteConfig)
+	const alternates = buildRouteIndexAlternates({
+		currentLocale: locale,
+		domain: "posts",
+		siteUrl: resolveSiteUrl(siteConfig),
+	})
 	const twitterHandle = resolveTwitterHandle(siteConfig)
 
 	return {
 		title,
 		description,
 		alternates: {
-			canonical: canonicalUrl,
+			canonical: alternates.canonical,
+			languages: alternates.languages,
 		},
 		openGraph: {
 			description,
 			title,
 			type: "website",
-			url: canonicalUrl,
+			url: alternates.canonical,
 		},
 		twitter: {
 			card: "summary",
@@ -55,8 +69,9 @@ export async function generateMetadata(): Promise<Metadata> {
 	}
 }
 
-export default async function PostsPage() {
-	const posts = await getAllPosts()
+export default async function PostsPage({ params }: { params: Promise<PostsIndexParams> }) {
+	const { locale } = await params
+	const posts = await getAllPosts({ locale })
 
 	return (
 		<section className="mx-auto flex max-w-4xl flex-col gap-8">
@@ -77,7 +92,7 @@ export default async function PostsPage() {
 			) : (
 				<div className="space-y-8">
 					{posts.map((post) => {
-						const postUrl = resolvePostPath(post.slug)
+						const postUrl = resolvePostPath(post.slug, locale)
 						const postImage = resolvePostImage(post)
 						const postDate = formatPostDate(post.publishedAt || post.updatedAt)
 						const postExcerpt = resolvePostDisplayExcerpt(post)

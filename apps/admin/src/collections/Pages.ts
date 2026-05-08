@@ -16,6 +16,7 @@ export const Pages: CollectionConfig = {
 			name: "title",
 			type: "text",
 			required: true,
+			localized: true,
 			label: "Page Title",
 		},
 		{
@@ -42,6 +43,7 @@ export const Pages: CollectionConfig = {
 			name: "structure",
 			type: "blocks",
 			label: "Page Structure",
+			localized: true,
 			admin: {
 				description: "Build your page by nesting Structure and Content blocks (max depth: 4)",
 			},
@@ -56,6 +58,7 @@ export const Pages: CollectionConfig = {
 					name: "metaTitle",
 					type: "text",
 					label: "Meta Title",
+					localized: true,
 					admin: {
 						description: "Override the page title for SEO",
 					},
@@ -64,6 +67,7 @@ export const Pages: CollectionConfig = {
 					name: "metaDescription",
 					type: "textarea",
 					label: "Meta Description",
+					localized: true,
 				},
 				{
 					name: "autoGenerateOgImage",

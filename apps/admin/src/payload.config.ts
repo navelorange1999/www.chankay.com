@@ -112,6 +112,7 @@ export default buildConfig({
 	// Mongoose is shown as an example, but you can also use Postgres
 	db: mongooseAdapter({
 		url: process.env.DATABASE_URI || "",
+		migrationDir: path.resolve(dirname, "migrations"),
 	}),
 	// If you want to resize images, crop, set focal point, etc.
 	// make sure to install it and pass it to the config.

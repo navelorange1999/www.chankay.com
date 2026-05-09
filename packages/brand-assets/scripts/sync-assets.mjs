@@ -13,7 +13,7 @@ const APP_CONFIG = {
 	},
 	www: {
 		root: resolve(repoRoot, "apps/www"),
-		usesNextMetadataIcons: true,
+		usesNextMetadataIcons: false,
 	},
 }
 

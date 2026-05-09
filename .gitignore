@@ -46,3 +46,6 @@ storybook-static
 
 # vercel
 **/**/.vercel
+
+# local mongodump backups
+backup-*/

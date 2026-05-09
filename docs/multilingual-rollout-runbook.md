@@ -35,7 +35,7 @@ Operational checklist for taking the multilingual code changes from `master` to 
 1. Deploy current `master` to the dev environment (Vercel preview / dev branch — whichever this repo uses).
 2. Run the migration against the dev Mongo:
    ```bash
-   pnpm --filter admin payload migrate
+   pnpm --filter admin migrate
    ```
    Expected log lines (counts vary by data):
    ```
@@ -62,7 +62,7 @@ Operational checklist for taking the multilingual code changes from `master` to 
 If any check fails, roll back with:
 
 ```bash
-pnpm --filter admin payload migrate:down
+pnpm --filter admin migrate:down
 ```
 
 The migration's `down()` unwraps `{ en: value }` back to bare values.
@@ -78,7 +78,7 @@ Only proceed when the dev rollout is fully verified.
 2. [ ] Deploy `master` to production.
 3. [ ] Run the migration:
    ```bash
-   pnpm --filter admin payload migrate
+   pnpm --filter admin migrate
    ```
    Pointed at production Mongo (set `DATABASE_URI` accordingly in the shell that runs the command).
 4. [ ] Repeat the admin and public-site smoke tests from the dev section against the production URL.
@@ -131,7 +131,7 @@ These were intentionally deferred to keep the initial change scoped. Pick them u
 
 If the production migration causes user-visible breakage:
 
-1. `pnpm --filter admin payload migrate:down` — unwraps localized values back to bare values.
+1. `pnpm --filter admin migrate:down` — unwraps localized values back to bare values.
 2. Redeploy the previous (pre-multilingual) build of `apps/admin` and `apps/www`. The old code expects bare values; once migrated down, it is compatible again.
 3. Investigate the failure in the dev cluster before re-attempting.
 

@@ -10,11 +10,15 @@ Start with [`AGENTS.md`](./AGENTS.md), then load the topic documents in `docs/` 
 - [`docs/code-style-and-typescript.md`](./docs/code-style-and-typescript.md)
 - [`docs/component-guidelines.md`](./docs/component-guidelines.md)
 - [`docs/frontend-guidelines.md`](./docs/frontend-guidelines.md)
-- [`docs/multilingual-architecture.md`](./docs/multilingual-architecture.md)
-- [`docs/multilingual-rollout-runbook.md`](./docs/multilingual-rollout-runbook.md)
 - [`docs/payload-cms-patterns.md`](./docs/payload-cms-patterns.md)
 - [`docs/testing-and-operations.md`](./docs/testing-and-operations.md)
 - [`docs/deployment-and-environments.md`](./docs/deployment-and-environments.md)
+
+Work-in-progress designs live under `docs/proposals/`:
+
+- [`docs/proposals/multilingual-architecture.md`](./docs/proposals/multilingual-architecture.md)
+- [`docs/proposals/multilingual-rollout-runbook.md`](./docs/proposals/multilingual-rollout-runbook.md)
+- [`docs/proposals/llm-translation-architecture.md`](./docs/proposals/llm-translation-architecture.md)
 
 Core rules remain the same:
 

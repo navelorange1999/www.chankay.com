@@ -165,8 +165,8 @@ Use when:
 
 Read:
 
-- [`docs/multilingual-architecture.md`](./docs/multilingual-architecture.md)
-- [`docs/multilingual-rollout-runbook.md`](./docs/multilingual-rollout-runbook.md)
+- [`docs/proposals/multilingual-architecture.md`](./docs/proposals/multilingual-architecture.md)
+- [`docs/proposals/multilingual-rollout-runbook.md`](./docs/proposals/multilingual-rollout-runbook.md)
 - [`packages/i18n/src/*`](./packages/i18n/src)
 - [`apps/admin/src/config/locales.ts`](./apps/admin/src/config/locales.ts)
 - [`apps/admin/src/payload.config.ts`](./apps/admin/src/payload.config.ts)
@@ -216,11 +216,17 @@ When multiple sources overlap, use this priority order:
 - [`docs/code-style-and-typescript.md`](./docs/code-style-and-typescript.md): Formatting, naming, imports, and TypeScript rules.
 - [`docs/component-guidelines.md`](./docs/component-guidelines.md): Component placement, structure, props, and server/client boundaries.
 - [`docs/frontend-guidelines.md`](./docs/frontend-guidelines.md): Styling, data fetching, environment variables, performance, and common UI patterns.
-- [`docs/multilingual-architecture.md`](./docs/multilingual-architecture.md): Locale set, URL strategy, Payload localization, routing, middleware, and SEO.
-- [`docs/multilingual-rollout-runbook.md`](./docs/multilingual-rollout-runbook.md): Operational checklist for migrating clusters, smoke tests, deferred code follow-ups, and rollback.
 - [`docs/payload-cms-patterns.md`](./docs/payload-cms-patterns.md): Payload collection and global conventions.
 - [`docs/testing-and-operations.md`](./docs/testing-and-operations.md): Testing guidance, commit workflow, quick commands, and important file locations.
 - [`docs/deployment-and-environments.md`](./docs/deployment-and-environments.md): Current Vercel deployment model, environments, shared secrets, and runtime constraints.
+
+### Proposals (work-in-progress designs)
+
+The `docs/proposals/` folder holds design documents for features that are not yet stable. They are normative for the work in flight but should be promoted (moved into `docs/`) once the implementation is shipped and verified.
+
+- [`docs/proposals/multilingual-architecture.md`](./docs/proposals/multilingual-architecture.md): Locale set, URL strategy, Payload localization, routing, middleware, and SEO.
+- [`docs/proposals/multilingual-rollout-runbook.md`](./docs/proposals/multilingual-rollout-runbook.md): Operational checklist for migrating clusters, smoke tests, deferred code follow-ups, and rollback.
+- [`docs/proposals/llm-translation-architecture.md`](./docs/proposals/llm-translation-architecture.md): Editor-triggered LLM translation with Anthropic + Langfuse Cloud.
 
 ## Maintenance Notes
 

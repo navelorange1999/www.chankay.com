@@ -1,5 +1,6 @@
 import type { CollectionConfig } from "payload"
 import { structureBlocks } from "@/blocks/StructureBlocks"
+import { createRevalidationHook } from "@/hooks/revalidateWww"
 import { syncPageGeneratedAssets } from "@/services/pageAssets"
 
 export const Pages: CollectionConfig = {
@@ -43,7 +44,6 @@ export const Pages: CollectionConfig = {
 			name: "structure",
 			type: "blocks",
 			label: "Page Structure",
-			localized: true,
 			admin: {
 				description: "Build your page by nesting Structure and Content blocks (max depth: 4)",
 			},
@@ -122,6 +122,6 @@ export const Pages: CollectionConfig = {
 	],
 	timestamps: true,
 	hooks: {
-		afterChange: [syncPageGeneratedAssets],
+		afterChange: [syncPageGeneratedAssets, createRevalidationHook("pages")],
 	},
 }

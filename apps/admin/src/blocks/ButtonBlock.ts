@@ -12,6 +12,7 @@ export const ButtonBlock: BlockDefinition = {
 			name: "label",
 			type: "text",
 			label: "Label",
+			localized: true,
 			admin: {
 				description: "Optional when size is Icon and an icon is selected.",
 			},

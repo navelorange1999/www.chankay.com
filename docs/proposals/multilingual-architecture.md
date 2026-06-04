@@ -1,6 +1,6 @@
 # Multilingual Architecture
 
-> Last Updated: May 8, 2026
+> Last Updated: May 25, 2026
 
 This document defines how multilingual content flows across the monorepo: which locales are supported, how URLs are shaped, how the CMS stores localized content, how the frontend consumes it, and how SEO metadata is generated.
 
@@ -84,16 +84,33 @@ localization: {
 
 Field-level localization is opt-in. The current model:
 
-| Collection | Localized fields                                             |
-| ---------- | ------------------------------------------------------------ |
-| `posts`    | `title`, `excerpt`, `content`                                |
-| `tags`     | `name`, `description`                                        |
-| `series`   | `title`, `description`                                       |
-| `pages`    | `title`, `structure`, `seo.metaTitle`, `seo.metaDescription` |
+| Collection | Localized fields                                  |
+| ---------- | ------------------------------------------------- |
+| `posts`    | `title`, `excerpt`, `content`                     |
+| `tags`     | `name`, `description`                             |
+| `series`   | `title`, `description`                            |
+| `pages`    | `title`, `seo.metaTitle`, `seo.metaDescription`   |
 
 Operational fields (`slug`, `status`, `seo.autoGenerateOgImage`, `seo.ogImage`) stay non-localized.
 
 `fallback: true` ensures missing translations fall back to the default locale value. Editors are not required to translate every field on every save.
+
+### Blocks Localization: Leaf-Field Rule
+
+The `pages.structure` field is a deeply nestable `blocks` tree (containers / flex / grid / cards / leaf content). It is **not** marked `localized: true`. Localization is applied at the leaf text fields inside each block instead:
+
+| Block slug | Localized leaf fields    |
+| ---------- | ------------------------ |
+| `text`     | `content`                |
+| `markdown` | `content`                |
+| `button`   | `label`                  |
+| `card`     | `title`, `description`   |
+
+Layout fields (`as`, `size`, `gap`, `direction`, etc.), `mediaImage.media`, `previewUrl.previewUrl`, `spotifyIframe.uri`, and nested children arrays (`children`, `actionBlocks`, `contentBlocks`, `footerBlocks`) are shared across locales.
+
+**Why not localize the container?** Marking the whole `structure` blocks field `localized: true` forced editors to maintain a per-locale copy of the entire blocks tree. With `fallback: true`, the admin form prefilled the target locale from the default locale and then wrote that prefilled tree back to storage on save — silently overwriting empty locale slots with default-locale data and breaking fallback semantics. Localizing only the leaf text fields keeps the layout shared while preserving fallback at the field level.
+
+**Adding a new block with translatable text**: standard procedure is to add `localized: true` only to user-facing text/textarea/markdown fields, not to wrapping `array` or `blocks` fields. Then write a small follow-up migration to wrap any existing data in `{ [DEFAULT_LOCALE]: value }`.
 
 ## Frontend: App Router Layout
 
@@ -228,9 +245,12 @@ Output (per page):
 
 Marking a field as `localized: true` after data already exists changes the storage shape from `field: value` to `field: { en: value }`. Pre-existing rows still hold the bare value, which causes the admin UI to show blanks. A normalization migration is required.
 
-Migration script: `apps/admin/src/migrations/20260508120000_normalize_localized_fields.ts`.
+Two migrations cover this:
 
-What it covers (the full inventory of localized fields across the codebase):
+1. `apps/admin/src/migrations/20260508120000_normalize_localized_fields.ts` — original normalization, wraps top-level localized fields into `{ en: value }`.
+2. `apps/admin/src/migrations/20260525120000_relocate_pages_localization.ts` — relocates `pages.structure` localization: flattens the outer `{ en: [...blocks] }` wrapper into a bare array and wraps the leaf text fields inside each block (see "Blocks Localization: Leaf-Field Rule" above).
+
+What the first migration covers:
 
 | Target collection      | Fields wrapped into `{ en: value }`                                                                                        |
 | ---------------------- | -------------------------------------------------------------------------------------------------------------------------- |
@@ -240,6 +260,8 @@ What it covers (the full inventory of localized fields across the codebase):
 | `series`               | `title`, `description`                                                                                                     |
 | `pages`                | `title`, `structure`, `seo.metaTitle`, `seo.metaDescription`                                                               |
 | `site-config` (global) | `siteName`, `siteDescription`, `metaTitle`, `metaDescription`, `footer.customFooterText`, `maintenance.maintenanceMessage` |
+
+The second migration then undoes the `pages.structure` outer wrap from the first migration and rewraps leaf text fields (`text.content`, `markdown.content`, `button.label`, `card.title`, `card.description`) recursively through the blocks tree. It is also idempotent and reversible.
 
 Properties of the migration:
 
@@ -291,6 +313,8 @@ Component: `packages/ui/src/components/LanguageSwitcher/`. Stateless. Props: `cu
 | `apps/admin/src/config/locales.ts`                           | Re-exports `@repo/i18n` for admin               |
 | `apps/admin/src/payload.config.ts`                           | Wires Payload `localization` from shared config |
 | `apps/admin/src/collections/{Posts,Pages,Tags,Series}.ts`    | Field-level `localized: true`                   |
+| `apps/admin/src/collections/{Posts,Pages}.ts`                | `createRevalidationHook` afterChange (per locale tags) |
+| `apps/admin/src/blocks/{Text,Markdown,Button,Card}Block.ts`  | Leaf-field `localized: true` inside blocks tree |
 | `apps/www/src/middleware.ts`                                 | Default-locale rewrite                          |
 | `apps/www/src/app/[locale]/layout.tsx`                       | Locale validation, `<html lang>`                |
 | `apps/www/src/app/[locale]/(frontend)/**/page.tsx`           | Locale-aware route handlers                     |

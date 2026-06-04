@@ -11,6 +11,7 @@ export const TextBlock: BlockDefinition = {
 			name: "content",
 			type: "textarea",
 			label: "Content",
+			localized: true,
 		},
 		{
 			name: "as",

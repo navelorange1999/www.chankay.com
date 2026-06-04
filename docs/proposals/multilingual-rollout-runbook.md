@@ -1,25 +1,27 @@
 # Multilingual Rollout Runbook
 
-> Last Updated: May 8, 2026
+> Last Updated: May 25, 2026
 
 Operational checklist for taking the multilingual code changes from `master` to running clusters. The architecture and design are described in [`multilingual-architecture.md`](./multilingual-architecture.md); this file only tracks the work that still needs to happen on real environments and the cleanup items deferred from the initial implementation.
 
 ## Status
 
-| Area                                                  | State                                                                              |
-| ----------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| Code: shared `@repo/i18n` package                     | Done                                                                               |
-| Code: `apps/www` `[locale]` routing + middleware      | Done                                                                               |
-| Code: `payloadClient` + services threaded with locale | Done                                                                               |
-| Code: locale-aware sitemap + hreflang                 | Done                                                                               |
-| Code: `LanguageSwitcher` UI in Navbar                 | Done                                                                               |
-| Code: `Pages` collection localized fields             | Done                                                                               |
-| Code: data normalization migration script             | Written (`apps/admin/src/migrations/20260508120000_normalize_localized_fields.ts`) |
-| Ops: dev cluster migration                            | **Pending — run by hand, see below**                                               |
-| Ops: production cluster migration                     | **Pending — only after dev verifies**                                              |
-| Verification: end-to-end browser test                 | **Pending — never opened in a browser yet, only typecheck-clean**                  |
-| Editorial: translate existing content                 | **Pending — content work, not code**                                               |
-| Code follow-ups                                       | **Pending — see "Code Follow-Ups" section**                                        |
+| Area                                                  | State                                                                                |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| Code: shared `@repo/i18n` package                     | Done                                                                                 |
+| Code: `apps/www` `[locale]` routing + middleware      | Done                                                                                 |
+| Code: `payloadClient` + services threaded with locale | Done                                                                                 |
+| Code: locale-aware sitemap + hreflang                 | Done                                                                                 |
+| Code: `LanguageSwitcher` UI in Navbar                 | Done                                                                                 |
+| Code: `Pages` leaf-block localization (post-fix)      | Done                                                                                 |
+| Code: data migrations                                 | Done (`20260508120000_normalize_localized_fields`, `20260525120000_relocate_pages_localization`) |
+| Code: `Pages` revalidate-www hook                     | Done                                                                                 |
+| Ops: dev cluster migration                            | Done                                                                                 |
+| Ops: production cluster migration                     | **Pending — only after dev verifies**                                                |
+| Verification: public site smoke test (dev)            | Done (`/`, `/zh-CN`, `/posts/<slug>`, sitemap, hreflang, LanguageSwitcher)           |
+| Verification: admin editorial round-trip (dev)        | Done (translate `pages.demos` card.title to zh-CN, en untouched, fallback intact)    |
+| Editorial: translate existing content                 | **Pending — content work, not code**                                                 |
+| Code follow-ups                                       | **Pending — see "Code Follow-Ups" section**                                          |
 
 ## Pre-Flight
 
@@ -119,6 +121,11 @@ These were intentionally deferred to keep the initial change scoped. Pick them u
 - [ ] **Storybook smoke** — `apps/storybook` was not opened during this work. Confirm Navbar/Footer stories still render with the new optional `currentLocale` and `homeHref` props (default behavior should match previous renders).
 - [ ] **Robots.txt review** — currently a single static file. Likely fine for multilingual since `Disallow:` rules are path-based and apply to both prefixed and unprefixed paths. Verify by skimming the rendered file after deploy.
 - [ ] **Documentation cross-links** — `docs/payload-cms-patterns.md` does not mention the field-level localization convention; consider adding a short "When to mark a field `localized: true`" section now that the pattern is established.
+
+## Dev Rollout Notes (2026-05-25)
+
+- Initial `pages.structure` field was marked `localized: true`. Admin form prefilled the target-locale slot from the default locale via fallback, then wrote that tree back to storage on save — overwriting the empty zh-CN slot with default-locale data and breaking fallback. Resolution: removed `localized: true` from `pages.structure`, added `localized: true` to leaf text fields (`text.content`, `markdown.content`, `button.label`, `card.title`, `card.description`), and added migration `20260525120000_relocate_pages_localization.ts` to relocate existing data. Lesson: never mark a wrapping `array`/`blocks` field `localized: true` if any sub-field can be edited independently — localize the leaves instead.
+- `Pages` collection was missing the `createRevalidationHook("pages")` afterChange hook, so admin saves did not invalidate the www fetch cache (default revalidate is 1 week per `PAYLOAD_REVALIDATE_TIME=604800`). Fixed by adding the hook alongside `syncPageGeneratedAssets`. Posts and SiteConfig already had the hook.
 
 ## Known Risks
 

@@ -1,107 +1,73 @@
-# Multilingual Release Readiness Design
+# 多语言生产就绪设计
 
-## Context
+## 背景
 
-The `feat/i18n` branch already contains the core multilingual architecture for English and
-Simplified Chinese: shared locale configuration, locale-aware routing, Payload localization,
-localized data access, SEO alternates, sitemap generation, cache invalidation, migrations, and a
-language switcher. The remaining work before production is to complete user-interface
-localization, close gaps in editor-controlled SiteConfig fields, and add regression coverage for
-the critical locale behavior.
+`feat/i18n` 已完成英文和简体中文的核心能力，包括共享 locale 配置、路由、Payload
+本地化、数据查询、SEO、sitemap、缓存失效、数据迁移和语言切换器。本次补齐固定 UI
+文案、SiteConfig 可编辑字段和关键回归测试。
 
-This change remains on `feat/i18n`. The branch will be pushed after verification, but it will not
-be merged into `master` or deployed to production as part of this work.
+完成后只推送 `feat/i18n`，不合并 `master`，不发布生产。
 
-## Goals
+## 目标
 
-- Translate fixed frontend interface text for `en` and `zh-CN` without making system labels CMS
-  dependencies.
-- Keep editor-controlled navigation and footer text localized through Payload CMS.
-- Format dates and reading-time text according to the active locale.
-- Add automated regression tests for locale paths, metadata alternates, UI strings, middleware,
-  and localized-data migrations.
-- Update multilingual documentation and push the verified `feat/i18n` branch.
+- 本地化 Posts、文章详情、404 等固定界面文案。
+- 按当前 locale 格式化日期和阅读时长。
+- 让导航与 Footer 的可编辑文本支持 Payload 多语言。
+- 覆盖路径、SEO alternates、字符串、格式化、middleware 和迁移的自动化测试。
+- 更新多语言文档并推送当前分支。
 
-## Non-Goals
+## 非目标
 
-- Merging `feat/i18n` into `master`.
-- Deploying or migrating production.
-- Translating existing Pages, Posts, Tags, Series, or SiteConfig records.
-- Adding another locale or adopting a third-party internationalization framework.
-- Adding locale-specific slugs.
+- 合并 `master` 或发布生产。
+- 翻译现有 CMS 内容。
+- 增加新语言、第三方 i18n 框架或多语言 slug。
 
-## Architecture
+## 设计
 
-### Fixed Interface Strings
+### 固定 UI 文案
 
-Add a typed string catalog to `@repo/i18n`. The catalog contains only interface text that is part
-of application behavior rather than editorial content, including:
+在 `@repo/i18n` 增加类型安全的文案字典，覆盖：
 
-- Posts index title, eyebrow, description, empty state, and read-link label.
-- Reading-time suffix and article navigation labels.
-- Not-found metadata and visible error text.
-- The fallback title for an untitled post.
+- Posts 标题、引导语、描述、空状态和阅读链接。
+- 阅读时长、返回文章列表、目录标题。
+- 404 的 metadata 和页面内容。
+- 无标题文章的 fallback。
 
-Consumers retrieve a complete locale dictionary through one exported function. The catalog is
-exhaustive for every `SupportedLocale`, so adding a locale produces a TypeScript error until its
-interface strings are supplied. No runtime fallback is necessary for supported locales.
+每个 `SupportedLocale` 必须提供完整字典；新增 locale 时缺少文案会触发 TypeScript 错误。
 
-### Locale-Aware Formatting
+### 日期与阅读时长
 
-Move date and reading-time presentation behind exported helpers in `@repo/i18n`. Date formatting
-uses `Intl.DateTimeFormat` with the active `SupportedLocale`. Reading time uses locale-specific
-text while preserving the existing numeric estimate stored by Payload.
+在 `@repo/i18n` 提供 locale-aware 格式化工具。日期使用 `Intl.DateTimeFormat`，阅读时长
+使用对应语言文案。页面必须显式传入路由 locale。
 
-Frontend pages pass their route locale explicitly. Content resolution helpers continue to read
-localized Payload values and remain separate from presentation formatting.
+### CMS 可编辑文本
 
-### CMS-Controlled Site Text
-
-Keep SiteConfig structure and link destinations shared across locales. Mark only these leaf text
-fields as localized:
+仅给以下叶子字段增加 `localized: true`：
 
 - `navigation.menuItems[].label`
 - `footer.copyrightText`
 - `footer.additionalLinks[].label`
 
-This follows the existing leaf-field localization rule: arrays, URLs, external-link flags, and
-layout settings remain shared. A new idempotent migration wraps existing values under the default
-locale for both the SiteConfig global document and any compatible stored versions if present. The
-migration exposes small pure transformation helpers so its behavior can be tested without a live
-database.
+数组结构、URL、external 标记和布局配置保持共享。新增幂等迁移，将旧值包装到默认 locale，
+并把纯转换逻辑导出供测试使用。
 
-## Testing Strategy
+## 测试
 
-Testing follows red-green-refactor for each new behavior.
+按 red-green-refactor 实施：
 
-- `@repo/i18n` Vitest tests cover prefix stripping, localized path generation, route alternates,
-  complete string lookup, English and Chinese date output, and reading-time text.
-- Admin Vitest tests cover the new SiteConfig migration transformations, including bare values,
-  already-localized values, missing values, nested arrays, and a second idempotent pass.
-- Focused www tests cover middleware rewrite/pass-through behavior and page metadata alternates
-  using exported or extracted pure helpers where Next.js runtime coupling would otherwise make the
-  test fragile.
-- Existing admin tests and type checks for `@repo/i18n`, `www`, and `admin` remain required.
-- The final verification includes focused tests, repository test commands, type checks, and a
-  production build when required configuration is available without reading forbidden environment
-  files.
+- `@repo/i18n`：路径、alternates、文案、日期和阅读时长。
+- `admin`：SiteConfig 迁移，包括裸值、已本地化值、空值、嵌套数组和二次执行幂等性。
+- `www`：middleware rewrite/pass-through 和页面 SEO alternates。
+- 最终运行相关测试、全仓测试、类型检查；在无需读取真实环境文件且配置可用时运行 build。
 
-## Documentation and Delivery
+## 文档与交付
 
-Update the multilingual architecture document with the fixed-string catalog, the additional
-localized SiteConfig fields, and test locations. Update the rollout runbook with the new migration
-and a production checklist item for localized system text.
+更新多语言架构和 rollout runbook，记录新增字段、迁移和生产检查项。验证通过后创建聚焦提交，
+推送 `feat/i18n` 到 origin，保持 `master` 不变。
 
-After all checks pass, create scoped conventional commits and push `feat/i18n` to `origin`. Leave
-`master` unchanged so production release remains a separate, explicit action.
+## 兼容性
 
-## Error Handling and Compatibility
-
-- Locale functions accept only `SupportedLocale`; request-derived strings are validated before
-  use.
-- Invalid dates return no display value, preserving current behavior.
-- Migration transformations ignore absent, null, and already-localized values.
-- Payload fallback remains enabled, so untranslated CMS fields continue to show English until
-  editors provide Chinese content.
-- Shared link URLs ensure that the existing locale-aware Navbar and Footer wrappers can continue to
-  add the correct route prefix without duplicating CMS records.
+- 请求中的 locale 必须先通过 `isSupportedLocale` 校验。
+- 无效日期继续返回空展示值。
+- 迁移忽略缺失、null 和已本地化的数据。
+- Payload fallback 继续启用，未翻译 CMS 字段仍显示英文。

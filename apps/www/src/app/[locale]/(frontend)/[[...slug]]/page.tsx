@@ -2,7 +2,12 @@ import { cache } from "react"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 
-import { buildRouteAlternates, SUPPORTED_LOCALES, type SupportedLocale } from "@repo/i18n"
+import {
+	buildRouteAlternates,
+	getUiStrings,
+	SUPPORTED_LOCALES,
+	type SupportedLocale,
+} from "@repo/i18n"
 
 import { Nodes } from "@/components/Nodes"
 import { getSiteConfig } from "@/services/payload/site-config"
@@ -79,9 +84,10 @@ export async function generateMetadata({
 	])
 
 	if (!pageData) {
+		const strings = getUiStrings(resolvedParams.locale).notFound
 		return {
-			title: { absolute: "Page Not Found" },
-			description: resolveSiteDescription(siteConfig),
+			title: { absolute: strings.title },
+			description: strings.description,
 		}
 	}
 

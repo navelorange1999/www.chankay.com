@@ -4,7 +4,13 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowLeft } from "lucide-react"
 
-import { buildRouteAlternates, SUPPORTED_LOCALES, type SupportedLocale } from "@repo/i18n"
+import {
+	buildRouteAlternates,
+	formatReadingTime,
+	getUiStrings,
+	SUPPORTED_LOCALES,
+	type SupportedLocale,
+} from "@repo/i18n"
 
 import { Button } from "@repo/ui/components/Button"
 import { createMarkdownDocument } from "@repo/ui/components/Markdown"
@@ -29,13 +35,7 @@ import {
 import { PostTocDrawerClient } from "@/components/lazy/PostTocDrawerClient"
 import { getAllPosts, getPostBySlug } from "@/services/payload/posts"
 import { getSiteConfig } from "@/services/payload/site-config"
-import {
-	resolveMedia,
-	resolveMediaUrl,
-	resolveSiteDescription,
-	resolveSiteUrl,
-	resolveTwitterHandle,
-} from "@/utils/seo"
+import { resolveMedia, resolveMediaUrl, resolveSiteUrl, resolveTwitterHandle } from "@/utils/seo"
 import {
 	formatPostDate,
 	resolvePostDisplayExcerpt,
@@ -81,9 +81,10 @@ export async function generateMetadata({
 	])
 
 	if (!post) {
+		const strings = getUiStrings(locale).notFound
 		return {
-			title: { absolute: "Post Not Found" },
-			description: resolveSiteDescription(siteConfig),
+			title: { absolute: strings.title },
+			description: strings.description,
 		}
 	}
 
@@ -129,6 +130,7 @@ export async function generateMetadata({
 export default async function PostPage({ params }: { params: Promise<PostPageParams> }) {
 	const { locale, slug } = await params
 	const post = await getPostBySlugCached(slug, locale)
+	const strings = getUiStrings(locale)
 
 	if (!post) {
 		notFound()
@@ -136,9 +138,9 @@ export default async function PostPage({ params }: { params: Promise<PostPagePar
 
 	const postsIndexHref = resolvePostPath(undefined, locale)
 	const postImage = resolvePostImage(post)
-	const postDate = formatPostDate(post.publishedAt || post.updatedAt)
+	const postDate = formatPostDate(post.publishedAt || post.updatedAt, locale)
 	const postExcerpt = resolvePostDisplayExcerpt(post) || null
-	const postTitle = resolvePostDisplayTitle(post)
+	const postTitle = resolvePostDisplayTitle(post, locale)
 	const postTags = resolvePostTags(post)
 	const postDocument = createMarkdownDocument(post.content)
 	const tocHeadings = postDocument.headings.filter((heading) => [2, 3].includes(heading.level))
@@ -155,7 +157,7 @@ export default async function PostPage({ params }: { params: Promise<PostPagePar
 			variant="outline"
 			className="rounded-lg text-foreground/70 hover:text-foreground"
 		>
-			<Link aria-label="Back to posts" href={postsIndexHref}>
+			<Link aria-label={strings.article.backToPosts} href={postsIndexHref}>
 				<ArrowLeft className="h-4 w-4" />
 			</Link>
 		</Button>
@@ -176,13 +178,13 @@ export default async function PostPage({ params }: { params: Promise<PostPagePar
 									variant="outline"
 									className="rounded-lg text-foreground/70 hover:text-foreground"
 								>
-									<Link aria-label="Back to posts" href={postsIndexHref}>
+									<Link aria-label={strings.article.backToPosts} href={postsIndexHref}>
 										<ArrowLeft className="h-4 w-4" />
 									</Link>
 								</Button>
 
 								{tocHeadings.length > 0 ? (
-									<PostTocDrawerClient title="On this page">
+									<PostTocDrawerClient title={strings.article.onThisPage}>
 										<PostToc headings={tocHeadings} showTitle={false} />
 									</PostTocDrawerClient>
 								) : (
@@ -211,7 +213,7 @@ export default async function PostPage({ params }: { params: Promise<PostPagePar
 									{postDate ? <PostDate>{postDate}</PostDate> : null}
 									{postDate && post.readingTime ? <PostMetaSeparator /> : null}
 									{post.readingTime ? (
-										<PostReadingTime>{post.readingTime} min read</PostReadingTime>
+										<PostReadingTime>{formatReadingTime(post.readingTime, locale)}</PostReadingTime>
 									) : null}
 									{series && hasReadingMeta ? <PostMetaSeparator /> : null}
 									{series ? <span>{series}</span> : null}

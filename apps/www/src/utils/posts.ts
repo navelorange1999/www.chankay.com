@@ -1,4 +1,10 @@
-import { DEFAULT_LOCALE, resolveLocalizedPath, type SupportedLocale } from "@repo/i18n"
+import {
+	DEFAULT_LOCALE,
+	formatLocalizedDate,
+	getUiStrings,
+	resolveLocalizedPath,
+	type SupportedLocale,
+} from "@repo/i18n"
 import type {
 	MediaInterface,
 	Post,
@@ -29,18 +35,11 @@ export function resolvePostAbsoluteUrl(
 	return new URL(resolvePostPath(slug, locale), `${resolveSiteUrl(siteConfig)}/`).toString()
 }
 
-export function formatPostDate(value?: string | null): string | undefined {
-	const dateValue = asOptionalString(value)
-	if (!dateValue) return undefined
-
-	const date = new Date(dateValue)
-	if (Number.isNaN(date.getTime())) return undefined
-
-	return new Intl.DateTimeFormat("en", {
-		day: "numeric",
-		month: "short",
-		year: "numeric",
-	}).format(date)
+export function formatPostDate(
+	value?: string | null,
+	locale: SupportedLocale = DEFAULT_LOCALE
+): string | undefined {
+	return formatLocalizedDate(value, locale)
 }
 
 export function resolvePostDisplayExcerpt(post: Pick<Post, "excerpt">): string | undefined {
@@ -55,8 +54,11 @@ export function resolvePostSeoDescription(post: Pick<Post, "excerpt" | "meta">):
 	)
 }
 
-export function resolvePostDisplayTitle(post: Pick<Post, "title">): string {
-	return asOptionalString(post.title) || "Untitled post"
+export function resolvePostDisplayTitle(
+	post: Pick<Post, "title">,
+	locale: SupportedLocale = DEFAULT_LOCALE
+): string {
+	return asOptionalString(post.title) || getUiStrings(locale).untitledPost
 }
 
 export function resolvePostSeoTitle(post: Pick<Post, "title" | "meta">): string {

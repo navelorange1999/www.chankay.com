@@ -1,7 +1,12 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 
-import { buildRouteIndexAlternates, type SupportedLocale } from "@repo/i18n"
+import {
+	buildRouteIndexAlternates,
+	formatReadingTime,
+	getUiStrings,
+	type SupportedLocale,
+} from "@repo/i18n"
 
 import { ImageMedia } from "@repo/ui/components/Media"
 import {
@@ -37,8 +42,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
 	const { locale } = await params
 	const siteConfig = await getSiteConfig(locale)
-	const title = "Posts"
-	const description = "Thoughts, experiments, and practical notes from building on the web."
+	const strings = getUiStrings(locale).posts
+	const title = strings.title
+	const description = strings.description
 	const alternates = buildRouteIndexAlternates({
 		currentLocale: locale,
 		domain: "posts",
@@ -72,31 +78,32 @@ export async function generateMetadata({
 export default async function PostsPage({ params }: { params: Promise<PostsIndexParams> }) {
 	const { locale } = await params
 	const posts = await getAllPosts({ locale })
+	const strings = getUiStrings(locale).posts
 
 	return (
 		<section className="mx-auto flex max-w-4xl flex-col gap-8">
 			<header className="space-y-3">
 				<p className="text-sm font-medium uppercase tracking-[0.24em] text-muted-foreground">
-					Notes
+					{strings.eyebrow}
 				</p>
-				<h1 className="text-4xl font-semibold tracking-tight md:text-5xl">Posts</h1>
+				<h1 className="text-4xl font-semibold tracking-tight md:text-5xl">{strings.title}</h1>
 				<p className="max-w-2xl text-base text-muted-foreground md:text-lg">
-					Thoughts, experiments, and practical notes from building on the web.
+					{strings.description}
 				</p>
 			</header>
 
 			{posts.length === 0 ? (
 				<div className="rounded-2xl border border-dashed px-6 py-10 text-muted-foreground">
-					No posts yet. Create the first one in Payload Admin and it will appear here.
+					{strings.emptyState}
 				</div>
 			) : (
 				<div className="space-y-8">
 					{posts.map((post) => {
 						const postUrl = resolvePostPath(post.slug, locale)
 						const postImage = resolvePostImage(post)
-						const postDate = formatPostDate(post.publishedAt || post.updatedAt)
+						const postDate = formatPostDate(post.publishedAt || post.updatedAt, locale)
 						const postExcerpt = resolvePostDisplayExcerpt(post)
-						const postTitle = resolvePostDisplayTitle(post)
+						const postTitle = resolvePostDisplayTitle(post, locale)
 						const postTags = resolvePostTags(post)
 
 						return (
@@ -125,7 +132,9 @@ export default async function PostsPage({ params }: { params: Promise<PostsIndex
 											{postDate ? <PostDate>{postDate}</PostDate> : null}
 											{postDate && post.readingTime ? <PostMetaSeparator /> : null}
 											{post.readingTime ? (
-												<PostReadingTime>{post.readingTime} min read</PostReadingTime>
+												<PostReadingTime>
+													{formatReadingTime(post.readingTime, locale)}
+												</PostReadingTime>
 											) : null}
 											{postTags.map((tag) => (
 												<PostTag key={tag.id} variant="outline">
@@ -148,7 +157,7 @@ export default async function PostsPage({ params }: { params: Promise<PostsIndex
 											className="text-sm font-medium text-primary hover:underline"
 											href={postUrl}
 										>
-											Read post
+											{strings.readPost}
 										</Link>
 									</div>
 								</div>

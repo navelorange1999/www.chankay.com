@@ -11,8 +11,8 @@
     "build": "tsc",
     "check-types": "tsc --noEmit",
     "lint": "eslint src --max-warnings=0 --fix",
-    "test": "echo \"No tests yet\"",
-    "test:run": "echo \"No tests yet\"",
+    "test": "vitest",
+    "test:run": "vitest run",
     "clean": "rm -rf dist && rm -rf .turbo"
   },
   "exports": {
@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*"
+    "@repo/typescript-config": "workspace:*",
+    "vitest": "^3.2.4"
   }
 }

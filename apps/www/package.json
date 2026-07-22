@@ -8,8 +8,8 @@
     "sync:brand-assets": "node ../../packages/brand-assets/scripts/sync-assets.mjs www",
     "lint": "next lint --fix",
     "check-types": "tsc --noEmit",
-    "test": "echo \"No tests yet\"",
-    "test:run": "echo \"No tests yet\"",
+    "test": "vitest",
+    "test:run": "vitest run",
     "clean": "rm -rf .next && rm -rf .turbo"
   },
   "dependencies": {
@@ -27,6 +27,7 @@
   },
   "devDependencies": {
     "@chankay/brand-assets": "workspace:*",
-    "@types/node": "25.0.3"
+    "@types/node": "25.0.3",
+    "vitest": "^3.2.4"
   }
 }

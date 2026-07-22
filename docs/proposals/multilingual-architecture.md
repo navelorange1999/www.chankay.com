@@ -1,6 +1,6 @@
 # Multilingual Architecture
 
-> Last Updated: May 25, 2026
+> Last Updated: July 22, 2026
 
 This document defines how multilingual content flows across the monorepo: which locales are supported, how URLs are shaped, how the CMS stores localized content, how the frontend consumes it, and how SEO metadata is generated.
 
@@ -84,12 +84,12 @@ localization: {
 
 Field-level localization is opt-in. The current model:
 
-| Collection | Localized fields                                  |
-| ---------- | ------------------------------------------------- |
-| `posts`    | `title`, `excerpt`, `content`                     |
-| `tags`     | `name`, `description`                             |
-| `series`   | `title`, `description`                            |
-| `pages`    | `title`, `seo.metaTitle`, `seo.metaDescription`   |
+| Collection | Localized fields                                |
+| ---------- | ----------------------------------------------- |
+| `posts`    | `title`, `excerpt`, `content`                   |
+| `tags`     | `name`, `description`                           |
+| `series`   | `title`, `description`                          |
+| `pages`    | `title`, `seo.metaTitle`, `seo.metaDescription` |
 
 Operational fields (`slug`, `status`, `seo.autoGenerateOgImage`, `seo.ogImage`) stay non-localized.
 
@@ -99,12 +99,12 @@ Operational fields (`slug`, `status`, `seo.autoGenerateOgImage`, `seo.ogImage`) 
 
 The `pages.structure` field is a deeply nestable `blocks` tree (containers / flex / grid / cards / leaf content). It is **not** marked `localized: true`. Localization is applied at the leaf text fields inside each block instead:
 
-| Block slug | Localized leaf fields    |
-| ---------- | ------------------------ |
-| `text`     | `content`                |
-| `markdown` | `content`                |
-| `button`   | `label`                  |
-| `card`     | `title`, `description`   |
+| Block slug | Localized leaf fields  |
+| ---------- | ---------------------- |
+| `text`     | `content`              |
+| `markdown` | `content`              |
+| `button`   | `label`                |
+| `card`     | `title`, `description` |
 
 Layout fields (`as`, `size`, `gap`, `direction`, etc.), `mediaImage.media`, `previewUrl.previewUrl`, `spotifyIframe.uri`, and nested children arrays (`children`, `actionBlocks`, `contentBlocks`, `footerBlocks`) are shared across locales.
 
@@ -245,10 +245,11 @@ Output (per page):
 
 Marking a field as `localized: true` after data already exists changes the storage shape from `field: value` to `field: { en: value }`. Pre-existing rows still hold the bare value, which causes the admin UI to show blanks. A normalization migration is required.
 
-Two migrations cover this:
+Three migrations cover this:
 
 1. `apps/admin/src/migrations/20260508120000_normalize_localized_fields.ts` — original normalization, wraps top-level localized fields into `{ en: value }`.
 2. `apps/admin/src/migrations/20260525120000_relocate_pages_localization.ts` — relocates `pages.structure` localization: flattens the outer `{ en: [...blocks] }` wrapper into a bare array and wraps the leaf text fields inside each block (see "Blocks Localization: Leaf-Field Rule" above).
+3. `apps/admin/src/migrations/20260722120000_localize_site_config_labels.ts` — wraps the editor-controlled `navigation.menuItems[].label`, `footer.copyrightText`, and `footer.additionalLinks[].label` leaf values without localizing their containing arrays.
 
 What the first migration covers:
 
@@ -262,6 +263,8 @@ What the first migration covers:
 | `site-config` (global) | `siteName`, `siteDescription`, `metaTitle`, `metaDescription`, `footer.customFooterText`, `maintenance.maintenanceMessage` |
 
 The second migration then undoes the `pages.structure` outer wrap from the first migration and rewraps leaf text fields (`text.content`, `markdown.content`, `button.label`, `card.title`, `card.description`) recursively through the blocks tree. It is also idempotent and reversible.
+
+The third migration keeps navigation and footer structure shared while localizing only their visible labels. Its pure transformation helper is covered by Vitest for wrapping, rollback, empty values, and repeat execution.
 
 Properties of the migration:
 
@@ -297,9 +300,9 @@ When a new field is marked `localized: true` in the future, add its path to the 
 
 ## CMS-First Static Strings
 
-This project intentionally does not ship a translation library or message catalog. Static UI strings (navigation labels, footer copy, button text) live in the Payload `siteConfig` global, which is fetched per locale. The Navbar, Footer, and other shell components consume these values via props.
+This project intentionally does not ship a third-party translation library. Editor-controlled content such as navigation labels, footer copy, and footer links lives in the Payload `siteConfig` global, which is fetched per locale. The Navbar, Footer, and other shell components consume these values via props.
 
-If a string is genuinely static and never editor-controlled (e.g. a 404 message), inline it in the component and translate by importing from `@repo/i18n` lookup tables. Add new lookups to `packages/i18n/src/strings.ts` (create on first need).
+Strings that are part of application behavior rather than editorial content live in the typed catalog at `packages/i18n/src/strings.ts`. Posts UI, reading-time labels, navigation accessibility text, and 404 copy read from this catalog through `getUiStrings(locale)`. Locale-aware dates and reading time use `packages/i18n/src/format.ts`.
 
 ## Language Switcher
 
@@ -307,23 +310,24 @@ Component: `packages/ui/src/components/LanguageSwitcher/`. Stateless. Props: `cu
 
 ## File Map
 
-| File                                                         | Responsibility                                  |
-| ------------------------------------------------------------ | ----------------------------------------------- |
-| `packages/i18n/src/*`                                        | Locale config, path utils, hreflang helpers     |
-| `apps/admin/src/config/locales.ts`                           | Re-exports `@repo/i18n` for admin               |
-| `apps/admin/src/payload.config.ts`                           | Wires Payload `localization` from shared config |
-| `apps/admin/src/collections/{Posts,Pages,Tags,Series}.ts`    | Field-level `localized: true`                   |
+| File                                                         | Responsibility                                         |
+| ------------------------------------------------------------ | ------------------------------------------------------ |
+| `packages/i18n/src/*`                                        | Locale config, paths, hreflang, strings, formatting    |
+| `apps/admin/src/config/locales.ts`                           | Re-exports `@repo/i18n` for admin                      |
+| `apps/admin/src/payload.config.ts`                           | Wires Payload `localization` from shared config        |
+| `apps/admin/src/collections/{Posts,Pages,Tags,Series}.ts`    | Field-level `localized: true`                          |
 | `apps/admin/src/collections/{Posts,Pages}.ts`                | `createRevalidationHook` afterChange (per locale tags) |
-| `apps/admin/src/blocks/{Text,Markdown,Button,Card}Block.ts`  | Leaf-field `localized: true` inside blocks tree |
-| `apps/www/src/middleware.ts`                                 | Default-locale rewrite                          |
-| `apps/www/src/app/[locale]/layout.tsx`                       | Locale validation, `<html lang>`                |
-| `apps/www/src/app/[locale]/(frontend)/**/page.tsx`           | Locale-aware route handlers                     |
-| `apps/www/src/utils/payloadClient.ts`                        | `?locale=` forwarding, locale-scoped cache tags |
-| `apps/www/src/services/payload/{posts,pages,site-config}.ts` | Thread locale through to Payload queries        |
-| `apps/www/src/app/sitemap.ts`                                | Per-locale URLs with `hreflang`                 |
-| `apps/www/src/app/api/revalidate/route.ts`                   | Locale-scoped tag revalidation                  |
-| `packages/ui/src/components/LanguageSwitcher/*`              | Stateless locale switcher                       |
-| `packages/ui/src/components/Navbar/Navbar.tsx`               | Mounts `LanguageSwitcher`                       |
+| `apps/admin/src/blocks/{Text,Markdown,Button,Card}Block.ts`  | Leaf-field `localized: true` inside blocks tree        |
+| `apps/admin/src/migrations/*`                                | Idempotent localized-data normalization                |
+| `apps/www/src/middleware.ts`                                 | Default-locale rewrite                                 |
+| `apps/www/src/app/[locale]/layout.tsx`                       | Locale validation, `<html lang>`                       |
+| `apps/www/src/app/[locale]/(frontend)/**/page.tsx`           | Locale-aware route handlers                            |
+| `apps/www/src/utils/payloadClient.ts`                        | `?locale=` forwarding, locale-scoped cache tags        |
+| `apps/www/src/services/payload/{posts,pages,site-config}.ts` | Thread locale through to Payload queries               |
+| `apps/www/src/app/sitemap.ts`                                | Per-locale URLs with `hreflang`                        |
+| `apps/www/src/app/api/revalidate/route.ts`                   | Locale-scoped tag revalidation                         |
+| `packages/ui/src/components/LanguageSwitcher/*`              | Stateless locale switcher                              |
+| `packages/ui/src/components/Navbar/Navbar.tsx`               | Mounts `LanguageSwitcher`                              |
 
 ## Trade-Offs
 
@@ -343,6 +347,7 @@ Component: `packages/ui/src/components/LanguageSwitcher/`. Stateless. Props: `cu
 ## Verification Checklist
 
 - `pnpm check-types` passes across the monorepo.
+- `pnpm test:run` covers i18n paths, alternates, fixed strings, formatting, middleware, and the latest SiteConfig migration.
 - `pnpm build` produces static pages for every locale × content slug.
 - `/` and `/posts/<slug>` render English; `/zh-CN/` and `/zh-CN/posts/<slug>` render Chinese (or English fallback).
 - HTML `<html lang>` attribute matches the served locale.

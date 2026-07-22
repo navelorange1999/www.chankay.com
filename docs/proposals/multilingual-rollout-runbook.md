@@ -1,27 +1,27 @@
 # Multilingual Rollout Runbook
 
-> Last Updated: May 25, 2026
+> Last Updated: July 22, 2026
 
 Operational checklist for taking the multilingual code changes from `master` to running clusters. The architecture and design are described in [`multilingual-architecture.md`](./multilingual-architecture.md); this file only tracks the work that still needs to happen on real environments and the cleanup items deferred from the initial implementation.
 
 ## Status
 
-| Area                                                  | State                                                                                |
-| ----------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| Code: shared `@repo/i18n` package                     | Done                                                                                 |
-| Code: `apps/www` `[locale]` routing + middleware      | Done                                                                                 |
-| Code: `payloadClient` + services threaded with locale | Done                                                                                 |
-| Code: locale-aware sitemap + hreflang                 | Done                                                                                 |
-| Code: `LanguageSwitcher` UI in Navbar                 | Done                                                                                 |
-| Code: `Pages` leaf-block localization (post-fix)      | Done                                                                                 |
-| Code: data migrations                                 | Done (`20260508120000_normalize_localized_fields`, `20260525120000_relocate_pages_localization`) |
-| Code: `Pages` revalidate-www hook                     | Done                                                                                 |
-| Ops: dev cluster migration                            | Done                                                                                 |
-| Ops: production cluster migration                     | **Pending — only after dev verifies**                                                |
-| Verification: public site smoke test (dev)            | Done (`/`, `/zh-CN`, `/posts/<slug>`, sitemap, hreflang, LanguageSwitcher)           |
-| Verification: admin editorial round-trip (dev)        | Done (translate `pages.demos` card.title to zh-CN, en untouched, fallback intact)    |
-| Editorial: translate existing content                 | **Pending — content work, not code**                                                 |
-| Code follow-ups                                       | **Pending — see "Code Follow-Ups" section**                                          |
+| Area                                                  | State                                                                    |
+| ----------------------------------------------------- | ------------------------------------------------------------------------ |
+| Code: shared `@repo/i18n` package                     | Done                                                                     |
+| Code: `apps/www` `[locale]` routing + middleware      | Done                                                                     |
+| Code: `payloadClient` + services threaded with locale | Done                                                                     |
+| Code: locale-aware sitemap + hreflang                 | Done                                                                     |
+| Code: `LanguageSwitcher` UI in Navbar                 | Done                                                                     |
+| Code: `Pages` leaf-block localization (post-fix)      | Done                                                                     |
+| Code: data migrations                                 | Done (including `20260722120000_localize_site_config_labels`)            |
+| Code: `Pages` revalidate-www hook                     | Done                                                                     |
+| Ops: dev cluster migration                            | **Pending re-run for the July 22 SiteConfig migration**                  |
+| Ops: production cluster migration                     | **Pending — only after dev verifies**                                    |
+| Verification: public site smoke test (dev)            | **Pending re-run for localized fixed UI copy**                           |
+| Verification: admin editorial round-trip (dev)        | **Pending SiteConfig label round-trip; Pages round-trip already passed** |
+| Editorial: translate existing content                 | **Pending — content work, not code**                                     |
+| Code follow-ups                                       | **Pending — see "Code Follow-Ups" section**                              |
 
 ## Pre-Flight
 
@@ -47,10 +47,12 @@ Operational checklist for taking the multilingual code changes from `master` to 
    [migrate up] series: scanned=… normalized=…
    [migrate up] pages: scanned=… normalized=…
    [migrate up] site-config: scanned=1 normalized=1
+   [migrate up] site-config labels: scanned=1 normalized=1
    ```
 3. Smoke test the admin UI:
    - [ ] Open an existing Post. The English content should appear under the `[en]` locale tab; the `[zh-CN]` tab should be empty (or show fallback).
    - [ ] Open the SiteConfig global. Same expectation.
+   - [ ] Translate one navigation label and one footer link label in `[zh-CN]`; confirm English remains unchanged.
    - [ ] Open an existing Page. Same expectation. The `structure` blocks should render under `[en]`.
    - [ ] Create or edit a Post in `[zh-CN]`, save, and confirm the change persists without overwriting the English version.
 4. Smoke test the public site:
@@ -92,7 +94,7 @@ Content translation is not a code task; it happens inside Payload admin once the
 
 - [ ] Identify the priority list of Pages and Posts to translate (likely: home, about, top N posts).
 - [ ] For each, switch the Payload locale tab to `[zh-CN]` and translate `title`, `excerpt`, `content`, `seo.metaTitle`, `seo.metaDescription`, and (for Pages) the `structure` blocks.
-- [ ] Translate the SiteConfig global's localized fields (`siteName`, `siteDescription`, `metaTitle`, `metaDescription`, `footer.customFooterText`) so the Navbar/Footer/SEO defaults work in Chinese.
+- [ ] Translate the SiteConfig global's localized fields (`siteName`, `siteDescription`, `metaTitle`, `metaDescription`, `navigation.menuItems[].label`, `footer.copyrightText`, `footer.additionalLinks[].label`, `footer.customFooterText`) so the Navbar/Footer/SEO defaults work in Chinese.
 - [ ] Translate Tag names and Series titles where they appear in the UI.
 
 Untranslated fields fall back to the default locale automatically (`fallback: true`), so partial translation is safe — pages will show mixed languages until each field is filled in.
@@ -109,7 +111,7 @@ These were intentionally deferred to keep the initial change scoped. Pick them u
 
 ### Medium value
 
-- [ ] **Vitest unit test for the migration script** — `isLocalizedShape` is the critical predicate. Add a small test under `apps/admin/src/migrations/__tests__/` covering: bare string, localized object, partial localized object, empty object, array, null. Idempotency is also worth covering by running the script twice and asserting only the first run changed anything.
+- [ ] **Vitest unit tests for the legacy migration scripts** — the July 22 SiteConfig migration is covered, but the May normalization and Pages relocation migrations still need direct unit tests for their critical predicates and idempotency.
 - [ ] **End-to-end Playwright (or similar) test for hreflang** — assert that `/posts/<slug>` and `/zh-CN/posts/<slug>` both contain the expected `hreflang` link tags. Catches future regressions if `buildRouteAlternates` is ever bypassed.
 - [ ] **Cache tag invalidation for the cutover** — production CDN/edge holds entries tagged with the old (non-locale-scoped) names like `collection:posts` and `post:<slug>`. The new code uses `collection:posts:en` etc., so legacy cache entries linger until natural TTL expiry. Either:
   - bump a global cache version (e.g. add a cache buster to all tags) when deploying, or
@@ -120,7 +122,6 @@ These were intentionally deferred to keep the initial change scoped. Pick them u
 
 - [ ] **Storybook smoke** — `apps/storybook` was not opened during this work. Confirm Navbar/Footer stories still render with the new optional `currentLocale` and `homeHref` props (default behavior should match previous renders).
 - [ ] **Robots.txt review** — currently a single static file. Likely fine for multilingual since `Disallow:` rules are path-based and apply to both prefixed and unprefixed paths. Verify by skimming the rendered file after deploy.
-- [ ] **Documentation cross-links** — `docs/payload-cms-patterns.md` does not mention the field-level localization convention; consider adding a short "When to mark a field `localized: true`" section now that the pattern is established.
 
 ## Dev Rollout Notes (2026-05-25)
 

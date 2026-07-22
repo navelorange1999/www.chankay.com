@@ -22,7 +22,9 @@ export function resolveSiteName(siteConfig?: SiteConfig | null): string {
 	)
 }
 
-export function resolveSiteDescription(siteConfig?: SiteConfig | null): string {
+export function resolveSiteDescription(
+	siteConfig?: Pick<SiteConfig, "metaDescription" | "siteDescription"> | null
+): string {
 	return (
 		asOptionalString(siteConfig?.metaDescription) ||
 		asOptionalString(siteConfig?.siteDescription) ||

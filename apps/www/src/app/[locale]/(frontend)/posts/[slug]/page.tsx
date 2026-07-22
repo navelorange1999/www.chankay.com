@@ -88,8 +88,8 @@ export async function generateMetadata({
 		}
 	}
 
-	const title = resolvePostSeoTitle(post)
-	const description = resolvePostSeoDescription(post)
+	const title = resolvePostSeoTitle(post, locale)
+	const description = resolvePostSeoDescription(post, siteConfig)
 	const alternates = buildRouteAlternates({
 		currentLocale: locale,
 		domain: "posts",

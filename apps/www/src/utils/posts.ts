@@ -46,11 +46,14 @@ export function resolvePostDisplayExcerpt(post: Pick<Post, "excerpt">): string |
 	return asOptionalString(post.excerpt)
 }
 
-export function resolvePostSeoDescription(post: Pick<Post, "excerpt" | "meta">): string {
+export function resolvePostSeoDescription(
+	post: Pick<Post, "excerpt" | "meta">,
+	siteConfig?: Pick<SiteConfig, "metaDescription" | "siteDescription"> | null
+): string {
 	return (
 		asOptionalString(post.meta?.description) ||
 		resolvePostDisplayExcerpt(post) ||
-		resolveSiteDescription(undefined)
+		resolveSiteDescription(siteConfig)
 	)
 }
 
@@ -61,8 +64,11 @@ export function resolvePostDisplayTitle(
 	return asOptionalString(post.title) || getUiStrings(locale).untitledPost
 }
 
-export function resolvePostSeoTitle(post: Pick<Post, "title" | "meta">): string {
-	return asOptionalString(post.meta?.title) || resolvePostDisplayTitle(post)
+export function resolvePostSeoTitle(
+	post: Pick<Post, "title" | "meta">,
+	locale: SupportedLocale = DEFAULT_LOCALE
+): string {
+	return asOptionalString(post.meta?.title) || resolvePostDisplayTitle(post, locale)
 }
 
 export function resolvePostImage(

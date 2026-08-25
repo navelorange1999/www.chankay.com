@@ -50,3 +50,6 @@ storybook-static
 
 # local mongodump backups
 backup-*/
+
+# local git worktrees
+/.worktrees/

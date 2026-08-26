@@ -12,6 +12,7 @@ export const plugins: Plugin[] = [
 	 */
 	vercelBlobStorage({
 		enabled: true, // Optional, defaults to true
+		alwaysInsertFields: true,
 		addRandomSuffix: true,
 		// Specify which collections should use Vercel Blob
 		collections: {

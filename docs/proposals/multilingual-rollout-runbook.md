@@ -1,6 +1,6 @@
 # Multilingual Rollout Runbook
 
-> Last Updated: July 22, 2026
+> Last Updated: August 26, 2026
 
 Operational checklist for taking the multilingual code changes from `master` to running clusters. The architecture and design are described in [`multilingual-architecture.md`](./multilingual-architecture.md); this file only tracks the work that still needs to happen on real environments and the cleanup items deferred from the initial implementation.
 
@@ -18,6 +18,7 @@ Operational checklist for taking the multilingual code changes from `master` to 
 | Code: `Pages` revalidate-www hook                     | Done                                                                     |
 | Ops: dev cluster migration                            | **Pending re-run for the July 22 SiteConfig migration**                  |
 | Ops: production cluster migration                     | **Pending — only after dev verifies**                                    |
+| Ops: MCP API key permission cutover                   | **Pending for dev; production only after dev verification**              |
 | Verification: public site smoke test (dev)            | **Pending re-run for localized fixed UI copy**                           |
 | Verification: admin editorial round-trip (dev)        | **Pending SiteConfig label round-trip; Pages round-trip already passed** |
 | Editorial: translate existing content                 | **Pending — content work, not code**                                     |
@@ -31,6 +32,26 @@ Operational checklist for taking the multilingual code changes from `master` to 
   mongodump --uri="$DATABASE_URI" --out=./backup-dev-$(date +%s)
   ```
 - [ ] Confirm the latest `master` is deployed to the dev environment first. Code and migration must ship together — running the migration against an old code build will normalize data into a shape that the old reader does not expect.
+
+## Payload 3.88 MCP API Key Permission Cutover
+
+Payload 3.88 moves the six custom tool permission flags in existing `payload-mcp-api-keys` documents from the `custom` schema group to the `payload-mcp-tool` group. Existing keys do not automatically carry those selections into the new group. Native SiteConfig `find` and `update` permissions also default to disabled. This cutover is intentionally manual; do not add an automatic API key migration.
+
+- [ ] Before deploying Payload 3.88, inventory every affected existing MCP API key by label and owner only. For each key, record a non-secret permission matrix showing whether each of the following `custom` tools is enabled. Never copy, export, paste, or log API key values during the cutover:
+  - `create_post_draft`
+  - `publish_post`
+  - `create_page_draft`
+  - `replace_page_structure`
+  - `update_page_seo`
+  - `publish_page`
+- [ ] After deploying Payload 3.88, open every affected existing key and verify its collection permissions. Under **Tools / payload-mcp-tool**, enable only the custom tools that were enabled for that key in the pre-deployment matrix. Leave every previously disabled tool disabled.
+- [ ] If a key's pre-deployment permission matrix is missing or ambiguous, leave all six custom tools disabled until the key owner explicitly authorizes the required tools. Do not infer access from another key or grant the full set as a fallback.
+- [ ] Enable SiteConfig **Find** and **Update** only for keys whose owners have approved multilingual configuration access. These are new permissions and must not be inferred from the legacy custom-tool matrix.
+- [ ] Save each key, reconnect its MCP client, and verify tool discovery and a SiteConfig read.
+- [ ] In dev only, verify SiteConfig update access with a reversible localized label change, confirm the result, and restore the original label.
+- [ ] In production, do not make a test write unless it is explicitly approved. Verify tool discovery and SiteConfig read access, then use a real approved edit to validate write access.
+
+Rollback does not require deleting or recreating keys. The old `custom` permission fields remain stored, so redeploying the pre-3.88 version restores the previous schema behavior. Do not delete or recreate API keys solely for this cutover.
 
 ## Dev Cluster Rollout
 
@@ -49,13 +70,14 @@ Operational checklist for taking the multilingual code changes from `master` to 
    [migrate up] site-config: scanned=1 normalized=1
    [migrate up] site-config labels: scanned=1 normalized=1
    ```
-3. Smoke test the admin UI:
+3. [ ] Complete the **Payload 3.88 MCP API Key Permission Cutover** for every affected dev key before any editorial or admin MCP operation.
+4. Smoke test the admin UI:
    - [ ] Open an existing Post. The English content should appear under the `[en]` locale tab; the `[zh-CN]` tab should be empty (or show fallback).
    - [ ] Open the SiteConfig global. Same expectation.
    - [ ] Translate one navigation label and one footer link label in `[zh-CN]`; confirm English remains unchanged.
    - [ ] Open an existing Page. Same expectation. The `structure` blocks should render under `[en]`.
    - [ ] Create or edit a Post in `[zh-CN]`, save, and confirm the change persists without overwriting the English version.
-4. Smoke test the public site:
+5. Smoke test the public site:
    - [ ] `https://<dev>.chankay.com/` renders English; `<html lang="en">` in source.
    - [ ] `https://<dev>.chankay.com/zh-CN/` renders Chinese fallback (English content until translated); `<html lang="zh-CN">` in source.
    - [ ] `https://<dev>.chankay.com/posts/<existing-slug>` and `https://<dev>.chankay.com/zh-CN/posts/<existing-slug>` both load.
@@ -85,8 +107,9 @@ Only proceed when the dev rollout is fully verified.
    pnpm --filter admin migrate
    ```
    Pointed at production Mongo (set `DATABASE_URI` accordingly in the shell that runs the command).
-4. [ ] Repeat the admin and public-site smoke tests from the dev section against the production URL.
-5. [ ] Hit `/api/revalidate` for at least one post in each locale to confirm the locale-scoped cache tags work end-to-end.
+4. [ ] Repeat the **Payload 3.88 MCP API Key Permission Cutover** for every production key before any production MCP use.
+5. [ ] Repeat the admin and public-site smoke tests from the dev section against the production URL.
+6. [ ] Hit `/api/revalidate` for at least one post in each locale to confirm the locale-scoped cache tags work end-to-end.
 
 ## Editorial Follow-Ups
 

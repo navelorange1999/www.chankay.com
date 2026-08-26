@@ -19,6 +19,12 @@ type MediaDocLike = Record<string, unknown> & {
 
 type MediaMutationData = Record<string, unknown>
 
+type MediaCaptureBeforeOperationArgs<TArgs> = {
+	args: TArgs
+	operation: Parameters<CollectionBeforeOperationHook>[0]["operation"]
+	req: PayloadRequest
+}
+
 function hasOwn(data: MediaMutationData, key: string): boolean {
 	return Object.prototype.hasOwnProperty.call(data, key)
 }
@@ -167,11 +173,11 @@ async function findOriginalMediaDoc(
 	})) as unknown as MediaDocLike
 }
 
-export const mediaCaptureBeforeOperation: CollectionBeforeOperationHook = async ({
+export const mediaCaptureBeforeOperation = async <TArgs>({
 	args,
 	operation,
 	req,
-}) => {
+}: MediaCaptureBeforeOperationArgs<TArgs>): Promise<TArgs> => {
 	if ((req.context as Record<string, unknown> | undefined)?.[SKIP_MEDIA_SOURCE_CAPTURE_FLAG]) {
 		return args
 	}
@@ -183,15 +189,17 @@ export const mediaCaptureBeforeOperation: CollectionBeforeOperationHook = async 
 	if (!args || typeof args !== "object") {
 		return args
 	}
+	const operationArgs = args as TArgs & { data?: unknown }
 
 	const data =
-		"data" in args && args.data && typeof args.data === "object"
-			? (args.data as MediaMutationData)
+		"data" in operationArgs && operationArgs.data && typeof operationArgs.data === "object"
+			? (operationArgs.data as MediaMutationData)
 			: {}
 
-	args.data = data
+	operationArgs.data = data
 
-	const originalDoc = operation === "update" ? await findOriginalMediaDoc(args, req) : undefined
+	const originalDoc =
+		operation === "update" ? await findOriginalMediaDoc(operationArgs, req) : undefined
 
 	await prepareMediaSourceCapture({
 		data,

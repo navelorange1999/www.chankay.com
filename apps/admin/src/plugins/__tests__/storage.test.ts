@@ -1,10 +1,6 @@
 import { describe, expect, it, vi } from "vitest"
 
 const { vercelBlobStorageMock } = vi.hoisted(() => {
-	Reflect.set(process.env, "VERCEL_BLOB_READ_WRITE_TOKEN", "")
-	Reflect.set(process.env, "VERCEL_BLOB_PUBLIC_BASE_URL", "")
-	Reflect.set(process.env, "NEXT_PUBLIC_SERVER_URL", "")
-
 	return {
 		vercelBlobStorageMock: vi.fn(() => vi.fn()),
 	}

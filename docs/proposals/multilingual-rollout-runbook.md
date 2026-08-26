@@ -37,15 +37,16 @@ Operational checklist for taking the multilingual code changes from `master` to 
 
 Payload 3.88 moves the six custom tool permission flags in existing `payload-mcp-api-keys` documents from the `custom` schema group to the `payload-mcp-tool` group. Existing keys do not automatically carry those selections into the new group. Native SiteConfig `find` and `update` permissions also default to disabled. This cutover is intentionally manual; do not add an automatic API key migration.
 
-- [ ] In Payload Admin, inventory every affected existing MCP API key by label and owner only. Never copy, export, paste, or log API key values during the cutover.
-- [ ] After deploying Payload 3.88, open every affected existing key and verify its collection permissions. Under **Tools / payload-mcp-tool**, re-enable all six custom tools:
+- [ ] Before deploying Payload 3.88, inventory every affected existing MCP API key by label and owner only. For each key, record a non-secret permission matrix showing whether each of the following `custom` tools is enabled. Never copy, export, paste, or log API key values during the cutover:
   - `create_post_draft`
   - `publish_post`
   - `create_page_draft`
   - `replace_page_structure`
   - `update_page_seo`
   - `publish_page`
-- [ ] Enable SiteConfig **Find** and **Update** for every key that needs multilingual configuration access.
+- [ ] After deploying Payload 3.88, open every affected existing key and verify its collection permissions. Under **Tools / payload-mcp-tool**, enable only the custom tools that were enabled for that key in the pre-deployment matrix. Leave every previously disabled tool disabled.
+- [ ] If a key's pre-deployment permission matrix is missing or ambiguous, leave all six custom tools disabled until the key owner explicitly authorizes the required tools. Do not infer access from another key or grant the full set as a fallback.
+- [ ] Enable SiteConfig **Find** and **Update** only for keys whose owners have approved multilingual configuration access. These are new permissions and must not be inferred from the legacy custom-tool matrix.
 - [ ] Save each key, reconnect its MCP client, and verify tool discovery and a SiteConfig read.
 - [ ] In dev only, verify SiteConfig update access with a reversible localized label change, confirm the result, and restore the original label.
 - [ ] In production, do not make a test write unless it is explicitly approved. Verify tool discovery and SiteConfig read access, then use a real approved edit to validate write access.

@@ -12,25 +12,31 @@
 
 ## File Map
 
-- Create `apps/admin/next.config.test.js`: imports the effective Next.js configuration and verifies the Queue SDK externalization contract.
+- Create `apps/admin/src/config/__tests__/nextConfig.test.ts`: imports the effective Next.js configuration and verifies the Queue SDK externalization contract.
 - Modify `apps/admin/next.config.js`: lists `@vercel/queue` under `serverExternalPackages` while preserving the existing Turbopack root.
 
 ### Task 1: Protect the Queue SDK from Turbopack bundling
 
 **Files:**
 
-- Create: `apps/admin/next.config.test.js`
+- Create: `apps/admin/src/config/__tests__/nextConfig.test.ts`
 - Modify: `apps/admin/next.config.js`
 
 - [ ] **Step 1: Write the failing configuration test**
 
-```js
+```ts
 import { describe, expect, it } from "vitest"
 
-import nextConfig from "./next.config.js"
+type NextConfig = {
+  serverExternalPackages?: string[]
+}
 
 describe("admin Next.js config", () => {
-  it("loads Vercel Queue outside the Turbopack server bundle", () => {
+  it("loads Vercel Queue outside the Turbopack server bundle", async () => {
+    const { default: nextConfig } = (await import("../../../next.config.js")) as {
+      default: NextConfig
+    }
+
     expect(nextConfig.serverExternalPackages).toContain("@vercel/queue")
   })
 })
@@ -41,10 +47,10 @@ describe("admin Next.js config", () => {
 Run:
 
 ```bash
-PATH=/Users/navelorange1999/.nvm/versions/node/v22.13.0/bin:$PATH pnpm --filter admin exec vitest run next.config.test.js
+PATH=/Users/navelorange1999/.nvm/versions/node/v22.13.0/bin:$PATH pnpm --filter admin exec vitest run src/config/__tests__/nextConfig.test.ts
 ```
 
-Expected: FAIL because `nextConfig.serverExternalPackages` is currently undefined.
+Expected: FAIL because `nextConfig.serverExternalPackages` does not contain `@vercel/queue`.
 
 - [ ] **Step 3: Add the minimal Next.js configuration**
 
@@ -61,7 +67,7 @@ Keep the existing `turbopack.root`, React Compiler, and TypeScript configuration
 Run:
 
 ```bash
-PATH=/Users/navelorange1999/.nvm/versions/node/v22.13.0/bin:$PATH pnpm --filter admin exec vitest run next.config.test.js
+PATH=/Users/navelorange1999/.nvm/versions/node/v22.13.0/bin:$PATH pnpm --filter admin exec vitest run src/config/__tests__/nextConfig.test.ts
 ```
 
 Expected: one test file and one test pass.
@@ -91,7 +97,7 @@ Expected: the route no longer returns the `Can't resolve './ROOT/apps/admin' <dy
 - [ ] **Step 7: Commit the fix**
 
 ```bash
-git add apps/admin/next.config.js apps/admin/next.config.test.js
+git add apps/admin/next.config.js apps/admin/src/config/__tests__/nextConfig.test.ts
 git commit -m "fix(admin): externalize Vercel Queue from Turbopack"
 ```
 

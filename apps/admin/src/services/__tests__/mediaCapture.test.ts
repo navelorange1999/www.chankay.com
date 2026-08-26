@@ -114,7 +114,7 @@ describe("mediaCapture", () => {
 			args,
 			operation: "create",
 			req,
-		} as Parameters<typeof mediaCaptureBeforeOperation>[0])
+		})
 
 		expect(result).toBe(args)
 		expect(captureScreenshot).not.toHaveBeenCalled()

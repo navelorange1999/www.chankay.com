@@ -143,7 +143,7 @@ export function ThemeToggle({
 							key={themeOption.key}
 							type="button"
 							onClick={(event) => {
-								runThemeTransition(themeOption.key, event)
+								runThemeTransition(themeOption.key, event.currentTarget)
 								setIsOpen(false)
 							}}
 							className="flex w-full items-center gap-3 px-3 py-2 text-sm text-foreground transition-colors first:rounded-t-lg last:rounded-b-lg hover:bg-secondary"
@@ -173,7 +173,7 @@ export function ThemeToggle({
 		<button
 			type="button"
 			onClick={(event) => {
-				runThemeTransition(getBinaryNextTheme(), event)
+				runThemeTransition(getBinaryNextTheme(), event.currentTarget)
 			}}
 			className={cn(
 				"relative overflow-hidden rounded-lg text-foreground transition-colors duration-150 hover:bg-secondary",

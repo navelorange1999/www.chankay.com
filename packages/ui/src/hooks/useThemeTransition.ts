@@ -1,12 +1,12 @@
 "use client"
 
 import { useCallback } from "react"
-import type { MouseEvent } from "react"
 
 import type { ThemeMode } from "./useTheme"
 
 type ViewTransitionHandle = {
 	finished: Promise<void>
+	ready: Promise<void>
 }
 
 type DocumentWithViewTransition = Document & {
@@ -20,7 +20,28 @@ interface UseThemeTransitionOptions {
 
 interface ThemeTransitionApi {
 	getBinaryNextTheme: () => Exclude<ThemeMode, "system">
-	runThemeTransition: (nextTheme: ThemeMode, event: MouseEvent<HTMLElement>) => void
+	runThemeTransition: (nextTheme: ThemeMode, triggerElement: HTMLElement) => void
+}
+
+interface ThemeTransitionViewport {
+	height: number
+	width: number
+}
+
+export function resolveThemeTransitionGeometry(
+	triggerRect: Pick<DOMRect, "height" | "left" | "top" | "width">,
+	viewport: ThemeTransitionViewport
+) {
+	const originX = triggerRect.left + triggerRect.width / 2
+	const originY = triggerRect.top + triggerRect.height / 2
+	const horizontalRadius = Math.max(originX, viewport.width - originX)
+	const verticalRadius = Math.max(originY, viewport.height - originY)
+
+	return {
+		originX,
+		originY,
+		radius: Math.hypot(horizontalRadius, verticalRadius),
+	}
 }
 
 export function useThemeTransition({
@@ -32,7 +53,7 @@ export function useThemeTransition({
 	}, [resolvedTheme])
 
 	const runThemeTransition = useCallback(
-		(nextTheme: ThemeMode, event: MouseEvent<HTMLElement>) => {
+		(nextTheme: ThemeMode, triggerElement: HTMLElement) => {
 			if (typeof document === "undefined" || typeof window === "undefined") {
 				setTheme(nextTheme)
 				return
@@ -45,15 +66,15 @@ export function useThemeTransition({
 				return
 			}
 
-			const currentTarget = event.currentTarget
-			const targetRect = currentTarget.getBoundingClientRect()
-			const hasPointerOrigin = event.clientX !== 0 || event.clientY !== 0
-			const originX = hasPointerOrigin ? event.clientX : targetRect.left + targetRect.width / 2
-			const originY = hasPointerOrigin ? event.clientY : targetRect.top + targetRect.height / 2
+			const { originX, originY, radius } = resolveThemeTransitionGeometry(
+				triggerElement.getBoundingClientRect(),
+				{
+					height: window.innerHeight,
+					width: window.innerWidth,
+				}
+			)
 
 			const rootElement = document.documentElement
-			rootElement.style.setProperty("--theme-transition-x", `${originX}px`)
-			rootElement.style.setProperty("--theme-transition-y", `${originY}px`)
 			rootElement.setAttribute("data-theme-transition", "radial")
 
 			let cleaned = false
@@ -64,14 +85,31 @@ export function useThemeTransition({
 
 				cleaned = true
 				rootElement.removeAttribute("data-theme-transition")
-				rootElement.style.removeProperty("--theme-transition-x")
-				rootElement.style.removeProperty("--theme-transition-y")
 			}
 
 			const cleanupTimeout = window.setTimeout(cleanup, 2000)
 			const transition = transitioningDocument.startViewTransition(() => {
 				setTheme(nextTheme)
 			})
+
+			transition.ready
+				.then(() => {
+					rootElement.animate(
+						{
+							clipPath: [
+								`circle(0px at ${originX}px ${originY}px)`,
+								`circle(${radius}px at ${originX}px ${originY}px)`,
+							],
+						},
+						{
+							duration: 1200,
+							easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+							fill: "both",
+							pseudoElement: "::view-transition-new(root)",
+						}
+					)
+				})
+				.catch(() => undefined)
 
 			transition.finished
 				.catch(() => undefined)

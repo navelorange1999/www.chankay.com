@@ -56644,6 +56644,10 @@ export interface PayloadMcpApiKey {
      * Publish an existing page by id or slug without exposing the generic update tool.
      */
     publishPage?: boolean | null;
+    /**
+     * Translate SiteConfig navigation and footer link labels by URL while preserving shared array items and other locales.
+     */
+    translateSiteConfigLabels?: boolean | null;
   };
   updatedAt: string;
   createdAt: string;
@@ -88445,6 +88449,7 @@ export interface PayloadMcpApiKeysSelect<T extends boolean = true> {
         replacePageStructure?: T;
         updatePageSeo?: T;
         publishPage?: T;
+        translateSiteConfigLabels?: T;
       };
   updatedAt?: T;
   createdAt?: T;

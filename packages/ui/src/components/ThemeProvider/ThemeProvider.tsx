@@ -35,7 +35,7 @@ function HighlightJsThemeStyles() {
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
 	return (
-		<NextThemesProvider {...props}>
+		<NextThemesProvider attribute={["class", "data-theme"]} {...props}>
 			<HighlightJsThemeStyles />
 			{children}
 		</NextThemesProvider>

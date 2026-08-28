@@ -90,11 +90,11 @@
 			mix-blend-mode: normal;
 		}
 
-		html[data-theme-transition="radial"]::view-transition-old(root) {
+		html[data-theme-transition]::view-transition-old(root) {
 			z-index: 1;
 		}
 
-		html[data-theme-transition="radial"]::view-transition-new(root) {
+		html[data-theme-transition]::view-transition-new(root) {
 			z-index: 2;
 		}
 	}

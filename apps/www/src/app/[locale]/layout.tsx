@@ -119,12 +119,7 @@ export default async function LocaleLayout({
 
 			<body className={inter.className}>
 				<NextTopLoader color="currentColor" showForHashAnchor={false} showSpinner={false} />
-				<ThemeProvider
-					attribute="class"
-					defaultTheme="system"
-					enableSystem
-					disableTransitionOnChange
-				>
+				<ThemeProvider defaultTheme="system" enableSystem disableTransitionOnChange>
 					<Navbar siteConfig={siteConfig} currentLocale={locale} />
 					<main className="min-h-[calc(100dvh-var(--navbar-height,4rem))] bg-background">
 						<Container className="py-5 md:py-8">{children}</Container>

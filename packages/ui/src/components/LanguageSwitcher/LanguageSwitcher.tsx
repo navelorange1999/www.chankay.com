@@ -33,6 +33,12 @@ const iconSizes = {
 	lg: "h-6 w-6",
 } as const
 
+const chevronSizes = {
+	sm: "h-3 w-3",
+	md: "h-4 w-4",
+	lg: "h-5 w-5",
+} as const
+
 export function LanguageSwitcher({ currentLocale, className, size = "md" }: LanguageSwitcherProps) {
 	const pathname = usePathname() ?? "/"
 	const [isOpen, setIsOpen] = React.useState(false)
@@ -59,7 +65,7 @@ export function LanguageSwitcher({ currentLocale, className, size = "md" }: Lang
 				type="button"
 				onClick={() => setIsOpen((current) => !current)}
 				className={cn(
-					"relative flex items-center gap-2 overflow-hidden rounded-lg text-foreground transition-colors duration-150 hover:bg-secondary",
+					"group relative flex items-center gap-2 overflow-hidden rounded-lg text-foreground transition-colors duration-150 hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
 					sizeClasses[size],
 					className
 				)}
@@ -67,13 +73,13 @@ export function LanguageSwitcher({ currentLocale, className, size = "md" }: Lang
 				aria-label="Select language"
 			>
 				<Globe className={cn(iconSizes[size], "text-primary")} />
-				<span className="hidden text-sm font-medium md:inline">
-					{currentLocaleConfig?.flag ?? currentLocale}
+				<span className="whitespace-nowrap text-sm font-medium">
+					{currentLocaleConfig?.name ?? currentLocale}
 				</span>
 				<ChevronDown
 					className={cn(
-						iconSizes[size],
-						"transition-transform duration-200",
+						chevronSizes[size],
+						"shrink-0 text-muted-foreground transition-[color,transform] duration-200 group-hover:text-accent-foreground",
 						isOpen && "rotate-180"
 					)}
 				/>
@@ -81,7 +87,7 @@ export function LanguageSwitcher({ currentLocale, className, size = "md" }: Lang
 
 			<div
 				className={cn(
-					"absolute right-0 top-full z-50 mt-2 w-44 origin-top-right rounded-lg border border-border bg-card shadow-lg transition duration-150",
+					"absolute right-0 top-full z-50 mt-2 w-36 origin-top-right rounded-lg border border-border bg-card shadow-md transition duration-150",
 					isOpen
 						? "pointer-events-auto translate-y-0 scale-100 opacity-100"
 						: "pointer-events-none -translate-y-1 scale-95 opacity-0"
@@ -97,10 +103,12 @@ export function LanguageSwitcher({ currentLocale, className, size = "md" }: Lang
 							key={locale}
 							href={targetHref}
 							onClick={() => setIsOpen(false)}
-							className="flex w-full items-center gap-3 px-3 py-2 text-sm text-foreground transition-colors first:rounded-t-lg last:rounded-b-lg hover:bg-secondary"
+							className={cn(
+								"flex w-full items-center gap-2 px-3 py-2 text-sm transition-colors first:rounded-t-lg last:rounded-b-lg hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
+								isActive ? "bg-accent text-accent-foreground" : "text-foreground"
+							)}
 							hrefLang={locale}
 						>
-							<span className="text-base leading-none">{config?.flag ?? "🌐"}</span>
 							<span className="flex-1">{config?.name ?? locale}</span>
 							{isActive ? <Check className="h-4 w-4 text-primary" /> : null}
 						</Link>

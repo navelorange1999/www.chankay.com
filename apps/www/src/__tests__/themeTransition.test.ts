@@ -6,7 +6,7 @@ import {
 	resolveThemeTransitionGeometry,
 	resolveThemeTransitionMode,
 	settleThemeTransition,
-} from "../../../../packages/ui/src/hooks/useThemeTransition"
+} from "@repo/ui/hooks/useThemeTransition"
 
 describe("applyThemeChange", () => {
 	it("updates every root theme signal before notifying next-themes", () => {

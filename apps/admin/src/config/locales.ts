@@ -1,60 +1,19 @@
 /**
- * Centralized locale configuration for i18n
- * Avoids hardcoding language codes throughout the application
+ * Re-exports the shared locale configuration from `@repo/i18n` so admin
+ * code can keep its existing `@/config/locales` import path.
+ *
+ * Edit locale data in `packages/i18n/src/config.ts`, not here.
  */
-
-export const LOCALE_CONFIG = {
-	// Supported languages list
-	locales: [
-		{
-			code: "en",
-			name: "English",
-			flag: "🇺🇸",
-			rtl: false,
-		},
-		{
-			code: "zh-CN",
-			name: "简体中文",
-			flag: "🇨🇳",
-			rtl: false,
-		},
-		// Future expansion ready
-		// {
-		//   code: 'ja',
-		//   name: '日本語',
-		//   flag: '🇯🇵',
-		//   rtl: false,
-		// },
-	] as const,
-
-	// CMS configuration: No forced default locale for flexible content creation
-	cms: {
-		fallback: true,
-	},
-
-	// WWW frontend configuration: Default to English for public display
-	www: {
-		defaultLocale: "en",
-		fallbackLocale: "en",
-	},
-} as const
-
-export type SupportedLocale = (typeof LOCALE_CONFIG.locales)[number]["code"]
-export const SUPPORTED_LOCALES = LOCALE_CONFIG.locales.map((l) => l.code)
-
-/**
- * Get locale configuration by code
- */
-export function getLocaleConfig(code: SupportedLocale) {
-	return LOCALE_CONFIG.locales.find((locale) => locale.code === code)
-}
-
-/**
- * Get all locale options for select fields
- */
-export function getLocaleOptions() {
-	return LOCALE_CONFIG.locales.map((locale) => ({
-		label: `${locale.flag} ${locale.name}`,
-		value: locale.code,
-	}))
-}
+export {
+	DEFAULT_LOCALE,
+	FALLBACK_LOCALE,
+	LOCALE_CONFIG,
+	PREFIXED_LOCALES,
+	SUPPORTED_LOCALES,
+	getLocaleConfig,
+	getLocaleOptions,
+	isDefaultLocale,
+	isSupportedLocale,
+	type LocaleConfig,
+	type SupportedLocale,
+} from "@repo/i18n"

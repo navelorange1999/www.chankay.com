@@ -3,7 +3,7 @@
   "license": "MIT",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@10.16.0",
+  "packageManager": "pnpm@11.23.0+sha512.f00082e5b283a199b74e079da28d155c008fe232f44c8a06ea7ddfa014ecf719fc362f790ecc67b28106ddac2afb24c49a9a079159da560b2ce7d1e98efd11af",
   "scripts": {
     "gen": "turbo run gen",
     "dev": "turbo dev",
@@ -26,8 +26,8 @@
     "clean:all": "pnpm clean && rm -rf node_modules && pnpm install"
   },
   "dependencies": {
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react": "19.1.2",
+    "react-dom": "19.1.2"
   },
   "devDependencies": {
     "@types/react": "^19.1.8",
@@ -38,7 +38,7 @@
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
     "prettier": "3.3.3",
-    "turbo": "^2.5.4",
+    "turbo": "^2.9.16",
     "typescript": "^5.8.2"
   },
   "config": {

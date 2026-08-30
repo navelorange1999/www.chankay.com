@@ -12,15 +12,10 @@ export function ThemeScript() {
 				var resolvedTheme = theme === 'system' ? systemTheme : theme;
 				var root = document.documentElement;
 				
-				if (resolvedTheme === 'dark') {
-					root.classList.add('dark');
-					root.style.colorScheme = 'dark';
-				} else {
-					root.classList.remove('dark');
-					root.style.colorScheme = 'light';
-				}
-
+				root.classList.remove('light', 'dark');
+				root.classList.add(resolvedTheme);
 				root.setAttribute('data-theme', resolvedTheme);
+				root.style.colorScheme = resolvedTheme;
 
 				var styleEl = document.getElementById('${HIGHLIGHT_STYLE_ELEMENT_ID}');
 				if (!styleEl) {

@@ -11,6 +11,7 @@ const nextConfig = {
 	turbopack: {
 		root: repoRoot,
 	},
+	serverExternalPackages: ["@vercel/queue"],
 	experimental: {
 		reactCompiler: false,
 	},

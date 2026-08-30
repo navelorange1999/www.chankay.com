@@ -75,6 +75,7 @@ export interface Config {
     series: Series;
     pages: Page;
     'payload-mcp-api-keys': PayloadMcpApiKey;
+    'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -88,6 +89,7 @@ export interface Config {
     series: SeriesSelect<false> | SeriesSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
     'payload-mcp-api-keys': PayloadMcpApiKeysSelect<false> | PayloadMcpApiKeysSelect<true>;
+    'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -95,6 +97,7 @@ export interface Config {
   db: {
     defaultIDType: string;
   };
+  fallbackLocale: ('false' | 'none' | 'null') | false | null | ('en' | 'zh-CN') | ('en' | 'zh-CN')[];
   globals: {
     'site-config': SiteConfig;
   };
@@ -102,13 +105,10 @@ export interface Config {
     'site-config': SiteConfigSelect<false> | SiteConfigSelect<true>;
   };
   locale: 'en' | 'zh-CN';
-  user:
-    | (User & {
-        collection: 'users';
-      })
-    | (PayloadMcpApiKey & {
-        collection: 'payload-mcp-api-keys';
-      });
+  widgets: {
+    collections: CollectionsWidget;
+  };
+  user: User | PayloadMcpApiKey;
   jobs: {
     tasks: unknown;
     workflows: unknown;
@@ -197,6 +197,7 @@ export interface User {
       }[]
     | null;
   password?: string | null;
+  collection: 'users';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -56511,6 +56512,8 @@ export interface Page {
   createdAt: string;
 }
 /**
+ * API keys control which collections, resources, tools, and prompts MCP clients can access
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-mcp-api-keys".
  */
@@ -56533,24 +56536,72 @@ export interface PayloadMcpApiKey {
      * Allow clients to find posts.
      */
     find?: boolean | null;
+    /**
+     * Allow clients to create posts.
+     */
+    create?: boolean | null;
+    /**
+     * Allow clients to update posts.
+     */
+    update?: boolean | null;
+    /**
+     * Allow clients to delete posts.
+     */
+    delete?: boolean | null;
   };
   pages?: {
     /**
      * Allow clients to find pages.
      */
     find?: boolean | null;
+    /**
+     * Allow clients to create pages.
+     */
+    create?: boolean | null;
+    /**
+     * Allow clients to update pages.
+     */
+    update?: boolean | null;
+    /**
+     * Allow clients to delete pages.
+     */
+    delete?: boolean | null;
   };
   tags?: {
     /**
      * Allow clients to find tags.
      */
     find?: boolean | null;
+    /**
+     * Allow clients to create tags.
+     */
+    create?: boolean | null;
+    /**
+     * Allow clients to update tags.
+     */
+    update?: boolean | null;
+    /**
+     * Allow clients to delete tags.
+     */
+    delete?: boolean | null;
   };
   series?: {
     /**
      * Allow clients to find series.
      */
     find?: boolean | null;
+    /**
+     * Allow clients to create series.
+     */
+    create?: boolean | null;
+    /**
+     * Allow clients to update series.
+     */
+    update?: boolean | null;
+    /**
+     * Allow clients to delete series.
+     */
+    delete?: boolean | null;
   };
   media?: {
     /**
@@ -56558,11 +56609,17 @@ export interface PayloadMcpApiKey {
      */
     find?: boolean | null;
   };
-  custom?: {
+  siteConfig?: {
     /**
-     * Read the global site configuration document, optionally for a specific locale.
+     * Allow clients to find site-config global.
      */
-    getSiteConfig?: boolean | null;
+    find?: boolean | null;
+    /**
+     * Allow clients to update site-config global.
+     */
+    update?: boolean | null;
+  };
+  'payload-mcp-tool'?: {
     /**
      * Create a new post draft with Markdown content using a narrow, task-oriented input shape.
      */
@@ -56587,12 +56644,34 @@ export interface PayloadMcpApiKey {
      * Publish an existing page by id or slug without exposing the generic update tool.
      */
     publishPage?: boolean | null;
+    /**
+     * Translate SiteConfig navigation and footer link labels by URL while preserving shared array items and other locales.
+     */
+    translateSiteConfigLabels?: boolean | null;
   };
   updatedAt: string;
   createdAt: string;
   enableAPIKey?: boolean | null;
   apiKey?: string | null;
   apiKeyIndex?: string | null;
+  collection: 'payload-mcp-api-keys';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-kv".
+ */
+export interface PayloadKv {
+  id: string;
+  key: string;
+  data:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -88322,43 +88401,69 @@ export interface PayloadMcpApiKeysSelect<T extends boolean = true> {
     | T
     | {
         find?: T;
+        create?: T;
+        update?: T;
+        delete?: T;
       };
   pages?:
     | T
     | {
         find?: T;
+        create?: T;
+        update?: T;
+        delete?: T;
       };
   tags?:
     | T
     | {
         find?: T;
+        create?: T;
+        update?: T;
+        delete?: T;
       };
   series?:
     | T
     | {
         find?: T;
+        create?: T;
+        update?: T;
+        delete?: T;
       };
   media?:
     | T
     | {
         find?: T;
       };
-  custom?:
+  siteConfig?:
     | T
     | {
-        getSiteConfig?: T;
+        find?: T;
+        update?: T;
+      };
+  'payload-mcp-tool'?:
+    | T
+    | {
         createPostDraft?: T;
         publishPost?: T;
         createPageDraft?: T;
         replacePageStructure?: T;
         updatePageSeo?: T;
         publishPage?: T;
+        translateSiteConfigLabels?: T;
       };
   updatedAt?: T;
   createdAt?: T;
   enableAPIKey?: T;
   apiKey?: T;
   apiKeyIndex?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-kv_select".
+ */
+export interface PayloadKvSelect<T extends boolean = true> {
+  key?: T;
+  data?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -88798,6 +88903,16 @@ export interface SiteConfigSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "collections_widget".
+ */
+export interface CollectionsWidget {
+  data?: {
+    [k: string]: unknown;
+  };
+  width: 'full';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

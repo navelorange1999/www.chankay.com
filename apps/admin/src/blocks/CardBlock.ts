@@ -34,6 +34,7 @@ export const CardBlock: BlockDefinition = {
 			name: "title",
 			type: "text",
 			label: "Card Title",
+			localized: true,
 			admin: {
 				condition: (_, siblingData) => siblingData?.showHeader !== false,
 			},
@@ -42,6 +43,7 @@ export const CardBlock: BlockDefinition = {
 			name: "description",
 			type: "textarea",
 			label: "Card Description",
+			localized: true,
 			admin: {
 				condition: (_, siblingData) => siblingData?.showHeader !== false,
 			},

@@ -1,26 +1,33 @@
+import type { SupportedLocale } from "@repo/i18n"
+import { DEFAULT_LOCALE } from "@repo/i18n"
+
 import { payloadClient } from "@/utils/payloadClient"
 import type { Post } from "@repo/typescript-config/typings/payload-types"
 
-/**
- * Get all posts
- */
-export async function getPosts(options?: {
+export interface PostListOptions {
+	locale?: SupportedLocale
 	limit?: number
 	page?: number
 	depth?: number
 	cache?: RequestCache
 	revalidate?: number
 	sort?: string
-}): Promise<{ docs: Post[]; totalDocs: number }> {
+}
+
+export async function getPosts(
+	options?: PostListOptions
+): Promise<{ docs: Post[]; totalDocs: number }> {
+	const locale = options?.locale ?? DEFAULT_LOCALE
 	try {
 		const result = await payloadClient.getCollection<Post>("posts", {
+			locale,
 			limit: options?.limit ?? 10,
 			page: options?.page ?? 1,
 			depth: options?.depth,
 			sort: options?.sort ?? "-publishedAt",
 			revalidate: options?.revalidate,
 			cache: options?.cache,
-			tags: ["posts"],
+			tags: [`posts:${locale}`],
 		})
 
 		return result
@@ -30,14 +37,16 @@ export async function getPosts(options?: {
 	}
 }
 
-/**
- * Get post by slug
- */
-export async function getPostBySlug(slug: string): Promise<Post | null> {
+export async function getPostBySlug(
+	slug: string,
+	options?: { locale?: SupportedLocale }
+): Promise<Post | null> {
+	const locale = options?.locale ?? DEFAULT_LOCALE
 	try {
 		return await payloadClient.getBySlug<Post>("posts", slug, {
+			locale,
 			depth: 2,
-			tags: [`post:${slug}`],
+			tags: [`post:${slug}:${locale}`],
 		})
 	} catch (error) {
 		console.error(`Error fetching post ${slug}:`, error)
@@ -45,10 +54,8 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
 	}
 }
 
-/**
- * Get all posts for sitemap and static params generation
- */
-export async function getAllPosts(): Promise<Post[]> {
+export async function getAllPosts(options?: { locale?: SupportedLocale }): Promise<Post[]> {
+	const locale = options?.locale ?? DEFAULT_LOCALE
 	const allPosts: Post[] = []
 	const limit = 100
 	let page = 1
@@ -57,10 +64,11 @@ export async function getAllPosts(): Promise<Post[]> {
 	try {
 		do {
 			const result = await payloadClient.getCollection<Post>("posts", {
+				locale,
 				limit,
 				page,
 				sort: "-publishedAt",
-				tags: ["posts:all"],
+				tags: [`posts:all:${locale}`],
 			})
 
 			totalDocs = result.totalDocs
@@ -75,15 +83,17 @@ export async function getAllPosts(): Promise<Post[]> {
 	}
 }
 
-/**
- * Get latest posts
- */
-export async function getLatestPosts(limit: number = 5): Promise<Post[]> {
+export async function getLatestPosts(
+	limit: number = 5,
+	options?: { locale?: SupportedLocale }
+): Promise<Post[]> {
+	const locale = options?.locale ?? DEFAULT_LOCALE
 	try {
 		const result = await payloadClient.getCollection<Post>("posts", {
+			locale,
 			limit,
 			sort: "-publishedAt",
-			tags: ["posts:latest"],
+			tags: [`posts:latest:${locale}`],
 		})
 
 		return result.docs

@@ -538,6 +538,7 @@ export const SiteConfig: GlobalConfig = {
 									type: "text",
 									label: "Label",
 									required: true,
+									localized: true,
 									admin: {
 										placeholder: "About",
 									},
@@ -631,6 +632,7 @@ export const SiteConfig: GlobalConfig = {
 							name: "copyrightText",
 							type: "text",
 							label: "Copyright Text",
+							localized: true,
 							admin: {
 								placeholder: "© 2024 Your Site Name. All rights reserved.",
 								description: "Custom copyright notice (leave empty for auto-generated)",
@@ -658,6 +660,7 @@ export const SiteConfig: GlobalConfig = {
 									type: "text",
 									label: "Label",
 									required: true,
+									localized: true,
 									admin: {
 										placeholder: "Privacy Policy",
 									},

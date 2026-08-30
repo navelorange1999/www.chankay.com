@@ -1,5 +1,6 @@
 import type { CollectionConfig } from "payload"
 import { structureBlocks } from "@/blocks/StructureBlocks"
+import { createRevalidationHook } from "@/hooks/revalidateWww"
 import { syncPageGeneratedAssets } from "@/services/pageAssets"
 
 export const Pages: CollectionConfig = {
@@ -16,6 +17,7 @@ export const Pages: CollectionConfig = {
 			name: "title",
 			type: "text",
 			required: true,
+			localized: true,
 			label: "Page Title",
 		},
 		{
@@ -56,6 +58,7 @@ export const Pages: CollectionConfig = {
 					name: "metaTitle",
 					type: "text",
 					label: "Meta Title",
+					localized: true,
 					admin: {
 						description: "Override the page title for SEO",
 					},
@@ -64,6 +67,7 @@ export const Pages: CollectionConfig = {
 					name: "metaDescription",
 					type: "textarea",
 					label: "Meta Description",
+					localized: true,
 				},
 				{
 					name: "autoGenerateOgImage",
@@ -118,6 +122,6 @@ export const Pages: CollectionConfig = {
 	],
 	timestamps: true,
 	hooks: {
-		afterChange: [syncPageGeneratedAssets],
+		afterChange: [syncPageGeneratedAssets, createRevalidationHook("pages")],
 	},
 }

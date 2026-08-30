@@ -1,5 +1,3 @@
-import { getSiteConfigTool } from "./tool"
-import { siteConfigResource } from "./resource"
+import { translateSiteConfigLabelsTool } from "./translateLabels"
 
-export const siteConfigResources = [siteConfigResource]
-export const siteConfigTools = [getSiteConfigTool]
+export const siteConfigTools = [translateSiteConfigLabelsTool]

@@ -1,3 +1,10 @@
+import {
+	DEFAULT_LOCALE,
+	formatLocalizedDate,
+	getUiStrings,
+	resolveLocalizedPath,
+	type SupportedLocale,
+} from "@repo/i18n"
 import type {
 	MediaInterface,
 	Post,
@@ -11,54 +18,57 @@ function asOptionalString(value: unknown): string | undefined {
 	return typeof value === "string" && value.trim().length > 0 ? value.trim() : undefined
 }
 
-export function resolvePostPath(slug?: string | null): string {
+export function resolvePostPath(
+	slug?: string | null,
+	locale: SupportedLocale = DEFAULT_LOCALE
+): string {
 	const value = asOptionalString(slug)
-	if (!value) {
-		return "/posts"
-	}
-
-	return `/posts/${value.replace(/^\/+|\/+$/g, "")}`
+	const unprefixed = value ? `/posts/${value.replace(/^\/+|\/+$/g, "")}` : "/posts"
+	return resolveLocalizedPath(locale, unprefixed)
 }
 
 export function resolvePostAbsoluteUrl(
 	siteConfig: SiteConfig | null | undefined,
-	slug?: string | null
+	slug?: string | null,
+	locale: SupportedLocale = DEFAULT_LOCALE
 ): string {
-	return new URL(resolvePostPath(slug), `${resolveSiteUrl(siteConfig)}/`).toString()
+	return new URL(resolvePostPath(slug, locale), `${resolveSiteUrl(siteConfig)}/`).toString()
 }
 
-export function formatPostDate(value?: string | null): string | undefined {
-	const dateValue = asOptionalString(value)
-	if (!dateValue) return undefined
-
-	const date = new Date(dateValue)
-	if (Number.isNaN(date.getTime())) return undefined
-
-	return new Intl.DateTimeFormat("en", {
-		day: "numeric",
-		month: "short",
-		year: "numeric",
-	}).format(date)
+export function formatPostDate(
+	value?: string | null,
+	locale: SupportedLocale = DEFAULT_LOCALE
+): string | undefined {
+	return formatLocalizedDate(value, locale)
 }
 
 export function resolvePostDisplayExcerpt(post: Pick<Post, "excerpt">): string | undefined {
 	return asOptionalString(post.excerpt)
 }
 
-export function resolvePostSeoDescription(post: Pick<Post, "excerpt" | "meta">): string {
+export function resolvePostSeoDescription(
+	post: Pick<Post, "excerpt" | "meta">,
+	siteConfig?: Pick<SiteConfig, "metaDescription" | "siteDescription"> | null
+): string {
 	return (
 		asOptionalString(post.meta?.description) ||
 		resolvePostDisplayExcerpt(post) ||
-		resolveSiteDescription(undefined)
+		resolveSiteDescription(siteConfig)
 	)
 }
 
-export function resolvePostDisplayTitle(post: Pick<Post, "title">): string {
-	return asOptionalString(post.title) || "Untitled post"
+export function resolvePostDisplayTitle(
+	post: Pick<Post, "title">,
+	locale: SupportedLocale = DEFAULT_LOCALE
+): string {
+	return asOptionalString(post.title) || getUiStrings(locale).untitledPost
 }
 
-export function resolvePostSeoTitle(post: Pick<Post, "title" | "meta">): string {
-	return asOptionalString(post.meta?.title) || resolvePostDisplayTitle(post)
+export function resolvePostSeoTitle(
+	post: Pick<Post, "title" | "meta">,
+	locale: SupportedLocale = DEFAULT_LOCALE
+): string {
+	return asOptionalString(post.meta?.title) || resolvePostDisplayTitle(post, locale)
 }
 
 export function resolvePostImage(

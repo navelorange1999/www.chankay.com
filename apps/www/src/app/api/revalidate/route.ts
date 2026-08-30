@@ -1,13 +1,17 @@
 import { revalidatePath, revalidateTag } from "next/cache"
 import { NextResponse } from "next/server"
 
+import { SUPPORTED_LOCALES, type SupportedLocale, isSupportedLocale } from "@repo/i18n"
+
 import { resolvePagePath } from "@/utils/seo"
+import { resolvePostPath } from "@/utils/posts"
 
 const WWW_INTERNAL_SECRET_HEADER = "www-internal-secret"
 
 type RevalidateRequestBody = {
 	collection?: string
 	slugs?: string[]
+	locales?: string[]
 }
 
 function asStringArray(value: unknown): string[] {
@@ -18,32 +22,43 @@ function asStringArray(value: unknown): string[] {
 	return value.filter((item): item is string => typeof item === "string" && item.trim().length > 0)
 }
 
-type RevalidationHandler = (slugs: string[]) => void
+function resolveLocales(input: string[]): SupportedLocale[] {
+	const filtered = input.filter(isSupportedLocale)
+	return filtered.length > 0 ? filtered : [...SUPPORTED_LOCALES]
+}
+
+type RevalidationHandler = (slugs: string[], locales: SupportedLocale[]) => void
 
 const revalidationHandlers: Record<string, RevalidationHandler> = {
-	pages(slugs) {
-		for (const slug of slugs) {
-			revalidatePath(resolvePagePath(slug))
-			revalidateTag(`page:${slug}`)
+	pages(slugs, locales) {
+		for (const locale of locales) {
+			for (const slug of slugs) {
+				revalidatePath(resolvePagePath(slug, locale))
+				revalidateTag(`page:${slug}:${locale}`)
+			}
+			revalidateTag(`pages:all:${locale}`)
 		}
 		revalidatePath("/sitemap.xml")
-		revalidateTag("collection:pages")
 	},
 
-	posts(slugs) {
-		for (const slug of slugs) {
-			revalidatePath(`/posts/${slug}`)
-			revalidateTag(`post:${slug}`)
+	posts(slugs, locales) {
+		for (const locale of locales) {
+			for (const slug of slugs) {
+				revalidatePath(resolvePostPath(slug, locale))
+				revalidateTag(`post:${slug}:${locale}`)
+			}
+			revalidatePath(resolvePostPath(undefined, locale))
+			revalidateTag(`posts:${locale}`)
+			revalidateTag(`posts:latest:${locale}`)
+			revalidateTag(`posts:all:${locale}`)
 		}
-		revalidatePath("/posts")
 		revalidatePath("/sitemap.xml")
-		revalidateTag("posts")
-		revalidateTag("posts:latest")
-		revalidateTag("posts:all")
 	},
 
-	"site-config"() {
-		revalidateTag("global:site-config")
+	"site-config"(_slugs, locales) {
+		for (const locale of locales) {
+			revalidateTag(`global:site-config:${locale}`)
+		}
 		revalidatePath("/", "layout")
 		revalidatePath("/sitemap.xml")
 		revalidatePath("/robots.txt")
@@ -61,13 +76,15 @@ export async function POST(request: Request) {
 	const body = (await request.json().catch(() => null)) as RevalidateRequestBody | null
 	const collection = typeof body?.collection === "string" ? body.collection : "pages"
 	const slugs = asStringArray(body?.slugs)
+	const locales = resolveLocales(asStringArray(body?.locales))
 
 	const handler = revalidationHandlers[collection] ?? revalidationHandlers.pages!
-	handler(slugs)
+	handler(slugs, locales)
 
 	return NextResponse.json({
 		ok: true,
 		collection,
 		revalidated: slugs,
+		locales,
 	})
 }

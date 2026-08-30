@@ -90,6 +90,14 @@ export const SiteConfig: GlobalConfig = {
 - `apps/www` consumes content through Payload API access and service wrappers.
 - Shared UI components should not depend directly on Payload APIs.
 
+## Localized Field Placement
+
+- Add `localized: true` to editor-controlled, user-facing leaf fields.
+- Keep arrays, blocks containers, relationships, URLs, and layout fields shared unless the entire structure must differ by locale.
+- For nested blocks or arrays, localize fields such as `label`, `title`, `description`, and `content` rather than their parent container.
+- When an existing field becomes localized, ship an idempotent data migration in the same release to wrap the stored value under the default locale.
+- Keep fixed application-interface text in the typed `@repo/i18n` catalog instead of adding CMS fields that editors should not control.
+
 ## When Adding New Payload Features
 
 Check these areas in order:

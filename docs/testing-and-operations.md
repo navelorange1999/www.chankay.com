@@ -80,7 +80,13 @@ pnpm test:run
 
 # CMS
 pnpm gen
+pnpm --filter admin migrate:status
+pnpm --filter admin migrate
 ```
+
+The admin migration scripts build their workspace dependencies before invoking the Payload CLI.
+Use these package scripts instead of calling `payload migrate*` directly so a fresh checkout does
+not depend on pre-existing package build artifacts.
 
 ## Important File Locations
 

@@ -2,7 +2,7 @@ import * as React from "react"
 import { renderToStaticMarkup } from "react-dom/server"
 import { describe, expect, it, vi } from "vitest"
 
-import { LanguageSwitcher } from "../../../../packages/ui/src/components/LanguageSwitcher"
+import { LanguageSwitcher } from "@repo/ui/components/LanguageSwitcher"
 
 vi.mock("next/navigation", () => ({
 	usePathname: () => "/",

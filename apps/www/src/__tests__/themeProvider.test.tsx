@@ -2,7 +2,7 @@ import * as React from "react"
 import { renderToStaticMarkup } from "react-dom/server"
 import { describe, expect, it } from "vitest"
 
-import { ThemeProvider, ThemeScript } from "../../../../packages/ui/src/components/ThemeProvider"
+import { ThemeProvider, ThemeScript } from "@repo/ui/components/ThemeProvider"
 
 describe("ThemeProvider", () => {
 	it("configures next-themes to synchronize class and data-theme", () => {

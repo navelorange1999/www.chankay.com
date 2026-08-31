@@ -7,6 +7,7 @@ import { Check, ChevronDown, Globe } from "lucide-react"
 
 import {
 	getLocaleConfig,
+	getUiStrings,
 	resolveLocalizedPath,
 	stripLocalePrefix,
 	SUPPORTED_LOCALES,
@@ -14,9 +15,10 @@ import {
 } from "@repo/i18n"
 
 import { cn } from "#utils/classnames"
+import { useLocale } from "../LocaleProvider"
 
 export interface LanguageSwitcherProps {
-	currentLocale: SupportedLocale
+	currentLocale?: SupportedLocale
 	className?: string
 	size?: "sm" | "md" | "lg"
 }
@@ -40,6 +42,10 @@ const chevronSizes = {
 } as const
 
 export function LanguageSwitcher({ currentLocale, className, size = "md" }: LanguageSwitcherProps) {
+	const localeContext = useLocale()
+	const resolvedLocale = currentLocale ?? localeContext.locale
+	const strings =
+		resolvedLocale === localeContext.locale ? localeContext.strings : getUiStrings(resolvedLocale)
 	const pathname = usePathname() ?? "/"
 	const [isOpen, setIsOpen] = React.useState(false)
 	const { path: unprefixedPath } = stripLocalePrefix(pathname)
@@ -57,7 +63,7 @@ export function LanguageSwitcher({ currentLocale, className, size = "md" }: Lang
 		return () => window.removeEventListener("keydown", handleKeyDown)
 	}, [isOpen])
 
-	const currentLocaleConfig = getLocaleConfig(currentLocale)
+	const currentLocaleConfig = getLocaleConfig(resolvedLocale)
 
 	return (
 		<div className="relative">
@@ -70,11 +76,11 @@ export function LanguageSwitcher({ currentLocale, className, size = "md" }: Lang
 					className
 				)}
 				aria-expanded={isOpen}
-				aria-label="Select language"
+				aria-label={strings.accessibility.selectLanguage}
 			>
 				<Globe className={cn(iconSizes[size], "text-primary")} />
 				<span className="whitespace-nowrap text-sm font-medium">
-					{currentLocaleConfig?.name ?? currentLocale}
+					{currentLocaleConfig?.name ?? resolvedLocale}
 				</span>
 				<ChevronDown
 					className={cn(
@@ -96,7 +102,7 @@ export function LanguageSwitcher({ currentLocale, className, size = "md" }: Lang
 				{SUPPORTED_LOCALES.map((locale) => {
 					const config = getLocaleConfig(locale)
 					const targetHref = resolveLocalizedPath(locale, unprefixedPath)
-					const isActive = locale === currentLocale
+					const isActive = locale === resolvedLocale
 
 					return (
 						<Link
@@ -120,7 +126,7 @@ export function LanguageSwitcher({ currentLocale, className, size = "md" }: Lang
 				<button
 					type="button"
 					className="fixed inset-0 z-40"
-					aria-label="Close language menu"
+					aria-label={strings.accessibility.closeLanguageMenu}
 					onClick={() => setIsOpen(false)}
 				/>
 			) : null}

@@ -1,4 +1,4 @@
-import { resolveLocalizedPath, type SupportedLocale } from "@repo/i18n"
+import { resolveLocalizedPath, type SupportedLocale, type UiStrings } from "@repo/i18n"
 import { Navbar as NavbarUI } from "@repo/ui/components/Navbar"
 import { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 
@@ -7,6 +7,7 @@ import { WebsiteLogo } from "@/components/WebsiteLogo"
 export interface NavbarProps {
 	siteConfig: SiteConfig
 	currentLocale: SupportedLocale
+	strings: UiStrings
 }
 
 function isInternalUrl(url: string | undefined | null): url is string {
@@ -35,7 +36,7 @@ function localizeSiteConfigForNav(siteConfig: SiteConfig, locale: SupportedLocal
 	}
 }
 
-export const Navbar = ({ siteConfig, currentLocale }: NavbarProps) => {
+export const Navbar = ({ siteConfig, currentLocale, strings }: NavbarProps) => {
 	const localizedSiteConfig = localizeSiteConfigForNav(siteConfig, currentLocale)
 	const homeHref = resolveLocalizedPath(currentLocale, "/")
 
@@ -44,7 +45,13 @@ export const Navbar = ({ siteConfig, currentLocale }: NavbarProps) => {
 			siteConfig={localizedSiteConfig}
 			homeHref={homeHref}
 			currentLocale={currentLocale}
-			fallbackLogo={<WebsiteLogo className="h-8 w-8 text-foreground" />}
+			homeLabel={strings.accessibility.home}
+			fallbackLogo={
+				<WebsiteLogo
+					title={strings.accessibility.websiteLogo}
+					className="h-8 w-8 text-foreground"
+				/>
+			}
 		/>
 	)
 }

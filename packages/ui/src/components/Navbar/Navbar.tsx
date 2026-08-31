@@ -18,6 +18,7 @@ export interface NavbarProps {
 	className?: string
 	fallbackLogo?: React.ReactNode
 	homeHref?: string
+	homeLabel?: string
 	currentLocale?: SupportedLocale
 }
 
@@ -26,6 +27,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 	className = "",
 	fallbackLogo,
 	homeHref = "/",
+	homeLabel = "Home",
 	currentLocale,
 }) => {
 	const logo = siteConfig.logo
@@ -55,7 +57,11 @@ export const Navbar: React.FC<NavbarProps> = ({
 			<Container>
 				<div className="flex justify-between items-center h-[var(--navbar-height,4rem)]">
 					<div className="flex-shrink-0">
-						<Link aria-label={title || "Home"} href={homeHref} className="flex items-center gap-1">
+						<Link
+							aria-label={title || homeLabel}
+							href={homeHref}
+							className="flex items-center gap-1"
+						>
 							{logoNode}
 							{showSiteName && (
 								<span className="text-xl font-semibold text-foreground">{title}</span>

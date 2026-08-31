@@ -8,6 +8,7 @@ import { Menu, X } from "lucide-react"
 import type { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 
 import { cn } from "#utils/classnames"
+import { useLocale } from "../LocaleProvider"
 import { ThemeToggle } from "../ThemeProvider"
 import { resolveActiveNavUrl } from "./utils"
 
@@ -18,8 +19,9 @@ export interface NavbarMobileMenuProps {
 }
 
 export function NavbarMobileMenu({ items }: NavbarMobileMenuProps) {
+	const { strings } = useLocale()
 	const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
-	const pathname = usePathname()
+	const pathname = usePathname() ?? "/"
 	const activeUrl = resolveActiveNavUrl(pathname, items)
 
 	const toggleMobileMenu = () => {
@@ -36,7 +38,7 @@ export function NavbarMobileMenu({ items }: NavbarMobileMenuProps) {
 					onClick={toggleMobileMenu}
 					className="rounded-lg p-2 text-foreground transition-colors duration-200 hover:bg-secondary"
 					aria-expanded={mobileMenuOpen}
-					aria-label="Toggle mobile menu"
+					aria-label={strings.accessibility.toggleMobileMenu}
 				>
 					{mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
 				</button>

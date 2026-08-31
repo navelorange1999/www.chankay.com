@@ -1,5 +1,7 @@
 import type { CollectionAfterChangeHook, GlobalAfterChangeHook } from "payload"
 
+import { isSupportedLocale, type SupportedLocale } from "@repo/i18n"
+
 const WWW_INTERNAL_SECRET_HEADER = "www-internal-secret"
 
 function resolveSiteUrl(): string {
@@ -7,7 +9,15 @@ function resolveSiteUrl(): string {
 	return (envSiteUrl || "https://www.chankay.com").replace(/\/+$/, "")
 }
 
-async function triggerRevalidation(collection: string, slugs: string[]) {
+function resolveLocales(locale: unknown): SupportedLocale[] | undefined {
+	return isSupportedLocale(locale) ? [locale] : undefined
+}
+
+async function triggerRevalidation(
+	collection: string,
+	slugs: string[],
+	locales?: SupportedLocale[]
+) {
 	const siteUrl = resolveSiteUrl()
 	const secret = process.env.WWW_INTERNAL_SECRET?.trim()
 
@@ -21,7 +31,7 @@ async function triggerRevalidation(collection: string, slugs: string[]) {
 			"Content-Type": "application/json",
 			[WWW_INTERNAL_SECRET_HEADER]: secret,
 		},
-		body: JSON.stringify({ collection, slugs }),
+		body: JSON.stringify({ collection, slugs, ...(locales ? { locales } : {}) }),
 	})
 
 	if (!response.ok) {
@@ -30,7 +40,7 @@ async function triggerRevalidation(collection: string, slugs: string[]) {
 }
 
 export function createRevalidationHook(collection: string): CollectionAfterChangeHook {
-	return async ({ doc, previousDoc }) => {
+	return async ({ doc, previousDoc, req }) => {
 		// Only revalidate when the document is published (skip draft autosaves)
 		if (doc._status && doc._status !== "published") return doc
 
@@ -39,7 +49,7 @@ export function createRevalidationHook(collection: string): CollectionAfterChang
 			.filter((s, i, arr) => arr.indexOf(s) === i)
 
 		try {
-			await triggerRevalidation(collection, slugs)
+			await triggerRevalidation(collection, slugs, resolveLocales(req.locale))
 		} catch {
 			// Best effort only.
 		}
@@ -49,9 +59,9 @@ export function createRevalidationHook(collection: string): CollectionAfterChang
 }
 
 export function createGlobalRevalidationHook(globalSlug: string): GlobalAfterChangeHook {
-	return async ({ doc }) => {
+	return async ({ doc, req }) => {
 		try {
-			await triggerRevalidation(globalSlug, [])
+			await triggerRevalidation(globalSlug, [], resolveLocales(req.locale))
 		} catch {
 			// Best effort only.
 		}

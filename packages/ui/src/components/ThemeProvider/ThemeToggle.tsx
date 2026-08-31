@@ -7,6 +7,7 @@ import { cn } from "#utils/classnames"
 import { useThemeTransition } from "../../hooks/useThemeTransition"
 import { useTheme } from "../../hooks/useTheme"
 import type { ThemeMode } from "../../hooks/useTheme"
+import { useLocale } from "../LocaleProvider"
 
 export interface ThemeToggleProps {
 	className?: string
@@ -67,6 +68,7 @@ export function ThemeToggle({
 	variant = "button",
 	size = "md",
 }: ThemeToggleProps) {
+	const { strings } = useLocale()
 	const { theme, resolvedTheme, mounted, setTheme } = useTheme()
 	const { getBinaryNextTheme, runThemeTransition } = useThemeTransition({
 		resolvedTheme,
@@ -116,7 +118,7 @@ export function ThemeToggle({
 						className
 					)}
 					aria-expanded={isOpen}
-					aria-label="Select theme"
+					aria-label={strings.accessibility.selectTheme}
 				>
 					<div className="flex items-center gap-2">
 						{getThemeIcon(theme, size, resolvedTheme)}
@@ -161,7 +163,7 @@ export function ThemeToggle({
 					<button
 						type="button"
 						className="fixed inset-0 z-40"
-						aria-label="Close theme menu"
+						aria-label={strings.accessibility.closeThemeMenu}
 						onClick={() => setIsOpen(false)}
 					/>
 				) : null}
@@ -180,7 +182,7 @@ export function ThemeToggle({
 				sizeClasses[size],
 				className
 			)}
-			aria-label="Toggle theme"
+			aria-label={strings.accessibility.toggleTheme}
 		>
 			<div className="flex items-center justify-center">
 				{getThemeIcon(resolveDisplayedTheme(theme, resolvedTheme), size, resolvedTheme)}

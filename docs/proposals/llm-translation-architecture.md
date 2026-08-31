@@ -2,7 +2,7 @@
 
 > Status: Proposal · Last Updated: May 9, 2026
 
-This document defines how editor-triggered, LLM-backed translation is wired into the CMS, and how Langfuse provides observability, prompt management, and evaluation for those calls. It builds on [`multilingual-architecture.md`](./multilingual-architecture.md), which describes how localized content is stored and served. This document only covers the translation production path and its instrumentation.
+This document defines how editor-triggered, LLM-backed translation is wired into the CMS, and how Langfuse provides observability, prompt management, and evaluation for those calls. The repository already stores localized content through Payload and serves locale-aware routes through `@repo/i18n`; this document only covers the translation production path and its instrumentation.
 
 ## Goals
 

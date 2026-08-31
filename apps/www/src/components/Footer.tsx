@@ -1,4 +1,4 @@
-import { resolveLocalizedPath, type SupportedLocale } from "@repo/i18n"
+import { resolveLocalizedPath, type SupportedLocale, type UiStrings } from "@repo/i18n"
 import { Footer as FooterUI } from "@repo/ui/components/Footer"
 import { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 
@@ -7,6 +7,7 @@ import { WebsiteLogo } from "@/components/WebsiteLogo"
 export interface FooterProps {
 	siteConfig: SiteConfig
 	currentLocale: SupportedLocale
+	strings: UiStrings
 }
 
 function isInternalUrl(url: string | undefined | null): url is string {
@@ -35,13 +36,22 @@ function localizeSiteConfigForFooter(siteConfig: SiteConfig, locale: SupportedLo
 	}
 }
 
-export function Footer({ siteConfig, currentLocale }: FooterProps) {
+export function Footer({ siteConfig, currentLocale, strings }: FooterProps) {
 	const localizedSiteConfig = localizeSiteConfigForFooter(siteConfig, currentLocale)
 
 	return (
 		<FooterUI
 			siteConfig={localizedSiteConfig}
-			fallbackLogo={<WebsiteLogo className="h-8 w-8 text-foreground" />}
+			accessibilityLabels={{
+				followOn: strings.accessibility.followOn,
+				logo: strings.accessibility.websiteLogo,
+			}}
+			fallbackLogo={
+				<WebsiteLogo
+					title={strings.accessibility.websiteLogo}
+					className="h-8 w-8 text-foreground"
+				/>
+			}
 		/>
 	)
 }

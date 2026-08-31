@@ -2,6 +2,7 @@ import type { CollectionConfig } from "payload"
 import { authenticated } from "../access/authenticated"
 import { markdownField } from "../fields/markdownField"
 import { createRevalidationHook } from "../hooks/revalidateWww"
+import { buildPostPreviewUrl } from "../utils/postPreview"
 
 function getLocalizedContent(value: unknown): string {
 	if (typeof value === "string") return value
@@ -51,9 +52,12 @@ export const Posts: CollectionConfig = {
 	admin: {
 		defaultColumns: ["title", "status", "publishedAt"],
 		useAsTitle: "title",
-		preview: (doc) => {
-			return `${process.env.WWW_SITE_URL || "http://localhost:3000"}/posts/${doc.slug}`
-		},
+		preview: (doc, { locale }) =>
+			buildPostPreviewUrl({
+				locale,
+				siteUrl: process.env.WWW_SITE_URL || "http://localhost:3000",
+				slug: typeof doc.slug === "string" ? doc.slug : "",
+			}),
 	},
 	versions: {
 		drafts: {

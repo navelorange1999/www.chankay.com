@@ -16,7 +16,7 @@ function resolveLocales(locale: unknown): SupportedLocale[] | undefined {
 async function triggerRevalidation(
 	collection: string,
 	slugs: string[],
-	locales?: SupportedLocale[],
+	locales?: SupportedLocale[]
 ) {
 	const siteUrl = resolveSiteUrl()
 	const secret = process.env.WWW_INTERNAL_SECRET?.trim()

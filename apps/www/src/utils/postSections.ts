@@ -35,6 +35,10 @@ export function getPostSection(post: SectionablePost): PostSection | null {
 	)
 }
 
+export function isPostInSection(post: SectionablePost, section: PostSection): boolean {
+	return getPostSection(post) === section
+}
+
 export function resolvePostSectionPath(
 	section: PostSection,
 	slug?: null | string,

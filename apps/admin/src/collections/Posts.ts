@@ -206,9 +206,10 @@ export const Posts: CollectionConfig = {
 			name: "primaryTag",
 			type: "relationship",
 			relationTo: "tags",
+			required: true,
 			admin: {
 				position: "sidebar",
-				description: "Main topic/category of this post (optional, defaults to first tag)",
+				description: "Primary public section for this Post",
 			},
 		},
 

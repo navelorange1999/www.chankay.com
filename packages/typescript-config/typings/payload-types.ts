@@ -268,9 +268,9 @@ export interface Post {
    */
   tags?: (string | Tag)[] | null;
   /**
-   * Main topic/category of this post (optional, defaults to first tag)
+   * Primary public section for this Post
    */
-  primaryTag?: (string | null) | Tag;
+  primaryTag: string | Tag;
   /**
    * Estimated reading time in minutes
    */

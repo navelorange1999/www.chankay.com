@@ -24,6 +24,7 @@ describe("post sections", () => {
 
 	it("resolves localized section index and detail paths", () => {
 		expect(resolvePostSectionPath("technical")).toBe("/technical")
+		expect(resolvePostSectionPath("technical", null, "en")).toBe("/technical")
 		expect(resolvePostSectionPath("trading", "market-view", "zh-CN")).toBe(
 			"/zh-CN/trading/market-view"
 		)

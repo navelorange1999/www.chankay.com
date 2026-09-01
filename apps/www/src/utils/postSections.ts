@@ -37,7 +37,7 @@ export function getPostSection(post: SectionablePost): PostSection | null {
 
 export function resolvePostSectionPath(
 	section: PostSection,
-	slug?: string,
+	slug?: null | string,
 	locale: SupportedLocale = DEFAULT_LOCALE
 ): string {
 	const domain = POST_SECTIONS[section].domain

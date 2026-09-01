@@ -209,7 +209,8 @@ export const Posts: CollectionConfig = {
 			required: true,
 			admin: {
 				position: "sidebar",
-				description: "Primary public section for this Post",
+				description:
+					"Required. Determines whether the post appears in the Technical or Trading section.",
 			},
 		},
 

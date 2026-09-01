@@ -268,7 +268,7 @@ export interface Post {
    */
   tags?: (string | Tag)[] | null;
   /**
-   * Primary public section for this Post
+   * Required. Determines whether the post appears in the Technical or Trading section.
    */
   primaryTag: string | Tag;
   /**

@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest"
 import {
 	getPostSection,
 	isPostInSection,
+	POST_SECTIONS,
 	resolvePostSectionPath,
 	type SectionablePost,
 } from "../postSections"
@@ -12,6 +13,13 @@ function createPost(primaryTag?: SectionablePost["primaryTag"]): SectionablePost
 }
 
 describe("post sections", () => {
+	it("defines the technical and trading section descriptors", () => {
+		expect(POST_SECTIONS).toEqual({
+			technical: { domain: "technical", tagSlug: "technical" },
+			trading: { domain: "trading", tagSlug: "trading" },
+		})
+	})
+
 	it("recognizes populated technical and trading primary tags", () => {
 		expect(getPostSection(createPost({ id: 1, slug: " technical " }))).toBe("technical")
 		expect(getPostSection(createPost({ id: "2", slug: "TRADING" }))).toBe("trading")

@@ -2,6 +2,7 @@ import type { SupportedLocale } from "./config.js"
 
 export type UiStrings = {
 	article: {
+		backToSection: string
 		backToPosts: string
 		onThisPage: string
 	}
@@ -16,12 +17,18 @@ export type UiStrings = {
 		readPost: string
 		title: string
 	}
+	postSection: {
+		emptyState: string
+		eyebrow: string
+		readPost: string
+	}
 	untitledPost: string
 }
 
 const UI_STRINGS = {
 	en: {
 		article: {
+			backToSection: "Back to section",
 			backToPosts: "Back to posts",
 			onThisPage: "On this page",
 		},
@@ -36,10 +43,16 @@ const UI_STRINGS = {
 			readPost: "Read post",
 			title: "Posts",
 		},
+		postSection: {
+			emptyState: "No published articles in this section yet.",
+			eyebrow: "Writing",
+			readPost: "Read article",
+		},
 		untitledPost: "Untitled post",
 	},
 	"zh-CN": {
 		article: {
+			backToSection: "返回板块",
 			backToPosts: "返回文章列表",
 			onThisPage: "本文目录",
 		},
@@ -53,6 +66,11 @@ const UI_STRINGS = {
 			eyebrow: "随笔",
 			readPost: "阅读文章",
 			title: "文章",
+		},
+		postSection: {
+			emptyState: "该板块暂无已发布文章。",
+			eyebrow: "文章",
+			readPost: "阅读文章",
 		},
 		untitledPost: "未命名文章",
 	},

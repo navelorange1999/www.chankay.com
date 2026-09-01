@@ -2,10 +2,13 @@ import { describe, expect, it } from "vitest"
 
 import {
 	buildRouteAlternates,
+	buildRouteIndexAlternates,
 	formatLocalizedDate,
 	formatReadingTime,
 	getUiStrings,
 	resolveLocalizedPath,
+	resolveRouteIndexPath,
+	resolveRoutePath,
 	stripLocalePrefix,
 } from "../index.js"
 
@@ -45,12 +48,35 @@ describe("route alternates", () => {
 			},
 		})
 	})
+
+	it("builds section index routes and alternates", () => {
+		expect(resolveRouteIndexPath("technical", "en")).toBe("/technical")
+		expect(resolveRouteIndexPath("trading", "zh-CN")).toBe("/zh-CN/trading")
+		expect(resolveRoutePath("technical", "architecture", "en")).toBe("/technical/architecture")
+		expect(resolveRoutePath("trading", "market-view", "zh-CN")).toBe("/zh-CN/trading/market-view")
+		expect(
+			buildRouteIndexAlternates({
+				currentLocale: "zh-CN",
+				domain: "trading",
+				siteUrl: "https://www.chankay.com",
+			})
+		).toEqual({
+			canonical: "https://www.chankay.com/zh-CN/trading",
+			languages: {
+				en: "https://www.chankay.com/trading",
+				"zh-CN": "https://www.chankay.com/zh-CN/trading",
+				"x-default": "https://www.chankay.com/trading",
+			},
+		})
+	})
 })
 
 describe("interface strings", () => {
 	it("returns complete English and Chinese dictionaries", () => {
 		expect(getUiStrings("en").posts.readPost).toBe("Read post")
 		expect(getUiStrings("zh-CN").posts.readPost).toBe("阅读文章")
+		expect(getUiStrings("en").postSection.readPost).toBe("Read article")
+		expect(getUiStrings("zh-CN").article.backToSection).toBe("返回板块")
 		expect(getUiStrings("zh-CN").article.onThisPage).toBe("本文目录")
 		expect(getUiStrings("zh-CN").notFound.title).toBe("404 - 页面未找到")
 		expect(getUiStrings("zh-CN").untitledPost).toBe("未命名文章")

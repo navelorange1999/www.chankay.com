@@ -25,6 +25,22 @@ export const routeDomains = {
 		kind: "collection",
 		slugField: "slug",
 	},
+	technical: {
+		basePath: "technical",
+		collection: "posts",
+		index: true,
+		key: "technical",
+		kind: "collection",
+		slugField: "slug",
+	},
+	trading: {
+		basePath: "trading",
+		collection: "posts",
+		index: true,
+		key: "trading",
+		kind: "collection",
+		slugField: "slug",
+	},
 } as const satisfies Record<string, RouteDomainDefinition>
 
 export type RouteDomainKey = keyof typeof routeDomains

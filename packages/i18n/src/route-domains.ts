@@ -17,14 +17,6 @@ export const routeDomains = {
 		kind: "catchAll",
 		slugField: "slug",
 	},
-	posts: {
-		basePath: "posts",
-		collection: "posts",
-		index: true,
-		key: "posts",
-		kind: "collection",
-		slugField: "slug",
-	},
 	technical: {
 		basePath: "technical",
 		collection: "posts",

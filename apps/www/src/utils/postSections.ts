@@ -47,3 +47,12 @@ export function resolvePostSectionPath(
 	const domain = POST_SECTIONS[section].domain
 	return slug ? resolveRoutePath(domain, slug, locale) : resolveRouteIndexPath(domain, locale)
 }
+
+export function resolveLegacyPostPath(
+	post: SectionablePost,
+	slug: string,
+	locale: SupportedLocale = DEFAULT_LOCALE
+): string | null {
+	const section = getPostSection(post)
+	return section ? resolvePostSectionPath(section, slug, locale) : null
+}

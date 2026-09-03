@@ -4,7 +4,7 @@ import { NextResponse } from "next/server"
 import { SUPPORTED_LOCALES, type SupportedLocale, isSupportedLocale } from "@repo/i18n"
 
 import { resolvePagePath } from "@/utils/seo"
-import { resolvePostPath } from "@/utils/posts"
+import { POST_SECTIONS, resolvePostSectionPath, type PostSection } from "@/utils/postSections"
 
 const WWW_INTERNAL_SECRET_HEADER = "www-internal-secret"
 
@@ -44,10 +44,15 @@ const revalidationHandlers: Record<string, RevalidationHandler> = {
 	posts(slugs, locales) {
 		for (const locale of locales) {
 			for (const slug of slugs) {
-				revalidatePath(resolvePostPath(slug, locale))
+				for (const section of Object.keys(POST_SECTIONS) as PostSection[]) {
+					revalidatePath(resolvePostSectionPath(section, slug, locale))
+				}
 				revalidateTag(`post:${slug}:${locale}`)
 			}
-			revalidatePath(resolvePostPath(undefined, locale))
+			for (const section of Object.keys(POST_SECTIONS) as PostSection[]) {
+				revalidatePath(resolvePostSectionPath(section, undefined, locale))
+				revalidateTag(`posts:section:${section}:${locale}`)
+			}
 			revalidateTag(`posts:${locale}`)
 			revalidateTag(`posts:latest:${locale}`)
 			revalidateTag(`posts:all:${locale}`)

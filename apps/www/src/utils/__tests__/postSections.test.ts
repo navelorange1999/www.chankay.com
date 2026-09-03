@@ -4,6 +4,7 @@ import {
 	getPostSection,
 	isPostInSection,
 	POST_SECTIONS,
+	resolveLegacyPostPath,
 	resolvePostSectionPath,
 	type SectionablePost,
 } from "../postSections"
@@ -51,5 +52,17 @@ describe("post sections", () => {
 		expect(resolvePostSectionPath("trading", "market-view", "zh-CN")).toBe(
 			"/zh-CN/trading/market-view"
 		)
+	})
+
+	it("resolves legacy post paths from the post primary tag", () => {
+		expect(
+			resolveLegacyPostPath(createPost({ id: "trading-id", slug: "trading" }), "market-view", "en")
+		).toBe("/trading/market-view")
+		expect(resolveLegacyPostPath(createPost(null), "architecture", "zh-CN")).toBe(
+			"/zh-CN/technical/architecture"
+		)
+		expect(
+			resolveLegacyPostPath(createPost({ id: "other-id", slug: "other" }), "unknown", "en")
+		).toBeNull()
 	})
 })

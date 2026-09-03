@@ -1,10 +1,4 @@
-import {
-	DEFAULT_LOCALE,
-	formatLocalizedDate,
-	getUiStrings,
-	resolveLocalizedPath,
-	type SupportedLocale,
-} from "@repo/i18n"
+import { DEFAULT_LOCALE, formatLocalizedDate, getUiStrings, type SupportedLocale } from "@repo/i18n"
 import type {
 	MediaInterface,
 	Post,
@@ -12,27 +6,10 @@ import type {
 	Tag,
 } from "@repo/typescript-config/typings/payload-types"
 
-import { resolveMedia, resolveSiteDescription, resolveSiteUrl } from "@/utils/seo"
+import { resolveMedia, resolveSiteDescription } from "@/utils/seo"
 
 function asOptionalString(value: unknown): string | undefined {
 	return typeof value === "string" && value.trim().length > 0 ? value.trim() : undefined
-}
-
-export function resolvePostPath(
-	slug?: string | null,
-	locale: SupportedLocale = DEFAULT_LOCALE
-): string {
-	const value = asOptionalString(slug)
-	const unprefixed = value ? `/posts/${value.replace(/^\/+|\/+$/g, "")}` : "/posts"
-	return resolveLocalizedPath(locale, unprefixed)
-}
-
-export function resolvePostAbsoluteUrl(
-	siteConfig: SiteConfig | null | undefined,
-	slug?: string | null,
-	locale: SupportedLocale = DEFAULT_LOCALE
-): string {
-	return new URL(resolvePostPath(slug, locale), `${resolveSiteUrl(siteConfig)}/`).toString()
 }
 
 export function formatPostDate(

@@ -15,4 +15,8 @@ describe("post sitemap paths", () => {
 			postUnprefixedPath({ primaryTag: { id: "other-id", slug: "other" } }, "other")
 		).toBeNull()
 	})
+
+	it("omits posts with an unsafe slug", () => {
+		expect(postUnprefixedPath({ primaryTag: null }, "../private")).toBeNull()
+	})
 })

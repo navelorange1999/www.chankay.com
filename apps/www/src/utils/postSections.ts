@@ -1,5 +1,6 @@
 import {
 	DEFAULT_LOCALE,
+	isSafePostSlug,
 	resolveRouteIndexPath,
 	resolveRoutePath,
 	type RouteDomainKey,
@@ -54,5 +55,5 @@ export function resolveLegacyPostPath(
 	locale: SupportedLocale = DEFAULT_LOCALE
 ): string | null {
 	const section = getPostSection(post)
-	return section ? resolvePostSectionPath(section, slug, locale) : null
+	return section && isSafePostSlug(slug) ? resolvePostSectionPath(section, slug, locale) : null
 }

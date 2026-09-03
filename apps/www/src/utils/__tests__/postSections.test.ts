@@ -65,4 +65,8 @@ describe("post sections", () => {
 			resolveLegacyPostPath(createPost({ id: "other-id", slug: "other" }), "unknown", "en")
 		).toBeNull()
 	})
+
+	it("does not resolve legacy paths for unsafe slugs", () => {
+		expect(resolveLegacyPostPath(createPost(null), "../private", "en")).toBeNull()
+	})
 })

@@ -48,6 +48,24 @@ describe("post section contract", () => {
 		})
 	})
 
+	it("validates post slugs as safe URL path segments", () => {
+		const slug = Posts.fields.find((field) => "name" in field && field.name === "slug")
+
+		expect(slug).toMatchObject({
+			name: "slug",
+			required: true,
+			unique: true,
+			admin: {
+				position: "sidebar",
+				description: "URL-friendly version of the title",
+			},
+		})
+		expect("validate" in slug! && slug.validate?.("market-view-2026", {} as never)).toBe(true)
+		expect("validate" in slug! && slug.validate?.("../private", {} as never)).toMatch(
+			/safe URL path segment/i
+		)
+	})
+
 	it("preserves translation and revalidation hooks for tags", () => {
 		expect(Tags.hooks?.beforeChange).toHaveLength(1)
 		expect(Tags.hooks?.beforeChange?.[0]).toBe(basicTranslationHook)

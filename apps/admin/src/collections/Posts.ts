@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload"
+import { validatePostSlug } from "@repo/i18n"
 import { authenticated } from "../access/authenticated"
 import { markdownField } from "../fields/markdownField"
 import { createRevalidationHook } from "../hooks/revalidateWww"
@@ -86,6 +87,7 @@ export const Posts: CollectionConfig = {
 				position: "sidebar",
 				description: "URL-friendly version of the title",
 			},
+			validate: validatePostSlug,
 			hooks: {
 				beforeValidate: [
 					({ data }) => {

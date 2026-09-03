@@ -11,6 +11,8 @@ import { getAllPages } from "@/services/payload/pages"
 import { getAllPosts } from "@/services/payload/posts"
 import { resolveSiteUrl } from "@/utils/seo"
 import { getSiteConfig } from "@/services/payload/site-config"
+import { postUnprefixedPath } from "@/utils/sitemap"
+import type { Post } from "@repo/typescript-config/typings/payload-types"
 
 function buildAlternates(siteUrl: string, unprefixedPath: string): Record<string, string> {
 	const languages: Record<string, string> = {}
@@ -32,15 +34,11 @@ function pageUnprefixedPath(slug: string): string {
 	return `/${slug.replace(/^\/+|\/+$/g, "")}`
 }
 
-function postUnprefixedPath(slug: string): string {
-	return `/posts/${slug.replace(/^\/+|\/+$/g, "")}`
-}
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const siteConfig = await getSiteConfig()
 	const siteUrl = resolveSiteUrl(siteConfig)
 	const slugByLocaleForPages = new Map<SupportedLocale, Set<string>>()
-	const slugByLocaleForPosts = new Map<SupportedLocale, Set<string>>()
+	const postsByLocale = new Map<SupportedLocale, Post[]>()
 
 	await Promise.all(
 		SUPPORTED_LOCALES.map(async (locale) => {
@@ -49,10 +47,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 				locale,
 				new Set(pages.filter((p) => Boolean(p.slug)).map((p) => p.slug as string))
 			)
-			slugByLocaleForPosts.set(
-				locale,
-				new Set(posts.filter((p) => Boolean(p.slug)).map((p) => p.slug as string))
-			)
+			postsByLocale.set(locale, posts)
 		})
 	)
 
@@ -73,9 +68,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 			})
 		}
 
-		const postSlugs = slugByLocaleForPosts.get(locale) ?? new Set<string>()
-		for (const slug of postSlugs) {
-			const unprefixed = postUnprefixedPath(slug)
+		const posts = postsByLocale.get(locale) ?? []
+		for (const post of posts) {
+			if (!post.slug) continue
+
+			const unprefixed = postUnprefixedPath(post, post.slug)
+			if (!unprefixed) continue
 			const key = `${locale}|${unprefixed}`
 			if (seenPostKeys.has(key)) continue
 			seenPostKeys.add(key)

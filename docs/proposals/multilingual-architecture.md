@@ -7,7 +7,7 @@ This document defines how multilingual content flows across the monorepo: which 
 ## Goals
 
 - Serve the same site in `en` and `zh-CN`, with infrastructure that scales to additional locales without architectural change.
-- Keep the default locale (`en`) at unprefixed URLs (e.g. `/posts/foo`); place additional locales under a prefix (e.g. `/zh-CN/posts/foo`).
+- Keep the default locale (`en`) at unprefixed URLs (e.g. `/technical/foo`); place additional locales under a prefix (e.g. `/zh-CN/technical/foo`).
 - Centralize locale configuration in a single shared package so admin, www, and any future app share one source of truth.
 - Use the CMS as the source of localized content. Avoid hand-maintained translation message files for content that already lives in Payload.
 - Emit correct SEO signals: `<html lang>`, canonical URL per locale, `hreflang` alternates, locale-aware sitemap.
@@ -32,13 +32,19 @@ Adding a locale is a one-line change to `LOCALE_CONFIG.locales`. Routing, sitema
 
 ## URL Strategy
 
-| Path               | Resolved locale | Notes                      |
-| ------------------ | --------------- | -------------------------- |
-| `/`                | `en`            | Default locale, unprefixed |
-| `/posts/foo`       | `en`            | Default locale, unprefixed |
-| `/zh-CN/`          | `zh-CN`         | Prefixed                   |
-| `/zh-CN/posts/foo` | `zh-CN`         | Prefixed                   |
-| `/xx-YY/anything`  | n/a             | Unsupported prefix → 404   |
+| Path                   | Resolved locale | Notes                      |
+| ---------------------- | --------------- | -------------------------- |
+| `/`                    | `en`            | Default locale, unprefixed |
+| `/technical/foo`       | `en`            | Default locale, unprefixed |
+| `/trading/foo`         | `en`            | Default locale, unprefixed |
+| `/zh-CN/`              | `zh-CN`         | Prefixed                   |
+| `/zh-CN/technical/foo` | `zh-CN`         | Prefixed                   |
+| `/zh-CN/trading/foo`   | `zh-CN`         | Prefixed                   |
+| `/xx-YY/anything`      | n/a             | Unsupported prefix → 404   |
+
+Posts are split into the `technical` and `trading` public route domains. The `Posts.primaryTag` relationship selects the domain by tag slug (`technical` or `trading`); a legacy post with no `primaryTag` is treated as `technical` for compatibility. The canonical route is therefore `/technical/<slug>` or `/trading/<slug>`, including the corresponding locale prefix.
+
+The old `/posts` index and `/posts/<slug>` paths remain compatibility-only modules. They issue permanent redirects to the technical index or to the section selected by `primaryTag`, and the same redirect behavior applies to localized variants such as `/zh-CN/posts` and `/zh-CN/posts/<slug>`. A missing post still resolves to 404 rather than redirecting.
 
 The mapping is implemented by `resolveLocalizedPath(locale, path)` in `packages/i18n/src/paths.ts`:
 
@@ -123,8 +129,12 @@ apps/www/src/app/
 │   ├── layout.tsx                          # Sets <html lang>, validates locale
 │   ├── (frontend)/
 │   │   ├── [[...slug]]/page.tsx
-│   │   ├── posts/page.tsx
-│   │   ├── posts/[slug]/page.tsx
+│   │   ├── technical/page.tsx
+│   │   ├── technical/[slug]/page.tsx
+│   │   ├── trading/page.tsx
+│   │   ├── trading/[slug]/page.tsx
+│   │   ├── posts/page.tsx                 # Permanent redirect to technical
+│   │   ├── posts/[slug]/page.tsx           # Permanent section-aware redirect
 │   │   ├── _preview/[[...slug]]/page.tsx
 │   │   └── loading.tsx
 ├── api/revalidate/route.ts                 # Locale-scoped tags
@@ -172,8 +182,9 @@ export const config = {
 
 Behavior:
 
-- `/posts/foo` → internally rewritten to `/en/posts/foo`. The browser URL stays `/posts/foo`.
-- `/zh-CN/posts/foo` → passed through unchanged.
+- `/technical/foo` → internally rewritten to `/en/technical/foo`. The browser URL stays `/technical/foo`.
+- `/trading/foo` → internally rewritten to `/en/trading/foo`. The browser URL stays `/trading/foo`.
+- `/zh-CN/technical/foo` and `/zh-CN/trading/foo` → passed through unchanged.
 - `/api/*`, `/_next/*`, and asset URLs (anything containing a dot) are excluded.
 
 ## Data Access: Locale-Aware Payload Client
@@ -209,7 +220,7 @@ export async function generateMetadata({ params }) {
   const { locale, slug } = await params
   const alternates = buildRouteAlternates({
     currentLocale: locale,
-    domain: "posts",
+    domain: "technical",
     siteUrl: process.env.NEXT_PUBLIC_SITE_URL!,
     slug,
   })
@@ -226,10 +237,12 @@ export async function generateMetadata({ params }) {
 
 Output (per page):
 
-- `<link rel="canonical" href="https://www.chankay.com/zh-CN/posts/foo" />`
-- `<link rel="alternate" hreflang="en" href="https://www.chankay.com/posts/foo" />`
-- `<link rel="alternate" hreflang="zh-CN" href="https://www.chankay.com/zh-CN/posts/foo" />`
-- `<link rel="alternate" hreflang="x-default" href="https://www.chankay.com/posts/foo" />`
+- `<link rel="canonical" href="https://www.chankay.com/zh-CN/technical/foo" />`
+- `<link rel="alternate" hreflang="en" href="https://www.chankay.com/technical/foo" />`
+- `<link rel="alternate" hreflang="zh-CN" href="https://www.chankay.com/zh-CN/technical/foo" />`
+- `<link rel="alternate" hreflang="x-default" href="https://www.chankay.com/technical/foo" />`
+
+Trading pages use the same metadata shape with `domain: "trading"` and `/trading/foo` URLs.
 
 ## Sitemap
 
@@ -310,24 +323,30 @@ Component: `packages/ui/src/components/LanguageSwitcher/`. Stateless. Props: `cu
 
 ## File Map
 
-| File                                                         | Responsibility                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------ |
-| `packages/i18n/src/*`                                        | Locale config, paths, hreflang, strings, formatting    |
-| `apps/admin/src/config/locales.ts`                           | Re-exports `@repo/i18n` for admin                      |
-| `apps/admin/src/payload.config.ts`                           | Wires Payload `localization` from shared config        |
-| `apps/admin/src/collections/{Posts,Pages,Tags,Series}.ts`    | Field-level `localized: true`                          |
-| `apps/admin/src/collections/{Posts,Pages}.ts`                | `createRevalidationHook` afterChange (per locale tags) |
-| `apps/admin/src/blocks/{Text,Markdown,Button,Card}Block.ts`  | Leaf-field `localized: true` inside blocks tree        |
-| `apps/admin/src/migrations/*`                                | Idempotent localized-data normalization                |
-| `apps/www/src/middleware.ts`                                 | Default-locale rewrite                                 |
-| `apps/www/src/app/[locale]/layout.tsx`                       | Locale validation, `<html lang>`                       |
-| `apps/www/src/app/[locale]/(frontend)/**/page.tsx`           | Locale-aware route handlers                            |
-| `apps/www/src/utils/payloadClient.ts`                        | `?locale=` forwarding, locale-scoped cache tags        |
-| `apps/www/src/services/payload/{posts,pages,site-config}.ts` | Thread locale through to Payload queries               |
-| `apps/www/src/app/sitemap.ts`                                | Per-locale URLs with `hreflang`                        |
-| `apps/www/src/app/api/revalidate/route.ts`                   | Locale-scoped tag revalidation                         |
-| `packages/ui/src/components/LanguageSwitcher/*`              | Stateless locale switcher                              |
-| `packages/ui/src/components/Navbar/Navbar.tsx`               | Mounts `LanguageSwitcher`                              |
+| File                                                             | Responsibility                                         |
+| ---------------------------------------------------------------- | ------------------------------------------------------ |
+| `packages/i18n/src/*`                                            | Locale config, paths, hreflang, strings, formatting    |
+| `apps/admin/src/config/locales.ts`                               | Re-exports `@repo/i18n` for admin                      |
+| `apps/admin/src/payload.config.ts`                               | Wires Payload `localization` from shared config        |
+| `apps/admin/src/collections/{Posts,Pages,Tags,Series}.ts`        | Field-level `localized: true`                          |
+| `apps/admin/src/collections/{Posts,Pages}.ts`                    | `createRevalidationHook` afterChange (per locale tags) |
+| `apps/admin/src/blocks/{Text,Markdown,Button,Card}Block.ts`      | Leaf-field `localized: true` inside blocks tree        |
+| `apps/admin/src/migrations/*`                                    | Idempotent localized-data normalization                |
+| `apps/www/src/middleware.ts`                                     | Default-locale rewrite                                 |
+| `apps/www/src/app/[locale]/layout.tsx`                           | Locale validation, `<html lang>`                       |
+| `apps/www/src/app/[locale]/(frontend)/technical/page.tsx`        | Technical archive route                                |
+| `apps/www/src/app/[locale]/(frontend)/technical/[slug]/page.tsx` | Technical article route                                |
+| `apps/www/src/app/[locale]/(frontend)/trading/page.tsx`          | Trading archive route                                  |
+| `apps/www/src/app/[locale]/(frontend)/trading/[slug]/page.tsx`   | Trading article route                                  |
+| `apps/www/src/app/[locale]/(frontend)/posts/page.tsx`            | Legacy index permanent redirect only                   |
+| `apps/www/src/app/[locale]/(frontend)/posts/[slug]/page.tsx`     | Legacy detail section-aware redirect only              |
+| `apps/www/src/app/[locale]/(frontend)/**/page.tsx`               | Other locale-aware route handlers                      |
+| `apps/www/src/utils/payloadClient.ts`                            | `?locale=` forwarding, locale-scoped cache tags        |
+| `apps/www/src/services/payload/{posts,pages,site-config}.ts`     | Thread locale through to Payload queries               |
+| `apps/www/src/app/sitemap.ts`                                    | Per-locale URLs with `hreflang`                        |
+| `apps/www/src/app/api/revalidate/route.ts`                       | Locale-scoped tag revalidation                         |
+| `packages/ui/src/components/LanguageSwitcher/*`                  | Stateless locale switcher                              |
+| `packages/ui/src/components/Navbar/Navbar.tsx`                   | Mounts `LanguageSwitcher`                              |
 
 ## Trade-Offs
 
@@ -349,9 +368,10 @@ Component: `packages/ui/src/components/LanguageSwitcher/`. Stateless. Props: `cu
 - `pnpm check-types` passes across the monorepo.
 - `pnpm test:run` covers i18n paths, alternates, fixed strings, formatting, middleware, and the latest SiteConfig migration.
 - `pnpm build` produces static pages for every locale × content slug.
-- `/` and `/posts/<slug>` render English; `/zh-CN/` and `/zh-CN/posts/<slug>` render Chinese (or English fallback).
+- `/technical/<slug>` and `/trading/<slug>` render English; `/zh-CN/technical/<slug>` and `/zh-CN/trading/<slug>` render Chinese (or English fallback).
+- `/posts` and localized/detail variants permanently redirect to the appropriate section route.
 - HTML `<html lang>` attribute matches the served locale.
 - `<link rel="canonical">` and `<link rel="alternate" hreflang="...">` are present on every public page.
 - `sitemap.xml` lists every URL once per locale with `xhtml:link` alternates.
 - Language switcher in `Navbar` toggles locales and preserves the current page.
-- Cache invalidation via `/api/revalidate?tag=collection:posts:zh-CN` only updates Chinese pages.
+- Cache invalidation via `/api/revalidate?tag=collection:posts:zh-CN` only updates Chinese post data; section pages additionally use section-scoped post tags.

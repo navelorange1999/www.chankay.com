@@ -202,10 +202,13 @@ export interface PayloadQueryOptions {
 
 When `locale` is set, the client appends `?locale=...` (or `&locale=...`) to the Payload REST URL and includes the locale in the default cache tag:
 
-| Without locale      | With locale               |
-| ------------------- | ------------------------- |
-| `global:siteConfig` | `global:siteConfig:zh-CN` |
-| `collection:posts`  | `collection:posts:zh-CN`  |
+| Data access              | Cache tag pattern                              |
+| ------------------------ | ---------------------------------------------- |
+| SiteConfig global        | `global:site-config:<locale>`                  |
+| General post list        | `posts:<locale>`                               |
+| Post detail              | `post:<slug>:<locale>`                         |
+| All posts / latest posts | `posts:all:<locale>` / `posts:latest:<locale>` |
+| Section archive          | `posts:section:<section>:<locale>`             |
 
 Service helpers in `apps/www/src/services/payload/` (`posts.ts`, `pages.ts`, `site-config.ts`) accept a `locale` parameter and forward it. Pages call services with the locale resolved from `params`.
 
@@ -250,8 +253,8 @@ Trading pages use the same metadata shape with `domain: "trading"` and `/trading
 
 ## Caching and Revalidation
 
-- Cache tags include the locale: `collection:posts:en`, `collection:posts:zh-CN`. Revalidating one locale leaves the other locale's cache intact.
-- `apps/www/src/app/api/revalidate/route.ts` accepts an optional `locale` query parameter and routes the revalidation accordingly.
+- Post cache tags include the locale: `posts:<locale>`, `post:<slug>:<locale>`, `posts:all:<locale>`, `posts:latest:<locale>`, and `posts:section:<section>:<locale>`. Revalidating one locale leaves the other locale's cache intact.
+- `apps/www/src/app/api/revalidate/route.ts` accepts a JSON body with `collection`, `slugs`, and `locales` arrays (for example, `{ "collection": "posts", "slugs": ["foo"], "locales": ["zh-CN"] }`) and routes revalidation accordingly. Unsupported or omitted locales resolve to all supported locales.
 - Static generation produces N posts × M locales of pre-rendered HTML at build time. ISR continues to operate per-tag.
 
 ## Data Migration
@@ -374,4 +377,4 @@ Component: `packages/ui/src/components/LanguageSwitcher/`. Stateless. Props: `cu
 - `<link rel="canonical">` and `<link rel="alternate" hreflang="...">` are present on every public page.
 - `sitemap.xml` lists every URL once per locale with `xhtml:link` alternates.
 - Language switcher in `Navbar` toggles locales and preserves the current page.
-- Cache invalidation via `/api/revalidate?tag=collection:posts:zh-CN` only updates Chinese post data; section pages additionally use section-scoped post tags.
+- Cache invalidation via `POST /api/revalidate` with `{ "collection": "posts", "locales": ["zh-CN"] }` only updates Chinese post data; section pages additionally use section-scoped post tags.

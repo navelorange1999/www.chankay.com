@@ -1,12 +1,7 @@
 import { revalidatePath, revalidateTag } from "next/cache"
 import { NextResponse } from "next/server"
 
-import {
-	SUPPORTED_LOCALES,
-	type SupportedLocale,
-	isSafePostSlug,
-	isSupportedLocale,
-} from "@repo/i18n"
+import { SUPPORTED_LOCALES, type SupportedLocale, isSupportedLocale } from "@repo/i18n"
 
 import { resolvePagePath } from "@/utils/seo"
 import { POST_SECTIONS, resolvePostSectionPath, type PostSection } from "@/utils/postSections"
@@ -49,12 +44,16 @@ const revalidationHandlers: Record<string, RevalidationHandler> = {
 	posts(slugs, locales) {
 		for (const locale of locales) {
 			for (const slug of slugs) {
-				if (!isSafePostSlug(slug)) continue
+				const detailPaths = (Object.keys(POST_SECTIONS) as PostSection[])
+					.map((section) => resolvePostSectionPath(section, slug, locale))
+					.filter((path): path is string => path !== null)
 
-				for (const section of Object.keys(POST_SECTIONS) as PostSection[]) {
-					revalidatePath(resolvePostSectionPath(section, slug, locale))
+				for (const detailPath of detailPaths) {
+					revalidatePath(detailPath)
 				}
-				revalidateTag(`post:${slug}:${locale}`)
+				if (detailPaths.length > 0) {
+					revalidateTag(`post:${slug}:${locale}`)
+				}
 			}
 			for (const section of Object.keys(POST_SECTIONS) as PostSection[]) {
 				revalidatePath(resolvePostSectionPath(section, undefined, locale))

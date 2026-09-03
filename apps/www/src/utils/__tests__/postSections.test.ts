@@ -54,6 +54,11 @@ describe("post sections", () => {
 		)
 	})
 
+	it("does not construct detail paths for unsafe post slugs", () => {
+		expect(resolvePostSectionPath("technical", " .. ", "en")).toBeNull()
+		expect(resolvePostSectionPath("trading", "market-view", "en")).toBe("/trading/market-view")
+	})
+
 	it("resolves legacy post paths from the post primary tag", () => {
 		expect(
 			resolveLegacyPostPath(createPost({ id: "trading-id", slug: "trading" }), "market-view", "en")

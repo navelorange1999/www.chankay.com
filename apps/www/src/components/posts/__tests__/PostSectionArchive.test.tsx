@@ -83,4 +83,16 @@ describe("PostSectionArchive", () => {
 
 		expect(markup).toContain("该板块暂无已发布文章。")
 	})
+
+	it("does not render links for posts with unsafe CMS slugs", async () => {
+		mocks.getPostsBySection.mockResolvedValue([{ ...post, slug: " .. " }])
+		mocks.getTagBySlug.mockResolvedValue(technicalTag)
+
+		const markup = renderToStaticMarkup(
+			await PostSectionArchive({ locale: "en", section: "technical" })
+		)
+
+		expect(markup).not.toContain('href="/technical/.."')
+		expect(markup).not.toContain('href="/technical/ .. "')
+	})
 })

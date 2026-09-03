@@ -109,6 +109,8 @@ export async function PostSectionArchive({
 				<div className="space-y-8">
 					{posts.map((post) => {
 						const postUrl = resolvePostSectionPath(section, post.slug, locale)
+						if (!postUrl) return null
+
 						const postImage = resolvePostImage(post)
 						const postDate = formatPostDate(post.publishedAt || post.updatedAt, locale)
 						const postExcerpt = resolvePostDisplayExcerpt(post)

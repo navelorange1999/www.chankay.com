@@ -42,11 +42,26 @@ export function isPostInSection(post: SectionablePost, section: PostSection): bo
 
 export function resolvePostSectionPath(
 	section: PostSection,
+	slug?: null | undefined,
+	locale?: SupportedLocale
+): string
+
+export function resolvePostSectionPath(
+	section: PostSection,
+	slug: string,
+	locale?: SupportedLocale
+): string | null
+export function resolvePostSectionPath(
+	section: PostSection,
 	slug?: null | string,
 	locale: SupportedLocale = DEFAULT_LOCALE
-): string {
+): string | null {
 	const domain = POST_SECTIONS[section].domain
-	return slug ? resolveRoutePath(domain, slug, locale) : resolveRouteIndexPath(domain, locale)
+	if (slug == null) {
+		return resolveRouteIndexPath(domain, locale)
+	}
+
+	return isSafePostSlug(slug) ? resolveRoutePath(domain, slug, locale) : null
 }
 
 export function resolveLegacyPostPath(
@@ -55,5 +70,5 @@ export function resolveLegacyPostPath(
 	locale: SupportedLocale = DEFAULT_LOCALE
 ): string | null {
 	const section = getPostSection(post)
-	return section && isSafePostSlug(slug) ? resolvePostSectionPath(section, slug, locale) : null
+	return section ? resolvePostSectionPath(section, slug, locale) : null
 }

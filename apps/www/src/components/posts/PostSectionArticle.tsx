@@ -65,7 +65,7 @@ export async function buildPostSectionStaticParams(
 	for (const locale of SUPPORTED_LOCALES) {
 		const posts = await getPostsBySection(section, { locale })
 		for (const post of posts) {
-			if (post.slug) {
+			if (post.slug && resolvePostSectionPath(section, post.slug, locale)) {
 				params.push({ locale, slug: post.slug })
 			}
 		}
@@ -78,12 +78,20 @@ export async function buildPostSectionArticleMetadata(
 	locale: SupportedLocale,
 	slug: string
 ): Promise<Metadata> {
+	if (!resolvePostSectionPath(section, slug, locale)) {
+		const strings = getUiStrings(locale).notFound
+		return {
+			title: { absolute: strings.title },
+			description: strings.description,
+		}
+	}
+
 	const [post, siteConfig] = await Promise.all([
 		getPostBySlugForSectionCached(slug, section, locale),
 		getSiteConfig(locale),
 	])
 
-	if (!post) {
+	if (!post || !resolvePostSectionPath(section, post.slug, locale)) {
 		const strings = getUiStrings(locale).notFound
 		return {
 			title: { absolute: strings.title },
@@ -135,10 +143,14 @@ export async function PostSectionArticle({
 	section,
 	slug,
 }: PostSectionArticleParams & { section: PostSection }) {
+	if (!resolvePostSectionPath(section, slug, locale)) {
+		notFound()
+	}
+
 	const post = await getPostBySlugForSectionCached(slug, section, locale)
 	const strings = getUiStrings(locale)
 
-	if (!post) {
+	if (!post || !resolvePostSectionPath(section, post.slug, locale)) {
 		notFound()
 	}
 

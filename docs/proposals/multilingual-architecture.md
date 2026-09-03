@@ -205,12 +205,13 @@ When `locale` is set, the client appends `?locale=...` (or `&locale=...`) to the
 | Data access              | Cache tag pattern                              |
 | ------------------------ | ---------------------------------------------- |
 | SiteConfig global        | `global:site-config:<locale>`                  |
+| Tag lookup               | `tag:<slug>:<locale>`                          |
 | General post list        | `posts:<locale>`                               |
 | Post detail              | `post:<slug>:<locale>`                         |
 | All posts / latest posts | `posts:all:<locale>` / `posts:latest:<locale>` |
 | Section archive          | `posts:section:<section>:<locale>`             |
 
-Service helpers in `apps/www/src/services/payload/` (`posts.ts`, `pages.ts`, `site-config.ts`) accept a `locale` parameter and forward it. Pages call services with the locale resolved from `params`.
+Service helpers in `apps/www/src/services/payload/` (`posts.ts`, `pages.ts`, `site-config.ts`, `tags.ts`) accept a `locale` parameter and forward it. `getTagBySlug` in `tags.ts` performs the localized tag lookup. Pages call services with the locale resolved from `params`.
 
 ## SEO: Canonical and `hreflang`
 

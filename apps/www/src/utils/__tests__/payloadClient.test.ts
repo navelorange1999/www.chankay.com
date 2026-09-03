@@ -32,4 +32,23 @@ describe("PayloadClient", () => {
 			expect.objectContaining({ method: "GET" })
 		)
 	})
+
+	it("preserves primitive array operator serialization", async () => {
+		const fetchMock = vi.fn().mockResolvedValue(
+			new Response(JSON.stringify({ docs: [], totalDocs: 0, limit: 10, page: 1 }), {
+				status: 200,
+			})
+		)
+		vi.stubGlobal("fetch", fetchMock)
+		const client = new PayloadClient("https://cms.example.com/api")
+
+		await client.getCollection("posts", {
+			where: { id: { in: ["first", "second"] } },
+		})
+
+		expect(fetchMock).toHaveBeenCalledWith(
+			"https://cms.example.com/api/posts?where%5Bid%5D%5Bin%5D=first%2Csecond",
+			expect.objectContaining({ method: "GET" })
+		)
+	})
 })

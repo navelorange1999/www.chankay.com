@@ -46,10 +46,13 @@ function appendWhereParams(
 		const nextPath = [...path, key]
 
 		if (Array.isArray(value)) {
+			if (!value.every((item) => item && typeof item === "object" && !Array.isArray(item))) {
+				params.append(`where${nextPath.map((segment) => `[${segment}]`).join("")}`, String(value))
+				return
+			}
+
 			value.forEach((item, index) => {
-				if (item && typeof item === "object") {
-					appendWhereParams(params, item as Record<string, unknown>, [...nextPath, String(index)])
-				}
+				appendWhereParams(params, item as Record<string, unknown>, [...nextPath, String(index)])
 			})
 			return
 		}

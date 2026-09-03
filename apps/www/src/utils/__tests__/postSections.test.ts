@@ -68,5 +68,8 @@ describe("post sections", () => {
 
 	it("does not resolve legacy paths for unsafe slugs", () => {
 		expect(resolveLegacyPostPath(createPost(null), "../private", "en")).toBeNull()
+		expect(resolveLegacyPostPath(createPost(null), " .. ", "en")).toBeNull()
+		expect(resolveLegacyPostPath(createPost(null), " market-view", "en")).toBeNull()
+		expect(resolveLegacyPostPath(createPost(null), "market\u0085view", "en")).toBeNull()
 	})
 })

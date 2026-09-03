@@ -69,12 +69,19 @@ describe("revalidation route", () => {
 
 	it("does not revalidate article paths for unsafe post slugs", async () => {
 		const response = await POST(
-			requestFor({ collection: "posts", slugs: ["../private"], locales: ["en"] })
+			requestFor({
+				collection: "posts",
+				slugs: ["../private", " . ", "market-view ", "market\u0085view"],
+				locales: ["en"],
+			})
 		)
 
 		expect(response.status).toBe(200)
 		expect(revalidatePath).not.toHaveBeenCalledWith("/technical/../private")
 		expect(revalidatePath).not.toHaveBeenCalledWith("/trading/../private")
+		expect(revalidatePath).not.toHaveBeenCalledWith("/technical/ . ")
+		expect(revalidatePath).not.toHaveBeenCalledWith("/trading/market-view ")
+		expect(revalidatePath).not.toHaveBeenCalledWith("/technical/market\u0085view")
 		expect(revalidatePath).toHaveBeenCalledWith("/technical")
 		expect(revalidatePath).toHaveBeenCalledWith("/trading")
 	})

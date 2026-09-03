@@ -18,5 +18,8 @@ describe("post sitemap paths", () => {
 
 	it("omits posts with an unsafe slug", () => {
 		expect(postUnprefixedPath({ primaryTag: null }, "../private")).toBeNull()
+		expect(postUnprefixedPath({ primaryTag: null }, " . ")).toBeNull()
+		expect(postUnprefixedPath({ primaryTag: null }, "market-view ")).toBeNull()
+		expect(postUnprefixedPath({ primaryTag: null }, "market\u0085view")).toBeNull()
 	})
 })

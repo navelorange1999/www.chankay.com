@@ -68,6 +68,29 @@ describe("post section payload services", () => {
 		})
 	})
 
+	it("includes legacy untagged posts only in the technical section", async () => {
+		getBySlug.mockResolvedValueOnce({ id: "technical-id", slug: "technical" })
+		getCollection.mockResolvedValueOnce({ docs: [{ id: "legacy-post" }], totalDocs: 1 })
+
+		await expect(getPostsBySection("technical")).resolves.toEqual([{ id: "legacy-post" }])
+		expect(getCollection).toHaveBeenCalledWith("posts", {
+			locale: "en",
+			limit: 100,
+			page: 1,
+			depth: 2,
+			sort: "-publishedAt",
+			where: {
+				and: [
+					{ status: { equals: "published" } },
+					{
+						or: [{ primaryTag: { equals: "technical-id" } }, { primaryTag: { exists: false } }],
+					},
+				],
+			},
+			tags: ["posts:section:technical:en"],
+		})
+	})
+
 	it("returns no posts without querying posts when the section tag is absent", async () => {
 		getBySlug.mockResolvedValueOnce(null)
 

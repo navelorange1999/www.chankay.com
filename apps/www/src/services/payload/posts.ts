@@ -90,10 +90,20 @@ export async function getPostsBySection(
 				page,
 				depth: 2,
 				sort: "-publishedAt",
-				where: {
-					primaryTag: { equals: tag.id },
-					status: { equals: "published" },
-				},
+				where:
+					section === "technical"
+						? {
+								and: [
+									{ status: { equals: "published" } },
+									{
+										or: [{ primaryTag: { equals: tag.id } }, { primaryTag: { exists: false } }],
+									},
+								],
+							}
+						: {
+								primaryTag: { equals: tag.id },
+								status: { equals: "published" },
+							},
 				tags: [`posts:section:${section}:${locale}`],
 			})
 

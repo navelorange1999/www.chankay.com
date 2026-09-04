@@ -92,11 +92,11 @@ export const Posts: CollectionConfig = {
 			hooks: {
 				beforeValidate: [
 					({ data, originalDoc }) => {
-						if (!data?.slug && originalDoc?.slug) {
+						if (data?.slug === undefined && originalDoc?.slug) {
 							return originalDoc.slug
 						}
 
-						if (data?.title && !data?.slug) {
+						if (data?.title && data.slug === undefined) {
 							return data.title
 								.toLowerCase()
 								.replace(/[^\w\s-]/g, "")

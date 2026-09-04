@@ -94,6 +94,25 @@ describe("post section contract", () => {
 		).toBe("editorial-slug")
 	})
 
+	it.each([
+		["post", Posts, "title", ""],
+		["post", Posts, "title", null],
+		["tag", Tags, "name", ""],
+		["tag", Tags, "name", null],
+	] as const)(
+		"returns an explicit invalid %s slug unchanged",
+		(_name, collection, sourceField, slug) => {
+			const beforeValidate = getBeforeValidateHook(collection)
+
+			expect(
+				beforeValidate({
+					data: { [sourceField]: "A replacement title", slug },
+					originalDoc: { slug: "existing-slug" },
+				} as never)
+			).toBe(slug)
+		}
+	)
+
 	it("requires a primary tag relationship", () => {
 		const primaryTag = Posts.fields.find((field) => "name" in field && field.name === "primaryTag")
 

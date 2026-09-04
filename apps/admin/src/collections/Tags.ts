@@ -41,11 +41,11 @@ export const Tags: CollectionConfig = {
 			hooks: {
 				beforeValidate: [
 					({ data, originalDoc }) => {
-						if (!data?.slug && originalDoc?.slug) {
+						if (data?.slug === undefined && originalDoc?.slug) {
 							return originalDoc.slug
 						}
 
-						if (data?.name && !data?.slug) {
+						if (data?.name && data.slug === undefined) {
 							return data.name
 								.toLowerCase()
 								.replace(/[^\w\s-]/g, "")

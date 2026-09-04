@@ -41,6 +41,59 @@ import { Tags } from "../Tags"
 import { POST_SLUG_MAX_LENGTH } from "@repo/i18n"
 
 describe("post section contract", () => {
+	function getBeforeValidateHook(collection: typeof Posts | typeof Tags) {
+		const slug = collection.fields.find((field) => "name" in field && field.name === "slug")
+
+		if (!slug || !("hooks" in slug) || !slug.hooks?.beforeValidate?.[0]) {
+			throw new Error("Expected the slug field to define a beforeValidate hook")
+		}
+
+		return slug.hooks.beforeValidate[0]
+	}
+
+	it.each([
+		["post", Posts, "title", "Existing Post Slug"],
+		["tag", Tags, "name", "existing-tag-slug"],
+	] as const)(
+		"preserves an existing %s slug during a partial update",
+		(_name, collection, sourceField, slug) => {
+			const beforeValidate = getBeforeValidateHook(collection)
+
+			expect(
+				beforeValidate({
+					data: { id: "document-id", [sourceField]: "A replacement title" },
+					originalDoc: { slug },
+				} as never)
+			).toBe(slug)
+		}
+	)
+
+	it.each([
+		["post", Posts, "title", "New Post Title", "new-post-title"],
+		["tag", Tags, "name", "New Tag Name", "new-tag-name"],
+	] as const)(
+		"derives a %s slug on create when no slug is supplied",
+		(_name, collection, sourceField, source, expected) => {
+			const beforeValidate = getBeforeValidateHook(collection)
+
+			expect(beforeValidate({ data: { [sourceField]: source } } as never)).toBe(expected)
+		}
+	)
+
+	it.each([
+		["post", Posts, "title"],
+		["tag", Tags, "name"],
+	] as const)("preserves an explicitly supplied %s slug", (_name, collection, sourceField) => {
+		const beforeValidate = getBeforeValidateHook(collection)
+
+		expect(
+			beforeValidate({
+				data: { [sourceField]: "A replacement title", slug: "editorial-slug" },
+				originalDoc: { slug: "existing-slug" },
+			} as never)
+		).toBe("editorial-slug")
+	})
+
 	it("requires a primary tag relationship", () => {
 		const primaryTag = Posts.fields.find((field) => "name" in field && field.name === "primaryTag")
 

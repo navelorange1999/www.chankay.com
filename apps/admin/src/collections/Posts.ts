@@ -91,7 +91,11 @@ export const Posts: CollectionConfig = {
 			validate: validatePostSlug,
 			hooks: {
 				beforeValidate: [
-					({ data }) => {
+					({ data, originalDoc }) => {
+						if (!data?.slug && originalDoc?.slug) {
+							return originalDoc.slug
+						}
+
 						if (data?.title && !data?.slug) {
 							return data.title
 								.toLowerCase()

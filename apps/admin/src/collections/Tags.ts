@@ -40,7 +40,11 @@ export const Tags: CollectionConfig = {
 			},
 			hooks: {
 				beforeValidate: [
-					({ data }) => {
+					({ data, originalDoc }) => {
+						if (!data?.slug && originalDoc?.slug) {
+							return originalDoc.slug
+						}
+
 						if (data?.name && !data?.slug) {
 							return data.name
 								.toLowerCase()

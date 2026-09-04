@@ -27,7 +27,9 @@ www.chankay.com/
 │   ├── storybook/      # Component development environment
 │   └── www/            # Public-facing website
 ├── 📦 packages/
+│   ├── brand-assets/   # Shared logo and favicon source assets
 │   ├── eslint-config/  # Shared ESLint configurations
+│   ├── i18n/           # Locale config, routes, metadata, and UI strings
 │   ├── site-shell/     # Static cross-site shell for demo subdomains
 │   ├── tailwind-config/ # Shared Tailwind CSS setup
 │   ├── typescript-config/ # TypeScript configurations & types
@@ -65,18 +67,16 @@ flowchart TD
 - **📝 Content Management** - Full-featured PayloadCMS with custom fields
 - **🎨 UI Components** - Shared component library with Storybook
 - **🔧 Developer Experience** - TypeScript, ESLint, Prettier with pre-commit hooks
-- **🌍 Internationalization** - Multi-language support with custom translation system
+- **🌍 Internationalization** - Locale-aware CMS content, routes, metadata, and UI copy
 - **🎯 SEO Optimization** - Automated SEO management with PayloadCMS SEO plugin
 - **🎨 Color Management** - Custom color picker component for brand consistency
-- **🔐 Authentication** - NextAuth.js integration with GitHub OAuth
+- **🔐 Authentication** - Payload authentication with optional GitHub OAuth
 - **📊 Type Safety** - End-to-end TypeScript with auto-generated types
 - **🚀 Performance** - Optimized builds and caching strategies
 
 ### 🧩 Custom Components
 
 - **ColorPicker** - React-colorful based color picker for PayloadCMS
-- **Translation System** - Modular translation adapters (OpenAI, DeepL, Google, Baidu)
-- **Language Detection** - Automatic content language detection
 - **Custom Field Types** - Reusable field components for PayloadCMS
 
 ## 🛠️ Tech Stack
@@ -85,7 +85,7 @@ flowchart TD
 
 - **Frontend Framework**: Next.js 15.3+ with App Router
 - **React**: 19.1+ with modern features
-- **Content Management**: PayloadCMS 3.46+
+- **Content Management**: PayloadCMS 3.88
 - **Language**: TypeScript 5+ with strict mode
 - **Styling**: TailwindCSS with design system
 - **Monorepo**: Turborepo for build orchestration
@@ -102,13 +102,13 @@ flowchart TD
 
 - **Database**: MongoDB with Mongoose ODM
 - **File Storage**: Vercel Blob for media assets
-- **Authentication**: NextAuth.js with OAuth providers
+- **Authentication**: Payload local authentication and GitHub OAuth
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
-- Node.js 18+ and pnpm installed
+- Node.js 22.13+ and pnpm 11
 - MongoDB database (local or remote)
 - Environment variables configured
 
@@ -215,15 +215,14 @@ Custom field components are located in `apps/admin/src/components/fields/`:
 - ColorPicker component for brand color management
 - Factory functions in `apps/admin/src/fields/` for reusability
 
-### Translation System
+### Multilingual Architecture
 
-The translation system supports multiple providers:
-
-- **OpenAI**: GPT-based translation for technical content
-- **DeepL**: High-quality general translation
-- **Google Translate**: Wide language support
-- **Baidu Translate**: Optimized for Chinese translations
-- **Mock**: Development and testing
+- English is the default locale and uses unprefixed routes such as `/posts/example`.
+- Simplified Chinese uses locale-prefixed routes such as `/zh-CN/posts/example`.
+- Payload localized fields store translated content while slugs remain shared across locales.
+- Payload queries, post previews, canonical links, `hreflang`, and sitemap alternates resolve against the active locale.
+- Interactive UI reads localized accessibility copy from the shared React locale context.
+- CMS publish hooks scope frontend cache revalidation to the edited locale, with an all-locale fallback when the request locale is unavailable.
 
 ## 🤝 Contributing
 

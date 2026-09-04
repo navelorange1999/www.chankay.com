@@ -1,3 +1,5 @@
+import { randomUUID } from "node:crypto"
+
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 
 const { revalidatePath, revalidateTag } = vi.hoisted(() => ({
@@ -9,22 +11,12 @@ vi.mock("next/cache", () => ({ revalidatePath, revalidateTag }))
 
 import { POST } from "../route"
 
-const TEST_SECRET = "test-only-revalidation-secret"
-
-function requestFor(body: unknown, secret = TEST_SECRET): Request {
-	return new Request("https://www.example.test/api/revalidate", {
-		method: "POST",
-		headers: {
-			"content-type": "application/json",
-			"www-internal-secret": secret,
-		},
-		body: JSON.stringify(body),
-	})
-}
-
 describe("revalidation route", () => {
+	let requestSecret: string
+
 	beforeEach(() => {
-		vi.stubEnv("WWW_INTERNAL_SECRET", TEST_SECRET)
+		requestSecret = randomUUID()
+		vi.stubEnv("WWW_INTERNAL_SECRET", requestSecret)
 		revalidatePath.mockReset()
 		revalidateTag.mockReset()
 	})
@@ -32,6 +24,17 @@ describe("revalidation route", () => {
 	afterEach(() => {
 		vi.unstubAllEnvs()
 	})
+
+	function requestFor(body: unknown, secret = requestSecret): Request {
+		return new Request("https://www.example.test/api/revalidate", {
+			method: "POST",
+			headers: {
+				"content-type": "application/json",
+				"www-internal-secret": secret,
+			},
+			body: JSON.stringify(body),
+		})
+	}
 
 	it("revalidates both post section routes and cache tags", async () => {
 		const response = await POST(
@@ -61,7 +64,7 @@ describe("revalidation route", () => {
 	})
 
 	it("rejects requests without the configured secret", async () => {
-		const response = await POST(requestFor({ collection: "posts" }, "wrong-test-secret"))
+		const response = await POST(requestFor({ collection: "posts" }, randomUUID()))
 
 		expect(response.status).toBe(401)
 		expect(revalidatePath).not.toHaveBeenCalled()
@@ -85,5 +88,23 @@ describe("revalidation route", () => {
 		expect(revalidatePath).not.toHaveBeenCalledWith("/technical/market\u0085view")
 		expect(revalidatePath).toHaveBeenCalledWith("/technical")
 		expect(revalidatePath).toHaveBeenCalledWith("/trading")
+	})
+
+	it("revalidates only the Chinese layout path", async () => {
+		const response = await POST(requestFor({ collection: "site-config", locales: ["zh-CN"] }))
+
+		expect(response.status).toBe(200)
+		expect(revalidatePath).toHaveBeenCalledWith("/zh-CN", "layout")
+		expect(revalidatePath).not.toHaveBeenCalledWith("/", "layout")
+		expect(revalidateTag).toHaveBeenCalledWith("global:site-config:zh-CN")
+	})
+
+	it("revalidates the unprefixed English layout path", async () => {
+		const response = await POST(requestFor({ collection: "site-config", locales: ["en"] }))
+
+		expect(response.status).toBe(200)
+		expect(revalidatePath).toHaveBeenCalledWith("/", "layout")
+		expect(revalidatePath).not.toHaveBeenCalledWith("/zh-CN", "layout")
+		expect(revalidateTag).toHaveBeenCalledWith("global:site-config:en")
 	})
 })

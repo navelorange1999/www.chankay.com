@@ -6,10 +6,16 @@ import NextTopLoader from "nextjs-toploader"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
-import { isSupportedLocale, SUPPORTED_LOCALES, type SupportedLocale } from "@repo/i18n"
+import {
+	getUiStrings,
+	isSupportedLocale,
+	SUPPORTED_LOCALES,
+	type SupportedLocale,
+} from "@repo/i18n"
 
 import { Container } from "@repo/ui/components/Container"
 import { ThemeProvider, ThemeScript } from "@repo/ui/components/ThemeProvider"
+import { LocaleProvider } from "@repo/ui/components/LocaleProvider"
 import { Footer } from "@/components/Footer"
 import { Navbar } from "@/components/Navbar"
 import { getSiteConfig } from "@/services/payload/site-config"
@@ -110,6 +116,7 @@ export default async function LocaleLayout({
 	void (locale satisfies SupportedLocale)
 
 	const siteConfig = await getSiteConfig(locale)
+	const strings = getUiStrings(locale)
 
 	return (
 		<html lang={locale} suppressHydrationWarning>
@@ -119,13 +126,15 @@ export default async function LocaleLayout({
 
 			<body className={inter.className}>
 				<NextTopLoader color="currentColor" showForHashAnchor={false} showSpinner={false} />
-				<ThemeProvider defaultTheme="system" enableSystem disableTransitionOnChange>
-					<Navbar siteConfig={siteConfig} currentLocale={locale} />
-					<main className="min-h-[calc(100dvh-var(--navbar-height,4rem))] bg-background">
-						<Container className="py-5 md:py-8">{children}</Container>
-					</main>
-					<Footer siteConfig={siteConfig} currentLocale={locale} />
-				</ThemeProvider>
+				<LocaleProvider locale={locale}>
+					<ThemeProvider defaultTheme="system" enableSystem disableTransitionOnChange>
+						<Navbar siteConfig={siteConfig} currentLocale={locale} strings={strings} />
+						<main className="min-h-[calc(100dvh-var(--navbar-height,4rem))] bg-background">
+							<Container className="py-5 md:py-8">{children}</Container>
+						</main>
+						<Footer siteConfig={siteConfig} currentLocale={locale} strings={strings} />
+					</ThemeProvider>
+				</LocaleProvider>
 				<Analytics />
 				<SpeedInsights />
 			</body>

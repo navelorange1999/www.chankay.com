@@ -16,7 +16,7 @@ export interface NavbarDesktopNavProps {
 }
 
 export function NavbarDesktopNav({ items }: NavbarDesktopNavProps) {
-	const pathname = usePathname()
+	const pathname = usePathname() ?? "/"
 	const activeUrl = resolveActiveNavUrl(pathname, items)
 	const { containerRef, setItemRef, indicator } = useSlidingIndicator(activeUrl)
 

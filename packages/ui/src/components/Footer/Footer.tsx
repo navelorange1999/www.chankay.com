@@ -16,11 +16,23 @@ const socialIcons = {
 
 export interface FooterProps {
 	siteConfig: SiteConfig
+	accessibilityLabels?: {
+		followOn: string
+		logo: string
+	}
 	className?: string
 	fallbackLogo?: React.ReactNode
 }
 
-export function Footer({ siteConfig, className = "", fallbackLogo }: FooterProps) {
+export function Footer({
+	siteConfig,
+	accessibilityLabels = {
+		followOn: "Follow us on {platform}",
+		logo: "Website logo",
+	},
+	className = "",
+	fallbackLogo,
+}: FooterProps) {
 	const currentYear = new Date().getFullYear()
 	const title = siteConfig.siteName
 	const logo = siteConfig.logo
@@ -40,7 +52,7 @@ export function Footer({ siteConfig, className = "", fallbackLogo }: FooterProps
 		renderImageLogo: (imageLogo) => (
 			<ImageMedia
 				resource={imageLogo}
-				alt={`${title} logo`}
+				alt={accessibilityLabels.logo}
 				className="h-8 w-8"
 				imgClassName={cn("h-8 w-8 object-contain")}
 				placeholder="empty"
@@ -71,7 +83,7 @@ export function Footer({ siteConfig, className = "", fallbackLogo }: FooterProps
 									key={social.platform}
 									href={social.url}
 									className="text-muted-foreground hover:text-foreground transition-colors duration-200"
-									aria-label={`Follow us on ${social.platform}`}
+									aria-label={accessibilityLabels.followOn.replace("{platform}", social.platform)}
 									target="_blank"
 									rel="noopener noreferrer"
 								>

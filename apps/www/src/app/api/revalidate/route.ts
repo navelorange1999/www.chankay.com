@@ -1,7 +1,12 @@
 import { revalidatePath, revalidateTag } from "next/cache"
 import { NextResponse } from "next/server"
 
-import { SUPPORTED_LOCALES, type SupportedLocale, isSupportedLocale } from "@repo/i18n"
+import {
+	SUPPORTED_LOCALES,
+	type SupportedLocale,
+	isSupportedLocale,
+	resolveLocalizedPath,
+} from "@repo/i18n"
 
 import { resolvePagePath } from "@/utils/seo"
 import { POST_SECTIONS, resolvePostSectionPath, type PostSection } from "@/utils/postSections"
@@ -80,9 +85,9 @@ const revalidationHandlers: Record<string, RevalidationHandler> = {
 
 	"site-config"(_slugs, locales) {
 		for (const locale of locales) {
+			revalidatePath(resolveLocalizedPath(locale, "/"), "layout")
 			revalidateTag(`global:site-config:${locale}`)
 		}
-		revalidatePath("/", "layout")
 		revalidatePath("/sitemap.xml")
 		revalidatePath("/robots.txt")
 	},

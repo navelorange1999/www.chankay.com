@@ -37,6 +37,35 @@ function appendLocale(
 	return params
 }
 
+function appendWhereParams(
+	params: URLSearchParams,
+	where: Record<string, unknown>,
+	path: string[] = []
+): void {
+	Object.entries(where).forEach(([key, value]) => {
+		const nextPath = [...path, key]
+
+		if (Array.isArray(value)) {
+			if (!value.every((item) => item && typeof item === "object" && !Array.isArray(item))) {
+				params.append(`where${nextPath.map((segment) => `[${segment}]`).join("")}`, String(value))
+				return
+			}
+
+			value.forEach((item, index) => {
+				appendWhereParams(params, item as Record<string, unknown>, [...nextPath, String(index)])
+			})
+			return
+		}
+
+		if (value && typeof value === "object") {
+			appendWhereParams(params, value as Record<string, unknown>, nextPath)
+			return
+		}
+
+		params.append(`where${nextPath.map((segment) => `[${segment}]`).join("")}`, String(value))
+	})
+}
+
 export class PayloadClient {
 	private baseUrl: string
 
@@ -89,15 +118,7 @@ export class PayloadClient {
 		const params = new URLSearchParams()
 
 		if (options?.where) {
-			Object.entries(options.where).forEach(([key, value]) => {
-				if (typeof value === "object" && value !== null) {
-					Object.entries(value).forEach(([operator, val]) => {
-						params.append(`where[${key}][${operator}]`, String(val))
-					})
-				} else {
-					params.append(`where[${key}]`, String(value))
-				}
-			})
+			appendWhereParams(params, options.where)
 		}
 
 		if (options?.depth !== undefined) params.append("depth", String(options.depth))

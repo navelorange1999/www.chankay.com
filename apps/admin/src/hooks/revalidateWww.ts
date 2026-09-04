@@ -1,4 +1,8 @@
-import type { CollectionAfterChangeHook, GlobalAfterChangeHook } from "payload"
+import type {
+	CollectionAfterChangeHook,
+	CollectionAfterDeleteHook,
+	GlobalAfterChangeHook,
+} from "payload"
 
 import { isSupportedLocale, type SupportedLocale } from "@repo/i18n"
 
@@ -55,6 +59,16 @@ export function createRevalidationHook(collection: string): CollectionAfterChang
 		}
 
 		return doc
+	}
+}
+
+export function createRevalidationDeleteHook(collection: string): CollectionAfterDeleteHook {
+	return async () => {
+		try {
+			await triggerRevalidation(collection, [])
+		} catch {
+			// Best effort only.
+		}
 	}
 }
 

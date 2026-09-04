@@ -2,6 +2,7 @@ import type { CollectionConfig } from "payload"
 import { authenticated } from "../access/authenticated"
 import { createBasicTranslationHook } from "../hooks/createTranslationHook"
 import { colorPickerField } from "../fields/colorPickerField"
+import { createRevalidationDeleteHook, createRevalidationHook } from "../hooks/revalidateWww"
 
 export const Tags: CollectionConfig = {
 	slug: "tags",
@@ -39,8 +40,12 @@ export const Tags: CollectionConfig = {
 			},
 			hooks: {
 				beforeValidate: [
-					({ data }) => {
-						if (data?.name && !data?.slug) {
+					({ data, originalDoc }) => {
+						if (data?.slug === undefined && originalDoc?.slug) {
+							return originalDoc.slug
+						}
+
+						if (data?.name && data.slug === undefined) {
 							return data.name
 								.toLowerCase()
 								.replace(/[^\w\s-]/g, "")
@@ -97,5 +102,7 @@ export const Tags: CollectionConfig = {
 	timestamps: true,
 	hooks: {
 		beforeChange: [createBasicTranslationHook()],
+		afterChange: [createRevalidationHook("tags")],
+		afterDelete: [createRevalidationDeleteHook("tags")],
 	},
 }

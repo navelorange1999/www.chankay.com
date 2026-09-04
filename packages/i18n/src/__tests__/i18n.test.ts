@@ -2,27 +2,30 @@ import { describe, expect, it } from "vitest"
 
 import {
 	buildRouteAlternates,
+	buildRouteIndexAlternates,
 	formatLocalizedDate,
 	formatReadingTime,
 	getUiStrings,
 	resolveLocalizedPath,
+	resolveRouteIndexPath,
+	resolveRoutePath,
 	stripLocalePrefix,
 } from "../index.js"
 
 describe("localized paths", () => {
 	it("keeps the default locale unprefixed", () => {
-		expect(resolveLocalizedPath("en", "/posts/example")).toBe("/posts/example")
+		expect(resolveLocalizedPath("en", "/technical/example")).toBe("/technical/example")
 	})
 
 	it("prefixes non-default locales without duplicating existing prefixes", () => {
-		expect(resolveLocalizedPath("zh-CN", "/posts/example")).toBe("/zh-CN/posts/example")
-		expect(resolveLocalizedPath("zh-CN", "/en/posts/example")).toBe("/zh-CN/posts/example")
+		expect(resolveLocalizedPath("zh-CN", "/technical/example")).toBe("/zh-CN/technical/example")
+		expect(resolveLocalizedPath("zh-CN", "/en/technical/example")).toBe("/zh-CN/technical/example")
 	})
 
 	it("strips supported locale prefixes", () => {
-		expect(stripLocalePrefix("/zh-CN/posts/example")).toEqual({
+		expect(stripLocalePrefix("/zh-CN/technical/example")).toEqual({
 			locale: "zh-CN",
-			path: "/posts/example",
+			path: "/technical/example",
 		})
 	})
 })
@@ -32,16 +35,37 @@ describe("route alternates", () => {
 		expect(
 			buildRouteAlternates({
 				currentLocale: "zh-CN",
-				domain: "posts",
+				domain: "technical",
 				siteUrl: "https://www.chankay.com",
 				slug: "example",
 			})
 		).toEqual({
-			canonical: "https://www.chankay.com/zh-CN/posts/example",
+			canonical: "https://www.chankay.com/zh-CN/technical/example",
 			languages: {
-				en: "https://www.chankay.com/posts/example",
-				"zh-CN": "https://www.chankay.com/zh-CN/posts/example",
-				"x-default": "https://www.chankay.com/posts/example",
+				en: "https://www.chankay.com/technical/example",
+				"zh-CN": "https://www.chankay.com/zh-CN/technical/example",
+				"x-default": "https://www.chankay.com/technical/example",
+			},
+		})
+	})
+
+	it("builds section index routes and alternates", () => {
+		expect(resolveRouteIndexPath("technical", "en")).toBe("/technical")
+		expect(resolveRouteIndexPath("trading", "zh-CN")).toBe("/zh-CN/trading")
+		expect(resolveRoutePath("technical", "architecture", "en")).toBe("/technical/architecture")
+		expect(resolveRoutePath("trading", "market-view", "zh-CN")).toBe("/zh-CN/trading/market-view")
+		expect(
+			buildRouteIndexAlternates({
+				currentLocale: "zh-CN",
+				domain: "trading",
+				siteUrl: "https://www.chankay.com",
+			})
+		).toEqual({
+			canonical: "https://www.chankay.com/zh-CN/trading",
+			languages: {
+				en: "https://www.chankay.com/trading",
+				"zh-CN": "https://www.chankay.com/zh-CN/trading",
+				"x-default": "https://www.chankay.com/trading",
 			},
 		})
 	})
@@ -49,8 +73,8 @@ describe("route alternates", () => {
 
 describe("interface strings", () => {
 	it("returns complete English and Chinese dictionaries", () => {
-		expect(getUiStrings("en").posts.readPost).toBe("Read post")
-		expect(getUiStrings("zh-CN").posts.readPost).toBe("阅读文章")
+		expect(getUiStrings("en").postSection.readPost).toBe("Read article")
+		expect(getUiStrings("zh-CN").article.backToSection).toBe("返回板块")
 		expect(getUiStrings("zh-CN").article.onThisPage).toBe("本文目录")
 		expect(getUiStrings("zh-CN").notFound.title).toBe("404 - 页面未找到")
 		expect(getUiStrings("zh-CN").untitledPost).toBe("未命名文章")

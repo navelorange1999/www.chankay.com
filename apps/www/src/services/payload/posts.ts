@@ -1,7 +1,10 @@
 import type { SupportedLocale } from "@repo/i18n"
-import { DEFAULT_LOCALE } from "@repo/i18n"
+import { DEFAULT_LOCALE, isSafePostSlug } from "@repo/i18n"
+
+import { getTagBySlug } from "./tags"
 
 import { payloadClient } from "@/utils/payloadClient"
+import { isPostInSection, POST_SECTIONS, type PostSection } from "@/utils/postSections"
 import type { Post } from "@repo/typescript-config/typings/payload-types"
 
 export interface PostListOptions {
@@ -41,16 +44,82 @@ export async function getPostBySlug(
 	slug: string,
 	options?: { locale?: SupportedLocale }
 ): Promise<Post | null> {
+	if (!isSafePostSlug(slug)) {
+		return null
+	}
+
 	const locale = options?.locale ?? DEFAULT_LOCALE
 	try {
 		return await payloadClient.getBySlug<Post>("posts", slug, {
 			locale,
 			depth: 2,
-			tags: [`post:${slug}:${locale}`],
+			tags: [`post:${slug}:${locale}`, `posts:details:${locale}`],
 		})
 	} catch (error) {
 		console.error(`Error fetching post ${slug}:`, error)
 		return null
+	}
+}
+
+export async function getPostBySlugForSection(
+	slug: string,
+	section: PostSection,
+	options?: { locale?: SupportedLocale }
+): Promise<Post | null> {
+	const post = await getPostBySlug(slug, options)
+	return post && isPostInSection(post, section) ? post : null
+}
+
+export async function getPostsBySection(
+	section: PostSection,
+	options?: { locale?: SupportedLocale }
+): Promise<Post[]> {
+	const locale = options?.locale ?? DEFAULT_LOCALE
+	const tag = await getTagBySlug(POST_SECTIONS[section].tagSlug, { locale })
+
+	if (!tag) {
+		return []
+	}
+
+	const allPosts: Post[] = []
+	const limit = 100
+	let page = 1
+	let totalDocs = 0
+
+	try {
+		do {
+			const result = await payloadClient.getCollection<Post>("posts", {
+				locale,
+				limit,
+				page,
+				depth: 2,
+				sort: "-publishedAt",
+				where:
+					section === "technical"
+						? {
+								and: [
+									{ status: { equals: "published" } },
+									{
+										or: [{ primaryTag: { equals: tag.id } }, { primaryTag: { exists: false } }],
+									},
+								],
+							}
+						: {
+								primaryTag: { equals: tag.id },
+								status: { equals: "published" },
+							},
+				tags: [`posts:section:${section}:${locale}`],
+			})
+
+			totalDocs = result.totalDocs
+			allPosts.push(...result.docs)
+			page += 1
+		} while (page <= Math.ceil(totalDocs / limit))
+
+		return allPosts
+	} catch (error) {
+		console.error(`Error fetching ${section} posts:`, error)
+		return []
 	}
 }
 
@@ -67,6 +136,7 @@ export async function getAllPosts(options?: { locale?: SupportedLocale }): Promi
 				locale,
 				limit,
 				page,
+				depth: 2,
 				sort: "-publishedAt",
 				tags: [`posts:all:${locale}`],
 			})

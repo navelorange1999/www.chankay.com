@@ -264,13 +264,13 @@ export interface Post {
    */
   seriesOrder?: number | null;
   /**
-   * Tags for categorization and discovery (first tag is treated as primary)
+   * Optional secondary topics. Primary Tag determines the Technical or Trading section.
    */
   tags?: (string | Tag)[] | null;
   /**
-   * Main topic/category of this post (optional, defaults to first tag)
+   * Required. Determines whether the post appears in the Technical or Trading section.
    */
-  primaryTag?: (string | null) | Tag;
+  primaryTag: string | Tag;
   /**
    * Estimated reading time in minutes
    */

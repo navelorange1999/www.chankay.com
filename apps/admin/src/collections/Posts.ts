@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload"
+import { POST_SLUG_MAX_LENGTH, validatePostSlug } from "@repo/i18n"
 import { authenticated } from "../access/authenticated"
 import { markdownField } from "../fields/markdownField"
 import { createRevalidationHook } from "../hooks/revalidateWww"
@@ -86,14 +87,20 @@ export const Posts: CollectionConfig = {
 			required: true,
 			unique: true,
 			index: true,
+			maxLength: POST_SLUG_MAX_LENGTH,
 			admin: {
 				position: "sidebar",
 				description: "URL-friendly version of the title",
 			},
+			validate: validatePostSlug,
 			hooks: {
 				beforeValidate: [
-					({ data }) => {
-						if (data?.title && !data?.slug) {
+					({ data, originalDoc }) => {
+						if (data?.slug === undefined && originalDoc?.slug) {
+							return originalDoc.slug
+						}
+
+						if (data?.title && data.slug === undefined) {
 							return data.title
 								.toLowerCase()
 								.replace(/[^\w\s-]/g, "")
@@ -203,16 +210,19 @@ export const Posts: CollectionConfig = {
 			hasMany: true,
 			admin: {
 				position: "sidebar",
-				description: "Tags for categorization and discovery (first tag is treated as primary)",
+				description:
+					"Optional secondary topics. Primary Tag determines the Technical or Trading section.",
 			},
 		},
 		{
 			name: "primaryTag",
 			type: "relationship",
 			relationTo: "tags",
+			required: true,
 			admin: {
 				position: "sidebar",
-				description: "Main topic/category of this post (optional, defaults to first tag)",
+				description:
+					"Required. Determines whether the post appears in the Technical or Trading section.",
 			},
 		},
 

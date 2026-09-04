@@ -17,11 +17,19 @@ export const routeDomains = {
 		kind: "catchAll",
 		slugField: "slug",
 	},
-	posts: {
-		basePath: "posts",
+	technical: {
+		basePath: "technical",
 		collection: "posts",
 		index: true,
-		key: "posts",
+		key: "technical",
+		kind: "collection",
+		slugField: "slug",
+	},
+	trading: {
+		basePath: "trading",
+		collection: "posts",
+		index: true,
+		key: "trading",
 		kind: "collection",
 		slugField: "slug",
 	},

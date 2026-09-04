@@ -1,6 +1,8 @@
 const UNSAFE_PATH_SEGMENT = /[\\/?#%]/
 const WHITESPACE = /\s/u
 
+export const POST_SLUG_MAX_LENGTH = 200
+
 function hasControlCharacter(value: string): boolean {
 	return [...value].some((character) => {
 		const codePoint = character.codePointAt(0)!
@@ -9,7 +11,11 @@ function hasControlCharacter(value: string): boolean {
 }
 
 export function isSafePostSlug(value: unknown): value is string {
-	if (typeof value !== "string" || value.trim().length === 0) {
+	if (
+		typeof value !== "string" ||
+		value.trim().length === 0 ||
+		value.length > POST_SLUG_MAX_LENGTH
+	) {
 		return false
 	}
 

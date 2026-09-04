@@ -30,6 +30,7 @@ vi.mock("../../hooks/revalidateWww", () => ({
 
 import { Posts } from "../Posts"
 import { Tags } from "../Tags"
+import { POST_SLUG_MAX_LENGTH } from "@repo/i18n"
 
 describe("post section contract", () => {
 	it("requires a primary tag relationship", () => {
@@ -55,15 +56,34 @@ describe("post section contract", () => {
 			name: "slug",
 			required: true,
 			unique: true,
+			maxLength: POST_SLUG_MAX_LENGTH,
 			admin: {
 				position: "sidebar",
 				description: "URL-friendly version of the title",
 			},
 		})
 		expect("validate" in slug! && slug.validate?.("market-view-2026", {} as never)).toBe(true)
+		expect(
+			"validate" in slug! && slug.validate?.("a".repeat(POST_SLUG_MAX_LENGTH), {} as never)
+		).toBe(true)
+		expect(
+			"validate" in slug! && slug.validate?.("a".repeat(POST_SLUG_MAX_LENGTH + 1), {} as never)
+		).toMatch(/safe URL path segment/i)
 		expect("validate" in slug! && slug.validate?.("../private", {} as never)).toMatch(
 			/safe URL path segment/i
 		)
+	})
+
+	it("describes tags as optional secondary topics", () => {
+		const tags = Posts.fields.find((field) => "name" in field && field.name === "tags")
+
+		expect(tags).toMatchObject({
+			name: "tags",
+			admin: {
+				description:
+					"Optional secondary topics. Primary Tag determines the Technical or Trading section.",
+			},
+		})
 	})
 
 	it("preserves translation and revalidation hooks for tags", () => {

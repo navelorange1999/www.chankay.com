@@ -80,8 +80,8 @@ Rollback does not require deleting or recreating keys. The old `custom` permissi
 5. Smoke test the public site:
    - [ ] `https://<dev>.chankay.com/` renders English; `<html lang="en">` in source.
    - [ ] `https://<dev>.chankay.com/zh-CN/` renders Chinese fallback (English content until translated); `<html lang="zh-CN">` in source.
-   - [ ] `https://<dev>.chankay.com/posts/<existing-slug>` and `https://<dev>.chankay.com/zh-CN/posts/<existing-slug>` both load.
-   - [ ] View source: `<link rel="canonical">` and `<link rel="alternate" hreflang="…">` are present.
+   - [ ] `https://<dev>.chankay.com/posts/<existing-slug>` and `https://<dev>.chankay.com/zh-CN/posts/<existing-slug>` permanently redirect to the post's Technical or Trading URL.
+   - [ ] A canonical Technical or Trading detail URL and its localized equivalent render with `<link rel="canonical">` and `<link rel="alternate" hreflang="…">`.
    - [ ] `https://<dev>.chankay.com/sitemap.xml` lists every URL twice (once per locale) with `xhtml:link` alternates.
    - [ ] LanguageSwitcher in Navbar toggles between locales and preserves the current path.
 
@@ -129,14 +129,14 @@ These were intentionally deferred to keep the initial change scoped. Pick them u
 ### High value
 
 - [ ] **Adopt resource-scoped MCP tools after a stable Payload release ships the new API** — Payload 3.88.0 only supports custom tools through the top-level `mcp.tools` array. Once a stable release provides `defineCollectionTool` and `defineGlobalTool`, upgrade all Payload packages together and move the Post tools (`createPostDraft`, `publishPost`) under `collections.posts.tools` and the Page tools (`createPageDraft`, `replacePageStructure`, `updatePageSeo`, `publishPage`) under `collections.pages.tools`. Preserve their narrow input schemas and business rules, replace `getPayloadInstance()` plus unconditional `overrideAccess: true` with the handler's `req.payload` and `authorizedMCP.overrideAccess`, migrate API-key permissions without expanding access, and keep SiteConfig on the native Global `find` / `update` capabilities unless it gains a domain-specific tool.
-- [ ] **Locale-aware Post preview link** — `apps/admin/src/collections/Posts.ts:54` builds the preview URL as `${WWW_SITE_URL}/posts/${doc.slug}`. After multilingual launch, the preview link in the Payload admin should match the locale tab the editor is currently on. Use the `req.locale` Payload exposes to the `preview` callback and prefix the URL via `resolveLocalizedPath`.
+- [ ] **Locale-aware Post preview link** — `apps/admin/src/collections/Posts.ts:54` builds the preview URL as `${WWW_SITE_URL}/posts/${doc.slug}`. After multilingual launch, the preview link in the Payload admin should resolve the post's Technical or Trading section and match the locale tab the editor is currently on. Use the `req.locale` Payload exposes to the `preview` callback and prefix the URL via `resolveLocalizedPath`.
 - [ ] **Simplify `getLocalizedContent` defensive helper** — `apps/admin/src/collections/Posts.ts:6-14` was written to tolerate both bare-string and localized-object shapes. Once the migration runs in production, all data is in localized shape; the helper can be reduced to "read the active locale's value" with a fallback to default locale.
 - [ ] **Reconcile `SiteConfig.defaultLanguage` with `LOCALE_CONFIG.defaultLocale`** — `apps/admin/src/globals/SiteConfig.ts:67-78` defines a `defaultLanguage` select that duplicates `@repo/i18n`'s `DEFAULT_LOCALE`. Either remove the field (single source of truth wins) or actually drive runtime behavior from it (the schema is the single source today; the global is decoration).
 
 ### Medium value
 
 - [ ] **Vitest unit tests for the legacy migration scripts** — the July 22 SiteConfig migration is covered, but the May normalization and Pages relocation migrations still need direct unit tests for their critical predicates and idempotency.
-- [ ] **End-to-end Playwright (or similar) test for hreflang** — assert that `/posts/<slug>` and `/zh-CN/posts/<slug>` both contain the expected `hreflang` link tags. Catches future regressions if `buildRouteAlternates` is ever bypassed.
+- [ ] **End-to-end Playwright (or similar) test for hreflang** — assert that canonical `/technical/<slug>` or `/trading/<slug>` pages and their `zh-CN` equivalents contain the expected `hreflang` link tags, while legacy `/posts/<slug>` variants permanently redirect. Catches future regressions if `buildRouteAlternates` is ever bypassed.
 - [ ] **Cache tag invalidation for the cutover** — production CDN/edge holds entries tagged with the old (non-locale-scoped) names like `collection:posts` and `post:<slug>`. The new code uses `collection:posts:en` etc., so legacy cache entries linger until natural TTL expiry. Either:
   - bump a global cache version (e.g. add a cache buster to all tags) when deploying, or
   - accept the staleness (worst case ≈ `PAYLOAD_REVALIDATE_TIME` seconds).

@@ -68,6 +68,7 @@ const revalidationHandlers: Record<string, RevalidationHandler> = {
 
 	tags(_slugs, locales) {
 		for (const locale of locales) {
+			revalidateTag(`posts:details:${locale}`)
 			for (const section of Object.keys(POST_SECTIONS) as PostSection[]) {
 				revalidatePath(resolvePostSectionPath(section, undefined, locale))
 				revalidateTag(`posts:section:${section}:${locale}`)

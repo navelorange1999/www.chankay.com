@@ -57,6 +57,7 @@ describe("revalidation route", () => {
 		expect(revalidateTag).toHaveBeenCalledWith("posts:section:trading:en")
 		expect(revalidateTag).toHaveBeenCalledWith("tag:technical:en")
 		expect(revalidateTag).toHaveBeenCalledWith("tag:trading:en")
+		expect(revalidateTag).toHaveBeenCalledWith("posts:details:en")
 	})
 
 	it("rejects requests without the configured secret", async () => {

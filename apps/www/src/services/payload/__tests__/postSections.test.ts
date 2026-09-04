@@ -9,7 +9,7 @@ vi.mock("@/utils/payloadClient", () => ({
 	payloadClient: { getBySlug, getCollection },
 }))
 
-import { getPostBySlugForSection, getPostsBySection } from "../posts"
+import { getPostBySlug, getPostBySlugForSection, getPostsBySection } from "../posts"
 import { getTagBySlug } from "../tags"
 
 describe("post section payload services", () => {
@@ -106,6 +106,20 @@ describe("post section payload services", () => {
 		})
 
 		await expect(getPostBySlugForSection("market-view", "technical")).resolves.toBeNull()
+	})
+
+	it("tags post detail lookups with a locale-wide detail cache tag", async () => {
+		getBySlug.mockResolvedValueOnce({ id: "post-id", slug: "market-view" })
+
+		await expect(getPostBySlug("market-view", { locale: "zh-CN" })).resolves.toEqual({
+			id: "post-id",
+			slug: "market-view",
+		})
+		expect(getBySlug).toHaveBeenCalledWith("posts", "market-view", {
+			locale: "zh-CN",
+			depth: 2,
+			tags: ["post:market-view:zh-CN", "posts:details:zh-CN"],
+		})
 	})
 
 	it("fetches a tag by slug with localized cache metadata", async () => {

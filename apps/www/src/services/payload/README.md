@@ -22,21 +22,18 @@ export default async function HomePage() {
 }
 ```
 
-### Fetching Post List
+### Fetching a Section Post Archive
 
 ```typescript
-// app/(frontend)/posts/page.tsx
-import { getPosts } from "@/services/payload/posts"
+// app/(frontend)/technical/page.tsx
+import { getPostsBySection } from "@/services/payload/posts"
 
-export default async function PostsPage() {
-	const { docs: posts, totalDocs } = await getPosts({
-		limit: 10,
-		page: 1,
-	})
+export default async function TechnicalPage() {
+	const posts = await getPostsBySection("technical")
 
 	return (
 		<div>
-			<h1>Posts ({totalDocs} total)</h1>
+			<h1>Technical</h1>
 			{posts.map((post) => (
 				<article key={post.id}>
 					<h2>{post.title}</h2>
@@ -47,15 +44,15 @@ export default async function PostsPage() {
 }
 ```
 
-### Fetching Single Post
+### Fetching a Section Post Detail
 
 ```typescript
-// app/(frontend)/posts/[slug]/page.tsx
-import { getPostBySlug } from "@/services/payload/posts"
+// app/(frontend)/trading/[slug]/page.tsx
+import { getPostBySlugForSection } from "@/services/payload/posts"
 import { notFound } from "next/navigation"
 
-export default async function PostPage({ params }: { params: { slug: string } }) {
-	const post = await getPostBySlug(params.slug)
+export default async function TradingPostPage({ params }: { params: { slug: string } }) {
+	const post = await getPostBySlugForSection(params.slug, "trading")
 
 	if (!post) {
 		notFound()
@@ -73,18 +70,22 @@ export default async function PostPage({ params }: { params: { slug: string } })
 ### Generating Static Routes
 
 ```typescript
-// app/(frontend)/posts/[slug]/page.tsx
-import { getAllPages } from "@/services/payload/pages"
+// components/posts/PostSectionArticle.tsx
+import { getPostsBySection } from "@/services/payload/posts"
 
 // Generate static routes for all pages
-export async function generateStaticParams() {
-  const pages = await getAllPages()
+export async function buildPostSectionStaticParams(section: "technical" | "trading") {
+  const posts = await getPostsBySection(section)
 
-  return pages.map((page) => ({
-    slug: page.slug,
+  return posts.map((post) => ({
+    slug: post.slug,
   }))
 }
 ```
+
+The `technical` and `trading` routes share their archive and article components. Legacy
+`/posts` and `/posts/[slug]` modules are redirect-only compatibility routes and should
+not render archives or article details.
 
 ### Using in Client Components
 

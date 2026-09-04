@@ -1,5 +1,5 @@
 import type { CollectionConfig } from "payload"
-import { validatePostSlug } from "@repo/i18n"
+import { POST_SLUG_MAX_LENGTH, validatePostSlug } from "@repo/i18n"
 import { authenticated } from "../access/authenticated"
 import { markdownField } from "../fields/markdownField"
 import { createRevalidationHook } from "../hooks/revalidateWww"
@@ -83,6 +83,7 @@ export const Posts: CollectionConfig = {
 			required: true,
 			unique: true,
 			index: true,
+			maxLength: POST_SLUG_MAX_LENGTH,
 			admin: {
 				position: "sidebar",
 				description: "URL-friendly version of the title",
@@ -201,7 +202,8 @@ export const Posts: CollectionConfig = {
 			hasMany: true,
 			admin: {
 				position: "sidebar",
-				description: "Tags for categorization and discovery (first tag is treated as primary)",
+				description:
+					"Optional secondary topics. Primary Tag determines the Technical or Trading section.",
 			},
 		},
 		{

@@ -49,7 +49,7 @@ export async function getPostBySlug(
 		return await payloadClient.getBySlug<Post>("posts", slug, {
 			locale,
 			depth: 2,
-			tags: [`post:${slug}:${locale}`],
+			tags: [`post:${slug}:${locale}`, `posts:details:${locale}`],
 		})
 	} catch (error) {
 		console.error(`Error fetching post ${slug}:`, error)

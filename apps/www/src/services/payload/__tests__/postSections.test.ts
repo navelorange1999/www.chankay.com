@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest"
+import { POST_SLUG_MAX_LENGTH } from "@repo/i18n"
 
 const { getBySlug, getCollection } = vi.hoisted(() => ({
 	getBySlug: vi.fn(),
@@ -121,6 +122,16 @@ describe("post section payload services", () => {
 			tags: ["post:market-view:zh-CN", "posts:details:zh-CN"],
 		})
 	})
+
+	it.each(["../private", "a".repeat(POST_SLUG_MAX_LENGTH + 1)])(
+		"does not query posts for unsafe post slug %j",
+		async (slug) => {
+			await expect(getPostBySlug(slug)).resolves.toBeNull()
+			await expect(getPostBySlugForSection(slug, "technical")).resolves.toBeNull()
+
+			expect(getBySlug).not.toHaveBeenCalled()
+		}
+	)
 
 	it("fetches a tag by slug with localized cache metadata", async () => {
 		getBySlug.mockResolvedValueOnce({ id: "trading-id", slug: "trading" })

@@ -3,19 +3,26 @@ import { describe, expect, it, vi } from "vitest"
 const {
 	basicTranslationHook,
 	createBasicTranslationHookMock,
+	createRevalidationDeleteHookMock,
 	createRevalidationHookMock,
+	tagsDeleteRevalidationHook,
 	tagsRevalidationHook,
 } = vi.hoisted(() => {
 	const basicTranslationHook = vi.fn()
 	const postsRevalidationHook = vi.fn()
 	const tagsRevalidationHook = vi.fn()
+	const tagsDeleteRevalidationHook = vi.fn()
 
 	return {
 		basicTranslationHook,
 		createBasicTranslationHookMock: vi.fn(() => basicTranslationHook),
+		createRevalidationDeleteHookMock: vi.fn((collection: string) =>
+			collection === "tags" ? tagsDeleteRevalidationHook : postsRevalidationHook
+		),
 		createRevalidationHookMock: vi.fn((collection: string) =>
 			collection === "tags" ? tagsRevalidationHook : postsRevalidationHook
 		),
+		tagsDeleteRevalidationHook,
 		tagsRevalidationHook,
 	}
 })
@@ -25,6 +32,7 @@ vi.mock("../../hooks/createTranslationHook", () => ({
 }))
 
 vi.mock("../../hooks/revalidateWww", () => ({
+	createRevalidationDeleteHook: createRevalidationDeleteHookMock,
 	createRevalidationHook: createRevalidationHookMock,
 }))
 
@@ -94,5 +102,9 @@ describe("post section contract", () => {
 		expect(Tags.hooks?.afterChange).toHaveLength(1)
 		expect(Tags.hooks?.afterChange?.[0]).toBe(tagsRevalidationHook)
 		expect(createRevalidationHookMock).toHaveBeenCalledWith("tags")
+
+		expect(Tags.hooks?.afterDelete).toHaveLength(1)
+		expect(Tags.hooks?.afterDelete?.[0]).toBe(tagsDeleteRevalidationHook)
+		expect(createRevalidationDeleteHookMock).toHaveBeenCalledWith("tags")
 	})
 })

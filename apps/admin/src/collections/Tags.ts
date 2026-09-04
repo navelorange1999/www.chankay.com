@@ -2,7 +2,7 @@ import type { CollectionConfig } from "payload"
 import { authenticated } from "../access/authenticated"
 import { createBasicTranslationHook } from "../hooks/createTranslationHook"
 import { colorPickerField } from "../fields/colorPickerField"
-import { createRevalidationHook } from "../hooks/revalidateWww"
+import { createRevalidationDeleteHook, createRevalidationHook } from "../hooks/revalidateWww"
 
 export const Tags: CollectionConfig = {
 	slug: "tags",
@@ -99,5 +99,6 @@ export const Tags: CollectionConfig = {
 	hooks: {
 		beforeChange: [createBasicTranslationHook()],
 		afterChange: [createRevalidationHook("tags")],
+		afterDelete: [createRevalidationDeleteHook("tags")],
 	},
 }

@@ -1,4 +1,8 @@
-import type { CollectionAfterChangeHook, GlobalAfterChangeHook } from "payload"
+import type {
+	CollectionAfterChangeHook,
+	CollectionAfterDeleteHook,
+	GlobalAfterChangeHook,
+} from "payload"
 
 const WWW_INTERNAL_SECRET_HEADER = "www-internal-secret"
 
@@ -45,6 +49,16 @@ export function createRevalidationHook(collection: string): CollectionAfterChang
 		}
 
 		return doc
+	}
+}
+
+export function createRevalidationDeleteHook(collection: string): CollectionAfterDeleteHook {
+	return async () => {
+		try {
+			await triggerRevalidation(collection, [])
+		} catch {
+			// Best effort only.
+		}
 	}
 }
 

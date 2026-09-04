@@ -1,5 +1,5 @@
 import type { SupportedLocale } from "@repo/i18n"
-import { DEFAULT_LOCALE } from "@repo/i18n"
+import { DEFAULT_LOCALE, isSafePostSlug } from "@repo/i18n"
 
 import { getTagBySlug } from "./tags"
 
@@ -44,6 +44,10 @@ export async function getPostBySlug(
 	slug: string,
 	options?: { locale?: SupportedLocale }
 ): Promise<Post | null> {
+	if (!isSafePostSlug(slug)) {
+		return null
+	}
+
 	const locale = options?.locale ?? DEFAULT_LOCALE
 	try {
 		return await payloadClient.getBySlug<Post>("posts", slug, {

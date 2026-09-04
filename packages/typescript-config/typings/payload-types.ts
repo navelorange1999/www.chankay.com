@@ -264,7 +264,7 @@ export interface Post {
    */
   seriesOrder?: number | null;
   /**
-   * Tags for categorization and discovery (first tag is treated as primary)
+   * Optional secondary topics. Primary Tag determines the Technical or Trading section.
    */
   tags?: (string | Tag)[] | null;
   /**

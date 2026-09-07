@@ -22,12 +22,18 @@ describe("estimateReadingTimeFromMarkdown", () => {
 	})
 
 	it("ignores code and image syntax while retaining visible link labels", () => {
+		const words = (count: number, prefix: string) =>
+			Array.from({ length: count }, (_, index) => `${prefix}${index}`).join(" ")
+		const visibleLabel = words(200, "visible")
+		const ignoredAltText = words(400, "image-alt")
+		const ignoredInlineCode = words(400, "inline-code")
+		const ignoredFencedCode = words(400, "fenced-code")
 		const markdown = [
-			"[visible label](https://example.com/hidden-destination)",
-			"![ignored alt text](https://example.com/image.png)",
-			"`ignored inline code`",
+			`[${visibleLabel}](https://example.com/hidden-destination)`,
+			`![${ignoredAltText}](https://example.com/image.png)`,
+			`\`${ignoredInlineCode}\``,
 			"```ts",
-			"ignored fenced code",
+			ignoredFencedCode,
 			"```",
 		].join("\n")
 
@@ -36,6 +42,7 @@ describe("estimateReadingTimeFromMarkdown", () => {
 
 	it("returns zero when no readable content remains", () => {
 		expect(estimateReadingTimeFromMarkdown("```ts\nconst value = 1\n```")).toBe(0)
+		expect(estimateReadingTimeFromMarkdown("# **_~~> -")).toBe(0)
 		expect(estimateReadingTimeFromMarkdown(undefined)).toBe(0)
 	})
 })

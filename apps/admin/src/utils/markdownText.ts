@@ -1,6 +1,6 @@
 import { marked, type MarkedOptions, type Token, type Tokens } from "marked"
 
-export const MARKDOWN_OPTIONS = {
+const MARKDOWN_OPTIONS = {
 	breaks: false,
 	gfm: true,
 } satisfies Pick<MarkedOptions, "breaks" | "gfm">
@@ -72,9 +72,8 @@ function extractToken(token: Token): string {
 			return " "
 		case "checkbox":
 			return ""
-		default: {
+		default:
 			return extractChildren(token, "inline")
-		}
 	}
 }
 

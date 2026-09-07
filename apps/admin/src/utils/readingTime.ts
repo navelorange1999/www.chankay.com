@@ -1,4 +1,4 @@
-import { extractMarkdownText } from "@repo/ui/utils/markdownText"
+import { extractMarkdownText } from "./markdownText"
 
 const HAN_CHARACTERS_PER_MINUTE = 400
 const WORDS_PER_MINUTE = 200

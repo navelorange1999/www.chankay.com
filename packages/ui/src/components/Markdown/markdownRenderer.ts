@@ -12,8 +12,6 @@ import xml from "highlight.js/lib/languages/xml"
 import yaml from "highlight.js/lib/languages/yaml"
 import { marked } from "marked"
 
-import { MARKDOWN_OPTIONS } from "../../utils/markdownText"
-
 export interface MarkdownHeading {
 	id: string
 	level: number
@@ -197,7 +195,8 @@ export function createMarkdownDocument(content: string): MarkdownDocument {
 
 	const rawHtml = marked.parse(content, {
 		async: false,
-		...MARKDOWN_OPTIONS,
+		breaks: false,
+		gfm: true,
 		renderer,
 	}) as string
 

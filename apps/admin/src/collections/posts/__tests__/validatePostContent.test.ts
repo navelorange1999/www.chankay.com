@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest"
-import { POST_CONTENT_H1_ERROR, validatePostMarkdownBody } from "../validatePostContent"
+import {
+	POST_CONTENT_H1_ERROR,
+	POST_CONTENT_PARSE_ERROR,
+	validatePostMarkdownBody,
+} from "../validatePostContent"
 
 describe("validatePostMarkdownBody", () => {
 	it.each([
@@ -9,6 +13,7 @@ describe("validatePostMarkdownBody", () => {
 		"~~~html\n<h1>Example</h1>\n~~~\n\nNormal body",
 		"Inline `<h1>example</h1>`",
 		"## Section\n===",
+		"<!-- <h1>Example</h1> -->",
 		"",
 		null,
 		42,
@@ -25,7 +30,12 @@ describe("validatePostMarkdownBody", () => {
 		"> # Title",
 		"- # Title",
 		"<h1\nclass=title>Title</h1>",
+		"<h1/>Title",
 	])("rejects an H1 in %j", (value) => {
 		expect(validatePostMarkdownBody(value)).toBe(POST_CONTENT_H1_ERROR)
+	})
+
+	it("returns a parse error for invalid HTML entities", () => {
+		expect(validatePostMarkdownBody("## &#x110000;")).toBe(POST_CONTENT_PARSE_ERROR)
 	})
 })

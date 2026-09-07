@@ -4,36 +4,7 @@ import { authenticated } from "../access/authenticated"
 import { markdownField } from "../fields/markdownField"
 import { createRevalidationHook } from "../hooks/revalidateWww"
 import { buildPostPreviewUrl } from "../utils/postPreview"
-
-function getLocalizedContent(value: unknown): string {
-	if (typeof value === "string") return value
-
-	if (!value || typeof value !== "object") return ""
-
-	const record = value as Record<string, unknown>
-	const firstString = Object.values(record).find((entry) => typeof entry === "string")
-	return typeof firstString === "string" ? firstString : ""
-}
-
-function estimateReadingTimeFromMarkdown(content: string): number {
-	if (!content.trim()) return 0
-
-	const plainText = content
-		.replace(/```[\s\S]*?```/g, " ")
-		.replace(/`[^`]*`/g, " ")
-		.replace(/!\[[^\]]*\]\([^)]+\)/g, " ")
-		.replace(/\[[^\]]*\]\([^)]+\)/g, " ")
-		.replace(/^>\s+/gm, " ")
-		.replace(/^#{1,6}\s+/gm, " ")
-		.replace(/[*_~#>-]/g, " ")
-
-	const wordCount = plainText
-		.split(/\s+/)
-		.map((word) => word.trim())
-		.filter(Boolean).length
-
-	return wordCount > 0 ? Math.ceil(wordCount / 200) : 0
-}
+import { estimateReadingTimeFromMarkdown } from "../utils/readingTime"
 
 export const Posts: CollectionConfig = {
 	slug: "posts",
@@ -239,19 +210,13 @@ export const Posts: CollectionConfig = {
 				{
 					name: "readingTime",
 					type: "number",
+					virtual: true,
 					admin: {
 						description: "Estimated reading time in minutes",
 						readOnly: true,
 					},
 					hooks: {
-						beforeChange: [
-							({ data }) => {
-								if (data?.content) {
-									return estimateReadingTimeFromMarkdown(getLocalizedContent(data.content))
-								}
-								return 0
-							},
-						],
+						afterRead: [({ siblingData }) => estimateReadingTimeFromMarkdown(siblingData.content)],
 					},
 				},
 				{

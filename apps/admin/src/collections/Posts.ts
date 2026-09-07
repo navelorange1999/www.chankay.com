@@ -5,6 +5,7 @@ import { markdownField } from "../fields/markdownField"
 import { createRevalidationHook } from "../hooks/revalidateWww"
 import { buildPostPreviewUrl } from "../utils/postPreview"
 import { estimateReadingTimeFromMarkdown } from "../utils/readingTime"
+import { validatePostContent } from "./posts/validatePostContent"
 
 export const Posts: CollectionConfig = {
 	slug: "posts",
@@ -98,9 +99,10 @@ export const Posts: CollectionConfig = {
 			label: "Content",
 			required: true,
 			localized: true,
+			validate: validatePostContent,
 			admin: {
-				description: "Main article content written in Markdown.",
-				placeholder: "# Write your post\n\nStart with Markdown. Use Insert Media for assets.",
+				description: "Main article content written in Markdown. Start sections at H2.",
+				placeholder: "## Start with a section heading\n\nWrite the article body here.",
 				rows: 24,
 			},
 		}),

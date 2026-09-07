@@ -25,7 +25,7 @@ The Payload admin currently reinforces this mistake because the content placehol
 
 ### Semantic post title
 
-Make `PostTitle` accept an explicit semantic element with `h2` as its default. The post index therefore keeps its current behavior. The post detail route opts into `h1`.
+Make `PostTitle` accept an explicit semantic element with `h2` as its default. The post index therefore keeps its current behavior. The shared `PostSectionArticle` detail component opts into `h1`, covering both technical and trading article routes while the legacy post route continues to redirect.
 
 The component API remains narrow: only `h1` and `h2` are supported because those are the two established contexts. Styling remains unchanged and independent of the chosen element.
 

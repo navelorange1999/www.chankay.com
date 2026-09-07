@@ -14,7 +14,7 @@
 
 - Create `apps/www/src/__tests__/postTitle.test.tsx`: verifies the shared title's default and detail-page heading elements.
 - Modify `packages/ui/src/components/Post/Post.tsx`: adds the narrow `as="h1" | "h2"` title API.
-- Modify `apps/www/src/app/[locale]/(frontend)/posts/[slug]/page.tsx`: opts the canonical detail title into `h1`.
+- Modify `apps/www/src/components/posts/PostSectionArticle.tsx`: opts the canonical detail title into `h1` for both section article routes.
 - Create `apps/admin/src/collections/posts/validatePostContent.ts`: detects forbidden body-level `h1` headings and composes with Payload textarea validation.
 - Create `apps/admin/src/collections/posts/__tests__/validatePostContent.test.ts`: covers accepted and rejected Markdown forms.
 - Create `apps/admin/src/collections/__tests__/Posts.test.ts`: verifies the Posts schema wires in the validator and an `h2`-based placeholder.
@@ -28,7 +28,7 @@
 
 - Create: `apps/www/src/__tests__/postTitle.test.tsx`
 - Modify: `packages/ui/src/components/Post/Post.tsx:38-46`
-- Modify: `apps/www/src/app/[locale]/(frontend)/posts/[slug]/page.tsx:207-210`
+- Modify: `apps/www/src/components/posts/PostSectionArticle.tsx:224-230`
 
 - [ ] **Step 1: Write the failing component test**
 
@@ -110,7 +110,7 @@ Expected: both PostTitle tests pass and both type checks exit successfully.
 - [ ] **Step 5: Commit the semantic heading change**
 
 ```bash
-git add apps/www/src/__tests__/postTitle.test.tsx packages/ui/src/components/Post/Post.tsx 'apps/www/src/app/[locale]/(frontend)/posts/[slug]/page.tsx'
+git add apps/www/src/__tests__/postTitle.test.tsx packages/ui/src/components/Post/Post.tsx apps/www/src/components/posts/PostSectionArticle.tsx
 git commit -m "fix(posts): use h1 for article titles"
 ```
 
@@ -413,7 +413,7 @@ Expected: all Turborepo tasks complete successfully with no errors.
 
 ```bash
 git status --short
-git diff HEAD~3 -- apps/www/src/__tests__/postTitle.test.tsx packages/ui/src/components/Post/Post.tsx 'apps/www/src/app/[locale]/(frontend)/posts/[slug]/page.tsx' apps/admin/src/collections/posts/validatePostContent.ts apps/admin/src/collections/posts/__tests__/validatePostContent.test.ts apps/admin/src/collections/__tests__/Posts.test.ts apps/admin/src/fields/markdownField.ts apps/admin/src/collections/Posts.ts
+git diff origin/master...HEAD -- apps/www/src/__tests__/postTitle.test.tsx packages/ui/src/components/Post/Post.tsx apps/www/src/components/posts/PostSectionArticle.tsx apps/admin/src/collections/posts/validatePostContent.ts apps/admin/src/collections/posts/__tests__/validatePostContent.test.ts apps/admin/src/collections/__tests__/Posts.test.ts apps/admin/src/fields/markdownField.ts apps/admin/src/collections/Posts.ts
 ```
 
 Expected: only the planned heading and validation changes are present; the pre-existing untracked `.superpowers/` directory remains untouched.

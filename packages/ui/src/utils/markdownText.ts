@@ -17,8 +17,19 @@ const getChildTokens = (token: Token): Token[] | null => {
 const getTokenText = (token: Token): string =>
 	isRecord(token) && typeof token.text === "string" ? token.text : ""
 
-const extractTokens = (tokens: readonly Token[]): string =>
-	tokens.map(extractToken).filter(Boolean).join(" ")
+const joinTokens = (tokens: readonly Token[], separator: string): string =>
+	tokens.map(extractToken).filter(Boolean).join(separator)
+
+const extractInlineTokens = (tokens: readonly Token[]): string => joinTokens(tokens, "")
+
+const extractBlockTokens = (tokens: readonly Token[]): string => joinTokens(tokens, " ")
+
+const extractChildren = (token: Token, mode: "inline" | "block"): string => {
+	const childTokens = getChildTokens(token)
+	if (!childTokens) return getTokenText(token)
+
+	return mode === "inline" ? extractInlineTokens(childTokens) : extractBlockTokens(childTokens)
+}
 
 function extractToken(token: Token): string {
 	if (!isRecord(token) || typeof token.type !== "string") return ""
@@ -32,31 +43,28 @@ function extractToken(token: Token): string {
 		case "space":
 			return ""
 		case "escape":
-		case "text": {
-			const childTokens = getChildTokens(token as Token)
-			return childTokens ? extractTokens(childTokens) : getTokenText(token as Token)
-		}
+		case "text":
+			return extractChildren(token, "inline")
 		case "link":
 		case "em":
 		case "strong":
 		case "del":
-		case "blockquote":
 		case "heading":
 		case "paragraph":
-		case "list_item": {
-			const childTokens = getChildTokens(token as Token)
-			return childTokens ? extractTokens(childTokens) : getTokenText(token as Token)
-		}
+			return extractChildren(token, "inline")
+		case "blockquote":
+		case "list_item":
+			return extractChildren(token, "block")
 		case "list": {
 			const items = isRecord(token) && Array.isArray(token.items) ? token.items : []
-			return extractTokens(items as Token[])
+			return extractBlockTokens(items as Token[])
 		}
 		case "table": {
 			const table = token as unknown as Tokens.Table
 			const cells = [...table.header, ...table.rows.flat()]
 
 			return cells
-				.map((cell) => extractTokens(cell.tokens))
+				.map((cell) => extractInlineTokens(cell.tokens))
 				.filter(Boolean)
 				.join(" ")
 		}
@@ -65,8 +73,7 @@ function extractToken(token: Token): string {
 		case "checkbox":
 			return ""
 		default: {
-			const childTokens = getChildTokens(token as Token)
-			return childTokens ? extractTokens(childTokens) : getTokenText(token as Token)
+			return extractChildren(token, "inline")
 		}
 	}
 }
@@ -74,5 +81,5 @@ function extractToken(token: Token): string {
 export function extractMarkdownText(content: string): string {
 	if (!content.trim()) return ""
 
-	return extractTokens(marked.lexer(content, MARKDOWN_OPTIONS))
+	return extractBlockTokens(marked.lexer(content, MARKDOWN_OPTIONS))
 }

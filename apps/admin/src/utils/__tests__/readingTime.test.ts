@@ -173,6 +173,18 @@ describe("estimateReadingTimeFromMarkdown", () => {
 		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(1)
 	})
 
+	it("does not split punctuation-adjacent link labels into extra words", () => {
+		const markdown = `${words(199, "ordinaryWord")} [Payload](/payload)'s`
+
+		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(1)
+	})
+
+	it("does not split adjacent formatted fragments into extra words", () => {
+		const markdown = `${words(199, "ordinaryWord")} read**able**`
+
+		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(1)
+	})
+
 	it("returns zero when no readable content remains", () => {
 		expect(estimateReadingTimeFromMarkdown("```ts\nconst value = 1\n```")).toBe(0)
 		expect(estimateReadingTimeFromMarkdown("# **_~~> -")).toBe(0)

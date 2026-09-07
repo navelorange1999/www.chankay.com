@@ -204,6 +204,58 @@ describe("estimateReadingTimeFromMarkdown", () => {
 		expect(estimateReadingTimeFromMarkdown(`${image}\n${nonVisibleBlocks}`)).toBe(0)
 	})
 
+	it.each(["script", "style", "template"])(
+		"keeps inline %s content hidden across Markdown tokens",
+		(tag) => {
+			const markdown = `${words(200, "visibleBefore")} <${tag}> ${words(400, `hidden${tag}`)} </${tag}> ${words(200, "visibleAfter")}`
+
+			expect(estimateReadingTimeFromMarkdown(markdown)).toBe(2)
+		}
+	)
+
+	it("keeps template content hidden across blank lines", () => {
+		const markdown = [
+			words(200, "visibleBeforeTemplate"),
+			"",
+			"<template>",
+			"",
+			words(400, "hiddenTemplateBlankLine"),
+			"",
+			"</template>",
+			"",
+			words(200, "visibleAfterTemplate"),
+		].join("\n")
+
+		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(2)
+	})
+
+	it.each(["<script>if (a < b) {}</script>", '<script>const x = "<script>";</script>'])(
+		"handles raw script text containing angle brackets: %s",
+		(script) => {
+			expect(
+				estimateReadingTimeFromMarkdown(`${script}\n${words(400, "visibleAfterScript")}`)
+			).toBe(2)
+		}
+	)
+
+	it("separates visible words in repeated HTML paragraphs", () => {
+		const markdown = Array.from({ length: 201 }, (_, index) => `<p>word${index}</p>`).join("")
+
+		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(2)
+	})
+
+	it("separates visible words divided by HTML breaks", () => {
+		const markdown = Array.from({ length: 201 }, (_, index) => `word${index}<br>`).join("")
+
+		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(2)
+	})
+
+	it("preserves one word across inline HTML formatting", () => {
+		const markdown = `${words(199, "inlineHtmlWord")} read<strong>able</strong>`
+
+		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(1)
+	})
+
 	it("decodes entities without counting entity names as words", () => {
 		expect(estimateReadingTimeFromMarkdown("&nbsp;")).toBe(0)
 		expect(
@@ -213,6 +265,15 @@ describe("estimateReadingTimeFromMarkdown", () => {
 			estimateReadingTimeFromMarkdown(`${words(198, "numericEntityWord")} word &#38; word`)
 		).toBe(1)
 	})
+
+	it.each(["&mdash;", "&ensp;", "&#xD800;", "&#1114112;"])(
+		"does not count %s as a phantom word",
+		(entity) => {
+			expect(
+				estimateReadingTimeFromMarkdown(`${words(198, "entityBoundaryWord")} word ${entity} word`)
+			).toBe(1)
+		}
+	)
 
 	it("returns zero when no readable content remains", () => {
 		expect(estimateReadingTimeFromMarkdown("```ts\nconst value = 1\n```")).toBe(0)

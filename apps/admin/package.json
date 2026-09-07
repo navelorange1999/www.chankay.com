@@ -36,6 +36,7 @@
     "@repo/ui": "workspace:*",
     "@vercel/queue": "^0.1.4",
     "graphql": "^16.11.0",
+    "htmlparser2": "^12.0.0",
     "marked": "^17.0.4",
     "next": "15.4.11",
     "payload": "3.88.0",

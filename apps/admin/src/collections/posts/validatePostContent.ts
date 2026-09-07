@@ -13,6 +13,25 @@ function containsH1Element(html: string): boolean {
 		const tagStart = html.indexOf("<", cursor)
 		if (tagStart === -1) return false
 
+		if (html.startsWith("<!--", tagStart)) {
+			const commentEnd = html.indexOf("-->", tagStart + 4)
+			if (commentEnd === -1) return false
+			cursor = commentEnd + 3
+			continue
+		}
+
+		const tagLead = html[tagStart + 1]
+		const isTagOpening =
+			tagLead === "/" ||
+			tagLead === "!" ||
+			tagLead === "?" ||
+			(typeof tagLead === "string" && /[A-Za-z]/.test(tagLead))
+
+		if (!isTagOpening) {
+			cursor = tagStart + 1
+			continue
+		}
+
 		let quote: '"' | "'" | null = null
 		let tagEnd = tagStart + 1
 
@@ -48,8 +67,7 @@ export function validatePostMarkdownBody(value: unknown): true | string {
 
 	try {
 		const document = createMarkdownDocument(value)
-		const renderedHtml = document.html.replace(/<!--[\s\S]*?-->/g, "")
-		return containsH1Element(renderedHtml) ? POST_CONTENT_H1_ERROR : true
+		return containsH1Element(document.html) ? POST_CONTENT_H1_ERROR : true
 	} catch {
 		return POST_CONTENT_PARSE_ERROR
 	}

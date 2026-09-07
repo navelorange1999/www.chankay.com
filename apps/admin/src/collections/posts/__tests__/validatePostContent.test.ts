@@ -33,6 +33,8 @@ describe("validatePostMarkdownBody", () => {
 		"- # Title",
 		"<h1\nclass=title>Title</h1>",
 		"<h1/>Title",
+		"<div>1 < 2<h1>Title</h1></div>",
+		'<div title="<!--">Body</div><h1>Title</h1><!-- -->',
 	])("rejects an H1 in %j", (value) => {
 		expect(validatePostMarkdownBody(value)).toBe(POST_CONTENT_H1_ERROR)
 	})

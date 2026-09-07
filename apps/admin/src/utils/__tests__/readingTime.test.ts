@@ -185,6 +185,35 @@ describe("estimateReadingTimeFromMarkdown", () => {
 		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(1)
 	})
 
+	it("ignores HTML comments", () => {
+		expect(estimateReadingTimeFromMarkdown(`<!-- ${words(400, "hiddenComment")} -->`)).toBe(0)
+	})
+
+	it("retains HTML container text without counting attributes", () => {
+		const markdown = `<div data-hidden="${words(400, "hiddenAttribute")}">${words(200, "visibleChild")}</div>`
+
+		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(1)
+	})
+
+	it("ignores raw images and non-visible HTML blocks", () => {
+		const image = `<img alt="${words(400, "hiddenAlt")}" src="https://example.com/image.png" title="${words(400, "hiddenTitle")}">`
+		const nonVisibleBlocks = ["script", "style", "template"]
+			.map((tag) => `<${tag}>${words(400, `hidden${tag}`)}</${tag}>`)
+			.join("\n")
+
+		expect(estimateReadingTimeFromMarkdown(`${image}\n${nonVisibleBlocks}`)).toBe(0)
+	})
+
+	it("decodes entities without counting entity names as words", () => {
+		expect(estimateReadingTimeFromMarkdown("&nbsp;")).toBe(0)
+		expect(
+			estimateReadingTimeFromMarkdown(`${words(198, "namedEntityWord")} word &amp; word`)
+		).toBe(1)
+		expect(
+			estimateReadingTimeFromMarkdown(`${words(198, "numericEntityWord")} word &#38; word`)
+		).toBe(1)
+	})
+
 	it("returns zero when no readable content remains", () => {
 		expect(estimateReadingTimeFromMarkdown("```ts\nconst value = 1\n```")).toBe(0)
 		expect(estimateReadingTimeFromMarkdown("# **_~~> -")).toBe(0)

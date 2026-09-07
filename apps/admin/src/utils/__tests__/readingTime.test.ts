@@ -52,13 +52,36 @@ describe("estimateReadingTimeFromMarkdown", () => {
 		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(0)
 	})
 
+	it("requires fenced code closers to match the opening length", () => {
+		const markdown = [
+			"  ~~~~ts",
+			words(400, "hidden-before-short-close"),
+			"  ~~~",
+			words(400, "hidden-after-short-close"),
+			"  ~~~~",
+			words(200, "visibleAfterFence"),
+		].join("\n")
+
+		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(1)
+	})
+
+	it("matches complete inline backtick runs and preserves visible prose", () => {
+		const markdown = [
+			"``outer " + "```" + "internal``",
+			words(400, "visibleAfterInline"),
+			"`" + words(400, "single-backtick-code") + "`",
+		].join("\n")
+
+		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(2)
+	})
+
 	it("ignores empty and reference-style images and their definitions", () => {
 		const markdown = [
 			`![${words(400, "empty-image-alt")}]()`,
 			`![${words(400, "reference-image-alt")}][image-ref]`,
 			`![${words(400, "collapsed-image-alt")}][]`,
 			`![${words(400, "shortcut-image-alt")}]`,
-			`[image-ref]: https://example.com/${words(400, "image-destination")}`,
+			"[image-ref]: https://example.com/image-destination",
 		].join("\n")
 
 		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(0)
@@ -67,7 +90,7 @@ describe("estimateReadingTimeFromMarkdown", () => {
 	it("retains reference link labels while ignoring their destinations", () => {
 		const markdown = [
 			`[${words(200, "referenceLabel")}][article-ref]`,
-			`[article-ref]: https://example.com/${words(400, "article-destination")}`,
+			"[article-ref]: https://example.com/article-destination",
 		].join("\n")
 
 		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(1)

@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest"
 import {
 	POST_CONTENT_H1_ERROR,
 	POST_CONTENT_PARSE_ERROR,
+	validatePostContent,
 	validatePostMarkdownBody,
 } from "../validatePostContent"
 
@@ -14,6 +15,7 @@ describe("validatePostMarkdownBody", () => {
 		"Inline `<h1>example</h1>`",
 		"## Section\n===",
 		"<!-- <h1>Example</h1> -->",
+		'<div title="<h1>">Body</div>',
 		"",
 		null,
 		42,
@@ -37,5 +39,32 @@ describe("validatePostMarkdownBody", () => {
 
 	it("returns a parse error for invalid HTML entities", () => {
 		expect(validatePostMarkdownBody("## &#x110000;")).toBe(POST_CONTENT_PARSE_ERROR)
+	})
+})
+
+describe("validatePostContent", () => {
+	const createOptions = (overrides: Record<string, unknown> = {}) =>
+		({
+			req: {
+				payload: { config: {} },
+				t: (key: string) => key,
+			},
+			...overrides,
+		}) as Parameters<typeof validatePostContent>[1]
+
+	it("preserves required-field validation", () => {
+		expect(validatePostContent(undefined, createOptions({ required: true }))).toBe(
+			"validation:required"
+		)
+	})
+
+	it("returns built-in length errors before Markdown errors", () => {
+		expect(validatePostContent("# Heading", createOptions({ maxLength: 3 }))).toBe(
+			"validation:shorterThanMax"
+		)
+	})
+
+	it("accepts valid H2 content after built-in validation", () => {
+		expect(validatePostContent("## Section", createOptions({ required: true }))).toBe(true)
 	})
 })

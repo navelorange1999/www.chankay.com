@@ -2,6 +2,9 @@ import { describe, expect, it } from "vitest"
 
 import { estimateReadingTimeFromMarkdown } from "../readingTime"
 
+const words = (count: number, prefix: string) =>
+	Array.from({ length: count }, (_, index) => `${prefix}${index}`).join(" ")
+
 describe("estimateReadingTimeFromMarkdown", () => {
 	it("counts Han characters at 400 characters per minute", () => {
 		expect(estimateReadingTimeFromMarkdown("猪".repeat(800))).toBe(2)
@@ -22,8 +25,6 @@ describe("estimateReadingTimeFromMarkdown", () => {
 	})
 
 	it("ignores code and image syntax while retaining visible link labels", () => {
-		const words = (count: number, prefix: string) =>
-			Array.from({ length: count }, (_, index) => `${prefix}${index}`).join(" ")
 		const visibleLabel = words(200, "visible")
 		const ignoredAltText = words(400, "image-alt")
 		const ignoredInlineCode = words(400, "inline-code")
@@ -35,6 +36,38 @@ describe("estimateReadingTimeFromMarkdown", () => {
 			"```ts",
 			ignoredFencedCode,
 			"```",
+		].join("\n")
+
+		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(1)
+	})
+
+	it("ignores tilde-fenced code and multi-backtick inline code", () => {
+		const markdown = [
+			"   ~~~ts",
+			words(400, "tilde-code"),
+			"   ~~~",
+			"``" + words(400, "multi-backtick-code") + "``",
+		].join("\n")
+
+		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(0)
+	})
+
+	it("ignores empty and reference-style images and their definitions", () => {
+		const markdown = [
+			`![${words(400, "empty-image-alt")}]()`,
+			`![${words(400, "reference-image-alt")}][image-ref]`,
+			`![${words(400, "collapsed-image-alt")}][]`,
+			`![${words(400, "shortcut-image-alt")}]`,
+			`[image-ref]: https://example.com/${words(400, "image-destination")}`,
+		].join("\n")
+
+		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(0)
+	})
+
+	it("retains reference link labels while ignoring their destinations", () => {
+		const markdown = [
+			`[${words(200, "referenceLabel")}][article-ref]`,
+			`[article-ref]: https://example.com/${words(400, "article-destination")}`,
 		].join("\n")
 
 		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(1)

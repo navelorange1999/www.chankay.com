@@ -1,4 +1,4 @@
-import type { Field } from "payload"
+import type { Field, TextareaFieldValidation } from "payload"
 
 interface MarkdownFieldArgs {
 	name: string
@@ -7,6 +7,7 @@ interface MarkdownFieldArgs {
 	localized?: boolean
 	defaultValue?: string
 	relationTo?: string
+	validate?: TextareaFieldValidation
 	admin?: {
 		description?: string
 		placeholder?: string
@@ -22,6 +23,7 @@ export const markdownField = ({
 	localized = false,
 	defaultValue = "",
 	relationTo = "media",
+	validate,
 	admin,
 }: MarkdownFieldArgs): Field => ({
 	name,
@@ -30,6 +32,7 @@ export const markdownField = ({
 	required,
 	localized,
 	defaultValue,
+	validate,
 	admin: {
 		...admin,
 		components: {

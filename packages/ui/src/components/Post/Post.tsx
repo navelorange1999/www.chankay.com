@@ -35,9 +35,13 @@ function PostThumbnail({ className, ...props }: React.ComponentProps<"div">) {
 	)
 }
 
-function PostTitle({ className, ...props }: React.ComponentProps<"h2">) {
+interface PostTitleProps extends React.ComponentPropsWithoutRef<"h2"> {
+	as?: "h1" | "h2"
+}
+
+function PostTitle({ as: Component = "h2", className, ...props }: PostTitleProps) {
 	return (
-		<h2
+		<Component
 			data-slot="post-title"
 			className={cn("text-2xl font-bold leading-tight tracking-tight md:text-3xl", className)}
 			{...props}

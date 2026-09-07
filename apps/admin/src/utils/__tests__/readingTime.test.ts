@@ -81,6 +81,64 @@ describe("estimateReadingTimeFromMarkdown", () => {
 		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(2)
 	})
 
+	it("counts visible text around escaped backticks", () => {
+		const markdown = "\\`" + words(400, "escapedBacktickVisible") + "\\`"
+
+		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(2)
+	})
+
+	it("does not bridge unmatched backticks across paragraphs", () => {
+		const markdown = [
+			"`" + words(200, "firstParagraphVisible"),
+			words(200, "secondParagraphVisible") + "`",
+		].join("\n\n")
+
+		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(2)
+	})
+
+	it("excludes tilde-fenced code inside blockquotes", () => {
+		const markdown = ["> ~~~ts", "> " + words(400, "hiddenQuoteCode"), "> ~~~"].join("\n")
+
+		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(0)
+	})
+
+	it("excludes fenced code inside list items", () => {
+		const markdown = ["-", "  ~~~ts", "  " + words(400, "hiddenListCode"), "  ~~~"].join("\n")
+
+		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(0)
+	})
+
+	it("excludes resolved images with nested alt text", () => {
+		const markdown = "![hidden [nested]](https://example.com/image.png)"
+
+		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(0)
+	})
+
+	it("does not count image titles containing closing parentheses", () => {
+		const markdown =
+			`![${words(400, "imageAlt")}]` +
+			`(https://example.com/image.png "hidden ) ${words(400, "imageTitle")}")`
+
+		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(0)
+	})
+
+	it("excludes resolved images with wrapped reference definitions", () => {
+		const markdown = [
+			`![${words(400, "wrappedReferenceAlt")}][wrapped-image]`,
+			"",
+			"[wrapped-image]:",
+			"  <https://example.com/wrapped-image.png>",
+		].join("\n")
+
+		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(0)
+	})
+
+	it("retains invalid definition-like lines as visible text", () => {
+		const markdown = ["[note]: ", words(400, "visibleAfterInvalidNote")].join("\n")
+
+		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(3)
+	})
+
 	it("preserves unmatched inline backtick runs", () => {
 		expect(estimateReadingTimeFromMarkdown("`" + words(400, "visibleAfterUnmatchedRun"))).toBe(2)
 	})
@@ -91,21 +149,24 @@ describe("estimateReadingTimeFromMarkdown", () => {
 		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(0)
 	})
 
-	it("ignores empty and reference-style images and their definitions", () => {
+	it("ignores resolved images but retains unresolved shortcut image text", () => {
 		const markdown = [
-			`![${words(400, "empty-image-alt")}]()`,
-			`![${words(400, "reference-image-alt")}][image-ref]`,
-			`![${words(400, "collapsed-image-alt")}][]`,
-			`![${words(400, "shortcut-image-alt")}]`,
+			`![${words(400, "resolvedEmptyImageAlt")}]()`,
+			`![${words(400, "resolvedReferenceImageAlt")}][image-ref]`,
+			"![resolvedCollapsedImageAlt][]",
+			`![${words(400, "unresolvedShortcutImage")}]`,
+			"",
 			"[image-ref]: https://example.com/image-destination",
+			"[resolvedCollapsedImageAlt]: https://example.com/collapsed-image",
 		].join("\n")
 
-		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(0)
+		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(2)
 	})
 
 	it("retains reference link labels while ignoring their destinations", () => {
 		const markdown = [
 			`[${words(200, "referenceLabel")}][article-ref]`,
+			"",
 			"[article-ref]: https://example.com/article-destination",
 		].join("\n")
 

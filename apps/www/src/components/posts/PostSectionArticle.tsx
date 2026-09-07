@@ -224,7 +224,9 @@ export async function PostSectionArticle({
 
 							<PostHeader className="gap-4">
 								<div className="space-y-3">
-									<PostTitle className="text-4xl md:text-5xl">{postTitle}</PostTitle>
+									<PostTitle as="h1" className="text-4xl md:text-5xl">
+										{postTitle}
+									</PostTitle>
 								</div>
 
 								<PostMetaInline>

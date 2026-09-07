@@ -75,6 +75,22 @@ describe("estimateReadingTimeFromMarkdown", () => {
 		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(2)
 	})
 
+	it("does not treat a line-start inline span as a fenced block", () => {
+		const markdown = "```inline code```\n" + words(400, "visibleAfterInlineSpan")
+
+		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(2)
+	})
+
+	it("preserves unmatched inline backtick runs", () => {
+		expect(estimateReadingTimeFromMarkdown("`" + words(400, "visibleAfterUnmatchedRun"))).toBe(2)
+	})
+
+	it("excludes unclosed fenced blocks through end of input", () => {
+		const markdown = ["~~~ts", words(400, "hiddenUntilEof")].join("\n")
+
+		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(0)
+	})
+
 	it("ignores empty and reference-style images and their definitions", () => {
 		const markdown = [
 			`![${words(400, "empty-image-alt")}]()`,

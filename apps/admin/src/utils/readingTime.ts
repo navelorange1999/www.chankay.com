@@ -17,11 +17,13 @@ const readFence = (line: string): (Fence & { trailing: string }) | null => {
 	if (!match) return null
 	const marker = match[1]
 	if (!marker) return null
+	const trailing = match[2] ?? ""
+	if (marker[0] === "`" && trailing.includes("`")) return null
 
 	return {
 		character: marker[0] as Fence["character"],
 		length: marker.length,
-		trailing: match[2] ?? "",
+		trailing,
 	}
 }
 

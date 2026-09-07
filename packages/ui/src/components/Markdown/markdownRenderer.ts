@@ -195,8 +195,8 @@ export function createMarkdownDocument(content: string): MarkdownDocument {
 
 	const rawHtml = marked.parse(content, {
 		async: false,
-		gfm: true,
 		breaks: false,
+		gfm: true,
 		renderer,
 	}) as string
 

@@ -98,6 +98,10 @@ export const SiteConfig: GlobalConfig = {
 - When an existing field becomes localized, ship an idempotent data migration in the same release to wrap the stored value under the default locale.
 - Keep fixed application-interface text in the typed `@repo/i18n` catalog instead of adding CMS fields that editors should not control.
 
+## Locale-Dependent Derived Fields
+
+Do not persist a shared scalar when its value depends on localized content. Define it as a virtual field and derive it in `afterRead` from the locale-resolved sibling value. This keeps the API shape stable while allowing the requested locale and Payload fallback behavior to determine the result without a data migration.
+
 ## When Adding New Payload Features
 
 Check these areas in order:

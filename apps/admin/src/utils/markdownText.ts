@@ -65,6 +65,7 @@ function extractVisibleHtmlText(html: string): string {
 			onclosetag(name) {
 				if (HIDDEN_TAGS.has(name)) {
 					hiddenDepth = Math.max(0, hiddenDepth - 1)
+					if (name === "pre" && hiddenDepth === 0) text.push(" ")
 					return
 				}
 
@@ -72,6 +73,7 @@ function extractVisibleHtmlText(html: string): string {
 			},
 			onopentag(name) {
 				if (HIDDEN_TAGS.has(name)) {
+					if (name === "pre" && hiddenDepth === 0) text.push(" ")
 					hiddenDepth += 1
 					return
 				}

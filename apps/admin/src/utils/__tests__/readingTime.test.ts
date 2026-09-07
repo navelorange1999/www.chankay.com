@@ -256,6 +256,12 @@ describe("estimateReadingTimeFromMarkdown", () => {
 		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(1)
 	})
 
+	it("preserves boundaries around hidden raw preformatted blocks", () => {
+		const markdown = `${words(199, "preBoundaryWord")} <div>before<pre>hiddenRawCode</pre>after</div>`
+
+		expect(estimateReadingTimeFromMarkdown(markdown)).toBe(2)
+	})
+
 	it("decodes entities without counting entity names as words", () => {
 		expect(estimateReadingTimeFromMarkdown("&nbsp;")).toBe(0)
 		expect(

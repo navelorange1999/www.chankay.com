@@ -2,6 +2,16 @@
 
 > Last Updated: March 12, 2026
 
+## Social Publishing Service Boundary
+
+`social-accounts` stores Admin-managed destination policy and immutable provider identity. `social-publications` stores server-owned snapshots, approvals, remote identifiers, errors, and the most recent 50 command/worker audit entries. Both expose native MCP find only. Normal collection creation, editing, or deletion cannot advance publication state.
+
+Post-side Admin preparation and the three MCP commands call `services/socialPublishing`. Preparation loads explicit localized content with fallback disabled, validates Media references, and hashes source, destination, renderer version, settings, and prepared output. An unchanged snapshot reuses its unique preparation key. Source or settings edits require a new preparation before a new mutation. The worker uses frozen settings rather than re-rendering with mutable current configuration.
+
+Effective-user reads and record creation preserve `req`, `user`, and `overrideAccess: false`; record creation requires a non-serializable server context capability. After authorization, only the private state repository calls the database adapter for atomic status/hash/claim-lease transitions. Queue operations use server authority after validating their identifier-only command and the stored snapshot. Do not expose state updates through generic CRUD, and do not attach social publishing to Post hooks.
+
+Adapters declare remote-draft and asynchronous-status capabilities. WeChat is the initial adapter, with strict prepared-payload validation, bounded HTTP execution, media checkpoints, and a draft readback comparison before final submission. Adding a platform extends the typed platform union, account settings, prepared payload, and registry. It does not require a new MCP transport or platform-specific Post fields.
+
 ## Where Payload Lives
 
 The canonical Payload setup is in `apps/admin`.

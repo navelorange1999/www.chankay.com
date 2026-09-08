@@ -1,5 +1,9 @@
 # Manual Social Publishing through Payload MCP
 
+## Implementation Status
+
+Phases 1–3 are implemented on `feat/social-publishing`, with unit and mocked-provider verification and an isolated Admin build. The operational account/API verification gates below remain pending; remote writes, deployment secrets, and production MCP permissions have not been enabled. See `docs/superpowers/plans/2026-09-08-social-publishing.md` for execution and validation details and `docs/deployment-and-environments.md` for enablement and recovery.
+
 ## Goal
 
 Add a manual, auditable social publishing capability to the existing Chankay Payload CMS. An authorized operator can select an existing Post and locale, prepare a platform-specific publication, create a remote draft when the platform supports one, review the exact prepared snapshot, and explicitly confirm the final external publication.

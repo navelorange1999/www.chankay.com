@@ -41,6 +41,17 @@ export const Posts: CollectionConfig = {
 		maxPerDoc: 10,
 	},
 	fields: [
+		{
+			name: "socialPublishing",
+			type: "ui",
+			admin: {
+				position: "sidebar",
+				components: {
+					Field:
+						"/components/socialPublishing/PostSocialPublishingActions#PostSocialPublishingActions",
+				},
+			},
+		},
 		// === Core Content ===
 		{
 			name: "title",

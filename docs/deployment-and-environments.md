@@ -1,5 +1,40 @@
 # Deployment and Environments
 
+## Manual Social Publishing
+
+Social publishing runs in the Admin project. The `social-publications` Vercel Queue topic delivers identifier-only `{ action, publicationId }` messages to `/api/queue/social-publications`. The callback has a 60-second budget; adapter calls share a 45-second execution deadline. Local and non-Vercel execution is serialized in process and is not durable across restarts.
+
+Create a disabled Social Account first. The only initial credential reference is `wechat-primary`; code resolves it through `WECHAT_PRIMARY_APP_ID` and `WECHAT_PRIMARY_APP_SECRET`. Configure these using the deployment platform's secret settings. The application ID must equal the immutable account `providerAccountId`. Rotation may change the secret but may not redirect the account. Never put credentials in CMS fields, queues, logs, or MCP responses.
+
+`NEXT_PUBLIC_SERVER_URL` and `VERCEL_BLOB_PUBLIC_BASE_URL` define permitted HTTPS Media origins. Images must resolve to existing Payload Media records. The worker rejects redirects and checks the stored URL, MIME type, and media modification timestamp against the snapshot. Preparation permits at most eight distinct images including the cover. `WWW_SITE_URL` determines the canonical article URL.
+
+### Enablement and acceptance gates
+
+#### Current WeChat rollout: draft synchronization only
+
+On September 8, 2026, the account owner confirmed that account `wxcc467391094c646b` has the required material upload and draft creation/read permissions. The supplied console screenshot confirms stable-token access, but publication submission and publication-status lookup are unavailable. Treat the material and draft permissions as owner-confirmed until verified by a live draft synchronization.
+
+The authorized integration scope is to upload the selected article's media, create a WeChat draft, and inspect the result. Do not submit a publication or grant the `publish_social_publication` MCP permission. Use the Admin interface for the initial verification so no new MCP permission grants are needed. Account certification and publication acceptance remain deferred. The first article must be selected by the owner before creating a remote draft.
+
+The following full-publication acceptance gates remain applicable when publication is resumed:
+
+1. Verify the actual WeChat account's API permissions, quotas, IP allowlist, stable-token support, image limits, draft normalization, publication semantics, and status lookup in the account console and current official documentation.
+2. Configure a sandbox account and enable its Social Account only in development. Grant native find and `prepare_social_publication` permissions explicitly on a development MCP key. New tool permissions are disabled by default; deployment does not grant them.
+3. Prepare a published Post with explicit `zh-CN` content. Confirm the title, body, cover, account, locale, and snapshot. Missing locale content must fail without English fallback.
+4. Grant `create_social_draft`, create one draft, and verify repeated commands do not duplicate it. Validate that `/cgi-bin/draft/get` round-trips the reviewed content exactly; the implementation fails closed if WeChat normalizes any compared field. Do not edit a remote draft while final publication is running.
+5. Only after draft acceptance, grant `publish_social_publication` to a development key owned by an Admin. Confirm the exact hash and test pending, successful, failed, and interrupted status paths using the sandbox account.
+6. Repeat the review explicitly for production before configuring production secrets, enabling accounts, or granting production MCP permissions. Real publication is never a production smoke test.
+
+The application currently uses conservative limits (64-character title, 120-character summary, 8-character author, 20 KB HTML, 1 MB inline images, 10 MB cover). These are provisional application constraints, not a claim about the production account's limits. Official documentation could not be retrieved during implementation; Phase 4 acceptance remains pending. Start verification from the official [draft API](https://developers.weixin.qq.com/doc/service/api/draftbox/draftmanage/api_draft_add), [publication submission API](https://developers.weixin.qq.com/doc/service/api/public/api_freepublish_submit), and [publication status API](https://developers.weixin.qq.com/doc/service/api/public/api_freepublish_get).
+
+### Recovery and rollback
+
+Known non-ambiguous failures may be retried through the same command. A final publication retry requires a new explicit confirmation for the same snapshot. Provider IDs and media checkpoints suppress duplicate mutations. Queue claims use MongoDB's conditional `findOneAndUpdate` through the Payload database adapter; do not replace this with a high-level bulk update that first reads matching documents.
+
+An interrupted mutation without a known submission stops in `unknown`. Inspect the remote account; do not recreate or blindly resubmit the publication. A known submission can be reconciled through identifier-only `status-check` delivery, which never calls draft creation or publication. The worker performs at most ten status lookups with bounded backoff; exhausted records remain `unknown` for operator inspection. Repeating the final command can redispatch a queued action or reconcile a known submission, without repeating publication. After a local process restart, queued commands need redispatch because the in-process transport is non-durable.
+
+Disable the Social Account and MCP tool permissions to stop new work, and pause the queue trigger if rolling back. Preserve publication records and external articles. Any external deletion is a separate operational action.
+
 > Last Updated: March 12, 2026
 
 This document describes the current deployment model for the repository. It covers the existing `www` and `admin` applications only.

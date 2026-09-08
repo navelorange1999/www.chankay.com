@@ -13,6 +13,15 @@ const adminMcpAccess = {
 } as const
 
 export const mcpCollections = {
+	"social-accounts": {
+		description: "Social publishing destinations. Configuration changes require Admin.",
+		enabled: readOnlyMcpAccess,
+	},
+	"social-publications": {
+		description:
+			"Immutable publication snapshots and audit status. Mutations use custom tools only.",
+		enabled: readOnlyMcpAccess,
+	},
 	posts: {
 		description: "Blog posts and long-form article content.",
 		enabled: adminMcpAccess,

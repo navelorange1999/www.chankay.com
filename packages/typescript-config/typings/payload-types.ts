@@ -74,6 +74,8 @@ export interface Config {
     tags: Tag;
     series: Series;
     pages: Page;
+    'social-accounts': SocialAccount;
+    'social-publications': SocialPublication;
     'payload-mcp-api-keys': PayloadMcpApiKey;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -88,6 +90,8 @@ export interface Config {
     tags: TagsSelect<false> | TagsSelect<true>;
     series: SeriesSelect<false> | SeriesSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
+    'social-accounts': SocialAccountsSelect<false> | SocialAccountsSelect<true>;
+    'social-publications': SocialPublicationsSelect<false> | SocialPublicationsSelect<true>;
     'payload-mcp-api-keys': PayloadMcpApiKeysSelect<false> | PayloadMcpApiKeysSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -246,7 +250,7 @@ export interface Post {
    */
   excerpt?: string | null;
   /**
-   * Main article content written in Markdown.
+   * Main article content written in Markdown. Start sections at H2.
    */
   content: string;
   /**
@@ -56512,6 +56516,121 @@ export interface Page {
   createdAt: string;
 }
 /**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "social-accounts".
+ */
+export interface SocialAccount {
+  id: string;
+  name: string;
+  platform: 'wechat-official-account';
+  /**
+   * Immutable WeChat application ID. Create a new account to change destination.
+   */
+  providerAccountId: string;
+  enabled: boolean;
+  defaultLocale: 'en' | 'zh-CN';
+  allowedLocales: ('en' | 'zh-CN')[];
+  eligiblePrimaryTags?: (string | Tag)[] | null;
+  credentialReference: 'wechat-primary';
+  platformSettings?: {
+    author?: string | null;
+    openComments?: boolean | null;
+    onlyFansCanComment?: boolean | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "social-publications".
+ */
+export interface SocialPublication {
+  id: string;
+  sourcePost: string | Post;
+  sourceLocale: 'en' | 'zh-CN';
+  sourceUpdatedAt: string;
+  sourceHash: string;
+  account: string | SocialAccount;
+  platform: 'wechat-official-account';
+  providerAccountId: string;
+  idempotencyKey: string;
+  status:
+    | 'preparing'
+    | 'prepared'
+    | 'draft_queued'
+    | 'draft_creating'
+    | 'draft_ready'
+    | 'publish_queued'
+    | 'publishing'
+    | 'status_check_queued'
+    | 'status_checking'
+    | 'published'
+    | 'failed'
+    | 'unknown'
+    | 'cancelled';
+  snapshot:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  preparedPayload:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  snapshotHash: string;
+  approval?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  remote?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  attempts?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  lastError?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  statusChecks?: number | null;
+  nextCheckAt?: string | null;
+  claimExpiresAt?: string | null;
+  publishedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * API keys control which collections, resources, tools, and prompts MCP clients can access
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -56531,6 +56650,18 @@ export interface PayloadMcpApiKey {
    * The purpose of the API key.
    */
   description?: string | null;
+  socialAccounts?: {
+    /**
+     * Allow clients to find social-accounts.
+     */
+    find?: boolean | null;
+  };
+  socialPublications?: {
+    /**
+     * Allow clients to find social-publications.
+     */
+    find?: boolean | null;
+  };
   posts?: {
     /**
      * Allow clients to find posts.
@@ -56648,6 +56779,18 @@ export interface PayloadMcpApiKey {
      * Translate SiteConfig navigation and footer link labels by URL while preserving shared array items and other locales.
      */
     translateSiteConfigLabels?: boolean | null;
+    /**
+     * Prepare an immutable social publication from a published Post and explicit locale. Does not write to the external platform. Review the exact snapshot before creating a draft or publishing.
+     */
+    prepareSocialPublication?: boolean | null;
+    /**
+     * Create a remote draft for the exact reviewed snapshot. This writes to the account's draft box but does not publish. Repeated calls return current state.
+     */
+    createSocialDraft?: boolean | null;
+    /**
+     * Publish externally. Call ONLY after showing the prepared content, account, locale and snapshot hash to the user and receiving explicit confirmation. Requires an Admin user and the exact reviewed snapshot hash. Repeated calls return current state.
+     */
+    publishSocialPublication?: boolean | null;
   };
   updatedAt: string;
   createdAt: string;
@@ -56703,6 +56846,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: string | Page;
+      } | null)
+    | ({
+        relationTo: 'social-accounts';
+        value: string | SocialAccount;
+      } | null)
+    | ({
+        relationTo: 'social-publications';
+        value: string | SocialPublication;
       } | null)
     | ({
         relationTo: 'payload-mcp-api-keys';
@@ -88391,12 +88542,73 @@ export interface PagesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "social-accounts_select".
+ */
+export interface SocialAccountsSelect<T extends boolean = true> {
+  name?: T;
+  platform?: T;
+  providerAccountId?: T;
+  enabled?: T;
+  defaultLocale?: T;
+  allowedLocales?: T;
+  eligiblePrimaryTags?: T;
+  credentialReference?: T;
+  platformSettings?:
+    | T
+    | {
+        author?: T;
+        openComments?: T;
+        onlyFansCanComment?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "social-publications_select".
+ */
+export interface SocialPublicationsSelect<T extends boolean = true> {
+  sourcePost?: T;
+  sourceLocale?: T;
+  sourceUpdatedAt?: T;
+  sourceHash?: T;
+  account?: T;
+  platform?: T;
+  providerAccountId?: T;
+  idempotencyKey?: T;
+  status?: T;
+  snapshot?: T;
+  preparedPayload?: T;
+  snapshotHash?: T;
+  approval?: T;
+  remote?: T;
+  attempts?: T;
+  lastError?: T;
+  statusChecks?: T;
+  nextCheckAt?: T;
+  claimExpiresAt?: T;
+  publishedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-mcp-api-keys_select".
  */
 export interface PayloadMcpApiKeysSelect<T extends boolean = true> {
   user?: T;
   label?: T;
   description?: T;
+  socialAccounts?:
+    | T
+    | {
+        find?: T;
+      };
+  socialPublications?:
+    | T
+    | {
+        find?: T;
+      };
   posts?:
     | T
     | {
@@ -88450,6 +88662,9 @@ export interface PayloadMcpApiKeysSelect<T extends boolean = true> {
         updatePageSeo?: T;
         publishPage?: T;
         translateSiteConfigLabels?: T;
+        prepareSocialPublication?: T;
+        createSocialDraft?: T;
+        publishSocialPublication?: T;
       };
   updatedAt?: T;
   createdAt?: T;

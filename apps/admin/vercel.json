@@ -1,6 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "functions": {
+    "src/app/api/queue/social-publications/route.ts": {
+      "experimentalTriggers": [{ "type": "queue/v2beta", "topic": "social-publications" }],
+      "maxDuration": 60
+    },
     "src/app/api/queue/page-assets/route.ts": {
       "experimentalTriggers": [
         {

@@ -52,21 +52,21 @@ Files: `plugins/mcp/social-publication/index.ts`, `services/socialPublishing/end
 - [x] Review against the acceptance criteria, then review correctness and security; fix material findings.
 - [x] Update deployment and Payload conventions in place. Record required WeChat account verification, sandbox acceptance, production credential setup, and explicit MCP permission enablement as pending operator gates.
 
-## Verification environment
-
 ## Task 6: Published article assets for the authorized WeChat draft trial
 
 - [x] Add publication-only cover and exact Mermaid-definition Media mappings, replayed during staleness checks.
 - [x] Test safe tables, missing/unused diagrams, and changed source/assets before remote writes.
 - [x] Add browser PNG export using the existing Mermaid dependency, authenticated Media uploads, and cover selection.
-- [ ] Run tests, TypeScript, isolated build, and Preview visual checks.
+- [x] Run tests, TypeScript, isolated build, and browser visual checks.
 - [ ] Synchronize the selected Trading article as a remote draft only.
+
+## Verification environment
 
 Use installed Node 24.16.0 because the shell's Node 22.9.0 is below pnpm's minimum. No dependency additions are expected. Automated provider tests use injected HTTP and credentials; no live remote writes are authorized by this implementation task.
 
 ## Verification results
 
-The implementation covers phases 1–3. Phase 4 remains an operator gate: no live account writes, permission grants, production secrets, or deployments were performed.
+At the initial implementation checkpoint, phases 1–3 were complete. Live-account operations and deployment were deferred to the subsequent authorized draft trial.
 
 Admin tests and TypeScript checks pass. The Admin production build passes in an environment-free staged source tree using the already installed dependencies. The existing MCP dependency emits an optional `source-map-support` resolution warning, and Vercel Queue reports its local default region. No application lint warnings remain.
 
@@ -74,4 +74,4 @@ Changed-file formatting and `git diff --check` pass. Full-repository formatting 
 
 The pnpm wrapper attempted dependency reconciliation against shared worktree links, so verification invokes the installed Vitest, TypeScript, Next, and Prettier binaries directly with Node 24.16.0. No dependencies or lockfile were changed.
 
-Task 6 verification: 231 Admin tests pass when run from `apps/admin`; Admin and UI TypeScript pass; isolated Next build passes with the same existing dependency warnings. Browser visual checks pass for all four actual article diagrams (approximately 76–235 KB each). The article renders to 12,157 bytes of HTML with four images and one table. Preview deployment and remote draft verification remain pending.
+Task 6 verification: 231 Admin tests pass when run from `apps/admin`; Admin and UI TypeScript pass; isolated Next build passes with the same existing dependency warnings. Browser visual checks pass for all four actual article diagrams (approximately 76–235 KB each). The article renders to 12,157 bytes of HTML with four images and one table. Preview deployment of `e526151` is Ready at `https://adminchankay-ioabaic5m-navelorange1999s-projects.vercel.app`. Only this redeployment disabled the project Ignore Build Step. The uploaded cover returned HTTP 200. The new Preview hostname requires an operator login before in-CMS preparation and remote draft verification. No WeChat mutation has occurred.

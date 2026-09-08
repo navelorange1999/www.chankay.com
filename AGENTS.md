@@ -223,6 +223,7 @@ When multiple sources overlap, use this priority order:
 The `docs/proposals/` folder holds design documents for features that are not yet stable. They are normative for the work in flight but should be promoted (moved into `docs/`) once the implementation is shipped and verified.
 
 - [`docs/proposals/llm-translation-architecture.md`](./docs/proposals/llm-translation-architecture.md): Editor-triggered LLM translation with Anthropic + Langfuse Cloud.
+- [`docs/proposals/social-publishing-architecture.md`](./docs/proposals/social-publishing-architecture.md): Manual, auditable social publishing from Payload Posts through the native Payload MCP integration, with extensible platform adapters and WeChat first.
 
 ## Maintenance Notes
 

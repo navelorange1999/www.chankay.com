@@ -1,4 +1,4 @@
-# Manual Social Publishing through Payload MCP Design
+# Manual Social Publishing through Payload MCP
 
 ## Goal
 
@@ -51,10 +51,10 @@ The local checkout was 60 commits behind `origin/master` when this design was wr
 ### Functional Requirements
 
 1. Manage one or more Social Accounts in Payload Admin.
-2. Associate each Social Account with one platform, allowed locales, optional eligible primary Tags, non-secret platform settings, and a server-side credential reference.
+2. Associate each Social Account with one platform, an immutable non-secret provider account identity, allowed locales, optional eligible primary Tags, non-secret platform settings, and a server-side credential reference.
 3. Prepare a Social Publication only from an existing published Post and an explicit locale.
 4. Load localized Post fields with `fallbackLocale: false` and reject missing required localized values.
-5. Freeze the reviewed source and platform-prepared output in an immutable snapshot identified by a hash.
+5. Freeze the reviewed destination identity, source, adapter version, rendering settings, and platform-prepared output in an immutable snapshot identified by a hash.
 6. Create a remote draft on platforms that declare remote-draft support.
 7. Require a separate final action with the expected snapshot hash before external publication.
 8. Support the same prepare, draft, and publish commands from Payload Admin and the existing Payload MCP server.
@@ -71,6 +71,7 @@ The local checkout was 60 commits behind `origin/master` when this design was wr
 5. User-authorized Payload operations must preserve normal Payload access control.
 6. Queue processors must tolerate duplicate delivery.
 7. Adding a platform must not require adding platform-specific fields to Posts or new platform-specific MCP tools.
+8. Credential rotation must not be able to redirect an approved publication to a different provider account.
 
 ## Goals and Non-Goals
 
@@ -236,6 +237,8 @@ The shared service uses capabilities instead of assuming every platform has WeCh
 
 `PreparedPlatformPayload` and provider metadata are server-owned discriminated unions. They may be persisted in Payload JSON fields, but MCP and ordinary Admin document updates cannot write them. The selected adapter validates the stored discriminator and shape before every remote operation.
 
+The server-only credential provider returns both the resolved secret material and its stable provider account identity. Before any remote mutation, the service compares that identity with the immutable `providerAccountId` stored on the Social Account and copied into the publication snapshot. A mismatch fails closed before the adapter is called.
+
 ## Database Model
 
 ### Social Accounts
@@ -246,6 +249,7 @@ The shared service uses capabilities instead of assuming every platform has WeCh
 | ------------------------ | --------------------------------------------------------------------------- |
 | `name`                   | Required display name                                                       |
 | `platform`               | Required select; initially `wechat-official-account`                        |
+| `providerAccountId`      | Required stable non-secret provider identity; immutable after creation      |
 | `enabled`                | Required checkbox; disabled accounts reject new commands                    |
 | `defaultLocale`          | Supported locale select                                                     |
 | `allowedLocales`         | Supported locale select, many                                               |
@@ -259,12 +263,13 @@ Access policy:
 - authenticated users may read accounts
 - Admin users may create, update, enable, disable, or delete unused accounts
 - Editors cannot change account configuration
+- `platform` and `providerAccountId` are immutable after creation; targeting another remote account requires a new Social Account
 - MCP native capability is `find` only
 - `credentialReference` is hidden from MCP-native reads with field-level read access based on `req.payloadAPI`
 - MCP custom tools never return `credentialReference`
 - account deletion is rejected while any Social Publication references the account
 
-The first credential provider reads deployment secrets through a code-owned allowlist. A value stored in `credentialReference` is never concatenated unchecked into an environment-variable name or secret-manager path. Future external secret-manager support replaces the provider without changing the collection or adapter interface.
+The first credential provider reads deployment secrets through a code-owned allowlist. A value stored in `credentialReference` is never concatenated unchecked into an environment-variable name or secret-manager path. Administrators may rotate `credentialReference`, but resolved credentials must identify the same `providerAccountId`; otherwise validation and every remote command fail closed. Future external secret-manager support replaces the provider without changing the collection or adapter interface.
 
 ### Social Publications
 
@@ -278,7 +283,8 @@ The first credential provider reads deployment secrets through a code-owned allo
 | `sourceHash`                            | Hash of normalized localized source fields and referenced media                          |
 | `account`                               | Required relationship to Social Accounts                                                 |
 | `platform`                              | Copied platform discriminator for durable history                                        |
-| `idempotencyKey`                        | Unique and indexed: account + Post + locale + source hash                                |
+| `providerAccountId`                     | Copied immutable provider destination identity                                           |
+| `idempotencyKey`                        | Unique and indexed `SHA-256("prepare:v1:" + snapshotHash)`                               |
 | `status`                                | Server-managed lifecycle state                                                           |
 | `snapshot`                              | Server-managed immutable source snapshot                                                 |
 | `preparedPayload`                       | Server-managed, adapter-validated platform payload                                       |
@@ -289,7 +295,7 @@ The first credential provider reads deployment secrets through a code-owned allo
 | `lastError`                             | Sanitized stage, code, message, retryability, ambiguity, and timestamp                   |
 | `createdAt`, `updatedAt`, `publishedAt` | Payload timestamps                                                                       |
 
-The source snapshot contains the exact localized title, excerpt, Markdown, selected cover Media ID, canonical source URL, and referenced image IDs. The prepared payload contains the exact platform-formatted title, summary, body, cover, and uploaded-media mapping reviewed before publication.
+The immutable snapshot contains the Social Account ID, platform, `providerAccountId`, exact localized title, excerpt, Markdown, selected cover Media ID, canonical source URL, referenced image IDs, adapter version, and normalized non-secret rendering settings. The prepared payload contains the exact platform-formatted title, summary, body, cover, and uploaded-media mapping reviewed before publication.
 
 Access policy:
 
@@ -316,14 +322,21 @@ stateDiagram-v2
 	publish_queued --> publishing: worker claims
 	publishing --> published
 	publishing --> failed
-	publishing --> unknown: remote result is ambiguous
-	failed --> draft_queued: retry draft stage
-	failed --> publish_queued: retry publish stage
+	publishing --> status_check_queued: remote accepted; result pending
+	publishing --> unknown: submission result is ambiguous
+	status_check_queued --> status_checking: worker claims
+	status_checking --> published
+	status_checking --> failed
+	status_checking --> status_check_queued: still pending; delayed redelivery
+	status_checking --> unknown: status result is ambiguous
+	unknown --> status_check_queued: known remote ID can be reconciled
+	failed --> draft_queued: retryable non-ambiguous draft failure
+	failed --> publish_queued: new confirmation for retryable non-ambiguous publish failure
 	prepared --> cancelled
 	draft_ready --> cancelled
 ```
 
-The approval record is written atomically when the final publish command transitions `prepared` or `draft_ready` to `publish_queued`. There is no separate `approved` state in the initial design, which prevents an approval from becoming detached from the command it authorized.
+The approval record is written atomically when the final publish command transitions `prepared`, `draft_ready`, or an eligible retryable `failed` record to `publish_queued`. A publish retry records a new approval for the same exact snapshot hash. There is no separate `approved` state in the initial design, which prevents an approval from becoming detached from the command it authorized.
 
 ## MCP Integration
 
@@ -382,8 +395,8 @@ Behavior:
 3. Read the requested locale with `fallbackLocale: false`.
 4. Enforce the account's locale and primary-Tag policy.
 5. Resolve only permitted Payload Media references.
-6. Build the source snapshot, call the selected adapter's pure preparation step, and validate output.
-7. Return an existing record for the same idempotency key or create a new `prepared` record.
+6. Build the source snapshot, call the selected adapter's pure preparation step, validate output, and assemble the complete immutable snapshot including provider destination identity, adapter version, and normalized rendering settings.
+7. Compute `snapshotHash`, derive `idempotencyKey = SHA-256("prepare:v1:" + snapshotHash)`, and return the matching record or create a new `prepared` record.
 
 Result includes the publication ID, status, snapshot hash, sanitized preview summary, warnings, and platform capabilities. It does not expose raw provider settings or credentials.
 
@@ -401,10 +414,10 @@ Input:
 Behavior:
 
 1. Require a platform whose adapter declares remote-draft support.
-2. Verify account state, publication state, tool permission, and exact snapshot hash.
-3. Atomically transition `prepared` to `draft_queued`.
+2. Verify account state, tool permission, and exact snapshot hash. Eligible records are `prepared`, or `failed` records whose last stage is `token`, `media`, or `create-draft`, whose error is retryable and non-ambiguous, and which have no stored remote draft ID.
+3. Atomically transition the eligible state to `draft_queued` and append a new attempt record.
 4. Dispatch `{ action: "create-draft", publicationId }`.
-5. Return the queued record summary. Repeated calls return the existing draft or in-progress status.
+5. Return the queued record summary. Repeated calls for queued, in-progress, or completed records return current state. A record with an ambiguous result or remote draft ID is never re-enqueued for draft creation.
 
 #### `publish_social_publication`
 
@@ -420,9 +433,9 @@ Input:
 Behavior:
 
 1. This is the explicit confirmation boundary. Its description must instruct clients to call it only after showing the prepared summary and receiving user confirmation.
-2. Verify account state, publication state, publisher role, custom-tool permission, and exact snapshot hash.
-3. Record the effective Payload user, entry point `mcp`, snapshot hash, and approval time.
-4. Atomically transition to `publish_queued` and dispatch `{ action: "publish", publicationId }`.
+2. Verify account state, publisher role, custom-tool permission, and exact snapshot hash. Eligible records are `prepared` for platforms without remote drafts, `draft_ready`, or `failed` records whose last stage is `publish`, whose error is retryable and non-ambiguous, and which have no stored submission or publication ID.
+3. Record the effective Payload user, entry point `mcp`, snapshot hash, and approval time for this publication attempt.
+4. Atomically transition the eligible state to `publish_queued`, append a new attempt record, and dispatch `{ action: "publish", publicationId }`.
 5. Return the queued record summary. Repeated calls return the existing submission or final status.
 
 Payload MCP 3.88 does not provide a cryptographic proof that a human saw a client confirmation dialog. The enforceable server boundary is a separately permissioned publication tool plus an exact snapshot hash. Client UX confirmation remains part of the tool contract. Admin uses an explicit confirmation dialog before invoking the same service command.
@@ -470,7 +483,7 @@ If the source Post changes after preparation, the existing publication remains a
 
 Normalize and hash:
 
-- account ID and platform
+- Social Account ID, platform, and immutable `providerAccountId`
 - Post ID and source locale
 - localized title, excerpt, and Markdown
 - selected cover Media ID
@@ -480,6 +493,10 @@ Normalize and hash:
 - complete prepared payload
 
 Approval and queue execution both verify this hash. A renderer or settings change naturally produces a new publication record.
+
+`credentialReference` and secret material are excluded from the snapshot. Rotation is safe because the worker resolves credentials immediately before execution and requires the resolved provider identity to equal the snapshot's `providerAccountId` before making a remote call.
+
+Remote execution uses the snapshotted adapter version and normalized non-secret rendering settings, not mutable current account settings. Current account state is reloaded only for authorization, enablement, platform compatibility, credential resolution, and provider identity validation.
 
 ### WeChat Preparation
 
@@ -511,7 +528,7 @@ Queue messages contain only:
 
 ```typescript
 {
-  action: "create-draft" | "publish"
+  action: "create-draft" | "publish" | "status-check"
   publicationId: string
 }
 ```
@@ -523,32 +540,35 @@ They never contain article content, prepared payloads, secrets, access tokens, o
 The canonical processor:
 
 1. reloads the Social Publication at depth zero
-2. verifies the queued action and claims it with a conditional state transition
+2. verifies the queued action and claims it with one conditional transition: `draft_queued` to `draft_creating`, `publish_queued` to `publishing`, or `status_check_queued` to `status_checking`
 3. reloads the referenced account and immutable prepared payload
-4. resolves credentials server-side
-5. calls the registered adapter
+4. resolves credentials server-side and verifies that their provider identity matches the account and snapshot `providerAccountId`
+5. calls the registered adapter mutation for draft or publish, or the adapter's read-only `getStatus` operation for `status-check`
 6. persists each known remote identifier before advancing
 7. polls only when the adapter declares async status support and the current execution budget allows it
-8. otherwise schedules a later status-check delivery
+8. when publication remains pending, atomically returns the record to `status_check_queued` and schedules a delayed `{ action: "status-check", publicationId }` delivery
 9. writes `published`, `failed`, or `unknown` with sanitized metadata
 
 Vercel Queue is at-least-once. Only the worker that successfully claims the expected queued state may call the platform.
+
+`status-check` never performs a create or publish mutation. Deliveries use adapter-bounded exponential backoff and a maximum attempt count. A duplicate delivery that cannot claim `status_check_queued` returns current state. Exhausted or ambiguous status lookup moves to `unknown`; when a known remote identifier remains queryable, an internal reconciliation request may atomically re-enter `status_check_queued` without repeating publication.
 
 ## Idempotency and Failure Handling
 
 ### Idempotency
 
-- Preparation key: `accountId + postId + locale + sourceHash`.
+- Preparation key: `SHA-256("prepare:v1:" + snapshotHash)`; the complete snapshot includes account and provider identity, Post and locale, source content, referenced media, adapter version, normalized non-secret rendering settings, and the prepared payload.
 - Remote draft creation returns immediately when a stored draft ID already exists.
 - Publication returns immediately when a submission or final publication ID already exists.
-- A worker may only claim the exact expected queued state.
+- A mutation worker may only claim the exact expected queued state, and a status worker may only claim `status_check_queued`.
+- A retryable `failed` record can re-enter a mutation queue only when its stage matches the requested command, `ambiguous` is false, and no corresponding remote identifier exists.
 - Repeated MCP or Admin commands report current state instead of creating duplicate work.
 
 ### Ambiguous Remote Results
 
 If a platform request may have succeeded but the response was lost, the processor must not automatically repeat the external mutation.
 
-- If the adapter can query by a known submission identifier, transition to `unknown` and reconcile through status lookup.
+- If the adapter can query by a known submission identifier, transition to `unknown` and reconcile through the read-only `status-check` queue action.
 - If no identifier exists and the platform provides no idempotency key or lookup, stop in `unknown` and require an operator to inspect the remote account.
 - An operator may then attach a verified remote identifier through a narrowly scoped recovery action added only when the first real incident demonstrates the need. Generic field editing remains disallowed.
 
@@ -605,6 +625,8 @@ The initial attempt history is bounded to prevent unbounded document growth. If 
 | Ambiguous timeout causes duplicate post         | Stop in `unknown`; reconcile before retry                                                    |
 | MCP key gains tools silently                    | New tool permissions remain disabled for existing keys until manually enabled                |
 | Account config points to arbitrary secret names | Validate credential references against a code-owned allowlist                                |
+| Credential rotation redirects an approval       | Freeze `providerAccountId` and reject resolved credential identities that do not match       |
+| Async publication remains stuck in progress     | Use explicit claimed `status-check` deliveries with bounded backoff and terminal `unknown`   |
 
 ## Testing Strategy
 
@@ -612,12 +634,12 @@ The initial attempt history is bounded to prevent unbounded document growth. If 
 
 - locale validation and `fallbackLocale: false` behavior
 - account locale and primary-Tag policy
-- source and snapshot hash stability
+- source and snapshot hash stability, including changes to provider identity, adapter version, and rendering settings
 - adapter registry selection and unsupported-platform errors
 - allowed Markdown conversion and unsafe HTML rejection
 - first-party Media resolution and arbitrary remote-image rejection
-- legal and illegal state transitions
-- idempotency-key generation
+- legal and illegal state transitions, including status-check claims and delayed redelivery
+- idempotency-key generation from the complete snapshot hash
 - error sanitization and token-bearing URL redaction
 - role and MCP tool permission checks
 
@@ -629,6 +651,7 @@ Follow the current SiteConfig MCP test style with mocked `PayloadRequest`:
 - handlers use `req.payload`, `req`, effective user, and `overrideAccess: false`
 - preparation rejects missing explicit locale content
 - draft and publish commands reject snapshot mismatch
+- draft and publish retries accept only matching non-ambiguous retryable failures without remote identifiers
 - publish rejects non-Admin users
 - repeated commands return current state
 - handlers never return credential references or provider payloads
@@ -639,9 +662,11 @@ Follow the current SiteConfig MCP test style with mocked `PayloadRequest`:
 
 - prepare creates one record per idempotency key
 - duplicate queue delivery results in one claim
+- credential resolution rejects a provider identity that differs from the immutable account and snapshot identity
 - known remote IDs suppress repeated mutations
 - transient failures become retryable failures
 - ambiguous timeouts become `unknown`
+- status-check delivery performs only read operations, uses bounded backoff, and cannot duplicate publication
 - source Post edits do not mutate an existing snapshot
 - disabled accounts stop new work
 - queue messages contain identifiers only
@@ -677,7 +702,7 @@ Manual development validation uses a test or sandbox WeChat account and a develo
 ### Phase 1: Domain and Preparation
 
 - Add Social Accounts and Social Publications.
-- Add access rules, server-managed fields, adapter types, registry, validation, snapshotting, and state transitions.
+- Add access rules, immutable provider account identity, server-managed fields, adapter types, registry, validation, snapshotting, and state transitions.
 - Add native MCP find capabilities for the two collections.
 - Add `prepare_social_publication` and its Admin action.
 - Implement deterministic WeChat rendering and preview without remote writes.
@@ -690,7 +715,7 @@ Manual development validation uses a test or sandbox WeChat account and a develo
 
 ### Phase 3: Explicit Publication
 
-- Add `publish_social_publication`, Admin confirmation, approval audit fields, and async status reconciliation.
+- Add `publish_social_publication`, Admin confirmation, approval audit fields, and the `status-check` queue path for async reconciliation.
 - Complete failure, retry, unknown-state, and remote-link behavior.
 - Enable new MCP permissions manually for approved development keys.
 
@@ -706,7 +731,7 @@ Manual development validation uses a test or sandbox WeChat account and a develo
 ### Rollout
 
 1. Deploy schema and preparation support with all new custom-tool permissions disabled on existing keys.
-2. Create the first Social Account in development with a non-secret credential reference.
+2. Create the first Social Account in development with its immutable non-secret provider account identity and credential reference.
 3. Enable find and prepare permissions on one development MCP key.
 4. Validate snapshots and previews without remote mutation.
 5. Configure development secrets and validate remote drafts.
@@ -728,11 +753,13 @@ Manual development validation uses a test or sandbox WeChat account and a develo
 - An authorized operator can prepare a published Post's explicit `zh-CN` content without locale fallback.
 - Missing Chinese content cannot materialize from English fallback.
 - Preparation produces a stable immutable snapshot and hash.
+- The snapshot binds the immutable provider account identity, and credential rotation cannot redirect execution to another account.
 - The WeChat adapter can create one remote draft without duplicate creation on repeated delivery.
+- A retryable non-ambiguous draft or publish failure can be retried through the same narrow command, while ambiguous results and stored remote identifiers block mutation retry.
 - The final publish command requires Admin role, custom-tool permission, valid state, and the exact reviewed snapshot hash.
 - Admin and MCP actions produce the same state transitions through the same service.
 - MCP native find can inspect accounts and publications, while native mutations remain unavailable.
-- Queue messages contain only action and publication ID.
+- Queue messages contain only `create-draft`, `publish`, or `status-check` plus the publication ID; status checks are read-only, claimed, bounded, and idempotent.
 - Secrets, access tokens, and unsafe provider responses do not appear in Payload documents, MCP results, or logs.
 - A second platform can be added by extending platform settings, prepared-payload types, and the adapter registry without modifying Posts or creating platform-specific MCP commands.
 - Admin tests, type checking, build, formatting, and diff validation pass.
@@ -745,5 +772,6 @@ These are verification gates rather than unresolved architecture decisions:
 2. Confirm the current WeChat stable-token behavior and quota. If it cannot safely support serverless concurrency, introduce a reviewed shared token-cache provider before remote writes.
 3. Confirm the precise Payload MCP 3.88 runtime shape of the effective authenticated actor in a focused test. The audit helper must resolve the owning `users` document before storing actor relations.
 4. Confirm the platform title, summary, body, cover, image, link, and publication limits from current official documentation. Encode verified values as adapter constants with contract tests rather than scattering magic numbers.
+5. Confirm that the provider exposes a stable non-secret account identifier for credential-to-destination validation. For WeChat, verify that the resolved credential metadata can be reliably matched to the configured Official Account identity before enabling remote writes.
 
 None of these gates changes the selected domain model, MCP integration, or adapter boundary.

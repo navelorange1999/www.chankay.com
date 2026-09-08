@@ -7,7 +7,12 @@ export type SocialPublicationStage =
 	| "publish"
 	| "status-check"
 export type WeChatSettings = { author: string; openComments: boolean; onlyFansCanComment: boolean }
+export type PublicationAssets = {
+	coverMediaId?: string
+	diagramImages?: Array<{ definition: string; mediaId: string }>
+}
 export type PublicationSourceSnapshot = {
+	assets?: PublicationAssets
 	accountId: string
 	platform: SocialPlatform
 	providerAccountId: string

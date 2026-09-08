@@ -779,3 +779,13 @@ These are verification gates rather than unresolved architecture decisions:
 5. Confirm that the provider exposes a stable non-secret account identifier for credential-to-destination validation. For WeChat, verify that the resolved credential metadata can be reliably matched to the configured Official Account identity before enabling remote writes.
 
 None of these gates changes the selected domain model, MCP integration, or adapter boundary.
+
+## WeChat draft trial: publication-specific assets
+
+The `wechat-v2` adapter accepts strict optional `assets` during preparation: a `coverMediaId` and up to seven `diagramImages` with exact Mermaid definitions and Media IDs. The original published Markdown stays in the snapshot. Source reads always use `draft: false` and an explicit locale without fallback. Review and queued commands replay the frozen asset choices and reload Media metadata, so changed source definitions, media URLs, or update timestamps invalidate approval. Missing, duplicate, or unused diagram mappings fail closed.
+
+The Post action can select an existing Media cover independently of the website Post. It reads published Markdown, renders Mermaid with strict security and SVG text labels, rasterizes bounded PNGs, and uploads them through the normal authenticated Media API. Uploads already completed during the current form session are reused on retry. Images require visual review before remote draft creation. No Post write or website publication is part of this action. Mermaid 11.13 circle labels receive an explicit SVG text anchor to prevent truncated mindmap root labels.
+
+Markdown tables preserve semantic headers and cells through the HTML allowlist; raw HTML, untrusted images, scripts, and arbitrary attributes remain rejected. Conservative provider bounds remain 20 KB HTML, 1 MB per inline image, and eight total source Media records.
+
+The authorized trial uses the existing Trading article and a generated cover for the personal Official Account. Publication API permission is unavailable; the trial must stop at draft synchronization. The Preview account has been configured and the cover uploaded. Remote draft verification remains pending until Preview deployment and live API execution succeed.

@@ -24,7 +24,7 @@ const source: PublicationSourceSnapshot = {
 		},
 	],
 	canonicalUrl: "https://www.chankay.com/zh-CN/posts/example",
-	adapterVersion: "wechat-v1",
+	adapterVersion: "wechat-v2",
 	settings: { author: "Author", openComments: false, onlyFansCanComment: false },
 }
 const reply = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status })
@@ -63,13 +63,31 @@ describe("WeChat renderer", () => {
 	it.each([
 		"<script>alert(1)</script>",
 		"<img src=x onerror=alert(1)>",
-		"| A | B |\n|---|---|\n|1|2|",
 		"[unsafe](javascript:alert(1))",
 		"![image](https://untrusted.example/image.png)",
 	])("rejects unsupported or unsafe content: %s", async (markdown) => {
 		await expect(renderWeChat({ ...source, markdown })).rejects.toMatchObject({
 			stage: "prepare",
 			retryable: false,
+		})
+	})
+	it("preserves Markdown table headers and cells", async () => {
+		const prepared = await renderWeChat({ ...source, markdown: "| A | B |\n|:---|---:|\n|1|2|" })
+		expect(prepared.html).toContain("<th>A</th>")
+		expect(prepared.html).toContain("<td>2</td>")
+	})
+	it("requires exact static images for Mermaid and rejects unused mappings", async () => {
+		const definition = "flowchart LR\nA-->B"
+		const markdown = "```mermaid\n" + definition + "\n```"
+		await expect(renderWeChat({ ...source, markdown })).rejects.toMatchObject({
+			code: "DIAGRAM_REQUIRED",
+		})
+		const assets = { diagramImages: [{ definition, mediaId: "cover" }] }
+		const prepared = await renderWeChat({ ...source, markdown, assets })
+		expect(prepared.html).toContain('<img src="https://www.chankay.com/cover.jpg"')
+		expect(prepared.html).not.toContain("A--&gt;B")
+		await expect(renderWeChat({ ...source, assets })).rejects.toMatchObject({
+			code: "DIAGRAM_STALE",
 		})
 	})
 	it("resolves inline images only from explicit Media references", async () => {

@@ -54,6 +54,14 @@ Files: `plugins/mcp/social-publication/index.ts`, `services/socialPublishing/end
 
 ## Verification environment
 
+## Task 6: Published article assets for the authorized WeChat draft trial
+
+- [x] Add publication-only cover and exact Mermaid-definition Media mappings, replayed during staleness checks.
+- [x] Test safe tables, missing/unused diagrams, and changed source/assets before remote writes.
+- [x] Add browser PNG export using the existing Mermaid dependency, authenticated Media uploads, and cover selection.
+- [ ] Run tests, TypeScript, isolated build, and Preview visual checks.
+- [ ] Synchronize the selected Trading article as a remote draft only.
+
 Use installed Node 24.16.0 because the shell's Node 22.9.0 is below pnpm's minimum. No dependency additions are expected. Automated provider tests use injected HTTP and credentials; no live remote writes are authorized by this implementation task.
 
 ## Verification results
@@ -65,3 +73,5 @@ Admin tests and TypeScript checks pass. The Admin production build passes in an 
 Changed-file formatting and `git diff --check` pass. Full-repository formatting reports ten unchanged baseline files (authentication, one migration, LoginForm, older design/plan files, and workspace YAML); they are outside this feature.
 
 The pnpm wrapper attempted dependency reconciliation against shared worktree links, so verification invokes the installed Vitest, TypeScript, Next, and Prettier binaries directly with Node 24.16.0. No dependencies or lockfile were changed.
+
+Task 6 verification: 231 Admin tests pass when run from `apps/admin`; Admin and UI TypeScript pass; isolated Next build passes with the same existing dependency warnings. Browser visual checks pass for all four actual article diagrams (approximately 76–235 KB each). The article renders to 12,157 bytes of HTML with four images and one table. Preview deployment and remote draft verification remain pending.

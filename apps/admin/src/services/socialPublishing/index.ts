@@ -117,6 +117,7 @@ async function queueCommand(args: unknown, req: PayloadRequest, action: QueueAct
 	}
 	const { source } = await loadSource(
 		{
+			assets: doc.snapshot.assets,
 			postId: relationshipID(doc.sourcePost),
 			accountId: account.id,
 			locale: prepareSchema.shape.locale.parse(doc.sourceLocale),

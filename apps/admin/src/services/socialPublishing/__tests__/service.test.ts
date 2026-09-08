@@ -114,6 +114,54 @@ describe("shared commands", () => {
 			expect.objectContaining({ overrideAccess: false, user: req.user })
 		)
 	})
+	it("uses a publication-only cover and replays it when queuing a draft", async () => {
+		const original = vi.mocked(req.payload.findByID).getMockImplementation()!
+		vi.mocked(req.payload.findByID).mockImplementation(async (args) =>
+			args.collection === "posts"
+				? ({ ...post, featuredImage: null } as never)
+				: (original(args) as never)
+		)
+		const prepared = await prepareSocialPublication(
+			{ accountId: "a", postId: "p", locale: "zh-CN", assets: { coverMediaId: "override" } },
+			req
+		)
+		expect(records[0]?.snapshot).toMatchObject({
+			coverMediaId: "override",
+			markdown: "Text",
+			assets: { coverMediaId: "override" },
+		})
+		vi.mocked(req.payload.db.updateOne).mockImplementation(
+			async (args) => ({ ...records[0], ...args.data }) as never
+		)
+		await createSocialDraft(
+			{ publicationId: "pub", expectedSnapshotHash: prepared.snapshotHash },
+			req
+		)
+		expect(enqueueSocialPublication).toHaveBeenCalledWith({
+			publicationId: "pub",
+			action: "create-draft",
+		})
+		expect(req.payload.findByID).toHaveBeenCalledWith(
+			expect.objectContaining({ collection: "posts", draft: false })
+		)
+	})
+	it("rejects changed publication assets before dispatching a draft", async () => {
+		const prepared = await prepareSocialPublication(
+			{ accountId: "a", postId: "p", locale: "zh-CN", assets: { coverMediaId: "override" } },
+			req
+		)
+		const original = vi.mocked(req.payload.findByID).getMockImplementation()!
+		vi.mocked(req.payload.findByID).mockImplementation(async (args) => {
+			const doc = await original(args)
+			return args.collection === "media"
+				? ({ ...doc, updatedAt: "2026-09-09T00:00:00Z" } as never)
+				: doc
+		})
+		await expect(
+			createSocialDraft({ publicationId: "pub", expectedSnapshotHash: prepared.snapshotHash }, req)
+		).rejects.toMatchObject({ code: "SOURCE_STALE" })
+		expect(enqueueSocialPublication).not.toHaveBeenCalled()
+	})
 	it("rejects missing locale content", async () => {
 		vi.mocked(req.payload.findByID).mockImplementation(
 			async ({ collection }) =>

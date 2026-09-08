@@ -1,4 +1,4 @@
-import { marked } from "marked"
+import { marked, Renderer } from "marked"
 import { Parser } from "htmlparser2"
 import { z } from "zod"
 import {
@@ -7,7 +7,7 @@ import {
 	type PreparedPlatformPayload,
 } from "../../types"
 
-export const WECHAT_ADAPTER_VERSION = "wechat-v1"
+export const WECHAT_ADAPTER_VERSION = "wechat-v2"
 // Conservative application limits; production account limits remain an operational verification gate.
 export const WECHAT_LIMITS = {
 	title: 64,
@@ -19,6 +19,12 @@ export const WECHAT_LIMITS = {
 	images: 20,
 } as const
 const tags = new Set([
+	"table",
+	"thead",
+	"tbody",
+	"tr",
+	"th",
+	"td",
 	"p",
 	"h1",
 	"h2",
@@ -98,9 +104,11 @@ export function reconstructHtml(
 							? ["href", "title"]
 							: name === "code"
 								? ["class"]
-								: name === "ol"
-									? ["start"]
-									: []
+								: name === "th" || name === "td"
+									? ["align"]
+									: name === "ol"
+										? ["start"]
+										: []
 				if (Object.keys(attrs).some((attr) => !allowed.includes(attr)))
 					throw new SocialPublishingError("prepare")
 				let attributes = ""
@@ -160,8 +168,23 @@ export async function renderWeChat(
 		throw new SocialPublishingError("prepare")
 	const tokens = marked.lexer(source.markdown, { gfm: true })
 	const images: Array<{ id: string; url: string }> = []
+	const mappings = source.assets?.diagramImages ?? []
+	if (new Set(mappings.map((entry) => entry.definition)).size !== mappings.length)
+		throw new SocialPublishingError("prepare", "DIAGRAM_STALE")
+	const used = new Set<string>()
+	const diagramUrls = new Map<string, string>()
 	marked.walkTokens(tokens, (token) => {
-		if (token.type === "html" || token.type === "table") throw new SocialPublishingError("prepare")
+		if (token.type === "html") throw new SocialPublishingError("prepare")
+		if (token.type === "code" && token.lang?.split(/\s+/)[0] === "mermaid") {
+			const mapping = mappings.find((entry) => entry.definition === token.text)
+			const media = source.media.find((entry) => entry.id === mapping?.mediaId)
+			if (!mapping || !media || !["image/jpeg", "image/png"].includes(media.mimeType))
+				throw new SocialPublishingError("prepare", "DIAGRAM_REQUIRED")
+			used.add(mapping.definition)
+			diagramUrls.set(mapping.definition, media.url)
+			if (!images.some((entry) => entry.id === media.id))
+				images.push({ id: media.id, url: media.url })
+		}
 		if (token.type === "image") {
 			const media = source.media.find((media) => media.url === token.href)
 			if (!media || !safeWebUrl(media.url) || !["image/jpeg", "image/png"].includes(media.mimeType))
@@ -170,7 +193,14 @@ export async function renderWeChat(
 				images.push({ id: media.id, url: media.url })
 		}
 	})
-	const html = reconstructHtml(marked.parser(tokens), images)
+	if (used.size !== mappings.length) throw new SocialPublishingError("prepare", "DIAGRAM_STALE")
+	const renderer = new Renderer()
+	const defaultCode = renderer.code.bind(renderer)
+	renderer.code = (token) =>
+		diagramUrls.has(token.text) && token.lang?.split(/\s+/)[0] === "mermaid"
+			? `<p><img src="${escape(diagramUrls.get(token.text)!)}" alt="Article diagram"></p>`
+			: defaultCode(token)
+	const html = reconstructHtml(marked.parser(tokens, { renderer }), images)
 	return validateWeChatPrepared({
 		platform: source.platform,
 		adapterVersion: source.adapterVersion,

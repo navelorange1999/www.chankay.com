@@ -55,7 +55,8 @@ export async function loadSource(input: z.infer<typeof prepareSchema>, req: Payl
 		media.push(entry)
 		return entry
 	}
-	if (post.featuredImage) await addMedia(relationshipID(post.featuredImage))
+	if (input.assets?.coverMediaId) await addMedia(input.assets.coverMediaId)
+	else if (post.featuredImage) await addMedia(relationshipID(post.featuredImage))
 	const urls: string[] = []
 	marked.walkTokens(marked.lexer(post.content), (token) => {
 		if (token.type === "image") urls.push(token.href)
@@ -77,10 +78,12 @@ export async function loadSource(input: z.infer<typeof prepareSchema>, req: Payl
 		if (asset.url !== url.href) throw new SocialPublishingError("prepare", "MEDIA_REFERENCE")
 	}
 	if (!media.length) throw new SocialPublishingError("prepare", "COVER_REQUIRED")
+	for (const diagram of input.assets?.diagramImages ?? []) await addMedia(diagram.mediaId)
 	const site = new URL(process.env.WWW_SITE_URL || "https://www.chankay.com")
 	if (site.protocol !== "https:" || site.username || site.password)
 		throw new SocialPublishingError("prepare", "SITE_URL")
 	const source: PublicationSourceSnapshot = {
+		...(input.assets ? { assets: input.assets } : {}),
 		accountId: account.id,
 		platform: account.platform,
 		providerAccountId: account.providerAccountId,

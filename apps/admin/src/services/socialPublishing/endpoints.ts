@@ -40,6 +40,7 @@ export const socialPublicationEndpoints: Endpoint[] = [
 				try {
 					const { source } = await loadSource(
 						{
+							assets: doc.snapshot.assets,
 							postId: relationshipID(doc.sourcePost),
 							accountId: relationshipID(doc.account),
 							locale: prepareSchema.shape.locale.parse(doc.sourceLocale),

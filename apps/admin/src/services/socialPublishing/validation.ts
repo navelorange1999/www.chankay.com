@@ -2,7 +2,24 @@ import { z } from "zod"
 import { SUPPORTED_LOCALES, type SupportedLocale } from "@repo/i18n"
 
 export const identifier = z.string().regex(/^[a-zA-Z0-9_-]{1,128}$/)
+export const publicationAssetsSchema = z
+	.object({
+		coverMediaId: identifier.optional(),
+		diagramImages: z
+			.array(
+				z
+					.object({
+						definition: z.string().min(1).max(10000),
+						mediaId: identifier,
+					})
+					.strict()
+			)
+			.max(7)
+			.optional(),
+	})
+	.strict()
 export const prepareParameters = {
+	assets: publicationAssetsSchema.optional(),
 	accountId: identifier,
 	postId: identifier,
 	locale: z.enum(SUPPORTED_LOCALES as [SupportedLocale, ...SupportedLocale[]]),

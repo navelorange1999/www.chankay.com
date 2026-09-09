@@ -225,6 +225,7 @@ The `docs/proposals/` folder holds design documents for features that are not ye
 - [`docs/proposals/llm-translation-architecture.md`](./docs/proposals/llm-translation-architecture.md): Editor-triggered LLM translation with Anthropic + Langfuse Cloud.
 - [`docs/proposals/social-publishing-architecture.md`](./docs/proposals/social-publishing-architecture.md): Manual, auditable social publishing from Payload Posts through the native Payload MCP integration, with extensible platform adapters and WeChat first.
 - [`docs/proposals/wechat-draft-relay.md`](./docs/proposals/wechat-draft-relay.md): Authenticated Cloudflare Tunnel relay for routing WeChat draft API calls through an operator-provided fixed egress host.
+- [`docs/proposals/wechat-draft-relay-plan.md`](./docs/proposals/wechat-draft-relay-plan.md): Test-driven implementation plan for the portable relay, Admin transport, connectivity recovery, and operator runbook.
 
 ## Maintenance Notes
 

@@ -133,6 +133,7 @@ export function publicationSummary(doc: PublicationRecord) {
 					draftId: doc.remote.draftId,
 					submissionId: doc.remote.submissionId,
 					publicationId: doc.remote.publicationId,
+					media: doc.remote.media,
 					url: doc.remote.url,
 					status: doc.remote.status,
 				}

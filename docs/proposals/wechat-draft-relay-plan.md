@@ -392,9 +392,10 @@ git commit -m "feat: route WeChat drafts through signed relay"
 - Modify: `apps/admin/src/services/socialPublishing/state.ts`
 - Modify: `apps/admin/src/services/socialPublishing/__tests__/domain.test.ts`
 - Modify: `apps/admin/src/services/socialPublishing/__tests__/service.test.ts`
+- Modify: `apps/admin/src/services/socialPublishing/records.ts`
 - Modify: `apps/admin/src/components/socialPublishing/SocialPublicationActions.tsx`
 
-- [ ] **Step 1: Write failing state-policy tests**
+- [x] **Step 1: Write failing state-policy tests**
 
 Add a `canRetryDraftAfterConnectivityFix` test that accepts exactly a `failed`, non-ambiguous `token` error with empty remote state, even when `retryable` is false. Reject media checkpoints, draft/submission/publication IDs, ambiguous errors, token success state, and every other stage.
 
@@ -411,27 +412,27 @@ expect(
 ).toBe(false)
 ```
 
-- [ ] **Step 2: Run the domain test and verify RED**
+- [x] **Step 2: Run the domain test and verify RED**
 
 Run: `pnpm --filter admin test:run -- domain.test.ts`
 
 Expected: FAIL because the recovery predicate does not exist and `canQueue` rejects code `40164`.
 
-- [ ] **Step 3: Implement the narrow recovery predicate**
+- [x] **Step 3: Implement the narrow recovery predicate**
 
 Treat all keys in `remote.media` and every remote identifier as evidence of remote state. Call the predicate from the `create-draft` branch in `canQueue`; do not change publish recovery or unknown-state behavior.
 
-- [ ] **Step 4: Write a failing command-service recovery test**
+- [x] **Step 4: Write a failing command-service recovery test**
 
 Prepare a publication, replace its status with the definitive token failure, make the conditional database transition succeed, and assert one `failed -> draft_queued` attempt plus one identifier-only queue dispatch. Add disqualifying cases that never call `updateOne` or the dispatcher.
 
-- [ ] **Step 5: Run the service test and verify RED**
+- [x] **Step 5: Run the service test and verify RED**
 
 Run: `pnpm --filter admin test:run -- service.test.ts`
 
 Expected: the positive test fails until the state predicate is connected through the existing command path.
 
-- [ ] **Step 6: Complete the service and UI behavior**
+- [x] **Step 6: Complete the service and UI behavior**
 
 Use the existing `create-draft` endpoint and snapshot hash. Do not add a force endpoint. In the Admin component, calculate the recovery predicate before rendering the button and use this label only for that state:
 
@@ -443,7 +444,7 @@ Use the existing `create-draft` endpoint and snapshot hash. Do not add a force e
 
 Keep stale snapshots disabled and retain the existing error display and audit append behavior.
 
-- [ ] **Step 7: Verify recovery behavior**
+- [x] **Step 7: Verify recovery behavior**
 
 Run:
 
@@ -454,7 +455,7 @@ pnpm --filter admin check-types
 
 Expected: all focused tests and Admin type checking pass.
 
-- [ ] **Step 8: Commit connectivity recovery**
+- [x] **Step 8: Commit connectivity recovery**
 
 ```bash
 git add apps/admin/src/services/socialPublishing/state.ts apps/admin/src/services/socialPublishing/__tests__ apps/admin/src/components/socialPublishing/SocialPublicationActions.tsx

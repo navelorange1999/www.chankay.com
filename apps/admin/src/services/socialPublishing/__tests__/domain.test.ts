@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 import { hashSnapshot, preparationKey } from "../snapshot"
-import { canQueue, claimState, recoveryAction } from "../state"
+import { canQueue, canRetryDraftAfterConnectivityFix, claimState, recoveryAction } from "../state"
 import { requireOperator, serviceWriteAccess } from "../access"
 
 describe("publication safety", () => {
@@ -40,6 +40,30 @@ describe("publication safety", () => {
 		expect(canQueue({ status: "prepared" }, "publish", "unsupported")).toBe(true)
 		expect(canQueue({ status: "prepared" }, "create-draft", "unsupported")).toBe(false)
 		expect(claimState("status-check")).toEqual(["status_check_queued", "status_checking"])
+	})
+	it("retries only the definitive token allowlist failure with no remote state", () => {
+		const rejectedToken = {
+			status: "failed",
+			remote: {},
+			lastError: { stage: "token", code: "40164", retryable: false, ambiguous: false },
+		}
+		expect(canRetryDraftAfterConnectivityFix(rejectedToken)).toBe(true)
+		expect(canQueue(rejectedToken, "create-draft")).toBe(true)
+		for (const disqualified of [
+			{ ...rejectedToken, status: "prepared" },
+			{ ...rejectedToken, lastError: { ...rejectedToken.lastError, stage: "media" } },
+			{ ...rejectedToken, lastError: { ...rejectedToken.lastError, code: "40001" } },
+			{ ...rejectedToken, lastError: { ...rejectedToken.lastError, ambiguous: true } },
+			{ ...rejectedToken, remote: { media: { cover: "known" } } },
+			{ ...rejectedToken, remote: { media: { cover: undefined } } },
+			{ ...rejectedToken, remote: { draftId: "known" } },
+			{ ...rejectedToken, remote: { submissionId: "known" } },
+			{ ...rejectedToken, remote: { publicationId: "known" } },
+			{ ...rejectedToken, remote: { url: "https://mp.weixin.qq.com/s/known" } },
+			{ ...rejectedToken, remote: { status: "pending" } },
+		]) {
+			expect(canRetryDraftAfterConnectivityFix(disqualified)).toBe(false)
+		}
 	})
 	it("offers safe redispatch from the Admin UI only for queued work or a known submission", () => {
 		expect(recoveryAction({ status: "draft_queued" })).toBe("create-draft")

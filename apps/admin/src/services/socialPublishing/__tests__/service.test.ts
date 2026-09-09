@@ -145,6 +145,95 @@ describe("shared commands", () => {
 			expect.objectContaining({ collection: "posts", draft: false })
 		)
 	})
+	it("queues one audited retry for a definitive token allowlist failure", async () => {
+		const prepared = await prepareSocialPublication(
+			{ accountId: "a", postId: "p", locale: "zh-CN" },
+			req
+		)
+		records[0] = {
+			...records[0],
+			status: "failed",
+			remote: {},
+			lastError: {
+				stage: "token",
+				code: "40164",
+				retryable: false,
+				ambiguous: false,
+				message: "Social publishing provider request failed.",
+			},
+		}
+		vi.mocked(req.payload.db.updateOne).mockImplementation(async (args) => {
+			records[0] = { ...records[0], ...args.data }
+			return records[0] as never
+		})
+
+		await createSocialDraft(
+			{ publicationId: "pub", expectedSnapshotHash: prepared.snapshotHash },
+			req
+		)
+
+		expect(req.payload.db.updateOne).toHaveBeenCalledTimes(1)
+		expect(req.payload.db.updateOne).toHaveBeenCalledWith(
+			expect.objectContaining({
+				where: {
+					and: expect.arrayContaining([{ status: { equals: "failed" } }]),
+				},
+				data: expect.objectContaining({
+					status: "draft_queued",
+					lastError: null,
+					attempts: expect.arrayContaining([
+						expect.objectContaining({
+							action: "create-draft",
+							previousStatus: "failed",
+							nextStatus: "draft_queued",
+						}),
+					]),
+				}),
+			})
+		)
+		expect(enqueueSocialPublication).toHaveBeenCalledOnce()
+		expect(enqueueSocialPublication).toHaveBeenCalledWith({
+			publicationId: "pub",
+			action: "create-draft",
+		})
+	})
+	it("does not queue connectivity recovery when remote state or ambiguity exists", async () => {
+		const prepared = await prepareSocialPublication(
+			{ accountId: "a", postId: "p", locale: "zh-CN" },
+			req
+		)
+		const base = { ...records[0] }
+		for (const rejected of [
+			{ remote: { media: { cover: "known" } } },
+			{ remote: { draftId: "known" } },
+			{ remote: {}, ambiguous: true },
+			{ remote: {}, code: "40001" },
+		]) {
+			records[0] = {
+				...base,
+				status: "failed",
+				remote: rejected.remote,
+				lastError: {
+					stage: "token",
+					code: rejected.code ?? "40164",
+					retryable: false,
+					ambiguous: rejected.ambiguous ?? false,
+					message: "Social publishing provider request failed.",
+				},
+			}
+			vi.mocked(req.payload.db.updateOne).mockClear()
+			vi.mocked(enqueueSocialPublication).mockClear()
+
+			const result = await createSocialDraft(
+				{ publicationId: "pub", expectedSnapshotHash: prepared.snapshotHash },
+				req
+			)
+
+			expect(req.payload.db.updateOne).not.toHaveBeenCalled()
+			expect(enqueueSocialPublication).not.toHaveBeenCalled()
+			if ("media" in rejected.remote) expect(result.remote?.media).toEqual(rejected.remote.media)
+		}
+	})
 	it("rejects changed publication assets before dispatching a draft", async () => {
 		const prepared = await prepareSocialPublication(
 			{ accountId: "a", postId: "p", locale: "zh-CN", assets: { coverMediaId: "override" } },

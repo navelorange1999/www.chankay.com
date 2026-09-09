@@ -21,8 +21,31 @@ type StateRecord = {
 	status: string
 	statusChecks?: number
 	claimExpiresAt?: string | null
-	remote?: { draftId?: string; submissionId?: string; publicationId?: string } | null
-	lastError?: { stage?: string; retryable?: boolean; ambiguous?: boolean } | null
+	remote?: {
+		draftId?: string
+		submissionId?: string
+		publicationId?: string
+		url?: string
+		status?: string
+		media?: Record<string, unknown> | null
+	} | null
+	lastError?: { stage?: string; code?: string; retryable?: boolean; ambiguous?: boolean } | null
+}
+
+export function canRetryDraftAfterConnectivityFix(doc: StateRecord): boolean {
+	const remote = doc.remote
+	return (
+		doc.status === "failed" &&
+		doc.lastError?.stage === "token" &&
+		doc.lastError.code === "40164" &&
+		doc.lastError.ambiguous === false &&
+		!remote?.draftId &&
+		!remote?.submissionId &&
+		!remote?.publicationId &&
+		!remote?.url &&
+		!remote?.status &&
+		(!remote?.media || Object.keys(remote.media).length === 0)
+	)
 }
 
 export function recoveryAction(doc: StateRecord): "create-draft" | "publish" | null {
@@ -48,6 +71,7 @@ export function canQueue(
 	if (action === "create-draft" && remoteDraft === "unsupported") return false
 	if (action === "create-draft" && doc.remote?.draftId) return false
 	if (action === "create-draft" && doc.status === "prepared") return true
+	if (action === "create-draft" && canRetryDraftAfterConnectivityFix(doc)) return true
 	if (action === "publish" && doc.status === "prepared" && remoteDraft !== "required") return true
 	if (action === "publish" && doc.status === "draft_ready" && doc.remote?.draftId) return true
 	if (doc.status !== "failed" || !doc.lastError?.retryable || doc.lastError.ambiguous) return false

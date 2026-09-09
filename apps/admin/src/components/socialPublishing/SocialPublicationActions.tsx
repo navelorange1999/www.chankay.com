@@ -2,7 +2,11 @@
 
 import { useCallback, useEffect, useState } from "react"
 import { useAuth, useDocumentInfo } from "@payloadcms/ui"
-import { canQueue, recoveryAction } from "../../services/socialPublishing/state"
+import {
+	canQueue,
+	canRetryDraftAfterConnectivityFix,
+	recoveryAction,
+} from "../../services/socialPublishing/state"
 
 type Review = {
 	statusChecks?: number
@@ -19,7 +23,14 @@ type Review = {
 	preview: { title: string; summary: string; accountId: string; platform: string; locale: string }
 	source: { providerAccountId: string }
 	warnings: string[]
-	remote?: { draftId?: string; submissionId?: string; publicationId?: string; url?: string } | null
+	remote?: {
+		draftId?: string
+		submissionId?: string
+		publicationId?: string
+		url?: string
+		status?: string
+		media?: Record<string, string>
+	} | null
 	lastError?: {
 		code: string
 		message: string
@@ -96,6 +107,7 @@ export function SocialPublicationActions() {
 	}
 	if (!review) return <p role="status">{error || "Loading publication…"}</p>
 	const recovery = recoveryAction(review)
+	const connectivityRetry = canRetryDraftAfterConnectivityFix(review)
 	return (
 		<section aria-label="Publication review">
 			<h2>{review.preview.title}</h2>
@@ -155,7 +167,7 @@ export function SocialPublicationActions() {
 					disabled={busy || review.stale}
 					onClick={() => command("create-draft")}
 				>
-					Create remote draft
+					{connectivityRetry ? "Retry draft after connectivity fix" : "Create remote draft"}
 				</button>
 			)}
 			{user?.role === "admin" && canQueue(review, "publish", review.capabilities.remoteDraft) && (

@@ -1,5 +1,7 @@
 # Deployment and Environments
 
+> Last Updated: September 9, 2026
+
 ## Manual Social Publishing
 
 Social publishing runs in the Admin project. The `social-publications` Vercel Queue topic delivers identifier-only `{ action, publicationId }` messages to `/api/queue/social-publications`. The callback has a 60-second budget; adapter calls share a 45-second execution deadline. Local and non-Vercel execution is serialized in process and is not durable across restarts.
@@ -7,6 +9,53 @@ Social publishing runs in the Admin project. The `social-publications` Vercel Qu
 Create a disabled Social Account first. The only initial credential reference is `wechat-primary`; code resolves it through `WECHAT_PRIMARY_APP_ID` and `WECHAT_PRIMARY_APP_SECRET`. Configure these using the deployment platform's secret settings. The application ID must equal the immutable account `providerAccountId`. Rotation may change the secret but may not redirect the account. Never put credentials in CMS fields, queues, logs, or MCP responses.
 
 `NEXT_PUBLIC_SERVER_URL` and `VERCEL_BLOB_PUBLIC_BASE_URL` define permitted HTTPS Media origins. Images must resolve to existing Payload Media records. The worker rejects redirects and checks the stored URL, MIME type, and media modification timestamp against the snapshot. Preparation permits at most eight distinct images including the cover. `WWW_SITE_URL` determines the canonical article URL.
+
+### WeChat draft relay operator runbook
+
+`apps/wechat-relay` provides fixed outbound egress for WeChat draft synchronization. It runs on an operator-controlled macOS or Linux host behind a named Cloudflare Tunnel. The service accepts only signed requests for stable-token, image upload, cover material upload, draft creation, and draft read operations. Publication endpoints are rejected locally.
+
+Build the image from the repository root on a host with Docker:
+
+```bash
+docker build -f apps/wechat-relay/Dockerfile -t chankay-wechat-relay .
+```
+
+Create the relay signing secret outside the repository using an approved password or secret manager. Store the same value in the host's managed runtime environment and the Vercel secret manager as `WECHAT_RELAY_SHARED_SECRET`. Never send the value in chat, commit it, place it in CMS data, or ask an agent to inspect the real environment file.
+
+Create the host environment file outside the checkout, restrict its filesystem permissions to the operator account, and start the container with the relay port published only on loopback:
+
+```bash
+docker run --rm --name chankay-wechat-relay \
+  --env-file /operator/managed/wechat-relay.env \
+  -e WECHAT_RELAY_HOST=0.0.0.0 \
+  -p 127.0.0.1:8787:8787 \
+  chankay-wechat-relay
+```
+
+Create the named tunnel using the operator's Cloudflare account. Keep all generated tunnel credentials and configuration outside the repository. Configure its ingress origin as `http://127.0.0.1:8787`, then route and start it:
+
+```bash
+cloudflared tunnel route dns chankay-wechat-relay wechat-relay.chankay.com
+cloudflared tunnel run chankay-wechat-relay
+```
+
+Verify the local and public health endpoints before enabling Admin routing:
+
+```bash
+curl --fail http://127.0.0.1:8787/healthz
+curl --fail https://wechat-relay.chankay.com/healthz
+```
+
+From the relay host, query a trusted public IP echo service explicitly over IPv4. Enter the observed outbound IPv4 directly into the WeChat API allowlist. A Cloudflare edge IP is not the relay's outbound address and must not be used. Recheck the address after changing the host network or ISP.
+
+In the Vercel Admin project, configure both of these values for the intended environment and redeploy:
+
+- `WECHAT_RELAY_URL=https://wechat-relay.chankay.com/v1/wechat`
+- `WECHAT_RELAY_SHARED_SECRET` with the host-managed signing secret
+
+Keep `WECHAT_PRIMARY_APP_ID` and `WECHAT_PRIMARY_APP_SECRET` only in Vercel. They are sent transiently through the authenticated tunnel for the stable-token call and must not be installed on the relay host. Confirm that the saved Social Publication still shows token code `40164`, has no remote state, and offers `Retry draft after connectivity fix` before selecting the action. The action may create and inspect a WeChat draft; it never publishes it.
+
+To stop relay use, remove both relay variables from the affected Vercel environment and redeploy Admin. Stop the container and `cloudflared`, then remove the DNS route or tunnel if it is no longer needed. Preserve the Social Publication audit record and any remote draft.
 
 ### Enablement and acceptance gates
 
@@ -35,20 +84,21 @@ An interrupted mutation without a known submission stops in `unknown`. Inspect t
 
 Disable the Social Account and MCP tool permissions to stop new work, and pause the queue trigger if rolling back. Preserve publication records and external articles. Any external deletion is a separate operational action.
 
-> Last Updated: March 12, 2026
-
-This document describes the current deployment model for the repository. It covers the existing `www` and `admin` applications only.
+This document describes the current deployment model for the repository.
 
 ## Deployment Model
 
-The repository is deployed as a monorepo with multiple Vercel projects.
+The repository deploys two applications as separate Vercel projects and one optional operational service on an operator host.
 
 Current deployment targets:
 
 - `apps/www`: public website
 - `apps/admin`: Payload CMS admin application
+- `apps/wechat-relay`: operator-hosted WeChat draft egress service
 
 Each app is deployed independently even though they share the same repository.
+
+The WeChat relay is not a Vercel project. Its purpose is to provide the operator host's allowlisted outbound IPv4 address.
 
 ## Vercel Project Setup
 
@@ -75,6 +125,7 @@ The repository currently uses these deployment environments:
 - Local development
 - Vercel preview
 - Vercel production
+- Operator-hosted WeChat relay
 
 ### Local Development
 
@@ -87,6 +138,7 @@ Templates:
 
 - `apps/admin/.env.example`
 - `apps/www/.env.example`
+- `apps/wechat-relay/.env.example`
 
 ### Preview Environment
 
@@ -150,6 +202,10 @@ Primary variables documented today:
 - `PREVIEW_CAPTURE_API_KEY`
 - `WWW_INTERNAL_SECRET`
 - `WWW_SITE_URL`
+- `WECHAT_PRIMARY_APP_ID`
+- `WECHAT_PRIMARY_APP_SECRET`
+- `WECHAT_RELAY_URL`
+- `WECHAT_RELAY_SHARED_SECRET`
 
 ### `apps/www`
 
@@ -159,6 +215,12 @@ Primary variables documented today:
 - `PAYLOAD_REVALIDATE_TIME`
 - `WWW_INTERNAL_SECRET`
 - `WWW_SITE_URL`
+
+### `apps/wechat-relay`
+
+- `WECHAT_RELAY_SHARED_SECRET`
+- `WECHAT_RELAY_HOST`
+- `WECHAT_RELAY_PORT`
 
 ## Runtime Constraints
 
@@ -201,7 +263,7 @@ Operational implications:
 
 ## Operational Notes
 
-1. Treat each app as an independently deployable Vercel project.
+1. Treat `apps/www` and `apps/admin` as independent Vercel projects and `apps/wechat-relay` as an operator-hosted service.
 2. Keep shared contracts explicit in environment files.
 3. Prefer updating app-local `.env.example` files when new required variables are introduced.
 4. If deployment behavior changes, update both this document and the relevant workflow files.
@@ -215,3 +277,5 @@ If this document diverges from the code, trust these files first:
 3. `.github/workflows/*`
 4. `apps/admin/.env.example`
 5. `apps/www/.env.example`
+6. `apps/wechat-relay/Dockerfile`
+7. `apps/wechat-relay/.env.example`

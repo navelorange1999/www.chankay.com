@@ -1,6 +1,6 @@
 # Testing and Operations
 
-> Last Updated: March 12, 2026
+> Last Updated: September 9, 2026
 
 ## Testing
 
@@ -27,6 +27,8 @@ Common commands:
 pnpm test
 pnpm test:run
 pnpm --filter admin test:ui
+pnpm --filter @chankay/wechat-relay-protocol test:run
+pnpm --filter @chankay/wechat-relay test:run
 ```
 
 ## Git Commit Workflow
@@ -77,6 +79,8 @@ pnpm format
 # Testing
 pnpm test
 pnpm test:run
+pnpm --filter @chankay/wechat-relay-protocol test:run
+pnpm --filter @chankay/wechat-relay test:run
 
 # CMS
 pnpm gen
@@ -92,6 +96,8 @@ not depend on pre-existing package build artifacts.
 
 - UI components: `packages/ui/src/components/`
 - Static demo shell: `packages/site-shell/src/`
+- WeChat relay: `apps/wechat-relay/`
+- Relay signing protocol: `packages/wechat-relay-protocol/`
 - Payload collections: `apps/admin/src/collections/`
 - Payload globals: `apps/admin/src/globals/`
 - Frontend routes: `apps/www/src/app/(frontend)/`

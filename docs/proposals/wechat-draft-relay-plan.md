@@ -473,11 +473,11 @@ git commit -m "feat: retry definitive WeChat token failures"
 - Modify: `docs/proposals/wechat-draft-relay.md`
 - Modify: `AGENTS.md`
 
-- [ ] **Step 1: Document the stable project structure**
+- [x] **Step 1: Document the stable project structure**
 
 Add `apps/wechat-relay` and `packages/wechat-relay-protocol` to the monorepo map, application list, commands, and important paths. Describe the relay as an operational service with no CMS content responsibilities.
 
-- [ ] **Step 2: Add the operator runbook**
+- [x] **Step 2: Add the operator runbook**
 
 Document this sequence without embedding any secret value:
 
@@ -494,7 +494,7 @@ cloudflared tunnel run chankay-wechat-relay
 
 State that the operator creates the secret outside the repository, configures the same value in the host and Vercel secret managers, never sends it in chat, and never asks an agent to inspect the real environment file. Explain how to determine the host's outbound IPv4 without copying it into documentation, add it to the WeChat allowlist, verify `/healthz`, enable the Vercel relay URL, and stop or roll back the relay.
 
-- [ ] **Step 3: Update proposal status and index**
+- [x] **Step 3: Update proposal status and index**
 
 After verification, record the exact tests and build results in `docs/proposals/wechat-draft-relay.md`. Keep `docs/proposals/wechat-draft-relay-plan.md` indexed in `AGENTS.md` while implementation is in flight; remove the plan index when the proposal is promoted after live acceptance.
 
@@ -515,6 +515,8 @@ pnpm exec prettier --check AGENTS.md apps/wechat-relay apps/admin/src/services/s
 
 Expected: installation is unchanged except for the new workspace importers; all tests, type checks, and formatting checks pass.
 
+The full protocol, relay, and Admin test suites, all three type checks, and formatting checks for affected files passed on 2026-09-09. A frozen install cannot safely replace this worktree's shared `node_modules` link; the lockfile contains only the intended workspace importers. Three unrelated pre-existing files under `docs/superpowers/` fail the repository-wide formatting check and were left untouched.
+
 - [ ] **Step 5: Run builds and a local relay smoke test**
 
 Run:
@@ -528,18 +530,20 @@ docker build -f apps/wechat-relay/Dockerfile -t chankay-wechat-relay:test .
 
 Start the container with a locally managed test secret, call `/healthz`, and send one signed request to a mocked upstream. Do not call WeChat and do not create a remote draft during automated verification.
 
+The protocol and relay builds and the local Node health and injected-upstream tests passed. Docker verification remains pending because no local daemon is running. The Admin build compiled and passed its type phase, then the inherited cross-worktree dependency links caused conflicting React runtimes while prerendering `/404`; rerun it in CI or a clean checkout.
+
 - [ ] **Step 6: Perform browser verification of the Admin recovery state**
 
 Open the existing failed publication in the authenticated Preview Admin. Verify that the exact snapshot remains unchanged, the last error still shows token code `40164`, the only draft recovery control reads `Retry draft after connectivity fix`, and no publication action is taken. Do not click the retry until the separate host, tunnel, Vercel variables, and WeChat allowlist are configured.
 
-- [ ] **Step 7: Commit documentation and verification evidence**
+- [x] **Step 7: Commit documentation and verification evidence**
 
 ```bash
 git add AGENTS.md docs apps/wechat-relay packages/wechat-relay-protocol apps/admin
 git commit -m "docs: add WeChat relay operations runbook"
 ```
 
-- [ ] **Step 8: Review the final branch**
+- [x] **Step 8: Review the final branch**
 
 Inspect `git diff origin/feat/social-publishing...HEAD`, confirm real environment files and generated secrets are absent, confirm `output/` remains unrelated and untracked, and verify the branch contains no publication action performed during testing.
 

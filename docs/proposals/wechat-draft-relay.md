@@ -2,7 +2,7 @@
 
 ## Status
 
-Approved in conversation on September 9, 2026. This design extends the existing manual social publishing architecture with a portable, authenticated egress relay for WeChat draft synchronization.
+Implemented locally on September 9, 2026. The relay, Admin transport, and narrow connectivity recovery are complete. Operator-host deployment, Cloudflare Tunnel setup, WeChat allowlist configuration, and live draft acceptance remain pending.
 
 ## Goal
 
@@ -58,7 +58,7 @@ flowchart LR
 	Queue --> Publication
 ```
 
-The existing `WeChatClient` continues to construct and validate WeChat requests and responses. A relay-aware fetch transport converts each permitted WeChat request into one signed request to the relay. The relay verifies the signature and request freshness, reconstructs the upstream request against the fixed `https://api.weixin.qq.com` origin, and streams the bounded response back to the worker.
+The existing `WeChatClient` continues to construct and validate WeChat requests and responses. A relay-aware fetch transport converts each permitted WeChat request into one signed request to the relay. The relay verifies the signature and request freshness, reconstructs the upstream request against the fixed `https://api.weixin.qq.com` origin, and returns the bounded response to the worker.
 
 If relay configuration is absent, the client retains its current direct transport. This keeps local mocked tests and future fixed-egress deployments usable without the relay. Production rollout must configure the relay explicitly before retrying the failed draft.
 
@@ -139,7 +139,7 @@ Real environment files, tunnel credentials, and secret values are never committe
 
 The current publication failed while obtaining a token. It has no access token checkpoint, uploaded media, remote draft identifier, submission identifier, or publication identifier. WeChat returned a definitive response, so the result is not ambiguous, but the provider classified the code as non-retryable because retrying without an allowlist change cannot succeed.
 
-The state policy will permit an explicit `create-draft` retry only when all of the following are true:
+The state policy permits an explicit `create-draft` retry only when all of the following are true:
 
 - publication status is `failed`;
 - the last error stage is `token`;
@@ -166,15 +166,15 @@ No step submits the draft for publication.
 ## Error Handling
 
 - Missing or partial relay configuration fails closed before any network request.
-- Invalid relay URLs, non-HTTPS endpoints, embedded credentials, query strings, and unexpected paths are rejected during startup or request construction.
+- Invalid relay URLs, non-HTTPS endpoints, embedded credentials, query strings, and unexpected paths are rejected before any network request.
 - Authentication, freshness, replay, allowlist, size, and timeout failures return generic bounded errors without echoing sensitive input.
 - Upstream WeChat responses are passed through without relay logging and remain subject to the existing bounded JSON parsing and error normalization.
 - Draft mutation failures retain the existing ambiguity rules and remote checkpoints.
-- Tunnel downtime produces a retryable transport error. Automatic queue redelivery still cannot create duplicate mutations because the existing claim, checkpoint, and ambiguity rules remain in force.
+- Tunnel downtime during token acquisition produces a retryable transport error. A transport failure during a mutation remains ambiguous and cannot be retried automatically.
 
 ## Testing
 
-Tests will be written before implementation and will cover:
+Automated tests cover:
 
 - deterministic canonical signatures and constant-time verification;
 - expired timestamps, duplicate nonces, malformed fields, and invalid signatures;
@@ -185,10 +185,23 @@ Tests will be written before implementation and will cover:
 - redaction-safe error behavior;
 - explicit retry eligibility for a non-ambiguous token failure with no remote state;
 - rejection of retries with media checkpoints, remote identifiers, ambiguity, source drift, or any non-token stage;
-- the Admin action label and command behavior;
+- the Admin recovery predicate and command behavior;
 - existing direct-client tests and the full Admin test and type-check suites.
 
-A local smoke test will run the relay against a mock upstream or injected fetch implementation. Live WeChat traffic is an operator acceptance step after the host, tunnel, shared secret, and allowlist are configured.
+The local test suite runs the relay against injected upstream fetch implementations and exercises the Node health endpoint over loopback. Live WeChat traffic is an operator acceptance step after the host, tunnel, shared secret, and allowlist are configured.
+
+### Local verification evidence
+
+Verification on September 9, 2026 produced these results:
+
+- shared protocol: 6 tests passed; type check and build passed;
+- relay service: 30 tests passed, including the Node health endpoint and connection lifetime bounds; type check and build passed;
+- Admin application: 247 tests passed and type check passed;
+- focused relay transport plus existing WeChat adapter: 40 tests passed;
+- focused recovery domain and command service: 16 tests passed;
+- formatting and diff checks passed after the final documentation update.
+
+The Docker image build and container health check remain pending because the local Docker daemon was unavailable. The Admin production build reached compilation, type checking, and page-data collection, then failed while prerendering `/404` because this isolated worktree inherited stale dependency links and conflicting React runtime copies from another worktree. The affected source tests and Admin type check passed; rerun the clean production build on CI or from a fresh checkout.
 
 ## Deployment Sequence
 

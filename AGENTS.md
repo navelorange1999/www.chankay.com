@@ -187,6 +187,9 @@ Read:
 - `.github/workflows/*`
 - [`apps/admin/.env.example`](./apps/admin/.env.example)
 - [`apps/www/.env.example`](./apps/www/.env.example)
+- [`apps/wechat-relay/.env.example`](./apps/wechat-relay/.env.example)
+- [`docs/proposals/wechat-draft-relay.md`](./docs/proposals/wechat-draft-relay.md)
+- [`docs/proposals/wechat-draft-relay-plan.md`](./docs/proposals/wechat-draft-relay-plan.md)
 
 Use when:
 
@@ -194,6 +197,7 @@ Use when:
 - You need to understand preview vs production behavior
 - You need environment variable boundaries between apps
 - You need to change Vercel-related configuration
+- You need to deploy or operate the WeChat draft relay or Cloudflare Tunnel
 - Read only `.env.example` templates and never inspect real `.env.*` files
 
 ## Canonical Source Priority

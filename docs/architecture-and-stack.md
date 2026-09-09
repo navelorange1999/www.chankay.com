@@ -1,19 +1,21 @@
 # Architecture and Stack
 
-> Last Updated: March 23, 2026
+> Last Updated: September 9, 2026
 
 ## Monorepo Structure
 
 ```text
 www.chankay.com/
 ├── apps/
-│   ├── www/          # Public website (Next.js)
-│   ├── admin/        # CMS admin panel (Next.js + Payload)
-│   └── storybook/    # Component documentation
+│   ├── www/             # Public website (Next.js)
+│   ├── admin/           # CMS admin panel (Next.js + Payload)
+│   ├── storybook/       # Component documentation
+│   └── wechat-relay/    # Authenticated draft-only WeChat egress relay
 ├── packages/
 │   ├── brand-assets/        # Shared favicon and logo source assets
 │   ├── site-shell/          # Static Web Component shell for demo subdomains
 │   ├── ui/                  # Shared UI component library
+│   ├── wechat-relay-protocol/ # Shared request signing protocol
 │   ├── typescript-config/   # Shared TypeScript configuration and generated types
 │   ├── eslint-config/       # Shared ESLint configuration
 │   └── tailwind-config/     # Shared Tailwind configuration
@@ -38,6 +40,8 @@ Common commands:
 - `pnpm dev:admin`: Start only the admin app
 - `pnpm dev:ui`: Start Storybook and UI watch tasks
 - `pnpm dev:site-shell`: Start the `site-shell` local preview in watch mode
+- `pnpm --filter @chankay/wechat-relay start`: Start the built WeChat relay
+- `pnpm --filter @chankay/wechat-relay test:run`: Test the WeChat relay
 - `pnpm build`: Build all apps
 - `pnpm lint`: Lint the workspace
 - `pnpm check-types`: Run TypeScript checks
@@ -53,6 +57,7 @@ Common commands:
 | Payload CMS 3         | Headless CMS          |
 | MongoDB via Mongoose  | Data layer            |
 | Tailwind CSS 4        | Styling               |
+| Node.js 24            | WeChat relay runtime  |
 
 ## UI and Frontend Libraries
 
@@ -78,6 +83,8 @@ Common commands:
 - `apps/www/src/services/payload/`: Frontend Payload data access
 - `packages/ui/src/components/`: Shared UI components
 - `packages/site-shell/src/`: Static demo shell package sources
+- `apps/wechat-relay/src/`: Draft-only WeChat relay runtime
+- `packages/wechat-relay-protocol/src/`: Relay signing and verification contract
 - `packages/typescript-config/typings/payload-types.ts`: Generated Payload types
 
 ## Architecture Notes
@@ -87,4 +94,6 @@ Common commands:
 - `packages/ui` contains presentation-focused components with minimal business logic.
 - `packages/brand-assets` is the source of truth for shared favicon and logo files.
 - `packages/site-shell` contains a static, framework-agnostic Web Component shell for demo sites.
+- `apps/wechat-relay` is an operational service. It has no CMS content or presentation responsibilities.
+- `packages/wechat-relay-protocol` is shared by Admin and the relay so both runtimes sign and verify identical bytes.
 - Shared configuration packages should remain generic and app-agnostic.

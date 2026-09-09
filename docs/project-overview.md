@@ -1,7 +1,7 @@
 # Project Overview
 
 > Project: www.chankay.com
-> Last Updated: March 12, 2026
+> Last Updated: September 9, 2026
 
 This repository contains a personal website and technical blog built in a monorepo architecture.
 
@@ -10,6 +10,7 @@ This repository contains a personal website and technical blog built in a monore
 - `apps/www`: Public-facing Next.js website
 - `apps/admin`: Payload CMS admin panel
 - `apps/storybook`: Component documentation and visual testing environment
+- `apps/wechat-relay`: Authenticated, draft-only WeChat egress relay for an operator host
 
 ## Key Goals
 

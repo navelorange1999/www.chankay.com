@@ -48,7 +48,7 @@ Modify these existing units:
 - Create: `packages/wechat-relay-protocol/src/index.ts`
 - Create: `packages/wechat-relay-protocol/src/__tests__/protocol.test.ts`
 
-- [ ] **Step 1: Add the package manifest and TypeScript configuration**
+- [x] **Step 1: Add the package manifest and TypeScript configuration**
 
 Use a private workspace package that builds to `dist` and has no runtime dependency:
 
@@ -83,7 +83,7 @@ Use a private workspace package that builds to `dist` and has no runtime depende
 Set `rootDir` to `src`, `outDir` to `dist`, and extend `@repo/typescript-config/base`.
 Run `pnpm install` from the repository root to add the workspace importer and links without selecting any new package versions.
 
-- [ ] **Step 2: Write failing protocol tests**
+- [x] **Step 2: Write failing protocol tests**
 
 Cover a fixed canonical vector, successful verification, body tampering, metadata tampering, malformed hexadecimal input, and a secret shorter than 32 characters:
 
@@ -115,13 +115,13 @@ it("rejects changed bytes", async () => {
 })
 ```
 
-- [ ] **Step 3: Run the protocol tests and verify RED**
+- [x] **Step 3: Run the protocol tests and verify RED**
 
 Run: `pnpm --filter @chankay/wechat-relay-protocol test:run`
 
 Expected: FAIL because `signRelayRequest` and `verifyRelayRequest` do not exist.
 
-- [ ] **Step 4: Implement the minimal shared protocol**
+- [x] **Step 4: Implement the minimal shared protocol**
 
 Export immutable header names, `RelayMetadata`, `signRelayRequest`, `readRelayHeaders`, and `verifyRelayRequest`. Use `crypto.subtle.digest`, `crypto.subtle.sign`, and `crypto.subtle.verify`. Build the canonical value in this exact order:
 
@@ -141,7 +141,7 @@ export function canonicalRelayRequest(metadata: RelayMetadata, bodyHash: string)
 
 Validate version `1`, a 10-digit timestamp, a 16-to-128-character base64url-or-hyphen nonce, method `POST`, target and content-type length bounds, a 64-character lowercase body hash, a 64-character lowercase signature, and a 32-to-256-character secret. Reject newline characters before canonicalization.
 
-- [ ] **Step 5: Run focused checks and verify GREEN**
+- [x] **Step 5: Run focused checks and verify GREEN**
 
 Run:
 
@@ -153,7 +153,7 @@ pnpm --filter @chankay/wechat-relay-protocol build
 
 Expected: all protocol tests pass, type checking succeeds, and `dist/index.js` plus declarations are emitted.
 
-- [ ] **Step 6: Commit the protocol package**
+- [x] **Step 6: Commit the protocol package**
 
 ```bash
 git add packages/wechat-relay-protocol pnpm-lock.yaml

@@ -1,0 +1,17 @@
+{
+  "extends": "../../packages/typescript-config/configs/base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "incremental": true,
+    "types": ["node"],
+    "paths": {
+      "@chankay/wechat-relay-protocol": ["../../packages/wechat-relay-protocol/dist/index.d.ts"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", "src/**/__tests__"]
+}

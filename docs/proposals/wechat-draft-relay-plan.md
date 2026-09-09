@@ -175,13 +175,13 @@ git commit -m "feat: add signed WeChat relay protocol"
 - Create: `apps/wechat-relay/Dockerfile`
 - Create: `apps/wechat-relay/.env.example`
 
-- [ ] **Step 1: Add the relay app shell**
+- [x] **Step 1: Add the relay app shell**
 
 Create private package `@chankay/wechat-relay` with scripts `build`, `start`, `check-types`, `test`, `test:run`, and `clean`. Depend on `@chankay/wechat-relay-protocol` through `workspace:*`; use the same TypeScript and Vitest versions as the shared package. Compile `src` to `dist` with NodeNext modules.
 
 Run `pnpm install` from the repository root after adding the manifest so the workspace link and lockfile importer exist before the RED test.
 
-- [ ] **Step 2: Write failing configuration and nonce tests**
+- [x] **Step 2: Write failing configuration and nonce tests**
 
 Require `WECHAT_RELAY_SHARED_SECRET`, default the host to `127.0.0.1` and port to `8787`, reject non-numeric or privileged ports, and reject secrets outside the protocol length. Verify that a nonce is accepted once, rejected until expiry, accepted after expiry, and that the store never exceeds 10,000 entries.
 
@@ -195,17 +195,17 @@ it("defaults to a loopback listener", () => {
 })
 ```
 
-- [ ] **Step 3: Run the configuration tests and verify RED**
+- [x] **Step 3: Run the configuration tests and verify RED**
 
 Run: `pnpm --filter @chankay/wechat-relay test:run`
 
 Expected: FAIL because the config parser and nonce store do not exist.
 
-- [ ] **Step 4: Implement configuration and replay protection**
+- [x] **Step 4: Implement configuration and replay protection**
 
 Implement strict string parsing without printing values. `NonceStore.consume(nonce, expiresAt, now)` must prune expired entries, reject a live duplicate, insert one new nonce, and evict the oldest entry when the bound is exceeded.
 
-- [ ] **Step 5: Write failing relay handler tests**
+- [x] **Step 5: Write failing relay handler tests**
 
 Use signed requests from the shared protocol and an injected upstream fetch. Cover:
 
@@ -226,13 +226,13 @@ it("forwards exact multipart bytes and content type", async () => {
 
 Also reject unsigned requests, invalid signatures, expired timestamps, duplicate nonces, absolute targets, unknown query parameters, all `/cgi-bin/freepublish/*` paths, unknown paths, requests above 12 MB, upstream redirects, responses above 2 MB, and upstream timeouts. Assert every rejection body is the same bounded generic JSON shape and does not include the request target, token, signature, or thrown upstream message.
 
-- [ ] **Step 6: Run handler tests and verify RED**
+- [x] **Step 6: Run handler tests and verify RED**
 
 Run: `pnpm --filter @chankay/wechat-relay test:run`
 
 Expected: FAIL because `handleRelayRequest` does not exist.
 
-- [ ] **Step 7: Implement the health and proxy handlers**
+- [x] **Step 7: Implement the health and proxy handlers**
 
 Use these fixed restrictions:
 
@@ -250,11 +250,11 @@ Require `type=image` for material upload, reject duplicate query keys, fix the u
 
 `GET /healthz` returns `{"status":"ok"}`. Every other local path or method returns a generic 404 or 405 without configuration details.
 
-- [ ] **Step 8: Add the Node HTTP adapter and graceful shutdown**
+- [x] **Step 8: Add the Node HTTP adapter and graceful shutdown**
 
 Convert each bounded incoming request to a Web `Request`, call `handleRelayRequest`, and copy the bounded `Response` to Node's `ServerResponse`. Start only from `server.ts`, handle `SIGINT` and `SIGTERM`, and log only fixed lifecycle messages such as `WeChat relay listening.` and `WeChat relay stopped.`
 
-- [ ] **Step 9: Add the Docker image and example variables**
+- [x] **Step 9: Add the Docker image and example variables**
 
 Use an official `node:24.10.0-alpine` multi-stage image. Build the protocol package and relay app, then copy only relay output, the built protocol output, and package manifests into a non-root runtime image. Do not use build arguments or `ENV` instructions for secrets.
 
@@ -281,7 +281,9 @@ docker build -f apps/wechat-relay/Dockerfile -t chankay-wechat-relay:test .
 
 Start the image with a locally supplied test secret, bind it only to `127.0.0.1`, and verify `/healthz` returns 200. Do not send a live WeChat request.
 
-- [ ] **Step 11: Commit the relay service**
+The relay tests, type check, build, and direct Node health check passed on 2026-09-09. The Docker image build and container health check remain pending because the local Docker daemon was unavailable.
+
+- [x] **Step 11: Commit the relay service**
 
 ```bash
 git add apps/wechat-relay pnpm-lock.yaml

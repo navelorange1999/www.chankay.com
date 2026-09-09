@@ -132,7 +132,7 @@ export async function handleRelayRequest(
 				body,
 				secret: dependencies.sharedSecret,
 			})) ||
-			request.headers.get("content-type") !== parsed.metadata.contentType
+			(request.headers.get("content-type") ?? "") !== parsed.metadata.contentType
 		)
 			throw new RelayRejection(401)
 		const nonceExpiry = validateFreshness(parsed.metadata, dependencies.now())

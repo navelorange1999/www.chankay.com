@@ -301,7 +301,7 @@ git commit -m "feat: add portable WeChat draft relay"
 - Modify: `apps/admin/.env.example`
 - Modify: `pnpm-lock.yaml`
 
-- [ ] **Step 1: Write failing transport tests**
+- [x] **Step 1: Write failing transport tests**
 
 Verify that no relay variables returns the injected direct fetch unchanged, partial configuration rejects before any network request, invalid URLs reject, publication paths reject locally, and a signed draft request preserves raw bytes and multipart content type.
 
@@ -328,7 +328,7 @@ it("routes a draft request through the configured relay", async () => {
 })
 ```
 
-- [ ] **Step 2: Run the transport tests and verify RED**
+- [x] **Step 2: Run the transport tests and verify RED**
 
 Run:
 
@@ -339,7 +339,7 @@ pnpm --filter admin test:run -- relayTransport.test.ts
 
 Expected: FAIL because `createWeChatRelayFetch` does not exist.
 
-- [ ] **Step 3: Implement relay configuration and signed forwarding**
+- [x] **Step 3: Implement relay configuration and signed forwarding**
 
 `createWeChatRelayFetch(environment, baseFetch, dependencies)` must:
 
@@ -350,7 +350,7 @@ Expected: FAIL because `createWeChatRelayFetch` does not exist.
 5. construct a `Request`, materialize its encoded raw body once, preserve its computed content type, sign the exact method and relative target, and send only protocol headers plus the upstream content type;
 6. preserve the caller's abort signal and use `redirect: "error"` for the relay call.
 
-- [ ] **Step 4: Wire the transport into the adapter**
+- [x] **Step 4: Wire the transport into the adapter**
 
 Keep explicit test injection authoritative:
 
@@ -366,7 +366,7 @@ Add `@chankay/wechat-relay-protocol: workspace:*` to Admin dependencies and docu
 
 Run `pnpm install` from the repository root to record the Admin workspace dependency before executing the focused tests.
 
-- [ ] **Step 5: Verify focused Admin behavior**
+- [x] **Step 5: Verify focused Admin behavior**
 
 Run:
 
@@ -378,7 +378,7 @@ pnpm --filter admin check-types
 
 Expected: relay transport and existing WeChat tests pass; Admin type checking succeeds.
 
-- [ ] **Step 6: Commit Admin relay routing**
+- [x] **Step 6: Commit Admin relay routing**
 
 ```bash
 git add apps/admin/package.json apps/admin/.env.example apps/admin/src/services/socialPublishing/adapters/wechat packages/wechat-relay-protocol pnpm-lock.yaml

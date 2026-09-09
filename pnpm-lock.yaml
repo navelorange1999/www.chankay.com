@@ -64,6 +64,9 @@ importers:
 
   apps/admin:
     dependencies:
+      '@chankay/wechat-relay-protocol':
+        specifier: workspace:*
+        version: link:../../packages/wechat-relay-protocol
       '@payloadcms/db-mongodb':
         specifier: 3.88.0
         version: 3.88.0(payload@3.88.0(graphql@16.11.0)(typescript@5.8.3))

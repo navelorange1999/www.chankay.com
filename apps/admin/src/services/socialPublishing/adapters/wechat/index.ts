@@ -1,4 +1,5 @@
 import { WeChatClient, providerId, type WeChatClientOptions } from "./client"
+import { createWeChatRelayFetch } from "./relayTransport"
 import {
 	renderWeChat,
 	validateWeChatPrepared,
@@ -44,7 +45,8 @@ async function checkpoint(
 export function createWeChatAdapter(
 	options: WeChatClientOptions = {}
 ): SocialPublisherAdapter & Required<Pick<SocialPublisherAdapter, "createDraft" | "getStatus">> {
-	const client = new WeChatClient(options)
+	const fetcher = options.fetch ?? createWeChatRelayFetch(process.env, fetch)
+	const client = new WeChatClient({ ...options, fetch: fetcher })
 	async function upload(
 		id: string,
 		inline: boolean,

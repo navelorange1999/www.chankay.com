@@ -75,18 +75,28 @@ export function createRelayServer(
 		timeoutMs,
 		...overrides,
 	}
-	return createServer(async (incoming, outgoing) => {
-		let response: Response
-		try {
-			response = await handleRelayRequest(await toWebRequest(incoming), dependencies)
-		} catch (error) {
-			response = genericError(error instanceof NodeRequestRejection ? error.status : 502)
+	const server = createServer(
+		{
+			headersTimeout: 5_000,
+			keepAliveTimeout: 5_000,
+			maxHeaderSize: 16_384,
+			requestTimeout: timeoutMs,
+		},
+		async (incoming, outgoing) => {
+			let response: Response
+			try {
+				response = await handleRelayRequest(await toWebRequest(incoming), dependencies)
+			} catch (error) {
+				response = genericError(error instanceof NodeRequestRejection ? error.status : 502)
+			}
+			outgoing.statusCode = response.status
+			const contentType = response.headers.get("content-type")
+			if (contentType) outgoing.setHeader("content-type", contentType)
+			outgoing.end(Buffer.from(await response.arrayBuffer()))
 		}
-		outgoing.statusCode = response.status
-		const contentType = response.headers.get("content-type")
-		if (contentType) outgoing.setHeader("content-type", contentType)
-		outgoing.end(Buffer.from(await response.arrayBuffer()))
-	})
+	)
+	server.maxHeadersCount = 64
+	return server
 }
 
 export function startRelayServer(config = readRelayConfig()) {

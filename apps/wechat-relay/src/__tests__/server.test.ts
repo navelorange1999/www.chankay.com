@@ -43,6 +43,17 @@ async function get(port: number, path: string): Promise<{ body: string; status: 
 }
 
 describe("relay server", () => {
+	it("bounds incoming headers and request duration", () => {
+		const server = createRelayServer({
+			host: "127.0.0.1",
+			port: 8787,
+			sharedSecret: "s".repeat(32),
+		})
+		expect(server.maxHeadersCount).toBe(64)
+		expect(server.headersTimeout).toBe(5_000)
+		expect(server.requestTimeout).toBe(15_000)
+	})
+
 	it("serves the health endpoint through the Node adapter", async () => {
 		const server = createRelayServer({
 			host: "127.0.0.1",

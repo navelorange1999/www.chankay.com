@@ -35,6 +35,17 @@ Run either the direct Node.js process or the Docker container, never both on the
 
 Create the relay signing secret outside the repository using an approved password or secret manager. Store the same value in the host's managed runtime environment and the Vercel secret manager as `WECHAT_RELAY_SHARED_SECRET`. Never send the value in chat, commit it, place it in CMS data, or ask an agent to inspect the real environment file.
 
+The relay helper can initialize or rotate that file without printing the secret. It generates 32
+cryptographically random bytes as a 64-character hexadecimal value, sets the loopback runtime
+defaults, writes atomically, and keeps the file mode at `0600`:
+
+```bash
+apps/wechat-relay/scripts/generate-shared-secret.sh /operator/managed/wechat-relay.env
+```
+
+Use `--keep-secret` to normalize `WECHAT_RELAY_HOST` and `WECHAT_RELAY_PORT` without rotating an
+existing signing secret.
+
 Create the host environment file outside the checkout, restrict its filesystem permissions to the
 operator account, and start the container with the relay port published only on loopback. The
 restart policy recreates the running process after a Docker daemon restart; on Docker Desktop,

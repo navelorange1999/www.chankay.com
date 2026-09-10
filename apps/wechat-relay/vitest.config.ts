@@ -1,6 +1,9 @@
 import { fileURLToPath } from "node:url"
 
+const repositoryRoot = fileURLToPath(new URL("../../", import.meta.url))
+
 export default {
+	root: repositoryRoot,
 	test: {
 		environment: "node",
 		include: ["apps/wechat-relay/src/**/__tests__/**/*.test.ts"],

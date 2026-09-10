@@ -20,23 +20,84 @@ Build the image from the repository root on a host with Docker:
 docker build -f apps/wechat-relay/Dockerfile -t chankay-wechat-relay .
 ```
 
-Create the relay signing secret outside the repository using an approved password or secret manager. Store the same value in the host's managed runtime environment and the Vercel secret manager as `WECHAT_RELAY_SHARED_SECRET`. Never send the value in chat, commit it, place it in CMS data, or ask an agent to inspect the real environment file.
-
-Create the host environment file outside the checkout, restrict its filesystem permissions to the operator account, and start the container with the relay port published only on loopback:
+Docker is optional. For a direct Node.js deployment, install dependencies and build both relay
+workspaces from the repository root, then start the compiled service with Node.js 24 or newer. The
+environment file must remain outside the checkout:
 
 ```bash
-docker run --rm --name chankay-wechat-relay \
+pnpm install --frozen-lockfile --filter @chankay/wechat-relay...
+pnpm --filter @chankay/wechat-relay-protocol build
+pnpm --filter @chankay/wechat-relay build
+node --env-file=/operator/managed/wechat-relay.env apps/wechat-relay/dist/server.js
+```
+
+Run either the direct Node.js process or the Docker container, never both on the same port.
+
+Create the relay signing secret outside the repository using an approved password or secret manager. Store the same value in the host's managed runtime environment and the Vercel secret manager as `WECHAT_RELAY_SHARED_SECRET`. Never send the value in chat, commit it, place it in CMS data, or ask an agent to inspect the real environment file.
+
+Create the host environment file outside the checkout, restrict its filesystem permissions to the
+operator account, and start the container with the relay port published only on loopback. The
+restart policy recreates the running process after a Docker daemon restart; on Docker Desktop,
+enable launch at login so the daemon itself returns after a host restart:
+
+```bash
+docker run --detach --name chankay-wechat-relay \
+  --restart unless-stopped \
   --env-file /operator/managed/wechat-relay.env \
   -e WECHAT_RELAY_HOST=0.0.0.0 \
   -p 127.0.0.1:8787:8787 \
   chankay-wechat-relay
 ```
 
-Create the named tunnel using the operator's Cloudflare account. Keep all generated tunnel credentials and configuration outside the repository. Configure its ingress origin as `http://127.0.0.1:8787`, then route and start it:
+For a direct Node.js deployment on macOS, copy
+`apps/wechat-relay/deploy/macos/com.chankay.wechat-relay.plist.example` outside the checkout,
+replace only the absolute executable, environment-file, and checkout paths, and load it as a
+per-user LaunchAgent. The example stores no secret values; Node reads the operator-managed file at
+runtime. Validate the edited property list before loading it:
+
+```bash
+plutil -lint /operator/managed/com.chankay.wechat-relay.plist
+install -d -m 700 "$HOME/Library/LaunchAgents"
+install -m 600 /operator/managed/com.chankay.wechat-relay.plist \
+  "$HOME/Library/LaunchAgents/com.chankay.wechat-relay.plist"
+launchctl bootstrap "gui/$(id -u)" \
+  "$HOME/Library/LaunchAgents/com.chankay.wechat-relay.plist"
+```
+
+Create the named tunnel using the operator's Cloudflare account. Keep all generated tunnel
+credentials and configuration outside the repository. A locally managed tunnel configuration must
+identify the tunnel UUID, reference the operator-managed credential file by absolute path, route the
+relay hostname to loopback, and terminate unmatched ingress with `http_status:404`:
+
+```yaml
+tunnel: <TUNNEL_UUID>
+credentials-file: /operator/managed/<TUNNEL_UUID>.json
+ingress:
+  - hostname: wechat-relay.chankay.com
+    service: http://127.0.0.1:8787
+  - service: http_status:404
+```
+
+Route and start the tunnel only after the operator has created that external configuration:
 
 ```bash
 cloudflared tunnel route dns chankay-wechat-relay wechat-relay.chankay.com
-cloudflared tunnel run chankay-wechat-relay
+cloudflared tunnel --config /operator/managed/cloudflared-config.yml run chankay-wechat-relay
+```
+
+On macOS, install `cloudflared` as a login service after the external configuration is complete. A
+login service uses the current user's Cloudflare configuration. A true boot service requires
+administrator approval and configuration under `/etc/cloudflared`; choose one mode and do not
+install both:
+
+```bash
+cloudflared --config /operator/managed/cloudflared-config.yml service install
+```
+
+On Linux, pass the external configuration path explicitly when installing the system service:
+
+```bash
+sudo cloudflared --config /operator/managed/cloudflared-config.yml service install
 ```
 
 Verify the local and public health endpoints before enabling Admin routing:

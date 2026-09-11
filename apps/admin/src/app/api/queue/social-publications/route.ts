@@ -10,7 +10,7 @@ const callback = handleCallback<QueueMessage>(
 		retry: (_, metadata) => ({
 			afterSeconds: Math.min(300, Math.max(1, metadata.deliveryCount) * 30),
 		}),
-		visibilityTimeoutSeconds: 150,
+		visibilityTimeoutSeconds: 240,
 	}
 )
 export async function POST(request: Request) {

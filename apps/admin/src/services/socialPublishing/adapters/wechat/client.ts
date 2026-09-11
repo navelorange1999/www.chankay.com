@@ -25,10 +25,9 @@ export class WeChatClient {
 	constructor(options: WeChatClientOptions = {}) {
 		this.fetcher = options.fetch ?? fetch
 		this.now = options.now ?? Date.now
-		// The relay has its own 15 second upstream timeout. Keep the caller's
-		// deadline longer so the relay can return a definitive HTTP response instead
-		// of having this side abort the tunnel connection first.
-		this.timeoutMs = Math.min(25000, Math.max(100, options.timeoutMs ?? 20000))
+		// Allow the tunnel's 60 second body reception plus 15 second upstream
+		// deadline and response overhead. The worker also bounds the whole attempt.
+		this.timeoutMs = Math.min(90_000, Math.max(100, options.timeoutMs ?? 90_000))
 	}
 	private async send(
 		url: URL,

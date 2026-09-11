@@ -73,7 +73,7 @@ export async function processSocialPublication(input: unknown, suppliedRequest?:
 	}
 	const claimed = await transition(req, doc, {
 		status: activeState,
-		claimExpiresAt: new Date(Date.now() + 120_000).toISOString(),
+		claimExpiresAt: new Date(Date.now() + 210_000).toISOString(),
 	})
 	if (!claimed) return
 	doc = claimed
@@ -114,7 +114,7 @@ export async function processSocialPublication(input: unknown, suppliedRequest?:
 		const context: AdapterExecutionContext = {
 			credentials,
 			remote: doc.remote ?? {},
-			deadline: Date.now() + 45_000,
+			deadline: Date.now() + 150_000,
 			checkpoint: async (remote: RemoteResult) => {
 				await save({ remote })
 			},

@@ -1,5 +1,6 @@
 import { WeChatClient, providerId, type WeChatClientOptions } from "./client"
 import { createWeChatRelayFetch } from "./relayTransport"
+import { prepareCoverUpload } from "./cover"
 import {
 	renderWeChat,
 	validateWeChatPrepared,
@@ -66,6 +67,7 @@ export function createWeChatAdapter(
 			asset.bytes.byteLength > (inline ? WECHAT_LIMITS.inlineImageBytes : WECHAT_LIMITS.coverBytes)
 		)
 			throw new SocialPublishingError("media", "VALIDATION")
+		if (!inline) asset = await prepareCoverUpload(asset)
 		const form = new FormData()
 		form.append(
 			"media",

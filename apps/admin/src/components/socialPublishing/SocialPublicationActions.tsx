@@ -38,6 +38,7 @@ type Review = {
 		stage: string
 		retryable: boolean
 		ambiguous: boolean
+		occurredAt?: string
 	} | null
 }
 
@@ -180,6 +181,8 @@ export function SocialPublicationActions() {
 			{review.lastError && (
 				<p role="status">
 					{review.lastError.code}: {review.lastError.message}
+					{` Stage: ${review.lastError.stage}.`}
+					{review.lastError.occurredAt && ` Occurred at: ${review.lastError.occurredAt}.`}
 					{review.lastError.ambiguous
 						? " Inspect the remote account before any further action."
 						: ""}

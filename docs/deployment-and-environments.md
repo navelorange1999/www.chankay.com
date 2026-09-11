@@ -4,7 +4,21 @@
 
 ## Manual Social Publishing
 
-Social publishing runs in the Admin project. The `social-publications` Vercel Queue topic delivers identifier-only `{ action, publicationId }` messages to `/api/queue/social-publications`. The callback has a 60-second budget; adapter calls share a 45-second execution deadline. Local and non-Vercel execution is serialized in process and is not durable across restarts.
+Social publishing runs in the Admin project. The `social-publications` Vercel Queue topic delivers identifier-only `{ action, publicationId }` messages to `/api/queue/social-publications`. The callback has a 180-second budget; adapter calls share a 150-second execution deadline. Worker claims expire after 210 seconds and queue visibility lasts 240 seconds, so an active function is not reclaimed prematurely. Local and non-Vercel execution is serialized in process and is not durable across restarts.
+
+The relay allows 60 seconds to receive an image body through the tunnel, followed by a separate
+15-second upstream deadline. The Admin client allows up to 90 seconds per request, capped by the
+remaining adapter deadline. Keep these limits coordinated when changing upload behavior. Health
+checks do not test bulk upload throughput: an unsigned synthetic body to `/v1/wechat` should
+finish with HTTP 401; HTTP 408 indicates the body reception deadline expired. Never use real
+credentials or article data for that diagnostic. A network timeout during a media mutation still
+has an ambiguous outcome and must not be retried automatically.
+
+Cover images larger than 500 KB are optimized into an upload-only JPEG copy using bounded
+dimensions and quality, preserving aspect ratio and leaving the CMS original unchanged. Small
+covers and inline article images retain their original bytes. Image decoding is limited to 40
+million pixels; optimization failures occur before the remote media mutation. This keeps large
+covers within the measured tunnel throughput and the request signature freshness window.
 
 Create a disabled Social Account first. The only initial credential reference is `wechat-primary`; code resolves it through `WECHAT_PRIMARY_APP_ID` and `WECHAT_PRIMARY_APP_SECRET`. Configure these using the deployment platform's secret settings. The application ID must equal the immutable account `providerAccountId`. Rotation may change the secret but may not redirect the account. Never put credentials in CMS fields, queues, logs, or MCP responses.
 

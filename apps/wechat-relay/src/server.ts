@@ -8,6 +8,8 @@ import { NonceStore } from "./nonceStore.js"
 
 const requestLimit = 12_000_000
 const timeoutMs = 15_000
+// Receiving an image through the tunnel precedes the upstream request deadline.
+const receiveTimeoutMs = 60_000
 
 class NodeRequestRejection extends Error {
 	constructor(readonly status: number) {
@@ -80,7 +82,7 @@ export function createRelayServer(
 			headersTimeout: 5_000,
 			keepAliveTimeout: 5_000,
 			maxHeaderSize: 16_384,
-			requestTimeout: timeoutMs,
+			requestTimeout: receiveTimeoutMs,
 		},
 		async (incoming, outgoing) => {
 			let response: Response

@@ -4,8 +4,19 @@ import { getSocialPublisherAdapter } from "./adapters/registry"
 import { enqueueSocialPublication } from "./dispatcher"
 import { hashSnapshot, preparationKey } from "./snapshot"
 import { loadSource } from "./source"
-import { commandSchema, prepareSchema, relationshipID } from "./validation"
-import { canQueue, claimState, recoveryAction, type QueueAction } from "./state"
+import {
+	commandSchema,
+	inspectedDraftRetrySchema,
+	prepareSchema,
+	relationshipID,
+} from "./validation"
+import {
+	canQueue,
+	canRetryDraftAfterRemoteInspection,
+	claimState,
+	recoveryAction,
+	type QueueAction,
+} from "./state"
 import {
 	readPublication,
 	publicationSummary,
@@ -156,3 +167,59 @@ export const createSocialDraft = (args: unknown, req: PayloadRequest) =>
 	queueCommand(args, req, "create-draft")
 export const publishSocialPublication = (args: unknown, req: PayloadRequest) =>
 	queueCommand(args, req, "publish")
+
+export async function retrySocialDraftAfterRemoteInspection(args: unknown, req: PayloadRequest) {
+	const actor = requireOperator(req)
+	const input = inspectedDraftRetrySchema.parse(args)
+	const doc = await readPublication(input.publicationId, req)
+	if (input.expectedSnapshotHash !== doc.snapshotHash)
+		throw new SocialPublishingError("prepare", "SNAPSHOT_MISMATCH")
+	verifySnapshot(doc)
+	if (!canRetryDraftAfterRemoteInspection(doc))
+		throw new SocialPublishingError("create-draft", "REMOTE_INSPECTION_NOT_APPLICABLE")
+	const account = await req.payload.findByID({
+		collection: "social-accounts",
+		id: relationshipID(doc.account),
+		depth: 0,
+		req,
+		user: actor,
+		overrideAccess: false,
+	})
+	if (
+		!account.enabled ||
+		account.platform !== doc.snapshot.platform ||
+		account.providerAccountId !== doc.snapshot.providerAccountId
+	)
+		throw new SocialPublishingError("prepare", "ACCOUNT_DISABLED_OR_CHANGED")
+	const { source } = await loadSource(
+		{
+			assets: doc.snapshot.assets,
+			postId: relationshipID(doc.sourcePost),
+			accountId: account.id,
+			locale: prepareSchema.shape.locale.parse(doc.sourceLocale),
+		},
+		req
+	)
+	if (hashSnapshot(source) !== doc.sourceHash)
+		throw new SocialPublishingError("prepare", "SOURCE_STALE")
+	const occurredAt = new Date().toISOString()
+	const entryPoint = req.payloadAPI === "MCP" ? "mcp" : "admin"
+	const attempt = {
+		actor: actor.id,
+		entryPoint,
+		action: "confirm-no-remote-draft-and-retry",
+		previousStatus: doc.status,
+		nextStatus: "draft_queued",
+		snapshotHash: doc.snapshotHash,
+		occurredAt,
+	} as const
+	const queued = await transition(req, doc, {
+		status: "draft_queued",
+		claimExpiresAt: null,
+		lastError: null,
+		attempts: [...(doc.attempts ?? []), attempt].slice(-50),
+	})
+	if (!queued) return publicationSummary(await readPublication(doc.id, req))
+	await enqueueSocialPublication({ publicationId: doc.id, action: "create-draft" })
+	return publicationSummary(queued)
+}

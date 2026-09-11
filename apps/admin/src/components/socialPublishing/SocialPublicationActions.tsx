@@ -5,6 +5,7 @@ import { useAuth, useDocumentInfo } from "@payloadcms/ui"
 import {
 	canQueue,
 	canRetryDraftAfterConnectivityFix,
+	canRetryDraftAfterRemoteInspection,
 	recoveryAction,
 } from "../../services/socialPublishing/state"
 
@@ -105,9 +106,39 @@ export function SocialPublicationActions() {
 			setBusy(false)
 		}
 	}
+	async function retryAfterRemoteInspection() {
+		if (!review) return
+		if (
+			!window.confirm(
+				"Confirm that you inspected the WeChat Official Account draft list and this article is not present. This will retry draft creation and may reuse media already uploaded during the interrupted attempt."
+			)
+		)
+			return
+		setBusy(true)
+		setError("")
+		try {
+			const response = await fetch("/api/social-publications/retry-draft-after-remote-inspection", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					publicationId: review.publicationId,
+					expectedSnapshotHash: review.snapshotHash,
+					confirmedNoRemoteDraft: true,
+				}),
+			})
+			const data = await response.json()
+			if (!response.ok) throw new Error(data.error?.code || "Publication recovery failed.")
+			await refresh()
+		} catch (err) {
+			setError(err instanceof Error ? err.message : "Publication recovery failed.")
+		} finally {
+			setBusy(false)
+		}
+	}
 	if (!review) return <p role="status">{error || "Loading publication…"}</p>
 	const recovery = recoveryAction(review)
 	const connectivityRetry = canRetryDraftAfterConnectivityFix(review)
+	const inspectedDraftRetry = canRetryDraftAfterRemoteInspection(review)
 	return (
 		<section aria-label="Publication review">
 			<h2>{review.preview.title}</h2>
@@ -178,6 +209,11 @@ export function SocialPublicationActions() {
 			{recovery && (recovery === "create-draft" || user?.role === "admin") && (
 				<button type="button" disabled={busy} onClick={() => command(recovery)}>
 					Resume queued work or status lookup
+				</button>
+			)}
+			{inspectedDraftRetry && (
+				<button type="button" disabled={busy || review.stale} onClick={retryAfterRemoteInspection}>
+					Confirm no remote draft and retry
 				</button>
 			)}
 			{error && <p role="alert">{error}</p>}

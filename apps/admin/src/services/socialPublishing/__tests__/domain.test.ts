@@ -1,6 +1,12 @@
 import { describe, expect, it } from "vitest"
 import { hashSnapshot, preparationKey } from "../snapshot"
-import { canQueue, canRetryDraftAfterConnectivityFix, claimState, recoveryAction } from "../state"
+import {
+	canQueue,
+	canRetryDraftAfterConnectivityFix,
+	canRetryDraftAfterRemoteInspection,
+	claimState,
+	recoveryAction,
+} from "../state"
 import { requireOperator, serviceWriteAccess } from "../access"
 
 describe("publication safety", () => {
@@ -63,6 +69,23 @@ describe("publication safety", () => {
 			{ ...rejectedToken, remote: { status: "pending" } },
 		]) {
 			expect(canRetryDraftAfterConnectivityFix(disqualified)).toBe(false)
+		}
+	})
+	it("requires an ambiguous draft mutation without a known remote draft before inspection retry", () => {
+		const interrupted = {
+			status: "unknown",
+			remote: { media: { cover: "known" } },
+			lastError: { stage: "create-draft", code: "TRANSPORT", ambiguous: true },
+		}
+		expect(canRetryDraftAfterRemoteInspection(interrupted)).toBe(true)
+		for (const disqualified of [
+			{ ...interrupted, status: "failed" },
+			{ ...interrupted, lastError: { ...interrupted.lastError, ambiguous: false } },
+			{ ...interrupted, lastError: { ...interrupted.lastError, stage: "publish" } },
+			{ ...interrupted, remote: { draftId: "known" } },
+			{ ...interrupted, remote: { submissionId: "known" } },
+		]) {
+			expect(canRetryDraftAfterRemoteInspection(disqualified)).toBe(false)
 		}
 	})
 	it("offers safe redispatch from the Admin UI only for queued work or a known submission", () => {

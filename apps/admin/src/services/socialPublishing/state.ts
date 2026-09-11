@@ -48,6 +48,19 @@ export function canRetryDraftAfterConnectivityFix(doc: StateRecord): boolean {
 	)
 }
 
+export function canRetryDraftAfterRemoteInspection(doc: StateRecord): boolean {
+	return (
+		doc.status === "unknown" &&
+		doc.lastError?.ambiguous === true &&
+		["media", "create-draft"].includes(doc.lastError.stage ?? "") &&
+		!doc.remote?.draftId &&
+		!doc.remote?.submissionId &&
+		!doc.remote?.publicationId &&
+		!doc.remote?.url &&
+		!doc.remote?.status
+	)
+}
+
 export function recoveryAction(doc: StateRecord): "create-draft" | "publish" | null {
 	if (doc.status === "draft_queued") return "create-draft"
 	if (doc.status === "publish_queued" || doc.status === "status_check_queued") return "publish"

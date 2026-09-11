@@ -11,7 +11,12 @@ vi.mock("../adapters/registry", () => ({
 	}),
 }))
 
-import { createSocialDraft, prepareSocialPublication, publishSocialPublication } from "../index"
+import {
+	createSocialDraft,
+	prepareSocialPublication,
+	publishSocialPublication,
+	retrySocialDraftAfterRemoteInspection,
+} from "../index"
 import { enqueueSocialPublication } from "../dispatcher"
 import { hashSnapshot } from "../snapshot"
 
@@ -233,6 +238,84 @@ describe("shared commands", () => {
 			expect(enqueueSocialPublication).not.toHaveBeenCalled()
 			if ("media" in rejected.remote) expect(result.remote?.media).toEqual(rejected.remote.media)
 		}
+	})
+	it("audits an operator-confirmed retry after an ambiguous draft request", async () => {
+		const prepared = await prepareSocialPublication(
+			{ accountId: "a", postId: "p", locale: "zh-CN" },
+			req
+		)
+		records[0] = {
+			...records[0],
+			status: "unknown",
+			remote: { media: { cover: "known" } },
+			lastError: {
+				stage: "create-draft",
+				code: "TRANSPORT",
+				retryable: false,
+				ambiguous: true,
+				message: "Social publishing provider request failed.",
+			},
+		}
+		vi.mocked(req.payload.db.updateOne).mockImplementation(async (args) => {
+			records[0] = { ...records[0], ...args.data }
+			return records[0] as never
+		})
+
+		await retrySocialDraftAfterRemoteInspection(
+			{
+				publicationId: "pub",
+				expectedSnapshotHash: prepared.snapshotHash,
+				confirmedNoRemoteDraft: true,
+			},
+			req
+		)
+
+		expect(req.payload.db.updateOne).toHaveBeenCalledWith(
+			expect.objectContaining({
+				where: {
+					and: expect.arrayContaining([{ status: { equals: "unknown" } }]),
+				},
+				data: expect.objectContaining({
+					status: "draft_queued",
+					lastError: null,
+					attempts: expect.arrayContaining([
+						expect.objectContaining({
+							action: "confirm-no-remote-draft-and-retry",
+							previousStatus: "unknown",
+							nextStatus: "draft_queued",
+						}),
+					]),
+				}),
+			})
+		)
+		expect(enqueueSocialPublication).toHaveBeenCalledWith({
+			publicationId: "pub",
+			action: "create-draft",
+		})
+	})
+	it("rejects an inspection retry without the operator's explicit assertion", async () => {
+		const prepared = await prepareSocialPublication(
+			{ accountId: "a", postId: "p", locale: "zh-CN" },
+			req
+		)
+		records[0] = {
+			...records[0],
+			status: "unknown",
+			remote: {},
+			lastError: { stage: "create-draft", code: "TRANSPORT", ambiguous: true },
+		}
+		await expect(
+			retrySocialDraftAfterRemoteInspection(
+				{
+					publicationId: "pub",
+					expectedSnapshotHash: prepared.snapshotHash,
+					confirmedNoRemoteDraft: false,
+				},
+				req
+			)
+		).rejects.toThrow()
+		expect(req.payload.db.updateOne).not.toHaveBeenCalled()
+		expect(enqueueSocialPublication).not.toHaveBeenCalled()
 	})
 	it("rejects changed publication assets before dispatching a draft", async () => {
 		const prepared = await prepareSocialPublication(

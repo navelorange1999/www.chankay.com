@@ -30,6 +30,12 @@ export const commandParameters = {
 }
 export const prepareSchema = z.object(prepareParameters).strict()
 export const commandSchema = z.object(commandParameters).strict()
+export const inspectedDraftRetrySchema = z
+	.object({
+		...commandParameters,
+		confirmedNoRemoteDraft: z.literal(true),
+	})
+	.strict()
 export const queueSchema = z
 	.object({
 		action: z.enum(["create-draft", "publish", "status-check"]),

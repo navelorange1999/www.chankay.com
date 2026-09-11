@@ -1,5 +1,10 @@
 import type { Endpoint } from "payload"
-import { createSocialDraft, prepareSocialPublication, publishSocialPublication } from "./index"
+import {
+	createSocialDraft,
+	prepareSocialPublication,
+	publishSocialPublication,
+	retrySocialDraftAfterRemoteInspection,
+} from "./index"
 import { requireOperator } from "./access"
 import { readPublication, publicationSummary, verifySnapshot } from "./records"
 import { identifier, prepareSchema, relationshipID } from "./validation"
@@ -10,6 +15,7 @@ import { safeError } from "./types"
 const commands = {
 	prepare: prepareSocialPublication,
 	"create-draft": createSocialDraft,
+	"retry-draft-after-remote-inspection": retrySocialDraftAfterRemoteInspection,
 	publish: publishSocialPublication,
 }
 export const socialPublicationEndpoints: Endpoint[] = [

@@ -5,6 +5,7 @@ import {
 	canRetryDraftAfterConnectivityFix,
 	canRetryDraftAfterRemoteInspection,
 	claimState,
+	errorGuidance,
 	recoveryAction,
 } from "../state"
 import { requireOperator, serviceWriteAccess } from "../access"
@@ -70,6 +71,13 @@ describe("publication safety", () => {
 		]) {
 			expect(canRetryDraftAfterConnectivityFix(disqualified)).toBe(false)
 		}
+	})
+	it("explains how to recover from a WeChat token allowlist rejection", () => {
+		expect(errorGuidance({ stage: "token", code: "40164" })).toContain(
+			"Update the WeChat API allowlist"
+		)
+		expect(errorGuidance({ stage: "media", code: "40164" })).toBeNull()
+		expect(errorGuidance({ stage: "token", code: "40001" })).toBeNull()
 	})
 	it("requires an ambiguous draft mutation without a known remote draft before inspection retry", () => {
 		const interrupted = {

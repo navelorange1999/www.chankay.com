@@ -32,6 +32,12 @@ type StateRecord = {
 	lastError?: { stage?: string; code?: string; retryable?: boolean; ambiguous?: boolean } | null
 }
 
+export function errorGuidance(error: StateRecord["lastError"]): string | null {
+	if (error?.stage === "token" && error.code === "40164")
+		return "WeChat rejected the relay host's outbound IPv4. Update the WeChat API allowlist with the host's current public IPv4, then retry the draft once."
+	return null
+}
+
 export function canRetryDraftAfterConnectivityFix(doc: StateRecord): boolean {
 	const remote = doc.remote
 	return (

@@ -6,6 +6,7 @@ import {
 	canQueue,
 	canRetryDraftAfterConnectivityFix,
 	canRetryDraftAfterRemoteInspection,
+	errorGuidance,
 	recoveryAction,
 } from "../../services/socialPublishing/state"
 
@@ -140,6 +141,7 @@ export function SocialPublicationActions() {
 	const recovery = recoveryAction(review)
 	const connectivityRetry = canRetryDraftAfterConnectivityFix(review)
 	const inspectedDraftRetry = canRetryDraftAfterRemoteInspection(review)
+	const guidance = errorGuidance(review.lastError)
 	return (
 		<section aria-label="Publication review">
 			<h2>{review.preview.title}</h2>
@@ -188,6 +190,7 @@ export function SocialPublicationActions() {
 						: ""}
 				</p>
 			)}
+			{guidance && <p role="status">{guidance}</p>}
 			<button
 				type="button"
 				disabled={busy}

@@ -21,6 +21,7 @@ export interface LanguageSwitcherProps {
 	currentLocale?: SupportedLocale
 	className?: string
 	size?: "sm" | "md" | "lg"
+	showLabel?: boolean
 }
 
 const sizeClasses = {
@@ -41,7 +42,12 @@ const chevronSizes = {
 	lg: "h-5 w-5",
 } as const
 
-export function LanguageSwitcher({ currentLocale, className, size = "md" }: LanguageSwitcherProps) {
+export function LanguageSwitcher({
+	currentLocale,
+	className,
+	size = "md",
+	showLabel = true,
+}: LanguageSwitcherProps) {
 	const localeContext = useLocale()
 	const resolvedLocale = currentLocale ?? localeContext.locale
 	const strings =
@@ -79,7 +85,7 @@ export function LanguageSwitcher({ currentLocale, className, size = "md" }: Lang
 				aria-label={strings.accessibility.selectLanguage}
 			>
 				<Globe className={cn(iconSizes[size], "text-primary")} />
-				<span className="whitespace-nowrap text-sm font-medium">
+				<span className={cn("whitespace-nowrap text-sm font-medium", !showLabel && "sr-only")}>
 					{currentLocaleConfig?.name ?? resolvedLocale}
 				</span>
 				<ChevronDown

@@ -5,9 +5,11 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
 
+import type { SupportedLocale } from "@repo/i18n"
 import type { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 
 import { cn } from "#utils/classnames"
+import { LanguageSwitcher } from "../LanguageSwitcher"
 import { useLocale } from "../LocaleProvider"
 import { ThemeToggle } from "../ThemeProvider"
 import { resolveActiveNavUrl } from "./utils"
@@ -16,9 +18,10 @@ type MenuItem = NonNullable<NonNullable<NonNullable<SiteConfig["navigation"]>["m
 
 export interface NavbarMobileMenuProps {
 	items: MenuItem[]
+	currentLocale?: SupportedLocale
 }
 
-export function NavbarMobileMenu({ items }: NavbarMobileMenuProps) {
+export function NavbarMobileMenu({ items, currentLocale }: NavbarMobileMenuProps) {
 	const { strings } = useLocale()
 	const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
 	const pathname = usePathname() ?? "/"
@@ -30,6 +33,9 @@ export function NavbarMobileMenu({ items }: NavbarMobileMenuProps) {
 
 	return (
 		<div className="flex items-center space-x-2 md:hidden">
+			{currentLocale ? (
+				<LanguageSwitcher currentLocale={currentLocale} size="sm" showLabel={false} />
+			) : null}
 			<ThemeToggle />
 
 			{items.length > 0 ? (

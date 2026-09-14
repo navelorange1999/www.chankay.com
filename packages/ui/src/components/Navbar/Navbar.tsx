@@ -76,7 +76,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 						<ThemeToggle />
 					</div>
 
-					<NavbarMobileMenu items={items} />
+					<NavbarMobileMenu items={items} currentLocale={currentLocale} />
 				</div>
 			</Container>
 		</nav>

@@ -50,5 +50,7 @@ describe("locale accessibility context", () => {
 		)
 
 		expect(markup).toContain('aria-label="切换移动端菜单"')
+		expect(markup.match(/aria-label="选择语言"/g)).toHaveLength(2)
+		expect(markup).toContain("whitespace-nowrap text-sm font-medium sr-only")
 	})
 })

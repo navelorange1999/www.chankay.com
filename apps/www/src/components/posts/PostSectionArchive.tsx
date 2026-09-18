@@ -31,7 +31,7 @@ import {
 	resolvePostDisplayExcerpt,
 	resolvePostDisplayTitle,
 	resolvePostImage,
-	resolvePostTags,
+	resolvePostSecondaryTags,
 } from "@/utils/posts"
 import { POST_SECTIONS, resolvePostSectionPath, type PostSection } from "@/utils/postSections"
 
@@ -115,7 +115,7 @@ export async function PostSectionArchive({
 						const postDate = formatPostDate(post.publishedAt || post.updatedAt, locale)
 						const postExcerpt = resolvePostDisplayExcerpt(post)
 						const postTitle = resolvePostDisplayTitle(post, locale)
-						const postTags = resolvePostTags(post)
+						const postTags = resolvePostSecondaryTags(post)
 
 						return (
 							<Post key={post.id} className="overflow-hidden">

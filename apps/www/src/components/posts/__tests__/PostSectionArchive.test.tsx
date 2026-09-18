@@ -39,6 +39,13 @@ const tradingTag: Tag = {
 	slug: "trading",
 }
 
+const topicTag: Tag = {
+	...technicalTag,
+	id: "topic-id",
+	name: "Architecture",
+	slug: "architecture-topic",
+}
+
 const post: Post = {
 	id: "post-id",
 	title: "Architecture",
@@ -83,6 +90,28 @@ describe("PostSectionArchive", () => {
 
 		expect(markup).toContain("该板块暂无已发布文章。")
 	})
+
+	it.each([
+		{ section: "technical" as const, primaryTag: technicalTag, sectionTag: technicalTag },
+		{ section: "trading" as const, primaryTag: tradingTag.id, sectionTag: tradingTag },
+	])(
+		"hides the $section primary tag but keeps other tags on article cards",
+		async ({ section, primaryTag, sectionTag }) => {
+			mocks.getPostsBySection.mockResolvedValue([
+				{ ...post, primaryTag, tags: [sectionTag, topicTag] },
+			])
+			mocks.getTagBySlug.mockResolvedValue(sectionTag)
+
+			const markup = renderToStaticMarkup(await PostSectionArchive({ locale: "en", section }))
+			const cardTags = Array.from(
+				markup.matchAll(/<span data-slot="post-tag"[^>]*>([^<]*)<\/span>/g),
+				(match) => match[1]
+			)
+
+			expect(cardTags).not.toContain(sectionTag.name)
+			expect(cardTags).toContain(topicTag.name)
+		}
+	)
 
 	it("does not render links for posts with unsafe CMS slugs", async () => {
 		mocks.getPostsBySection.mockResolvedValue([{ ...post, slug: " .. " }])

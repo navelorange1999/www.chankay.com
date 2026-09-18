@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowLeft } from "lucide-react"
+import * as React from "react"
 
 import {
 	buildRouteAlternates,
@@ -43,7 +44,7 @@ import {
 	resolvePostImage,
 	resolvePostSeoDescription,
 	resolvePostSeoTitle,
-	resolvePostTags,
+	resolvePostSecondaryTags,
 } from "@/utils/posts"
 import { POST_SECTIONS, resolvePostSectionPath, type PostSection } from "@/utils/postSections"
 
@@ -159,7 +160,7 @@ export async function PostSectionArticle({
 	const postDate = formatPostDate(post.publishedAt || post.updatedAt, locale)
 	const postExcerpt = resolvePostDisplayExcerpt(post) || null
 	const postTitle = resolvePostDisplayTitle(post, locale)
-	const postTags = resolvePostTags(post)
+	const postTags = resolvePostSecondaryTags(post)
 	const postDocument = createMarkdownDocument(post.content)
 	const tocHeadings = postDocument.headings.filter((heading) => [2, 3].includes(heading.level))
 	const series =

@@ -74,3 +74,8 @@ export function resolvePostTags(post: Pick<Post, "tags" | "primaryTag">): Tag[] 
 
 	return Array.from(tags.values())
 }
+
+export function resolvePostSecondaryTags(post: Pick<Post, "tags" | "primaryTag">): Tag[] {
+	const primaryTagId = typeof post.primaryTag === "object" ? post.primaryTag?.id : post.primaryTag
+	return resolvePostTags(post).filter((tag) => tag.id !== primaryTagId)
+}

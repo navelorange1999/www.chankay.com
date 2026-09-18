@@ -1,3 +1,4 @@
+import { renderToStaticMarkup } from "react-dom/server"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -15,9 +16,14 @@ vi.mock("@/services/payload/site-config", () => ({
 	getSiteConfig: mocks.getSiteConfig,
 }))
 
+vi.mock("@/components/lazy/PostTocDrawerClient", () => ({
+	PostTocDrawerClient: () => null,
+}))
+
 import {
 	buildPostSectionArticleMetadata,
 	buildPostSectionStaticParams,
+	PostSectionArticle,
 } from "../PostSectionArticle"
 
 describe("PostSectionArticle", () => {
@@ -45,4 +51,36 @@ describe("PostSectionArticle", () => {
 		expect(mocks.getPostBySlugForSection).not.toHaveBeenCalled()
 		expect(mocks.getSiteConfig).not.toHaveBeenCalled()
 	})
+
+	it.each([
+		{ section: "technical" as const, primaryTag: { id: "technical-id", name: "Technical" } },
+		{ section: "trading" as const, primaryTag: "trading-id" },
+	])(
+		"hides the $section primary tag but keeps other tags on the article",
+		async ({ section, primaryTag }) => {
+			const sectionTag = {
+				id: `${section}-id`,
+				name: section === "technical" ? "Technical" : "Trading",
+			}
+			mocks.getPostBySlugForSection.mockResolvedValue({
+				id: "post-id",
+				slug: "market-view",
+				title: "Market view",
+				content: "## Context\nA short article.",
+				primaryTag,
+				tags: [sectionTag, { id: "topic-id", name: "Macro" }],
+			})
+
+			const markup = renderToStaticMarkup(
+				await PostSectionArticle({ locale: "en", section, slug: "market-view" })
+			)
+			const articleTags = Array.from(
+				markup.matchAll(/<span data-slot="post-tag"[^>]*>([^<]*)<\/span>/g),
+				(match) => match[1]
+			)
+
+			expect(articleTags).not.toContain(sectionTag.name)
+			expect(articleTags).toContain("Macro")
+		}
+	)
 })

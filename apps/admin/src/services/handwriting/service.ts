@@ -4,21 +4,18 @@ import {
 	type HandwritingInput,
 	type HandwritingArtifact,
 } from "@chankay/handwriting/schema"
-import { generateHandwriting, loadModel } from "@chankay/handwriting/generator"
+import { generateHandwriting } from "@chankay/handwriting/generator"
+import { loadPrivateModel } from "./model"
 import { createArtifactCache } from "./cache"
 import { readArtifact, writeArtifact } from "./blob"
 
-let modelPromise: ReturnType<typeof loadModel> | undefined
+let modelPromise: ReturnType<typeof loadPrivateModel> | undefined
 function getModel() {
 	if (!modelPromise) {
-		const url = process.env.HANDWRITING_MODEL_URL?.trim()
-		if (!url) throw new Error("A licensed handwriting model URL must be configured")
-		modelPromise = loadModel({ url, signal: AbortSignal.timeout(25_000) }).catch(
-			(error: unknown) => {
-				modelPromise = undefined
-				throw error
-			}
-		)
+		modelPromise = loadPrivateModel().catch((error: unknown) => {
+			modelPromise = undefined
+			throw error
+		})
 	}
 	return modelPromise
 }

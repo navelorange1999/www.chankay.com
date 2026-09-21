@@ -40,11 +40,11 @@ The admin project uses separate private stores in Hong Kong (`hkg1`):
 
 When connecting a store in the Vercel dashboard, use the custom prefix `HANDWRITING_BLOB` and enable the read-write token environment variable. The resulting credential name is `HANDWRITING_BLOB_READ_WRITE_TOKEN`. Vercel also creates store-ID and webhook-verification variables; this SDK integration currently only consumes the read-write token. Production credentials must remain sensitive. The existing public media stores are separate.
 
-There is no hosted test environment for this feature. Development configuration is for the local admin process. Its evaluation model URL is `http://127.0.0.1:8766/model.bin`, which requires the local model server to be running. Do not use this loopback address for Production. The production model URL remains unset until a suitable model source is confirmed.
+There is no hosted test environment for this feature. Development configuration is for the local admin process. Its evaluation model URL is `http://127.0.0.1:8766/model.bin`, which requires the local model server to be running. Do not use this loopback address for Production. For the initial production rollout, the owner selected `https://www.calligrapher.ai/d.bin` as the server-side model source. Its bytes were verified against the SDK's pinned SHA-256 on September 21, 2026. This depends on upstream availability; no public model copy is hosted by this project.
 
 Use an authenticated Vercel CLI with `vercel env run -e development -- <command>` to inject Development configuration directly into the local process without writing an environment file. Set the non-secret `VERCEL_ORG_ID` and app-specific `VERCEL_PROJECT_ID`, or use an already linked project. This was verified with CLI 59.23.2. Preserve the injected database/session settings, point local www at `http://localhost:3001/api`, and point local admin revalidation at `http://localhost:3000`. Never paste credentials into chat or commit them; agents must follow the repository's environment-file restrictions. Restart local processes after changing Vercel configuration. See the [Vercel CLI documentation](https://vercel.com/docs/cli/env).
 
-The package README records the required model digest and supported format. Model use/redistribution permission remains an operational prerequisite: the prototype's public download is not an authorization to host those weights. Public Storybook model hosting requires the appropriate permission too. Replacing the model requires verifying compatibility and changing the digest/version that participates in the cache key.
+The package README records the required model digest and supported format. The upstream page does not state a model license; the owner's source selection does not establish redistribution rights. Public model hosting, including for Storybook, still requires the appropriate permission. Replacing the model requires verifying compatibility and changing the digest/version that participates in the cache key.
 
 CMS previews use the same server artifact that the website reads, so browser and Node numerical differences cannot change the saved preview. The standalone Storybook playground uses local Worker generation and a bounded session cache; its output is not uploaded to production storage.
 
@@ -85,6 +85,6 @@ Verified against Development configuration and `handwriting-dev` on September 21
 
 Both Next apps explicitly declare the Tailwind PostCSS plugin because their shared PostCSS configuration resolves plugin names from the consuming app. Without that dependency, the local CMS page failed CSS compilation even though the standalone artifact endpoint worked.
 
-Production model configuration and deployment verification remain pending. The local checks do not validate the save-triggered queue against production records.
+These local checks do not validate the save-triggered queue against production records. Production deployment must separately verify authenticated artifact reads and the public homepage.
 
 The initial content uses `Hello world` without punctuation. Punctuation remains accepted by the SDK, but no punctuation-specific geometry correction is applied. Generated punctuation may vary with the seed and clarity setting.

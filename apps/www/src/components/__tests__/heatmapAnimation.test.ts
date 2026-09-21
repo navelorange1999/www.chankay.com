@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 import { createElement } from "react"
 import { renderToStaticMarkup } from "react-dom/server"
-import { Heatmap } from "../../../../../packages/ui/src/components/Heatmap/Heatmap"
+import { Heatmap } from "@repo/ui/components/Heatmap"
 
 const days = [
 	{ date: "2026-09-20", count: 0 },

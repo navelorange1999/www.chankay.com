@@ -80,7 +80,11 @@ Verified against Development configuration and `handwriting-dev` on September 21
 - The www project's injected shared secret successfully read the artifact through the local admin HTTP endpoint. The same endpoint returned 401 without authentication.
 - The actual CMS block preview generated `Welcome home` from an unsaved text edit using 09 Rounded. No page was saved or published during the check.
 - The local homepage displayed handwritten `Hello world`; its raw server response already contained nine SVG stroke paths and animation CSS, with no local model URL in the HTML.
+- The background preparation functions handled nested card blocks with real Development Blob reads and two successful authenticated cache invalidations against local www. A simulated document reread changed `Hello world` to `Welcome home`; preparation returned the newer document after generating both inputs. No CMS documents were written by this check.
+- A real-browser animation regression reproduced and then verified the round-cap fix: delayed strokes remain hidden, active and finished strokes remain visible, and static playback remains visible alongside animated playback. The updated player was also checked in CMS and on the local homepage.
 
 Both Next apps explicitly declare the Tailwind PostCSS plugin because their shared PostCSS configuration resolves plugin names from the consuming app. Without that dependency, the local CMS page failed CSS compilation even though the standalone artifact endpoint worked.
 
 Production model configuration and deployment verification remain pending. The local checks do not validate the save-triggered queue against production records.
+
+The initial content uses `Hello world` without punctuation. Punctuation remains accepted by the SDK, but no punctuation-specific geometry correction is applied. Generated punctuation may vary with the seed and clarity setting.

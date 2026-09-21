@@ -8,15 +8,20 @@ export interface HandwritingProps {
 	className?: string
 	style?: CSSProperties
 }
+// Hide round dash caps during the delay; forwards fill reveals strokes only after they start.
 const animationStyles = `
-@keyframes chankay-handwriting-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes chankay-handwriting-draw {
+  from { stroke-dashoffset: 1; visibility: visible; }
+  to { stroke-dashoffset: 0; visibility: visible; }
+}
 .chankay-handwriting .chankay-handwriting-path[data-animated="true"] {
+  visibility: hidden;
   stroke-dasharray: 1;
-  animation: chankay-handwriting-draw var(--chankay-handwriting-duration) linear var(--chankay-handwriting-delay) both;
+  animation: chankay-handwriting-draw var(--chankay-handwriting-duration) linear var(--chankay-handwriting-delay) forwards;
 }
 @media (prefers-reduced-motion: reduce) {
   .chankay-handwriting .chankay-handwriting-path[data-animated="true"] {
-    animation: none; stroke-dashoffset: 0;
+    animation: none; stroke-dashoffset: 0; visibility: visible;
   }
 }`
 /** Server-renderable SVG: no model, browser API, hydration, or client directive is needed. */

@@ -42,6 +42,8 @@ pnpm --filter @chankay/handwriting check-types
 pnpm --filter @chankay/handwriting test:run
 ```
 
+For the SVG animation regression, run `node packages/handwriting/tests/animation-browser.mjs` after building and open `http://127.0.0.1:8767`. The page checks real computed styles before, during and after each stroke, including static playback alongside animated playback. Waiting strokes must be hidden so round dash caps cannot appear as stray dots. With the operating system's reduced-motion preference enabled, it checks that every stroke is visible without animation.
+
 The default suite uses synthetic model tensors and the generated fixture. To also test a separately acquired model without committing it:
 
 ```sh

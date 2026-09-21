@@ -3,6 +3,9 @@
   "ui": "tui",
   "globalDependencies": [".env*"],
   "globalEnv": [
+    "HANDWRITING_MODEL_URL",
+    "HANDWRITING_BLOB_READ_WRITE_TOKEN",
+    "VITE_HANDWRITING_MODEL_URL",
     "BAIDU_TRANSLATE_APP_ID",
     "BAIDU_TRANSLATE_SECRET",
     "DEEPL_API_KEY",

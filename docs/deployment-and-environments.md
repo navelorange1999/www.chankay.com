@@ -115,6 +115,10 @@ Primary variables documented today:
 - `PREVIEW_CAPTURE_API_KEY`
 - `WWW_INTERNAL_SECRET`
 - `WWW_SITE_URL`
+- `HANDWRITING_MODEL_URL`
+- `HANDWRITING_BLOB_READ_WRITE_TOKEN` (a separate private Blob store)
+
+See [English handwriting](./handwriting.md) for model permissions, cache storage, and deployment checks.
 
 ### `apps/www`
 

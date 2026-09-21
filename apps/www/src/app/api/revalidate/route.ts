@@ -17,6 +17,7 @@ type RevalidateRequestBody = {
 	collection?: string
 	slugs?: string[]
 	locales?: string[]
+	fingerprints?: string[]
 }
 
 function asStringArray(value: unknown): string[] {
@@ -105,6 +106,14 @@ export async function POST(request: Request) {
 	const collection = typeof body?.collection === "string" ? body.collection : "pages"
 	const slugs = asStringArray(body?.slugs)
 	const locales = resolveLocales(asStringArray(body?.locales))
+	if (collection === "handwriting") {
+		const keys = asStringArray(body?.fingerprints)
+		if (keys.length > 100 || keys.some((key) => !/^[a-f0-9]{64}$/.test(key))) {
+			return NextResponse.json({ error: "Invalid handwriting fingerprints" }, { status: 400 })
+		}
+		for (const key of new Set(keys)) revalidateTag(`handwriting:${key}`)
+		return NextResponse.json({ ok: true, collection, revalidated: keys })
+	}
 
 	const handler = revalidationHandlers[collection] ?? revalidationHandlers.pages!
 	handler(slugs, locales)

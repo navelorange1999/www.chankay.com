@@ -1,6 +1,7 @@
 import { DEFAULT_WWW_SITE_URL, WWW_INTERNAL_SECRET_HEADER } from "./constants"
 import { captureScreenshot, persistGeneratedMedia } from "./capture"
 import { createPageAssetsRuntime, updatePageWithGenerationContext } from "./state"
+import { generatePageHandwriting, prepareHandwritingPage } from "./handwriting"
 import type { GenericBlock, MaybeDoc, PageAssetsRuntime } from "./types"
 import {
 	asArray,
@@ -380,6 +381,13 @@ export async function processPageAssetsJob(args: { pageId: string }) {
 	if (!currentDoc) {
 		return
 	}
+
+	// Populate immutable handwriting artifacts before screenshots capture the page.
+	currentDoc = await prepareHandwritingPage(currentDoc, {
+		load: () => loadPageById({ pageId: args.pageId, runtime }),
+		generate: generatePageHandwriting,
+	})
+	if (!currentDoc) return
 
 	currentDoc = await markGeneratingPageAssets({
 		doc: currentDoc,

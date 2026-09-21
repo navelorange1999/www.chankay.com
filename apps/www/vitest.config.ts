@@ -8,6 +8,10 @@ const dirname = path.dirname(fileURLToPath(import.meta.url))
 export default defineConfig({
 	resolve: {
 		alias: {
+			"@repo/ui/components/Heatmap": path.resolve(
+				dirname,
+				"../../packages/ui/src/components/Heatmap/Heatmap.tsx",
+			),
 			"@": path.resolve(dirname, "src"),
 			"#utils": path.resolve(dirname, "../../packages/ui/src/utils"),
 		},

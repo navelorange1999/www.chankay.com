@@ -224,6 +224,10 @@ The `docs/proposals/` folder holds design documents for features that are not ye
 
 - [`docs/proposals/llm-translation-architecture.md`](./docs/proposals/llm-translation-architecture.md): Editor-triggered LLM translation with Anthropic + Langfuse Cloud.
 
+### English Handwriting
+
+Read [`docs/handwriting.md`](./docs/handwriting.md) when working on the handwriting SDK, CMS preview, private generated artifacts, or Storybook playground.
+
 ## Maintenance Notes
 
 - Keep documents focused by topic. Do not grow a new monolith.

@@ -1,5 +1,9 @@
 # Page Assets Architecture
 
+## Handwriting artifacts
+
+The same queue also prepares English handwriting artifacts before screenshots. Handwriting uses a private, content-addressed Blob cache, does not create media documents or a collection, and does not write generated paths back to page blocks. See [the handwriting guide](../../../../../docs/handwriting.md) for configuration and preview behavior.
+
 ## Purpose
 
 This module owns the generated asset pipeline for the `pages` collection.

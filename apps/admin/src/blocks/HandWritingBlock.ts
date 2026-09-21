@@ -1,4 +1,5 @@
 import type { BlockDefinition } from "./types"
+import { normalizeInput, STYLES } from "@chankay/handwriting/schema"
 
 export const HandWritingBlock: BlockDefinition = {
 	slug: "handWriting",
@@ -7,6 +8,58 @@ export const HandWritingBlock: BlockDefinition = {
 		plural: "HandWriting",
 	},
 	fields: [
+		{
+			name: "text",
+			type: "text",
+			label: "English text",
+			defaultValue: "Hello world",
+			required: true,
+			maxLength: 50,
+			admin: {
+				description: "English letters, numbers and supported punctuation. Up to 50 characters.",
+			},
+			validate: (value: unknown) => {
+				try {
+					normalizeInput({ text: value })
+					return true
+				} catch {
+					return "Enter 1–50 supported English characters on one line."
+				}
+			},
+		},
+		{
+			name: "style",
+			type: "select",
+			defaultValue: "rounded",
+			required: true,
+			options: STYLES.map(({ id, label }) => ({ value: id, label })),
+		},
+		{
+			name: "seed",
+			type: "number",
+			defaultValue: 42,
+			min: 0,
+			max: 4294967295,
+			required: true,
+			admin: { hidden: true },
+			validate: (value: unknown) =>
+				Number.isInteger(value) && Number(value) >= 0 && Number(value) <= 4294967295
+					? true
+					: "Seed must be an unsigned integer.",
+		},
+		{
+			name: "legibility",
+			type: "number",
+			label: "Clarity",
+			defaultValue: 0.85,
+			min: 0.15,
+			max: 2.5,
+		},
+		{
+			name: "handwritingPreview",
+			type: "ui",
+			admin: { components: { Field: "/components/fields/HandwritingPreview#default" } },
+		},
 		{
 			name: "speed",
 			type: "number",

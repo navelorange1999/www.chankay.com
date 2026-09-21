@@ -68,14 +68,17 @@ export const syncPageGeneratedAssets: CollectionAfterChangeHook = async ({
 		return doc
 	}
 
-	const queuedDoc = await updatePageWithGenerationContext({
-		data: {
-			seo: plan.seo ?? currentDoc.seo,
-			structure: plan.structure ?? currentDoc.structure,
-		},
-		id: currentDoc.id,
-		runtime,
-	})
+	const hasPageStatusUpdates = plan.queuedOg || plan.queuedPreviewBlocks > 0
+	const queuedDoc = hasPageStatusUpdates
+		? await updatePageWithGenerationContext({
+				data: {
+					seo: plan.seo ?? currentDoc.seo,
+					structure: plan.structure ?? currentDoc.structure,
+				},
+				id: currentDoc.id,
+				runtime,
+			})
+		: currentDoc
 
 	try {
 		await enqueuePageAssetsJob({
@@ -85,14 +88,16 @@ export const syncPageGeneratedAssets: CollectionAfterChangeHook = async ({
 
 		return queuedDoc as unknown as typeof doc
 	} catch (error) {
-		const failedDoc = await updatePageWithGenerationContext({
-			data: buildFailedData({
-				doc: queuedDoc,
-				plan,
-			}),
-			id: currentDoc.id,
-			runtime,
-		})
+		const failedDoc = hasPageStatusUpdates
+			? await updatePageWithGenerationContext({
+					data: buildFailedData({
+						doc: queuedDoc,
+						plan,
+					}),
+					id: currentDoc.id,
+					runtime,
+				})
+			: queuedDoc
 
 		const message = error instanceof Error ? error.stack || error.message : String(error)
 		runtime.logger.error?.(

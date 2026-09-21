@@ -1,11 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react-vite"
 import { HandWriting } from "@repo/ui"
+import fixture from "@chankay/handwriting/fixtures/hello-world.json"
+import { validateArtifact } from "@chankay/handwriting/schema"
 
 const meta: Meta<typeof HandWriting> = {
 	title: "Components/Text/HandWriting",
 	component: HandWriting,
 	tags: ["autodocs"],
 	args: {
+		artifact: validateArtifact(fixture),
+		text: "Hello world",
 		speed: 1,
 		className: "min-h-[260px] min-w-[260px]",
 	},
@@ -57,3 +61,7 @@ export const CustomSize: Story = {
 		svgClassName: "w-128 md:w-[360px]",
 	},
 }
+
+export const Static: Story = { args: { animate: false } }
+export const Pending: Story = { args: { artifact: null, text: "Welcome home" } }
+export const Heading: Story = { args: { as: "h1" } }

@@ -1,0 +1,43 @@
+{
+  "name": "@chankay/handwriting",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "files": [
+    "dist",
+    "fixtures"
+  ],
+  "sideEffects": false,
+  "exports": {
+    "./schema": {
+      "types": "./dist/schema.d.ts",
+      "default": "./dist/schema.js"
+    },
+    "./generator": {
+      "types": "./dist/generator.d.ts",
+      "default": "./dist/generator.js"
+    },
+    "./browser": {
+      "types": "./dist/browser.d.ts",
+      "default": "./dist/browser.js"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "default": "./dist/react.js"
+    },
+    "./fixtures/hello-world.json": "./fixtures/hello-world.json"
+  },
+  "scripts": {
+    "build": "tsc",
+    "check-types": "tsc --noEmit",
+    "test:run": "pnpm build && node --test tests/*.test.mjs"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.8",
+    "typescript": "^5.8.2",
+    "react-dom": "19.1.2"
+  }
+}

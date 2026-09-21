@@ -58,11 +58,13 @@ export function resolveQueuedPageAssetPlan(args: {
 	collectBlocksById(args.previousDoc?.structure, previousById)
 
 	let queuedPreviewBlocks = 0
+	let hasHandwriting = false
 
 	function queuePreviewBlocks(blocks: GenericBlock[]): GenericBlock[] {
 		return blocks.map((block) => {
 			const nextBlock: GenericBlock = { ...block }
 			const blockType = asOptionalString(nextBlock.blockType)
+			if (blockType === "handWriting") hasHandwriting = true
 
 			if (
 				blockType === "previewUrl" &&
@@ -78,6 +80,9 @@ export function resolveQueuedPageAssetPlan(args: {
 			if (Array.isArray(block.children)) {
 				nextBlock.children = queuePreviewBlocks(block.children as GenericBlock[])
 			}
+			if (Array.isArray(block.contentBlocks)) {
+				nextBlock.contentBlocks = queuePreviewBlocks(block.contentBlocks as GenericBlock[])
+			}
 
 			return nextBlock
 		})
@@ -86,7 +91,7 @@ export function resolveQueuedPageAssetPlan(args: {
 	const structure = queuePreviewBlocks(cloneBlocks(args.doc.structure))
 	const queuedOg = shouldGeneratePageOg(args.doc)
 
-	if (!queuedOg && queuedPreviewBlocks === 0) {
+	if (!queuedOg && queuedPreviewBlocks === 0 && !hasHandwriting) {
 		return {
 			hasWork: false,
 			queuedOg: false,

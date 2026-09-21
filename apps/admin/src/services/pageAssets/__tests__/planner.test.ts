@@ -3,6 +3,24 @@ import { describe, expect, it } from "vitest"
 import { resolveQueuedPageAssetPlan } from "@/services/pageAssets/planner"
 
 describe("pageAssets planner", () => {
+	it("queues handwriting in card content blocks", () => {
+		const structure = [
+			{ blockType: "card", contentBlocks: [{ blockType: "handWriting", text: "Hello" }] },
+		]
+		expect(
+			resolveQueuedPageAssetPlan({ doc: { id: "page-1", structure }, previousDoc: null }).hasWork
+		).toBe(true)
+	})
+	it("queues nested handwriting without adding generation state to page blocks", () => {
+		const structure = [
+			{ blockType: "container", children: [{ blockType: "handWriting", text: "Hello" }] },
+		]
+		const plan = resolveQueuedPageAssetPlan({ doc: { id: "page-1", structure }, previousDoc: null })
+		expect(plan.hasWork).toBe(true)
+		expect(plan.queuedPreviewBlocks).toBe(0)
+		expect(plan.queuedOg).toBe(false)
+		expect(plan.structure).toEqual(structure)
+	})
 	it("queues preview blocks that need a generated image", () => {
 		const plan = resolveQueuedPageAssetPlan({
 			doc: {

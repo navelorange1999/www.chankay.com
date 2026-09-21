@@ -29,6 +29,21 @@ Configure these through deployment settings or an approved secret manager. Do no
 | www           | Existing `PAYLOAD_API_URL`          | Admin API base, including `/api`                                                                    |
 | Storybook     | `VITE_HANDWRITING_MODEL_URL`        | Publicly readable, permitted model URL for the opt-in playground; embedded into the Storybook build |
 
+### Environment mapping
+
+The admin project uses separate private stores in Hong Kong (`hkg1`):
+
+| Store              | Connected Vercel environment | Variable prefix    |
+| ------------------ | ---------------------------- | ------------------ |
+| `handwriting-dev`  | Development only             | `HANDWRITING_BLOB` |
+| `handwriting-prod` | Production only              | `HANDWRITING_BLOB` |
+
+When connecting a store in the Vercel dashboard, use the custom prefix `HANDWRITING_BLOB` and enable the read-write token environment variable. The resulting credential name is `HANDWRITING_BLOB_READ_WRITE_TOKEN`. Vercel also creates store-ID and webhook-verification variables; this SDK integration currently only consumes the read-write token. Production credentials must remain sensitive. The existing public media stores are separate.
+
+There is no hosted test environment for this feature. Development configuration is for the local admin process. Its evaluation model URL is `http://127.0.0.1:8766/model.bin`, which requires the local model server to be running. Do not use this loopback address for Production. The production model URL remains unset until a suitable model source is confirmed.
+
+A developer must securely synchronize the Development handwriting variables into the local admin runtime and start it before authenticated CMS/Blob smoke testing. Preserve existing database and session configuration. Never paste credentials into chat or commit them; agents must follow the repository's environment-file restrictions. A Vercel project connection alone does not update a running local process.
+
 The package README records the required model digest and supported format. Model use/redistribution permission remains an operational prerequisite: the prototype's public download is not an authorization to host those weights. Public Storybook model hosting requires the appropriate permission too. Replacing the model requires verifying compatibility and changing the digest/version that participates in the cache key.
 
 CMS previews use the same server artifact that the website reads, so browser and Node numerical differences cannot change the saved preview. The standalone Storybook playground uses local Worker generation and a bounded session cache; its output is not uploaded to production storage.

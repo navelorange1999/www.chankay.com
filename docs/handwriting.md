@@ -42,7 +42,7 @@ When connecting a store in the Vercel dashboard, use the custom prefix `HANDWRIT
 
 There is no hosted test environment for this feature. Development configuration is for the local admin process. Its evaluation model URL is `http://127.0.0.1:8766/model.bin`, which requires the local model server to be running. Do not use this loopback address for Production. The production model URL remains unset until a suitable model source is confirmed.
 
-A developer must securely synchronize the Development handwriting variables into the local admin runtime and start it before authenticated CMS/Blob smoke testing. Preserve existing database and session configuration. Never paste credentials into chat or commit them; agents must follow the repository's environment-file restrictions. A Vercel project connection alone does not update a running local process.
+Use an authenticated Vercel CLI with `vercel env run -e development -- <command>` to inject Development configuration directly into the local process without writing an environment file. Set the non-secret `VERCEL_ORG_ID` and app-specific `VERCEL_PROJECT_ID`, or use an already linked project. This was verified with CLI 59.23.2. Preserve the injected database/session settings, point local www at `http://localhost:3001/api`, and point local admin revalidation at `http://localhost:3000`. Never paste credentials into chat or commit them; agents must follow the repository's environment-file restrictions. Restart local processes after changing Vercel configuration. See the [Vercel CLI documentation](https://vercel.com/docs/cli/env).
 
 The package README records the required model digest and supported format. Model use/redistribution permission remains an operational prerequisite: the prototype's public download is not an authorization to host those weights. Public Storybook model hosting requires the appropriate permission too. Replacing the model requires verifying compatibility and changing the digest/version that participates in the cache key.
 
@@ -70,3 +70,17 @@ pnpm --filter storybook build
 Real-model tests additionally accept `HANDWRITING_TEST_MODEL` as the path to a locally provided model. They skip when it is absent; they never download weights automatically. See the package tests for digest, determinism, cancellation, geometry and player coverage.
 
 CMS tests cover authentication/origin checks, immutable private storage, coalesced requests, failure/retry, card nesting, edits during generation, stale preview responses, unsaved seed changes, and transient invalid speed inputs. A real Payload session and private Blob configuration are still needed for a deployment smoke test; mocked interaction tests do not substitute for those credentials or external storage verification.
+
+### Local integration verification
+
+Verified against Development configuration and `handwriting-dev` on September 21, 2026:
+
+- A missing `Hello world` artifact generated and persisted in 2.2 seconds; a normalized repeat (`  Hello   world  `) returned the identical artifact in 0.2 seconds. These are single local observations, not production performance guarantees.
+- The artifact contains nine strokes and is 12,683 bytes. An attempted duplicate immutable write reused the existing artifact, and a subsequent storage read matched it.
+- The www project's injected shared secret successfully read the artifact through the local admin HTTP endpoint. The same endpoint returned 401 without authentication.
+- The actual CMS block preview generated `Welcome home` from an unsaved text edit using 09 Rounded. No page was saved or published during the check.
+- The local homepage displayed handwritten `Hello world`; its raw server response already contained nine SVG stroke paths and animation CSS, with no local model URL in the HTML.
+
+Both Next apps explicitly declare the Tailwind PostCSS plugin because their shared PostCSS configuration resolves plugin names from the consuming app. Without that dependency, the local CMS page failed CSS compilation even though the standalone artifact endpoint worked.
+
+Production model configuration and deployment verification remain pending. The local checks do not validate the save-triggered queue against production records.

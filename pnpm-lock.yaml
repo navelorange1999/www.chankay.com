@@ -121,6 +121,9 @@ importers:
       '@chankay/brand-assets':
         specifier: workspace:*
         version: link:../../packages/brand-assets
+      '@tailwindcss/postcss':
+        specifier: 4.1.11
+        version: 4.1.11
       '@types/node':
         specifier: 25.0.3
         version: 25.0.3
@@ -225,6 +228,9 @@ importers:
       '@chankay/brand-assets':
         specifier: workspace:*
         version: link:../../packages/brand-assets
+      '@tailwindcss/postcss':
+        specifier: 4.1.11
+        version: 4.1.11
       '@types/node':
         specifier: 25.0.3
         version: 25.0.3

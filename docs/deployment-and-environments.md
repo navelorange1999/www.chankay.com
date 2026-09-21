@@ -53,6 +53,8 @@ Templates:
 - `apps/admin/.env.example`
 - `apps/www/.env.example`
 
+For file-free local configuration, an authenticated Vercel CLI can run a command with Development variables using `vercel env run -e development -- <command>`. It injects variables into the child process without creating an environment file. Select the correct app project with `VERCEL_ORG_ID` and `VERCEL_PROJECT_ID`; keep local cross-app URLs pointing at the local servers. See [English handwriting](./handwriting.md) for the verified integration setup. Agents must not read or modify real environment files.
+
 ### Preview Environment
 
 Preview deployments are triggered by pushes to the `staging` branch:

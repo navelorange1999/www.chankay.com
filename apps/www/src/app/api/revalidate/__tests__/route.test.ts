@@ -107,4 +107,29 @@ describe("revalidation route", () => {
 		expect(revalidatePath).not.toHaveBeenCalledWith("/zh-CN", "layout")
 		expect(revalidateTag).toHaveBeenCalledWith("global:site-config:en")
 	})
+	it("invalidates shared handwriting artifacts once without revalidating unrelated routes", async () => {
+		const key = "a".repeat(64)
+		const response = await POST(requestFor({ collection: "handwriting", fingerprints: [key, key] }))
+		expect(response.status).toBe(200)
+		expect(revalidateTag).toHaveBeenCalledTimes(1)
+		expect(revalidateTag).toHaveBeenCalledWith(`handwriting:${key}`)
+		expect(revalidatePath).not.toHaveBeenCalled()
+	})
+
+	it("rejects invalid handwriting hashes before invalidating any cache", async () => {
+		const response = await POST(
+			requestFor({ collection: "handwriting", fingerprints: ["a".repeat(64), "../invalid"] })
+		)
+		expect(response.status).toBe(400)
+		expect(revalidateTag).not.toHaveBeenCalled()
+		expect(revalidatePath).not.toHaveBeenCalled()
+	})
+
+	it("requires internal authentication for handwriting invalidation", async () => {
+		const response = await POST(
+			requestFor({ collection: "handwriting", fingerprints: ["a".repeat(64)] }, "")
+		)
+		expect(response.status).toBe(401)
+		expect(revalidateTag).not.toHaveBeenCalled()
+	})
 })

@@ -1,11 +1,23 @@
 "use client"
 
 import * as React from "react"
-import { motion } from "motion/react"
 
 import { cn } from "#utils/classnames"
 
 export type HeatmapLevel = 0 | 1 | 2 | 3 | 4
+
+// CSS owns both the fade and its final frame, avoiding a WAAPI-to-inline-style gap.
+const fillAnimationStyles = `
+@keyframes chankay-heatmap-fill {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.chankay-heatmap-fill[data-animated="true"] {
+  animation: chankay-heatmap-fill 0.25s ease-out var(--heatmap-fill-delay) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .chankay-heatmap-fill[data-animated="true"] { animation: none; }
+}`
 
 export interface HeatmapDay {
 	date: string
@@ -265,7 +277,6 @@ export function Heatmap({
 	const fillSpanSeconds = shouldAnimate ? animateFill : 0
 	const perCellDelay = totalCells > 0 ? fillSpanSeconds / totalCells : 0
 	const initialDelaySeconds = shouldAnimate ? 0.2 : 0
-	const cellDurationSeconds = shouldAnimate ? 0.25 : 0
 	let cellIndex = 0
 
 	const renderDayCell = (day: HeatmapDay) => {
@@ -287,25 +298,16 @@ export function Heatmap({
 				aria-label={label}
 			>
 				{level > 0 && (
-					<motion.div
+					<div
 						key={day.date}
 						className={cn(
-							"absolute inset-0 rounded-[4px] ring-1 ring-inset",
+							"chankay-heatmap-fill absolute inset-0 rounded-[4px] ring-1 ring-inset",
 							ringClass[level],
 							levelClass[level]
 						)}
 						aria-hidden="true"
-						initial={shouldAnimate ? { opacity: 0 } : false}
-						animate={{ opacity: 1 }}
-						transition={
-							shouldAnimate
-								? {
-										delay,
-										duration: cellDurationSeconds,
-										ease: "easeOut",
-									}
-								: undefined
-						}
+						data-animated={shouldAnimate ? "true" : undefined}
+						style={shouldAnimate ? ({ "--heatmap-fill-delay": `${delay}s` } as CSSVars) : undefined}
 					/>
 				)}
 			</div>
@@ -317,6 +319,7 @@ export function Heatmap({
 			className={cn("flex min-w-0 max-w-full flex-col gap-3", "text-foreground", className)}
 			{...props}
 		>
+			{shouldAnimate && <style>{fillAnimationStyles}</style>}
 			{showTotal && (
 				<div className="text-muted-foreground text-sm">
 					{calendar.total.toLocaleString()} contributions

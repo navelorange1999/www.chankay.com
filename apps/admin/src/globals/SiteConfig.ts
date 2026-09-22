@@ -395,6 +395,9 @@ export const SiteConfig: GlobalConfig = {
 					name: "comments",
 					type: "group",
 					label: "Comments System",
+					admin: {
+						hidden: true,
+					},
 					fields: [
 						{
 							name: "enableComments",

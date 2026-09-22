@@ -126,6 +126,10 @@ GitHub App must be installed on that repository before enabling comments publicl
 No comment bodies, commenter accounts, or authentication credentials are stored in
 Payload. Moderate or lock conversations through GitHub Discussions.
 
+The older, unused `site-config.comments` provider/JSON settings remain in the data
+model for compatibility but are hidden from editors. Only `site-config.giscus`
+controls the shipped comments module.
+
 Changes to `commentsEnabled` or any `giscus` setting invalidate all supported
 locales. The revalidation hook factories accept a list of shared fields for this
 purpose; edits that leave those fields unchanged retain locale-scoped invalidation.

@@ -1,5 +1,6 @@
 import type { GlobalConfig } from "payload"
 import { authenticated } from "../access/authenticated"
+import { giscusSettings } from "../fields/giscusSettings"
 import { LOCALE_CONFIG } from "../config/locales"
 import { createGlobalRevalidationHook } from "../hooks/revalidateWww"
 
@@ -14,6 +15,7 @@ export const SiteConfig: GlobalConfig = {
 		update: authenticated, // Only authenticated users can update
 	},
 	fields: [
+		giscusSettings,
 		// === Basic Site Information ===
 		{
 			type: "collapsible",
@@ -805,6 +807,6 @@ export const SiteConfig: GlobalConfig = {
 		drafts: false,
 	},
 	hooks: {
-		afterChange: [createGlobalRevalidationHook("site-config")],
+		afterChange: [createGlobalRevalidationHook("site-config", ["giscus"])],
 	},
 }

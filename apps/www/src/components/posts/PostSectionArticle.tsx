@@ -34,6 +34,7 @@ import {
 } from "@repo/ui/components/Post"
 
 import { PostTocDrawerClient } from "@/components/lazy/PostTocDrawerClient"
+import { PostComments } from "./PostComments"
 import { getPostBySlugForSection, getPostsBySection } from "@/services/payload/posts"
 import { getSiteConfig } from "@/services/payload/site-config"
 import { resolveMedia, resolveMediaUrl, resolveSiteUrl, resolveTwitterHandle } from "@/utils/seo"
@@ -148,7 +149,10 @@ export async function PostSectionArticle({
 		notFound()
 	}
 
-	const post = await getPostBySlugForSectionCached(slug, section, locale)
+	const [post, siteConfig] = await Promise.all([
+		getPostBySlugForSectionCached(slug, section, locale),
+		getSiteConfig(locale),
+	])
 	const strings = getUiStrings(locale)
 
 	if (!post || !resolvePostSectionPath(section, post.slug, locale)) {
@@ -261,6 +265,7 @@ export async function PostSectionArticle({
 								className="px-0 py-0"
 							/>
 						</div>
+						<PostComments post={post} settings={siteConfig?.giscus} locale={locale} />
 					</PostTocLayout>
 				</div>
 			</Post>

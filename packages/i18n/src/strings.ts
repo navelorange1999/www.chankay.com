@@ -14,6 +14,9 @@ export type UiStrings = {
 	}
 	article: {
 		backToSection: string
+		commentsLink: string
+		commentsDescription: string
+		commentsTitle: string
 		onThisPage: string
 	}
 	notFound: {
@@ -43,6 +46,10 @@ const UI_STRINGS = {
 		},
 		article: {
 			backToSection: "Back to section",
+			commentsLink: "View discussions on GitHub",
+			commentsDescription:
+				"Sign in with GitHub to comment. All language versions share this discussion.",
+			commentsTitle: "Discussion",
 			onThisPage: "On this page",
 		},
 		notFound: {
@@ -70,6 +77,9 @@ const UI_STRINGS = {
 		},
 		article: {
 			backToSection: "返回板块",
+			commentsLink: "在 GitHub 查看讨论",
+			commentsDescription: "登录 GitHub 即可评论。同一篇文章的不同语言版本共用此讨论区。",
+			commentsTitle: "讨论",
 			onThisPage: "本文目录",
 		},
 		notFound: {

@@ -73,4 +73,50 @@ describe("www revalidation hooks", () => {
 			slugs: [],
 		})
 	})
+
+	it.each([true, false])(
+		"invalidates every locale when post comments change to %s",
+		async (enabled) => {
+			const hook = createRevalidationHook("posts", ["commentsEnabled"])
+			await hook({
+				doc: { _status: "published", slug: "example", commentsEnabled: enabled },
+				previousDoc: { commentsEnabled: !enabled },
+				req: { locale: "en" },
+			} as never)
+			expect(readRequestBody()).toEqual({ collection: "posts", slugs: ["example"] })
+		}
+	)
+
+	it.each(["enabled", "repo", "repoId", "category", "categoryId"])(
+		"invalidates every locale when the global Giscus %s changes",
+		async (field) => {
+			const hook = createGlobalRevalidationHook("site-config", ["giscus"])
+			await hook({
+				doc: { giscus: { [field]: "new-value" } },
+				previousDoc: { giscus: { [field]: "old-value" } },
+				req: { locale: "zh-CN" },
+			} as never)
+			expect(readRequestBody()).toEqual({ collection: "site-config", slugs: [] })
+		}
+	)
+
+	it("keeps localized edits scoped when shared comment settings are unchanged", async () => {
+		const hook = createGlobalRevalidationHook("site-config", ["giscus"])
+		await hook({
+			doc: { siteName: "New title", giscus: { enabled: true } },
+			previousDoc: { siteName: "Old title", giscus: { enabled: true } },
+			req: { locale: "en" },
+		} as never)
+		expect(readRequestBody()).toEqual({ collection: "site-config", slugs: [], locales: ["en"] })
+	})
+
+	it("invalidates every locale when publishing an autosaved comments change", async () => {
+		const hook = createRevalidationHook("posts", ["commentsEnabled"])
+		await hook({
+			doc: { _status: "published", slug: "example", commentsEnabled: false },
+			previousDoc: { _status: "draft", commentsEnabled: false },
+			req: { locale: "en" },
+		} as never)
+		expect(readRequestBody()).toEqual({ collection: "posts", slugs: ["example"] })
+	})
 })

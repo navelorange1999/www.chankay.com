@@ -246,13 +246,17 @@ export interface Post {
    */
   excerpt?: string | null;
   /**
-   * Main article content written in Markdown.
+   * Main article content written in Markdown. Start sections at H2.
    */
   content: string;
   /**
    * Custom cover image. Leave empty to derive from the first image in content.
    */
   featuredImage?: (string | null) | MediaInterface;
+  /**
+   * Show GitHub Discussions comments for this post in every language. Disabling hides the embed; existing discussions remain on GitHub.
+   */
+  commentsEnabled?: boolean | null;
   status: 'draft' | 'published' | 'archived';
   publishedAt?: string | null;
   /**
@@ -60688,6 +60692,7 @@ export interface PostsSelect<T extends boolean = true> {
   excerpt?: T;
   content?: T;
   featuredImage?: T;
+  commentsEnabled?: T;
   status?: T;
   publishedAt?: T;
   series?: T;
@@ -93337,6 +93342,22 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface SiteConfig {
   id: string;
   /**
+   * Public GitHub Discussions configuration. Comments are stored on GitHub.
+   */
+  giscus: {
+    enabled?: boolean | null;
+    /**
+     * Public repository in owner/name format. Install the Giscus app on it.
+     */
+    repo: string;
+    repoId: string;
+    /**
+     * Use an Announcements category so Giscus creates article discussions.
+     */
+    category: string;
+    categoryId: string;
+  };
+  /**
    * The name of your website
    */
   siteName: string;
@@ -93617,6 +93638,15 @@ export interface SiteConfig {
  * via the `definition` "site-config_select".
  */
 export interface SiteConfigSelect<T extends boolean = true> {
+  giscus?:
+    | T
+    | {
+        enabled?: T;
+        repo?: T;
+        repoId?: T;
+        category?: T;
+        categoryId?: T;
+      };
   siteName?: T;
   siteDescription?: T;
   siteUrl?: T;

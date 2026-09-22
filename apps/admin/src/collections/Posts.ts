@@ -120,6 +120,17 @@ export const Posts: CollectionConfig = {
 
 		// === Publishing ===
 		{
+			name: "commentsEnabled",
+			type: "checkbox",
+			label: "Enable Comments",
+			defaultValue: true,
+			admin: {
+				position: "sidebar",
+				description:
+					"Show GitHub Discussions comments for this post in every language. Disabling hides the embed; existing discussions remain on GitHub.",
+			},
+		},
+		{
 			name: "status",
 			type: "select",
 			required: true,
@@ -254,6 +265,6 @@ export const Posts: CollectionConfig = {
 	],
 	timestamps: true,
 	hooks: {
-		afterChange: [createRevalidationHook("posts")],
+		afterChange: [createRevalidationHook("posts", ["commentsEnabled"])],
 	},
 }

@@ -1,5 +1,26 @@
 # Frontend Guidelines
 
+## Post Comments
+
+Only the published post detail route renders comments. The stateless section lives
+in `packages/ui`, while the Giscus client and CMS configuration resolution live in
+`apps/www/src/components/posts` and `apps/www/src/utils/postComments.ts`.
+
+Use the official `@giscus/react` component with lazy iframe loading. Its theme follows
+the site's resolved theme and its interface language follows the active locale.
+Discussion mapping uses `specific`, the immutable term `post:<Payload document ID>`,
+and strict matching. Never use the localized URL, title, or mutable slug as identity.
+English and Chinese translations intentionally share one discussion. Preserve post
+IDs when migrating CMS data to keep the discussion mapping intact.
+
+Missing, disabled, or invalid configuration renders no comment section. Draft and
+archived posts never render the embed. A server-rendered GitHub discussions link
+remains available if the third-party widget cannot load. Keep the comments outside
+the article reading-progress target and do not make a Giscus API call during page
+generation. The discussion repository's `giscus.json` permits only production
+website origins; explicitly authorize any additional preview origin before testing
+comments there.
+
 > Last Updated: March 12, 2026
 
 ## Tailwind CSS Usage

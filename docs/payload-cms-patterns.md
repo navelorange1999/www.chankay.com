@@ -111,3 +111,21 @@ Check these areas in order:
 3. Hooks and side effects
 4. Generated types
 5. Frontend rendering or data service updates
+
+## Post Comments
+
+Published posts use Giscus backed by the public `navelorange1999/chankay-discussions`
+repository. `posts.commentsEnabled` defaults to true and is shared across locales.
+Older documents without the checkbox are treated as enabled. Turning it off hides
+the website embed; it does not delete or lock the GitHub discussion.
+
+`site-config.giscus` owns the global enable switch and the public repository/category
+identifiers. These are public configuration values, not credentials. The schema
+defaults point at the launch repository and its Announcements category. The Giscus
+GitHub App must be installed on that repository before enabling comments publicly.
+No comment bodies, commenter accounts, or authentication credentials are stored in
+Payload. Moderate or lock conversations through GitHub Discussions.
+
+Changes to `commentsEnabled` or any `giscus` setting invalidate all supported
+locales. The revalidation hook factories accept a list of shared fields for this
+purpose; edits that leave those fields unchanged retain locale-scoped invalidation.

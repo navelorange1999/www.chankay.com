@@ -43,7 +43,18 @@ async function triggerRevalidation(
 	}
 }
 
-export function createRevalidationHook(collection: string): CollectionAfterChangeHook {
+function sharedFieldsChanged(
+	doc: Record<string, unknown>,
+	previousDoc: Record<string, unknown> | undefined,
+	fields: readonly string[]
+): boolean {
+	return fields.some((field) => JSON.stringify(doc[field]) !== JSON.stringify(previousDoc?.[field]))
+}
+
+export function createRevalidationHook(
+	collection: string,
+	sharedFields: readonly string[] = []
+): CollectionAfterChangeHook {
 	return async ({ doc, previousDoc, req }) => {
 		// Only revalidate when the document is published (skip draft autosaves)
 		if (doc._status && doc._status !== "published") return doc
@@ -53,7 +64,13 @@ export function createRevalidationHook(collection: string): CollectionAfterChang
 			.filter((s, i, arr) => arr.indexOf(s) === i)
 
 		try {
-			await triggerRevalidation(collection, slugs, resolveLocales(req.locale))
+			// The previous version can be an autosaved draft with the new shared values already set.
+			const publishingDraft = sharedFields.length > 0 && previousDoc?._status === "draft"
+			const locales =
+				publishingDraft || sharedFieldsChanged(doc, previousDoc, sharedFields)
+					? undefined
+					: resolveLocales(req.locale)
+			await triggerRevalidation(collection, slugs, locales)
 		} catch {
 			// Best effort only.
 		}
@@ -72,10 +89,16 @@ export function createRevalidationDeleteHook(collection: string): CollectionAfte
 	}
 }
 
-export function createGlobalRevalidationHook(globalSlug: string): GlobalAfterChangeHook {
-	return async ({ doc, req }) => {
+export function createGlobalRevalidationHook(
+	globalSlug: string,
+	sharedFields: readonly string[] = []
+): GlobalAfterChangeHook {
+	return async ({ doc, previousDoc, req }) => {
 		try {
-			await triggerRevalidation(globalSlug, [], resolveLocales(req.locale))
+			const locales = sharedFieldsChanged(doc, previousDoc, sharedFields)
+				? undefined
+				: resolveLocales(req.locale)
+			await triggerRevalidation(globalSlug, [], locales)
 		} catch {
 			// Best effort only.
 		}

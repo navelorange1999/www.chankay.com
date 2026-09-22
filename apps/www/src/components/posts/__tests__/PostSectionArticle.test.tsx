@@ -1,4 +1,5 @@
 import { renderToStaticMarkup } from "react-dom/server"
+import { createElement } from "react"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
@@ -20,6 +21,11 @@ vi.mock("@/components/lazy/PostTocDrawerClient", () => ({
 	PostTocDrawerClient: () => null,
 }))
 
+vi.mock("../PostCommentsClient", () => ({
+	PostCommentsClient: ({ config, locale }: { config: { term: string }; locale: string }) =>
+		createElement("div", { "data-comment-term": config.term, "data-comment-locale": locale }),
+}))
+
 import {
 	buildPostSectionArticleMetadata,
 	buildPostSectionStaticParams,
@@ -31,6 +37,64 @@ describe("PostSectionArticle", () => {
 		mocks.getPostBySlugForSection.mockReset()
 		mocks.getPostsBySection.mockReset()
 		mocks.getSiteConfig.mockReset()
+	})
+
+	it.each(["technical", "trading"] as const)(
+		"renders shared comments for both locales in %s",
+		async (section) => {
+			mocks.getPostBySlugForSection.mockResolvedValue({
+				id: "shared-post",
+				slug: "article",
+				title: "Article",
+				content: "## Content\nBody.",
+				status: "published",
+				_status: "published",
+			})
+			mocks.getSiteConfig.mockResolvedValue({
+				giscus: {
+					enabled: true,
+					repo: "navelorange1999/chankay-discussions",
+					repoId: "R_kgDOUk_WeA",
+					category: "Announcements",
+					categoryId: "DIC_kwDOUk_WeM4DGIzk",
+				},
+			})
+			for (const locale of ["en", "zh-CN"] as const) {
+				const markup = renderToStaticMarkup(
+					await PostSectionArticle({ section, locale, slug: "article" })
+				)
+				expect(markup).toContain('data-comment-term="post:shared-post"')
+				expect(markup).toContain(`data-comment-locale="${locale}"`)
+				expect(markup).toContain(
+					locale === "en" ? "View discussions on GitHub" : "在 GitHub 查看讨论"
+				)
+			}
+		}
+	)
+
+	it("omits the entire comment section for a disabled post", async () => {
+		mocks.getPostBySlugForSection.mockResolvedValue({
+			id: "shared-post",
+			slug: "article",
+			title: "Article",
+			content: "## Content\nBody.",
+			status: "published",
+			commentsEnabled: false,
+		})
+		mocks.getSiteConfig.mockResolvedValue({
+			giscus: {
+				enabled: true,
+				repo: "navelorange1999/chankay-discussions",
+				repoId: "R_kgDOUk_WeA",
+				category: "Announcements",
+				categoryId: "DIC_kwDOUk_WeM4DGIzk",
+			},
+		})
+		const markup = renderToStaticMarkup(
+			await PostSectionArticle({ section: "technical", locale: "en", slug: "article" })
+		)
+		expect(markup).not.toContain('id="comments"')
+		expect(markup).not.toContain("data-comment-term")
 	})
 
 	it("omits unsafe CMS slugs from static article params", async () => {

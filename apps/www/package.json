@@ -33,6 +33,7 @@
     "@chankay/brand-assets": "workspace:*",
     "@tailwindcss/postcss": "4.1.11",
     "@types/node": "25.0.3",
+    "happy-dom": "20.11.6",
     "vitest": "^3.2.4"
   }
 }

@@ -34,8 +34,9 @@ export function MermaidHydrator({ containerId }: MermaidHydratorProps) {
 
 		let isCancelled = false
 		let renderRun = 0
+		let lastDarkTheme = document.documentElement.classList.contains("dark")
 
-		const renderMermaidDiagrams = async () => {
+		const renderMermaidDiagrams = async (isDarkTheme: boolean) => {
 			const root = document.getElementById(containerId)
 			if (!root) return
 
@@ -49,7 +50,7 @@ export function MermaidHydrator({ containerId }: MermaidHydratorProps) {
 			renderRun = currentRun
 
 			const mermaid = await loadMermaidRenderer()
-			const isDarkTheme = document.documentElement.classList.contains("dark")
+			if (isCancelled || renderRun !== currentRun) return
 
 			mermaid.initialize({
 				startOnLoad: false,
@@ -94,10 +95,14 @@ export function MermaidHydrator({ containerId }: MermaidHydratorProps) {
 			}
 		}
 
-		void renderMermaidDiagrams()
+		void renderMermaidDiagrams(lastDarkTheme)
 
 		const observer = new MutationObserver(() => {
-			void renderMermaidDiagrams()
+			const isDarkTheme = document.documentElement.classList.contains("dark")
+			if (isDarkTheme === lastDarkTheme) return
+
+			lastDarkTheme = isDarkTheme
+			void renderMermaidDiagrams(isDarkTheme)
 		})
 
 		observer.observe(document.documentElement, {

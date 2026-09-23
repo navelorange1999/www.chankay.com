@@ -1,6 +1,7 @@
 "use client"
 
 import { useCallback } from "react"
+import { flushSync } from "react-dom"
 
 import type { ThemeMode } from "./useTheme"
 
@@ -178,7 +179,10 @@ export function useThemeTransition({
 			}
 
 			const transition = transitioningDocument.startViewTransition(() => {
-				applyThemeChange(rootElement, nextTheme, prefersDark, setTheme)
+				// Commit theme consumers before the browser captures the new view.
+				flushSync(() => {
+					applyThemeChange(rootElement, nextTheme, prefersDark, setTheme)
+				})
 			})
 
 			transition.ready

@@ -246,6 +246,12 @@ marking the entire Markdown renderer as client-only.
 
 ### Animations
 
+Theme view transitions must synchronously commit React theme updates inside the
+view-transition update callback before the browser captures the new view. Root
+attribute observers should react to changes in the resolved light/dark value;
+`next-themes` may write the same attributes again. Mermaid hydration follows this
+rule to avoid duplicate SVG rendering during the reveal animation.
+
 Reuse animation variants instead of inlining animation objects repeatedly:
 
 ```typescript

@@ -54,9 +54,15 @@ export type PostSectionArticleParams = {
 	slug: string
 }
 
+// Keep comment controls fresh even when CMS push revalidation is unavailable.
+const ARTICLE_REVALIDATE_SECONDS = 60
+
 const getPostBySlugForSectionCached = cache(
 	async (slug: string, section: PostSection, locale: SupportedLocale) => {
-		return getPostBySlugForSection(slug, section, { locale })
+		return getPostBySlugForSection(slug, section, {
+			locale,
+			revalidate: ARTICLE_REVALIDATE_SECONDS,
+		})
 	}
 )
 
@@ -90,7 +96,7 @@ export async function buildPostSectionArticleMetadata(
 
 	const [post, siteConfig] = await Promise.all([
 		getPostBySlugForSectionCached(slug, section, locale),
-		getSiteConfig(locale),
+		getSiteConfig(locale, ARTICLE_REVALIDATE_SECONDS),
 	])
 
 	if (!post || !resolvePostSectionPath(section, post.slug, locale)) {
@@ -151,7 +157,7 @@ export async function PostSectionArticle({
 
 	const [post, siteConfig] = await Promise.all([
 		getPostBySlugForSectionCached(slug, section, locale),
-		getSiteConfig(locale),
+		getSiteConfig(locale, ARTICLE_REVALIDATE_SECONDS),
 	])
 	const strings = getUiStrings(locale)
 

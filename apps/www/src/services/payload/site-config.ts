@@ -6,9 +6,10 @@ import type { SiteConfig } from "@repo/typescript-config/typings/payload-types"
 import { payloadClient } from "@/utils/payloadClient"
 
 export const getSiteConfig = cache(
-	async (locale: SupportedLocale = DEFAULT_LOCALE): Promise<SiteConfig> => {
+	async (locale: SupportedLocale = DEFAULT_LOCALE, revalidate?: number): Promise<SiteConfig> => {
 		return payloadClient.getGlobal<SiteConfig>("site-config", {
 			locale,
+			revalidate,
 			tags: [`global:site-config:${locale}`],
 		})
 	}

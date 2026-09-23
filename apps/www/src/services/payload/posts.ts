@@ -42,7 +42,7 @@ export async function getPosts(
 
 export async function getPostBySlug(
 	slug: string,
-	options?: { locale?: SupportedLocale }
+	options?: { locale?: SupportedLocale; revalidate?: number }
 ): Promise<Post | null> {
 	if (!isSafePostSlug(slug)) {
 		return null
@@ -52,6 +52,7 @@ export async function getPostBySlug(
 	try {
 		return await payloadClient.getBySlug<Post>("posts", slug, {
 			locale,
+			revalidate: options?.revalidate,
 			depth: 2,
 			tags: [`post:${slug}:${locale}`, `posts:details:${locale}`],
 		})
@@ -64,7 +65,7 @@ export async function getPostBySlug(
 export async function getPostBySlugForSection(
 	slug: string,
 	section: PostSection,
-	options?: { locale?: SupportedLocale }
+	options?: { locale?: SupportedLocale; revalidate?: number }
 ): Promise<Post | null> {
 	const post = await getPostBySlug(slug, options)
 	return post && isPostInSection(post, section) ? post : null

@@ -123,6 +123,18 @@ describe("post section payload services", () => {
 		})
 	})
 
+	it("forwards the article refresh interval through section lookups", async () => {
+		getBySlug.mockResolvedValueOnce({ id: "post-id", slug: "article" })
+		await getPostBySlugForSection("article", "technical", { locale: "en", revalidate: 60 })
+		expect(getBySlug).toHaveBeenCalledWith(
+			"posts",
+			"article",
+			expect.objectContaining({
+				revalidate: 60,
+			})
+		)
+	})
+
 	it.each(["../private", "a".repeat(POST_SLUG_MAX_LENGTH + 1)])(
 		"does not query posts for unsafe post slug %j",
 		async (slug) => {

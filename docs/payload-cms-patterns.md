@@ -130,6 +130,9 @@ The older, unused `site-config.comments` provider/JSON settings remain in the da
 model for compatibility but are hidden from editors. Only `site-config.giscus`
 controls the shipped comments module.
 
-Changes to `commentsEnabled` or any `giscus` setting invalidate all supported
+Changes to `commentsEnabled` or any `giscus` setting request invalidation of all supported
 locales. The revalidation hook factories accept a list of shared fields for this
 purpose; edits that leave those fields unchanged retain locale-scoped invalidation.
+Push invalidation requires the existing shared configuration described in
+`deployment-and-environments.md`. Article pages also use a 60-second cache refresh
+interval so comment controls eventually update without this integration.

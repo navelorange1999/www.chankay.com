@@ -147,7 +147,7 @@ To stop relay use, remove both relay variables from the affected Vercel environm
 
 #### Current WeChat rollout: draft synchronization only
 
-On September 8, 2026, the account owner confirmed that account `wxcc467391094c646b` has the required material upload and draft creation/read permissions. The supplied console screenshot confirms stable-token access, but publication submission and publication-status lookup are unavailable. Treat the material and draft permissions as owner-confirmed until verified by a live draft synchronization.
+On September 8, 2026, the account owner confirmed that the configured WeChat account has the required material upload and draft creation/read permissions. The supplied console screenshot confirms stable-token access, but publication submission and publication-status lookup are unavailable. Treat the material and draft permissions as owner-confirmed until verified by a live draft synchronization.
 
 The authorized integration scope is to upload the selected article's media, create a WeChat draft, and inspect the result. Do not submit a publication or grant the `publish_social_publication` MCP permission. Use the Admin interface for the initial verification so no new MCP permission grants are needed. Account certification and publication acceptance remain deferred. The first article must be selected by the owner before creating a remote draft.
 
@@ -205,6 +205,8 @@ Relevant workflow files:
 - `.github/workflows/admin-production.yml`
 
 ## Environments
+
+Keep real environment variable values and account identifiers out of the repository, including documentation and example files. Use variable names or nonfunctional placeholders in examples. Store deployed values in the platform's secret manager and local values in an environment file outside the checkout. Review staged changes for accidental disclosure before committing.
 
 The repository currently uses these deployment environments:
 

@@ -31,6 +31,8 @@ Forbidden:
 
 If environment configuration is needed, read the relevant `.env.example` file only.
 
+Never write real environment variable values, credentials, or account identifiers into source code, documentation, tests, or example files. Refer to the variable name or use an unmistakably nonfunctional placeholder. Keep real values in an approved secret manager or an environment file outside the repository, and review staged changes for accidental disclosure before committing.
+
 ### English-Only Technical Content
 
 All technical content must be written in English:

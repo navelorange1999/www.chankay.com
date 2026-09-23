@@ -8,6 +8,13 @@ in `packages/ui`, while the Giscus client and CMS configuration resolution live 
 
 Use the official `@giscus/react` component with lazy iframe loading. Its theme follows
 the site's resolved theme and its interface language follows the active locale.
+The iframe uses the light and dark stylesheets in `apps/www/public/giscus/` because
+the host page's CSS cannot style its contents. Their colors are generated from
+`packages/ui/src/tokens.css` by `pnpm --filter www generate:giscus-themes`; edit
+the shared tokens, then regenerate the stylesheets rather than changing them by
+hand. Website builds generate them, and `test:run` checks they are current. Giscus
+loads the stylesheet from the current site origin, and `apps/www/next.config.js`
+permits `https://giscus.app` to load those public stylesheets across origins.
 Discussion mapping uses `specific`, the immutable term `post:<Payload document ID>`,
 and strict matching. Never use the localized URL, title, or mutable slug as identity.
 English and Chinese translations intentionally share one discussion. Preserve post

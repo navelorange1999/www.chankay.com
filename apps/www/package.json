@@ -2,14 +2,16 @@
   "name": "www",
   "type": "module",
   "scripts": {
-    "dev": "pnpm sync:brand-assets && next dev -p 3000 --turbopack",
-    "build": "pnpm sync:brand-assets && next build",
+    "dev": "pnpm generate:giscus-themes && pnpm sync:brand-assets && next dev -p 3000 --turbopack",
+    "build": "pnpm generate:giscus-themes && pnpm sync:brand-assets && next build",
     "start": "next start -p 3000",
     "sync:brand-assets": "node ../../packages/brand-assets/scripts/sync-assets.mjs www",
+    "generate:giscus-themes": "node scripts/generate-giscus-themes.mjs",
+    "check:giscus-themes": "node scripts/generate-giscus-themes.mjs --check",
     "lint": "next lint --fix",
     "check-types": "tsc --noEmit",
     "test": "vitest",
-    "test:run": "vitest run",
+    "test:run": "pnpm check:giscus-themes && vitest run",
     "clean": "rm -rf .next && rm -rf .turbo"
   },
   "dependencies": {

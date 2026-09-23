@@ -17,6 +17,7 @@ export function PostCommentsClient({
 }) {
 	const { mounted, resolvedTheme } = useTheme()
 	if (!mounted) return null
+	const theme = `${window.location.origin}/giscus/theme-${resolvedTheme === "dark" ? "dark" : "light"}.css`
 
 	return (
 		<Giscus
@@ -32,7 +33,7 @@ export function PostCommentsClient({
 			reactionsEnabled="1"
 			emitMetadata="0"
 			inputPosition="top"
-			theme={resolvedTheme}
+			theme={theme}
 			lang={locale === "zh-CN" ? "zh-CN" : "en"}
 			loading="lazy"
 		/>

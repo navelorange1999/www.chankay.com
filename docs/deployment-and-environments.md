@@ -35,6 +35,8 @@ Relevant workflow files:
 
 ## Environments
 
+Keep real environment variable values and account identifiers out of the repository, including documentation and example files. Use variable names or nonfunctional placeholders in examples. Store deployed values in the platform's secret manager and local values in an environment file outside the checkout. Review staged changes for accidental disclosure before committing.
+
 The repository currently uses these deployment environments:
 
 - Local development

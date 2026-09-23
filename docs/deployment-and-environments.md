@@ -98,6 +98,10 @@ See:
 ### Public Site URL
 
 `WWW_SITE_URL` is used by admin-side integrations when the public site URL must be known explicitly.
+Use the canonical origin, `https://chankay.com`, for production callbacks. The
+`www.chankay.com` alias returns a 301 redirect, which converts a POST cache
+invalidation request into GET and causes a 405 response. Do not assume a successful
+CMS save means the best-effort invalidation callback succeeded.
 
 ## App Environment Variables
 

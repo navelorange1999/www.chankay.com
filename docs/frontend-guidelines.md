@@ -21,6 +21,12 @@ generation. The discussion repository's `giscus.json` permits only production
 website origins; explicitly authorize any additional preview origin before testing
 comments there.
 
+Article detail requests explicitly revalidate both the post and site configuration
+after 60 seconds, even when the deployment's default Payload cache lifetime is
+longer. This is a fallback when CMS push revalidation is unavailable. Next.js
+refreshes stale entries on subsequent requests, so the first request after expiry
+may still receive the previous state; this is not an immediate moderation control.
+
 > Last Updated: March 12, 2026
 
 ## Tailwind CSS Usage

@@ -63,6 +63,11 @@ describe("PostSectionArticle", () => {
 				const markup = renderToStaticMarkup(
 					await PostSectionArticle({ section, locale, slug: "article" })
 				)
+				expect(mocks.getPostBySlugForSection).toHaveBeenCalledWith("article", section, {
+					locale,
+					revalidate: 60,
+				})
+				expect(mocks.getSiteConfig).toHaveBeenCalledWith(locale, 60)
 				expect(markup).toContain('data-comment-term="post:shared-post"')
 				expect(markup).toContain(`data-comment-locale="${locale}"`)
 				expect(markup).toContain(

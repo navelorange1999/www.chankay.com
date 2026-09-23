@@ -46,10 +46,6 @@ All technical content must be written in English:
 
 All user-facing content and configurable styling should be modeled through Payload CMS whenever practical. Avoid hardcoded content in page components.
 
-### Article Writing
-
-Use the personal `trading-article-writer` skill for every new or revised blog post, including Technical posts. Apply its editorial and Mermaid guidance to Technical posts without adding investment-specific sections or disclaimers. Read `docs/article-writing-and-publishing.md` before preparing article content.
-
 ### UI Packaging Rule
 
 Create stateless and reusable UI components in `packages/ui` first. Keep app-specific data fetching and business logic in `apps/www` or `apps/admin`.
@@ -104,17 +100,6 @@ Use when:
 - You are designing fields, blocks, or page-builder structures
 - You are adding configurable content or styling to the frontend
 - You need collection or global conventions
-
-### Article Writing and Publishing
-
-Read:
-
-- [`docs/article-writing-and-publishing.md`](./docs/article-writing-and-publishing.md)
-
-Use when:
-
-- You are drafting, revising, translating, or publishing a blog post
-- You need to choose and review Mermaid diagrams for an article
 
 ### Component Placement and Reuse
 
@@ -224,7 +209,6 @@ When multiple sources overlap, use this priority order:
 ## Document Map
 
 - [`docs/project-overview.md`](./docs/project-overview.md): Product context, goals, and non-negotiable principles.
-- [`docs/article-writing-and-publishing.md`](./docs/article-writing-and-publishing.md): Blog writing skill, review gate, localized content, and Mermaid editorial workflow.
 - [`docs/architecture-and-stack.md`](./docs/architecture-and-stack.md): Monorepo layout, package manager, build system, and technology stack.
 - [`docs/cms-driven-design.md`](./docs/cms-driven-design.md): CMS-first UI design patterns, examples, and field modeling guidance.
 - [`docs/code-style-and-typescript.md`](./docs/code-style-and-typescript.md): Formatting, naming, imports, and TypeScript rules.

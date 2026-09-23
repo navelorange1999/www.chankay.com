@@ -1,0 +1,42 @@
+/* Keep these colors aligned with packages/ui/src/tokens.css. */
+main {
+	--color-fg-default: oklch(0.81 0.01 93.01);
+	--color-fg-muted: oklch(0.77 0.02 99.07);
+	--color-fg-subtle: oklch(0.77 0.02 99.07);
+	--color-canvas-default: oklch(0.27 0 106.64);
+	--color-canvas-overlay: oklch(0.31 0 106.6);
+	--color-canvas-inset: oklch(0.22 0 106.71);
+	--color-canvas-subtle: oklch(0.21 0.01 95.42);
+	--color-border-default: oklch(0.44 0.008 106.89);
+	--color-border-muted: oklch(0.44 0.008 106.89);
+	--color-neutral-muted: oklch(0.22 0 106.71);
+	--color-accent-fg: oklch(0.67 0.13 38.76);
+	--color-accent-emphasis: oklch(0.67 0.13 38.76);
+	--color-accent-muted: oklch(0.67 0.13 38.76 / 0.3);
+	--color-accent-subtle: oklch(0.67 0.13 38.76 / 0.15);
+	--color-success-fg: oklch(0.67 0.13 38.76);
+	--color-danger-fg: oklch(0.64 0.21 25.33);
+	--color-btn-text: oklch(0.81 0.01 93.01);
+	--color-btn-bg: oklch(0.31 0 106.6);
+	--color-btn-border: oklch(0.44 0.008 106.89);
+	--color-btn-hover-bg: oklch(0.37 0 106.6);
+	--color-btn-hover-border: oklch(0.5 0.008 106.89);
+	--color-btn-active-bg: oklch(0.21 0.01 95.42);
+	--color-btn-active-border: oklch(0.67 0.13 38.76);
+	--color-btn-selected-bg: oklch(0.21 0.01 95.42);
+	--color-btn-primary-text: oklch(1 0 0);
+	--color-btn-primary-bg: oklch(0.67 0.13 38.76);
+	--color-btn-primary-border: oklch(0.67 0.13 38.76);
+	--color-btn-primary-hover-bg: oklch(0.72 0.13 38.76);
+	--color-btn-primary-hover-border: oklch(0.72 0.13 38.76);
+	--color-btn-primary-selected-bg: oklch(0.62 0.13 38.76);
+	--color-btn-primary-disabled-text: oklch(1 0 0 / 0.7);
+	--color-btn-primary-disabled-bg: oklch(0.67 0.13 38.76 / 0.6);
+	--color-btn-primary-disabled-border: oklch(0.67 0.13 38.76 / 0.3);
+	--color-action-list-item-default-hover-bg: oklch(0.67 0.13 38.76 / 0.12);
+	--color-segmented-control-bg: oklch(0.22 0 106.71);
+	--color-segmented-control-button-bg: oklch(0.31 0 106.6);
+	--color-segmented-control-button-selected-border: oklch(0.44 0.008 106.89);
+	--color-social-reaction-bg-hover: oklch(0.67 0.13 38.76 / 0.12);
+	--color-social-reaction-bg-reacted-hover: oklch(0.67 0.13 38.76 / 0.25);
+}

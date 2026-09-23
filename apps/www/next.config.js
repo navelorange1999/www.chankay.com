@@ -10,6 +10,14 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+	async headers() {
+		return [
+			{
+				source: "/giscus/:path*",
+				headers: [{ key: "Access-Control-Allow-Origin", value: "https://giscus.app" }],
+			},
+		]
+	},
 	turbopack: {
 		root: repoRoot,
 	},

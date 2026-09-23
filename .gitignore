@@ -24,6 +24,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# local env files
+.env*.local
+
 # turbo
 .turbo
 tsconfig.tsbuildinfo
@@ -34,13 +37,10 @@ tsconfig.tsbuildinfo
 # storybook
 storybook-static
 
-# Environment files must stay outside Git; example templates contain placeholders only.
-**/.env
-**/.env.*
-**/*.env
-**/*.env.*
-!**/.env.example
-!**/*.env.example
+# env
+**/**/.env
+# except example files
+!**/**/.env.example
 
 # claude
 .claude

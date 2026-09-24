@@ -53,3 +53,7 @@ backup-*/
 
 # local git worktrees
 /.worktrees/
+
+# local Superpowers plans and preview artifacts
+/docs/superpowers/
+/.superpowers/

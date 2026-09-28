@@ -29,7 +29,7 @@ export async function HandWritingNode({ block }: HandWritingNodeProps) {
 				artifact={artifact}
 				text={input.text}
 				className="h-40 w-full max-w-[32rem] sm:h-52 md:h-64"
-				speed={block.speed ?? 1}
+				duration={block.duration ?? 5}
 				as={block.as ?? "div"}
 			/>
 		</div>

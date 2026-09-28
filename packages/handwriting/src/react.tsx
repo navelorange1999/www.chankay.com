@@ -2,6 +2,8 @@ import type { CSSProperties } from "react"
 import { validateArtifact, type HandwritingArtifact } from "./schema.js"
 export interface HandwritingProps {
 	artifact: HandwritingArtifact
+	/** Total playback time in seconds. Overrides the legacy speed multiplier. */
+	duration?: number
 	speed?: number
 	animate?: boolean
 	strokeWidth?: number
@@ -27,6 +29,7 @@ const animationStyles = `
 /** Server-renderable SVG: no model, browser API, hydration, or client directive is needed. */
 export function Handwriting({
 	artifact,
+	duration,
 	speed = 1,
 	animate = true,
 	strokeWidth = 0.75,
@@ -34,10 +37,14 @@ export function Handwriting({
 	style,
 }: HandwritingProps) {
 	const validated = validateArtifact(artifact)
-	if (!Number.isFinite(speed) || speed < 0.1 || speed > 10)
+	if (duration !== undefined && (!Number.isFinite(duration) || duration <= 0))
+		throw new Error("Animation duration must be a positive number of seconds.")
+	if (duration === undefined && (!Number.isFinite(speed) || speed < 0.1 || speed > 10))
 		throw new Error("Animation speed must be between 0.1 and 10.")
 	if (!Number.isFinite(strokeWidth) || strokeWidth < 0.1 || strokeWidth > 3)
 		throw new Error("Stroke width must be between 0.1 and 3.")
+	const timelineEnd = Math.max(...validated.strokes.map((stroke) => stroke.delay + stroke.duration))
+	const scale = duration === undefined ? 1 / speed : duration / timelineEnd
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -66,8 +73,8 @@ export function Handwriting({
 						style={
 							animate
 								? ({
-										"--chankay-handwriting-duration": `${stroke.duration / speed}s`,
-										"--chankay-handwriting-delay": `${stroke.delay / speed}s`,
+										"--chankay-handwriting-duration": `${stroke.duration * scale}s`,
+										"--chankay-handwriting-delay": `${stroke.delay * scale}s`,
 									} as CSSProperties)
 								: undefined
 						}

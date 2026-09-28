@@ -23,8 +23,9 @@ const meta: Meta<typeof Heatmap> = {
 		showTotal: {
 			control: "boolean",
 		},
-		animateFill: {
+		duration: {
 			control: "number",
+			description: "Total animation duration in seconds; omit to display immediately.",
 		},
 	},
 }
@@ -219,5 +220,12 @@ export const Minimal: Story = {
 		size: "sm",
 		showLegend: false,
 		showTotal: false,
+	},
+}
+
+export const Animated: Story = {
+	args: {
+		days: generateSampleData(90, 20),
+		duration: 5,
 	},
 }

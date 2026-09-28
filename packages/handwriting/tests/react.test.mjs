@@ -36,3 +36,33 @@ test("renderer supports the CMS playback speed range through ten", () => {
 		renderToStaticMarkup(React.createElement(api.Handwriting, { artifact, speed: 10 }))
 	)
 })
+
+test("duration scales the complete artifact timeline to the requested seconds", () => {
+	for (const duration of [0.1, 5, 20.79866888519135]) {
+		const markup = renderToStaticMarkup(
+			React.createElement(api.Handwriting, { artifact, duration })
+		)
+		const durations = [...markup.matchAll(/--chankay-handwriting-duration:([\d.e+-]+)s/g)].map(
+			(m) => Number(m[1])
+		)
+		const delays = [...markup.matchAll(/--chankay-handwriting-delay:([\d.e+-]+)s/g)].map((m) =>
+			Number(m[1])
+		)
+		assert.equal(delays[0], 0)
+		assert.ok(Math.abs(Math.max(...durations.map((d, i) => d + delays[i])) - duration) < 1e-10)
+	}
+})
+
+test("duration rejects invalid values and takes precedence over legacy speed", () => {
+	for (const duration of [0, -1, NaN, Infinity]) {
+		assert.throws(
+			() => renderToStaticMarkup(React.createElement(api.Handwriting, { artifact, duration })),
+			/duration/i
+		)
+	}
+	const a = renderToStaticMarkup(React.createElement(api.Handwriting, { artifact, duration: 6 }))
+	const b = renderToStaticMarkup(
+		React.createElement(api.Handwriting, { artifact, duration: 6, speed: 2 })
+	)
+	assert.equal(a, b)
+})

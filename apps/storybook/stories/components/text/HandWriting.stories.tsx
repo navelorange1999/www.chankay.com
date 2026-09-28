@@ -10,13 +10,13 @@ const meta: Meta<typeof HandWriting> = {
 	args: {
 		artifact: validateArtifact(fixture),
 		text: "Hello world",
-		speed: 1,
+		duration: 5,
 		className: "min-h-[260px] min-w-[260px]",
 	},
 	argTypes: {
-		speed: {
+		duration: {
 			control: "number",
-			description: "Animation speed multiplier",
+			description: "Total animation duration in seconds",
 		},
 		className: {
 			control: "text",
@@ -45,13 +45,13 @@ export const Default: Story = {
 
 export const Slow: Story = {
 	args: {
-		speed: 0.5,
+		duration: 10,
 	},
 }
 
 export const Fast: Story = {
 	args: {
-		speed: 2,
+		duration: 2.5,
 	},
 }
 

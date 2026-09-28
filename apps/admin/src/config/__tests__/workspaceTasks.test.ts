@@ -21,7 +21,9 @@ describe("workspace task configuration", () => {
 
 		expect(scripts["prepare:payload"]).toBe("turbo run build --filter=admin^...")
 		for (const scriptName of ["migrate", "migrate:down", "migrate:status", "migrate:create"]) {
-			expect(scripts[scriptName]).toMatch(/^pnpm prepare:payload && payload /)
+			expect(scripts[scriptName]).toBe(
+				`pnpm prepare:payload && node scripts/migrate.mjs ${scriptName}`
+			)
 		}
 	})
 

@@ -31,7 +31,10 @@ const flush = () =>
 beforeEach(() => {
 	vi.stubGlobal("IS_REACT_ACT_ENVIRONMENT", true)
 	vi.stubGlobal("crypto", webcrypto)
-	form.fields = { "structure.0.text": { value: "Hello world" }, "structure.0.speed": { value: 1 } }
+	form.fields = {
+		"structure.0.text": { value: "Hello world" },
+		"structure.0.duration": { value: 5 },
+	}
 	form.dispatch.mockClear()
 	form.modified.mockClear()
 	element = document.createElement("div")
@@ -45,17 +48,26 @@ afterEach(async () => {
 })
 
 describe("CMS handwriting preview", () => {
-	it("previews unsaved text and tolerates intermediate speed values without saving the form", async () => {
+	it("previews unsaved text and tolerates intermediate duration values without saving the form", async () => {
 		const fetch = vi.fn().mockResolvedValue({ ok: true, json: async () => fixture })
 		vi.stubGlobal("fetch", fetch)
 		await render()
 		await flush()
 		expect(element.querySelectorAll("svg path").length).toBeGreaterThan(0)
-		for (const speed of [0, 11, "", Number.NaN]) {
-			form.fields["structure.0.speed"] = { value: speed }
+		for (const duration of [0, 11, "", Number.NaN]) {
+			form.fields["structure.0.duration"] = { value: duration }
 			await render()
 			expect(element.querySelectorAll("svg path").length).toBeGreaterThan(0)
 		}
+		const paths = [...element.querySelectorAll<SVGPathElement>("svg path")]
+		const end = Math.max(
+			...paths.map(
+				(path) =>
+					Number.parseFloat(path.style.getPropertyValue("--chankay-handwriting-duration")) +
+					Number.parseFloat(path.style.getPropertyValue("--chankay-handwriting-delay"))
+			)
+		)
+		expect(end).toBeCloseTo(5)
 		expect(fetch).toHaveBeenCalledTimes(1)
 		expect(form.dispatch).not.toHaveBeenCalled()
 		expect(form.modified).not.toHaveBeenCalled()

@@ -470,7 +470,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -500,9 +503,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -664,7 +667,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -702,9 +708,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -986,7 +992,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -1016,9 +1025,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -1180,7 +1189,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -1218,9 +1230,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -1501,7 +1513,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -1531,9 +1546,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -1695,7 +1710,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -1733,9 +1751,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -1991,7 +2009,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -2019,9 +2040,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -2171,7 +2192,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -2201,9 +2225,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -2475,7 +2499,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -2505,9 +2532,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -2669,7 +2696,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -2707,9 +2737,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -2991,7 +3021,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -3021,9 +3054,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -3185,7 +3218,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -3223,9 +3259,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -3506,7 +3542,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -3536,9 +3575,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -3700,7 +3739,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -3738,9 +3780,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -3996,7 +4038,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -4024,9 +4069,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -4176,7 +4221,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -4206,9 +4254,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -4481,7 +4529,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -4511,9 +4562,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -4675,7 +4726,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -4713,9 +4767,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -4997,7 +5051,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -5027,9 +5084,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -5191,7 +5248,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -5229,9 +5289,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -5512,7 +5572,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -5542,9 +5605,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -5706,7 +5769,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -5744,9 +5810,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -6002,7 +6068,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -6030,9 +6099,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -6182,7 +6251,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -6212,9 +6284,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -6464,7 +6536,10 @@ export interface Page {
                                   | 'rounded';
                                 seed: number;
                                 legibility?: number | null;
-                                speed?: number | null;
+                                /**
+                                 * Total time in seconds for the handwriting animation to finish.
+                                 */
+                                duration?: number | null;
                                 as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                 id?: string | null;
                                 blockName?: string | null;
@@ -6492,9 +6567,9 @@ export interface Page {
                                 };
                                 display?: {
                                   /**
-                                   * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                   * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                    */
-                                  animateFill?: number | null;
+                                  duration?: number | null;
                                   size?: ('sm' | 'md' | 'lg') | null;
                                   showLegend?: boolean | null;
                                   showTotal?: boolean | null;
@@ -6642,7 +6717,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -6670,9 +6748,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -6941,7 +7019,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -6971,9 +7052,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -7135,7 +7216,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -7173,9 +7257,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -7457,7 +7541,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -7487,9 +7574,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -7651,7 +7738,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -7689,9 +7779,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -7972,7 +8062,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -8002,9 +8095,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -8166,7 +8259,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -8204,9 +8300,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -8462,7 +8558,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -8490,9 +8589,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -8642,7 +8741,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -8672,9 +8774,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -8946,7 +9048,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -8976,9 +9081,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -9140,7 +9245,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -9178,9 +9286,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -9462,7 +9570,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -9492,9 +9603,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -9656,7 +9767,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -9694,9 +9808,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -9977,7 +10091,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -10007,9 +10124,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -10171,7 +10288,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -10209,9 +10329,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -10467,7 +10587,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -10495,9 +10618,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -10647,7 +10770,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -10677,9 +10803,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -10952,7 +11078,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -10982,9 +11111,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -11146,7 +11275,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -11184,9 +11316,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -11468,7 +11600,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -11498,9 +11633,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -11662,7 +11797,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -11700,9 +11838,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -11983,7 +12121,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -12013,9 +12154,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -12177,7 +12318,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -12215,9 +12359,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -12473,7 +12617,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -12501,9 +12648,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -12653,7 +12800,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -12683,9 +12833,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -12935,7 +13085,10 @@ export interface Page {
                                   | 'rounded';
                                 seed: number;
                                 legibility?: number | null;
-                                speed?: number | null;
+                                /**
+                                 * Total time in seconds for the handwriting animation to finish.
+                                 */
+                                duration?: number | null;
                                 as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                 id?: string | null;
                                 blockName?: string | null;
@@ -12963,9 +13116,9 @@ export interface Page {
                                 };
                                 display?: {
                                   /**
-                                   * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                   * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                    */
-                                  animateFill?: number | null;
+                                  duration?: number | null;
                                   size?: ('sm' | 'md' | 'lg') | null;
                                   showLegend?: boolean | null;
                                   showTotal?: boolean | null;
@@ -13113,7 +13266,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -13141,9 +13297,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -13413,7 +13569,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -13443,9 +13602,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -13607,7 +13766,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -13645,9 +13807,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -13929,7 +14091,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -13959,9 +14124,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -14123,7 +14288,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -14161,9 +14329,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -14444,7 +14612,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -14474,9 +14645,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -14638,7 +14809,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -14676,9 +14850,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -14934,7 +15108,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -14962,9 +15139,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -15114,7 +15291,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -15144,9 +15324,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -15418,7 +15598,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -15448,9 +15631,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -15612,7 +15795,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -15650,9 +15836,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -15934,7 +16120,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -15964,9 +16153,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -16128,7 +16317,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -16166,9 +16358,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -16449,7 +16641,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -16479,9 +16674,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -16643,7 +16838,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -16681,9 +16879,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -16939,7 +17137,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -16967,9 +17168,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -17119,7 +17320,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -17149,9 +17353,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -17424,7 +17628,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -17454,9 +17661,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -17618,7 +17825,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -17656,9 +17866,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -17940,7 +18150,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -17970,9 +18183,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -18134,7 +18347,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -18172,9 +18388,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -18455,7 +18671,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -18485,9 +18704,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -18649,7 +18868,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -18687,9 +18909,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -18945,7 +19167,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -18973,9 +19198,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -19125,7 +19350,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -19155,9 +19383,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -19407,7 +19635,10 @@ export interface Page {
                                   | 'rounded';
                                 seed: number;
                                 legibility?: number | null;
-                                speed?: number | null;
+                                /**
+                                 * Total time in seconds for the handwriting animation to finish.
+                                 */
+                                duration?: number | null;
                                 as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                 id?: string | null;
                                 blockName?: string | null;
@@ -19435,9 +19666,9 @@ export interface Page {
                                 };
                                 display?: {
                                   /**
-                                   * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                   * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                    */
-                                  animateFill?: number | null;
+                                  duration?: number | null;
                                   size?: ('sm' | 'md' | 'lg') | null;
                                   showLegend?: boolean | null;
                                   showTotal?: boolean | null;
@@ -19585,7 +19816,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -19613,9 +19847,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -19857,7 +20091,10 @@ export interface Page {
                         | 'rounded';
                       seed: number;
                       legibility?: number | null;
-                      speed?: number | null;
+                      /**
+                       * Total time in seconds for the handwriting animation to finish.
+                       */
+                      duration?: number | null;
                       as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                       id?: string | null;
                       blockName?: string | null;
@@ -19885,9 +20122,9 @@ export interface Page {
                       };
                       display?: {
                         /**
-                         * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                         * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                          */
-                        animateFill?: number | null;
+                        duration?: number | null;
                         size?: ('sm' | 'md' | 'lg') | null;
                         showLegend?: boolean | null;
                         showTotal?: boolean | null;
@@ -20027,7 +20264,10 @@ export interface Page {
                                   | 'rounded';
                                 seed: number;
                                 legibility?: number | null;
-                                speed?: number | null;
+                                /**
+                                 * Total time in seconds for the handwriting animation to finish.
+                                 */
+                                duration?: number | null;
                                 as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                 id?: string | null;
                                 blockName?: string | null;
@@ -20055,9 +20295,9 @@ export interface Page {
                                 };
                                 display?: {
                                   /**
-                                   * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                   * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                    */
-                                  animateFill?: number | null;
+                                  duration?: number | null;
                                   size?: ('sm' | 'md' | 'lg') | null;
                                   showLegend?: boolean | null;
                                   showTotal?: boolean | null;
@@ -20317,7 +20557,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -20347,9 +20590,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -20511,7 +20754,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -20549,9 +20795,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -20833,7 +21079,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -20863,9 +21112,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -21027,7 +21276,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -21065,9 +21317,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -21348,7 +21600,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -21378,9 +21633,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -21542,7 +21797,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -21580,9 +21838,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -21838,7 +22096,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -21866,9 +22127,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -22018,7 +22279,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -22048,9 +22312,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -22322,7 +22586,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -22352,9 +22619,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -22516,7 +22783,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -22554,9 +22824,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -22838,7 +23108,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -22868,9 +23141,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -23032,7 +23305,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -23070,9 +23346,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -23353,7 +23629,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -23383,9 +23662,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -23547,7 +23826,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -23585,9 +23867,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -23843,7 +24125,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -23871,9 +24156,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -24023,7 +24308,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -24053,9 +24341,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -24328,7 +24616,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -24358,9 +24649,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -24522,7 +24813,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -24560,9 +24854,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -24844,7 +25138,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -24874,9 +25171,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -25038,7 +25335,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -25076,9 +25376,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -25359,7 +25659,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -25389,9 +25692,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -25553,7 +25856,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -25591,9 +25897,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -25849,7 +26155,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -25877,9 +26186,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -26029,7 +26338,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -26059,9 +26371,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -26311,7 +26623,10 @@ export interface Page {
                                   | 'rounded';
                                 seed: number;
                                 legibility?: number | null;
-                                speed?: number | null;
+                                /**
+                                 * Total time in seconds for the handwriting animation to finish.
+                                 */
+                                duration?: number | null;
                                 as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                 id?: string | null;
                                 blockName?: string | null;
@@ -26339,9 +26654,9 @@ export interface Page {
                                 };
                                 display?: {
                                   /**
-                                   * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                   * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                    */
-                                  animateFill?: number | null;
+                                  duration?: number | null;
                                   size?: ('sm' | 'md' | 'lg') | null;
                                   showLegend?: boolean | null;
                                   showTotal?: boolean | null;
@@ -26489,7 +26804,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -26517,9 +26835,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -26788,7 +27106,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -26818,9 +27139,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -26982,7 +27303,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -27020,9 +27344,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -27304,7 +27628,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -27334,9 +27661,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -27498,7 +27825,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -27536,9 +27866,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -27819,7 +28149,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -27849,9 +28182,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -28013,7 +28346,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -28051,9 +28387,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -28309,7 +28645,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -28337,9 +28676,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -28489,7 +28828,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -28519,9 +28861,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -28793,7 +29135,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -28823,9 +29168,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -28987,7 +29332,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -29025,9 +29373,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -29309,7 +29657,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -29339,9 +29690,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -29503,7 +29854,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -29541,9 +29895,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -29824,7 +30178,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -29854,9 +30211,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -30018,7 +30375,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -30056,9 +30416,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -30314,7 +30674,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -30342,9 +30705,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -30494,7 +30857,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -30524,9 +30890,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -30799,7 +31165,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -30829,9 +31198,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -30993,7 +31362,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -31031,9 +31403,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -31315,7 +31687,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -31345,9 +31720,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -31509,7 +31884,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -31547,9 +31925,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -31830,7 +32208,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -31860,9 +32241,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -32024,7 +32405,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -32062,9 +32446,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -32320,7 +32704,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -32348,9 +32735,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -32500,7 +32887,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -32530,9 +32920,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -32782,7 +33172,10 @@ export interface Page {
                                   | 'rounded';
                                 seed: number;
                                 legibility?: number | null;
-                                speed?: number | null;
+                                /**
+                                 * Total time in seconds for the handwriting animation to finish.
+                                 */
+                                duration?: number | null;
                                 as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                 id?: string | null;
                                 blockName?: string | null;
@@ -32810,9 +33203,9 @@ export interface Page {
                                 };
                                 display?: {
                                   /**
-                                   * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                   * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                    */
-                                  animateFill?: number | null;
+                                  duration?: number | null;
                                   size?: ('sm' | 'md' | 'lg') | null;
                                   showLegend?: boolean | null;
                                   showTotal?: boolean | null;
@@ -32960,7 +33353,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -32988,9 +33384,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -33260,7 +33656,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -33290,9 +33689,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -33454,7 +33853,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -33492,9 +33894,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -33776,7 +34178,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -33806,9 +34211,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -33970,7 +34375,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -34008,9 +34416,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -34291,7 +34699,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -34321,9 +34732,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -34485,7 +34896,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -34523,9 +34937,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -34781,7 +35195,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -34809,9 +35226,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -34961,7 +35378,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -34991,9 +35411,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -35265,7 +35685,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -35295,9 +35718,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -35459,7 +35882,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -35497,9 +35923,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -35781,7 +36207,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -35811,9 +36240,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -35975,7 +36404,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -36013,9 +36445,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -36296,7 +36728,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -36326,9 +36761,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -36490,7 +36925,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -36528,9 +36966,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -36786,7 +37224,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -36814,9 +37255,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -36966,7 +37407,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -36996,9 +37440,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -37271,7 +37715,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -37301,9 +37748,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -37465,7 +37912,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -37503,9 +37953,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -37787,7 +38237,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -37817,9 +38270,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -37981,7 +38434,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -38019,9 +38475,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -38302,7 +38758,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -38332,9 +38791,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -38496,7 +38955,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -38534,9 +38996,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -38792,7 +39254,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -38820,9 +39285,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -38972,7 +39437,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -39002,9 +39470,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -39254,7 +39722,10 @@ export interface Page {
                                   | 'rounded';
                                 seed: number;
                                 legibility?: number | null;
-                                speed?: number | null;
+                                /**
+                                 * Total time in seconds for the handwriting animation to finish.
+                                 */
+                                duration?: number | null;
                                 as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                 id?: string | null;
                                 blockName?: string | null;
@@ -39282,9 +39753,9 @@ export interface Page {
                                 };
                                 display?: {
                                   /**
-                                   * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                   * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                    */
-                                  animateFill?: number | null;
+                                  duration?: number | null;
                                   size?: ('sm' | 'md' | 'lg') | null;
                                   showLegend?: boolean | null;
                                   showTotal?: boolean | null;
@@ -39432,7 +39903,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -39460,9 +39934,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -39704,7 +40178,10 @@ export interface Page {
                         | 'rounded';
                       seed: number;
                       legibility?: number | null;
-                      speed?: number | null;
+                      /**
+                       * Total time in seconds for the handwriting animation to finish.
+                       */
+                      duration?: number | null;
                       as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                       id?: string | null;
                       blockName?: string | null;
@@ -39732,9 +40209,9 @@ export interface Page {
                       };
                       display?: {
                         /**
-                         * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                         * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                          */
-                        animateFill?: number | null;
+                        duration?: number | null;
                         size?: ('sm' | 'md' | 'lg') | null;
                         showLegend?: boolean | null;
                         showTotal?: boolean | null;
@@ -39874,7 +40351,10 @@ export interface Page {
                                   | 'rounded';
                                 seed: number;
                                 legibility?: number | null;
-                                speed?: number | null;
+                                /**
+                                 * Total time in seconds for the handwriting animation to finish.
+                                 */
+                                duration?: number | null;
                                 as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                 id?: string | null;
                                 blockName?: string | null;
@@ -39902,9 +40382,9 @@ export interface Page {
                                 };
                                 display?: {
                                   /**
-                                   * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                   * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                    */
-                                  animateFill?: number | null;
+                                  duration?: number | null;
                                   size?: ('sm' | 'md' | 'lg') | null;
                                   showLegend?: boolean | null;
                                   showTotal?: boolean | null;
@@ -40165,7 +40645,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -40195,9 +40678,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -40359,7 +40842,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -40397,9 +40883,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -40681,7 +41167,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -40711,9 +41200,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -40875,7 +41364,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -40913,9 +41405,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -41196,7 +41688,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -41226,9 +41721,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -41390,7 +41885,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -41428,9 +41926,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -41686,7 +42184,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -41714,9 +42215,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -41866,7 +42367,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -41896,9 +42400,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -42170,7 +42674,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -42200,9 +42707,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -42364,7 +42871,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -42402,9 +42912,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -42686,7 +43196,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -42716,9 +43229,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -42880,7 +43393,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -42918,9 +43434,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -43201,7 +43717,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -43231,9 +43750,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -43395,7 +43914,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -43433,9 +43955,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -43691,7 +44213,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -43719,9 +44244,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -43871,7 +44396,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -43901,9 +44429,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -44176,7 +44704,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -44206,9 +44737,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -44370,7 +44901,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -44408,9 +44942,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -44692,7 +45226,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -44722,9 +45259,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -44886,7 +45423,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -44924,9 +45464,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -45207,7 +45747,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -45237,9 +45780,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -45401,7 +45944,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -45439,9 +45985,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -45697,7 +46243,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -45725,9 +46274,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -45877,7 +46426,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -45907,9 +46459,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -46159,7 +46711,10 @@ export interface Page {
                                   | 'rounded';
                                 seed: number;
                                 legibility?: number | null;
-                                speed?: number | null;
+                                /**
+                                 * Total time in seconds for the handwriting animation to finish.
+                                 */
+                                duration?: number | null;
                                 as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                 id?: string | null;
                                 blockName?: string | null;
@@ -46187,9 +46742,9 @@ export interface Page {
                                 };
                                 display?: {
                                   /**
-                                   * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                   * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                    */
-                                  animateFill?: number | null;
+                                  duration?: number | null;
                                   size?: ('sm' | 'md' | 'lg') | null;
                                   showLegend?: boolean | null;
                                   showTotal?: boolean | null;
@@ -46337,7 +46892,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -46365,9 +46923,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -46636,7 +47194,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -46666,9 +47227,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -46830,7 +47391,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -46868,9 +47432,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -47152,7 +47716,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -47182,9 +47749,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -47346,7 +47913,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -47384,9 +47954,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -47667,7 +48237,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -47697,9 +48270,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -47861,7 +48434,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -47899,9 +48475,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -48157,7 +48733,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -48185,9 +48764,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -48337,7 +48916,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -48367,9 +48949,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -48641,7 +49223,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -48671,9 +49256,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -48835,7 +49420,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -48873,9 +49461,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -49157,7 +49745,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -49187,9 +49778,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -49351,7 +49942,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -49389,9 +49983,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -49672,7 +50266,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -49702,9 +50299,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -49866,7 +50463,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -49904,9 +50504,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -50162,7 +50762,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -50190,9 +50793,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -50342,7 +50945,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -50372,9 +50978,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -50647,7 +51253,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -50677,9 +51286,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -50841,7 +51450,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -50879,9 +51491,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -51163,7 +51775,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -51193,9 +51808,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -51357,7 +51972,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -51395,9 +52013,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -51678,7 +52296,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -51708,9 +52329,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -51872,7 +52493,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -51910,9 +52534,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -52168,7 +52792,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -52196,9 +52823,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -52348,7 +52975,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -52378,9 +53008,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -52630,7 +53260,10 @@ export interface Page {
                                   | 'rounded';
                                 seed: number;
                                 legibility?: number | null;
-                                speed?: number | null;
+                                /**
+                                 * Total time in seconds for the handwriting animation to finish.
+                                 */
+                                duration?: number | null;
                                 as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                 id?: string | null;
                                 blockName?: string | null;
@@ -52658,9 +53291,9 @@ export interface Page {
                                 };
                                 display?: {
                                   /**
-                                   * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                   * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                    */
-                                  animateFill?: number | null;
+                                  duration?: number | null;
                                   size?: ('sm' | 'md' | 'lg') | null;
                                   showLegend?: boolean | null;
                                   showTotal?: boolean | null;
@@ -52808,7 +53441,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -52836,9 +53472,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -53108,7 +53744,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -53138,9 +53777,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -53302,7 +53941,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -53340,9 +53982,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -53624,7 +54266,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -53654,9 +54299,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -53818,7 +54463,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -53856,9 +54504,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -54139,7 +54787,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -54169,9 +54820,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -54333,7 +54984,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -54371,9 +55025,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -54629,7 +55283,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -54657,9 +55314,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -54809,7 +55466,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -54839,9 +55499,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -55113,7 +55773,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -55143,9 +55806,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -55307,7 +55970,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -55345,9 +56011,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -55629,7 +56295,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -55659,9 +56328,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -55823,7 +56492,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -55861,9 +56533,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -56144,7 +56816,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -56174,9 +56849,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -56338,7 +57013,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -56376,9 +57054,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -56634,7 +57312,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -56662,9 +57343,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -56814,7 +57495,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -56844,9 +57528,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -57119,7 +57803,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -57149,9 +57836,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -57313,7 +58000,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -57351,9 +58041,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -57635,7 +58325,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -57665,9 +58358,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -57829,7 +58522,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -57867,9 +58563,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -58150,7 +58846,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -58180,9 +58879,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -58344,7 +59043,10 @@ export interface Page {
                                                                 | 'rounded';
                                                               seed: number;
                                                               legibility?: number | null;
-                                                              speed?: number | null;
+                                                              /**
+                                                               * Total time in seconds for the handwriting animation to finish.
+                                                               */
+                                                              duration?: number | null;
                                                               as?:
                                                                 | ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div')
                                                                 | null;
@@ -58382,9 +59084,9 @@ export interface Page {
                                                               };
                                                               display?: {
                                                                 /**
-                                                                 * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                                 * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                                  */
-                                                                animateFill?: number | null;
+                                                                duration?: number | null;
                                                                 size?: ('sm' | 'md' | 'lg') | null;
                                                                 showLegend?: boolean | null;
                                                                 showTotal?: boolean | null;
@@ -58640,7 +59342,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -58668,9 +59373,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -58820,7 +59525,10 @@ export interface Page {
                                                       | 'rounded';
                                                     seed: number;
                                                     legibility?: number | null;
-                                                    speed?: number | null;
+                                                    /**
+                                                     * Total time in seconds for the handwriting animation to finish.
+                                                     */
+                                                    duration?: number | null;
                                                     as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -58850,9 +59558,9 @@ export interface Page {
                                                     };
                                                     display?: {
                                                       /**
-                                                       * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                                       * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                                        */
-                                                      animateFill?: number | null;
+                                                      duration?: number | null;
                                                       size?: ('sm' | 'md' | 'lg') | null;
                                                       showLegend?: boolean | null;
                                                       showTotal?: boolean | null;
@@ -59102,7 +59810,10 @@ export interface Page {
                                   | 'rounded';
                                 seed: number;
                                 legibility?: number | null;
-                                speed?: number | null;
+                                /**
+                                 * Total time in seconds for the handwriting animation to finish.
+                                 */
+                                duration?: number | null;
                                 as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                 id?: string | null;
                                 blockName?: string | null;
@@ -59130,9 +59841,9 @@ export interface Page {
                                 };
                                 display?: {
                                   /**
-                                   * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                   * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                    */
-                                  animateFill?: number | null;
+                                  duration?: number | null;
                                   size?: ('sm' | 'md' | 'lg') | null;
                                   showLegend?: boolean | null;
                                   showTotal?: boolean | null;
@@ -59280,7 +59991,10 @@ export interface Page {
                                             | 'rounded';
                                           seed: number;
                                           legibility?: number | null;
-                                          speed?: number | null;
+                                          /**
+                                           * Total time in seconds for the handwriting animation to finish.
+                                           */
+                                          duration?: number | null;
                                           as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -59308,9 +60022,9 @@ export interface Page {
                                           };
                                           display?: {
                                             /**
-                                             * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                             * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                              */
-                                            animateFill?: number | null;
+                                            duration?: number | null;
                                             size?: ('sm' | 'md' | 'lg') | null;
                                             showLegend?: boolean | null;
                                             showTotal?: boolean | null;
@@ -59552,7 +60266,10 @@ export interface Page {
                         | 'rounded';
                       seed: number;
                       legibility?: number | null;
-                      speed?: number | null;
+                      /**
+                       * Total time in seconds for the handwriting animation to finish.
+                       */
+                      duration?: number | null;
                       as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                       id?: string | null;
                       blockName?: string | null;
@@ -59580,9 +60297,9 @@ export interface Page {
                       };
                       display?: {
                         /**
-                         * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                         * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                          */
-                        animateFill?: number | null;
+                        duration?: number | null;
                         size?: ('sm' | 'md' | 'lg') | null;
                         showLegend?: boolean | null;
                         showTotal?: boolean | null;
@@ -59722,7 +60439,10 @@ export interface Page {
                                   | 'rounded';
                                 seed: number;
                                 legibility?: number | null;
-                                speed?: number | null;
+                                /**
+                                 * Total time in seconds for the handwriting animation to finish.
+                                 */
+                                duration?: number | null;
                                 as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                                 id?: string | null;
                                 blockName?: string | null;
@@ -59750,9 +60470,9 @@ export interface Page {
                                 };
                                 display?: {
                                   /**
-                                   * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                                   * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                                    */
-                                  animateFill?: number | null;
+                                  duration?: number | null;
                                   size?: ('sm' | 'md' | 'lg') | null;
                                   showLegend?: boolean | null;
                                   showTotal?: boolean | null;
@@ -59969,7 +60689,10 @@ export interface Page {
             style: 'slender' | 'casual' | 'clear' | 'letter' | 'note' | 'slanted' | 'airy' | 'flowing' | 'rounded';
             seed: number;
             legibility?: number | null;
-            speed?: number | null;
+            /**
+             * Total time in seconds for the handwriting animation to finish.
+             */
+            duration?: number | null;
             as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
             id?: string | null;
             blockName?: string | null;
@@ -59997,9 +60720,9 @@ export interface Page {
             };
             display?: {
               /**
-               * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+               * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                */
-              animateFill?: number | null;
+              duration?: number | null;
               size?: ('sm' | 'md' | 'lg') | null;
               showLegend?: boolean | null;
               showTotal?: boolean | null;
@@ -60139,7 +60862,10 @@ export interface Page {
                         | 'rounded';
                       seed: number;
                       legibility?: number | null;
-                      speed?: number | null;
+                      /**
+                       * Total time in seconds for the handwriting animation to finish.
+                       */
+                      duration?: number | null;
                       as?: ('p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'div') | null;
                       id?: string | null;
                       blockName?: string | null;
@@ -60167,9 +60893,9 @@ export interface Page {
                       };
                       display?: {
                         /**
-                         * Optional. When set, the heatmap fills in chronological order over the provided seconds.
+                         * Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.
                          */
-                        animateFill?: number | null;
+                        duration?: number | null;
                         size?: ('sm' | 'md' | 'lg') | null;
                         showLegend?: boolean | null;
                         showTotal?: boolean | null;
@@ -60812,7 +61538,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -60835,7 +61561,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -60925,7 +61651,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -60948,7 +61674,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -61082,7 +61808,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -61105,7 +61831,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -61195,7 +61921,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -61218,7 +61944,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -61353,7 +62079,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -61376,7 +62102,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -61466,7 +62192,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -61489,7 +62215,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -61610,7 +62336,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -61633,7 +62359,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -61723,7 +62449,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -61746,7 +62472,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -61887,7 +62613,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -61910,7 +62636,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -62000,7 +62726,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -62023,7 +62749,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -62157,7 +62883,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -62180,7 +62906,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -62270,7 +62996,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -62293,7 +63019,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -62428,7 +63154,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -62451,7 +63177,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -62541,7 +63267,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -62564,7 +63290,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -62685,7 +63411,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -62708,7 +63434,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -62798,7 +63524,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -62821,7 +63547,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -62963,7 +63689,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -62986,7 +63712,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -63076,7 +63802,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -63099,7 +63825,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -63233,7 +63959,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -63256,7 +63982,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -63346,7 +64072,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -63369,7 +64095,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -63504,7 +64230,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -63527,7 +64253,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -63617,7 +64343,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -63640,7 +64366,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -63761,7 +64487,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -63784,7 +64510,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -63874,7 +64600,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -63897,7 +64623,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -64018,7 +64744,7 @@ export interface PagesSelect<T extends boolean = true> {
                                       style?: T;
                                       seed?: T;
                                       legibility?: T;
-                                      speed?: T;
+                                      duration?: T;
                                       as?: T;
                                       id?: T;
                                       blockName?: T;
@@ -64041,7 +64767,7 @@ export interface PagesSelect<T extends boolean = true> {
                                       display?:
                                         | T
                                         | {
-                                            animateFill?: T;
+                                            duration?: T;
                                             size?: T;
                                             showLegend?: T;
                                             showTotal?: T;
@@ -64131,7 +64857,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -64154,7 +64880,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -64302,7 +65028,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -64325,7 +65051,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -64415,7 +65141,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -64438,7 +65164,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -64572,7 +65298,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -64595,7 +65321,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -64685,7 +65411,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -64708,7 +65434,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -64843,7 +65569,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -64866,7 +65592,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -64956,7 +65682,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -64979,7 +65705,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -65100,7 +65826,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -65123,7 +65849,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -65213,7 +65939,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -65236,7 +65962,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -65377,7 +66103,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -65400,7 +66126,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -65490,7 +66216,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -65513,7 +66239,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -65647,7 +66373,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -65670,7 +66396,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -65760,7 +66486,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -65783,7 +66509,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -65918,7 +66644,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -65941,7 +66667,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -66031,7 +66757,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -66054,7 +66780,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -66175,7 +66901,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -66198,7 +66924,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -66288,7 +67014,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -66311,7 +67037,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -66453,7 +67179,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -66476,7 +67202,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -66566,7 +67292,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -66589,7 +67315,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -66723,7 +67449,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -66746,7 +67472,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -66836,7 +67562,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -66859,7 +67585,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -66994,7 +67720,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -67017,7 +67743,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -67107,7 +67833,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -67130,7 +67856,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -67251,7 +67977,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -67274,7 +68000,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -67364,7 +68090,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -67387,7 +68113,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -67508,7 +68234,7 @@ export interface PagesSelect<T extends boolean = true> {
                                       style?: T;
                                       seed?: T;
                                       legibility?: T;
-                                      speed?: T;
+                                      duration?: T;
                                       as?: T;
                                       id?: T;
                                       blockName?: T;
@@ -67531,7 +68257,7 @@ export interface PagesSelect<T extends boolean = true> {
                                       display?:
                                         | T
                                         | {
-                                            animateFill?: T;
+                                            duration?: T;
                                             size?: T;
                                             showLegend?: T;
                                             showTotal?: T;
@@ -67621,7 +68347,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -67644,7 +68370,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -67793,7 +68519,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -67816,7 +68542,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -67906,7 +68632,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -67929,7 +68655,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -68063,7 +68789,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -68086,7 +68812,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -68176,7 +68902,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -68199,7 +68925,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -68334,7 +69060,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -68357,7 +69083,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -68447,7 +69173,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -68470,7 +69196,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -68591,7 +69317,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -68614,7 +69340,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -68704,7 +69430,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -68727,7 +69453,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -68868,7 +69594,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -68891,7 +69617,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -68981,7 +69707,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -69004,7 +69730,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -69138,7 +69864,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -69161,7 +69887,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -69251,7 +69977,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -69274,7 +70000,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -69409,7 +70135,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -69432,7 +70158,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -69522,7 +70248,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -69545,7 +70271,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -69666,7 +70392,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -69689,7 +70415,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -69779,7 +70505,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -69802,7 +70528,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -69944,7 +70670,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -69967,7 +70693,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -70057,7 +70783,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -70080,7 +70806,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -70214,7 +70940,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -70237,7 +70963,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -70327,7 +71053,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -70350,7 +71076,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -70485,7 +71211,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -70508,7 +71234,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -70598,7 +71324,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -70621,7 +71347,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -70742,7 +71468,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -70765,7 +71491,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -70855,7 +71581,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -70878,7 +71604,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -70999,7 +71725,7 @@ export interface PagesSelect<T extends boolean = true> {
                                       style?: T;
                                       seed?: T;
                                       legibility?: T;
-                                      speed?: T;
+                                      duration?: T;
                                       as?: T;
                                       id?: T;
                                       blockName?: T;
@@ -71022,7 +71748,7 @@ export interface PagesSelect<T extends boolean = true> {
                                       display?:
                                         | T
                                         | {
-                                            animateFill?: T;
+                                            duration?: T;
                                             size?: T;
                                             showLegend?: T;
                                             showTotal?: T;
@@ -71112,7 +71838,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -71135,7 +71861,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -71256,7 +71982,7 @@ export interface PagesSelect<T extends boolean = true> {
                           style?: T;
                           seed?: T;
                           legibility?: T;
-                          speed?: T;
+                          duration?: T;
                           as?: T;
                           id?: T;
                           blockName?: T;
@@ -71279,7 +72005,7 @@ export interface PagesSelect<T extends boolean = true> {
                           display?:
                             | T
                             | {
-                                animateFill?: T;
+                                duration?: T;
                                 size?: T;
                                 showLegend?: T;
                                 showTotal?: T;
@@ -71369,7 +72095,7 @@ export interface PagesSelect<T extends boolean = true> {
                                       style?: T;
                                       seed?: T;
                                       legibility?: T;
-                                      speed?: T;
+                                      duration?: T;
                                       as?: T;
                                       id?: T;
                                       blockName?: T;
@@ -71392,7 +72118,7 @@ export interface PagesSelect<T extends boolean = true> {
                                       display?:
                                         | T
                                         | {
-                                            animateFill?: T;
+                                            duration?: T;
                                             size?: T;
                                             showLegend?: T;
                                             showTotal?: T;
@@ -71547,7 +72273,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -71570,7 +72296,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -71660,7 +72386,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -71683,7 +72409,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -71817,7 +72543,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -71840,7 +72566,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -71930,7 +72656,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -71953,7 +72679,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -72088,7 +72814,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -72111,7 +72837,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -72201,7 +72927,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -72224,7 +72950,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -72345,7 +73071,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -72368,7 +73094,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -72458,7 +73184,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -72481,7 +73207,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -72622,7 +73348,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -72645,7 +73371,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -72735,7 +73461,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -72758,7 +73484,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -72892,7 +73618,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -72915,7 +73641,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -73005,7 +73731,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -73028,7 +73754,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -73163,7 +73889,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -73186,7 +73912,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -73276,7 +74002,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -73299,7 +74025,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -73420,7 +74146,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -73443,7 +74169,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -73533,7 +74259,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -73556,7 +74282,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -73698,7 +74424,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -73721,7 +74447,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -73811,7 +74537,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -73834,7 +74560,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -73968,7 +74694,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -73991,7 +74717,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -74081,7 +74807,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -74104,7 +74830,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -74239,7 +74965,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -74262,7 +74988,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -74352,7 +75078,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -74375,7 +75101,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -74496,7 +75222,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -74519,7 +75245,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -74609,7 +75335,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -74632,7 +75358,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -74753,7 +75479,7 @@ export interface PagesSelect<T extends boolean = true> {
                                       style?: T;
                                       seed?: T;
                                       legibility?: T;
-                                      speed?: T;
+                                      duration?: T;
                                       as?: T;
                                       id?: T;
                                       blockName?: T;
@@ -74776,7 +75502,7 @@ export interface PagesSelect<T extends boolean = true> {
                                       display?:
                                         | T
                                         | {
-                                            animateFill?: T;
+                                            duration?: T;
                                             size?: T;
                                             showLegend?: T;
                                             showTotal?: T;
@@ -74866,7 +75592,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -74889,7 +75615,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -75037,7 +75763,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -75060,7 +75786,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -75150,7 +75876,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -75173,7 +75899,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -75307,7 +76033,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -75330,7 +76056,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -75420,7 +76146,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -75443,7 +76169,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -75578,7 +76304,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -75601,7 +76327,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -75691,7 +76417,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -75714,7 +76440,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -75835,7 +76561,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -75858,7 +76584,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -75948,7 +76674,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -75971,7 +76697,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -76112,7 +76838,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -76135,7 +76861,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -76225,7 +76951,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -76248,7 +76974,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -76382,7 +77108,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -76405,7 +77131,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -76495,7 +77221,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -76518,7 +77244,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -76653,7 +77379,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -76676,7 +77402,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -76766,7 +77492,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -76789,7 +77515,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -76910,7 +77636,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -76933,7 +77659,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -77023,7 +77749,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -77046,7 +77772,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -77188,7 +77914,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -77211,7 +77937,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -77301,7 +78027,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -77324,7 +78050,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -77458,7 +78184,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -77481,7 +78207,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -77571,7 +78297,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -77594,7 +78320,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -77729,7 +78455,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -77752,7 +78478,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -77842,7 +78568,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -77865,7 +78591,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -77986,7 +78712,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -78009,7 +78735,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -78099,7 +78825,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -78122,7 +78848,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -78243,7 +78969,7 @@ export interface PagesSelect<T extends boolean = true> {
                                       style?: T;
                                       seed?: T;
                                       legibility?: T;
-                                      speed?: T;
+                                      duration?: T;
                                       as?: T;
                                       id?: T;
                                       blockName?: T;
@@ -78266,7 +78992,7 @@ export interface PagesSelect<T extends boolean = true> {
                                       display?:
                                         | T
                                         | {
-                                            animateFill?: T;
+                                            duration?: T;
                                             size?: T;
                                             showLegend?: T;
                                             showTotal?: T;
@@ -78356,7 +79082,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -78379,7 +79105,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -78528,7 +79254,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -78551,7 +79277,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -78641,7 +79367,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -78664,7 +79390,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -78798,7 +79524,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -78821,7 +79547,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -78911,7 +79637,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -78934,7 +79660,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -79069,7 +79795,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -79092,7 +79818,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -79182,7 +79908,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -79205,7 +79931,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -79326,7 +80052,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -79349,7 +80075,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -79439,7 +80165,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -79462,7 +80188,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -79603,7 +80329,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -79626,7 +80352,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -79716,7 +80442,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -79739,7 +80465,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -79873,7 +80599,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -79896,7 +80622,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -79986,7 +80712,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -80009,7 +80735,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -80144,7 +80870,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -80167,7 +80893,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -80257,7 +80983,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -80280,7 +81006,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -80401,7 +81127,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -80424,7 +81150,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -80514,7 +81240,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -80537,7 +81263,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -80679,7 +81405,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -80702,7 +81428,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -80792,7 +81518,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -80815,7 +81541,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -80949,7 +81675,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -80972,7 +81698,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -81062,7 +81788,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -81085,7 +81811,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -81220,7 +81946,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -81243,7 +81969,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -81333,7 +82059,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -81356,7 +82082,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -81477,7 +82203,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -81500,7 +82226,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -81590,7 +82316,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -81613,7 +82339,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -81734,7 +82460,7 @@ export interface PagesSelect<T extends boolean = true> {
                                       style?: T;
                                       seed?: T;
                                       legibility?: T;
-                                      speed?: T;
+                                      duration?: T;
                                       as?: T;
                                       id?: T;
                                       blockName?: T;
@@ -81757,7 +82483,7 @@ export interface PagesSelect<T extends boolean = true> {
                                       display?:
                                         | T
                                         | {
-                                            animateFill?: T;
+                                            duration?: T;
                                             size?: T;
                                             showLegend?: T;
                                             showTotal?: T;
@@ -81847,7 +82573,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -81870,7 +82596,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -81991,7 +82717,7 @@ export interface PagesSelect<T extends boolean = true> {
                           style?: T;
                           seed?: T;
                           legibility?: T;
-                          speed?: T;
+                          duration?: T;
                           as?: T;
                           id?: T;
                           blockName?: T;
@@ -82014,7 +82740,7 @@ export interface PagesSelect<T extends boolean = true> {
                           display?:
                             | T
                             | {
-                                animateFill?: T;
+                                duration?: T;
                                 size?: T;
                                 showLegend?: T;
                                 showTotal?: T;
@@ -82104,7 +82830,7 @@ export interface PagesSelect<T extends boolean = true> {
                                       style?: T;
                                       seed?: T;
                                       legibility?: T;
-                                      speed?: T;
+                                      duration?: T;
                                       as?: T;
                                       id?: T;
                                       blockName?: T;
@@ -82127,7 +82853,7 @@ export interface PagesSelect<T extends boolean = true> {
                                       display?:
                                         | T
                                         | {
-                                            animateFill?: T;
+                                            duration?: T;
                                             size?: T;
                                             showLegend?: T;
                                             showTotal?: T;
@@ -82283,7 +83009,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -82306,7 +83032,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -82396,7 +83122,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -82419,7 +83145,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -82553,7 +83279,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -82576,7 +83302,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -82666,7 +83392,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -82689,7 +83415,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -82824,7 +83550,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -82847,7 +83573,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -82937,7 +83663,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -82960,7 +83686,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -83081,7 +83807,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -83104,7 +83830,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -83194,7 +83920,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -83217,7 +83943,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -83358,7 +84084,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -83381,7 +84107,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -83471,7 +84197,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -83494,7 +84220,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -83628,7 +84354,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -83651,7 +84377,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -83741,7 +84467,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -83764,7 +84490,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -83899,7 +84625,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -83922,7 +84648,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -84012,7 +84738,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -84035,7 +84761,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -84156,7 +84882,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -84179,7 +84905,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -84269,7 +84995,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -84292,7 +85018,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -84434,7 +85160,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -84457,7 +85183,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -84547,7 +85273,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -84570,7 +85296,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -84704,7 +85430,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -84727,7 +85453,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -84817,7 +85543,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -84840,7 +85566,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -84975,7 +85701,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -84998,7 +85724,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -85088,7 +85814,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -85111,7 +85837,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -85232,7 +85958,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -85255,7 +85981,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -85345,7 +86071,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -85368,7 +86094,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -85489,7 +86215,7 @@ export interface PagesSelect<T extends boolean = true> {
                                       style?: T;
                                       seed?: T;
                                       legibility?: T;
-                                      speed?: T;
+                                      duration?: T;
                                       as?: T;
                                       id?: T;
                                       blockName?: T;
@@ -85512,7 +86238,7 @@ export interface PagesSelect<T extends boolean = true> {
                                       display?:
                                         | T
                                         | {
-                                            animateFill?: T;
+                                            duration?: T;
                                             size?: T;
                                             showLegend?: T;
                                             showTotal?: T;
@@ -85602,7 +86328,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -85625,7 +86351,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -85773,7 +86499,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -85796,7 +86522,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -85886,7 +86612,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -85909,7 +86635,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -86043,7 +86769,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -86066,7 +86792,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -86156,7 +86882,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -86179,7 +86905,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -86314,7 +87040,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -86337,7 +87063,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -86427,7 +87153,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -86450,7 +87176,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -86571,7 +87297,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -86594,7 +87320,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -86684,7 +87410,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -86707,7 +87433,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -86848,7 +87574,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -86871,7 +87597,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -86961,7 +87687,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -86984,7 +87710,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -87118,7 +87844,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -87141,7 +87867,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -87231,7 +87957,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -87254,7 +87980,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -87389,7 +88115,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -87412,7 +88138,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -87502,7 +88228,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -87525,7 +88251,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -87646,7 +88372,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -87669,7 +88395,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -87759,7 +88485,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -87782,7 +88508,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -87924,7 +88650,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -87947,7 +88673,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -88037,7 +88763,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -88060,7 +88786,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -88194,7 +88920,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -88217,7 +88943,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -88307,7 +89033,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -88330,7 +89056,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -88465,7 +89191,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -88488,7 +89214,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -88578,7 +89304,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -88601,7 +89327,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -88722,7 +89448,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -88745,7 +89471,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -88835,7 +89561,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -88858,7 +89584,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -88979,7 +89705,7 @@ export interface PagesSelect<T extends boolean = true> {
                                       style?: T;
                                       seed?: T;
                                       legibility?: T;
-                                      speed?: T;
+                                      duration?: T;
                                       as?: T;
                                       id?: T;
                                       blockName?: T;
@@ -89002,7 +89728,7 @@ export interface PagesSelect<T extends boolean = true> {
                                       display?:
                                         | T
                                         | {
-                                            animateFill?: T;
+                                            duration?: T;
                                             size?: T;
                                             showLegend?: T;
                                             showTotal?: T;
@@ -89092,7 +89818,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -89115,7 +89841,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -89264,7 +89990,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -89287,7 +90013,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -89377,7 +90103,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -89400,7 +90126,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -89534,7 +90260,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -89557,7 +90283,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -89647,7 +90373,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -89670,7 +90396,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -89805,7 +90531,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -89828,7 +90554,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -89918,7 +90644,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -89941,7 +90667,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -90062,7 +90788,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -90085,7 +90811,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -90175,7 +90901,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -90198,7 +90924,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -90339,7 +91065,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -90362,7 +91088,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -90452,7 +91178,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -90475,7 +91201,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -90609,7 +91335,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -90632,7 +91358,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -90722,7 +91448,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -90745,7 +91471,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -90880,7 +91606,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -90903,7 +91629,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -90993,7 +91719,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -91016,7 +91742,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -91137,7 +91863,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -91160,7 +91886,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -91250,7 +91976,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -91273,7 +91999,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -91415,7 +92141,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -91438,7 +92164,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -91528,7 +92254,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -91551,7 +92277,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -91685,7 +92411,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -91708,7 +92434,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -91798,7 +92524,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -91821,7 +92547,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -91956,7 +92682,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -91979,7 +92705,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -92069,7 +92795,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           style?: T;
                                                                           seed?: T;
                                                                           legibility?: T;
-                                                                          speed?: T;
+                                                                          duration?: T;
                                                                           as?: T;
                                                                           id?: T;
                                                                           blockName?: T;
@@ -92092,7 +92818,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                                           display?:
                                                                             | T
                                                                             | {
-                                                                                animateFill?: T;
+                                                                                duration?: T;
                                                                                 size?: T;
                                                                                 showLegend?: T;
                                                                                 showTotal?: T;
@@ -92213,7 +92939,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -92236,7 +92962,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -92326,7 +93052,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               style?: T;
                                                               seed?: T;
                                                               legibility?: T;
-                                                              speed?: T;
+                                                              duration?: T;
                                                               as?: T;
                                                               id?: T;
                                                               blockName?: T;
@@ -92349,7 +93075,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                               display?:
                                                                 | T
                                                                 | {
-                                                                    animateFill?: T;
+                                                                    duration?: T;
                                                                     size?: T;
                                                                     showLegend?: T;
                                                                     showTotal?: T;
@@ -92470,7 +93196,7 @@ export interface PagesSelect<T extends boolean = true> {
                                       style?: T;
                                       seed?: T;
                                       legibility?: T;
-                                      speed?: T;
+                                      duration?: T;
                                       as?: T;
                                       id?: T;
                                       blockName?: T;
@@ -92493,7 +93219,7 @@ export interface PagesSelect<T extends boolean = true> {
                                       display?:
                                         | T
                                         | {
-                                            animateFill?: T;
+                                            duration?: T;
                                             size?: T;
                                             showLegend?: T;
                                             showTotal?: T;
@@ -92583,7 +93309,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   style?: T;
                                                   seed?: T;
                                                   legibility?: T;
-                                                  speed?: T;
+                                                  duration?: T;
                                                   as?: T;
                                                   id?: T;
                                                   blockName?: T;
@@ -92606,7 +93332,7 @@ export interface PagesSelect<T extends boolean = true> {
                                                   display?:
                                                     | T
                                                     | {
-                                                        animateFill?: T;
+                                                        duration?: T;
                                                         size?: T;
                                                         showLegend?: T;
                                                         showTotal?: T;
@@ -92727,7 +93453,7 @@ export interface PagesSelect<T extends boolean = true> {
                           style?: T;
                           seed?: T;
                           legibility?: T;
-                          speed?: T;
+                          duration?: T;
                           as?: T;
                           id?: T;
                           blockName?: T;
@@ -92750,7 +93476,7 @@ export interface PagesSelect<T extends boolean = true> {
                           display?:
                             | T
                             | {
-                                animateFill?: T;
+                                duration?: T;
                                 size?: T;
                                 showLegend?: T;
                                 showTotal?: T;
@@ -92840,7 +93566,7 @@ export interface PagesSelect<T extends boolean = true> {
                                       style?: T;
                                       seed?: T;
                                       legibility?: T;
-                                      speed?: T;
+                                      duration?: T;
                                       as?: T;
                                       id?: T;
                                       blockName?: T;
@@ -92863,7 +93589,7 @@ export interface PagesSelect<T extends boolean = true> {
                                       display?:
                                         | T
                                         | {
-                                            animateFill?: T;
+                                            duration?: T;
                                             size?: T;
                                             showLegend?: T;
                                             showTotal?: T;
@@ -92984,7 +93710,7 @@ export interface PagesSelect<T extends boolean = true> {
               style?: T;
               seed?: T;
               legibility?: T;
-              speed?: T;
+              duration?: T;
               as?: T;
               id?: T;
               blockName?: T;
@@ -93007,7 +93733,7 @@ export interface PagesSelect<T extends boolean = true> {
               display?:
                 | T
                 | {
-                    animateFill?: T;
+                    duration?: T;
                     size?: T;
                     showLegend?: T;
                     showTotal?: T;
@@ -93097,7 +93823,7 @@ export interface PagesSelect<T extends boolean = true> {
                           style?: T;
                           seed?: T;
                           legibility?: T;
-                          speed?: T;
+                          duration?: T;
                           as?: T;
                           id?: T;
                           blockName?: T;
@@ -93120,7 +93846,7 @@ export interface PagesSelect<T extends boolean = true> {
                           display?:
                             | T
                             | {
-                                animateFill?: T;
+                                duration?: T;
                                 size?: T;
                                 showLegend?: T;
                                 showTotal?: T;

@@ -61,12 +61,12 @@ export const HandWritingBlock: BlockDefinition = {
 			admin: { components: { Field: "/components/fields/HandwritingPreview#default" } },
 		},
 		{
-			name: "speed",
+			name: "duration",
 			type: "number",
-			label: "Animation Speed",
-			defaultValue: 1,
+			label: "Animation Duration (seconds)",
+			defaultValue: 5,
 			min: 0.1,
-			max: 10,
+			admin: { description: "Total time in seconds for the handwriting animation to finish." },
 		},
 		{
 			name: "as",

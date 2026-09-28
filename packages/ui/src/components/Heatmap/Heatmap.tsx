@@ -3,6 +3,7 @@
 import * as React from "react"
 
 import { cn } from "#utils/classnames"
+import { getHeatmapTimings } from "./animation"
 
 export type HeatmapLevel = 0 | 1 | 2 | 3 | 4
 
@@ -13,7 +14,7 @@ const fillAnimationStyles = `
   to { opacity: 1; }
 }
 .chankay-heatmap-fill[data-animated="true"] {
-  animation: chankay-heatmap-fill 0.25s ease-out var(--heatmap-fill-delay) both;
+  animation: chankay-heatmap-fill var(--heatmap-fill-duration) ease-out var(--heatmap-fill-delay) both;
 }
 @media (prefers-reduced-motion: reduce) {
   .chankay-heatmap-fill[data-animated="true"] { animation: none; }
@@ -40,10 +41,10 @@ export interface HeatmapProps extends React.ComponentPropsWithoutRef<"div"> {
 	showLegend?: boolean
 	showTotal?: boolean
 	/**
-	 * When set, cells animate filling in chronological order over the provided seconds.
+	 * Total animation duration in seconds, including all cell fades.
 	 * When omitted, the heatmap renders immediately with no animation.
 	 */
-	animateFill?: number
+	duration?: number
 }
 
 type NormalizedHeatmapDay = {
@@ -253,7 +254,7 @@ export function Heatmap({
 	gap,
 	showLegend = true,
 	showTotal = false,
-	animateFill,
+	duration,
 	className,
 	...props
 }: HeatmapProps) {
@@ -270,20 +271,15 @@ export function Heatmap({
 		"--heatmap-gap": `${resolvedGap}px`,
 	}
 
-	const totalCells = calendar.weeks.length * 7
-	const shouldAnimate =
-		typeof animateFill === "number" && Number.isFinite(animateFill) && animateFill > 0
-
-	const fillSpanSeconds = shouldAnimate ? animateFill : 0
-	const perCellDelay = totalCells > 0 ? fillSpanSeconds / totalCells : 0
-	const initialDelaySeconds = shouldAnimate ? 0.2 : 0
+	const filledCells = calendar.weeks.flat().filter((day) => (day.level ?? 0) > 0).length
+	const timings = getHeatmapTimings(filledCells, duration)
+	const shouldAnimate = timings.length > 0
 	let cellIndex = 0
 
 	const renderDayCell = (day: HeatmapDay) => {
 		const level = day.level ?? 0
 		const label = `${day.count} contributions on ${day.date}`
-		const delay = shouldAnimate ? initialDelaySeconds + cellIndex * perCellDelay : 0
-		cellIndex += 1
+		const timing = level > 0 ? timings[cellIndex++] : undefined
 
 		return (
 			<div
@@ -307,7 +303,14 @@ export function Heatmap({
 						)}
 						aria-hidden="true"
 						data-animated={shouldAnimate ? "true" : undefined}
-						style={shouldAnimate ? ({ "--heatmap-fill-delay": `${delay}s` } as CSSVars) : undefined}
+						style={
+							timing
+								? ({
+										"--heatmap-fill-delay": `${timing.delay}s`,
+										"--heatmap-fill-duration": `${timing.duration}s`,
+									} as CSSVars)
+								: undefined
+						}
 					/>
 				)}
 			</div>

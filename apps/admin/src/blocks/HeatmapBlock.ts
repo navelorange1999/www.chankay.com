@@ -79,14 +79,13 @@ export const HeatmapBlock: BlockDefinition = {
 			label: "Display",
 			fields: [
 				{
-					name: "animateFill",
+					name: "duration",
 					type: "number",
-					label: "Animate Fill (seconds)",
-					min: 0.5,
-					max: 20,
+					label: "Animation Duration (seconds)",
+					min: 0.1,
 					admin: {
 						description:
-							"Optional. When set, the heatmap fills in chronological order over the provided seconds.",
+							"Total time in seconds for the heatmap animation to finish. Leave empty to display immediately.",
 						placeholder: "5",
 					},
 				},

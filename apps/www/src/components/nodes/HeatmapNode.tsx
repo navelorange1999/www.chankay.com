@@ -84,7 +84,7 @@ export async function HeatmapNode({ block }: HeatmapNodeProps) {
 	const size = asSize(block.display?.size) ?? "md"
 	const showLegend = asBool(block.display?.showLegend) ?? true
 	const showTotal = asBool(block.display?.showTotal) ?? false
-	const animateFill = asNumber(block.display?.animateFill)
+	const duration = asNumber(block.display?.duration)
 
 	let days: HeatmapDay[] = []
 
@@ -109,7 +109,7 @@ export async function HeatmapNode({ block }: HeatmapNodeProps) {
 			size={size}
 			showLegend={showLegend}
 			showTotal={showTotal}
-			animateFill={animateFill}
+			duration={duration}
 		/>
 	)
 }

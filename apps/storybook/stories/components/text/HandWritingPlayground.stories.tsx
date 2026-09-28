@@ -20,7 +20,7 @@ function HandwritingPlayground() {
 	const [text, setText] = useState("Hello world")
 	const [style, setStyle] = useState<StyleId>("rounded")
 	const seed = useRef(42)
-	const [speed, setSpeed] = useState(1)
+	const [duration, setDuration] = useState(5)
 	const [artifact, setArtifact] = useState<HandwritingArtifact | null>(defaultArtifact)
 	const [message, setMessage] = useState(defaultMessage)
 	const [busy, setBusy] = useState(false)
@@ -130,15 +130,15 @@ function HandwritingPlayground() {
 				</select>
 			</label>
 			<label>
-				Speed: {speed}×{" "}
+				Duration: {duration}s{" "}
 				<input
-					aria-label="Animation speed"
+					aria-label="Animation duration"
 					type="range"
 					min={0.1}
-					max={3}
+					max={30}
 					step={0.1}
-					value={speed}
-					onChange={(event) => setSpeed(Number(event.target.value))}
+					value={duration}
+					onChange={(event) => setDuration(Number(event.target.value))}
 				/>
 			</label>
 			<div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
@@ -177,7 +177,7 @@ function HandwritingPlayground() {
 				key={`${artifact?.fingerprint}-${replay}`}
 				text={artifact?.text ?? text}
 				artifact={artifact}
-				speed={speed}
+				duration={duration}
 				className="h-40 w-full"
 			/>
 		</section>

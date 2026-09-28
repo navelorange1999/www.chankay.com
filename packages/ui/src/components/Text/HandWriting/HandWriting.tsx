@@ -7,7 +7,7 @@ export interface HandWritingProps {
 	as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "span" | "div"
 	text?: string
 	artifact?: HandwritingArtifact | null
-	speed?: number
+	duration?: number
 	animate?: boolean
 	strokeWidth?: number
 	className?: string
@@ -18,7 +18,7 @@ export default function HandWriting({
 	as: Wrapper = "div",
 	text,
 	artifact,
-	speed = 1,
+	duration = 5,
 	animate = true,
 	strokeWidth = 0.75,
 	className,
@@ -34,7 +34,7 @@ export default function HandWriting({
 					<span aria-hidden="true" className="contents">
 						<Handwriting
 							artifact={artifact}
-							speed={speed}
+							duration={duration}
 							animate={animate}
 							strokeWidth={strokeWidth}
 							className={cn("h-full w-full", svgClassName)}

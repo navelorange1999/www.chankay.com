@@ -330,3 +330,9 @@ import { ThemeToggle } from "@repo/ui"
 
 <ThemeToggle />
 ```
+
+## Animation duration
+
+Handwriting and heatmap blocks use `duration` in seconds for the complete animation. Handwriting defaults to five seconds; an empty heatmap duration displays immediately. The handwriting renderer scales the generated artifact timeline to the requested duration. Heatmap timing includes the final fade and ignores unfilled calendar cells. Both retain reduced-motion behavior.
+
+The animation-duration migration populates handwriting duration from `7.5 / speed` and heatmap duration from `display.animateFill`, preserving legacy fields and existing explicit durations. It covers pages and stored page versions, including nested block slots. Equal durations align playback lengths; independently mounted blocks do not share a start clock.

@@ -4,7 +4,7 @@ The `handWriting` page block stores English text and generation settings. It doe
 
 ## Data flow
 
-1. The block exposes text, named style, clarity, speed and element controls. Its seed defaults to 42; style defaults to `rounded` (09). Text is currently shared across locales and limited to the supported English alphabet, digits and punctuation, 1–50 characters on one line.
+1. The block exposes text, named style, clarity, duration (seconds) and element controls. Its seed defaults to 42; style defaults to `rounded` (09). Text is currently shared across locales and limited to the supported English alphabet, digits and punctuation, 1–50 characters on one line.
 2. The inline CMS preview debounces unsaved settings for 400ms, authenticates through the existing Payload session, and requests a server artifact. Preview never saves or publishes a page. Replay only animates; Write again changes the unsaved seed.
 3. Admin loads the pinned model from private Blob and caches the parsed model in process memory. If the model is missing, the configured import source is downloaded with a size bound and fixed digest check, then written without overwriting any existing file. The admin generator hashes canonical text/style/seed/clarity plus model and algorithm versions. A private Blob read returns the existing result, or the server generates and creates `handwriting/v1/<sha256>.json` without overwriting it. Concurrent requests in one process share a promise; multiple instances may compute twice, but reuse the winning file.
 4. Saving pages also schedules the existing page-assets queue. Container children and card content blocks are traversed. The worker re-reads pages after generation so a slow task does not write its old snapshot over a newer edit. Handwriting finishes before screenshot/OG work.
@@ -14,7 +14,7 @@ The `handWriting` page block stores English text and generation settings. It doe
 
 `packages/handwriting` exports `schema`, `generator`, `browser` and `react` separately. There is no root barrel. The existing `@repo/ui` HandWriting component wraps the player for semantic headings and current-text fallback. The generator accepts only opaque models verified against the pinned digest. No model weights or third-party runtime scripts are committed.
 
-The hash excludes page/block identity, speed and color. Changing text or seed makes a new artifact. Modifying one block never changes another block's content, even when they previously shared an artifact.
+The hash excludes page/block identity, duration and color. Changing text or seed makes a new artifact. Modifying one block never changes another block's content, even when they previously shared an artifact.
 
 ## Deployment configuration
 
@@ -22,7 +22,7 @@ Configure these through deployment settings or an approved secret manager. Do no
 
 | Application   | Setting                             | Purpose                                                                                             |
 | ------------- | ----------------------------------- | --------------------------------------------------------------------------------------------------- |
-| Admin         | `HANDWRITING_MODEL_URL`             | Optional HTTP(S) import source, used only if the private model file is missing                     |
+| Admin         | `HANDWRITING_MODEL_URL`             | Optional HTTP(S) import source, used only if the private model file is missing                      |
 | Admin         | `HANDWRITING_BLOB_READ_WRITE_TOKEN` | Access to a **private** Vercel Blob store; kept separate from any public media store                |
 | Admin and www | Existing `WWW_INTERNAL_SECRET`      | Internal artifact reads and cache invalidation                                                      |
 | Admin         | Existing `WWW_SITE_URL`             | Target for per-hash cache invalidation                                                              |
@@ -69,7 +69,7 @@ pnpm --filter storybook build
 
 Real-model tests additionally accept `HANDWRITING_TEST_MODEL` as the path to a locally provided model. They skip when it is absent; they never download weights automatically. See the package tests for digest, determinism, cancellation, geometry and player coverage.
 
-CMS tests cover authentication/origin checks, immutable private storage, coalesced requests, failure/retry, card nesting, edits during generation, stale preview responses, unsaved seed changes, and transient invalid speed inputs. A real Payload session and private Blob configuration are still needed for a deployment smoke test; mocked interaction tests do not substitute for those credentials or external storage verification.
+CMS tests cover authentication/origin checks, immutable private storage, coalesced requests, failure/retry, card nesting, edits during generation, stale preview responses, unsaved seed changes, and transient invalid duration inputs. A real Payload session and private Blob configuration are still needed for a deployment smoke test; mocked interaction tests do not substitute for those credentials or external storage verification.
 
 ### Local integration verification
 

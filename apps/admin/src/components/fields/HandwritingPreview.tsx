@@ -17,7 +17,7 @@ export default function HandwritingPreview({ path }: { path: string }) {
 		style: fields[`${base}.style`]?.value ?? "rounded",
 		seed: fields[`${base}.seed`]?.value ?? 42,
 		legibility: fields[`${base}.legibility`]?.value ?? 0.85,
-		speed: fields[`${base}.speed`]?.value ?? 1,
+		duration: fields[`${base}.duration`]?.value ?? 5,
 	}))
 	const { dispatchFields, setModified } = useForm()
 	const [artifact, setArtifact] = useState<HandwritingArtifact | null>(null)
@@ -25,10 +25,9 @@ export default function HandwritingPreview({ path }: { path: string }) {
 	const [retry, setRetry] = useState(0)
 	const [replay, setReplay] = useState(0)
 	const revision = useRef(0)
-	const enteredSpeed = Number(values.speed)
-	const previewSpeed = Number.isFinite(enteredSpeed)
-		? Math.min(10, Math.max(0.1, enteredSpeed || 1))
-		: 1
+	const enteredDuration = Number(values.duration)
+	const previewDuration =
+		Number.isFinite(enteredDuration) && enteredDuration > 0 ? Math.max(0.1, enteredDuration) : 5
 	const input = useMemo(() => {
 		try {
 			return normalizeInput({
@@ -105,7 +104,7 @@ export default function HandwritingPreview({ path }: { path: string }) {
 					<Handwriting
 						key={`${artifact.fingerprint}-${replay}`}
 						artifact={artifact}
-						speed={previewSpeed}
+						duration={previewDuration}
 						style={{ width: "100%", height: "100%" }}
 					/>
 				) : (

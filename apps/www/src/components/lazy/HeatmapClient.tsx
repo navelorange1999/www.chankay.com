@@ -6,6 +6,8 @@ import dynamic from "next/dynamic"
 
 import type { HeatmapProps } from "@repo/ui/components/Heatmap"
 
+import { getRecentHeatmapDays } from "./heatmapRange"
+
 const Heatmap = dynamic(
 	() => import("@repo/ui/components/Heatmap").then((module) => module.Heatmap),
 	{
@@ -37,5 +39,11 @@ export function HeatmapClient(props: HeatmapProps) {
 		getServerSnapshot
 	)
 
-	return <Heatmap {...props} orientation={isMobile ? "vertical" : props.orientation} />
+	return (
+		<Heatmap
+			{...props}
+			days={isMobile ? getRecentHeatmapDays(props.days) : props.days}
+			orientation={isMobile ? "vertical" : props.orientation}
+		/>
+	)
 }

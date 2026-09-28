@@ -94122,6 +94122,13 @@ export interface SiteConfig {
    */
   appleTouchIcon?: (string | null) | MediaInterface;
   /**
+   * Optional public author identity for website structured data. Leave empty to omit it.
+   */
+  author?: {
+    name?: string | null;
+    url?: string | null;
+  };
+  /**
    * Default title tag for pages without specific SEO settings
    */
   metaTitle?: string | null;
@@ -94143,7 +94150,7 @@ export interface SiteConfig {
      */
     allowIndexing?: boolean | null;
     /**
-     * Custom robots.txt content (optional)
+     * Optional crawler rules. Overrides default rules; the sitemap URL always follows Site URL. Keep crawling enabled for pages that must expose a noindex tag.
      */
     customRobotsTxt?: string | null;
   };
@@ -94382,6 +94389,12 @@ export interface SiteConfigSelect<T extends boolean = true> {
   logoAlt?: T;
   favicon?: T;
   appleTouchIcon?: T;
+  author?:
+    | T
+    | {
+        name?: T;
+        url?: T;
+      };
   metaTitle?: T;
   metaDescription?: T;
   keywords?: T;

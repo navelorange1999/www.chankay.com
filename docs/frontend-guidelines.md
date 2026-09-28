@@ -303,6 +303,29 @@ export default function Error({
 
 ### Metadata
 
+Manage editorial metadata in Payload CMS. The homepage uses its localized
+`pages.seo.metaTitle` as a complete title without the site's title suffix, and
+`pages.seo.metaDescription` as its description. Other pages retain the site title
+template. `site-config.siteName` is the brand name; `metaTitle` is only the default
+SEO title and must not replace the brand name. Open Graph and Twitter metadata
+reuse the page's localized title, description, and CMS-selected image.
+
+Use `site-config.siteUrl` for the public canonical origin, matching the final
+destination of domain redirects. Canonical links, language alternates, Open Graph
+URLs, and the sitemap use that setting. `/robots.txt` is generated from CMS:
+`robotsSettings.customRobotsTxt` replaces the default crawler rules when provided,
+while sitemap directives are always replaced with the current Site URL. Default
+rules exclude preview paths in every supported locale. `allowIndexing` controls
+the HTML robots meta tag; crawler blocking is separate so crawlers can still read
+`noindex`. Shared SEO setting changes invalidate every locale.
+
+Homepage `WebSite` JSON-LD derives its identity from SiteConfig and its description
+from the homepage SEO settings. The optional Site Author group contains a localized
+public name and a shared public profile URL. An empty name omits the `Person`
+object. Do not infer an author from CMS login accounts or fabricate profile details.
+Serialize JSON-LD with HTML-safe escaping before embedding it. These settings do
+not modify page-builder content or visible homepage design.
+
 ```typescript
 export const metadata = {
   title: "Page Title",

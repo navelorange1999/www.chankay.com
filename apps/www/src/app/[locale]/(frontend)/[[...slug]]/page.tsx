@@ -16,9 +16,11 @@ import {
 	resolveMedia,
 	resolveMediaUrl,
 	resolveSiteDescription,
+	resolveSiteName,
 	resolveSiteUrl,
 	resolveTwitterHandle,
 } from "@/utils/seo"
+import { buildWebsiteStructuredData, serializeStructuredData } from "@/utils/structuredData"
 
 type PageParams = {
 	locale: SupportedLocale
@@ -107,13 +109,14 @@ export async function generateMetadata({
 	const twitterHandle = resolveTwitterHandle(siteConfig)
 
 	return {
-		title,
+		title: slug === "/" ? { absolute: title } : title,
 		description,
 		alternates: {
 			canonical: alternates.canonical,
 			languages: alternates.languages,
 		},
 		openGraph: {
+			siteName: resolveSiteName(siteConfig),
 			description,
 			images: ogImageUrl ? [{ url: ogImageUrl }] : undefined,
 			title,
@@ -141,5 +144,27 @@ export default async function Page({ params }: { params: Promise<PageParams> }) 
 		notFound()
 	}
 
-	return <Nodes nodes={pageData.structure} />
+	if (slug !== "/") {
+		return <Nodes nodes={pageData.structure} />
+	}
+
+	const siteConfig = await getSiteConfig(resolvedParams.locale)
+	const structuredData = buildWebsiteStructuredData(
+		{
+			...siteConfig,
+			metaDescription:
+				asOptionalString(pageData.seo?.metaDescription) || resolveSiteDescription(siteConfig),
+		},
+		resolvedParams.locale
+	)
+
+	return (
+		<>
+			<Nodes nodes={pageData.structure} />
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{ __html: serializeStructuredData(structuredData) }}
+			/>
+		</>
+	)
 }

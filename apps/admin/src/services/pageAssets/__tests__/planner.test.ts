@@ -3,6 +3,22 @@ import { describe, expect, it } from "vitest"
 import { resolveQueuedPageAssetPlan } from "@/services/pageAssets/planner"
 
 describe("pageAssets planner", () => {
+	it("does not turn an unselected structure into an empty replacement during an SEO update", () => {
+		const plan = resolveQueuedPageAssetPlan({
+			doc: {
+				id: "page-1",
+				slug: "/",
+				seo: { autoGenerateOgImage: true, metaTitle: "Updated title" },
+			},
+			previousDoc: {
+				id: "page-1",
+				structure: [{ blockType: "handWriting", text: "Existing content" }],
+			},
+		})
+		expect(plan.queuedOg).toBe(true)
+		expect(plan.structure).toBeUndefined()
+	})
+
 	it("queues handwriting in card content blocks", () => {
 		const structure = [
 			{ blockType: "card", contentBlocks: [{ blockType: "handWriting", text: "Hello" }] },

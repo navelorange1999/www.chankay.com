@@ -15,11 +15,11 @@ function asOptionalString(value: unknown): string | undefined {
 }
 
 export function resolveSiteName(siteConfig?: SiteConfig | null): string {
-	return (
-		asOptionalString(siteConfig?.metaTitle) ||
-		asOptionalString(siteConfig?.siteName) ||
-		DEFAULT_SITE_NAME
-	)
+	return asOptionalString(siteConfig?.siteName) || DEFAULT_SITE_NAME
+}
+
+export function resolveSiteTitle(siteConfig?: SiteConfig | null): string {
+	return asOptionalString(siteConfig?.metaTitle) || resolveSiteName(siteConfig)
 }
 
 export function resolveSiteDescription(

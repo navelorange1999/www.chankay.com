@@ -25,6 +25,7 @@ import {
 	resolveMediaUrl,
 	resolveSiteDescription,
 	resolveSiteName,
+	resolveSiteTitle,
 	resolveSiteUrl,
 	resolveTwitterHandle,
 } from "@/utils/seo"
@@ -51,6 +52,7 @@ export async function generateMetadata({
 
 	const siteConfig = await getSiteConfig(locale)
 	const siteName = resolveSiteName(siteConfig)
+	const title = resolveSiteTitle(siteConfig)
 	const description = resolveSiteDescription(siteConfig)
 	const siteUrl = resolveSiteUrl(siteConfig)
 	const twitterHandle = resolveTwitterHandle(siteConfig)
@@ -63,7 +65,7 @@ export async function generateMetadata({
 	return {
 		metadataBase: new URL(siteUrl),
 		title: {
-			default: siteName,
+			default: title,
 			template: `%s | ${siteName}`,
 		},
 		description,
@@ -86,7 +88,7 @@ export async function generateMetadata({
 			description,
 			images: ogImageUrl ? [{ url: ogImageUrl }] : undefined,
 			siteName,
-			title: siteName,
+			title,
 			type: "website",
 			url: siteUrl,
 		},
@@ -96,7 +98,7 @@ export async function generateMetadata({
 			description,
 			images: ogImageUrl ? [ogImageUrl] : undefined,
 			site: twitterHandle,
-			title: siteName,
+			title,
 		},
 	}
 }

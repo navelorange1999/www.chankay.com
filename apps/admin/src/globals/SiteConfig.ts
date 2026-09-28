@@ -52,7 +52,6 @@ export const SiteConfig: GlobalConfig = {
 					type: "text",
 					label: "Site URL",
 					required: true,
-					defaultValue: "https://www.chankay.com",
 					admin: {
 						placeholder: "https://your-domain.com",
 						description: "The primary URL of your website (used for canonical URLs and sitemaps)",
@@ -156,6 +155,41 @@ export const SiteConfig: GlobalConfig = {
 			},
 			fields: [
 				{
+					name: "author",
+					type: "group",
+					label: "Site Author",
+					admin: {
+						description:
+							"Optional public author identity for website structured data. Leave empty to omit it.",
+					},
+					fields: [
+						{
+							name: "name",
+							type: "text",
+							localized: true,
+							maxLength: 200,
+							label: "Public Author Name",
+						},
+						{
+							name: "url",
+							type: "text",
+							label: "Public Author Profile URL",
+							maxLength: 2048,
+							validate: (value: unknown) => {
+								if (value == null || value === "") return true
+								try {
+									const url = new URL(String(value))
+									if (["http:", "https:"].includes(url.protocol) && !url.username && !url.password)
+										return true
+								} catch {
+									// Invalid URLs are reported below.
+								}
+								return "Please enter a public http:// or https:// profile URL"
+							},
+						},
+					],
+				},
+				{
 					name: "metaTitle",
 					type: "text",
 					label: "Default Meta Title",
@@ -212,7 +246,8 @@ export const SiteConfig: GlobalConfig = {
 							type: "textarea",
 							label: "Custom robots.txt",
 							admin: {
-								description: "Custom robots.txt content (optional)",
+								description:
+									"Optional crawler rules. Overrides default rules; the sitemap URL always follows Site URL. Keep crawling enabled for pages that must expose a noindex tag.",
 								placeholder: "User-agent: *\nDisallow: /admin/",
 							},
 						},
@@ -810,6 +845,15 @@ export const SiteConfig: GlobalConfig = {
 		drafts: false,
 	},
 	hooks: {
-		afterChange: [createGlobalRevalidationHook("site-config", ["giscus"])],
+		afterChange: [
+			createGlobalRevalidationHook("site-config", [
+				"giscus",
+				"siteUrl",
+				"robotsSettings",
+				"ogImage",
+				"author",
+				"socialSharing",
+			]),
+		],
 	},
 }

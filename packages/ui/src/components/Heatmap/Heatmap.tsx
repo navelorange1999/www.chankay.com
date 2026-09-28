@@ -150,13 +150,13 @@ function isFirstOfMonth(dateISO: string): boolean {
 	return dateISO.slice(8, 10) === "01"
 }
 
-function getMonthTicks(weeks: HeatmapDay[][], minGapWeeks: number = 4) {
+function getMonthTicks(weeks: HeatmapDay[][], lastDate?: string, minGapWeeks: number = 4) {
 	const ticks = new Map<number, string>()
 	let lastIndex = -999
 
 	weeks.forEach((week, weekIndex) => {
 		const monthDay = week.find((d) => isFirstOfMonth(d.date))
-		if (!monthDay) return
+		if (!monthDay || (lastDate && monthDay.date > lastDate)) return
 
 		if (weekIndex - lastIndex < minGapWeeks) return
 		const label = getMonthLabel(monthDay.date)
@@ -260,7 +260,10 @@ export function Heatmap({
 }: HeatmapProps) {
 	const normalized = normalizeDays(days)
 	const calendar = buildCalendar(normalized)
-	const monthTicks = getMonthTicks(calendar.weeks)
+	const monthTicks = getMonthTicks(
+		calendar.weeks,
+		normalized.max ? toISODateOnly(normalized.max) : undefined
+	)
 
 	const preset = sizePreset[size]
 	const resolvedCellSize = cellSize ?? preset.cellSize

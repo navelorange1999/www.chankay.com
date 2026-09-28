@@ -86,6 +86,11 @@ export const SiteConfig: GlobalConfig = {
 
 ## Relationship to the Frontend
 
+Collection hooks can receive projected documents when a caller uses `select`.
+Treat omitted fields as unavailable, not as empty content. In the page-assets
+planner, an omitted `structure` must remain undefined so an SEO-only update cannot
+overwrite page-builder blocks with an empty array.
+
 - `apps/admin` defines the schema and editorial behavior.
 - `apps/www` consumes content through Payload API access and service wrappers.
 - Shared UI components should not depend directly on Payload APIs.

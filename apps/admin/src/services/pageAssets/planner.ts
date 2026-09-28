@@ -88,7 +88,11 @@ export function resolveQueuedPageAssetPlan(args: {
 		})
 	}
 
-	const structure = queuePreviewBlocks(cloneBlocks(args.doc.structure))
+	// Payload may apply a field selection before this hook. Missing structure is
+	// not an instruction to clear the stored page when only SEO fields are selected.
+	const structure = Array.isArray(args.doc.structure)
+		? queuePreviewBlocks(cloneBlocks(args.doc.structure))
+		: undefined
 	const queuedOg = shouldGeneratePageOg(args.doc)
 
 	if (!queuedOg && queuedPreviewBlocks === 0 && !hasHandwriting) {

@@ -1,11 +1,11 @@
 # Native Publication for Content Collections
 
-Status: proposed implementation and acceptance contract  
-Date: 2026-09-29  
+Status: implemented contract  
+Updated: 2026-10-08  
 Related feature: [Content Taxonomy and Topic Treemap](./content-topic-treemap.md)
 
 > Cleanup implementation: active schemas and readers now use native publication and Category only.
-> Activation remains gated on recorded migration/version verification and public visibility parity.
+> Production migration journals and public visibility/content parity were verified on October 8, 2026.
 > The compatibility and write-tool steps below describe the previous migration release. This cleanup
 > release exposes inventory, historical review, and verification only; all migration writes are retired.
 > Retain raw values, versions, and journals for at least 30 days and use the reviewed compatible
@@ -19,9 +19,9 @@ Users is an authentication collection, not publishable content. Do not add user 
 
 Business progress and processing results remain separate from publication. Rename `Series.status` to `Series.progress`; keep fields such as `previewStatus`, `ogGenerationStatus`, and translation-job status. Their values do not determine public visibility.
 
-This is a design and acceptance contract. No live record inventory or migration has been performed.
+The production rollout on October 8, 2026 reconciled 8 Posts, 2 Pages, 17 Tags, and 21 Media records, and created 2 published bilingual Categories. Series had no records to migrate. All 50 migration journals verified before the subsequent homepage editorial change. Anonymous public ID sets and localized content hashes matched the baseline before enabling the topic map.
 
-## 2. Current implementation
+## 2. Historical baseline before rollout
 
 | Collection | Current state                                                                                                                  | Target                                                                                        |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
@@ -33,9 +33,9 @@ This is a design and acceptance contract. No live record inventory or migration 
 | Categories | Proposed new collection.                                                                                                       | Use native drafts from its first release.                                                     |
 | Users      | Authentication and account data.                                                                                               | Preserve the existing account lifecycle.                                                      |
 
-The Post/Page MCP publishing tools currently write custom `status`. The page preview service removes a website query filter but does not request or authenticate a native draft read in Payload. Existing generated-media writers do not set publication state. These consumers must change with the schema, not after deployment.
+Before rollout, the Post/Page MCP publishing tools wrote custom `status`. The former page preview service removed a website query filter without requesting an authenticated native draft read. Generated-media writers also omitted publication state. The rollout changed these consumers together with the schema.
 
-Sources: [collections](../../apps/admin/src/collections/index.ts), [Post tools](../../apps/admin/src/plugins/mcp/post), [Page tools](../../apps/admin/src/plugins/mcp/page), [page queries](../../apps/www/src/services/payload/pages.ts), [preview route](<../../apps/www/src/app/[locale]/(frontend)/%5Fpreview/[[...slug]]/page.tsx>), and [asset services](../../apps/admin/src/services/pageAssets).
+Sources: [collections](../apps/admin/src/collections/index.ts), [Post tools](../apps/admin/src/plugins/mcp/post), [Page tools](../apps/admin/src/plugins/mcp/page), [page queries](../apps/www/src/services/payload/pages.ts), [preview route](<../apps/www/src/app/[locale]/(frontend)/%255Fpreview/[[...slug]]/page.tsx>), and [asset services](../apps/admin/src/services/pageAssets).
 
 ## 3. Shared lifecycle contract
 

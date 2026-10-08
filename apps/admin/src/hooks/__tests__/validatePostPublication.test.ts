@@ -84,10 +84,10 @@ describe("validatePostPublication", () => {
 		vi.stubEnv("CONTENT_PUBLICATION_MODE", "compatibility")
 		vi.stubEnv("CONTENT_PUBLICATION_LEGACY_BEFORE", "2026-10-08T00:00:00.000Z")
 		const input = args(
-			{ _status: "published", category: "category", tags: ["tag"] },
+			{ _status: "published", category: "category", series: "series" },
 			new Set(["category"])
 		)
-		await expect(validatePostPublication(input)).rejects.toThrow("tags references")
+		await expect(validatePostPublication(input)).rejects.toThrow("series references")
 		expect(input.req.payload.findByID).toHaveBeenCalledWith(
 			expect.objectContaining({ draft: false, req: input.req })
 		)
@@ -108,13 +108,10 @@ describe("validatePostPublication", () => {
 		).rejects.toThrow("categories references")
 	})
 
-	it("rejects unpublished selected Tags while accepting published references", async () => {
-		const data = { _status: "published", category: "category", tags: ["tag", "tag"] }
-		await expect(validatePostPublication(args(data, new Set(["category"])))).rejects.toThrow(
-			"tags references"
-		)
-		await expect(
-			validatePostPublication(args(data, new Set(["category", "tag"])))
-		).resolves.toEqual(data)
+	it("does not query retired Tags when legacy data still contains tag relationships", async () => {
+		const data = { _status: "published", category: "category", tags: ["retired-tag"] }
+		const input = args(data, new Set(["category"]))
+		await expect(validatePostPublication(input)).resolves.toEqual(data)
+		expect(input.req.payload.findByID).toHaveBeenCalledTimes(1)
 	})
 })

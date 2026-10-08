@@ -13,7 +13,7 @@ describe("mcpCollections", () => {
 
 		expect(mcpCollections.posts.enabled).toEqual(adminMcpAccess)
 		expect(mcpCollections.pages.enabled).toEqual(adminMcpAccess)
-		expect(mcpCollections.tags.enabled).toEqual(adminMcpAccess)
+		expect(mcpCollections).not.toHaveProperty("tags")
 		expect(mcpCollections.series.enabled).toEqual(adminMcpAccess)
 	})
 

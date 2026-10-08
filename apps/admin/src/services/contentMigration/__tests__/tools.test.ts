@@ -21,6 +21,7 @@ describe("migration MCP authorization and validation", () => {
 		const req = { user: { id: "operator" } } as PayloadRequest
 		const inventory = migrationTools.find((tool) => tool.name === "content_migration_inventory")!
 		await expect(inventory.handler({ collection: "users" }, req)).rejects.toThrow()
+		await expect(inventory.handler({ collection: "tags" }, req)).rejects.toThrow()
 		await expect(inventory.handler({ collection: "posts", limit: 10000 }, req)).rejects.toThrow()
 	})
 })

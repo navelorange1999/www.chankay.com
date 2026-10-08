@@ -12,15 +12,15 @@ const id = z.string().regex(/^[a-zA-Z0-9_-]{1,80}$/)
 const cutoff = z.string().datetime({ precision: 3 })
 const target = z
 	.object({
-		collection: z.enum(["media", "tags", "series", "posts", "pages"]),
+		collection: z.enum(["media", "series", "posts", "pages"]),
 		id,
-		phase: z.enum(["publication", "taxonomy"]),
+		phase: z.literal("publication"),
 		legacyBefore: cutoff,
 	})
 	.strict()
 const inventory = z
 	.object({
-		collection: z.enum(["media", "tags", "series", "categories", "posts", "pages"]),
+		collection: z.enum(["media", "series", "categories", "posts", "pages"]),
 		page: z.number().int().min(1).max(10000).default(1),
 		limit: z.number().int().min(1).max(50).default(50),
 	})
@@ -67,7 +67,7 @@ export const migrationTools = [
 	{
 		name: "content_migration_review",
 		description:
-			"Review one native publication or Post taxonomy migration. The deterministic hash covers all localized content and the latest version; pending drafts are rejected. No write occurs.",
+			"Review one native publication migration. Historical Tag taxonomy planning is retired. The deterministic hash covers all localized content and the latest version; pending drafts are rejected. No write occurs.",
 		parameters: target.shape,
 		handler: async (args: Record<string, unknown>, req: PayloadRequest) => {
 			requireMigrationUser(req)

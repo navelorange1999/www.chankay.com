@@ -18,7 +18,6 @@ import {
 	PostMetaInline,
 	PostMetaSeparator,
 	PostReadingTime,
-	PostTag,
 	PostThumbnail,
 } from "@repo/ui/components/Post"
 
@@ -31,7 +30,6 @@ import {
 	resolvePostDisplayExcerpt,
 	resolvePostDisplayTitle,
 	resolvePostImage,
-	resolvePostTags,
 } from "@/utils/posts"
 import { POST_SECTIONS, resolvePostSectionPath, type PostSection } from "@/utils/postSections"
 
@@ -115,7 +113,6 @@ export async function PostSectionArchive({
 						const postDate = formatPostDate(post.publishedAt || post.updatedAt, locale)
 						const postExcerpt = resolvePostDisplayExcerpt(post)
 						const postTitle = resolvePostDisplayTitle(post, locale)
-						const postTags = resolvePostTags(post)
 
 						return (
 							<Post key={post.id} className="overflow-hidden">
@@ -147,11 +144,6 @@ export async function PostSectionArchive({
 													{formatReadingTime(post.readingTime, locale)}
 												</PostReadingTime>
 											) : null}
-											{postTags.map((postTag) => (
-												<PostTag key={postTag.id} variant="outline">
-													{postTag.name}
-												</PostTag>
-											))}
 										</PostMetaInline>
 
 										{postExcerpt ? (

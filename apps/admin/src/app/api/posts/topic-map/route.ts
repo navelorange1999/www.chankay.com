@@ -8,7 +8,10 @@ import { getPublicTopicMap } from "@/services/topicMap/query"
 
 export async function GET(request: Request) {
 	const params = new URL(request.url).searchParams
-	if (Array.from(params.keys()).some((key) => key !== "locale") || params.getAll("locale").length > 1) {
+	if (
+		Array.from(params.keys()).some((key) => key !== "locale") ||
+		params.getAll("locale").length > 1
+	) {
 		return NextResponse.json({ error: "INVALID_QUERY" }, { status: 400 })
 	}
 	const requestedLocale = params.get("locale") ?? DEFAULT_LOCALE
@@ -21,7 +24,6 @@ export async function GET(request: Request) {
 		const labels = getUiStrings(requestedLocale).topicMap
 		const result = await getPublicTopicMap(payload, requestedLocale, {
 			uncategorized: labels.uncategorized,
-			untagged: labels.untagged,
 		})
 		return NextResponse.json(result, { headers: { "Cache-Control": "no-store" } })
 	} catch {

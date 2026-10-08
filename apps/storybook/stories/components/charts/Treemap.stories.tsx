@@ -39,20 +39,10 @@ type Story = StoryObj<typeof meta>
 export const Overview: Story = {}
 
 function InteractiveExample({ data = sample }: { data?: TreemapNode }) {
-	const [focusedNodeId, setFocusedNodeId] = useState<string | null>(null)
 	const [selected, setSelected] = useState<string | null>(null)
 	return (
 		<div className="max-w-4xl space-y-3">
-			<button type="button" onClick={() => setFocusedNodeId(null)}>
-				All assets
-			</button>
-			<Treemap
-				data={data}
-				ariaLabel={data.label}
-				focusedNodeId={focusedNodeId}
-				onFocusChange={setFocusedNodeId}
-				onLeafActivate={setSelected}
-			/>
+			<Treemap data={data} ariaLabel={data.label} onLeafActivate={setSelected} />
 			<p>Selected: {selected ?? "none"}</p>
 		</div>
 	)

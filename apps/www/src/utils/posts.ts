@@ -3,7 +3,6 @@ import type {
 	MediaInterface,
 	Post,
 	SiteConfig,
-	Tag,
 } from "@repo/typescript-config/typings/payload-types"
 
 import { resolveMedia, resolveSiteDescription } from "@/utils/seo"
@@ -52,22 +51,4 @@ export function resolvePostImage(
 	post: Pick<Post, "featuredImage" | "meta">
 ): MediaInterface | null {
 	return resolveMedia(post.featuredImage) || resolveMedia(post.meta?.image)
-}
-
-export function resolvePostTags(post: Pick<Post, "tags">): Tag[] {
-	const tags = new Map<string, Tag>()
-
-	for (const item of post.tags || []) {
-		if (
-			item &&
-			typeof item === "object" &&
-			item._status === "published" &&
-			"id" in item &&
-			"name" in item
-		) {
-			tags.set(item.id, item as Tag)
-		}
-	}
-
-	return Array.from(tags.values())
 }

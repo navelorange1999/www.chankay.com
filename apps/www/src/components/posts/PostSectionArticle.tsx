@@ -27,7 +27,6 @@ import {
 	PostMetaInline,
 	PostMetaSeparator,
 	PostReadingTime,
-	PostTag,
 	PostThumbnail,
 	PostTitle,
 	PostToc,
@@ -47,7 +46,6 @@ import {
 	resolvePostImage,
 	resolvePostSeoDescription,
 	resolvePostSeoTitle,
-	resolvePostTags,
 } from "@/utils/posts"
 import { POST_SECTIONS, resolvePostSectionPath, type PostSection } from "@/utils/postSections"
 
@@ -175,7 +173,7 @@ export async function PostSectionArticle({
 	const postDate = formatPostDate(post.publishedAt || post.updatedAt, locale)
 	const postExcerpt = resolvePostDisplayExcerpt(post) || null
 	const postTitle = resolvePostDisplayTitle(post, locale)
-	const postTags = resolvePostTags(post)
+
 	const postDocument = createMarkdownDocument(post.content)
 	const tocHeadings = postDocument.headings.filter((heading) => [2, 3].includes(heading.level))
 	const series =
@@ -253,11 +251,6 @@ export async function PostSectionArticle({
 									) : null}
 									{series && hasReadingMeta ? <PostMetaSeparator /> : null}
 									{series ? <span>{series}</span> : null}
-									{postTags.map((tag) => (
-										<PostTag key={tag.id} variant="outline">
-											{tag.name}
-										</PostTag>
-									))}
 								</PostMetaInline>
 
 								{postExcerpt ? (

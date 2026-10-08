@@ -8,7 +8,8 @@ import {
 	type PublicationPlan,
 } from "./plan"
 
-const COLLECTIONS: PublicationCollection[] = ["posts", "pages", "tags", "series", "media"]
+// Retired Tags are available only to exact-record historical journal audits.
+const COLLECTIONS = ["posts", "pages", "series", "media"] as const
 const PAGE_SIZE = 200
 
 type StoredRecord = {
@@ -83,7 +84,7 @@ export async function collectPublicationInventory(
 				let hasNewerDraft: boolean | null = null
 				if (
 					isLegacyRecord &&
-					["tags", "series", "media"].includes(collection) &&
+					["series", "media"].includes(collection) &&
 					(status !== "published" || (collection === "series" && !record.progress))
 				) {
 					const versions = await migrationReadAdapter(payload).findVersions<StoredVersion>({

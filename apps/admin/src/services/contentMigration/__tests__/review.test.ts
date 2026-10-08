@@ -112,6 +112,10 @@ describe("content migration review", () => {
 		expect(review.inventories.taxonomy).toHaveLength(1)
 		expect(review.publication.actions).toEqual([])
 		expect(review.taxonomy.actions).toEqual([])
-		expect(find).toHaveBeenCalledTimes(7)
+		expect(postReads).toBe(2)
+		expect(new Set(find.mock.calls.map(([query]) => query.collection))).toEqual(
+			new Set(["posts", "pages", "series", "media", "categories"])
+		)
+		expect(find).not.toHaveBeenCalledWith(expect.objectContaining({ collection: "tags" }))
 	})
 })

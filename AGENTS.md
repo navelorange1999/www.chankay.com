@@ -220,7 +220,7 @@ When multiple sources overlap, use this priority order:
 - [`docs/testing-and-operations.md`](./docs/testing-and-operations.md): Testing guidance, commit workflow, quick commands, and important file locations.
 - [`docs/deployment-and-environments.md`](./docs/deployment-and-environments.md): Current Vercel deployment model, environments, shared secrets, and runtime constraints.
 
-- [`docs/content-topic-treemap.md`](./docs/content-topic-treemap.md): Category/Tag taxonomy, Payload reverse relationships, topic usage statistics, reusable Treemap UI, migration, and acceptance criteria.
+- [`docs/content-topic-treemap.md`](./docs/content-topic-treemap.md): Category-to-Article taxonomy, Tag retirement, unique article statistics, reusable Treemap UI, historical migration, and acceptance criteria.
 - [`docs/native-content-publication.md`](./docs/native-content-publication.md): Native draft/publish lifecycle for all content collections, Series progress migration, preview and generated-media behavior, rollout, and acceptance criteria.
 
 ### Proposals (work-in-progress designs)

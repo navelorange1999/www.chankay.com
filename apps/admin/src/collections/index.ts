@@ -1,7 +1,6 @@
 export { Users } from "./Users"
 export { Media } from "./Media"
 export { Posts } from "./Posts"
-export { Tags } from "./Tags"
 export { Series } from "./Series"
 export { Pages } from "./Pages"
 export { Categories } from "./Categories"

@@ -1,15 +1,19 @@
 import type { Field, FlattenedField, Payload, SanitizedCollectionConfig } from "payload"
 
-const retiredFields: Record<string, Array<Field & FlattenedField>> = {
+import { retiredTagConfig } from "./retiredTags"
+
+// Private audit schemas intentionally retain retired relationship targets for old hashes.
+const retiredFields = {
 	posts: [
 		{ name: "status", type: "select", options: ["draft", "published", "archived"] },
 		{ name: "primaryTag", type: "relationship", relationTo: "tags" },
+		{ name: "tags", type: "relationship", relationTo: "tags", hasMany: true },
 	],
 	pages: [{ name: "status", type: "select", options: ["draft", "published"] }],
 	series: [
 		{ name: "status", type: "select", options: ["draft", "in-progress", "completed", "on-hold"] },
 	],
-}
+} as unknown as Record<string, Array<Field & FlattenedField>>
 
 /** Restore only retired fields for historical reads while retaining Payload's ordinary filtering. */
 export function migrationReadAdapter(
@@ -37,9 +41,12 @@ export function migrationReadAdapter(
 	scopedPayload.collections = collections
 	scopedPayload.config = {
 		...live?.config,
-		collections: (live?.config?.collections ?? []).map(
-			(collection) => historicalConfigs.get(collection.slug) ?? collection
-		),
+		collections: [
+			...(live?.config?.collections ?? []).map(
+				(collection) => historicalConfigs.get(collection.slug) ?? collection
+			),
+			retiredTagConfig,
+		],
 	}
 	Object.defineProperty(adapter, "payload", { value: scopedPayload })
 	return adapter

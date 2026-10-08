@@ -51,20 +51,7 @@ describe("revalidation route", () => {
 		expect(revalidateTag).toHaveBeenCalledWith("posts:section:trading:en")
 	})
 
-	it("revalidates both section archives and tag cache entries after tag changes", async () => {
-		const response = await POST(requestFor({ collection: "tags", locales: ["en"] }))
-
-		expect(response.status).toBe(200)
-		expect(revalidatePath).toHaveBeenCalledWith("/technical")
-		expect(revalidatePath).toHaveBeenCalledWith("/trading")
-		expect(revalidateTag).toHaveBeenCalledWith("posts:section:technical:en")
-		expect(revalidateTag).toHaveBeenCalledWith("posts:section:trading:en")
-		expect(revalidateTag).toHaveBeenCalledWith("tag:technical:en")
-		expect(revalidateTag).toHaveBeenCalledWith("tag:trading:en")
-		expect(revalidateTag).toHaveBeenCalledWith("posts:details:en")
-	})
-
-	it.each(["categories", "tags", "series", "media"])(
+	it.each(["categories", "series", "media"])(
 		"invalidates public relationship caches for %s changes",
 		async (collection) => {
 			const response = await POST(requestFor({ collection, locales: ["zh-CN"] }))
@@ -77,7 +64,7 @@ describe("revalidation route", () => {
 				expect(revalidateTag).toHaveBeenCalledWith("category:technical:zh-CN")
 				expect(revalidateTag).toHaveBeenCalledWith("posts:section:trading:zh-CN")
 			}
-			if (collection === "categories" || collection === "tags") {
+			if (collection === "categories") {
 				expect(revalidateTag).toHaveBeenCalledWith("topic-map:zh-CN")
 			}
 			if (collection === "media") {

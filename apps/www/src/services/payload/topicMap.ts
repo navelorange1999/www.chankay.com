@@ -1,16 +1,14 @@
-import type { SupportedLocale } from "@repo/i18n"
+import { isSafePostSlug, isSupportedLocale, type SupportedLocale } from "@repo/i18n"
 
 import { resolvePayloadBaseUrl } from "@/utils/payloadClient"
 
 export type TopicMapResponse = {
-	schemaVersion: 1
-	metric: "tag-usages-with-untagged"
+	schemaVersion: 2
+	metric: "published-posts"
 	locale: SupportedLocale
 	generatedAt: string
 	totals: {
 		publishedPostCount: number
-		tagAssignmentCount: number
-		untaggedPostCount: number
 		areaValue: number
 	}
 	categories: Array<{
@@ -20,12 +18,11 @@ export type TopicMapResponse = {
 		colorToken?: "chart-1" | "chart-2" | "chart-3" | "chart-4" | "chart-5"
 		publishedPostCount: number
 		areaValue: number
-		topics: Array<{
+		articles: Array<{
 			id: string
-			tagId: string | null
-			kind: "tag" | "untagged"
-			label: string
-			value: number
+			slug: string
+			title: string
+			value: 1
 		}>
 	}>
 }
@@ -35,71 +32,58 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 }
 
 export function isTopicMapResponse(value: unknown): value is TopicMapResponse {
-	if (!isRecord(value) || value.schemaVersion !== 1 || value.metric !== "tag-usages-with-untagged")
+	if (!isRecord(value) || value.schemaVersion !== 2 || value.metric !== "published-posts")
 		return false
-	if (typeof value.locale !== "string" || typeof value.generatedAt !== "string") return false
+	if (
+		!isSupportedLocale(value.locale) ||
+		typeof value.generatedAt !== "string" ||
+		!Number.isFinite(Date.parse(value.generatedAt))
+	)
+		return false
 	if (!isRecord(value.totals) || !Array.isArray(value.categories)) return false
-	for (const key of [
-		"publishedPostCount",
-		"tagAssignmentCount",
-		"untaggedPostCount",
-		"areaValue",
-	]) {
+	for (const key of ["publishedPostCount", "areaValue"]) {
 		if (!Number.isSafeInteger(value.totals[key]) || (value.totals[key] as number) < 0) return false
 	}
-	let area = 0
-	let posts = 0
-	const ids = new Set<string>()
+	const categoryIds = new Set<string>()
+	const articleIds = new Set<string>()
 	for (const category of value.categories) {
 		if (
 			!isRecord(category) ||
 			typeof category.id !== "string" ||
 			!category.id ||
+			categoryIds.has(category.id) ||
 			(category.kind !== "category" && category.kind !== "uncategorized") ||
 			typeof category.label !== "string" ||
 			!category.label ||
-			!Array.isArray(category.topics) ||
-			!Number.isSafeInteger(category.publishedPostCount) ||
-			(category.publishedPostCount as number) < 0 ||
-			!Number.isSafeInteger(category.areaValue) ||
-			(category.areaValue as number) < 0 ||
+			!Array.isArray(category.articles) ||
+			category.publishedPostCount !== category.articles.length ||
+			category.areaValue !== category.articles.length ||
 			(category.colorToken !== undefined &&
 				!["chart-1", "chart-2", "chart-3", "chart-4", "chart-5"].includes(
 					category.colorToken as string
-				)) ||
-			ids.has(category.id)
+				))
 		)
 			return false
-		ids.add(category.id)
-		let categoryArea = 0
-		for (const topic of category.topics) {
+		categoryIds.add(category.id)
+		for (const article of category.articles) {
 			if (
-				!isRecord(topic) ||
-				typeof topic.id !== "string" ||
-				!topic.id ||
-				ids.has(topic.id) ||
-				(topic.kind !== "tag" && topic.kind !== "untagged") ||
-				typeof topic.label !== "string" ||
-				!topic.label ||
-				!(typeof topic.tagId === "string" || topic.tagId === null) ||
-				(topic.kind === "tag" && !topic.tagId) ||
-				(topic.kind === "untagged" && topic.tagId !== null) ||
-				!Number.isSafeInteger(topic.value) ||
-				(topic.value as number) <= 0
+				!isRecord(article) ||
+				typeof article.id !== "string" ||
+				!article.id ||
+				articleIds.has(article.id) ||
+				typeof article.title !== "string" ||
+				!article.title ||
+				typeof article.slug !== "string" ||
+				!isSafePostSlug(article.slug) ||
+				article.value !== 1
 			)
 				return false
-			ids.add(topic.id)
-			categoryArea += topic.value as number
+			articleIds.add(article.id)
 		}
-		if (categoryArea !== category.areaValue) return false
-		area += categoryArea
-		posts += category.publishedPostCount as number
 	}
 	return (
-		area === value.totals.areaValue &&
-		posts === value.totals.publishedPostCount &&
-		(value.totals.tagAssignmentCount as number) + (value.totals.untaggedPostCount as number) ===
-			area
+		articleIds.size === value.totals.publishedPostCount &&
+		articleIds.size === value.totals.areaValue
 	)
 }
 

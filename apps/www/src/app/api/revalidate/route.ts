@@ -91,24 +91,6 @@ const revalidationHandlers: Record<string, RevalidationHandler> = {
 		revalidatePath("/sitemap.xml")
 	},
 
-	tags(_slugs, locales) {
-		for (const locale of locales) {
-			revalidateTag(`posts:details:${locale}`)
-			for (const section of Object.keys(POST_SECTIONS) as PostSection[]) {
-				revalidatePath(resolvePostSectionPath(section, undefined, locale))
-				revalidateTag(`posts:section:${section}:${locale}`)
-				revalidateTag(`tag:${POST_SECTIONS[section].categorySlug}:${locale}`)
-			}
-			revalidateTag(`topic-map:${locale}`)
-			revalidateTag(`post-relations:${locale}`)
-			revalidateTag(`posts:${locale}`)
-			revalidateTag(`posts:latest:${locale}`)
-			revalidateTag(`posts:all:${locale}`)
-		}
-		revalidatePath("/", "layout")
-		revalidatePath("/sitemap.xml")
-	},
-
 	series(_slugs, locales) {
 		for (const locale of locales) {
 			revalidateTag(`post-relations:${locale}`)

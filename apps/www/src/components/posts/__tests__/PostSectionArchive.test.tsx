@@ -1,7 +1,7 @@
 import { renderToStaticMarkup } from "react-dom/server"
 import { beforeEach, describe, expect, it, vi } from "vitest"
 
-import type { Post, Tag } from "@repo/typescript-config/typings/payload-types"
+import type { Post, Category } from "@repo/typescript-config/typings/payload-types"
 
 const mocks = vi.hoisted(() => ({
 	getPostsBySection: vi.fn(),
@@ -23,7 +23,7 @@ vi.mock("@/services/payload/site-config", () => ({
 
 import { PostSectionArchive } from "../PostSectionArchive"
 
-const technicalTag: Tag = {
+const technicalCategory: Category = {
 	_status: "published",
 	id: "technical-id",
 	name: "Technical",
@@ -33,18 +33,11 @@ const technicalTag: Tag = {
 	createdAt: "2026-09-01T00:00:00.000Z",
 }
 
-const tradingTag: Tag = {
-	...technicalTag,
+const tradingCategory: Category = {
+	...technicalCategory,
 	id: "trading-id",
 	name: "Trading",
 	slug: "trading",
-}
-
-const topicTag: Tag = {
-	...technicalTag,
-	id: "topic-id",
-	name: "Architecture",
-	slug: "architecture-topic",
 }
 
 const post: Post = {
@@ -67,9 +60,9 @@ describe("PostSectionArchive", () => {
 		})
 	})
 
-	it("renders the CMS Technical tag and section post path", async () => {
+	it("renders the CMS Technical category and section post path", async () => {
 		mocks.getPostsBySection.mockResolvedValue([post])
-		mocks.getCategoryBySlug.mockResolvedValue(technicalTag)
+		mocks.getCategoryBySlug.mockResolvedValue(technicalCategory)
 
 		const markup = renderToStaticMarkup(
 			await PostSectionArchive({ locale: "en", section: "technical" })
@@ -82,7 +75,7 @@ describe("PostSectionArchive", () => {
 
 	it("renders the Chinese Trading empty state", async () => {
 		mocks.getPostsBySection.mockResolvedValue([])
-		mocks.getCategoryBySlug.mockResolvedValue(tradingTag)
+		mocks.getCategoryBySlug.mockResolvedValue(tradingCategory)
 
 		const markup = renderToStaticMarkup(
 			await PostSectionArchive({ locale: "zh-CN", section: "trading" })
@@ -91,31 +84,20 @@ describe("PostSectionArchive", () => {
 		expect(markup).toContain("该板块暂无已发布文章。")
 	})
 
-	it.each([
-		{ section: "technical" as const, primaryTag: technicalTag, sectionTag: technicalTag },
-		{ section: "trading" as const, primaryTag: tradingTag.id, sectionTag: tradingTag },
-	])(
-		"renders all published topical tags for $section on article cards",
-		async ({ section, primaryTag, sectionTag }) => {
-			mocks.getPostsBySection.mockResolvedValue([
-				{ ...post, primaryTag, tags: [sectionTag, topicTag] },
-			])
-			mocks.getCategoryBySlug.mockResolvedValue(sectionTag)
-
-			const markup = renderToStaticMarkup(await PostSectionArchive({ locale: "en", section }))
-			const cardTags = Array.from(
-				markup.matchAll(/<span data-slot="post-tag"[^>]*>([^<]*)<\/span>/g),
-				(match) => match[1]
-			)
-
-			expect(cardTags).toContain(sectionTag.name)
-			expect(cardTags).toContain(topicTag.name)
-		}
-	)
+	it("does not render retired tag badges on article cards", async () => {
+		mocks.getPostsBySection.mockResolvedValue([
+			{ ...post, tags: [{ id: "old", name: "Old tag", _status: "published" }] },
+		])
+		mocks.getCategoryBySlug.mockResolvedValue(technicalCategory)
+		const markup = renderToStaticMarkup(
+			await PostSectionArchive({ locale: "en", section: "technical" })
+		)
+		expect(markup).not.toContain('data-slot="post-tag"')
+	})
 
 	it("does not render links for posts with unsafe CMS slugs", async () => {
 		mocks.getPostsBySection.mockResolvedValue([{ ...post, slug: " .. " }])
-		mocks.getCategoryBySlug.mockResolvedValue(technicalTag)
+		mocks.getCategoryBySlug.mockResolvedValue(technicalCategory)
 
 		const markup = renderToStaticMarkup(
 			await PostSectionArchive({ locale: "en", section: "technical" })

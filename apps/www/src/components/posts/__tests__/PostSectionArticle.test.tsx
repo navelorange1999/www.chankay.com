@@ -145,33 +145,29 @@ describe("PostSectionArticle", () => {
 	it.each([
 		{ section: "technical" as const, primaryTag: { id: "technical-id", name: "Technical" } },
 		{ section: "trading" as const, primaryTag: "trading-id" },
-	])(
-		"renders all published topical tags for $section on the article",
-		async ({ section, primaryTag }) => {
-			const sectionTag = {
-				id: `${section}-id`,
-				name: section === "technical" ? "Technical" : "Trading",
-				_status: "published",
-			}
-			mocks.getPostBySlugForSection.mockResolvedValue({
-				id: "post-id",
-				slug: "market-view",
-				title: "Market view",
-				content: "## Context\nA short article.",
-				primaryTag,
-				tags: [sectionTag, { id: "topic-id", name: "Macro", _status: "published" }],
-			})
-
-			const markup = renderToStaticMarkup(
-				await PostSectionArticle({ locale: "en", section, slug: "market-view" })
-			)
-			const articleTags = Array.from(
-				markup.matchAll(/<span data-slot="post-tag"[^>]*>([^<]*)<\/span>/g),
-				(match) => match[1]
-			)
-
-			expect(articleTags).toContain(sectionTag.name)
-			expect(articleTags).toContain("Macro")
+	])("omits retired tag badges for $section on the article", async ({ section, primaryTag }) => {
+		const sectionTag = {
+			id: `${section}-id`,
+			name: section === "technical" ? "Technical" : "Trading",
+			_status: "published",
 		}
-	)
+		mocks.getPostBySlugForSection.mockResolvedValue({
+			id: "post-id",
+			slug: "market-view",
+			title: "Market view",
+			content: "## Context\nA short article.",
+			primaryTag,
+			tags: [sectionTag, { id: "topic-id", name: "Macro", _status: "published" }],
+		})
+
+		const markup = renderToStaticMarkup(
+			await PostSectionArticle({ locale: "en", section, slug: "market-view" })
+		)
+		const articleTags = Array.from(
+			markup.matchAll(/<span data-slot="post-tag"[^>]*>([^<]*)<\/span>/g),
+			(match) => match[1]
+		)
+
+		expect(articleTags).toEqual([])
+	})
 })

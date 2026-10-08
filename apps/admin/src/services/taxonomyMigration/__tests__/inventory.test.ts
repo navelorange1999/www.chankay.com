@@ -36,13 +36,12 @@ describe("taxonomy inventory", () => {
 								totalPages: 2,
 							}
 		)
-		const rows = await collectTaxonomyInventory({ db: { find } } as never, {
-			classification: "technical",
-		})
+		const rows = await collectTaxonomyInventory({ db: { find } } as never, {})
 		expect(rows).toHaveLength(2)
 		expect(rows[0]?.plan).toMatchObject({ category: null, tags: ["react", "unknown"] })
 		expect(rows[0]).toMatchObject({ legacyStatus: "published", nativeStatus: "draft" })
-		expect(rows[1]?.plan).toMatchObject({ category: "technical", tags: ["react"] })
+		expect(rows[1]?.plan).toMatchObject({ category: null, tags: ["classification", "react"] })
+		expect(find).not.toHaveBeenCalledWith(expect.objectContaining({ collection: "tags" }))
 		expect(find).toHaveBeenCalledWith(
 			expect.objectContaining({
 				limit: 200,
@@ -51,7 +50,7 @@ describe("taxonomy inventory", () => {
 		)
 	})
 
-	it("rejects an unpublished or missing Category in the approved mapping", async () => {
+	it("rejects retired Tag mapping validation before reading records", async () => {
 		const find = vi.fn(async ({ collection }: { collection: string }) => ({
 			docs: collection === "tags" ? [{ id: "classification" }] : [],
 			totalPages: 1,
@@ -60,8 +59,8 @@ describe("taxonomy inventory", () => {
 			collectTaxonomyInventory({ db: { find } } as never, {
 				classification: "technical",
 			})
-		).rejects.toThrow("unpublished or missing")
-		expect(find).not.toHaveBeenCalledWith(expect.objectContaining({ collection: "posts" }))
+		).rejects.toThrow("Tags are retired")
+		expect(find).not.toHaveBeenCalled()
 	})
 
 	it("flags a public Post whose existing Category is no longer published", async () => {

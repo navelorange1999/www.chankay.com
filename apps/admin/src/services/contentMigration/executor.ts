@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto"
 import type { PayloadRequest } from "payload"
 
+import { readRetiredTagSnapshot } from "./retiredTags"
 import { migrationReadAdapter } from "./readAdapter"
 import { requireMigrationWritesAvailable } from "./writeAvailability"
 import { planPublication, type PublicationCollection } from "../publicationMigration/plan"
@@ -24,10 +25,6 @@ type ApplyInput = MigrationInput & {
 	approveCurrentSnapshot?: boolean
 }
 const collections = ["media", "tags", "series", "posts", "pages"]
-const mappings = {
-	"6a9a8cb31fd8dde63da92e17": "technical",
-	"6a9e55ea926cdf8d848318b3": "trading",
-} as const
 
 export function requireMigrationUser(req: PayloadRequest) {
 	if (!req?.user) throw new Error("Authentication is required for content migration.")
@@ -72,6 +69,18 @@ export async function migrationSnapshot(
 	collection: PublicationCollection | "categories",
 	id: string
 ) {
+	if (collection === "tags") {
+		const raw = await readRetiredTagSnapshot(req, id)
+		if (!raw.record) throw new Error("Migration record was not found.")
+		const record = JSON.parse(JSON.stringify(raw.record)) as RecordData
+		const latest = raw.latest ? JSON.parse(JSON.stringify(raw.latest)) : null
+		return {
+			record,
+			latest,
+			snapshotHash: migrationHash(record),
+			versionHash: migrationHash({ total: raw.total, latest }),
+		}
+	}
 	const result = await migrationReadAdapter(req.payload).find<RecordData>({
 		collection,
 		where: { id: { equals: id } },
@@ -115,28 +124,8 @@ function protectedHash(record: RecordData, patch: Record<string, unknown>) {
 		Object.fromEntries(Object.entries(record).filter(([key]) => !excluded.has(key)))
 	)
 }
-async function approvedCategoryMapping(req: PayloadRequest) {
-	const result: Record<string, string> = {}
-	for (const [tagId, slug] of Object.entries(mappings)) {
-		const categories = await req.payload.db.find<RecordData>({
-			collection: "categories",
-			where: { and: [{ slug: { equals: slug } }, { _status: { equals: "published" } }] },
-			limit: 2,
-			req,
-		})
-		if (categories.docs.length !== 1)
-			throw new Error(`Exactly one published ${slug} Category is required.`)
-		const tags = await req.payload.db.find<RecordData>({
-			collection: "tags",
-			where: { and: [{ id: { equals: tagId } }, { _status: { equals: "published" } }] },
-			limit: 1,
-			req,
-		})
-		if (tags.docs.length !== 1)
-			throw new Error("Approved classification Tags must be published first.")
-		result[tagId] = String(categories.docs[0]!.id)
-	}
-	return result
+async function approvedCategoryMapping(): Promise<Record<string, string>> {
+	throw new Error("Tags are retired; historical taxonomy migration plans are unavailable.")
 }
 async function inspectInternal(req: PayloadRequest, input: MigrationInput) {
 	requireMigrationUser(req)
@@ -202,7 +191,7 @@ async function inspectInternal(req: PayloadRequest, input: MigrationInput) {
 				primaryTag: relation(record.primaryTag),
 				tags: record.tags as string[],
 			},
-			await approvedCategoryMapping(req)
+			await approvedCategoryMapping()
 		)
 		if (plan.reviewReason || !plan.category)
 			throw new Error(plan.reviewReason ?? "An explicit Category assignment is required.")
@@ -254,7 +243,7 @@ export async function requireMigrationDependencies(
 	cutoff: string
 ) {
 	if (!["categories", "posts", "pages"].includes(collection)) return
-	for (const dependency of ["media", "tags", "series"] as const) {
+	for (const dependency of ["media", "series"] as const) {
 		const remaining = await req.payload.db.find({
 			collection: dependency,
 			where: {
@@ -274,6 +263,7 @@ export async function applyMigration(req: PayloadRequest, input: ApplyInput) {
 	validateInput(input)
 	if (!/^[a-f0-9]{64}$/.test(input.planHash)) throw new Error("A reviewed plan hash is required.")
 	return migrationTransaction(req, async (transactionReq) => {
+		if (input.collection === "tags") throw new Error("Historical Tag writes are unavailable.")
 		const { current, plan } = await inspectInternal(transactionReq, input)
 		if (plan.planHash !== input.planHash || plan.expectedUpdatedAt !== input.expectedUpdatedAt)
 			throw new Error("The reviewed snapshot changed; inspect and review again.")
@@ -439,8 +429,10 @@ export async function rollbackMigration(req: PayloadRequest, runId: string) {
 			transactionReq.context[GENERATION_CONTEXT_FLAG] = true
 			transactionReq.context[EXPECTED_PAGE_UPDATED_AT_CONTEXT_KEY] = current.record.updatedAt
 		}
+		const collection = run.collectionSlug as PublicationCollection
+		if (collection === "tags") throw new Error("Historical Tag writes are unavailable.")
 		await req.payload.update({
-			collection: run.collectionSlug as PublicationCollection,
+			collection,
 			id: run.recordId,
 			data: patch,
 			draft: false,

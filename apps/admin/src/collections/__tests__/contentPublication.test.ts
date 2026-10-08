@@ -13,33 +13,31 @@ import { Posts } from "../Posts"
 import { Series } from "../Series"
 import { Tags } from "../Tags"
 import { rejectStalePageAssetUpdate } from "@/services/pageAssets/versionGuard"
-import { getPublicationWhere, mirrorNativePublication } from "@/services/publicationCompatibility"
 
 afterEach(() => vi.unstubAllEnvs())
 
 const collections = [Posts, Pages, Tags, Series, Media, Categories]
 
 describe("content publication schemas", () => {
-	it("does not require the read-only legacy primaryTag for new category-based posts", () => {
+	it("removes legacy status and primaryTag schema fields", () => {
 		const primaryTag = Posts.fields.find((field) => "name" in field && field.name === "primaryTag")
-		expect(primaryTag).toMatchObject({ admin: { readOnly: true } })
-		expect(primaryTag && "required" in primaryTag && primaryTag.required).not.toBe(true)
+		expect(primaryTag).toBeUndefined()
+		for (const collection of [Posts, Pages, Series])
+			expect(collection.fields.some((field) => "name" in field && field.name === "status")).toBe(
+				false
+			)
 	})
 	it("captures the public main snapshot before deleting every content collection", () => {
 		for (const collection of collections)
 			expect(collection.hooks?.beforeDelete?.length).toBeGreaterThan(0)
 	})
-	it("wires compatibility visibility and Post/Page mirrors without weakening version access", () => {
+	it("ignores obsolete compatibility configuration", () => {
 		vi.stubEnv("CONTENT_PUBLICATION_MODE", "compatibility")
 		vi.stubEnv("CONTENT_PUBLICATION_LEGACY_BEFORE", "2026-10-08T00:00:00.000Z")
 		for (const collection of collections) {
 			const read = collection.access?.read
-			expect(read?.({ req: { user: null } } as never)).toEqual(
-				getPublicationWhere(collection.slug as never)
-			)
+			expect(read?.({ req: { user: null } } as never)).toEqual({ _status: { equals: "published" } })
 		}
-		for (const collection of [Posts, Pages])
-			expect(collection.hooks?.beforeChange).toContain(mirrorNativePublication)
 	})
 	it("enables native drafts on every content collection", () => {
 		for (const collection of collections) {
@@ -66,9 +64,9 @@ describe("content publication schemas", () => {
 
 	it("keeps progress independent of publication and adds reverse joins", () => {
 		expect(Series.fields.some((field) => "name" in field && field.name === "progress")).toBe(true)
-		expect(Series.fields.find((field) => "name" in field && field.name === "status")).toMatchObject(
-			{ admin: { hidden: true, readOnly: true } }
-		)
+		expect(
+			Series.fields.find((field) => "name" in field && field.name === "status")
+		).toBeUndefined()
 		for (const collection of [Categories, Tags, Series]) {
 			expect(
 				collection.fields.some(

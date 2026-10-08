@@ -19,21 +19,21 @@ afterEach(() => {
 })
 
 describe("public cache invalidation", () => {
-	it("invalidates a legacy public snapshot when it becomes a private native draft", async () => {
+	it("invalidates a native public snapshot when it becomes a private native draft", async () => {
 		vi.stubEnv("CONTENT_PUBLICATION_MODE", "compatibility")
 		vi.stubEnv("CONTENT_PUBLICATION_LEGACY_BEFORE", "2026-10-08T12:00:00.000Z")
-		const find = vi
+		const findByID = vi
 			.fn()
-			.mockResolvedValueOnce({ docs: [{ id: "page", slug: "old-live", updatedAt: "1" }] })
-			.mockResolvedValueOnce({ docs: [] })
+			.mockResolvedValueOnce({ id: "page", slug: "old-live", updatedAt: "1", _status: "published" })
+			.mockResolvedValueOnce(null)
 		const queue = vi.fn().mockResolvedValue({ id: "job" })
-		const req = { context: {}, payload: { find, jobs: { queue } } }
+		const req = { context: {}, payload: { findByID, jobs: { queue } } }
 		await capturePublicSnapshot("pages")({ originalDoc: { id: "page" }, req } as never)
 		await createRevalidationHook("pages")({
 			doc: { id: "page", slug: "new-draft", _status: "draft" },
 			req,
 		} as never)
-		expect(find).toHaveBeenCalledWith(
+		expect(findByID).toHaveBeenCalledWith(
 			expect.objectContaining({ draft: false, req, collection: "pages" })
 		)
 		expect(queue).toHaveBeenCalledWith(
@@ -44,21 +44,21 @@ describe("public cache invalidation", () => {
 		)
 	})
 
-	it("captures legacy visibility before deletion and never trusts a private deleted snapshot", async () => {
+	it("captures native visibility before deletion and never trusts a private deleted snapshot", async () => {
 		vi.stubEnv("CONTENT_PUBLICATION_MODE", "compatibility")
 		vi.stubEnv("CONTENT_PUBLICATION_LEGACY_BEFORE", "2026-10-08T12:00:00.000Z")
-		const find = vi
+		const findByID = vi
 			.fn()
-			.mockResolvedValue({ docs: [{ id: "tag", slug: "legacy-tag", updatedAt: "1" }] })
+			.mockResolvedValue({ id: "tag", slug: "legacy-tag", updatedAt: "1", _status: "published" })
 		const queue = vi.fn().mockResolvedValue({ id: "job" })
-		const req = { context: {}, payload: { find, jobs: { queue } } }
+		const req = { context: {}, payload: { findByID, jobs: { queue } } }
 		await capturePublicDeleteSnapshot("tags")({ id: "tag", req } as never)
 		await createRevalidationDeleteHook("tags")({
 			doc: { id: "tag", slug: "legacy-tag" },
 			req,
 		} as never)
 		expect(queue).toHaveBeenCalledOnce()
-		find.mockResolvedValue({ docs: [] })
+		findByID.mockResolvedValue(null)
 		await capturePublicDeleteSnapshot("tags")({ id: "private-tag", req } as never)
 		await createRevalidationDeleteHook("tags")({
 			doc: { id: "private-tag", _status: "published" },

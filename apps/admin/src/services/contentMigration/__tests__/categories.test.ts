@@ -1,5 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import type { PayloadRequest } from "payload"
+
+// Exercise the retained historical engine; cutover.test.ts checks the real retirement boundary.
+vi.mock("../writeAvailability", () => ({ requireMigrationWritesAvailable: vi.fn() }))
 import { createMigrationCategory } from "../categories"
 
 beforeEach(() => {

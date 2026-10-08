@@ -54,9 +54,7 @@ const post: Post = {
 	excerpt: "A practical architecture note.",
 	content: "# Architecture",
 	_status: "published",
-	status: "published",
 	publishedAt: "2026-09-01T00:00:00.000Z",
-	primaryTag: technicalTag,
 	readingTime: 4,
 	updatedAt: "2026-09-01T00:00:00.000Z",
 	createdAt: "2026-09-01T00:00:00.000Z",
@@ -97,7 +95,7 @@ describe("PostSectionArchive", () => {
 		{ section: "technical" as const, primaryTag: technicalTag, sectionTag: technicalTag },
 		{ section: "trading" as const, primaryTag: tradingTag.id, sectionTag: tradingTag },
 	])(
-		"hides the $section primary tag but keeps other tags on article cards",
+		"renders all published topical tags for $section on article cards",
 		async ({ section, primaryTag, sectionTag }) => {
 			mocks.getPostsBySection.mockResolvedValue([
 				{ ...post, primaryTag, tags: [sectionTag, topicTag] },
@@ -110,7 +108,7 @@ describe("PostSectionArchive", () => {
 				(match) => match[1]
 			)
 
-			expect(cardTags).not.toContain(sectionTag.name)
+			expect(cardTags).toContain(sectionTag.name)
 			expect(cardTags).toContain(topicTag.name)
 		}
 	)

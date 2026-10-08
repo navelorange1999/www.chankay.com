@@ -1,6 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 import type { PayloadRequest } from "payload"
 
+// Exercise the retained historical engine; cutover.test.ts checks the real retirement boundary.
+vi.mock("../writeAvailability", () => ({ requireMigrationWritesAvailable: vi.fn() }))
+
 import { applyMigration, inspectMigration, rollbackMigration, verifyMigration } from "../executor"
 
 const timestamp = "2026-09-01T00:00:00.000Z"
@@ -229,12 +232,12 @@ describe("guarded content migration", () => {
 		const plan = await inspectMigration(req, input)
 		expect(plan.patch).toEqual({ _status: "published" })
 	})
-	it("rejects a cutoff that differs from the deployed compatibility boundary", async () => {
+	it("reviews historical snapshots independently of live compatibility settings", async () => {
+		vi.stubEnv("CONTENT_PUBLICATION_MODE", "native")
 		const { req } = fixture()
-		await expect(
-			inspectMigration(req, { ...input, legacyBefore: "2027-01-01T00:00:00.000Z" })
-		).rejects.toThrow("configured compatibility")
+		await expect(inspectMigration(req, input)).resolves.toMatchObject({ legacyBefore: cutoff })
 	})
+
 	it("restores reviewed taxonomy relationships and rejects rollback after subsequent edits", async () => {
 		const { req, edit, db, payload } = fixture("posts")
 		edit({

@@ -46,7 +46,7 @@ describe("taxonomy inventory", () => {
 		expect(find).toHaveBeenCalledWith(
 			expect.objectContaining({
 				limit: 200,
-				select: expect.not.objectContaining({ content: true }),
+				projection: expect.objectContaining({ _id: true, status: true }),
 			})
 		)
 	})
@@ -66,12 +66,24 @@ describe("taxonomy inventory", () => {
 
 	it("flags a public Post whose existing Category is no longer published", async () => {
 		const find = vi.fn(async ({ collection }: { collection: string }) => ({
-			docs: collection === "posts"
-				? [{ id: "p1", updatedAt: "2026-09-29T00:00:00.000Z", status: "published", _status: "published", category: "withdrawn", tags: [] }]
-				: [],
+			docs:
+				collection === "posts"
+					? [
+							{
+								id: "p1",
+								updatedAt: "2026-09-29T00:00:00.000Z",
+								status: "published",
+								_status: "published",
+								category: "withdrawn",
+								tags: [],
+							},
+						]
+					: [],
 			totalPages: 1,
 		}))
 		const rows = await collectTaxonomyInventory({ db: { find } } as never, {})
-		expect(rows[0]?.plan.reviewReason).toBe("A public Post references a missing or unpublished Category.")
+		expect(rows[0]?.plan.reviewReason).toBe(
+			"A public Post references a missing or unpublished Category."
+		)
 	})
 })

@@ -178,33 +178,33 @@ Operational implications:
 
 ## Public Cache Revalidation
 
-### Native publication compatibility rollout
+### Native publication cleanup activation
 
-Admin defaults to strict native publication. A reviewed Admin-only compatibility release can set
-`CONTENT_PUBLICATION_MODE=compatibility` and `CONTENT_PUBLICATION_LEGACY_BEFORE` to a canonical UTC
-timestamp such as `2026-01-01T00:00:00.000Z` (illustrative only). Choose and record the actual cutoff
-after the last legacy editorial write, including newly created topic Tags. An absent, malformed, or
-non-canonical cutoff disables the fallback. Do not deploy strict Admin or WWW readers until the
-publication inventory, approved snapshots, backfill, and public visibility parity checks pass.
+Deploy this cleanup release only after the six-collection inventory, approved snapshot migration,
+native version initialization, Category assignment, and public visibility parity checks pass. The
+compatible Admin release and legacy WWW deployment remain in place until that verification is
+recorded. This source change does not establish that production migration has completed.
 
-Compatibility permits only pre-cutoff records with no stored native state. Posts and Pages must
-also have legacy `status=published`; existing Tags, Series, and Media retain their former public
-visibility. An explicit native draft always remains private, and Categories always require native
-publication. Pre-existing conflicting Post states therefore still require reconciliation before
-deploying this release. The default strict website queries do not use this fallback: retain the
-legacy WWW deployment during the compatibility phase.
+The cleanup release always enforces `_status=published` for public content. Missing native state
+is private. Post/Page custom `status`, Series legacy `status`, and Post `primaryTag` are absent
+from the active schemas and generated types. `Series.progress` remains a business field. Posts
+require a published Category, and selected relationships require published native snapshots.
+Legacy compatibility environment settings cannot relax access or validation in this release;
+remove them from deployment configuration at activation.
 
-Post/Page main-document writes mirror native state into legacy `status` for old readers. Draft
-saves modify only Payload versions and cannot independently update the public mirror. Existing
-pre-cutoff Posts without a Category can defer that requirement until migration; a previously
-assigned Category cannot be cleared, new Posts still require one, and all selected references
-must pass the current public-visibility predicate. Page and Site Config media checks use the same
-bounded predicate with the write request so transactional updates remain visible.
+Migration inventory, historical review, and journal verification remain authenticated and
+read-only. Apply, rollback, and migration-Category creation tools are no longer advertised, and
+all retained migration write entry points reject execution before database access. Verification
+reports `rollbackEligible=false` and `rollbackWritesAvailable=false`; historical eligibility is
+reported separately. Read-only review uses an explicitly supplied historical cutoff and never
+changes content.
 
-Revalidation captures public visibility before both updates and deletes, using the compatibility
-predicate when enabled. Deleting a private snapshot does not invalidate public caches; withdrawing
-a previously public snapshot does. Remove
-the compatibility settings and mirror only after the native publication cutover is verified.
+Preserve raw legacy values, localized content, versions, and immutable migration journals for at
+least 30 days after verified cutover. No cleanup operation deletes stored data. A data rollback
+requires the previously reviewed compatible release and its journal guards; changing environment
+settings on this release does not restore the retired writer. Later edits still require editorial
+reconciliation. Revalidation captures native public snapshots before updates and deletes, so
+unpublishing or deleting published content invalidates caches while private edits remain private.
 
 Content hooks capture the previous public snapshot and enqueue a `revalidateWww` Payload job with
 the same request as the content write. The job is committed or rolled back with that write. The

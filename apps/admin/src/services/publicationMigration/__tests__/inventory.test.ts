@@ -42,7 +42,7 @@ describe("publication inventory", () => {
 		expect(find).toHaveBeenCalledWith(
 			expect.objectContaining({
 				collection: "posts",
-				select: expect.not.objectContaining({ content: true }),
+				projection: expect.objectContaining({ _id: true, status: true }),
 				limit: 200,
 			})
 		)
@@ -50,15 +50,31 @@ describe("publication inventory", () => {
 
 	it("keeps new native publications and reviews changed legacy conflicts", async () => {
 		const find = vi.fn(async ({ collection }: { collection: string }) => ({
-			docs: collection === "pages"
-				? [
-						{ id: "new", createdAt: "2026-02-01T00:00:00.000Z", updatedAt: "2026-02-02T00:00:00.000Z", status: "draft", _status: "published" },
-						{ id: "changed", createdAt: "2025-01-01T00:00:00.000Z", updatedAt: "2026-02-02T00:00:00.000Z", status: "draft", _status: "published" },
-					]
-				: [],
+			docs:
+				collection === "pages"
+					? [
+							{
+								id: "new",
+								createdAt: "2026-02-01T00:00:00.000Z",
+								updatedAt: "2026-02-02T00:00:00.000Z",
+								status: "draft",
+								_status: "published",
+							},
+							{
+								id: "changed",
+								createdAt: "2025-01-01T00:00:00.000Z",
+								updatedAt: "2026-02-02T00:00:00.000Z",
+								status: "draft",
+								_status: "published",
+							},
+						]
+					: [],
 			totalPages: 1,
 		}))
-		const rows = await collectPublicationInventory({ db: { find } } as never, "2026-01-01T00:00:00.000Z")
+		const rows = await collectPublicationInventory(
+			{ db: { find } } as never,
+			"2026-01-01T00:00:00.000Z"
+		)
 		expect(rows.map((row) => [row.id, row.plan.decision])).toEqual([
 			["new", "keep"],
 			["changed", "review"],

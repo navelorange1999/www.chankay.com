@@ -1,5 +1,6 @@
 import type { Payload } from "payload"
 
+import { migrationReadAdapter } from "../contentMigration/readAdapter"
 import { planPostTaxonomy, type LegacyPostTaxonomy, type TaxonomyPlan } from "./plan"
 
 const PAGE_SIZE = 200
@@ -36,7 +37,7 @@ async function readPublishedIds(payload: Pick<Payload, "db">, collection: "categ
 	let page = 1
 	let totalPages = 1
 	while (page <= totalPages) {
-		const result = await payload.db.find<{ id: string }>({
+		const result = await migrationReadAdapter(payload).find<{ id: string }>({
 			collection,
 			where: { _status: { equals: "published" } },
 			select: { id: true },
@@ -79,11 +80,11 @@ export async function collectTaxonomyInventory(
 	let page = 1
 	let totalPages = 1
 	while (page <= totalPages) {
-		const result = await payload.db.find<StoredPost>({
+		const result = await migrationReadAdapter(payload).find<StoredPost>({
 			collection: "posts",
 			locale: "all",
-			select: {
-				id: true,
+			projection: {
+				_id: true,
 				updatedAt: true,
 				status: true,
 				_status: true,
@@ -99,7 +100,7 @@ export async function collectTaxonomyInventory(
 			const current: LegacyPostTaxonomy = {
 				id: String(post.id),
 				category: relationId(post.category),
-				primaryTag: relationId(post.primaryTag),
+				primaryTag: relationId(JSON.parse(JSON.stringify(post.primaryTag ?? null))),
 				tags: Array.isArray(post.tags)
 					? post.tags.map(relationId).filter((id): id is string => id !== null)
 					: [],

@@ -1,7 +1,7 @@
 import type { CollectionConfig } from "payload"
 import { authenticated } from "../access/authenticated"
 import { createBasicTranslationHook } from "../hooks/createTranslationHook"
-import { createPublishedOrAuthenticated } from "../access/publishedOrAuthenticated"
+import { publishedOrAuthenticated } from "../access/publishedOrAuthenticated"
 import {
 	capturePublicSnapshot,
 	capturePublicDeleteSnapshot,
@@ -12,7 +12,7 @@ import {
 export const Series: CollectionConfig = {
 	slug: "series",
 	access: {
-		read: createPublishedOrAuthenticated("series"),
+		read: publishedOrAuthenticated,
 		readVersions: authenticated,
 		create: authenticated,
 		update: authenticated,
@@ -108,12 +108,6 @@ export const Series: CollectionConfig = {
 				{ label: "Completed", value: "completed" },
 				{ label: "On Hold", value: "on-hold" },
 			],
-		},
-		{
-			name: "status",
-			type: "select",
-			admin: { hidden: true, readOnly: true },
-			options: ["draft", "in-progress", "completed", "on-hold"],
 		},
 		{
 			name: "difficulty",

@@ -14,7 +14,7 @@ describe("public relationship presentation", () => {
 					{ id: "published", name: "Public", _status: "published" },
 					{ id: "draft", name: "Hidden", _status: "draft" },
 				],
-				primaryTag: { id: "legacy", name: "Legacy", _status: "draft" },
+				primaryTag: { id: "legacy", name: "Legacy", _status: "published" },
 			} as never).map((tag) => tag.id)
 		).toEqual(["published"])
 	})

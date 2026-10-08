@@ -1,8 +1,4 @@
 import type { CollectionBeforeChangeHook, GlobalBeforeChangeHook, PayloadRequest } from "payload"
-import {
-	getPublicationWhere,
-	publicationCompatibilityCutoff,
-} from "@/services/publicationCompatibility"
 
 function asRecord(value: unknown): Record<string, unknown> {
 	return value && typeof value === "object" && !Array.isArray(value)
@@ -51,29 +47,18 @@ async function assertPublishedMedia(
 	for (const reference of references) {
 		if (checked.has(reference.id)) continue
 		checked.add(reference.id)
-		const published = publicationCompatibilityCutoff()
-			? (
-					await req.payload.find({
-						collection: "media",
-						where: { and: [{ id: { equals: reference.id } }, getPublicationWhere("media")] },
-						draft: false,
-						depth: 0,
-						limit: 1,
-						overrideAccess: true,
-						req,
-					})
-				).docs.length > 0
-			: (
-					await req.payload.findByID({
-						collection: "media",
-						id: reference.id,
-						draft: false,
-						depth: 0,
-						overrideAccess: true,
-						disableErrors: true,
-						req,
-					})
-				)?._status === "published"
+		const published =
+			(
+				await req.payload.findByID({
+					collection: "media",
+					id: reference.id,
+					draft: false,
+					depth: 0,
+					overrideAccess: true,
+					disableErrors: true,
+					req,
+				})
+			)?._status === "published"
 		if (!published) {
 			throw new Error(`Publish the media referenced at ${reference.path} before saving.`)
 		}

@@ -8,6 +8,7 @@ import {
 	requireMigrationUser,
 } from "./executor"
 
+import { requireMigrationWritesAvailable } from "./writeAvailability"
 type CategoryInput = {
 	slug: "technical" | "trading"
 	nameEn: string
@@ -18,6 +19,7 @@ type CategoryInput = {
 
 export async function createMigrationCategory(req: PayloadRequest, input: CategoryInput) {
 	requireMigrationUser(req)
+	requireMigrationWritesAvailable()
 	if (!["technical", "trading"].includes(input.slug))
 		throw new Error("Only approved Category slugs are allowed.")
 	if (input.publish !== true) throw new Error("Explicit publication is required.")

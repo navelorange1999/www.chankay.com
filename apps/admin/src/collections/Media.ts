@@ -1,5 +1,5 @@
 import type { CollectionConfig } from "payload"
-import { createPublishedOrAuthenticated } from "@/access/publishedOrAuthenticated"
+import { publishedOrAuthenticated } from "@/access/publishedOrAuthenticated"
 import { authenticated } from "@/access/authenticated"
 import {
 	capturePublicSnapshot,
@@ -27,7 +27,7 @@ type MediaDocLike = {
 export const Media: CollectionConfig = {
 	slug: "media",
 	access: {
-		read: createPublishedOrAuthenticated("media"),
+		read: publishedOrAuthenticated,
 		readVersions: authenticated,
 		create: authenticated,
 		update: authenticated,

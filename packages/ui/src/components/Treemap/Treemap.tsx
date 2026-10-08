@@ -140,40 +140,19 @@ export function Treemap({
 			)
 			const needsCategoryOverview =
 				!computed.focusedNodeId &&
+				Boolean(onFocusChange) &&
 				computed.nodes.some((node) =>
 					node.id === node.branchId
 						? node.height < 44 || node.width < 44
 						: node.height < 24 || node.width < 24
 				)
-			if (!needsCategoryOverview)
-				return { ...computed, categoryOverview: false, sectionOverview: false }
-			if (!onFocusChange) {
-				const branches = "children" in data ? (data.children ?? []) : []
-				let offsetY = 0
-				const nodes = branches.flatMap((branch) => {
-					const leafCount = hierarchy(branch, (node) =>
-						"children" in node ? node.children : undefined
-					).leaves().length
-					const sectionHeight = Math.max(120, Math.ceil((leafCount * 96 * 64) / size.width) + 50)
-					const section = computeTreemapLayout(
-						{ id: data.id, label: data.label, children: [branch] },
-						size.width,
-						sectionHeight
-					)
-					const placed = section.nodes.map((node) => ({ ...node, y: node.y + offsetY }))
-					offsetY += sectionHeight + 6
-					return placed
-				})
-				return { ...computed, nodes, categoryOverview: false, sectionOverview: true }
-			}
-
+			if (!needsCategoryOverview) return { ...computed, categoryOverview: false }
 			const categories = computed.nodes.filter((node) => node.id === node.branchId)
 			const columns = Math.max(1, Math.floor(size.width / 180))
 			const tileWidth = (size.width - 6) / columns
 			return {
 				...computed,
 				categoryOverview: true,
-				sectionOverview: false,
 				nodes: categories.map((node, index) => ({
 					...node,
 					x: 3 + (index % columns) * tileWidth,
@@ -188,7 +167,6 @@ export function Treemap({
 				nodes: [] as LayoutNode[],
 				focusedNodeId: null,
 				categoryOverview: false,
-				sectionOverview: false,
 			}
 		}
 	}, [data, size, focusedNodeId, minHeight, contentHeight, onFocusChange])
@@ -217,9 +195,7 @@ export function Treemap({
 			ref={containerRef}
 			role="group"
 			aria-label={ariaLabel}
-			data-treemap-overview={
-				layout.categoryOverview ? "categories" : layout.sectionOverview ? "sections" : "nested"
-			}
+			data-treemap-overview={layout.categoryOverview ? "categories" : "nested"}
 			style={{
 				minHeight: layout.categoryOverview
 					? Math.min(720, Math.max(104, layout.nodes.length * 52 + 6))

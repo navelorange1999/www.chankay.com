@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useState } from "react"
 import { useRouter } from "next/navigation"
 
 import {
@@ -22,11 +23,22 @@ export function TopicMapExplorer({
 	locale: SupportedLocale
 }) {
 	const router = useRouter()
+	const [focus, setFocus] = useState<{ id: string | null; locale: SupportedLocale }>({
+		id: null,
+		locale,
+	})
+	const activeCategory =
+		focus.locale === locale
+			? data.categories.find((category) => category.id === focus.id)
+			: undefined
 	const strings = getUiStrings(locale).topicMap
 	return (
 		<Treemap
 			data={topicMapToTree(data)}
-			ariaLabel={strings.allCategories}
+			ariaLabel={activeCategory?.label ?? strings.allCategories}
+			backLabel={strings.allCategories}
+			focusedNodeId={activeCategory?.id ?? null}
+			onFocusChange={(id) => setFocus({ id, locale })}
 			onLeafActivate={(id) => {
 				const article = data.categories
 					.flatMap((category) => category.articles)

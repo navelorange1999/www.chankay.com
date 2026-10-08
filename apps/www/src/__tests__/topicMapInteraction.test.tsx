@@ -29,7 +29,7 @@ afterEach(async () => {
 	vi.restoreAllMocks()
 	vi.unstubAllGlobals()
 })
-it("keeps category roots static and opens a localized article without a panel", async () => {
+it("zooms categories in the canvas and opens a localized article without a panel", async () => {
 	await act(() =>
 		root.render(
 			<TopicMapExplorer
@@ -54,20 +54,24 @@ it("keeps category roots static and opens a localized article without a panel", 
 			/>
 		)
 	)
-	const category = host.querySelector<HTMLElement>('[data-treemap-category="category"]')!
+	const category = host.querySelector<HTMLButtonElement>('button[aria-label="Technical: 1"]')!
 	expect(category).not.toBeNull()
-	expect(category.tagName).toBe("DIV")
-	expect(category.textContent).toContain("Technical")
 	expect(category.textContent).toContain("1")
-	expect(category.className).not.toContain("cursor-pointer")
-	expect(category.className).not.toContain("hover:scale")
+	expect(category.style.height).toBe("44px")
+	expect(category.className).toContain("cursor-pointer")
+	expect(category.className).toContain("hover:scale")
+	category.focus()
 	await act(() => category.click())
-	expect(host.querySelector("button[data-treemap-back]")).toBeNull()
+	const back = host.querySelector<HTMLButtonElement>("button[data-treemap-back]")!
+	expect(back).not.toBeNull()
+	expect(document.activeElement).toBe(back)
 
 	expect(host.querySelector("table, details, h2, h3")).toBeNull()
 	const article = host.querySelector<HTMLButtonElement>('button[aria-label="Article: 1"]')!
 	await act(() => article.click())
 	expect(push).toHaveBeenCalledWith("/zh-CN/posts/article")
+	await act(() => back.click())
+	expect(document.activeElement).toBe(host.querySelector('button[aria-label="Technical: 1"]'))
 })
 
 it.each([8, 25])(
@@ -213,57 +217,4 @@ it("uses compact category navigation for a skewed overview without collapsing ar
 	expect(canvas.querySelectorAll('button[aria-label^="Article "]')).toHaveLength(100)
 	expect(Number.parseFloat(canvas.style.minHeight)).toBeLessThanOrEqual(720)
 	expect(canvas.className).toContain("overflow-y-auto")
-})
-
-it("keeps every article reachable in a skewed map with static category roots", async () => {
-	vi.spyOn(HTMLElement.prototype, "clientWidth", "get").mockReturnValue(343)
-	vi.spyOn(HTMLElement.prototype, "clientHeight", "get").mockReturnValue(320)
-	const { Treemap } = await import("@repo/ui/components/Treemap")
-	await act(() =>
-		root.render(
-			<Treemap
-				ariaLabel="Articles"
-				onLeafActivate={() => {}}
-				data={{
-					id: "root",
-					label: "Articles",
-					children: [
-						{
-							id: "large",
-							label: "Large",
-							children: Array.from({ length: 100 }, (_, index) => ({
-								id: `article-${index}`,
-								label: `Article ${index}`,
-								value: 1,
-							})),
-						},
-						{
-							id: "small",
-							label: "Small",
-							children: [{ id: "small-article", label: "Small article", value: 1 }],
-						},
-					],
-				}}
-			/>
-		)
-	)
-	const canvas = host.querySelector<HTMLElement>('[role="group"]')!
-	expect(canvas.dataset.treemapOverview).toBe("sections")
-	expect(Number.parseFloat(canvas.style.minHeight)).toBeLessThanOrEqual(720)
-	expect(canvas.className).toContain("overflow-y-auto")
-	expect(
-		canvas.querySelector(
-			'button[aria-label="Large: 100"], button[aria-label="Small: 1"], [data-treemap-back]'
-		)
-	).toBeNull()
-	expect(canvas.querySelectorAll("[data-treemap-category]")).toHaveLength(2)
-	const articles = Array.from(canvas.querySelectorAll<HTMLButtonElement>("button[aria-label]"))
-	expect(articles).toHaveLength(101)
-	for (const article of articles) {
-		expect(article.querySelector("[data-treemap-count]")?.textContent).toBe("1")
-		expect(Number.parseFloat(article.style.width)).toBeGreaterThanOrEqual(24)
-		expect(Number.parseFloat(article.style.height)).toBeGreaterThanOrEqual(24)
-		article.focus()
-		expect(document.activeElement).toBe(article)
-	}
 })

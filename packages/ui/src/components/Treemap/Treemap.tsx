@@ -252,8 +252,13 @@ export function Treemap({
 						<div key={node.id}>
 							<div
 								aria-hidden="true"
-								className="pointer-events-none absolute rounded-md border"
+								className="pointer-events-none absolute rounded-md"
 								style={style}
+							/>
+							<div
+								aria-hidden="true"
+								className="pointer-events-none absolute z-20 rounded-md border"
+								style={{ ...style, background: "transparent" }}
 							/>
 							{canActivate ? (
 								<button
@@ -269,7 +274,7 @@ export function Treemap({
 										onFocusChange?.(node.id)
 									}}
 									className={`absolute flex items-center overflow-hidden rounded-md px-2 text-left ${interactiveClass}`}
-									style={{ ...style, height: 44 }}
+									style={{ ...style, height: 44, background: "transparent" }}
 								>
 									{content}
 								</button>
@@ -278,7 +283,7 @@ export function Treemap({
 									data-treemap-category={node.id}
 									aria-label={label}
 									className="absolute overflow-hidden p-1.5"
-									style={{ ...style, height: Math.min(44, node.height) }}
+									style={{ ...style, height: Math.min(44, node.height), background: "transparent" }}
 								>
 									{content}
 								</div>

@@ -1,9 +1,11 @@
 import { createHash } from "node:crypto"
 import type { PayloadRequest } from "payload"
 
+import { migrationReadAdapter } from "./readAdapter"
+import { requireMigrationWritesAvailable } from "./writeAvailability"
 import { planPublication, type PublicationCollection } from "../publicationMigration/plan"
 import { planPostTaxonomy } from "../taxonomyMigration/plan"
-import { publicationCompatibilityCutoff } from "../publicationCompatibility"
+import { publicationCompatibilityCutoff } from "./legacyCutoff"
 import {
 	EXPECTED_PAGE_UPDATED_AT_CONTEXT_KEY,
 	GENERATION_CONTEXT_FLAG,
@@ -49,7 +51,6 @@ function validateInput(input: MigrationInput) {
 		!Number.isFinite(Date.parse(input.legacyBefore))
 	)
 		throw new Error("A valid legacy cutoff is required.")
-	requireMigrationCutoff(input.legacyBefore)
 }
 function canonical(value: unknown): unknown {
 	if (Array.isArray(value)) return value.map(canonical)
@@ -71,7 +72,7 @@ export async function migrationSnapshot(
 	collection: PublicationCollection | "categories",
 	id: string
 ) {
-	const result = await req.payload.db.find<RecordData>({
+	const result = await migrationReadAdapter(req.payload).find<RecordData>({
 		collection,
 		where: { id: { equals: id } },
 		locale: "all",
@@ -80,9 +81,9 @@ export async function migrationSnapshot(
 		pagination: false,
 		req,
 	})
-	const record = result.docs[0]
+	const record = result.docs[0] ? (JSON.parse(JSON.stringify(result.docs[0])) as RecordData) : null
 	if (!record || String(record.id) !== id) throw new Error("Migration record was not found.")
-	const versions = await req.payload.db.findVersions<RecordData>({
+	const versions = await migrationReadAdapter(req.payload).findVersions<RecordData>({
 		collection,
 		where: { parent: { equals: id } },
 		locale: "all",
@@ -230,6 +231,7 @@ export async function migrationTransaction<T>(
 	operation: (transactionReq: PayloadRequest) => Promise<T>
 ): Promise<T> {
 	requireMigrationUser(req)
+	requireMigrationWritesAvailable()
 	if (req.transactionID) throw new Error("Migration must own its transaction.")
 	const transactionID = await req.payload.db.beginTransaction()
 	if (transactionID == null) throw new Error("A database transaction is required for migration.")
@@ -268,6 +270,7 @@ export async function requireMigrationDependencies(
 }
 export async function applyMigration(req: PayloadRequest, input: ApplyInput) {
 	requireMigrationUser(req)
+	requireMigrationWritesAvailable()
 	validateInput(input)
 	if (!/^[a-f0-9]{64}$/.test(input.planHash)) throw new Error("A reviewed plan hash is required.")
 	return migrationTransaction(req, async (transactionReq) => {
@@ -368,7 +371,9 @@ export async function verifyMigration(req: PayloadRequest, runId: string) {
 	return {
 		runId,
 		verified,
-		rollbackEligible: verified && supportsDataRollback,
+		rollbackEligible: false,
+		rollbackWritesAvailable: false,
+		historicalRollbackEligible: verified && supportsDataRollback,
 		rollbackStrategy: supportsDataRollback ? "guarded-data" : "compatible-code",
 		currentUpdatedAt: current.record.updatedAt,
 		rollback: verified
@@ -386,6 +391,7 @@ export async function verifyMigration(req: PayloadRequest, runId: string) {
 
 export async function rollbackMigration(req: PayloadRequest, runId: string) {
 	requireMigrationUser(req)
+	requireMigrationWritesAvailable()
 	validId(runId)
 	if (!publicationCompatibilityCutoff())
 		throw new Error("Rollback requires compatible application mode.")

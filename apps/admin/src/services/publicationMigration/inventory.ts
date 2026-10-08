@@ -1,5 +1,6 @@
 import type { Payload } from "payload"
 
+import { migrationReadAdapter } from "../contentMigration/readAdapter"
 import {
 	planPublication,
 	type NativeStatus,
@@ -49,11 +50,11 @@ export async function collectPublicationInventory(
 		let page = 1
 		let totalPages = 1
 		while (page <= totalPages) {
-			const result = await payload.db.find<StoredRecord>({
+			const result = await migrationReadAdapter(payload).find<StoredRecord>({
 				collection,
 				locale: "all",
-				select: {
-					id: true,
+				projection: {
+					_id: true,
 					createdAt: true,
 					updatedAt: true,
 					status: true,
@@ -85,7 +86,7 @@ export async function collectPublicationInventory(
 					["tags", "series", "media"].includes(collection) &&
 					(status !== "published" || (collection === "series" && !record.progress))
 				) {
-					const versions = await payload.db.findVersions<StoredVersion>({
+					const versions = await migrationReadAdapter(payload).findVersions<StoredVersion>({
 						collection,
 						where: { parent: { equals: String(record.id) } },
 						select: { version: { _status: true } },

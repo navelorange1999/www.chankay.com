@@ -1,4 +1,3 @@
-import { mirrorNativePublication } from "@/services/publicationCompatibility"
 import type { CollectionConfig } from "payload"
 import { structureBlocks } from "@/blocks/StructureBlocks"
 import {
@@ -8,7 +7,7 @@ import {
 	createRevalidationHook,
 } from "@/hooks/revalidateWww"
 import { syncPageGeneratedAssets } from "@/services/pageAssets"
-import { createPublishedOrAuthenticated } from "@/access/publishedOrAuthenticated"
+import { publishedOrAuthenticated } from "@/access/publishedOrAuthenticated"
 import { authenticated } from "@/access/authenticated"
 import { validatePagePublication } from "@/hooks/validatePublishedMedia"
 import { rejectStalePageAssetUpdate } from "@/services/pageAssets/versionGuard"
@@ -20,7 +19,7 @@ export const Pages: CollectionConfig = {
 		defaultColumns: ["title", "slug", "_status", "updatedAt"],
 	},
 	access: {
-		read: createPublishedOrAuthenticated("pages"),
+		read: publishedOrAuthenticated,
 		readVersions: authenticated,
 		create: authenticated,
 		update: authenticated,
@@ -44,21 +43,6 @@ export const Pages: CollectionConfig = {
 			admin: {
 				description: "URL path for this page (e.g., 'home', 'about')",
 			},
-		},
-		{
-			name: "status",
-			type: "select",
-			required: true,
-			defaultValue: "draft",
-			admin: {
-				readOnly: true,
-				description:
-					"Legacy publication state retained for migration. Use the native Publish control.",
-			},
-			options: [
-				{ label: "Draft", value: "draft" },
-				{ label: "Published", value: "published" },
-			],
 		},
 		{
 			name: "structure",
@@ -146,7 +130,6 @@ export const Pages: CollectionConfig = {
 		beforeChange: [
 			rejectStalePageAssetUpdate,
 			capturePublicSnapshot("pages"),
-			mirrorNativePublication,
 			validatePagePublication,
 		],
 		afterChange: [createRevalidationHook("pages"), syncPageGeneratedAssets],

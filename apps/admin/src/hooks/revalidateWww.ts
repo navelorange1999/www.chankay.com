@@ -9,10 +9,6 @@ import type {
 import { isSupportedLocale, type SupportedLocale } from "@repo/i18n"
 
 import { enqueueRevalidation } from "@/services/revalidation/dispatcher"
-import {
-	getPublicationWhere,
-	publicationCompatibilityCutoff,
-} from "@/services/publicationCompatibility"
 
 type ContentCollection = "posts" | "pages" | "categories" | "tags" | "series" | "media"
 type PublicSnapshot = { status: string | null; updatedAt: string | null; slug?: string | null }
@@ -31,24 +27,6 @@ async function readPublicSnapshot(
 	collection: ContentCollection,
 	id: string
 ): Promise<PublicSnapshot | null> {
-	if (publicationCompatibilityCutoff()) {
-		const result = await req.payload.find({
-			collection,
-			where: { and: [{ id: { equals: id } }, getPublicationWhere(collection)] },
-			draft: false,
-			depth: 0,
-			limit: 1,
-			overrideAccess: true,
-			req,
-		})
-		const doc = result.docs[0]
-		if (!doc) return null
-		return {
-			status: "published",
-			updatedAt: doc.updatedAt ?? null,
-			slug: "slug" in doc && typeof doc.slug === "string" ? doc.slug : null,
-		}
-	}
 	const doc = await req.payload.findByID({
 		collection,
 		id,

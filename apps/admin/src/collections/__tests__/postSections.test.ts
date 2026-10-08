@@ -115,19 +115,13 @@ describe("post section contract", () => {
 		}
 	)
 
-	it("retains a read-only legacy primary tag relationship", () => {
-		const primaryTag = Posts.fields.find((field) => "name" in field && field.name === "primaryTag")
-
-		expect(primaryTag).toMatchObject({
-			name: "primaryTag",
-			relationTo: "tags",
-			type: "relationship",
-			admin: {
-				position: "sidebar",
-				description:
-					"Legacy classification retained for migration. Use Category for new assignments.",
-			},
-		})
+	it("uses Category without a legacy primary tag relationship", () => {
+		expect(
+			Posts.fields.find((field) => "name" in field && field.name === "primaryTag")
+		).toBeUndefined()
+		expect(
+			Posts.fields.find((field) => "name" in field && field.name === "category")
+		).toMatchObject({ relationTo: "categories" })
 	})
 
 	it("validates post slugs as safe URL path segments", () => {

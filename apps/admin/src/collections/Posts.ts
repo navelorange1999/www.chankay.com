@@ -1,4 +1,3 @@
-import { mirrorNativePublication } from "@/services/publicationCompatibility"
 import type { CollectionConfig } from "payload"
 import { POST_SLUG_MAX_LENGTH, validatePostSlug } from "@repo/i18n"
 import { authenticated } from "../access/authenticated"
@@ -9,7 +8,7 @@ import {
 	createRevalidationDeleteHook,
 	createRevalidationHook,
 } from "../hooks/revalidateWww"
-import { createPublishedOrAuthenticated } from "../access/publishedOrAuthenticated"
+import { publishedOrAuthenticated } from "../access/publishedOrAuthenticated"
 import { validatePostPublication } from "../hooks/validatePostPublication"
 import { buildPostPreviewUrl } from "../utils/postPreview"
 import { estimateReadingTimeFromMarkdown } from "../utils/readingTime"
@@ -18,7 +17,7 @@ import { validatePostContent } from "./posts/validatePostContent"
 export const Posts: CollectionConfig = {
 	slug: "posts",
 	access: {
-		read: createPublishedOrAuthenticated("posts"),
+		read: publishedOrAuthenticated,
 		readVersions: authenticated,
 		create: authenticated,
 		update: authenticated,
@@ -133,24 +132,6 @@ export const Posts: CollectionConfig = {
 			},
 		},
 		{
-			name: "status",
-			type: "select",
-			required: true,
-			defaultValue: "draft",
-			index: true,
-			admin: {
-				position: "sidebar",
-				readOnly: true,
-				description:
-					"Legacy publication state retained for migration. Use the native Publish control.",
-			},
-			options: [
-				{ label: "Draft", value: "draft" },
-				{ label: "Published", value: "published" },
-				{ label: "Archived", value: "archived" },
-			],
-		},
-		{
 			name: "publishedAt",
 			type: "date",
 			index: true,
@@ -207,17 +188,6 @@ export const Posts: CollectionConfig = {
 			admin: {
 				position: "sidebar",
 				description: "Topics used for discovery and the topic map; a post may have multiple tags.",
-			},
-		},
-		{
-			name: "primaryTag",
-			type: "relationship",
-			relationTo: "tags",
-			admin: {
-				position: "sidebar",
-				readOnly: true,
-				description:
-					"Legacy classification retained for migration. Use Category for new assignments.",
 			},
 		},
 
@@ -277,17 +247,12 @@ export const Posts: CollectionConfig = {
 	timestamps: true,
 	hooks: {
 		beforeDelete: [capturePublicDeleteSnapshot("posts")],
-		beforeChange: [
-			capturePublicSnapshot("posts"),
-			mirrorNativePublication,
-			validatePostPublication,
-		],
+		beforeChange: [capturePublicSnapshot("posts"), validatePostPublication],
 		afterChange: [
 			createRevalidationHook("posts", [
 				"commentsEnabled",
 				"category",
 				"tags",
-				"primaryTag",
 				"series",
 				"seriesOrder",
 				"featured",

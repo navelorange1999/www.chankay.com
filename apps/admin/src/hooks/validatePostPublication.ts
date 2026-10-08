@@ -1,9 +1,4 @@
 import type { CollectionBeforeChangeHook } from "payload"
-import {
-	getPublicationWhere,
-	isLegacyPublicationRecord,
-	publicationCompatibilityCutoff,
-} from "@/services/publicationCompatibility"
 
 function asRecord(value: unknown): Record<string, unknown> {
 	return value && typeof value === "object" && !Array.isArray(value)
@@ -24,22 +19,13 @@ function relationIds(value: unknown): string[] {
 export const validatePostPublication: CollectionBeforeChangeHook = async ({
 	data,
 	originalDoc,
-	operation,
 	req,
 }) => {
 	if (data?._status !== "published") return data
 	const field = (name: string): unknown => (name in data ? data[name] : originalDoc?.[name])
 	const category = relationIds(field("category"))[0]
 	const meta = data.meta === null ? {} : { ...asRecord(originalDoc?.meta), ...asRecord(data.meta) }
-	const mayDeferCategory =
-		operation !== "create" &&
-		Boolean(originalDoc?.id) &&
-		isLegacyPublicationRecord(originalDoc) &&
-		(relationIds(originalDoc?.category).length === 0 ||
-			(Boolean(req.user) &&
-				req.context?.contentMigrationRollback === true &&
-				data.category === null))
-	if (!category && !mayDeferCategory) throw new Error("A published post requires a category.")
+	if (!category) throw new Error("A published post requires a category.")
 	const references: Array<{
 		collection: "categories" | "tags" | "series" | "media"
 		ids: string[]
@@ -54,29 +40,18 @@ export const validatePostPublication: CollectionBeforeChangeHook = async ({
 	]
 	for (const { collection, ids } of references) {
 		for (const id of ids) {
-			const published = publicationCompatibilityCutoff()
-				? (
-						await req.payload.find({
-							collection,
-							where: { and: [{ id: { equals: id } }, getPublicationWhere(collection)] },
-							draft: false,
-							depth: 0,
-							limit: 1,
-							overrideAccess: true,
-							req,
-						})
-					).docs.length > 0
-				: (
-						await req.payload.findByID({
-							collection,
-							id,
-							draft: false,
-							depth: 0,
-							overrideAccess: true,
-							disableErrors: true,
-							req,
-						})
-					)?._status === "published"
+			const published =
+				(
+					await req.payload.findByID({
+						collection,
+						id,
+						draft: false,
+						depth: 0,
+						overrideAccess: true,
+						disableErrors: true,
+						req,
+					})
+				)?._status === "published"
 			if (!published) {
 				throw new Error(`A published post requires its ${collection} references to be published.`)
 			}

@@ -280,10 +280,6 @@ export interface Post {
    * Show GitHub Discussions comments for this post in every language. Disabling hides the embed; existing discussions remain on GitHub.
    */
   commentsEnabled?: boolean | null;
-  /**
-   * Legacy publication state retained for migration. Use the native Publish control.
-   */
-  status: 'draft' | 'published' | 'archived';
   publishedAt?: string | null;
   /**
    * Associate this post with a series
@@ -298,10 +294,6 @@ export interface Post {
    * Topics used for discovery and the topic map; a post may have multiple tags.
    */
   tags?: (string | Tag)[] | null;
-  /**
-   * Legacy classification retained for migration. Use Category for new assignments.
-   */
-  primaryTag?: (string | null) | Tag;
   /**
    * Estimated reading time in minutes
    */
@@ -369,7 +361,6 @@ export interface Series {
    */
   author: string | User;
   progress: 'planned' | 'in-progress' | 'completed' | 'on-hold';
-  status?: ('draft' | 'in-progress' | 'completed' | 'on-hold') | null;
   difficulty?: ('beginner' | 'intermediate' | 'advanced') | null;
   /**
    * Total estimated reading time in minutes
@@ -451,10 +442,6 @@ export interface Page {
    * URL path for this page (e.g., 'home', 'about')
    */
   slug: string;
-  /**
-   * Legacy publication state retained for migration. Use the native Publish control.
-   */
-  status: 'draft' | 'published';
   /**
    * Build your page by nesting Structure and Content blocks (max depth: 4)
    */
@@ -62428,7 +62415,7 @@ export interface PayloadMcpApiKey {
      */
     translateSiteConfigLabels?: boolean | null;
     /**
-     * Authenticated, bounded raw publication metadata inventory. Returns no article bodies. Review and apply individual records with the migration tools.
+     * Authenticated, bounded raw publication metadata inventory. Returns no article bodies. Migration writes are retired; inventory and verification are read-only.
      */
     contentMigrationInventory?: boolean | null;
     /**
@@ -62436,21 +62423,9 @@ export interface PayloadMcpApiKey {
      */
     contentMigrationReview?: boolean | null;
     /**
-     * Apply exactly one reviewed migration using its expected timestamp and hash, inside a transaction. Legacy exposed Pages/Posts require explicit current-snapshot approval. Writes an immutable operational journal; never publishes pending drafts.
-     */
-    contentMigrationApply?: boolean | null;
-    /**
-     * Verify a migration journal against the current content and version hashes. Returns guarded rollback metadata only while no subsequent edits occurred; does not perform rollback.
+     * Verify a migration journal against the current content and version hashes. Returns historical rollback metadata only while no subsequent edits occurred; writes are unavailable in this release.
      */
     contentMigrationVerify?: boolean | null;
-    /**
-     * Restore captured taxonomy or supported former native states only when current content and versions still match the immutable migration journal. Requires compatibility mode. Never removes initialized versions or new Categories; those use compatible-code rollback.
-     */
-    contentMigrationRollback?: boolean | null;
-    /**
-     * Create an approved technical or trading Category with explicit English and Chinese names and publication. Transactional and idempotent for matching published content; conflicting existing categories are rejected.
-     */
-    createMigrationCategory?: boolean | null;
   };
   updatedAt: string;
   createdAt: string;
@@ -62730,13 +62705,11 @@ export interface PostsSelect<T extends boolean = true> {
   content?: T;
   featuredImage?: T;
   commentsEnabled?: T;
-  status?: T;
   publishedAt?: T;
   series?: T;
   seriesOrder?: T;
   category?: T;
   tags?: T;
-  primaryTag?: T;
   readingTime?: T;
   featured?: T;
   views?: T;
@@ -62779,7 +62752,6 @@ export interface SeriesSelect<T extends boolean = true> {
   coverImage?: T;
   author?: T;
   progress?: T;
-  status?: T;
   difficulty?: T;
   estimatedReadTime?: T;
   featured?: T;
@@ -62795,7 +62767,6 @@ export interface SeriesSelect<T extends boolean = true> {
 export interface PagesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
-  status?: T;
   structure?:
     | T
     | {
@@ -96579,10 +96550,7 @@ export interface PayloadMcpApiKeysSelect<T extends boolean = true> {
         translateSiteConfigLabels?: T;
         contentMigrationInventory?: T;
         contentMigrationReview?: T;
-        contentMigrationApply?: T;
         contentMigrationVerify?: T;
-        contentMigrationRollback?: T;
-        createMigrationCategory?: T;
       };
   updatedAt?: T;
   createdAt?: T;

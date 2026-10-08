@@ -20,6 +20,8 @@ Use this pattern as the baseline:
 
 ```typescript
 import type { CollectionConfig } from "payload"
+import { authenticated } from "../access/authenticated"
+import { publishedOrAuthenticated } from "../access/publishedOrAuthenticated"
 
 export const Posts: CollectionConfig = {
   slug: "posts",
@@ -27,8 +29,13 @@ export const Posts: CollectionConfig = {
     useAsTitle: "title",
   },
   access: {
-    read: () => true,
+    read: publishedOrAuthenticated,
+    readVersions: authenticated,
+    create: authenticated,
+    update: authenticated,
+    delete: authenticated,
   },
+  versions: { drafts: true },
   fields: [
     {
       name: "title",
@@ -49,6 +56,22 @@ export const Posts: CollectionConfig = {
   timestamps: true,
 }
 ```
+
+## Native Publication and Taxonomy
+
+Posts, Pages, Tags, Series, Media, and Categories use Payload native drafts and `_status` as their
+publication authority. Anonymous access requires `_status=published`; a missing native state is
+private. Keep version reads and mutations authenticated. Do not reintroduce custom publication
+`status` fields or compatibility mirrors. Series business state belongs in `progress`.
+
+Posts use one Category for section routing and topical Tags for discovery. Do not read or write
+legacy `primaryTag` in active consumers. Publishing requires a published Category and published
+selected references. Draft saves may remain incomplete. Generated asset processing fields retain
+their separate meaning and must preserve the owning draft/published state.
+
+The cleanup release must only activate after the migration and public parity gate in
+`deployment-and-environments.md` passes. Historical migration services and journals retain raw
+legacy fields solely for audit and compatible-release rollback; their writes are retired here.
 
 ## Global Structure
 

@@ -54,7 +54,7 @@ export function resolvePostImage(
 	return resolveMedia(post.featuredImage) || resolveMedia(post.meta?.image)
 }
 
-export function resolvePostTags(post: Pick<Post, "tags" | "primaryTag">): Tag[] {
+export function resolvePostTags(post: Pick<Post, "tags">): Tag[] {
 	const tags = new Map<string, Tag>()
 
 	for (const item of post.tags || []) {
@@ -69,20 +69,5 @@ export function resolvePostTags(post: Pick<Post, "tags" | "primaryTag">): Tag[] 
 		}
 	}
 
-	if (
-		post.primaryTag &&
-		typeof post.primaryTag === "object" &&
-		post.primaryTag._status === "published" &&
-		"id" in post.primaryTag &&
-		"name" in post.primaryTag
-	) {
-		tags.set(post.primaryTag.id, post.primaryTag as Tag)
-	}
-
 	return Array.from(tags.values())
-}
-
-export function resolvePostSecondaryTags(post: Pick<Post, "tags" | "primaryTag">): Tag[] {
-	const primaryTagId = typeof post.primaryTag === "object" ? post.primaryTag?.id : post.primaryTag
-	return resolvePostTags(post).filter((tag) => tag.id !== primaryTagId)
 }

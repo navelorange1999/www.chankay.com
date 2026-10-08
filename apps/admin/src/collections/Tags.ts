@@ -2,7 +2,7 @@ import type { CollectionConfig } from "payload"
 import { authenticated } from "../access/authenticated"
 import { createBasicTranslationHook } from "../hooks/createTranslationHook"
 import { colorPickerField } from "../fields/colorPickerField"
-import { createPublishedOrAuthenticated } from "../access/publishedOrAuthenticated"
+import { publishedOrAuthenticated } from "../access/publishedOrAuthenticated"
 import {
 	capturePublicSnapshot,
 	capturePublicDeleteSnapshot,
@@ -13,7 +13,7 @@ import {
 export const Tags: CollectionConfig = {
 	slug: "tags",
 	access: {
-		read: createPublishedOrAuthenticated("tags"),
+		read: publishedOrAuthenticated,
 		readVersions: authenticated,
 		create: authenticated,
 		update: authenticated,

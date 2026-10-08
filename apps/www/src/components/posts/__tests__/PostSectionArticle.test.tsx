@@ -146,7 +146,7 @@ describe("PostSectionArticle", () => {
 		{ section: "technical" as const, primaryTag: { id: "technical-id", name: "Technical" } },
 		{ section: "trading" as const, primaryTag: "trading-id" },
 	])(
-		"hides the $section primary tag but keeps other tags on the article",
+		"renders all published topical tags for $section on the article",
 		async ({ section, primaryTag }) => {
 			const sectionTag = {
 				id: `${section}-id`,
@@ -170,7 +170,7 @@ describe("PostSectionArticle", () => {
 				(match) => match[1]
 			)
 
-			expect(articleTags).not.toContain(sectionTag.name)
+			expect(articleTags).toContain(sectionTag.name)
 			expect(articleTags).toContain("Macro")
 		}
 	)

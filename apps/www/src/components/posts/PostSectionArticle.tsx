@@ -47,7 +47,7 @@ import {
 	resolvePostImage,
 	resolvePostSeoDescription,
 	resolvePostSeoTitle,
-	resolvePostSecondaryTags,
+	resolvePostTags,
 } from "@/utils/posts"
 import { POST_SECTIONS, resolvePostSectionPath, type PostSection } from "@/utils/postSections"
 
@@ -175,7 +175,7 @@ export async function PostSectionArticle({
 	const postDate = formatPostDate(post.publishedAt || post.updatedAt, locale)
 	const postExcerpt = resolvePostDisplayExcerpt(post) || null
 	const postTitle = resolvePostDisplayTitle(post, locale)
-	const postTags = resolvePostSecondaryTags(post)
+	const postTags = resolvePostTags(post)
 	const postDocument = createMarkdownDocument(post.content)
 	const tocHeadings = postDocument.headings.filter((heading) => [2, 3].includes(heading.level))
 	const series =

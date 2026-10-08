@@ -1,8 +1,16 @@
 # Content Taxonomy and Topic Treemap
 
-Status: proposed implementation and acceptance contract  
-Date: 2026-09-29  
+Status: implemented contract  
+Updated: 2026-10-08  
 Scope: Payload content model, public topic statistics, and the homepage Treemap block
+
+## Production verification (October 8, 2026)
+
+The bilingual homepage topic map is enabled below the GitHub heatmap. Technical contains 5 articles and 12 tag assignments; Trading contains 3 articles and 9 assignments. There are 8 unique published articles, 21 assignments, and no untagged articles. Existing article content, relationships, publication dates, and public media hashes matched the pre-migration baseline.
+
+Production checks covered category-header zoom, reset, topic article lists, keyboard activation, canonical article redirects, English/Chinese labels, mobile and desktop layouts, and light/dark theme tokens. Saving the homepage draft left the public snapshot unchanged; publishing refreshed the homepage without redeploying. Generated page assets completed in the native draft workflow without overwriting the live snapshot.
+
+The final cleanup passed 398 Admin tests, 149 website tests, both application type checks, and cross-release audit-hash fixtures. The 10,000-post latency benchmark was local; it is not a production latency claim. Operational migration records remain outside the repository.
 
 ## 1. Overview and decisions
 
@@ -23,9 +31,9 @@ Category describes a broad subject area, Tag describes a cross-cutting topic, an
 
 The interaction decision was approved on 2026-09-29: leaves remain Tags, not articles. Category headers zoom into their tags; Tag activation opens a filtered article panel; article links navigate to existing detail routes. This extends the original display-only scope without changing the statistical unit or adding a third tree level.
 
-The agreed product direction is recorded here. Live CMS data has **not** been audited for this proposal. Category names, legacy mappings, dataset size, and production performance remain release inputs to verify, rather than facts inferred from screenshots.
+The agreed product direction and acceptance criteria are retained below. The production verification above records the audited dataset and deployed behavior; larger-dataset performance evidence remains limited to local fixtures.
 
-## 2. Current implementation and constraints
+## 2. Historical baseline before rollout and constraints
 
 | Area              | Current implementation                                                                                                                        | Implication                                                                                                |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
@@ -44,12 +52,12 @@ Repository rules require English technical documentation, CMS-managed user-facin
 
 Relevant source:
 
-- [Post model](../../apps/admin/src/collections/Posts.ts)
-- [Tag model](../../apps/admin/src/collections/Tags.ts) and [Series model](../../apps/admin/src/collections/Series.ts)
-- [Payload configuration](../../apps/admin/src/payload.config.ts)
-- [Article utilities](../../apps/www/src/utils/posts.ts) and [post queries](../../apps/www/src/services/payload/posts.ts)
-- [Site configuration](../../apps/admin/src/globals/SiteConfig.ts)
-- [Cache invalidation hook](../../apps/admin/src/hooks/revalidateWww.ts) and [website revalidation route](../../apps/www/src/app/api/revalidate/route.ts)
+- [Post model](../apps/admin/src/collections/Posts.ts)
+- [Tag model](../apps/admin/src/collections/Tags.ts) and [Series model](../apps/admin/src/collections/Series.ts)
+- [Payload configuration](../apps/admin/src/payload.config.ts)
+- [Article utilities](../apps/www/src/utils/posts.ts) and [post queries](../apps/www/src/services/payload/posts.ts)
+- [Site configuration](../apps/admin/src/globals/SiteConfig.ts)
+- [Cache invalidation hook](../apps/admin/src/hooks/revalidateWww.ts) and [website revalidation route](../apps/www/src/app/api/revalidate/route.ts)
 
 ## 3. Goals, non-goals, and alternatives
 
@@ -112,7 +120,7 @@ Initial categories such as Technical and Trading are editorial examples, not har
 
 ### Shared native publication lifecycle
 
-The [Native Publication for Content Collections](./native-content-publication.md) proposal is authoritative for Posts, Pages, Tags, Series, Media, and Categories. It defines native draft/publish behavior, preview authorization, generated assets, legacy migration, and the acceptance matrix. Users is an account collection and does not gain a content publication lifecycle.
+The [Native Publication for Content Collections](./native-content-publication.md) contract is authoritative for Posts, Pages, Tags, Series, Media, and Categories. It defines native draft/publish behavior, preview authorization, generated assets, legacy migration, and the acceptance matrix. Users is an account collection and does not gain a content publication lifecycle.
 
 For this feature, the required consequences are:
 

@@ -76,6 +76,8 @@ export async function migrationSnapshot(
 		where: { id: { equals: id } },
 		locale: "all",
 		limit: 1,
+		// A single query must start the transaction before any counted version reads.
+		pagination: false,
 		req,
 	})
 	const record = result.docs[0]
@@ -258,6 +260,7 @@ export async function requireMigrationDependencies(
 			},
 			limit: 1,
 			select: { id: true },
+			pagination: false,
 			req,
 		})
 		if (remaining.docs.length) throw new Error(`Migrate legacy ${dependency} before ${collection}.`)

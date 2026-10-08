@@ -11,15 +11,15 @@ import { Media } from "../Media"
 import { Pages } from "../Pages"
 import { Posts } from "../Posts"
 import { Series } from "../Series"
-import { Tags } from "../Tags"
 import { rejectStalePageAssetUpdate } from "@/services/pageAssets/versionGuard"
 
 afterEach(() => vi.unstubAllEnvs())
 
-const collections = [Posts, Pages, Tags, Series, Media, Categories]
+const collections = [Posts, Pages, Series, Media, Categories]
 
 describe("content publication schemas", () => {
 	it("removes legacy status and primaryTag schema fields", () => {
+		expect(Posts.fields.some((field) => "name" in field && field.name === "tags")).toBe(false)
 		const primaryTag = Posts.fields.find((field) => "name" in field && field.name === "primaryTag")
 		expect(primaryTag).toBeUndefined()
 		for (const collection of [Posts, Pages, Series])
@@ -67,7 +67,7 @@ describe("content publication schemas", () => {
 		expect(
 			Series.fields.find((field) => "name" in field && field.name === "status")
 		).toBeUndefined()
-		for (const collection of [Categories, Tags, Series]) {
+		for (const collection of [Categories, Series]) {
 			expect(
 				collection.fields.some(
 					(field) => "name" in field && field.name === "posts" && field.type === "join"

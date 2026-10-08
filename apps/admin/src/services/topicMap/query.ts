@@ -20,7 +20,7 @@ function localizedLabel(value: unknown): string {
 
 async function readAllPublished<T>(
 	payload: Payload,
-	collection: "posts" | "categories" | "tags",
+	collection: "posts" | "categories",
 	locale: "en" | "zh-CN",
 	select: Record<string, true>
 ): Promise<T[]> {
@@ -55,13 +55,19 @@ async function readAllPublished<T>(
 export async function getPublicTopicMap(
 	payload: Payload,
 	locale: "en" | "zh-CN",
-	labels: { uncategorized: string; untagged: string }
+	labels: { uncategorized: string }
 ): Promise<TopicMapResponse> {
-	const [posts, categories, tags] = await Promise.all([
-		readAllPublished<{ id: string; category?: unknown; tags?: unknown }>(payload, "posts", locale, {
-			category: true,
-			tags: true,
-		}),
+	const [posts, categories] = await Promise.all([
+		readAllPublished<{ id: string; category?: unknown; title?: unknown; slug?: unknown }>(
+			payload,
+			"posts",
+			locale,
+			{
+				category: true,
+				title: true,
+				slug: true,
+			}
+		),
 		readAllPublished<{
 			id: string
 			name?: unknown
@@ -72,7 +78,6 @@ export async function getPublicTopicMap(
 			sortOrder: true,
 			colorToken: true,
 		}),
-		readAllPublished<{ id: string; name?: unknown }>(payload, "tags", locale, { name: true }),
 	])
 
 	return aggregateTopicMap({
@@ -81,9 +86,8 @@ export async function getPublicTopicMap(
 		posts: posts.map((post) => ({
 			id: post.id,
 			category: relationId(post.category),
-			tags: Array.isArray(post.tags)
-				? post.tags.map(relationId).filter((id): id is string => id !== null)
-				: [],
+			title: localizedLabel(post.title),
+			slug: localizedLabel(post.slug),
 		})),
 		categories: categories.map((category) => ({
 			id: category.id,
@@ -93,6 +97,5 @@ export async function getPublicTopicMap(
 				? (category.colorToken as ChartTone)
 				: null,
 		})),
-		tags: tags.map((tag) => ({ id: tag.id, label: localizedLabel(tag.name) })),
 	})
 }

@@ -5,7 +5,7 @@ import { migrationReadAdapter } from "../readAdapter"
 
 function fixture() {
 	const collections = Object.fromEntries(
-		["posts", "pages", "series", "tags"].map((slug) => [
+		["posts", "pages", "series"].map((slug) => [
 			slug,
 			{
 				config: { slug, fields: [], flattenedFields: [], versions: { drafts: true } },
@@ -20,6 +20,7 @@ function fixture() {
 		id: "record1",
 		status: "published",
 		primaryTag: "tag1",
+		tags: ["tag1"],
 		postCount: 3,
 		postsen: [],
 		postszh: [],
@@ -53,10 +54,9 @@ function fixture() {
 
 describe("historical migration reads after schema removal", () => {
 	it.each([
-		["posts", { status: "published", primaryTag: "tag1" }],
+		["posts", { status: "published", primaryTag: "tag1", tags: ["tag1"] }],
 		["pages", { status: "published" }],
 		["series", { status: "published" }],
-		["tags", {}],
 	] as const)(
 		"restores only retired %s fields in records and versions",
 		async (collection, retired) => {

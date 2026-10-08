@@ -3,8 +3,6 @@
 import { hierarchy, treemap } from "d3-hierarchy"
 import { useEffect, useMemo, useRef, useState } from "react"
 
-import { cn } from "#utils/classnames"
-
 export type TreemapNode =
 	| { id: string; label: string; value: number; children?: never }
 	| { id: string; label: string; children: readonly TreemapNode[]; value?: never }
@@ -14,6 +12,7 @@ export type TreemapTone = "chart-1" | "chart-2" | "chart-3" | "chart-4" | "chart
 export type TreemapProps = {
 	data: TreemapNode
 	ariaLabel: string
+	backLabel?: string
 	className?: string
 	nodeTones?: Readonly<Record<string, TreemapTone>>
 	focusedNodeId?: string | null
@@ -94,6 +93,7 @@ export function computeTreemapLayout(
 export function Treemap({
 	data,
 	ariaLabel,
+	backLabel = data.label,
 	className,
 	nodeTones,
 	focusedNodeId,
@@ -101,6 +101,9 @@ export function Treemap({
 	onLeafActivate,
 }: TreemapProps) {
 	const containerRef = useRef<HTMLDivElement>(null)
+	const backRef = useRef<HTMLButtonElement>(null)
+	const branchButtons = useRef(new Map<string, HTMLButtonElement>())
+	const pendingFocus = useRef<{ branchId: string | null } | null>(null)
 	const [size, setSize] = useState({ width: 0, height: 0 })
 
 	useEffect(() => {
@@ -113,14 +116,82 @@ export function Treemap({
 		return () => observer.disconnect()
 	}, [])
 
+	const contentHeight = useMemo(() => {
+		if (size.width <= 0) return 0
+		const branches = "children" in data ? (data.children ?? []) : []
+		const focused = branches.find((branch) => branch.id === focusedNodeId && "children" in branch)
+		const visible = focused ?? data
+		const leaves = hierarchy(visible, (node) =>
+			"children" in node ? node.children : undefined
+		).leaves().length
+		const headerArea = focused ? 0 : branches.length * 96 * 44
+		return Math.ceil((leaves * 96 * 64 + headerArea) / size.width) + (focused ? 44 : 0)
+	}, [data, size.width, focusedNodeId])
+
+	const minHeight = Math.min(contentHeight, 720)
+
 	const layout = useMemo(() => {
 		try {
-			return computeTreemapLayout(data, size.width, size.height, focusedNodeId)
+			const computed = computeTreemapLayout(
+				data,
+				size.width,
+				Math.max(size.height, focusedNodeId ? contentHeight : minHeight) - (focusedNodeId ? 44 : 0),
+				focusedNodeId
+			)
+			const needsCategoryOverview =
+				!computed.focusedNodeId &&
+				computed.nodes.some((node) =>
+					node.id === node.branchId
+						? node.height < 44 || node.width < 44
+						: node.height < 24 || node.width < 24
+				)
+			if (!needsCategoryOverview)
+				return { ...computed, categoryOverview: false, sectionOverview: false }
+			if (!onFocusChange) {
+				const branches = "children" in data ? (data.children ?? []) : []
+				let offsetY = 0
+				const nodes = branches.flatMap((branch) => {
+					const leafCount = hierarchy(branch, (node) =>
+						"children" in node ? node.children : undefined
+					).leaves().length
+					const sectionHeight = Math.max(120, Math.ceil((leafCount * 96 * 64) / size.width) + 50)
+					const section = computeTreemapLayout(
+						{ id: data.id, label: data.label, children: [branch] },
+						size.width,
+						sectionHeight
+					)
+					const placed = section.nodes.map((node) => ({ ...node, y: node.y + offsetY }))
+					offsetY += sectionHeight + 6
+					return placed
+				})
+				return { ...computed, nodes, categoryOverview: false, sectionOverview: true }
+			}
+
+			const categories = computed.nodes.filter((node) => node.id === node.branchId)
+			const columns = Math.max(1, Math.floor(size.width / 180))
+			const tileWidth = (size.width - 6) / columns
+			return {
+				...computed,
+				categoryOverview: true,
+				sectionOverview: false,
+				nodes: categories.map((node, index) => ({
+					...node,
+					x: 3 + (index % columns) * tileWidth,
+					y: 3 + Math.floor(index / columns) * 52,
+					width: tileWidth - 3,
+					height: 44,
+				})),
+			}
 		} catch (error) {
 			if (process.env.NODE_ENV !== "production") console.error(error)
-			return { nodes: [] as LayoutNode[], focusedNodeId: null }
+			return {
+				nodes: [] as LayoutNode[],
+				focusedNodeId: null,
+				categoryOverview: false,
+				sectionOverview: false,
+			}
 		}
-	}, [data, size, focusedNodeId])
+	}, [data, size, focusedNodeId, minHeight, contentHeight, onFocusChange])
 	const branches = "children" in data && Array.isArray(data.children) ? data.children : []
 	const toneByBranch = new Map(
 		branches.map((branch, index) => [
@@ -129,47 +200,123 @@ export function Treemap({
 		])
 	)
 
+	useEffect(() => {
+		if (!pendingFocus.current) return
+		const target = pendingFocus.current.branchId
+		if (target === null && layout.focusedNodeId) backRef.current?.focus()
+		else if (target && !layout.focusedNodeId) branchButtons.current.get(target)?.focus()
+		else return
+		pendingFocus.current = null
+	}, [layout.focusedNodeId])
+
+	const activeBranch = branches.find((branch) => branch.id === layout.focusedNodeId)
+	const interactiveClass =
+		"cursor-pointer motion-safe:transition-transform motion-safe:duration-150 motion-safe:hover:scale-[1.015] hover:z-10 focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
 	return (
 		<div
 			ref={containerRef}
 			role="group"
 			aria-label={ariaLabel}
-			className={`relative h-[320px] w-full overflow-hidden rounded-xl md:h-[420px] ${className ?? ""}`}
+			data-treemap-overview={
+				layout.categoryOverview ? "categories" : layout.sectionOverview ? "sections" : "nested"
+			}
+			style={{
+				minHeight: layout.categoryOverview
+					? Math.min(720, Math.max(104, layout.nodes.length * 52 + 6))
+					: minHeight,
+			}}
+			className={`relative h-[320px] w-full overflow-x-hidden overflow-y-auto rounded-xl md:h-[420px] ${className ?? ""}`}
 		>
+			{activeBranch && (
+				<button
+					type="button"
+					data-treemap-back=""
+					ref={backRef}
+					onClick={() => {
+						pendingFocus.current = { branchId: activeBranch.id }
+						onFocusChange?.(null)
+					}}
+					className={`sticky inset-x-0 top-0 z-20 flex h-11 w-full items-center gap-2 rounded-md bg-card px-3 text-sm ${interactiveClass}`}
+				>
+					<span aria-hidden="true">←</span>
+					<span>{backLabel}</span>
+					<span aria-hidden="true">/</span>
+					<span className="truncate">{activeBranch.label}</span>
+					<span className="ml-auto tabular-nums">
+						{layout.nodes.reduce((sum, node) => sum + node.value, 0)}
+					</span>
+				</button>
+			)}
 			{layout.nodes.map((node) => {
 				const isBranch = branches.some((branch) => branch.id === node.id)
 				const tone = toneByBranch.get(node.branchId) ?? "chart-1"
-				const canActivate =
-					node.width >= 44 &&
-					node.height >= 44 &&
-					(isBranch ? Boolean(onFocusChange) : Boolean(onLeafActivate))
+				const canActivate = isBranch ? Boolean(onFocusChange) : Boolean(onLeafActivate)
 				const showLabel = node.width >= 72 && node.height >= 32
 				const style = {
 					left: node.x,
-					top: node.y,
+					top: node.y + (activeBranch ? 44 : 0),
 					width: node.width,
 					height: node.height,
 					background: `color-mix(in srgb, var(--${tone}) ${isBranch ? 10 : 20}%, var(--card))`,
 					borderColor: `var(--${tone})`,
 				} as const
-				const content = showLabel ? (
-					<span
-						className={cn(
-							"line-clamp-2 break-words text-left text-xs font-medium text-foreground",
-							isBranch && "absolute inset-x-1.5 top-1.5"
+				const content = (
+					<span className="flex w-full items-start justify-center gap-2 text-left text-xs font-medium text-foreground">
+						{showLabel && (
+							<span className="line-clamp-2 min-w-0 flex-1 break-words">{node.label}</span>
 						)}
-					>
-						{node.label}
+						<span data-treemap-count="" className="shrink-0 tabular-nums">
+							{node.value}
+						</span>
 					</span>
-				) : null
+				)
+				const label = `${node.label}: ${node.value}`
+				if (isBranch)
+					return (
+						<div key={node.id}>
+							<div
+								aria-hidden="true"
+								className="pointer-events-none absolute rounded-md border"
+								style={style}
+							/>
+							{canActivate ? (
+								<button
+									type="button"
+									title={label}
+									aria-label={label}
+									ref={(element) => {
+										if (element) branchButtons.current.set(node.id, element)
+										else branchButtons.current.delete(node.id)
+									}}
+									onClick={() => {
+										pendingFocus.current = { branchId: null }
+										onFocusChange?.(node.id)
+									}}
+									className={`absolute flex items-center overflow-hidden rounded-md px-2 text-left ${interactiveClass}`}
+									style={{ ...style, height: 44 }}
+								>
+									{content}
+								</button>
+							) : (
+								<div
+									data-treemap-category={node.id}
+									aria-label={label}
+									className="absolute overflow-hidden p-1.5"
+									style={{ ...style, height: Math.min(44, node.height) }}
+								>
+									{content}
+								</div>
+							)}
+						</div>
+					)
 				return canActivate ? (
 					<button
 						key={node.id}
 						type="button"
-						title={`${node.label}: ${node.value}`}
-						aria-label={`${node.label}: ${node.value}`}
-						onClick={() => (isBranch ? onFocusChange?.(node.id) : onLeafActivate?.(node.id))}
-						className="absolute overflow-hidden rounded-md border p-1.5 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+						title={label}
+						aria-label={label}
+						onClick={() => onLeafActivate?.(node.id)}
+						className={`absolute overflow-hidden rounded-md border p-1.5 text-left ${interactiveClass}`}
 						style={style}
 					>
 						{content}
@@ -177,7 +324,7 @@ export function Treemap({
 				) : (
 					<div
 						key={node.id}
-						title={`${node.label}: ${node.value}`}
+						title={label}
 						aria-hidden="true"
 						className="absolute overflow-hidden rounded-md border p-1.5"
 						style={style}

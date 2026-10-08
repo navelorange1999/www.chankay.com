@@ -71,7 +71,6 @@ export interface Config {
     users: User;
     media: MediaInterface;
     posts: Post;
-    tags: Tag;
     series: Series;
     pages: Page;
     categories: Category;
@@ -84,9 +83,6 @@ export interface Config {
     'payload-migrations': PayloadMigration;
   };
   collectionsJoins: {
-    tags: {
-      posts: 'posts';
-    };
     series: {
       posts: 'posts';
     };
@@ -98,7 +94,6 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     posts: PostsSelect<false> | PostsSelect<true>;
-    tags: TagsSelect<false> | TagsSelect<true>;
     series: SeriesSelect<false> | SeriesSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
@@ -291,10 +286,6 @@ export interface Post {
   seriesOrder?: number | null;
   category?: (string | null) | Category;
   /**
-   * Topics used for discovery and the topic map; a post may have multiple tags.
-   */
-  tags?: (string | Tag)[] | null;
-  /**
    * Estimated reading time in minutes
    */
   readingTime?: number | null;
@@ -394,39 +385,6 @@ export interface Category {
     hasNextPage?: boolean;
     totalDocs?: number;
   };
-  updatedAt: string;
-  createdAt: string;
-  _status?: ('draft' | 'published') | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "tags".
- */
-export interface Tag {
-  id: string;
-  posts?: {
-    docs?: (string | Post)[];
-    hasNextPage?: boolean;
-    totalDocs?: number;
-  };
-  name: string;
-  /**
-   * URL-friendly version of the tag name
-   */
-  slug: string;
-  description?: string | null;
-  /**
-   * Color for UI theming and visual distinction
-   */
-  color?: string | null;
-  /**
-   * Higher priority tags appear first (0-100)
-   */
-  priority?: number | null;
-  /**
-   * Show this tag prominently in tag clouds and filters
-   */
-  featured?: boolean | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -62333,24 +62291,6 @@ export interface PayloadMcpApiKey {
      */
     delete?: boolean | null;
   };
-  tags?: {
-    /**
-     * Allow clients to find tags.
-     */
-    find?: boolean | null;
-    /**
-     * Allow clients to create tags.
-     */
-    create?: boolean | null;
-    /**
-     * Allow clients to update tags.
-     */
-    update?: boolean | null;
-    /**
-     * Allow clients to delete tags.
-     */
-    delete?: boolean | null;
-  };
   series?: {
     /**
      * Allow clients to find series.
@@ -62563,10 +62503,6 @@ export interface PayloadLockedDocument {
         value: string | Post;
       } | null)
     | ({
-        relationTo: 'tags';
-        value: string | Tag;
-      } | null)
-    | ({
         relationTo: 'series';
         value: string | Series;
       } | null)
@@ -62709,7 +62645,6 @@ export interface PostsSelect<T extends boolean = true> {
   series?: T;
   seriesOrder?: T;
   category?: T;
-  tags?: T;
   readingTime?: T;
   featured?: T;
   views?: T;
@@ -62720,22 +62655,6 @@ export interface PostsSelect<T extends boolean = true> {
         description?: T;
         image?: T;
       };
-  updatedAt?: T;
-  createdAt?: T;
-  _status?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "tags_select".
- */
-export interface TagsSelect<T extends boolean = true> {
-  posts?: T;
-  name?: T;
-  slug?: T;
-  description?: T;
-  color?: T;
-  priority?: T;
-  featured?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
@@ -96504,14 +96423,6 @@ export interface PayloadMcpApiKeysSelect<T extends boolean = true> {
         delete?: T;
       };
   pages?:
-    | T
-    | {
-        find?: T;
-        create?: T;
-        update?: T;
-        delete?: T;
-      };
-  tags?:
     | T
     | {
         find?: T;

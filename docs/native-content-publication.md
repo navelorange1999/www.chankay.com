@@ -11,6 +11,10 @@ Related feature: [Content Taxonomy and Topic Treemap](./content-topic-treemap.md
 > Retain raw values, versions, and journals for at least 30 days and use the reviewed compatible
 > release if guarded data rollback becomes necessary. See `docs/deployment-and-environments.md`.
 
+## Tag retirement follow-up
+
+Tags are retired from the active content schema under the [current topic-map contract](./content-topic-treemap.md#tag-retirement-approved-october-8-2026). Native publication continues for Posts, Pages, Categories, Series, and Media. New Post publication validates Category and Series only. Topic statistics read published Posts and Categories. Tag-specific rules below describe the completed historical rollout, not a live resource. Retained Tag journals use an authenticated, exact-ID, read-only historical adapter; old migration writes remain disabled.
+
 ## 1. Decision and scope
 
 Use Payload's native `_status` as the single publication state across **Posts, Pages, Tags, Series, Media, and the new Categories collection**. Enable native versions/drafts for these collections and remove custom publication fields after migration. This proposal supersedes the earlier Post-only scope.

@@ -37,6 +37,7 @@ describe("publication inventory", () => {
 			"2026-01-01T00:00:00.000Z"
 		)
 		expect(rows).toHaveLength(2)
+		expect(find).not.toHaveBeenCalledWith(expect.objectContaining({ collection: "tags" }))
 		expect(rows.map((row) => row.plan.decision)).toEqual(["review", "update"])
 		expect(rows.map((row) => row.hasChangedSinceCutoff)).toEqual([true, false])
 		expect(find).toHaveBeenCalledWith(

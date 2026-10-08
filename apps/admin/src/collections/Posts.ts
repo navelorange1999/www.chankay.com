@@ -180,16 +180,6 @@ export const Posts: CollectionConfig = {
 			index: true,
 			admin: { position: "sidebar" },
 		},
-		{
-			name: "tags",
-			type: "relationship",
-			relationTo: "tags",
-			hasMany: true,
-			admin: {
-				position: "sidebar",
-				description: "Topics used for discovery and the topic map; a post may have multiple tags.",
-			},
-		},
 
 		// SEO fields now handled by @payloadcms/plugin-seo
 
@@ -252,7 +242,6 @@ export const Posts: CollectionConfig = {
 			createRevalidationHook("posts", [
 				"commentsEnabled",
 				"category",
-				"tags",
 				"series",
 				"seriesOrder",
 				"featured",

@@ -8,7 +8,6 @@ export const REVALIDATION_COLLECTIONS = [
 	"posts",
 	"pages",
 	"categories",
-	"tags",
 	"series",
 	"media",
 	"site-config",

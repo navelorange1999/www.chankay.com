@@ -52,15 +52,15 @@ describe("public cache invalidation", () => {
 			.mockResolvedValue({ id: "tag", slug: "legacy-tag", updatedAt: "1", _status: "published" })
 		const queue = vi.fn().mockResolvedValue({ id: "job" })
 		const req = { context: {}, payload: { findByID, jobs: { queue } } }
-		await capturePublicDeleteSnapshot("tags")({ id: "tag", req } as never)
-		await createRevalidationDeleteHook("tags")({
+		await capturePublicDeleteSnapshot("categories")({ id: "tag", req } as never)
+		await createRevalidationDeleteHook("categories")({
 			doc: { id: "tag", slug: "legacy-tag" },
 			req,
 		} as never)
 		expect(queue).toHaveBeenCalledOnce()
 		findByID.mockResolvedValue(null)
-		await capturePublicDeleteSnapshot("tags")({ id: "private-tag", req } as never)
-		await createRevalidationDeleteHook("tags")({
+		await capturePublicDeleteSnapshot("categories")({ id: "private-tag", req } as never)
+		await createRevalidationDeleteHook("categories")({
 			doc: { id: "private-tag", _status: "published" },
 			req,
 		} as never)

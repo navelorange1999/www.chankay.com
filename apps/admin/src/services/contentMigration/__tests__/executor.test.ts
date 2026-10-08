@@ -238,7 +238,7 @@ describe("guarded content migration", () => {
 		await expect(inspectMigration(req, input)).resolves.toMatchObject({ legacyBefore: cutoff })
 	})
 
-	it("restores reviewed taxonomy relationships and rejects rollback after subsequent edits", async () => {
+	it("rejects historical taxonomy planning without querying retired Tags", async () => {
 		const { req, edit, db, payload } = fixture("posts")
 		edit({
 			_status: "published",
@@ -246,30 +246,10 @@ describe("guarded content migration", () => {
 			primaryTag: "6a9a8cb31fd8dde63da92e17",
 			tags: ["topic1"],
 		})
-		const find = db.find.getMockImplementation()!
-		db.find.mockImplementation(async (args) => {
-			if (args.collection === "categories")
-				return { docs: [{ id: args.where.and[0].slug.equals + "-category" }], totalDocs: 1 }
-			if (args.collection === "tags" && args.where?.and?.[0]?.id)
-				return { docs: [{ id: args.where.and[0].id.equals }], totalDocs: 1 }
-			return find(args)
-		})
 		const target = { ...input, collection: "posts" as const, phase: "taxonomy" as const }
-		const plan = await inspectMigration(req, target)
-		expect(plan.patch).toEqual({ category: "technical-category", tags: ["topic1"] })
-		await applyMigration(req, { ...target, expectedUpdatedAt: timestamp, planHash: plan.planHash })
-		await rollbackMigration(req, "run1")
-		expect(payload.update).toHaveBeenLastCalledWith(
-			expect.objectContaining({
-				data: { category: null, tags: ["topic1"] },
-				req: expect.objectContaining({
-					context: expect.objectContaining({ contentMigrationRollback: true }),
-				}),
-				overrideAccess: false,
-			})
-		)
-		edit({ title: { en: "Later editorial content" } })
-		await expect(rollbackMigration(req, "run1")).rejects.toThrow("changed")
+		await expect(inspectMigration(req, target)).rejects.toThrow("Tags are retired")
+		expect(db.find).not.toHaveBeenCalledWith(expect.objectContaining({ collection: "tags" }))
+		expect(payload.update).not.toHaveBeenCalled()
 	})
 	it("retains additive native initialization and requires compatible-code rollback", async () => {
 		const { req } = fixture()

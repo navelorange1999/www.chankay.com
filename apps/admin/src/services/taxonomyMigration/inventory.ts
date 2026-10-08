@@ -32,7 +32,7 @@ export type TaxonomyInventoryRow = {
 	plan: TaxonomyPlan
 }
 
-async function readPublishedIds(payload: Pick<Payload, "db">, collection: "categories" | "tags") {
+async function readPublishedIds(payload: Pick<Payload, "db">, collection: "categories") {
 	const ids = new Set<string>()
 	let page = 1
 	let totalPages = 1
@@ -62,13 +62,9 @@ async function validateMapping(
 	) {
 		throw new Error("Category mapping contains an invalid ID.")
 	}
-	const categories = await readPublishedIds(payload, "categories")
-	if (entries.length === 0) return categories
-	const tags = await readPublishedIds(payload, "tags")
-	if (entries.some(([tagId, categoryId]) => !tags.has(tagId) || !categories.has(categoryId))) {
-		throw new Error("Category mapping references an unpublished or missing Tag or Category.")
-	}
-	return categories
+	if (entries.length > 0)
+		throw new Error("Tags are retired; historical taxonomy mappings cannot be validated.")
+	return readPublishedIds(payload, "categories")
 }
 
 export async function collectTaxonomyInventory(

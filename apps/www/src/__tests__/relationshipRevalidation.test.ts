@@ -41,7 +41,7 @@ describe("published relationship cache invalidation", () => {
 		)
 	})
 
-	it.each(["categories", "tags", "series", "media"])(
+	it.each(["categories", "series", "media"])(
 		"invalidates Post detail dependencies when published %s changes",
 		async (collection) => {
 			vi.stubEnv("WWW_INTERNAL_SECRET", "test-secret")

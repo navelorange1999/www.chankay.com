@@ -30,23 +30,9 @@ export type UiStrings = {
 	}
 	topicMap: {
 		uncategorized: string
-		untagged: string
-		otherTopics: string
-		viewData: string
 		allCategories: string
-		articles: string
-		uniqueArticles: string
-		tagUsages: string
-		loading: string
-		empty: string
-		unavailable: string
 		emptyMap: string
 		unavailableMap: string
-		retry: string
-		close: string
-		previous: string
-		next: string
-		metricExplanation: string
 	}
 	untitledPost: string
 }
@@ -83,24 +69,9 @@ const UI_STRINGS = {
 		},
 		topicMap: {
 			uncategorized: "Uncategorized",
-			untagged: "Untagged",
-			otherTopics: "Other topics",
-			viewData: "View data",
 			allCategories: "All categories",
-			articles: "Articles",
-			uniqueArticles: "Unique articles",
-			tagUsages: "Tag uses",
-			loading: "Loading articles…",
-			empty: "No published articles match this topic.",
-			unavailable: "Articles are temporarily unavailable.",
-			emptyMap: "No published topics to display.",
+			emptyMap: "No published articles to display.",
 			unavailableMap: "Topic map is temporarily unavailable.",
-			retry: "Retry",
-			close: "Close",
-			previous: "Previous",
-			next: "Next",
-			metricExplanation:
-				"Tile area counts tag uses. One article can count toward multiple tags; an untagged article counts once.",
 		},
 		untitledPost: "Untitled post",
 	},
@@ -134,23 +105,9 @@ const UI_STRINGS = {
 		},
 		topicMap: {
 			uncategorized: "未分类",
-			untagged: "无标签",
-			otherTopics: "其他主题",
-			viewData: "查看数据",
 			allCategories: "全部分类",
-			articles: "文章",
-			uniqueArticles: "文章数（去重）",
-			tagUsages: "标签使用次数",
-			loading: "正在加载文章…",
-			empty: "这个主题下暂无已发布文章。",
-			unavailable: "文章暂时无法加载。",
-			emptyMap: "暂无可展示的已发布主题。",
+			emptyMap: "暂无可展示的已发布文章。",
 			unavailableMap: "主题图暂时无法加载。",
-			retry: "重试",
-			close: "关闭",
-			previous: "上一页",
-			next: "下一页",
-			metricExplanation: "区块面积表示标签使用次数。一篇文章可以计入多个标签；无标签文章计入一次。",
 		},
 		untitledPost: "未命名文章",
 	},

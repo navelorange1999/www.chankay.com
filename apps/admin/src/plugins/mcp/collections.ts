@@ -21,10 +21,6 @@ export const mcpCollections = {
 		description: "Structured website pages with nested layout blocks and SEO settings.",
 		enabled: adminMcpAccess,
 	},
-	tags: {
-		description: "Taxonomy tags used to categorize and filter posts.",
-		enabled: adminMcpAccess,
-	},
 	series: {
 		description: "Editorial series metadata, ordering, and status information.",
 		enabled: adminMcpAccess,

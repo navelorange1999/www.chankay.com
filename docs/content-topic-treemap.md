@@ -1,10 +1,16 @@
 # Content Taxonomy and Topic Treemap
 
-Status: implemented contract  
+Status: Tag retirement in implementation
 Updated: 2026-10-08  
 Scope: Payload content model, public topic statistics, and the homepage Treemap block
 
-## Production verification (October 8, 2026)
+## Current contract: Tag retirement
+
+The [Tag retirement contract](#tag-retirement-approved-october-8-2026) supersedes the original Category → Tag design below. The active model is Category → Article: each unique published article contributes one unit. Tags are removed from the active CMS, MCP, and website. Series remains optional editorial metadata. The chart shows counts directly and opens article leaves through existing localized routes. Root categories are static containers: no hover scaling or click-to-expand. The old heading, explanation, table, and external detail panel are removed. Nested Categories are a separate follow-up.
+
+The sections below retain the previous rollout evidence and design history; conflicting Tag-specific requirements are no longer current. Historical Mongo records and migration journals remain read-only. Legacy block description and topic-limit fields are retained for snapshot compatibility but are no longer rendered or used.
+
+## Previous production verification (October 8, 2026)
 
 The bilingual homepage topic map is enabled below the GitHub heatmap. Technical contains 5 articles and 12 tag assignments; Trading contains 3 articles and 9 assignments. There are 8 unique published articles, 21 assignments, and no untagged articles. Existing article content, relationships, publication dates, and public media hashes matched the pre-migration baseline.
 
@@ -53,7 +59,7 @@ Repository rules require English technical documentation, CMS-managed user-facin
 Relevant source:
 
 - [Post model](../apps/admin/src/collections/Posts.ts)
-- [Tag model](../apps/admin/src/collections/Tags.ts) and [Series model](../apps/admin/src/collections/Series.ts)
+- [Series model](../apps/admin/src/collections/Series.ts); the former Tag model is retired
 - [Payload configuration](../apps/admin/src/payload.config.ts)
 - [Article utilities](../apps/www/src/utils/posts.ts) and [post queries](../apps/www/src/services/payload/posts.ts)
 - [Site configuration](../apps/admin/src/globals/SiteConfig.ts)
@@ -541,3 +547,21 @@ The implementation delivery should include code/test links, representative scree
 | Proposed dependency/version availability        | Verify `d3-hierarchy` and any type package in the official registry before installation; declare direct dependencies rather than relying on transitive copies. |
 
 Release inputs still to collect are the initial Category records and legacy mapping, the reviewed Uncategorized remainder, the localized homepage copy, and the recorded staging performance environment. These are finite content/rollout decisions; the statistical model, component boundary, and acceptance rules above do not depend on inventing live CMS data.
+
+## Tag retirement (approved October 8, 2026)
+
+The independent Tags collection is retired. Active Posts retain one Category and optional Series, without Tag relationships. This step does not introduce category nesting or a replacement entity. Historical raw Tag records, legacy Post relationships, and immutable migration journals remain in storage for recovery; they are not registered as live CMS resources.
+
+The public map contract becomes `schemaVersion: 2`, `metric: "published-posts"`. Totals contain `publishedPostCount` and `areaValue`; both equal the number of unique published articles. Each category retains its ID, kind, label, optional color token, publishedPostCount, and areaValue, and contains `articles: Array<{ id: string; slug: string; title: string; value: 1 }>`. Published articles whose Category is missing or unpublished appear in a synthetic uncategorized branch without disclosing private category labels. Article bodies and draft data are never included.
+
+The website renders Category -> Article. Following the final interaction correction, root categories show their names and counts as static containers without hover scaling or click-to-expand. Article leaves link to canonical article routes and retain pointer/hover feedback. Remove the visible heading, description, metric explanation, data-table disclosure, and separate article panel. Retain an accessible region name. Show counts on tiles, pointer and restrained hover feedback on interactive nodes, keyboard access, and reduced-motion support. Category hierarchy is a subsequent change. Dense or skewed datasets must keep article leaves reachable within a bounded scrolling canvas; do not require expansion of a root category to access them.
+
+Implementation sequence:
+
+- [x] Add count conservation and duplicate-ID fixtures to the Admin aggregation tests; remove all tag queries from the public map, retire topic-filtered article endpoints, and verify anonymous publication filters remain enforced.
+- [x] Remove Tags registration, Post.tags, Tag MCP resources, tag publication validators, article badges, and website tag-fetch helpers. Regenerate Payload types using synthetic local configuration without loading environment files.
+- [x] Adapt the website to the version-2 contract and generic Treemap interactions. Test article-safe URLs, static root categories, visible counts, and absent detail panels.
+- [x] Preserve historical audit reads without registering an active Tag collection; test old Post and Tag snapshot/version hash compatibility. Keep migration writes disabled.
+- [ ] Run both application suites and type checks, inspect UI in both locales/themes and compact layouts, review the diff, then deploy both applications and verify public counts and retired endpoints.
+
+Validation commands use the existing bundled Node runtime directly: `node node_modules/vitest/vitest.mjs run` from each application and `node ../../node_modules/typescript/bin/tsc --noEmit --skipLibCheck`. No dependency changes or destructive database cleanup are required.

@@ -1,84 +1,43 @@
 import { describe, expect, it } from "vitest"
-
 import { aggregateTopicMap } from "../aggregate"
 
-const categories = [
-	{ id: "technical", label: "Technical", sortOrder: 0 },
-	{ id: "trading", label: "Trading", sortOrder: 1 },
-]
-
-const tags = [
-	{ id: "react", label: "React" },
-	{ id: "typescript", label: "TypeScript" },
-	{ id: "risk", label: "Risk" },
-	{ id: "valuation", label: "Valuation" },
-	{ id: "notes", label: "Notes" },
-]
-
-describe("aggregateTopicMap", () => {
-	it("counts each distinct tag assignment and preserves untagged articles", () => {
-		const result = aggregateTopicMap({
-			posts: [
-				{ id: "p1", category: "technical", tags: ["react", "typescript"] },
-				{ id: "p2", category: "technical", tags: ["react"] },
-				{ id: "p3", category: "technical", tags: [] },
-				{ id: "p4", category: "trading", tags: ["risk", "valuation"] },
-				{ id: "p5", category: "technical", tags: ["react", "react"] },
-				{ id: "p8", category: null, tags: ["notes"] },
-			],
-			categories,
-			tags,
-			locale: "en",
-			labels: { uncategorized: "Uncategorized", untagged: "Untagged" },
-		})
-
-		expect(result.totals).toEqual({
-			publishedPostCount: 6,
-			tagAssignmentCount: 7,
-			untaggedPostCount: 1,
-			areaValue: 8,
-		})
-		expect(result.categories.map(({ id, areaValue }) => [id, areaValue])).toEqual([
-			["technical", 5],
-			["trading", 2],
-			["synthetic:uncategorized", 1],
-		])
-		expect(result.categories[0]?.topics.map(({ label, value }) => [label, value])).toEqual([
-			["React", 3],
-			["Untagged", 1],
-			["TypeScript", 1],
-		])
+const input = {
+	locale: "en",
+	labels: { uncategorized: "Uncategorized" },
+	categories: [
+		{ id: "technical", label: "Technical" },
+		{ id: "trading", label: "Trading" },
+	],
+	posts: [
+		{ id: "one", title: "First", slug: "first", category: "technical" },
+		{ id: "two", title: "Second", slug: "second", category: "trading" },
+		{ id: "one", title: "Duplicate", slug: "duplicate", category: "trading" },
+		{ id: "three", title: "Third", slug: "third", category: "private-category" },
+	],
+}
+describe("article-count map", () => {
+	it("counts each article once and conserves area across every category", () => {
+		const result = aggregateTopicMap(input)
+		expect(result.schemaVersion).toBe(2)
+		expect(result.metric).toBe("published-posts")
+		expect(result.totals).toEqual({ publishedPostCount: 3, areaValue: 3 })
+		expect(result.categories.reduce((sum, c) => sum + c.areaValue, 0)).toBe(3)
+		for (const c of result.categories) {
+			expect(c.areaValue).toBe(c.articles.length)
+			expect(c.articles.every((a) => a.value === 1)).toBe(true)
+		}
 	})
-
-	it("treats missing taxonomy as synthetic buckets and counts duplicate posts once", () => {
-		const result = aggregateTopicMap({
-			posts: [
-				{ id: "same", category: "missing", tags: ["missing"] },
-				{ id: "same", category: "technical", tags: ["react"] },
-			],
-			categories,
-			tags,
-			locale: "en",
-			labels: { uncategorized: "Uncategorized", untagged: "Untagged" },
-		})
-
-		expect(result.totals).toEqual({
+	it("uses a public fallback for missing or private categories without revealing labels", () => {
+		const result = aggregateTopicMap(input)
+		expect(result.categories.at(-1)).toMatchObject({
+			id: "synthetic:uncategorized",
+			label: "Uncategorized",
 			publishedPostCount: 1,
-			tagAssignmentCount: 0,
-			untaggedPostCount: 1,
-			areaValue: 1,
 		})
-		expect(result.categories[0]?.kind).toBe("uncategorized")
+		expect(JSON.stringify(result)).not.toContain("private-category")
 	})
-
-	it("returns an empty response for no published articles", () => {
-		const result = aggregateTopicMap({
-			posts: [],
-			categories,
-			tags,
-			locale: "en",
-			labels: { uncategorized: "Uncategorized", untagged: "Untagged" },
-		})
+	it("omits empty branches and returns an empty chart for no published articles", () => {
+		const result = aggregateTopicMap({ ...input, posts: [] })
 		expect(result.categories).toEqual([])
 		expect(result.totals.areaValue).toBe(0)
 	})

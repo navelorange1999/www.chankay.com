@@ -27,11 +27,10 @@ export const validatePostPublication: CollectionBeforeChangeHook = async ({
 	const meta = data.meta === null ? {} : { ...asRecord(originalDoc?.meta), ...asRecord(data.meta) }
 	if (!category) throw new Error("A published post requires a category.")
 	const references: Array<{
-		collection: "categories" | "tags" | "series" | "media"
+		collection: "categories" | "series" | "media"
 		ids: string[]
 	}> = [
 		{ collection: "categories", ids: category ? [category] : [] },
-		{ collection: "tags", ids: [...new Set(relationIds(field("tags")))] },
 		{ collection: "series", ids: relationIds(field("series")) },
 		{
 			collection: "media",

@@ -10,7 +10,7 @@ import { isSupportedLocale, type SupportedLocale } from "@repo/i18n"
 
 import { enqueueRevalidation } from "@/services/revalidation/dispatcher"
 
-type ContentCollection = "posts" | "pages" | "categories" | "tags" | "series" | "media"
+type ContentCollection = "posts" | "pages" | "categories" | "series" | "media"
 type PublicSnapshot = { status: string | null; updatedAt: string | null; slug?: string | null }
 const SNAPSHOT_KEY = "publicRevalidationSnapshots"
 

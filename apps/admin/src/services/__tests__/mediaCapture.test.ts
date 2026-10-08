@@ -89,7 +89,7 @@ describe("mediaCapture", () => {
 		})
 		expect(req.file?.mimetype).toBe("image/png")
 		expect(req.file?.size).toBe(5)
-		expect(req.file?.name).toMatch(/^capture-https-example-com-/)
+		expect(req.file?.name).toMatch(/^capture-[a-f0-9]{16}\.png$/)
 	})
 
 	it("skips media URL capture when the skip flag is present", async () => {

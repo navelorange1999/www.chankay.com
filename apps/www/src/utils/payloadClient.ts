@@ -7,7 +7,7 @@ export interface PayloadQueryOptions {
 	cache?: RequestCache
 }
 
-function resolvePayloadBaseUrl(): string {
+export function resolvePayloadBaseUrl(): string {
 	const configuredBaseUrl = process.env.PAYLOAD_API_URL?.trim()
 
 	if (configuredBaseUrl) {

@@ -7,7 +7,7 @@ export const summarizePost = (post: Partial<Post>) => {
 		id: post.id,
 		publishedAt: post.publishedAt,
 		slug: post.slug,
-		status: post.status,
+		_status: post._status,
 		title: post.title,
 		updatedAt: post.updatedAt,
 	}

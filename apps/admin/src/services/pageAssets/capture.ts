@@ -4,7 +4,7 @@ import { join } from "path"
 
 import { DEFAULT_WAIT_FOR_MS, SKIP_MEDIA_SOURCE_CAPTURE_FLAG } from "./constants"
 import type { GeneratedImage, LoggerLike, PageAssetsRuntime } from "./types"
-import { asOptionalString, buildGeneratedFilename, redactUrlToken } from "./utils"
+import { asOptionalString, buildGeneratedFilename } from "./utils"
 
 const CAPTURE_RESPONSE_TIMEOUT_MS = 50_000
 
@@ -52,8 +52,6 @@ export async function captureScreenshot(args: {
 	// Log as JSON string for structured data in Vercel
 	args.logger?.info(
 		`Browserless screenshot request: ${JSON.stringify({
-			endpoint: redactUrlToken(endpoint),
-			targetUrl: args.url,
 			viewport: `${args.width}x${args.height}`,
 			waitForMs: args.waitForTimeoutMs,
 		})}`
@@ -68,7 +66,6 @@ export async function captureScreenshot(args: {
 		didTimeout = true
 		args.logger?.error?.(
 			`Browserless screenshot timeout: ${JSON.stringify({
-				targetUrl: args.url,
 				elapsedMs: Date.now() - startedAt,
 				stage,
 				timeoutMs: CAPTURE_RESPONSE_TIMEOUT_MS,
@@ -91,19 +88,13 @@ export async function captureScreenshot(args: {
 
 		args.logger?.info(
 			`Browserless screenshot headers received: ${JSON.stringify({
-				targetUrl: args.url,
 				status: response.status,
 				elapsedMs: Date.now() - startedAt,
 			})}`
 		)
 
 		if (!response.ok) {
-			const errorText = (await response.text().catch(() => "")).trim()
-			throw new Error(
-				errorText
-					? `Preview capture failed (${response.status}): ${errorText}`
-					: `Preview capture failed (${response.status})`
-			)
+			throw new Error(`Preview capture failed (${response.status})`)
 		}
 
 		stage = "body"
@@ -143,14 +134,13 @@ export async function captureScreenshot(args: {
 
 		args.logger?.error?.(
 			`Browserless screenshot failed: ${JSON.stringify({
-				targetUrl: args.url,
 				elapsedMs: Date.now() - startedAt,
 				stage,
-				error: error instanceof Error ? error.message : String(error),
 			})}`
 		)
 
-		throw error
+		if (error instanceof Error && error.message.startsWith("Preview capture failed (")) throw error
+		throw new Error(`Browserless screenshot failed at ${stage}`)
 	} finally {
 		clearTimeout(timeoutId)
 	}
@@ -181,11 +171,13 @@ export async function persistGeneratedMedia(args: {
 
 			const media = await args.runtime.payload.create({
 				collection: "media",
+				draft: true,
 				context: {
 					...(args.runtime.context || {}),
 					[SKIP_MEDIA_SOURCE_CAPTURE_FLAG]: true,
 				},
 				data: {
+					_status: "draft",
 					alt: args.alt,
 					height: args.screenshot.height,
 					width: args.screenshot.width,
@@ -199,16 +191,14 @@ export async function persistGeneratedMedia(args: {
 
 			return media
 		} finally {
-			await fs.rm(tempFilePath, { force: true }).catch((error) => {
+			await fs.rm(tempFilePath, { force: true }).catch(() => {
 				// Log but don't throw on cleanup failure
-				args.runtime.logger.warn?.(`Failed to clean up temp file ${filename}: ${String(error)}`)
+				args.runtime.logger.warn?.(`Failed to clean up temp file ${filename}`)
 			})
 		}
 	} catch (error) {
-		// Log detailed error information
-		const errorMessage = error instanceof Error ? error.message : String(error)
 		args.runtime.logger.error?.(
-			`Failed to persist media: ${errorMessage} [${filename}, ${(args.screenshot.buffer.length / 1024).toFixed(2)}KB, subject: ${args.subject}]`
+			`Failed to persist media [${filename}, ${(args.screenshot.buffer.length / 1024).toFixed(2)}KB]`
 		)
 		throw error
 	}

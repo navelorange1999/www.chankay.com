@@ -2,21 +2,30 @@ import type { CollectionConfig } from "payload"
 import { authenticated } from "../access/authenticated"
 import { createBasicTranslationHook } from "../hooks/createTranslationHook"
 import { colorPickerField } from "../fields/colorPickerField"
-import { createRevalidationDeleteHook, createRevalidationHook } from "../hooks/revalidateWww"
+import { createPublishedOrAuthenticated } from "../access/publishedOrAuthenticated"
+import {
+	capturePublicSnapshot,
+	capturePublicDeleteSnapshot,
+	createRevalidationDeleteHook,
+	createRevalidationHook,
+} from "../hooks/revalidateWww"
 
 export const Tags: CollectionConfig = {
 	slug: "tags",
 	access: {
-		read: () => true, // Public read access
+		read: createPublishedOrAuthenticated("tags"),
+		readVersions: authenticated,
 		create: authenticated,
 		update: authenticated,
 		delete: authenticated,
 	},
 	admin: {
-		defaultColumns: ["name", "slug", "postCount"],
+		defaultColumns: ["name", "slug", "_status"],
 		useAsTitle: "name",
 	},
+	versions: { drafts: true, maxPerDoc: 10 },
 	fields: [
+		{ name: "posts", type: "join", collection: "posts", on: "tags", defaultLimit: 10, maxDepth: 1 },
 		{
 			name: "name",
 			type: "text",
@@ -75,15 +84,6 @@ export const Tags: CollectionConfig = {
 			},
 		}),
 		{
-			name: "postCount",
-			type: "number",
-			defaultValue: 0,
-			admin: {
-				readOnly: true,
-				description: "Number of posts with this tag",
-			},
-		},
-		{
 			name: "priority",
 			type: "number",
 			defaultValue: 0,
@@ -101,7 +101,8 @@ export const Tags: CollectionConfig = {
 	],
 	timestamps: true,
 	hooks: {
-		beforeChange: [createBasicTranslationHook()],
+		beforeDelete: [capturePublicDeleteSnapshot("tags")],
+		beforeChange: [capturePublicSnapshot("tags"), createBasicTranslationHook()],
 		afterChange: [createRevalidationHook("tags")],
 		afterDelete: [createRevalidationDeleteHook("tags")],
 	},

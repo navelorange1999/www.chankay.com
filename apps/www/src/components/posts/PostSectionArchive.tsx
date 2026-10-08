@@ -24,7 +24,7 @@ import {
 
 import { getPostsBySection } from "@/services/payload/posts"
 import { getSiteConfig } from "@/services/payload/site-config"
-import { getTagBySlug } from "@/services/payload/tags"
+import { getCategoryBySlug } from "@/services/payload/categories"
 import { resolveSiteUrl, resolveTwitterHandle } from "@/utils/seo"
 import {
 	formatPostDate,
@@ -41,12 +41,12 @@ export async function buildPostSectionIndexMetadata(
 	section: PostSection,
 	locale: SupportedLocale
 ): Promise<Metadata> {
-	const [tag, siteConfig] = await Promise.all([
-		getTagBySlug(POST_SECTIONS[section].tagSlug, { locale }),
+	const [category, siteConfig] = await Promise.all([
+		getCategoryBySlug(POST_SECTIONS[section].categorySlug, { locale }),
 		getSiteConfig(locale),
 	])
-	const title = tag?.name || section
-	const description = tag?.description || ""
+	const title = category?.name || section
+	const description = category?.description || ""
 	const alternates = buildRouteIndexAlternates({
 		currentLocale: locale,
 		domain: POST_SECTIONS[section].domain,
@@ -81,13 +81,13 @@ export async function PostSectionArchive({
 	locale,
 	section,
 }: PostSectionPageParams & { section: PostSection }) {
-	const [posts, tag] = await Promise.all([
+	const [posts, category] = await Promise.all([
 		getPostsBySection(section, { locale }),
-		getTagBySlug(POST_SECTIONS[section].tagSlug, { locale }),
+		getCategoryBySlug(POST_SECTIONS[section].categorySlug, { locale }),
 	])
 	const strings = getUiStrings(locale).postSection
-	const title = tag?.name || section
-	const description = tag?.description || ""
+	const title = category?.name || section
+	const description = category?.description || ""
 
 	return (
 		<section className="mx-auto flex max-w-4xl flex-col gap-8">

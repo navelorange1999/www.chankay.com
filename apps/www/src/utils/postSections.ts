@@ -3,35 +3,35 @@ import {
 	isSafePostSlug,
 	resolveRouteIndexPath,
 	resolveRoutePath,
+	resolveLocalizedPath,
 	type RouteDomainKey,
 	type SupportedLocale,
 } from "@repo/i18n"
 
 export const POST_SECTIONS = {
-	technical: { domain: "technical", tagSlug: "technical" },
-	trading: { domain: "trading", tagSlug: "trading" },
-} as const satisfies Record<string, { domain: RouteDomainKey; tagSlug: string }>
+	technical: { domain: "technical", categorySlug: "technical" },
+	trading: { domain: "trading", categorySlug: "trading" },
+} as const satisfies Record<string, { domain: RouteDomainKey; categorySlug: string }>
 
 export type PostSection = keyof typeof POST_SECTIONS
 
 export type SectionablePost = {
-	primaryTag?: null | string | { id: string | number; slug?: null | string }
+	category?:
+		| null
+		| string
+		| { id: string | number; slug?: null | string; _status?: null | "draft" | "published" }
 }
 
 export function getPostSection(post: SectionablePost): PostSection | null {
-	const { primaryTag } = post
-	if (primaryTag == null) {
-		return "technical"
-	}
-
-	if (typeof primaryTag === "string") {
+	const { category } = post
+	if (!category || typeof category === "string" || category._status !== "published") {
 		return null
 	}
 
-	const tagSlug = primaryTag.slug?.trim().toLowerCase()
+	const categorySlug = category.slug?.trim().toLowerCase()
 	return (
 		(Object.keys(POST_SECTIONS) as PostSection[]).find(
-			(section) => POST_SECTIONS[section].tagSlug === tagSlug
+			(section) => POST_SECTIONS[section].categorySlug === categorySlug
 		) ?? null
 	)
 }
@@ -70,5 +70,8 @@ export function resolveLegacyPostPath(
 	locale: SupportedLocale = DEFAULT_LOCALE
 ): string | null {
 	const section = getPostSection(post)
-	return section ? resolvePostSectionPath(section, slug, locale) : null
+	if (!isSafePostSlug(slug)) return null
+	return section
+		? resolvePostSectionPath(section, slug, locale)
+		: resolveLocalizedPath(locale, `/posts/${slug}`)
 }

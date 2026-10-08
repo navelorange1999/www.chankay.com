@@ -1,15 +1,10 @@
 import type { Post, SiteConfig } from "@repo/typescript-config/typings/payload-types"
 
 export function resolvePostComments(
-	post: Pick<Post, "id" | "status" | "_status" | "commentsEnabled">,
+	post: Pick<Post, "id" | "_status" | "commentsEnabled">,
 	settings: SiteConfig["giscus"] | null | undefined
 ) {
-	if (
-		post.commentsEnabled === false ||
-		post.status !== "published" ||
-		(post._status != null && post._status !== "published") ||
-		!settings?.enabled
-	)
+	if (post.commentsEnabled === false || post._status !== "published" || !settings?.enabled)
 		return null
 
 	const { repo, repoId, category, categoryId } = settings

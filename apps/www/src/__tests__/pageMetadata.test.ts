@@ -10,7 +10,7 @@ const { page, site } = vi.hoisted(() => ({
 		siteName: "Example",
 		siteUrl: "https://blog.example.org",
 		metaDescription: "Default description",
-		ogImage: { url: "https://images.example.org/cover.png" },
+		ogImage: { _status: "published", url: "https://images.example.org/cover.png" },
 	},
 }))
 

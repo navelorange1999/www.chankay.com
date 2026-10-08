@@ -32,6 +32,8 @@ vi.mock("../../hooks/createTranslationHook", () => ({
 }))
 
 vi.mock("../../hooks/revalidateWww", () => ({
+	capturePublicSnapshot: vi.fn(() => vi.fn()),
+	capturePublicDeleteSnapshot: vi.fn(() => vi.fn()),
 	createRevalidationDeleteHook: createRevalidationDeleteHookMock,
 	createRevalidationHook: createRevalidationHookMock,
 }))
@@ -113,18 +115,17 @@ describe("post section contract", () => {
 		}
 	)
 
-	it("requires a primary tag relationship", () => {
+	it("retains a read-only legacy primary tag relationship", () => {
 		const primaryTag = Posts.fields.find((field) => "name" in field && field.name === "primaryTag")
 
 		expect(primaryTag).toMatchObject({
 			name: "primaryTag",
 			relationTo: "tags",
-			required: true,
 			type: "relationship",
 			admin: {
 				position: "sidebar",
 				description:
-					"Required. Determines whether the post appears in the Technical or Trading section.",
+					"Legacy classification retained for migration. Use Category for new assignments.",
 			},
 		})
 	})
@@ -154,21 +155,20 @@ describe("post section contract", () => {
 		)
 	})
 
-	it("describes tags as optional secondary topics", () => {
+	it("describes tags as discovery topics", () => {
 		const tags = Posts.fields.find((field) => "name" in field && field.name === "tags")
 
 		expect(tags).toMatchObject({
 			name: "tags",
 			admin: {
-				description:
-					"Optional secondary topics. Primary Tag determines the Technical or Trading section.",
+				description: "Topics used for discovery and the topic map; a post may have multiple tags.",
 			},
 		})
 	})
 
 	it("preserves translation and revalidation hooks for tags", () => {
-		expect(Tags.hooks?.beforeChange).toHaveLength(1)
-		expect(Tags.hooks?.beforeChange?.[0]).toBe(basicTranslationHook)
+		expect(Tags.hooks?.beforeChange).toHaveLength(2)
+		expect(Tags.hooks?.beforeChange).toContain(basicTranslationHook)
 		expect(createBasicTranslationHookMock).toHaveBeenCalledTimes(1)
 
 		expect(Tags.hooks?.afterChange).toHaveLength(1)

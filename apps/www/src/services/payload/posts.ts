@@ -1,7 +1,7 @@
 import type { SupportedLocale } from "@repo/i18n"
 import { DEFAULT_LOCALE, isSafePostSlug } from "@repo/i18n"
 
-import { getTagBySlug } from "./tags"
+import { getCategoryBySlug } from "./categories"
 
 import { payloadClient } from "@/utils/payloadClient"
 import { isPostInSection, POST_SECTIONS, type PostSection } from "@/utils/postSections"
@@ -23,6 +23,7 @@ export async function getPosts(
 	const locale = options?.locale ?? DEFAULT_LOCALE
 	try {
 		const result = await payloadClient.getCollection<Post>("posts", {
+			where: { _status: { equals: "published" } },
 			locale,
 			limit: options?.limit ?? 10,
 			page: options?.page ?? 1,
@@ -51,10 +52,11 @@ export async function getPostBySlug(
 	const locale = options?.locale ?? DEFAULT_LOCALE
 	try {
 		return await payloadClient.getBySlug<Post>("posts", slug, {
+			where: { _status: { equals: "published" } },
 			locale,
 			revalidate: options?.revalidate,
 			depth: 2,
-			tags: [`post:${slug}:${locale}`, `posts:details:${locale}`],
+			tags: [`post:${slug}:${locale}`, `posts:details:${locale}`, `post-relations:${locale}`],
 		})
 	} catch (error) {
 		console.error(`Error fetching post ${slug}:`, error)
@@ -76,9 +78,9 @@ export async function getPostsBySection(
 	options?: { locale?: SupportedLocale }
 ): Promise<Post[]> {
 	const locale = options?.locale ?? DEFAULT_LOCALE
-	const tag = await getTagBySlug(POST_SECTIONS[section].tagSlug, { locale })
+	const category = await getCategoryBySlug(POST_SECTIONS[section].categorySlug, { locale })
 
-	if (!tag) {
+	if (!category) {
 		return []
 	}
 
@@ -95,21 +97,11 @@ export async function getPostsBySection(
 				page,
 				depth: 2,
 				sort: "-publishedAt",
-				where:
-					section === "technical"
-						? {
-								and: [
-									{ status: { equals: "published" } },
-									{
-										or: [{ primaryTag: { equals: tag.id } }, { primaryTag: { exists: false } }],
-									},
-								],
-							}
-						: {
-								primaryTag: { equals: tag.id },
-								status: { equals: "published" },
-							},
-				tags: [`posts:section:${section}:${locale}`],
+				where: {
+					category: { equals: category.id },
+					_status: { equals: "published" },
+				},
+				tags: [`posts:section:${section}:${locale}`, `post-relations:${locale}`],
 			})
 
 			totalDocs = result.totalDocs
@@ -134,6 +126,7 @@ export async function getAllPosts(options?: { locale?: SupportedLocale }): Promi
 	try {
 		do {
 			const result = await payloadClient.getCollection<Post>("posts", {
+				where: { _status: { equals: "published" } },
 				locale,
 				limit,
 				page,
@@ -161,6 +154,7 @@ export async function getLatestPosts(
 	const locale = options?.locale ?? DEFAULT_LOCALE
 	try {
 		const result = await payloadClient.getCollection<Post>("posts", {
+			where: { _status: { equals: "published" } },
 			locale,
 			limit,
 			sort: "-publishedAt",

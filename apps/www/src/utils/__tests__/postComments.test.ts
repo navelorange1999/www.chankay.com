@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest"
 
 import { resolvePostComments } from "../postComments"
 
-const post = { id: "post-123", status: "published" as const }
+const post = { id: "post-123", _status: "published" as const }
 const settings = {
 	enabled: true,
 	repo: "navelorange1999/chankay-discussions",
@@ -12,7 +12,7 @@ const settings = {
 }
 
 describe("post comments", () => {
-	it("enables legacy posts and uses the immutable ID across slugs and translations", () => {
+	it("enables published posts and uses the immutable ID across slugs and translations", () => {
 		const english = { ...post, title: "Original title", slug: "original" }
 		const translated = { ...post, title: "Translated title", slug: "renamed" }
 		expect(resolvePostComments(english, settings)?.term).toBe("post:post-123")
@@ -24,7 +24,7 @@ describe("post comments", () => {
 
 	it("does not render disabled or unpublished post discussions", () => {
 		expect(resolvePostComments({ ...post, commentsEnabled: false }, settings)).toBeNull()
-		expect(resolvePostComments({ ...post, status: "draft" }, settings)).toBeNull()
+		expect(resolvePostComments({ ...post, _status: undefined }, settings)).toBeNull()
 		expect(resolvePostComments({ ...post, _status: "draft" }, settings)).toBeNull()
 		expect(resolvePostComments(post, { ...settings, enabled: false })).toBeNull()
 	})

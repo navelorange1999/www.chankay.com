@@ -1,14 +1,21 @@
+import * as React from "react"
+
 import { ImageMedia } from "@repo/ui/components/Media"
 import type { MediaInterface, Page } from "@repo/typescript-config/typings/payload-types"
 
 type PreviewUrlBlock = Extract<NonNullable<Page["structure"]>[number], { blockType: "previewUrl" }>
 
 export interface PreviewUrlNodeProps {
+	isPreview?: boolean
 	block: PreviewUrlBlock
 }
 
-export function PreviewUrlNode({ block }: PreviewUrlNodeProps) {
-	if (!block.previewImage) {
+export function PreviewUrlNode({ block, isPreview = false }: PreviewUrlNodeProps) {
+	if (
+		!block.previewImage ||
+		typeof block.previewImage !== "object" ||
+		(!isPreview && block.previewImage._status !== "published")
+	) {
 		return null
 	}
 

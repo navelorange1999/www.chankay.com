@@ -3,6 +3,7 @@ import * as React from "react"
 import { Container } from "@repo/ui/components/Container"
 import { Flex, Grid } from "@repo/ui/components/Structure"
 import type { Page } from "@repo/typescript-config/typings/payload-types"
+import type { SupportedLocale } from "@repo/i18n"
 
 import { isLeafBlock, renderLeafBlock } from "@/components/nodes/leafRenderers"
 
@@ -53,10 +54,16 @@ function isOneOf<T extends string>(value: unknown, allowed: readonly T[]): value
 	return typeof value === "string" && allowed.includes(value as T)
 }
 
-async function renderBlocks(blocks: StructureBlock[] | null | undefined) {
+async function renderBlocks(
+	blocks: StructureBlock[] | null | undefined,
+	locale: SupportedLocale,
+	isPreview: boolean
+) {
 	if (!blocks || blocks.length === 0) return null
 	return Promise.all(
-		blocks.map((block, index) => renderBlock(block, block.id ?? `${block.blockType}-${index}`))
+		blocks.map((block, index) =>
+			renderBlock(block, block.id ?? `${block.blockType}-${index}`, locale, isPreview)
+		)
 	)
 }
 
@@ -69,7 +76,12 @@ function isStructureBlockType(blockType: string) {
 	)
 }
 
-async function renderBlock(block: StructureBlock, key: string): Promise<React.ReactNode> {
+async function renderBlock(
+	block: StructureBlock,
+	key: string,
+	locale: SupportedLocale,
+	isPreview: boolean
+): Promise<React.ReactNode> {
 	if (!block) return null
 
 	if (isStructureBlockType(block.blockType)) {
@@ -87,7 +99,7 @@ async function renderBlock(block: StructureBlock, key: string): Promise<React.Re
 							: "default"
 					}
 				>
-					{await renderBlocks(children)}
+					{await renderBlocks(children, locale, isPreview)}
 				</Container>
 			)
 		}
@@ -149,7 +161,7 @@ async function renderBlock(block: StructureBlock, key: string): Promise<React.Re
 					}
 					gap={asGap(data.gap, "md")}
 				>
-					{await renderBlocks(children)}
+					{await renderBlocks(children, locale, isPreview)}
 				</Flex>
 			)
 		}
@@ -197,14 +209,14 @@ async function renderBlock(block: StructureBlock, key: string): Promise<React.Re
 							: "stretch"
 					}
 				>
-					{await renderBlocks(children)}
+					{await renderBlocks(children, locale, isPreview)}
 				</Grid>
 			)
 		}
 	}
 
 	if (isLeafBlock(block)) {
-		return renderLeafBlock(block, key)
+		return renderLeafBlock(block, key, locale, isPreview)
 	}
 
 	return null
@@ -212,13 +224,15 @@ async function renderBlock(block: StructureBlock, key: string): Promise<React.Re
 
 export interface NodesProps {
 	nodes: Page["structure"]
+	locale: SupportedLocale
+	isPreview?: boolean
 }
 
-export async function Nodes({ nodes }: NodesProps) {
+export async function Nodes({ nodes, locale, isPreview = false }: NodesProps) {
 	if (!nodes) return null
 	if (nodes.length === 0) return null
 
-	const renderedNodes = await renderBlocks(nodes)
+	const renderedNodes = await renderBlocks(nodes, locale, isPreview)
 
 	return <>{renderedNodes}</>
 }

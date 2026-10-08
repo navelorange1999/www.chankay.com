@@ -11,7 +11,7 @@ vi.mock("@/utils/payloadClient", () => ({
 }))
 
 import { getPostBySlug, getPostBySlugForSection, getPostsBySection } from "../posts"
-import { getTagBySlug } from "../tags"
+import { getCategoryBySlug } from "../categories"
 
 describe("post section payload services", () => {
 	beforeEach(() => {
@@ -19,16 +19,17 @@ describe("post section payload services", () => {
 		getCollection.mockReset()
 	})
 
-	it("resolves the section tag before querying posts", async () => {
+	it("resolves the section category before querying posts", async () => {
 		getBySlug.mockResolvedValueOnce({ id: "technical-id", slug: "technical" })
 		getCollection.mockResolvedValueOnce({ docs: [], totalDocs: 0 })
 
 		await getPostsBySection("technical")
 
-		expect(getBySlug).toHaveBeenCalledWith("tags", "technical", {
+		expect(getBySlug).toHaveBeenCalledWith("categories", "technical", {
 			locale: "en",
 			depth: 0,
-			tags: ["tag:technical:en"],
+			where: { _status: { equals: "published" } },
+			tags: ["category:technical:en"],
 		})
 		expect(getCollection).toHaveBeenCalledWith("posts", expect.any(Object))
 	})
@@ -50,10 +51,10 @@ describe("post section payload services", () => {
 			depth: 2,
 			sort: "-publishedAt",
 			where: {
-				primaryTag: { equals: "trading-id" },
-				status: { equals: "published" },
+				category: { equals: "trading-id" },
+				_status: { equals: "published" },
 			},
-			tags: ["posts:section:trading:en"],
+			tags: ["posts:section:trading:en", "post-relations:en"],
 		})
 		expect(getCollection).toHaveBeenNthCalledWith(2, "posts", {
 			locale: "en",
@@ -62,37 +63,26 @@ describe("post section payload services", () => {
 			depth: 2,
 			sort: "-publishedAt",
 			where: {
-				primaryTag: { equals: "trading-id" },
-				status: { equals: "published" },
+				category: { equals: "trading-id" },
+				_status: { equals: "published" },
 			},
-			tags: ["posts:section:trading:en"],
+			tags: ["posts:section:trading:en", "post-relations:en"],
 		})
 	})
 
-	it("includes legacy untagged posts only in the technical section", async () => {
+	it("does not silently classify uncategorized posts as technical", async () => {
 		getBySlug.mockResolvedValueOnce({ id: "technical-id", slug: "technical" })
-		getCollection.mockResolvedValueOnce({ docs: [{ id: "legacy-post" }], totalDocs: 1 })
-
-		await expect(getPostsBySection("technical")).resolves.toEqual([{ id: "legacy-post" }])
-		expect(getCollection).toHaveBeenCalledWith("posts", {
-			locale: "en",
-			limit: 100,
-			page: 1,
-			depth: 2,
-			sort: "-publishedAt",
-			where: {
-				and: [
-					{ status: { equals: "published" } },
-					{
-						or: [{ primaryTag: { equals: "technical-id" } }, { primaryTag: { exists: false } }],
-					},
-				],
-			},
-			tags: ["posts:section:technical:en"],
-		})
+		getCollection.mockResolvedValueOnce({ docs: [], totalDocs: 0 })
+		await getPostsBySection("technical")
+		expect(getCollection).toHaveBeenCalledWith(
+			"posts",
+			expect.objectContaining({
+				where: { _status: { equals: "published" }, category: { equals: "technical-id" } },
+			})
+		)
 	})
 
-	it("returns no posts without querying posts when the section tag is absent", async () => {
+	it("returns no posts without querying posts when the section category is absent", async () => {
 		getBySlug.mockResolvedValueOnce(null)
 
 		await expect(getPostsBySection("trading")).resolves.toEqual([])
@@ -103,7 +93,7 @@ describe("post section payload services", () => {
 		getBySlug.mockResolvedValueOnce({
 			id: "post-id",
 			slug: "market-view",
-			primaryTag: { id: "trading-id", slug: "trading" },
+			category: { id: "trading-id", slug: "trading" },
 		})
 
 		await expect(getPostBySlugForSection("market-view", "technical")).resolves.toBeNull()
@@ -118,8 +108,10 @@ describe("post section payload services", () => {
 		})
 		expect(getBySlug).toHaveBeenCalledWith("posts", "market-view", {
 			locale: "zh-CN",
+			revalidate: undefined,
+			where: { _status: { equals: "published" } },
 			depth: 2,
-			tags: ["post:market-view:zh-CN", "posts:details:zh-CN"],
+			tags: ["post:market-view:zh-CN", "posts:details:zh-CN", "post-relations:zh-CN"],
 		})
 	})
 
@@ -145,17 +137,18 @@ describe("post section payload services", () => {
 		}
 	)
 
-	it("fetches a tag by slug with localized cache metadata", async () => {
+	it("fetches a category by slug with localized cache metadata", async () => {
 		getBySlug.mockResolvedValueOnce({ id: "trading-id", slug: "trading" })
 
-		await expect(getTagBySlug("trading", { locale: "zh-CN" })).resolves.toEqual({
+		await expect(getCategoryBySlug("trading", { locale: "zh-CN" })).resolves.toEqual({
 			id: "trading-id",
 			slug: "trading",
 		})
-		expect(getBySlug).toHaveBeenCalledWith("tags", "trading", {
+		expect(getBySlug).toHaveBeenCalledWith("categories", "trading", {
 			locale: "zh-CN",
 			depth: 0,
-			tags: ["tag:trading:zh-CN"],
+			where: { _status: { equals: "published" } },
+			tags: ["category:trading:zh-CN"],
 		})
 	})
 })

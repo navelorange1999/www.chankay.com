@@ -6,7 +6,7 @@ export const summarizePage = (page: Partial<Page>) => {
 	return {
 		id: page.id,
 		slug: page.slug,
-		status: page.status,
+		_status: page._status,
 		title: page.title,
 		updatedAt: page.updatedAt,
 	}

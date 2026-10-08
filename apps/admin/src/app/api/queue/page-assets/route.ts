@@ -4,12 +4,23 @@ import { processPageAssetsJob } from "@/services/pageAssets/processor"
 
 type PageAssetsQueueMessage = {
 	pageId: string
+	expectedUpdatedAt: string
 }
 
 const queueCallback = handleCallback<PageAssetsQueueMessage>(
 	async (message) => {
+		if (
+			typeof message?.pageId !== "string" ||
+			!/^[a-zA-Z0-9_-]{1,80}$/.test(message.pageId) ||
+			typeof message.expectedUpdatedAt !== "string" ||
+			message.expectedUpdatedAt.length > 40 ||
+			!Number.isFinite(Date.parse(message.expectedUpdatedAt))
+		) {
+			throw new Error("Invalid page assets queue message")
+		}
 		await processPageAssetsJob({
 			pageId: message.pageId,
+			expectedUpdatedAt: message.expectedUpdatedAt,
 		})
 	},
 	{

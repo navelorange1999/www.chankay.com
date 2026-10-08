@@ -1,4 +1,5 @@
 export const GENERATION_CONTEXT_FLAG = "skipGeneratedPageAssets"
+export const EXPECTED_PAGE_UPDATED_AT_CONTEXT_KEY = "expectedGeneratedPageUpdatedAt"
 export const SKIP_MEDIA_SOURCE_CAPTURE_FLAG = "skipMediaSourceCapture"
 export const DEFAULT_WWW_SITE_URL = "https://chankay.com"
 export const DEFAULT_WAIT_FOR_MS = 1500

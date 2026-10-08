@@ -36,6 +36,24 @@ may still receive the previous state; this is not an immediate moderation contro
 
 > Last Updated: March 12, 2026
 
+## Animation Duration
+
+HandWriting and Heatmap expose `duration` in seconds. It covers the complete animation,
+including staggered starts and the final stroke or cell fade. HandWriting defaults to 5 seconds.
+Heatmap renders immediately when duration is omitted. CMS fields require at least 0.1 seconds.
+Use matching durations to align animation lengths; independently mounted components still start
+when they mount and do not share a playback clock.
+
+HandWriting scales its overlapping stroke timings to fit the duration and uses a timed tween.
+Heatmap fills non-empty cells in chronological order, with the final fade ending at the duration;
+empty dates and calendar padding do not consume animation time.
+
+When deploying this change, run `20260928120000_animation_duration` using the admin migration
+workflow before editors save existing pages with the new schema. It updates nested blocks in
+pages and page versions, converting handwriting `speed` to `7.5 / speed` and copying heatmap
+`display.animateFill` to `display.duration`. Existing durations are preserved, including a cleared
+heatmap duration. The migration retains legacy values for rollback and can be rerun safely.
+
 ## Tailwind CSS Usage
 
 Use the `cn()` utility for conditional classes:
@@ -302,6 +320,14 @@ export default function Error({
 ```
 
 ### Metadata
+
+Published Category relationships determine Post section membership. Categories
+with slugs `technical` and `trading` retain their existing localized section
+URLs, archive descriptions, and metadata. Do not infer a section from `primaryTag`,
+an unreadable relationship, or a missing Category. Other and uncategorized Posts
+render at the existing localized `/posts/[slug]` route; this route redirects to
+the section URL only when the Post has a readable published section Category.
+The sitemap and canonical metadata use the same resolver.
 
 Manage editorial metadata in Payload CMS. The homepage uses its localized
 `pages.seo.metaTitle` as a complete title without the site's title suffix, and

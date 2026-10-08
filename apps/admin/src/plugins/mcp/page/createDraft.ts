@@ -28,10 +28,11 @@ export const createPageDraftTool = {
 			data: {
 				seo,
 				slug,
-				status: "draft",
+				_status: "draft",
 				structure,
 				title,
 			},
+			draft: true,
 			overrideAccess: true,
 		})) as Page
 

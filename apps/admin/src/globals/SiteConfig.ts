@@ -3,6 +3,7 @@ import { authenticated } from "../access/authenticated"
 import { giscusSettings } from "../fields/giscusSettings"
 import { LOCALE_CONFIG } from "../config/locales"
 import { createGlobalRevalidationHook } from "../hooks/revalidateWww"
+import { validateSiteConfigMedia } from "../hooks/validatePublishedMedia"
 
 export const SiteConfig: GlobalConfig = {
 	slug: "site-config",
@@ -845,6 +846,7 @@ export const SiteConfig: GlobalConfig = {
 		drafts: false,
 	},
 	hooks: {
+		beforeChange: [validateSiteConfigMedia],
 		afterChange: [
 			createGlobalRevalidationHook("site-config", [
 				"giscus",

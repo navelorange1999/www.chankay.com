@@ -10,6 +10,15 @@
       ],
       "maxDuration": 60
     },
+    "src/app/api/queue/www-revalidation/route.ts": {
+      "experimentalTriggers": [
+        {
+          "type": "queue/v2beta",
+          "topic": "www-revalidation"
+        }
+      ],
+      "maxDuration": 60
+    },
     "src/app/api/**/*.ts": {
       "maxDuration": 60
     }

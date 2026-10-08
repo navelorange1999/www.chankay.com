@@ -31,6 +31,7 @@ async function loadPageById(args: {
 	try {
 		return (await args.runtime.payload.findByID({
 			collection: "pages",
+			draft: true,
 			depth: 1,
 			id: args.pageId,
 			overrideAccess: true,
@@ -144,6 +145,7 @@ async function markGeneratingPageAssets(args: { doc: MaybeDoc; runtime: PageAsse
 	}
 
 	return await updatePageWithGenerationContext({
+		expectedUpdatedAt: args.doc.updatedAt as string,
 		data: {
 			seo: next.seo ?? args.doc.seo,
 			structure: next.structure,
@@ -181,30 +183,22 @@ async function processGeneratingPreviewBlocks(args: { doc: MaybeDoc; runtime: Pa
 					})
 
 					const media = await persistGeneratedMedia({
-						alt: `Preview for ${previewUrl}`,
+						alt: "Page preview image",
 						contentType: screenshot.contentType,
 						filenamePrefix: "preview",
 						runtime: args.runtime,
 						screenshot,
-						subject: previewUrl,
+						subject: `${args.doc.id}:${blockId}`,
 					})
 
 					results.set(blockId, {
 						mediaId: media.id,
 						status: "ready",
 					})
-				} catch (error) {
-					const errorMessage = error instanceof Error ? error.message : String(error)
+				} catch {
 					args.runtime.logger.error?.(
-						`Preview image generation failed for page ${args.doc.id} block ${blockId} - Error: ${errorMessage} - URL: ${previewUrl} - Wait: ${waitForTimeoutMs}ms`
+						`Preview image generation failed for page ${args.doc.id} block ${blockId}`
 					)
-
-					if (error instanceof Error && error.stack) {
-						const stackLines = error.stack.split("\n").slice(0, 3).join(" | ")
-						args.runtime.logger.error?.(
-							`Preview block stack trace for ${args.doc.id}/${blockId}: ${stackLines}`
-						)
-					}
 
 					results.set(blockId, {
 						status: "failed",
@@ -232,6 +226,7 @@ async function processGeneratingPreviewBlocks(args: { doc: MaybeDoc; runtime: Pa
 	if (!latestDoc) {
 		return args.doc
 	}
+	if (latestDoc.updatedAt !== args.doc.updatedAt) return latestDoc
 
 	let changed = false
 
@@ -264,6 +259,7 @@ async function processGeneratingPreviewBlocks(args: { doc: MaybeDoc; runtime: Pa
 	}
 
 	return await updatePageWithGenerationContext({
+		expectedUpdatedAt: latestDoc.updatedAt as string,
 		data: {
 			structure: nextStructure,
 		},
@@ -324,16 +320,8 @@ async function processGeneratingOgImage(args: { doc: MaybeDoc; runtime: PageAsse
 			mediaId: media.id,
 			status: "ready",
 		}
-	} catch (error) {
-		const errorMessage = error instanceof Error ? error.message : String(error)
-		args.runtime.logger.error?.(
-			`OG image generation failed for page ${args.doc.id} (slug: ${slug}) - Error: ${errorMessage} - URL: ${previewUrl.toString()} - Wait: ${waitForTimeoutMs}ms`
-		)
-
-		if (error instanceof Error && error.stack) {
-			const stackLines = error.stack.split("\n").slice(0, 3).join(" | ")
-			args.runtime.logger.error?.(`Stack trace for ${args.doc.id}: ${stackLines}`)
-		}
+	} catch {
+		args.runtime.logger.error?.(`OG image generation failed for page ${args.doc.id}`)
 
 		result = {
 			status: "failed",
@@ -348,6 +336,7 @@ async function processGeneratingOgImage(args: { doc: MaybeDoc; runtime: PageAsse
 	if (!latestDoc) {
 		return args.doc
 	}
+	if (latestDoc.updatedAt !== args.doc.updatedAt) return latestDoc
 
 	const latestSeo = asRecord(latestDoc.seo)
 	if (asOptionalString(latestSeo.ogGenerationStatus) !== "generating") {
@@ -355,6 +344,7 @@ async function processGeneratingOgImage(args: { doc: MaybeDoc; runtime: PageAsse
 	}
 
 	return await updatePageWithGenerationContext({
+		expectedUpdatedAt: latestDoc.updatedAt as string,
 		data: {
 			seo: {
 				...latestSeo,
@@ -371,7 +361,7 @@ async function processGeneratingOgImage(args: { doc: MaybeDoc; runtime: PageAsse
 	})
 }
 
-export async function processPageAssetsJob(args: { pageId: string }) {
+export async function processPageAssetsJob(args: { pageId: string; expectedUpdatedAt: string }) {
 	const runtime = await createPageAssetsRuntime()
 	let currentDoc = await loadPageById({
 		pageId: args.pageId,
@@ -381,13 +371,14 @@ export async function processPageAssetsJob(args: { pageId: string }) {
 	if (!currentDoc) {
 		return
 	}
+	if (currentDoc.updatedAt !== args.expectedUpdatedAt) return
 
 	// Populate immutable handwriting artifacts before screenshots capture the page.
 	currentDoc = await prepareHandwritingPage(currentDoc, {
 		load: () => loadPageById({ pageId: args.pageId, runtime }),
 		generate: generatePageHandwriting,
 	})
-	if (!currentDoc) return
+	if (!currentDoc || currentDoc.updatedAt !== args.expectedUpdatedAt) return
 
 	currentDoc = await markGeneratingPageAssets({
 		doc: currentDoc,
@@ -403,13 +394,4 @@ export async function processPageAssetsJob(args: { pageId: string }) {
 		doc: currentDoc,
 		runtime,
 	})
-
-	try {
-		await triggerFrontendRevalidation({
-			currentSlug: currentDoc.slug,
-			runtime,
-		})
-	} catch {
-		// Best effort only. Content changes are still persisted even if revalidation fails.
-	}
 }

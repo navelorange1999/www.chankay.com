@@ -67,9 +67,9 @@ export function buildGeneratedFilename(
 	subject: string,
 	contentType: string
 ): string {
-	const safeSubject = sanitizeFilenamePart(subject)
-	const suffix = createHash("sha1").update(`${prefix}:${subject}`).digest("hex").slice(0, 8)
-	return `${prefix}-${safeSubject}-${suffix}.${inferFileExtension(contentType)}`
+	const safePrefix = sanitizeFilenamePart(prefix)
+	const suffix = createHash("sha256").update(`${prefix}:${subject}`).digest("hex").slice(0, 16)
+	return `${safePrefix}-${suffix}.${inferFileExtension(contentType)}`
 }
 
 export function cloneBlocks(value: unknown): GenericBlock[] {
@@ -101,14 +101,6 @@ export function resolvePreviewStatus(
 	return value === "queued" || value === "generating" || value === "ready" || value === "failed"
 		? value
 		: "idle"
-}
-
-export function redactUrlToken(url: URL): string {
-	const redacted = new URL(url.toString())
-	if (redacted.searchParams.has("token")) {
-		redacted.searchParams.set("token", "[REDACTED]")
-	}
-	return redacted.toString()
 }
 
 export function redactRequestHeaders(

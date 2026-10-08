@@ -2,9 +2,9 @@ import { getPayload } from "payload"
 import type { PayloadRequest } from "payload"
 import configPromise from "@payload-config"
 
-import { GENERATION_CONTEXT_FLAG } from "./constants"
+import { EXPECTED_PAGE_UPDATED_AT_CONTEXT_KEY, GENERATION_CONTEXT_FLAG } from "./constants"
 import type { MaybeDoc, PageAssetsRuntime } from "./types"
-import { asRecord } from "./utils"
+import { asOptionalString, asRecord } from "./utils"
 
 function buildGenerationContext(args: {
 	context?: Record<string, unknown>
@@ -41,16 +41,25 @@ export async function createPageAssetsRuntime(req?: PayloadRequest): Promise<Pag
 export async function updatePageWithGenerationContext(args: {
 	context?: Record<string, unknown>
 	data: Record<string, unknown>
+	expectedUpdatedAt: string
 	id: string
 	runtime: PageAssetsRuntime
 }) {
+	const expectedUpdatedAt = asOptionalString(args.expectedUpdatedAt)
+	if (!expectedUpdatedAt || !Number.isFinite(Date.parse(expectedUpdatedAt))) {
+		throw new Error("A current Page version is required for generated asset updates")
+	}
 	return (await args.runtime.payload.update({
 		collection: "pages",
+		draft: true,
 		context: buildGenerationContext({
 			context: args.runtime.context,
-			extra: args.context,
+			extra: {
+				...args.context,
+				[EXPECTED_PAGE_UPDATED_AT_CONTEXT_KEY]: expectedUpdatedAt,
+			},
 		}),
-		data: args.data,
+		data: { ...args.data, _status: "draft" },
 		depth: 1,
 		id: args.id,
 		overrideAccess: true,

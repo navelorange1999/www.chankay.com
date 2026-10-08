@@ -160,7 +160,7 @@ If future features need longer execution time, update the deployment design inte
 Current behavior:
 
 - `pages.afterChange` marks generated assets as `queued`
-- the save request triggers immediate frontend revalidation for page content
+- public content changes enqueue a transactional frontend revalidation job
 - page asset generation is dispatched separately
 - a queue consumer route exists at `apps/admin/src/app/api/queue/page-assets/route.ts`
 - the `page-assets` queue trigger is registered in `apps/admin/vercel.json`
@@ -175,6 +175,60 @@ Operational implications:
 - queue mode uses Vercel Queues topic `page-assets` and requires the matching trigger in `apps/admin/vercel.json`
 - no page-assets-specific dispatch secret or mode variable is required
 - if durable background execution is required outside Vercel, replace the dispatcher intentionally rather than assuming in-memory dispatch is sufficient
+
+## Public Cache Revalidation
+
+### Native publication compatibility rollout
+
+Admin defaults to strict native publication. A reviewed Admin-only compatibility release can set
+`CONTENT_PUBLICATION_MODE=compatibility` and `CONTENT_PUBLICATION_LEGACY_BEFORE` to a canonical UTC
+timestamp such as `2026-01-01T00:00:00.000Z` (illustrative only). Choose and record the actual cutoff
+after the last legacy editorial write, including newly created topic Tags. An absent, malformed, or
+non-canonical cutoff disables the fallback. Do not deploy strict Admin or WWW readers until the
+publication inventory, approved snapshots, backfill, and public visibility parity checks pass.
+
+Compatibility permits only pre-cutoff records with no stored native state. Posts and Pages must
+also have legacy `status=published`; existing Tags, Series, and Media retain their former public
+visibility. An explicit native draft always remains private, and Categories always require native
+publication. Pre-existing conflicting Post states therefore still require reconciliation before
+deploying this release. The default strict website queries do not use this fallback: retain the
+legacy WWW deployment during the compatibility phase.
+
+Post/Page main-document writes mirror native state into legacy `status` for old readers. Draft
+saves modify only Payload versions and cannot independently update the public mirror. Existing
+pre-cutoff Posts without a Category can defer that requirement until migration; a previously
+assigned Category cannot be cleared, new Posts still require one, and all selected references
+must pass the current public-visibility predicate. Page and Site Config media checks use the same
+bounded predicate with the write request so transactional updates remain visible.
+
+Revalidation captures public visibility before both updates and deletes, using the compatibility
+predicate when enabled. Deleting a private snapshot does not invalidate public caches; withdrawing
+a previously public snapshot does. Remove
+the compatibility settings and mirror only after the native publication cutover is verified.
+
+Content hooks capture the previous public snapshot and enqueue a `revalidateWww` Payload job with
+the same request as the content write. The job is committed or rolled back with that write. The
+job contains the affected collection and all known public and draft slugs, including the old live
+slug when a newer draft has a different slug.
+
+On Vercel, the save also publishes a delayed wakeup to the `www-revalidation` queue topic. Its
+verified callback reads the committed Payload job and runs it. A callback that arrives before
+commit retries; a rolled-back job never reaches the website. Payload retries failed website
+notifications, and the queue retries callbacks while the job is pending. Repeated deliveries are
+safe because website cache invalidation is idempotent. Outside Vercel, Payload polls this job
+queue every 30 seconds. The existing `WWW_INTERNAL_SECRET` authorizes the website request; no new
+secret is required. Queue delivery requires the trigger in `apps/admin/vercel.json`.
+
+Completed jobs are retained (`deleteJobOnComplete: false`) so repeated callbacks can acknowledge
+their completion. A processing job untouched for five minutes can be released by a subsequent
+callback, using its last update timestamp as a conditional write guard. This exceeds the callback's
+60-second execution limit and recovers jobs abandoned by a terminated function without resetting
+an active delivery. Queue wakeup failures reject the content write so its transaction can roll back;
+public snapshot database failures also abort rather than silently skipping invalidation.
+
+If the Vercel wakeup exhausts its retention period, the Payload job remains in the database for
+inspection and operator recovery. A recurring production drain should be added if the deployment
+requires automatic recovery beyond the queue retention window.
 
 ## Operational Notes
 

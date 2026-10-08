@@ -37,10 +37,12 @@ describe("pageAssets dispatcher", () => {
 
 		await enqueuePageAssetsJob({
 			pageId: "page-1",
+			expectedUpdatedAt: "2026-09-29T00:00:00.000Z",
 		})
 
 		expect(sendMock).toHaveBeenCalledWith("page-assets", {
 			pageId: "page-1",
+			expectedUpdatedAt: "2026-09-29T00:00:00.000Z",
 		})
 	})
 
@@ -53,11 +55,13 @@ describe("pageAssets dispatcher", () => {
 
 		await enqueuePageAssetsJob({
 			pageId: "page-2",
+			expectedUpdatedAt: "2026-09-29T00:00:00.000Z",
 		})
 
 		await vi.waitFor(() => {
 			expect(vi.mocked(processPageAssetsJob)).toHaveBeenCalledWith({
 				pageId: "page-2",
+				expectedUpdatedAt: "2026-09-29T00:00:00.000Z",
 			})
 		})
 		expect(sendMock).not.toHaveBeenCalled()
@@ -72,11 +76,13 @@ describe("pageAssets dispatcher", () => {
 
 		await enqueuePageAssetsJob({
 			pageId: "page-3",
+			expectedUpdatedAt: "2026-09-29T00:00:00.000Z",
 		})
 
 		await vi.waitFor(() => {
 			expect(vi.mocked(processPageAssetsJob)).toHaveBeenCalledWith({
 				pageId: "page-3",
+				expectedUpdatedAt: "2026-09-29T00:00:00.000Z",
 			})
 		})
 		expect(sendMock).not.toHaveBeenCalled()

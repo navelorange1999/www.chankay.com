@@ -68,6 +68,8 @@ it("zooms categories in the canvas and opens a localized article without a panel
 
 	expect(host.querySelector("table, details, h2, h3")).toBeNull()
 	const article = host.querySelector<HTMLButtonElement>('button[aria-label="Article: 1"]')!
+	expect(article.textContent).toBe("Article")
+	expect(article.querySelector("[data-treemap-count]")).toBeNull()
 	await act(() => article.click())
 	expect(push).toHaveBeenCalledWith("/zh-CN/posts/article")
 	await act(() => back.click())
@@ -75,7 +77,7 @@ it("zooms categories in the canvas and opens a localized article without a panel
 })
 
 it.each([8, 25])(
-	"keeps all %i article counts and keyboard targets in a narrow focused canvas",
+	"keeps %i article titles and keyboard targets without leaf counts in a narrow focused canvas",
 	async (articleCount) => {
 		vi.spyOn(HTMLElement.prototype, "clientWidth", "get").mockReturnValue(343)
 		vi.spyOn(HTMLElement.prototype, "clientHeight", "get").mockReturnValue(276)
@@ -111,7 +113,8 @@ it.each([8, 25])(
 		)
 		expect(articles).toHaveLength(articleCount)
 		for (const [index, article] of articles.entries()) {
-			expect(article.querySelector("[data-treemap-count]")?.textContent).toBe("1")
+			expect(article.querySelector("[data-treemap-count]")).toBeNull()
+			expect(article.textContent).toBe(`Article ${index}`)
 			expect(article.tabIndex).toBe(0)
 			article.focus()
 			expect(document.activeElement).toBe(article)
@@ -217,4 +220,29 @@ it("uses compact category navigation for a skewed overview without collapsing ar
 	expect(canvas.querySelectorAll('button[aria-label^="Article "]')).toHaveLength(100)
 	expect(Number.parseFloat(canvas.style.minHeight)).toBeLessThanOrEqual(720)
 	expect(canvas.className).toContain("overflow-y-auto")
+})
+
+it("treats direct root children without descendants as article leaves", async () => {
+	const { Treemap } = await import("@repo/ui/components/Treemap")
+	const activate = vi.fn()
+	const focus = vi.fn()
+	await act(() =>
+		root.render(
+			<Treemap
+				ariaLabel="Articles"
+				onLeafActivate={activate}
+				onFocusChange={focus}
+				data={{
+					id: "root",
+					label: "Articles",
+					children: [{ id: "article", label: "Article", value: 1 }],
+				}}
+			/>
+		)
+	)
+	const article = host.querySelector<HTMLButtonElement>('button[aria-label="Article: 1"]')!
+	expect(article.textContent).toBe("Article")
+	await act(() => article.click())
+	expect(activate).toHaveBeenCalledWith("article")
+	expect(focus).not.toHaveBeenCalled()
 })

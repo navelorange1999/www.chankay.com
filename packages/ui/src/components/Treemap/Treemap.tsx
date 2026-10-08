@@ -224,10 +224,10 @@ export function Treemap({
 				</button>
 			)}
 			{layout.nodes.map((node) => {
-				const isBranch = branches.some((branch) => branch.id === node.id)
+				const isBranch = branches.some((branch) => branch.id === node.id && "children" in branch)
 				const tone = toneByBranch.get(node.branchId) ?? "chart-1"
 				const canActivate = isBranch ? Boolean(onFocusChange) : Boolean(onLeafActivate)
-				const showLabel = node.width >= 72 && node.height >= 32
+				const showLabel = !isBranch || (node.width >= 72 && node.height >= 32)
 				const style = {
 					left: node.x,
 					top: node.y + (activeBranch ? 44 : 0),
@@ -241,9 +241,11 @@ export function Treemap({
 						{showLabel && (
 							<span className="line-clamp-2 min-w-0 flex-1 break-words">{node.label}</span>
 						)}
-						<span data-treemap-count="" className="shrink-0 tabular-nums">
-							{node.value}
-						</span>
+						{isBranch && (
+							<span data-treemap-count="" className="shrink-0 tabular-nums">
+								{node.value}
+							</span>
+						)}
 					</span>
 				)
 				const label = `${node.label}: ${node.value}`

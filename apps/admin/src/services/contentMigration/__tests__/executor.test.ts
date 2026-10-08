@@ -122,6 +122,10 @@ describe("guarded content migration", () => {
 			})
 		)
 		expect(db.commitTransaction).toHaveBeenCalledWith("transaction1")
+		// Avoid parallel document/count queries when starting a MongoDB transaction.
+		expect(db.find).toHaveBeenCalledWith(
+			expect.objectContaining({ collection: "pages", limit: 1, pagination: false })
+		)
 		expect(journals[0]).toMatchObject({
 			before: { nativeStatus: null },
 			after: { nativeStatus: "published" },

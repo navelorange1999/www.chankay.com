@@ -9,6 +9,7 @@ import {
 } from "@/hooks/revalidateWww"
 
 import { DEFAULT_WAIT_FOR_MS } from "@/services/pageAssets/constants"
+import { preserveMigrationMediaField } from "@/services/contentMigration/mediaFields"
 import { mediaCaptureBeforeOperation, validateCaptureUrl } from "@/services/mediaCapture"
 import {
 	buildBlobFileUrl,
@@ -61,13 +62,26 @@ export const Media: CollectionConfig = {
 			name: "captureWaitForMs",
 			type: "number",
 			label: "Capture Wait (ms)",
-			defaultValue: DEFAULT_WAIT_FOR_MS,
+			defaultValue: () => DEFAULT_WAIT_FOR_MS,
+			hooks: { beforeChange: [preserveMigrationMediaField] },
 			min: 0,
 			admin: {
 				condition: (_, siblingData) =>
 					typeof siblingData?.captureUrl === "string" && siblingData.captureUrl.trim().length > 0,
 				description: "Milliseconds to wait before Browserless captures the page.",
 			},
+		},
+		{
+			name: "url",
+			type: "text",
+			admin: { hidden: true, readOnly: true },
+			hooks: { beforeChange: [preserveMigrationMediaField] },
+		},
+		{
+			name: "thumbnailURL",
+			type: "text",
+			admin: { hidden: true, readOnly: true },
+			hooks: { beforeChange: [preserveMigrationMediaField] },
 		},
 		{
 			name: "width",

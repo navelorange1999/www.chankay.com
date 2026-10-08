@@ -14,18 +14,22 @@ function shouldDispatchPageAssetJobsViaQueue(): boolean {
 	return Boolean(process.env.VERCEL?.trim())
 }
 
-function scheduleInlinePageAssetJob(args: { logger?: LoggerLike; pageId: string }) {
+function scheduleInlinePageAssetJob(args: {
+	logger?: LoggerLike
+	pageId: string
+	expectedUpdatedAt: string
+}) {
 	const previousJob = queuedPageAssetJobs.get(args.pageId) ?? Promise.resolve()
 	const nextJob = previousJob
 		.catch(() => undefined)
 		.then(async () => {
 			await processPageAssetsJob({
 				pageId: args.pageId,
+				expectedUpdatedAt: args.expectedUpdatedAt,
 			})
 		})
-		.catch((error) => {
-			const message = error instanceof Error ? error.stack || error.message : String(error)
-			args.logger?.error?.(`Failed to process generated page assets for ${args.pageId}: ${message}`)
+		.catch(() => {
+			args.logger?.error?.(`Failed to process generated page assets for ${args.pageId}`)
 		})
 		.finally(() => {
 			if (queuedPageAssetJobs.get(args.pageId) === nextJob) {
@@ -36,9 +40,14 @@ function scheduleInlinePageAssetJob(args: { logger?: LoggerLike; pageId: string 
 	queuedPageAssetJobs.set(args.pageId, nextJob)
 }
 
-async function dispatchPageAssetJobToQueue(args: { logger?: LoggerLike; pageId: string }) {
+async function dispatchPageAssetJobToQueue(args: {
+	logger?: LoggerLike
+	pageId: string
+	expectedUpdatedAt: string
+}) {
 	const result = await send(PAGE_ASSETS_QUEUE_TOPIC, {
 		pageId: args.pageId,
+		expectedUpdatedAt: args.expectedUpdatedAt,
 	})
 
 	args.logger?.info?.(
@@ -46,7 +55,11 @@ async function dispatchPageAssetJobToQueue(args: { logger?: LoggerLike; pageId: 
 	)
 }
 
-export async function enqueuePageAssetsJob(args: { logger?: LoggerLike; pageId: string }) {
+export async function enqueuePageAssetsJob(args: {
+	logger?: LoggerLike
+	pageId: string
+	expectedUpdatedAt: string
+}) {
 	if (shouldDispatchPageAssetJobsViaQueue()) {
 		await dispatchPageAssetJobToQueue(args)
 		return

@@ -1,4 +1,12 @@
 import type { CollectionConfig } from "payload"
+import { createPublishedOrAuthenticated } from "@/access/publishedOrAuthenticated"
+import { authenticated } from "@/access/authenticated"
+import {
+	capturePublicSnapshot,
+	capturePublicDeleteSnapshot,
+	createRevalidationDeleteHook,
+	createRevalidationHook,
+} from "@/hooks/revalidateWww"
 
 import { DEFAULT_WAIT_FOR_MS } from "@/services/pageAssets/constants"
 import { mediaCaptureBeforeOperation, validateCaptureUrl } from "@/services/mediaCapture"
@@ -18,8 +26,13 @@ type MediaDocLike = {
 export const Media: CollectionConfig = {
 	slug: "media",
 	access: {
-		read: () => true,
+		read: createPublishedOrAuthenticated("media"),
+		readVersions: authenticated,
+		create: authenticated,
+		update: authenticated,
+		delete: authenticated,
 	},
+	versions: { drafts: true, maxPerDoc: 10 },
 
 	typescript: {
 		interface: "MediaInterface",
@@ -72,8 +85,12 @@ export const Media: CollectionConfig = {
 		},
 	],
 	hooks: {
+		beforeDelete: [capturePublicDeleteSnapshot("media")],
 		beforeOperation: [mediaCaptureBeforeOperation],
+		beforeChange: [capturePublicSnapshot("media")],
+		afterChange: [createRevalidationHook("media")],
 		afterDelete: [
+			createRevalidationDeleteHook("media"),
 			({ doc }) => {
 				const mediaDoc = doc as MediaDocLike
 				mediaDoc.filename =

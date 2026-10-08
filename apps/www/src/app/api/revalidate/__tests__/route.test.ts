@@ -46,6 +46,7 @@ describe("revalidation route", () => {
 		expect(revalidatePath).toHaveBeenCalledWith("/trading")
 		expect(revalidatePath).toHaveBeenCalledWith("/technical/example")
 		expect(revalidatePath).toHaveBeenCalledWith("/trading/example")
+		expect(revalidatePath).toHaveBeenCalledWith("/posts/example")
 		expect(revalidateTag).toHaveBeenCalledWith("posts:section:technical:en")
 		expect(revalidateTag).toHaveBeenCalledWith("posts:section:trading:en")
 	})
@@ -62,6 +63,29 @@ describe("revalidation route", () => {
 		expect(revalidateTag).toHaveBeenCalledWith("tag:trading:en")
 		expect(revalidateTag).toHaveBeenCalledWith("posts:details:en")
 	})
+
+	it.each(["categories", "tags", "series", "media"])(
+		"invalidates public relationship caches for %s changes",
+		async (collection) => {
+			const response = await POST(requestFor({ collection, locales: ["zh-CN"] }))
+			expect(response.status).toBe(200)
+			expect(revalidateTag).toHaveBeenCalledWith("post-relations:zh-CN")
+			expect(revalidateTag).toHaveBeenCalledWith("posts:zh-CN")
+			expect(revalidateTag).toHaveBeenCalledWith("posts:latest:zh-CN")
+			expect(revalidateTag).toHaveBeenCalledWith("posts:all:zh-CN")
+			if (collection === "categories") {
+				expect(revalidateTag).toHaveBeenCalledWith("category:technical:zh-CN")
+				expect(revalidateTag).toHaveBeenCalledWith("posts:section:trading:zh-CN")
+			}
+			if (collection === "categories" || collection === "tags") {
+				expect(revalidateTag).toHaveBeenCalledWith("topic-map:zh-CN")
+			}
+			if (collection === "media") {
+				expect(revalidateTag).toHaveBeenCalledWith("page-media:zh-CN")
+				expect(revalidateTag).toHaveBeenCalledWith("global:site-config:zh-CN")
+			}
+		}
+	)
 
 	it("rejects requests without the configured secret", async () => {
 		const response = await POST(requestFor({ collection: "posts" }, randomUUID()))

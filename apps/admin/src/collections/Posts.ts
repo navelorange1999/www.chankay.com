@@ -1,8 +1,16 @@
+import { mirrorNativePublication } from "@/services/publicationCompatibility"
 import type { CollectionConfig } from "payload"
 import { POST_SLUG_MAX_LENGTH, validatePostSlug } from "@repo/i18n"
 import { authenticated } from "../access/authenticated"
 import { markdownField } from "../fields/markdownField"
-import { createRevalidationHook } from "../hooks/revalidateWww"
+import {
+	capturePublicSnapshot,
+	capturePublicDeleteSnapshot,
+	createRevalidationDeleteHook,
+	createRevalidationHook,
+} from "../hooks/revalidateWww"
+import { createPublishedOrAuthenticated } from "../access/publishedOrAuthenticated"
+import { validatePostPublication } from "../hooks/validatePostPublication"
 import { buildPostPreviewUrl } from "../utils/postPreview"
 import { estimateReadingTimeFromMarkdown } from "../utils/readingTime"
 import { validatePostContent } from "./posts/validatePostContent"
@@ -10,20 +18,14 @@ import { validatePostContent } from "./posts/validatePostContent"
 export const Posts: CollectionConfig = {
 	slug: "posts",
 	access: {
-		read: ({ req }) => {
-			// Public posts are readable by anyone
-			// Draft posts only by authenticated users
-			if (req.user) return true
-			return {
-				status: { equals: "published" },
-			}
-		},
+		read: createPublishedOrAuthenticated("posts"),
+		readVersions: authenticated,
 		create: authenticated,
 		update: authenticated,
 		delete: authenticated,
 	},
 	admin: {
-		defaultColumns: ["title", "status", "publishedAt"],
+		defaultColumns: ["title", "_status", "publishedAt"],
 		useAsTitle: "title",
 		preview: (doc, { locale }) =>
 			buildPostPreviewUrl({
@@ -138,6 +140,9 @@ export const Posts: CollectionConfig = {
 			index: true,
 			admin: {
 				position: "sidebar",
+				readOnly: true,
+				description:
+					"Legacy publication state retained for migration. Use the native Publish control.",
 			},
 			options: [
 				{ label: "Draft", value: "draft" },
@@ -154,12 +159,12 @@ export const Posts: CollectionConfig = {
 				date: {
 					pickerAppearance: "dayAndTime",
 				},
-				condition: (data) => data.status === "published",
+				condition: (data) => data._status === "published",
 			},
 			hooks: {
 				beforeChange: [
 					({ data, value }) => {
-						if (data?.status === "published" && !value) {
+						if (data?._status === "published" && !value) {
 							return new Date()
 						}
 						return value
@@ -188,25 +193,31 @@ export const Posts: CollectionConfig = {
 
 		// === Categorization ===
 		{
+			name: "category",
+			type: "relationship",
+			relationTo: "categories",
+			index: true,
+			admin: { position: "sidebar" },
+		},
+		{
 			name: "tags",
 			type: "relationship",
 			relationTo: "tags",
 			hasMany: true,
 			admin: {
 				position: "sidebar",
-				description:
-					"Optional secondary topics. Primary Tag determines the Technical or Trading section.",
+				description: "Topics used for discovery and the topic map; a post may have multiple tags.",
 			},
 		},
 		{
 			name: "primaryTag",
 			type: "relationship",
 			relationTo: "tags",
-			required: true,
 			admin: {
 				position: "sidebar",
+				readOnly: true,
 				description:
-					"Required. Determines whether the post appears in the Technical or Trading section.",
+					"Legacy classification retained for migration. Use Category for new assignments.",
 			},
 		},
 
@@ -265,6 +276,25 @@ export const Posts: CollectionConfig = {
 	],
 	timestamps: true,
 	hooks: {
-		afterChange: [createRevalidationHook("posts", ["commentsEnabled"])],
+		beforeDelete: [capturePublicDeleteSnapshot("posts")],
+		beforeChange: [
+			capturePublicSnapshot("posts"),
+			mirrorNativePublication,
+			validatePostPublication,
+		],
+		afterChange: [
+			createRevalidationHook("posts", [
+				"commentsEnabled",
+				"category",
+				"tags",
+				"primaryTag",
+				"series",
+				"seriesOrder",
+				"featured",
+				"featuredImage",
+				"publishedAt",
+			]),
+		],
+		afterDelete: [createRevalidationDeleteHook("posts")],
 	},
 }

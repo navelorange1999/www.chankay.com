@@ -74,13 +74,26 @@ export interface Config {
     tags: Tag;
     series: Series;
     pages: Page;
+    categories: Category;
+    'content-migration-runs': ContentMigrationRun;
     'payload-mcp-api-keys': PayloadMcpApiKey;
     'payload-kv': PayloadKv;
+    'payload-jobs': PayloadJob;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {};
+  collectionsJoins: {
+    tags: {
+      posts: 'posts';
+    };
+    series: {
+      posts: 'posts';
+    };
+    categories: {
+      posts: 'posts';
+    };
+  };
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -88,8 +101,11 @@ export interface Config {
     tags: TagsSelect<false> | TagsSelect<true>;
     series: SeriesSelect<false> | SeriesSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
+    categories: CategoriesSelect<false> | CategoriesSelect<true>;
+    'content-migration-runs': ContentMigrationRunsSelect<false> | ContentMigrationRunsSelect<true>;
     'payload-mcp-api-keys': PayloadMcpApiKeysSelect<false> | PayloadMcpApiKeysSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
+    'payload-jobs': PayloadJobsSelect<false> | PayloadJobsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -110,7 +126,13 @@ export interface Config {
   };
   user: User | PayloadMcpApiKey;
   jobs: {
-    tasks: unknown;
+    tasks: {
+      revalidateWww: TaskRevalidateWww;
+      inline: {
+        input: unknown;
+        output: unknown;
+      };
+    };
     workflows: unknown;
   };
 }
@@ -220,6 +242,7 @@ export interface MediaInterface {
   prefix?: string | null;
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
   url?: string | null;
   thumbnailURL?: string | null;
   filename?: string | null;
@@ -257,6 +280,9 @@ export interface Post {
    * Show GitHub Discussions comments for this post in every language. Disabling hides the embed; existing discussions remain on GitHub.
    */
   commentsEnabled?: boolean | null;
+  /**
+   * Legacy publication state retained for migration. Use the native Publish control.
+   */
   status: 'draft' | 'published' | 'archived';
   publishedAt?: string | null;
   /**
@@ -267,14 +293,15 @@ export interface Post {
    * Order of this post within the series
    */
   seriesOrder?: number | null;
+  category?: (string | null) | Category;
   /**
-   * Optional secondary topics. Primary Tag determines the Technical or Trading section.
+   * Topics used for discovery and the topic map; a post may have multiple tags.
    */
   tags?: (string | Tag)[] | null;
   /**
-   * Required. Determines whether the post appears in the Technical or Trading section.
+   * Legacy classification retained for migration. Use Category for new assignments.
    */
-  primaryTag: string | Tag;
+  primaryTag?: (string | null) | Tag;
   /**
    * Estimated reading time in minutes
    */
@@ -305,6 +332,11 @@ export interface Post {
  */
 export interface Series {
   id: string;
+  posts?: {
+    docs?: (string | Post)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
   title: string;
   /**
    * URL-friendly version of the series title
@@ -336,16 +368,13 @@ export interface Series {
    * Primary author of this series
    */
   author: string | User;
-  status: 'draft' | 'in-progress' | 'completed' | 'on-hold';
+  progress: 'planned' | 'in-progress' | 'completed' | 'on-hold';
+  status?: ('draft' | 'in-progress' | 'completed' | 'on-hold') | null;
   difficulty?: ('beginner' | 'intermediate' | 'advanced') | null;
   /**
    * Total estimated reading time in minutes
    */
   estimatedReadTime?: number | null;
-  /**
-   * Number of posts in this series
-   */
-  postCount?: number | null;
   /**
    * Feature this series prominently
    */
@@ -356,6 +385,27 @@ export interface Series {
   completedAt?: string | null;
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: string;
+  name: string;
+  slug: string;
+  description?: string | null;
+  sortOrder?: number | null;
+  colorToken?: ('chart-1' | 'chart-2' | 'chart-3' | 'chart-4' | 'chart-5') | null;
+  posts?: {
+    docs?: (string | Post)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -363,6 +413,11 @@ export interface Series {
  */
 export interface Tag {
   id: string;
+  posts?: {
+    docs?: (string | Post)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
+  };
   name: string;
   /**
    * URL-friendly version of the tag name
@@ -374,10 +429,6 @@ export interface Tag {
    */
   color?: string | null;
   /**
-   * Number of posts with this tag
-   */
-  postCount?: number | null;
-  /**
    * Higher priority tags appear first (0-100)
    */
   priority?: number | null;
@@ -387,6 +438,7 @@ export interface Tag {
   featured?: boolean | null;
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -399,6 +451,9 @@ export interface Page {
    * URL path for this page (e.g., 'home', 'about')
    */
   slug: string;
+  /**
+   * Legacy publication state retained for migration. Use the native Publish control.
+   */
   status: 'draft' | 'published';
   /**
    * Build your page by nesting Structure and Content blocks (max depth: 4)
@@ -513,6 +568,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -1037,6 +1101,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -1558,6 +1631,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -2050,6 +2132,15 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'heatmap';
+                                        }
+                                      | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
                                         }
                                       | {
                                           media: string | MediaInterface;
@@ -2544,6 +2635,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -3064,6 +3164,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -3587,6 +3696,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -4079,6 +4197,15 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'heatmap';
+                                        }
+                                      | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
                                         }
                                       | {
                                           media: string | MediaInterface;
@@ -4574,6 +4701,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -5094,6 +5230,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -5617,6 +5762,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -6111,6 +6265,15 @@ export interface Page {
                                           blockType: 'heatmap';
                                         }
                                       | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
+                                        }
+                                      | {
                                           media: string | MediaInterface;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -6577,6 +6740,15 @@ export interface Page {
                                 id?: string | null;
                                 blockName?: string | null;
                                 blockType: 'heatmap';
+                              }
+                            | {
+                                enabled?: boolean | null;
+                                title: string;
+                                description?: string | null;
+                                maxTopicsPerCategory: number;
+                                id?: string | null;
+                                blockName?: string | null;
+                                blockType: 'topicMap';
                               }
                             | {
                                 media: string | MediaInterface;
@@ -7064,6 +7236,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -7584,6 +7765,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -8107,6 +8297,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -8599,6 +8798,15 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'heatmap';
+                                        }
+                                      | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
                                         }
                                       | {
                                           media: string | MediaInterface;
@@ -9093,6 +9301,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -9613,6 +9830,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -10136,6 +10362,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -10628,6 +10863,15 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'heatmap';
+                                        }
+                                      | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
                                         }
                                       | {
                                           media: string | MediaInterface;
@@ -11123,6 +11367,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -11643,6 +11896,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -12166,6 +12428,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -12660,6 +12931,15 @@ export interface Page {
                                           blockType: 'heatmap';
                                         }
                                       | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
+                                        }
+                                      | {
                                           media: string | MediaInterface;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -13126,6 +13406,15 @@ export interface Page {
                                 id?: string | null;
                                 blockName?: string | null;
                                 blockType: 'heatmap';
+                              }
+                            | {
+                                enabled?: boolean | null;
+                                title: string;
+                                description?: string | null;
+                                maxTopicsPerCategory: number;
+                                id?: string | null;
+                                blockName?: string | null;
+                                blockType: 'topicMap';
                               }
                             | {
                                 media: string | MediaInterface;
@@ -13614,6 +13903,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -14134,6 +14432,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -14657,6 +14964,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -15149,6 +15465,15 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'heatmap';
+                                        }
+                                      | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
                                         }
                                       | {
                                           media: string | MediaInterface;
@@ -15643,6 +15968,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -16163,6 +16497,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -16686,6 +17029,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -17178,6 +17530,15 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'heatmap';
+                                        }
+                                      | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
                                         }
                                       | {
                                           media: string | MediaInterface;
@@ -17673,6 +18034,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -18193,6 +18563,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -18716,6 +19095,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -19210,6 +19598,15 @@ export interface Page {
                                           blockType: 'heatmap';
                                         }
                                       | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
+                                        }
+                                      | {
                                           media: string | MediaInterface;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -19678,6 +20075,15 @@ export interface Page {
                                 blockType: 'heatmap';
                               }
                             | {
+                                enabled?: boolean | null;
+                                title: string;
+                                description?: string | null;
+                                maxTopicsPerCategory: number;
+                                id?: string | null;
+                                blockName?: string | null;
+                                blockType: 'topicMap';
+                              }
+                            | {
                                 media: string | MediaInterface;
                                 id?: string | null;
                                 blockName?: string | null;
@@ -20132,6 +20538,15 @@ export interface Page {
                       id?: string | null;
                       blockName?: string | null;
                       blockType: 'heatmap';
+                    }
+                  | {
+                      enabled?: boolean | null;
+                      title: string;
+                      description?: string | null;
+                      maxTopicsPerCategory: number;
+                      id?: string | null;
+                      blockName?: string | null;
+                      blockType: 'topicMap';
                     }
                   | {
                       media: string | MediaInterface;
@@ -20602,6 +21017,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -21122,6 +21546,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -21645,6 +22078,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -22137,6 +22579,15 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'heatmap';
+                                        }
+                                      | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
                                         }
                                       | {
                                           media: string | MediaInterface;
@@ -22631,6 +23082,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -23151,6 +23611,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -23674,6 +24143,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -24166,6 +24644,15 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'heatmap';
+                                        }
+                                      | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
                                         }
                                       | {
                                           media: string | MediaInterface;
@@ -24661,6 +25148,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -25181,6 +25677,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -25704,6 +26209,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -26198,6 +26712,15 @@ export interface Page {
                                           blockType: 'heatmap';
                                         }
                                       | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
+                                        }
+                                      | {
                                           media: string | MediaInterface;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -26664,6 +27187,15 @@ export interface Page {
                                 id?: string | null;
                                 blockName?: string | null;
                                 blockType: 'heatmap';
+                              }
+                            | {
+                                enabled?: boolean | null;
+                                title: string;
+                                description?: string | null;
+                                maxTopicsPerCategory: number;
+                                id?: string | null;
+                                blockName?: string | null;
+                                blockType: 'topicMap';
                               }
                             | {
                                 media: string | MediaInterface;
@@ -27151,6 +27683,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -27671,6 +28212,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -28194,6 +28744,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -28686,6 +29245,15 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'heatmap';
+                                        }
+                                      | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
                                         }
                                       | {
                                           media: string | MediaInterface;
@@ -29180,6 +29748,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -29700,6 +30277,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -30223,6 +30809,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -30715,6 +31310,15 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'heatmap';
+                                        }
+                                      | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
                                         }
                                       | {
                                           media: string | MediaInterface;
@@ -31210,6 +31814,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -31730,6 +32343,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -32253,6 +32875,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -32747,6 +33378,15 @@ export interface Page {
                                           blockType: 'heatmap';
                                         }
                                       | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
+                                        }
+                                      | {
                                           media: string | MediaInterface;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -33213,6 +33853,15 @@ export interface Page {
                                 id?: string | null;
                                 blockName?: string | null;
                                 blockType: 'heatmap';
+                              }
+                            | {
+                                enabled?: boolean | null;
+                                title: string;
+                                description?: string | null;
+                                maxTopicsPerCategory: number;
+                                id?: string | null;
+                                blockName?: string | null;
+                                blockType: 'topicMap';
                               }
                             | {
                                 media: string | MediaInterface;
@@ -33701,6 +34350,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -34221,6 +34879,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -34744,6 +35411,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -35236,6 +35912,15 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'heatmap';
+                                        }
+                                      | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
                                         }
                                       | {
                                           media: string | MediaInterface;
@@ -35730,6 +36415,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -36250,6 +36944,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -36773,6 +37476,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -37265,6 +37977,15 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'heatmap';
+                                        }
+                                      | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
                                         }
                                       | {
                                           media: string | MediaInterface;
@@ -37760,6 +38481,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -38280,6 +39010,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -38803,6 +39542,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -39297,6 +40045,15 @@ export interface Page {
                                           blockType: 'heatmap';
                                         }
                                       | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
+                                        }
+                                      | {
                                           media: string | MediaInterface;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -39765,6 +40522,15 @@ export interface Page {
                                 blockType: 'heatmap';
                               }
                             | {
+                                enabled?: boolean | null;
+                                title: string;
+                                description?: string | null;
+                                maxTopicsPerCategory: number;
+                                id?: string | null;
+                                blockName?: string | null;
+                                blockType: 'topicMap';
+                              }
+                            | {
                                 media: string | MediaInterface;
                                 id?: string | null;
                                 blockName?: string | null;
@@ -40219,6 +40985,15 @@ export interface Page {
                       id?: string | null;
                       blockName?: string | null;
                       blockType: 'heatmap';
+                    }
+                  | {
+                      enabled?: boolean | null;
+                      title: string;
+                      description?: string | null;
+                      maxTopicsPerCategory: number;
+                      id?: string | null;
+                      blockName?: string | null;
+                      blockType: 'topicMap';
                     }
                   | {
                       media: string | MediaInterface;
@@ -40690,6 +41465,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -41210,6 +41994,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -41733,6 +42526,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -42225,6 +43027,15 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'heatmap';
+                                        }
+                                      | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
                                         }
                                       | {
                                           media: string | MediaInterface;
@@ -42719,6 +43530,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -43239,6 +44059,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -43762,6 +44591,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -44254,6 +45092,15 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'heatmap';
+                                        }
+                                      | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
                                         }
                                       | {
                                           media: string | MediaInterface;
@@ -44749,6 +45596,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -45269,6 +46125,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -45792,6 +46657,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -46286,6 +47160,15 @@ export interface Page {
                                           blockType: 'heatmap';
                                         }
                                       | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
+                                        }
+                                      | {
                                           media: string | MediaInterface;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -46752,6 +47635,15 @@ export interface Page {
                                 id?: string | null;
                                 blockName?: string | null;
                                 blockType: 'heatmap';
+                              }
+                            | {
+                                enabled?: boolean | null;
+                                title: string;
+                                description?: string | null;
+                                maxTopicsPerCategory: number;
+                                id?: string | null;
+                                blockName?: string | null;
+                                blockType: 'topicMap';
                               }
                             | {
                                 media: string | MediaInterface;
@@ -47239,6 +48131,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -47759,6 +48660,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -48282,6 +49192,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -48774,6 +49693,15 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'heatmap';
+                                        }
+                                      | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
                                         }
                                       | {
                                           media: string | MediaInterface;
@@ -49268,6 +50196,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -49788,6 +50725,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -50311,6 +51257,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -50803,6 +51758,15 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'heatmap';
+                                        }
+                                      | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
                                         }
                                       | {
                                           media: string | MediaInterface;
@@ -51298,6 +52262,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -51818,6 +52791,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -52341,6 +53323,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -52835,6 +53826,15 @@ export interface Page {
                                           blockType: 'heatmap';
                                         }
                                       | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
+                                        }
+                                      | {
                                           media: string | MediaInterface;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -53301,6 +54301,15 @@ export interface Page {
                                 id?: string | null;
                                 blockName?: string | null;
                                 blockType: 'heatmap';
+                              }
+                            | {
+                                enabled?: boolean | null;
+                                title: string;
+                                description?: string | null;
+                                maxTopicsPerCategory: number;
+                                id?: string | null;
+                                blockName?: string | null;
+                                blockType: 'topicMap';
                               }
                             | {
                                 media: string | MediaInterface;
@@ -53789,6 +54798,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -54309,6 +55327,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -54832,6 +55859,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -55324,6 +56360,15 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'heatmap';
+                                        }
+                                      | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
                                         }
                                       | {
                                           media: string | MediaInterface;
@@ -55818,6 +56863,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -56338,6 +57392,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -56861,6 +57924,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -57353,6 +58425,15 @@ export interface Page {
                                           id?: string | null;
                                           blockName?: string | null;
                                           blockType: 'heatmap';
+                                        }
+                                      | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
                                         }
                                       | {
                                           media: string | MediaInterface;
@@ -57848,6 +58929,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -58368,6 +59458,15 @@ export interface Page {
                                                     id?: string | null;
                                                     blockName?: string | null;
                                                     blockType: 'heatmap';
+                                                  }
+                                                | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
                                                   }
                                                 | {
                                                     media: string | MediaInterface;
@@ -58891,6 +59990,15 @@ export interface Page {
                                                     blockType: 'heatmap';
                                                   }
                                                 | {
+                                                    enabled?: boolean | null;
+                                                    title: string;
+                                                    description?: string | null;
+                                                    maxTopicsPerCategory: number;
+                                                    id?: string | null;
+                                                    blockName?: string | null;
+                                                    blockType: 'topicMap';
+                                                  }
+                                                | {
                                                     media: string | MediaInterface;
                                                     id?: string | null;
                                                     blockName?: string | null;
@@ -59385,6 +60493,15 @@ export interface Page {
                                           blockType: 'heatmap';
                                         }
                                       | {
+                                          enabled?: boolean | null;
+                                          title: string;
+                                          description?: string | null;
+                                          maxTopicsPerCategory: number;
+                                          id?: string | null;
+                                          blockName?: string | null;
+                                          blockType: 'topicMap';
+                                        }
+                                      | {
                                           media: string | MediaInterface;
                                           id?: string | null;
                                           blockName?: string | null;
@@ -59853,6 +60970,15 @@ export interface Page {
                                 blockType: 'heatmap';
                               }
                             | {
+                                enabled?: boolean | null;
+                                title: string;
+                                description?: string | null;
+                                maxTopicsPerCategory: number;
+                                id?: string | null;
+                                blockName?: string | null;
+                                blockType: 'topicMap';
+                              }
+                            | {
                                 media: string | MediaInterface;
                                 id?: string | null;
                                 blockName?: string | null;
@@ -60309,6 +61435,15 @@ export interface Page {
                       blockType: 'heatmap';
                     }
                   | {
+                      enabled?: boolean | null;
+                      title: string;
+                      description?: string | null;
+                      maxTopicsPerCategory: number;
+                      id?: string | null;
+                      blockName?: string | null;
+                      blockType: 'topicMap';
+                    }
+                  | {
                       media: string | MediaInterface;
                       id?: string | null;
                       blockName?: string | null;
@@ -60732,6 +61867,15 @@ export interface Page {
             blockType: 'heatmap';
           }
         | {
+            enabled?: boolean | null;
+            title: string;
+            description?: string | null;
+            maxTopicsPerCategory: number;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'topicMap';
+          }
+        | {
             media: string | MediaInterface;
             id?: string | null;
             blockName?: string | null;
@@ -61103,6 +62247,48 @@ export interface Page {
   };
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "content-migration-runs".
+ */
+export interface ContentMigrationRun {
+  id: string;
+  operation: 'publication' | 'taxonomy' | 'create-category';
+  collectionSlug: 'posts' | 'pages' | 'media' | 'tags' | 'series' | 'categories';
+  recordId: string;
+  operatorId: string;
+  planHash: string;
+  rollbackOf?: string | null;
+  before:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  after:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  beforeSnapshotHash?: string | null;
+  afterSnapshotHash: string;
+  beforeVersionHash?: string | null;
+  afterVersionHash: string;
+  beforeVersionId?: string | null;
+  afterVersionId: string;
+  beforeUpdatedAt?: string | null;
+  afterUpdatedAt: string;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * API keys control which collections, resources, tools, and prompts MCP clients can access
@@ -61241,6 +62427,30 @@ export interface PayloadMcpApiKey {
      * Translate SiteConfig navigation and footer link labels by URL while preserving shared array items and other locales.
      */
     translateSiteConfigLabels?: boolean | null;
+    /**
+     * Authenticated, bounded raw publication metadata inventory. Returns no article bodies. Review and apply individual records with the migration tools.
+     */
+    contentMigrationInventory?: boolean | null;
+    /**
+     * Review one native publication or Post taxonomy migration. The deterministic hash covers all localized content and the latest version; pending drafts are rejected. No write occurs.
+     */
+    contentMigrationReview?: boolean | null;
+    /**
+     * Apply exactly one reviewed migration using its expected timestamp and hash, inside a transaction. Legacy exposed Pages/Posts require explicit current-snapshot approval. Writes an immutable operational journal; never publishes pending drafts.
+     */
+    contentMigrationApply?: boolean | null;
+    /**
+     * Verify a migration journal against the current content and version hashes. Returns guarded rollback metadata only while no subsequent edits occurred; does not perform rollback.
+     */
+    contentMigrationVerify?: boolean | null;
+    /**
+     * Restore captured taxonomy or supported former native states only when current content and versions still match the immutable migration journal. Requires compatibility mode. Never removes initialized versions or new Categories; those use compatible-code rollback.
+     */
+    contentMigrationRollback?: boolean | null;
+    /**
+     * Create an approved technical or trading Category with explicit English and Chinese names and publication. Transactional and idempotent for matching published content; conflicting existing categories are rejected.
+     */
+    createMigrationCategory?: boolean | null;
   };
   updatedAt: string;
   createdAt: string;
@@ -61265,6 +62475,98 @@ export interface PayloadKv {
     | number
     | boolean
     | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-jobs".
+ */
+export interface PayloadJob {
+  id: string;
+  /**
+   * Input data provided to the job
+   */
+  input?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  taskStatus?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  completedAt?: string | null;
+  totalTried?: number | null;
+  /**
+   * If hasError is true this job will not be retried
+   */
+  hasError?: boolean | null;
+  /**
+   * If hasError is true, this is the error that caused it
+   */
+  error?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  /**
+   * Task execution log
+   */
+  log?:
+    | {
+        executedAt: string;
+        completedAt: string;
+        taskSlug: 'inline' | 'revalidateWww';
+        taskID: string;
+        input?:
+          | {
+              [k: string]: unknown;
+            }
+          | unknown[]
+          | string
+          | number
+          | boolean
+          | null;
+        output?:
+          | {
+              [k: string]: unknown;
+            }
+          | unknown[]
+          | string
+          | number
+          | boolean
+          | null;
+        state: 'failed' | 'succeeded';
+        error?:
+          | {
+              [k: string]: unknown;
+            }
+          | unknown[]
+          | string
+          | number
+          | boolean
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  taskSlug?: ('inline' | 'revalidateWww') | null;
+  queue?: string | null;
+  waitUntil?: string | null;
+  processing?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -61296,6 +62598,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'pages';
         value: string | Page;
+      } | null)
+    | ({
+        relationTo: 'categories';
+        value: string | Category;
+      } | null)
+    | ({
+        relationTo: 'content-migration-runs';
+        value: string | ContentMigrationRun;
       } | null)
     | ({
         relationTo: 'payload-mcp-api-keys';
@@ -61398,6 +62708,7 @@ export interface MediaSelect<T extends boolean = true> {
   prefix?: T;
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
   url?: T;
   thumbnailURL?: T;
   filename?: T;
@@ -61423,6 +62734,7 @@ export interface PostsSelect<T extends boolean = true> {
   publishedAt?: T;
   series?: T;
   seriesOrder?: T;
+  category?: T;
   tags?: T;
   primaryTag?: T;
   readingTime?: T;
@@ -61444,34 +62756,37 @@ export interface PostsSelect<T extends boolean = true> {
  * via the `definition` "tags_select".
  */
 export interface TagsSelect<T extends boolean = true> {
+  posts?: T;
   name?: T;
   slug?: T;
   description?: T;
   color?: T;
-  postCount?: T;
   priority?: T;
   featured?: T;
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "series_select".
  */
 export interface SeriesSelect<T extends boolean = true> {
+  posts?: T;
   title?: T;
   slug?: T;
   description?: T;
   coverImage?: T;
   author?: T;
+  progress?: T;
   status?: T;
   difficulty?: T;
   estimatedReadTime?: T;
-  postCount?: T;
   featured?: T;
   completedAt?: T;
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -61566,6 +62881,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -61836,6 +63161,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -62110,6 +63445,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -62364,6 +63709,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                         showLegend?: T;
                                                         showTotal?: T;
                                                       };
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -62644,6 +63999,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -62911,6 +64276,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -63185,6 +64560,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -63439,6 +64824,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                         showLegend?: T;
                                                         showTotal?: T;
                                                       };
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -63720,6 +65115,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -63987,6 +65392,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -64261,6 +65676,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -64518,6 +65943,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                   id?: T;
                                                   blockName?: T;
                                                 };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
                                             mediaImage?:
                                               | T
                                               | {
@@ -64772,6 +66207,16 @@ export interface PagesSelect<T extends boolean = true> {
                                             showLegend?: T;
                                             showTotal?: T;
                                           };
+                                      id?: T;
+                                      blockName?: T;
+                                    };
+                                topicMap?:
+                                  | T
+                                  | {
+                                      enabled?: T;
+                                      title?: T;
+                                      description?: T;
+                                      maxTopicsPerCategory?: T;
                                       id?: T;
                                       blockName?: T;
                                     };
@@ -65059,6 +66504,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -65326,6 +66781,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -65600,6 +67065,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -65854,6 +67329,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                         showLegend?: T;
                                                         showTotal?: T;
                                                       };
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -66134,6 +67619,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -66401,6 +67896,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -66675,6 +68180,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -66929,6 +68444,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                         showLegend?: T;
                                                         showTotal?: T;
                                                       };
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -67210,6 +68735,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -67477,6 +69012,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -67751,6 +69296,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -68008,6 +69563,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                   id?: T;
                                                   blockName?: T;
                                                 };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
                                             mediaImage?:
                                               | T
                                               | {
@@ -68262,6 +69827,16 @@ export interface PagesSelect<T extends boolean = true> {
                                             showLegend?: T;
                                             showTotal?: T;
                                           };
+                                      id?: T;
+                                      blockName?: T;
+                                    };
+                                topicMap?:
+                                  | T
+                                  | {
+                                      enabled?: T;
+                                      title?: T;
+                                      description?: T;
+                                      maxTopicsPerCategory?: T;
                                       id?: T;
                                       blockName?: T;
                                     };
@@ -68550,6 +70125,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -68817,6 +70402,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -69091,6 +70686,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -69345,6 +70950,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                         showLegend?: T;
                                                         showTotal?: T;
                                                       };
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -69625,6 +71240,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -69892,6 +71517,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -70166,6 +71801,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -70420,6 +72065,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                         showLegend?: T;
                                                         showTotal?: T;
                                                       };
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -70701,6 +72356,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -70968,6 +72633,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -71242,6 +72917,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -71496,6 +73181,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                         showLegend?: T;
                                                         showTotal?: T;
                                                       };
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -71756,6 +73451,16 @@ export interface PagesSelect<T extends boolean = true> {
                                       id?: T;
                                       blockName?: T;
                                     };
+                                topicMap?:
+                                  | T
+                                  | {
+                                      enabled?: T;
+                                      title?: T;
+                                      description?: T;
+                                      maxTopicsPerCategory?: T;
+                                      id?: T;
+                                      blockName?: T;
+                                    };
                                 mediaImage?:
                                   | T
                                   | {
@@ -72010,6 +73715,16 @@ export interface PagesSelect<T extends boolean = true> {
                                 showLegend?: T;
                                 showTotal?: T;
                               };
+                          id?: T;
+                          blockName?: T;
+                        };
+                    topicMap?:
+                      | T
+                      | {
+                          enabled?: T;
+                          title?: T;
+                          description?: T;
+                          maxTopicsPerCategory?: T;
                           id?: T;
                           blockName?: T;
                         };
@@ -72304,6 +74019,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -72571,6 +74296,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -72845,6 +74580,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -73099,6 +74844,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                         showLegend?: T;
                                                         showTotal?: T;
                                                       };
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -73379,6 +75134,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -73646,6 +75411,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -73920,6 +75695,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -74174,6 +75959,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                         showLegend?: T;
                                                         showTotal?: T;
                                                       };
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -74455,6 +76250,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -74722,6 +76527,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -74996,6 +76811,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -75253,6 +77078,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                   id?: T;
                                                   blockName?: T;
                                                 };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
                                             mediaImage?:
                                               | T
                                               | {
@@ -75507,6 +77342,16 @@ export interface PagesSelect<T extends boolean = true> {
                                             showLegend?: T;
                                             showTotal?: T;
                                           };
+                                      id?: T;
+                                      blockName?: T;
+                                    };
+                                topicMap?:
+                                  | T
+                                  | {
+                                      enabled?: T;
+                                      title?: T;
+                                      description?: T;
+                                      maxTopicsPerCategory?: T;
                                       id?: T;
                                       blockName?: T;
                                     };
@@ -75794,6 +77639,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -76061,6 +77916,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -76335,6 +78200,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -76589,6 +78464,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                         showLegend?: T;
                                                         showTotal?: T;
                                                       };
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -76869,6 +78754,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -77136,6 +79031,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -77410,6 +79315,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -77664,6 +79579,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                         showLegend?: T;
                                                         showTotal?: T;
                                                       };
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -77945,6 +79870,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -78212,6 +80147,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -78486,6 +80431,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -78743,6 +80698,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                   id?: T;
                                                   blockName?: T;
                                                 };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
                                             mediaImage?:
                                               | T
                                               | {
@@ -78997,6 +80962,16 @@ export interface PagesSelect<T extends boolean = true> {
                                             showLegend?: T;
                                             showTotal?: T;
                                           };
+                                      id?: T;
+                                      blockName?: T;
+                                    };
+                                topicMap?:
+                                  | T
+                                  | {
+                                      enabled?: T;
+                                      title?: T;
+                                      description?: T;
+                                      maxTopicsPerCategory?: T;
                                       id?: T;
                                       blockName?: T;
                                     };
@@ -79285,6 +81260,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -79552,6 +81537,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -79826,6 +81821,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -80080,6 +82085,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                         showLegend?: T;
                                                         showTotal?: T;
                                                       };
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -80360,6 +82375,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -80627,6 +82652,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -80901,6 +82936,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -81155,6 +83200,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                         showLegend?: T;
                                                         showTotal?: T;
                                                       };
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -81436,6 +83491,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -81703,6 +83768,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -81977,6 +84052,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -82231,6 +84316,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                         showLegend?: T;
                                                         showTotal?: T;
                                                       };
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -82491,6 +84586,16 @@ export interface PagesSelect<T extends boolean = true> {
                                       id?: T;
                                       blockName?: T;
                                     };
+                                topicMap?:
+                                  | T
+                                  | {
+                                      enabled?: T;
+                                      title?: T;
+                                      description?: T;
+                                      maxTopicsPerCategory?: T;
+                                      id?: T;
+                                      blockName?: T;
+                                    };
                                 mediaImage?:
                                   | T
                                   | {
@@ -82745,6 +84850,16 @@ export interface PagesSelect<T extends boolean = true> {
                                 showLegend?: T;
                                 showTotal?: T;
                               };
+                          id?: T;
+                          blockName?: T;
+                        };
+                    topicMap?:
+                      | T
+                      | {
+                          enabled?: T;
+                          title?: T;
+                          description?: T;
+                          maxTopicsPerCategory?: T;
                           id?: T;
                           blockName?: T;
                         };
@@ -83040,6 +85155,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -83307,6 +85432,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -83581,6 +85716,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -83835,6 +85980,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                         showLegend?: T;
                                                         showTotal?: T;
                                                       };
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -84115,6 +86270,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -84382,6 +86547,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -84656,6 +86831,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -84910,6 +87095,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                         showLegend?: T;
                                                         showTotal?: T;
                                                       };
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -85191,6 +87386,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -85458,6 +87663,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -85732,6 +87947,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -85989,6 +88214,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                   id?: T;
                                                   blockName?: T;
                                                 };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
                                             mediaImage?:
                                               | T
                                               | {
@@ -86243,6 +88478,16 @@ export interface PagesSelect<T extends boolean = true> {
                                             showLegend?: T;
                                             showTotal?: T;
                                           };
+                                      id?: T;
+                                      blockName?: T;
+                                    };
+                                topicMap?:
+                                  | T
+                                  | {
+                                      enabled?: T;
+                                      title?: T;
+                                      description?: T;
+                                      maxTopicsPerCategory?: T;
                                       id?: T;
                                       blockName?: T;
                                     };
@@ -86530,6 +88775,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -86797,6 +89052,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -87071,6 +89336,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -87325,6 +89600,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                         showLegend?: T;
                                                         showTotal?: T;
                                                       };
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -87605,6 +89890,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -87872,6 +90167,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -88146,6 +90451,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -88400,6 +90715,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                         showLegend?: T;
                                                         showTotal?: T;
                                                       };
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -88681,6 +91006,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -88948,6 +91283,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -89222,6 +91567,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -89479,6 +91834,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                   id?: T;
                                                   blockName?: T;
                                                 };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
                                             mediaImage?:
                                               | T
                                               | {
@@ -89733,6 +92098,16 @@ export interface PagesSelect<T extends boolean = true> {
                                             showLegend?: T;
                                             showTotal?: T;
                                           };
+                                      id?: T;
+                                      blockName?: T;
+                                    };
+                                topicMap?:
+                                  | T
+                                  | {
+                                      enabled?: T;
+                                      title?: T;
+                                      description?: T;
+                                      maxTopicsPerCategory?: T;
                                       id?: T;
                                       blockName?: T;
                                     };
@@ -90021,6 +92396,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -90288,6 +92673,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -90562,6 +92957,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -90816,6 +93221,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                         showLegend?: T;
                                                         showTotal?: T;
                                                       };
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -91096,6 +93511,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -91363,6 +93788,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -91637,6 +94072,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -91891,6 +94336,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                         showLegend?: T;
                                                         showTotal?: T;
                                                       };
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -92172,6 +94627,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -92439,6 +94904,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                                     showLegend?: T;
                                                                     showTotal?: T;
                                                                   };
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
                                                               id?: T;
                                                               blockName?: T;
                                                             };
@@ -92713,6 +95188,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                               id?: T;
                                                               blockName?: T;
                                                             };
+                                                        topicMap?:
+                                                          | T
+                                                          | {
+                                                              enabled?: T;
+                                                              title?: T;
+                                                              description?: T;
+                                                              maxTopicsPerCategory?: T;
+                                                              id?: T;
+                                                              blockName?: T;
+                                                            };
                                                         mediaImage?:
                                                           | T
                                                           | {
@@ -92967,6 +95452,16 @@ export interface PagesSelect<T extends boolean = true> {
                                                         showLegend?: T;
                                                         showTotal?: T;
                                                       };
+                                                  id?: T;
+                                                  blockName?: T;
+                                                };
+                                            topicMap?:
+                                              | T
+                                              | {
+                                                  enabled?: T;
+                                                  title?: T;
+                                                  description?: T;
+                                                  maxTopicsPerCategory?: T;
                                                   id?: T;
                                                   blockName?: T;
                                                 };
@@ -93227,6 +95722,16 @@ export interface PagesSelect<T extends boolean = true> {
                                       id?: T;
                                       blockName?: T;
                                     };
+                                topicMap?:
+                                  | T
+                                  | {
+                                      enabled?: T;
+                                      title?: T;
+                                      description?: T;
+                                      maxTopicsPerCategory?: T;
+                                      id?: T;
+                                      blockName?: T;
+                                    };
                                 mediaImage?:
                                   | T
                                   | {
@@ -93481,6 +95986,16 @@ export interface PagesSelect<T extends boolean = true> {
                                 showLegend?: T;
                                 showTotal?: T;
                               };
+                          id?: T;
+                          blockName?: T;
+                        };
+                    topicMap?:
+                      | T
+                      | {
+                          enabled?: T;
+                          title?: T;
+                          description?: T;
+                          maxTopicsPerCategory?: T;
                           id?: T;
                           blockName?: T;
                         };
@@ -93741,6 +96256,16 @@ export interface PagesSelect<T extends boolean = true> {
               id?: T;
               blockName?: T;
             };
+        topicMap?:
+          | T
+          | {
+              enabled?: T;
+              title?: T;
+              description?: T;
+              maxTopicsPerCategory?: T;
+              id?: T;
+              blockName?: T;
+            };
         mediaImage?:
           | T
           | {
@@ -93950,6 +96475,46 @@ export interface PagesSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories_select".
+ */
+export interface CategoriesSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  description?: T;
+  sortOrder?: T;
+  colorToken?: T;
+  posts?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "content-migration-runs_select".
+ */
+export interface ContentMigrationRunsSelect<T extends boolean = true> {
+  operation?: T;
+  collectionSlug?: T;
+  recordId?: T;
+  operatorId?: T;
+  planHash?: T;
+  rollbackOf?: T;
+  before?: T;
+  after?: T;
+  beforeSnapshotHash?: T;
+  afterSnapshotHash?: T;
+  beforeVersionHash?: T;
+  afterVersionHash?: T;
+  beforeVersionId?: T;
+  afterVersionId?: T;
+  beforeUpdatedAt?: T;
+  afterUpdatedAt?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -94012,6 +96577,12 @@ export interface PayloadMcpApiKeysSelect<T extends boolean = true> {
         updatePageSeo?: T;
         publishPage?: T;
         translateSiteConfigLabels?: T;
+        contentMigrationInventory?: T;
+        contentMigrationReview?: T;
+        contentMigrationApply?: T;
+        contentMigrationVerify?: T;
+        contentMigrationRollback?: T;
+        createMigrationCategory?: T;
       };
   updatedAt?: T;
   createdAt?: T;
@@ -94026,6 +96597,37 @@ export interface PayloadMcpApiKeysSelect<T extends boolean = true> {
 export interface PayloadKvSelect<T extends boolean = true> {
   key?: T;
   data?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-jobs_select".
+ */
+export interface PayloadJobsSelect<T extends boolean = true> {
+  input?: T;
+  taskStatus?: T;
+  completedAt?: T;
+  totalTried?: T;
+  hasError?: T;
+  error?: T;
+  log?:
+    | T
+    | {
+        executedAt?: T;
+        completedAt?: T;
+        taskSlug?: T;
+        taskID?: T;
+        input?: T;
+        output?: T;
+        state?: T;
+        error?: T;
+        id?: T;
+      };
+  taskSlug?: T;
+  queue?: T;
+  waitUntil?: T;
+  processing?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -94513,6 +97115,36 @@ export interface CollectionsWidget {
     [k: string]: unknown;
   };
   width: 'full';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TaskRevalidateWww".
+ */
+export interface TaskRevalidateWww {
+  input: {
+    collection: string;
+    slugs:
+      | {
+          [k: string]: unknown;
+        }
+      | unknown[]
+      | string
+      | number
+      | boolean
+      | null;
+    locales?:
+      | {
+          [k: string]: unknown;
+        }
+      | unknown[]
+      | string
+      | number
+      | boolean
+      | null;
+  };
+  output: {
+    delivered: boolean;
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -2,6 +2,9 @@ import type { Field } from "payload"
 import { describe, expect, it, vi } from "vitest"
 
 vi.mock("../../hooks/revalidateWww", () => ({
+	capturePublicSnapshot: vi.fn(() => vi.fn()),
+	capturePublicDeleteSnapshot: vi.fn(() => vi.fn()),
+	createRevalidationDeleteHook: vi.fn(() => vi.fn()),
 	createRevalidationHook: vi.fn(() => vi.fn()),
 }))
 

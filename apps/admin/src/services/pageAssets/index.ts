@@ -2,7 +2,6 @@ import type { CollectionAfterChangeHook } from "payload"
 
 import { enqueuePageAssetsJob } from "./dispatcher"
 import { resolveQueuedPageAssetPlan } from "./planner"
-import { triggerFrontendRevalidation } from "./processor"
 import { createPageAssetsRuntime, updatePageWithGenerationContext } from "./state"
 import type { MaybeDoc } from "./types"
 import { asRecord } from "./utils"
@@ -54,16 +53,6 @@ export const syncPageGeneratedAssets: CollectionAfterChangeHook = async ({
 		previousDoc: previousDocSnapshot,
 	})
 
-	try {
-		await triggerFrontendRevalidation({
-			currentSlug: currentDoc.slug,
-			previousSlug: previousDocSnapshot?.slug,
-			runtime,
-		})
-	} catch {
-		// Best effort only. Content changes are still persisted even if revalidation fails.
-	}
-
 	if (!plan.hasWork) {
 		return doc
 	}
@@ -71,6 +60,7 @@ export const syncPageGeneratedAssets: CollectionAfterChangeHook = async ({
 	const hasPageStatusUpdates = plan.queuedOg || plan.queuedPreviewBlocks > 0
 	const queuedDoc = hasPageStatusUpdates
 		? await updatePageWithGenerationContext({
+				expectedUpdatedAt: currentDoc.updatedAt as string,
 				data: {
 					seo: plan.seo ?? currentDoc.seo,
 					structure: plan.structure ?? currentDoc.structure,
@@ -84,12 +74,14 @@ export const syncPageGeneratedAssets: CollectionAfterChangeHook = async ({
 		await enqueuePageAssetsJob({
 			logger: runtime.logger,
 			pageId: currentDoc.id,
+			expectedUpdatedAt: queuedDoc.updatedAt as string,
 		})
 
 		return queuedDoc as unknown as typeof doc
-	} catch (error) {
+	} catch {
 		const failedDoc = hasPageStatusUpdates
 			? await updatePageWithGenerationContext({
+					expectedUpdatedAt: queuedDoc.updatedAt as string,
 					data: buildFailedData({
 						doc: queuedDoc,
 						plan,
@@ -99,10 +91,7 @@ export const syncPageGeneratedAssets: CollectionAfterChangeHook = async ({
 				})
 			: queuedDoc
 
-		const message = error instanceof Error ? error.stack || error.message : String(error)
-		runtime.logger.error?.(
-			`Failed to enqueue generated page assets for ${currentDoc.id}: ${message}`
-		)
+		runtime.logger.error?.(`Failed to enqueue generated page assets for ${currentDoc.id}`)
 
 		return failedDoc as unknown as typeof doc
 	}

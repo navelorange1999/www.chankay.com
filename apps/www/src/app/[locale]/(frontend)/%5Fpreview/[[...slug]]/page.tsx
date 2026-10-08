@@ -63,5 +63,5 @@ export default async function PreviewPage({ params }: { params: Promise<PagePara
 		notFound()
 	}
 
-	return <Nodes nodes={pageData.structure} />
+	return <Nodes nodes={pageData.structure} locale={resolvedParams.locale} isPreview />
 }

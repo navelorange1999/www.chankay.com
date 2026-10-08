@@ -145,7 +145,7 @@ export default async function Page({ params }: { params: Promise<PageParams> }) 
 	}
 
 	if (slug !== "/") {
-		return <Nodes nodes={pageData.structure} />
+		return <Nodes nodes={pageData.structure} locale={resolvedParams.locale} />
 	}
 
 	const siteConfig = await getSiteConfig(resolvedParams.locale)
@@ -160,7 +160,7 @@ export default async function Page({ params }: { params: Promise<PageParams> }) 
 
 	return (
 		<>
-			<Nodes nodes={pageData.structure} />
+			<Nodes nodes={pageData.structure} locale={resolvedParams.locale} />
 			<script
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: serializeStructuredData(structuredData) }}

@@ -16,8 +16,9 @@ export const publishPostTool = {
 			collection: "posts",
 			data: {
 				publishedAt: existingPost.publishedAt || new Date().toISOString(),
-				status: "published",
+				_status: "published",
 			},
+			draft: false,
 			id: existingPost.id,
 			overrideAccess: true,
 		})) as Post

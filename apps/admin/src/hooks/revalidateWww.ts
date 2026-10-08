@@ -1,46 +1,96 @@
 import type {
 	CollectionAfterChangeHook,
 	CollectionAfterDeleteHook,
+	CollectionBeforeChangeHook,
+	CollectionBeforeDeleteHook,
 	GlobalAfterChangeHook,
 } from "payload"
 
 import { isSupportedLocale, type SupportedLocale } from "@repo/i18n"
 
-const WWW_INTERNAL_SECRET_HEADER = "www-internal-secret"
+import { enqueueRevalidation } from "@/services/revalidation/dispatcher"
+import {
+	getPublicationWhere,
+	publicationCompatibilityCutoff,
+} from "@/services/publicationCompatibility"
 
-function resolveSiteUrl(): string {
-	const envSiteUrl = process.env.WWW_SITE_URL?.trim()
-	return (envSiteUrl || "https://www.chankay.com").replace(/\/+$/, "")
+type ContentCollection = "posts" | "pages" | "categories" | "tags" | "series" | "media"
+type PublicSnapshot = { status: string | null; updatedAt: string | null; slug?: string | null }
+const SNAPSHOT_KEY = "publicRevalidationSnapshots"
+
+export function shouldRevalidatePublicChange(
+	before: PublicSnapshot | null,
+	after: PublicSnapshot | null
+): boolean {
+	if (before?.status !== "published" && after?.status !== "published") return false
+	return before?.status !== after?.status || before?.updatedAt !== after?.updatedAt
+}
+
+async function readPublicSnapshot(
+	req: Parameters<CollectionAfterChangeHook>[0]["req"],
+	collection: ContentCollection,
+	id: string
+): Promise<PublicSnapshot | null> {
+	if (publicationCompatibilityCutoff()) {
+		const result = await req.payload.find({
+			collection,
+			where: { and: [{ id: { equals: id } }, getPublicationWhere(collection)] },
+			draft: false,
+			depth: 0,
+			limit: 1,
+			overrideAccess: true,
+			req,
+		})
+		const doc = result.docs[0]
+		if (!doc) return null
+		return {
+			status: "published",
+			updatedAt: doc.updatedAt ?? null,
+			slug: "slug" in doc && typeof doc.slug === "string" ? doc.slug : null,
+		}
+	}
+	const doc = await req.payload.findByID({
+		collection,
+		id,
+		draft: false,
+		depth: 0,
+		overrideAccess: true,
+		disableErrors: true,
+		req,
+	})
+	if (!doc) return null
+	return {
+		status: doc._status ?? null,
+		updatedAt: doc.updatedAt ?? null,
+		slug:
+			doc._status === "published" && "slug" in doc && typeof doc.slug === "string"
+				? doc.slug
+				: null,
+	}
+}
+
+export function capturePublicDeleteSnapshot(
+	collection: ContentCollection
+): CollectionBeforeDeleteHook {
+	return async ({ id, req }) => {
+		const snapshots = (req.context[SNAPSHOT_KEY] ?? {}) as Record<string, PublicSnapshot | null>
+		snapshots[`${collection}:${id}`] = await readPublicSnapshot(req, collection, String(id))
+		req.context[SNAPSHOT_KEY] = snapshots
+	}
+}
+
+export function capturePublicSnapshot(collection: ContentCollection): CollectionBeforeChangeHook {
+	return async ({ originalDoc, req }) => {
+		const id = typeof originalDoc?.id === "string" ? originalDoc.id : null
+		if (!id) return
+		const snapshots = (req.context[SNAPSHOT_KEY] ?? {}) as Record<string, PublicSnapshot | null>
+		snapshots[`${collection}:${id}`] = await readPublicSnapshot(req, collection, id)
+		req.context[SNAPSHOT_KEY] = snapshots
+	}
 }
 
 function resolveLocales(locale: unknown): SupportedLocale[] | undefined {
 	return isSupportedLocale(locale) ? [locale] : undefined
-}
-
-async function triggerRevalidation(
-	collection: string,
-	slugs: string[],
-	locales?: SupportedLocale[]
-) {
-	const siteUrl = resolveSiteUrl()
-	const secret = process.env.WWW_INTERNAL_SECRET?.trim()
-
-	if (!secret) {
-		return
-	}
-
-	const response = await fetch(new URL("/api/revalidate", siteUrl), {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-			[WWW_INTERNAL_SECRET_HEADER]: secret,
-		},
-		body: JSON.stringify({ collection, slugs, ...(locales ? { locales } : {}) }),
-	})
-
-	if (!response.ok) {
-		throw new Error(`Frontend revalidation failed (${response.status})`)
-	}
 }
 
 function sharedFieldsChanged(
@@ -52,56 +102,68 @@ function sharedFieldsChanged(
 }
 
 export function createRevalidationHook(
-	collection: string,
+	collection: ContentCollection,
 	sharedFields: readonly string[] = []
 ): CollectionAfterChangeHook {
 	return async ({ doc, previousDoc, req }) => {
-		// Only revalidate when the document is published (skip draft autosaves)
-		if (doc._status && doc._status !== "published") return doc
+		const id = String(doc.id)
+		const snapshots = req.context[SNAPSHOT_KEY] as Record<string, PublicSnapshot | null> | undefined
+		const before = snapshots?.[`${collection}:${id}`] ?? null
+		const after = await readPublicSnapshot(req, collection, id)
+		if (!shouldRevalidatePublicChange(before, after)) return doc
 
-		const slugs = [doc?.slug, previousDoc?.slug]
+		const slugs = [doc?.slug, previousDoc?.slug, before?.slug, after?.slug]
 			.filter((s): s is string => typeof s === "string" && s.trim().length > 0)
 			.filter((s, i, arr) => arr.indexOf(s) === i)
 
-		try {
-			// The previous version can be an autosaved draft with the new shared values already set.
-			const publishingDraft = sharedFields.length > 0 && previousDoc?._status === "draft"
-			const locales =
-				publishingDraft || sharedFieldsChanged(doc, previousDoc, sharedFields)
-					? undefined
-					: resolveLocales(req.locale)
-			await triggerRevalidation(collection, slugs, locales)
-		} catch {
-			// Best effort only.
-		}
+		const publishingDraft = sharedFields.length > 0 && previousDoc?._status === "draft"
+		const sharedChange =
+			before?.status !== after?.status ||
+			before?.slug !== after?.slug ||
+			publishingDraft ||
+			sharedFieldsChanged(doc, previousDoc, sharedFields)
+		await enqueueRevalidation(
+			req,
+			collection,
+			slugs,
+			sharedChange ? undefined : resolveLocales(req.locale)
+		)
 
 		return doc
 	}
 }
 
-export function createRevalidationDeleteHook(collection: string): CollectionAfterDeleteHook {
-	return async () => {
-		try {
-			await triggerRevalidation(collection, [])
-		} catch {
-			// Best effort only.
-		}
+export function createRevalidationDeleteHook(
+	collection: ContentCollection
+): CollectionAfterDeleteHook {
+	return async ({ doc, req }) => {
+		const snapshots = req.context?.[SNAPSHOT_KEY] as
+			| Record<string, PublicSnapshot | null>
+			| undefined
+		const key = `${collection}:${doc.id}`
+		const before = snapshots?.[key]
+		const wasPublished =
+			snapshots && key in snapshots ? before?.status === "published" : doc._status === "published"
+		if (!wasPublished) return doc
+		const slugs = [
+			...new Set(
+				[doc.slug, before?.slug].filter((slug): slug is string => typeof slug === "string")
+			),
+		]
+		await enqueueRevalidation(req, collection, slugs)
+		return doc
 	}
 }
 
 export function createGlobalRevalidationHook(
-	globalSlug: string,
+	globalSlug: "site-config",
 	sharedFields: readonly string[] = []
 ): GlobalAfterChangeHook {
 	return async ({ doc, previousDoc, req }) => {
-		try {
-			const locales = sharedFieldsChanged(doc, previousDoc, sharedFields)
-				? undefined
-				: resolveLocales(req.locale)
-			await triggerRevalidation(globalSlug, [], locales)
-		} catch {
-			// Best effort only.
-		}
+		const locales = sharedFieldsChanged(doc, previousDoc, sharedFields)
+			? undefined
+			: resolveLocales(req.locale)
+		await enqueueRevalidation(req, globalSlug, [], locales)
 
 		return doc
 	}

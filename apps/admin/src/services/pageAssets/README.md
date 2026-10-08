@@ -13,7 +13,7 @@ It is responsible for:
 - generating `previewUrl` screenshots for `previewUrl` blocks
 - generating screenshot-based OG images for pages
 - persisting generated files into the `media` collection
-- triggering frontend revalidation after content or generated assets change
+- letting the Page publication hook revalidate public content changes
 
 It is intentionally not responsible for:
 
@@ -28,7 +28,7 @@ The current implementation is optimized for these constraints:
 - page save latency should stay low
 - generated asset work should run outside the page save request
 - transport should be replaceable
-- worker execution should re-read the latest page state instead of trusting stale hook input
+- worker execution should reject a queued job when the Page version has changed
 - generated media must not recurse into `media.captureUrl`
 
 ## High-Level Architecture
@@ -55,7 +55,6 @@ flowchart LR
 	Dispatcher -->|queue| QueueRoute
 	QueueRoute --> Processor
 	Processor --> Capture
-	Processor --> WWW
 	Capture --> Media
 ```
 
@@ -70,20 +69,22 @@ It performs four steps:
 1. Build a regeneration plan from `doc` and `previousDoc`.
 2. Revalidate the frontend for content changes immediately.
 3. Mark affected assets as `queued`.
-4. Enqueue a background job with `{ pageId }`.
+4. Enqueue a background job with `{ pageId, expectedUpdatedAt }`.
 
 ### Worker Path
 
-The worker receives only `pageId`.
+The worker receives a Page ID and the update timestamp recorded when the work was queued.
 
 It then:
 
 1. creates a fresh Payload runtime
-2. reloads the latest page document
+2. reloads the latest draft Page document and skips stale jobs
 3. moves queued assets to `generating`
 4. captures screenshots and persists media
 5. updates statuses to `ready` or `failed`
-6. revalidates the frontend again so generated asset fields are reflected
+6. verifies that the Page has not changed before attaching captured assets
+
+Generated media starts as draft. Referenced media must be published before the Page can be published. The worker does not revalidate public content.
 
 ## Sequence Diagram
 
@@ -109,16 +110,17 @@ sequenceDiagram
 	else plan has work
 		Hook->>State: Mark statuses as queued
 		State->>Payload: update page with generation context
-		Hook->>Dispatcher: enqueue({ pageId })
+		Hook->>Dispatcher: enqueue({ pageId, expectedUpdatedAt })
 		Dispatcher-->>Hook: accepted
 		Hook-->>Editor: Save complete
 		alt local or non-Vercel runtime
-			Dispatcher->>Processor: processPageAssetsJob(pageId)
+			Dispatcher->>Processor: processPageAssetsJob(pageId, expectedUpdatedAt)
 		else deployed Vercel runtime
 			Dispatcher->>Queue: send topic message
 			Queue->>Processor: callback route delivery
 		end
-		Processor->>Payload: load latest page by id
+		Processor->>Payload: load latest draft page by id
+		Processor->>Processor: skip if updatedAt differs
 		Processor->>Payload: mark queued assets as generating
 		loop each generating preview block
 			Processor->>Browserless: capture preview URL
@@ -131,7 +133,6 @@ sequenceDiagram
 			Processor->>Payload: create media
 		end
 		Processor->>Payload: update statuses ready or failed
-		Processor->>WWW: Revalidate generated asset output
 	end
 ```
 
@@ -180,17 +181,17 @@ flowchart TB
 
 ## File Responsibilities
 
-| File            | Responsibility                                                                                                                         |
-| --------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `index.ts`      | `pages.afterChange` entry point. Builds the plan, marks queued state, triggers immediate revalidation, and dispatches background work. |
-| `planner.ts`    | Pure planning logic. Decides whether preview block images or OG image need regeneration.                                               |
-| `dispatcher.ts` | Transport boundary. Automatically chooses between in-process execution and Vercel Queue delivery.                                      |
-| `processor.ts`  | Background worker orchestration. Re-loads the page, transitions states, captures assets, persists media, and revalidates the frontend. |
-| `state.ts`      | Runtime creation and page update helpers that always apply the generation context flag.                                                |
-| `capture.ts`    | Browserless screenshot request and generated media persistence.                                                                        |
-| `constants.ts`  | Shared flags, headers, defaults, and topic names.                                                                                      |
-| `types.ts`      | Local runtime and document types.                                                                                                      |
-| `utils.ts`      | Shared helpers for block traversal, status parsing, filenames, and normalization.                                                      |
+| File            | Responsibility                                                                                                                                  |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `index.ts`      | `pages.afterChange` entry point. Builds the plan, marks queued state, triggers immediate revalidation, and dispatches background work.          |
+| `planner.ts`    | Pure planning logic. Decides whether preview block images or OG image need regeneration.                                                        |
+| `dispatcher.ts` | Transport boundary. Automatically chooses between in-process execution and Vercel Queue delivery.                                               |
+| `processor.ts`  | Background worker orchestration. Re-loads the draft Page, transitions states, captures assets, persists draft media, and rejects stale results. |
+| `state.ts`      | Runtime creation and page update helpers that always apply the generation context flag.                                                         |
+| `capture.ts`    | Browserless screenshot request and generated media persistence.                                                                                 |
+| `constants.ts`  | Shared flags, headers, defaults, and topic names.                                                                                               |
+| `types.ts`      | Local runtime and document types.                                                                                                               |
+| `utils.ts`      | Shared helpers for block traversal, status parsing, filenames, and normalization.                                                               |
 
 ## Dispatch Selection
 
@@ -206,7 +207,7 @@ Dispatch is inferred from the current runtime instead of being configured manual
 
 ### Queue execution
 
-- Publishes `{ pageId }` to the Vercel Queue topic `page-assets`.
+- Publishes `{ pageId, expectedUpdatedAt }` to the Vercel Queue topic `page-assets`.
 - Consumed by `app/api/queue/page-assets/route.ts`.
 - Registered through `apps/admin/vercel.json`, which must live inside the admin Vercel project's Root Directory.
 - Used automatically on deployed Vercel runtimes.
@@ -240,19 +241,18 @@ These rules are important for maintainers and future AI agents.
 
 `index.ts` may update page status fields, but image generation belongs to the processor path only.
 
-### 2. The worker always reloads the latest page by `pageId`
+### 2. The worker verifies the queued Page version
 
-This avoids generating assets from stale hook snapshots when multiple saves happen close together.
+The worker skips a job when the current Page `updatedAt` differs from the queued timestamp. It checks again after capture, and the Page `beforeChange` hook rejects the generated write if Payload's current version differs. Staging must still exercise concurrent saves to verify the database transaction behavior.
 
 ### 3. Generated page media must not trigger `media.captureUrl`
 
 `capture.ts` creates `media` documents with `SKIP_MEDIA_SOURCE_CAPTURE_FLAG`.
 `services/mediaCapture.ts` respects that flag and exits early.
 
-### 4. Revalidation happens twice for different reasons
+### 4. Public revalidation belongs to the Page publication path
 
-- hook-time revalidation makes content changes visible quickly
-- processor-time revalidation makes generated `previewImage` and `ogImage` changes visible
+The Page hook revalidates public snapshots when publication changes. Asset generation updates a draft and does not invalidate the public cache.
 
 ### 5. Transport is replaceable, processor is canonical
 
@@ -292,7 +292,7 @@ This is acceptable because:
 
 - the worker reloads the latest page before mutating state
 - only `queued` items are promoted to `generating`
-- only `generating` items are finalized to `ready` or `failed`
+- only `generating` items are finalized to `ready` or `failed` when the queued version remains current
 
 This makes the system retry-friendly, even though it is not a fully locked workflow engine.
 
@@ -308,7 +308,7 @@ Responsibilities:
 
 - accept Vercel Queue callback messages
 - apply retry policy
-- forward `{ pageId }` to `processPageAssetsJob`
+- validate and forward `{ pageId, expectedUpdatedAt }` to `processPageAssetsJob`
 
 ## Testing Strategy
 
@@ -323,7 +323,7 @@ Recommended future coverage:
 
 - processor concurrency and repeated delivery behavior
 - integration coverage for queue mode in a real Vercel-linked environment
-- regression coverage for content revalidation versus generated asset revalidation
+- regression coverage for publication-time revalidation and draft asset generation
 
 ## Extension Guidance
 

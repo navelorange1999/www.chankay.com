@@ -27,10 +27,12 @@ import { buildConfig } from "payload"
 import { seoPlugin } from "@payloadcms/plugin-seo"
 import { Config } from "@repo/typescript-config/typings/payload-types"
 
-import { Media, Users, Posts, Tags, Series, Pages } from "./collections"
+import { Media, Users, Posts, Tags, Series, Pages, Categories, ContentMigrationRuns } from "./collections"
 import { SiteConfig } from "./globals"
 import { plugins } from "./plugins"
 import { LOCALE_CONFIG } from "./config/locales"
+import { REVALIDATION_JOB_QUEUE } from "./services/revalidation/constants"
+import { revalidateWwwTask } from "./services/revalidation/task"
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -100,10 +102,17 @@ export default buildConfig({
 	}),
 
 	// Define and configure your collections in this array
-	collections: [Users, Media, Posts, Tags, Series, Pages],
+	collections: [Users, Media, Posts, Tags, Series, Pages, Categories, ContentMigrationRuns],
 
 	// Define and configure your Globals in this array
 	globals: [SiteConfig],
+	jobs: {
+		deleteJobOnComplete: false,
+		autoRun: process.env.VERCEL?.trim()
+			? undefined
+			: [{ cron: "*/30 * * * * *", queue: REVALIDATION_JOB_QUEUE, limit: 10 }],
+		tasks: [revalidateWwwTask],
+	},
 
 	// Your Payload secret - should be a complex and secure string, unguessable
 	secret: process.env.PAYLOAD_SECRET || "",

@@ -58,7 +58,13 @@ export function resolvePostTags(post: Pick<Post, "tags" | "primaryTag">): Tag[] 
 	const tags = new Map<string, Tag>()
 
 	for (const item of post.tags || []) {
-		if (item && typeof item === "object" && "id" in item && "name" in item) {
+		if (
+			item &&
+			typeof item === "object" &&
+			item._status === "published" &&
+			"id" in item &&
+			"name" in item
+		) {
 			tags.set(item.id, item as Tag)
 		}
 	}
@@ -66,6 +72,7 @@ export function resolvePostTags(post: Pick<Post, "tags" | "primaryTag">): Tag[] 
 	if (
 		post.primaryTag &&
 		typeof post.primaryTag === "object" &&
+		post.primaryTag._status === "published" &&
 		"id" in post.primaryTag &&
 		"name" in post.primaryTag
 	) {

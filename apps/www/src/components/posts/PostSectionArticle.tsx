@@ -7,6 +7,8 @@ import * as React from "react"
 
 import {
 	buildRouteAlternates,
+	isSafePostSlug,
+	resolveLocalizedPath,
 	formatReadingTime,
 	getUiStrings,
 	SUPPORTED_LOCALES,
@@ -35,7 +37,7 @@ import {
 
 import { PostTocDrawerClient } from "@/components/lazy/PostTocDrawerClient"
 import { PostComments } from "./PostComments"
-import { getPostBySlugForSection, getPostsBySection } from "@/services/payload/posts"
+import { getPostBySlug, getPostBySlugForSection, getPostsBySection } from "@/services/payload/posts"
 import { getSiteConfig } from "@/services/payload/site-config"
 import { resolveMedia, resolveMediaUrl, resolveSiteUrl, resolveTwitterHandle } from "@/utils/seo"
 import {
@@ -58,7 +60,8 @@ export type PostSectionArticleParams = {
 const ARTICLE_REVALIDATE_SECONDS = 60
 
 const getPostBySlugForSectionCached = cache(
-	async (slug: string, section: PostSection, locale: SupportedLocale) => {
+	async (slug: string, section: PostSection | null, locale: SupportedLocale) => {
+		if (!section) return getPostBySlug(slug, { locale, revalidate: ARTICLE_REVALIDATE_SECONDS })
 		return getPostBySlugForSection(slug, section, {
 			locale,
 			revalidate: ARTICLE_REVALIDATE_SECONDS,
@@ -82,11 +85,11 @@ export async function buildPostSectionStaticParams(
 }
 
 export async function buildPostSectionArticleMetadata(
-	section: PostSection,
+	section: PostSection | null,
 	locale: SupportedLocale,
 	slug: string
 ): Promise<Metadata> {
-	if (!resolvePostSectionPath(section, slug, locale)) {
+	if (!isSafePostSlug(slug)) {
 		const strings = getUiStrings(locale).notFound
 		return {
 			title: { absolute: strings.title },
@@ -99,7 +102,7 @@ export async function buildPostSectionArticleMetadata(
 		getSiteConfig(locale, ARTICLE_REVALIDATE_SECONDS),
 	])
 
-	if (!post || !resolvePostSectionPath(section, post.slug, locale)) {
+	if (!post || !isSafePostSlug(post.slug)) {
 		const strings = getUiStrings(locale).notFound
 		return {
 			title: { absolute: strings.title },
@@ -111,9 +114,9 @@ export async function buildPostSectionArticleMetadata(
 	const description = resolvePostSeoDescription(post, siteConfig)
 	const alternates = buildRouteAlternates({
 		currentLocale: locale,
-		domain: POST_SECTIONS[section].domain,
+		domain: section ? POST_SECTIONS[section].domain : "pages",
 		siteUrl: resolveSiteUrl(siteConfig),
-		slug: post.slug,
+		slug: section ? post.slug : `posts/${post.slug}`,
 	})
 	const ogImageUrl = resolveMediaUrl({
 		media: resolvePostImage(post) || resolveMedia(siteConfig.ogImage),
@@ -150,8 +153,8 @@ export async function PostSectionArticle({
 	locale,
 	section,
 	slug,
-}: PostSectionArticleParams & { section: PostSection }) {
-	if (!resolvePostSectionPath(section, slug, locale)) {
+}: PostSectionArticleParams & { section: PostSection | null }) {
+	if (!isSafePostSlug(slug)) {
 		notFound()
 	}
 
@@ -161,11 +164,13 @@ export async function PostSectionArticle({
 	])
 	const strings = getUiStrings(locale)
 
-	if (!post || !resolvePostSectionPath(section, post.slug, locale)) {
+	if (!post || !isSafePostSlug(post.slug)) {
 		notFound()
 	}
 
-	const sectionHref = resolvePostSectionPath(section, undefined, locale)
+	const sectionHref = section
+		? resolvePostSectionPath(section, undefined, locale)
+		: resolveLocalizedPath(locale, "/")
 	const postImage = resolvePostImage(post)
 	const postDate = formatPostDate(post.publishedAt || post.updatedAt, locale)
 	const postExcerpt = resolvePostDisplayExcerpt(post) || null

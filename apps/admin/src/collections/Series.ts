@@ -1,20 +1,37 @@
 import type { CollectionConfig } from "payload"
 import { authenticated } from "../access/authenticated"
 import { createBasicTranslationHook } from "../hooks/createTranslationHook"
+import { createPublishedOrAuthenticated } from "../access/publishedOrAuthenticated"
+import {
+	capturePublicSnapshot,
+	capturePublicDeleteSnapshot,
+	createRevalidationDeleteHook,
+	createRevalidationHook,
+} from "../hooks/revalidateWww"
 
 export const Series: CollectionConfig = {
 	slug: "series",
 	access: {
-		read: () => true, // Public read access
+		read: createPublishedOrAuthenticated("series"),
+		readVersions: authenticated,
 		create: authenticated,
 		update: authenticated,
 		delete: authenticated,
 	},
 	admin: {
-		defaultColumns: ["title", "status", "postCount", "author"],
+		defaultColumns: ["title", "_status", "progress", "author"],
 		useAsTitle: "title",
 	},
+	versions: { drafts: true, maxPerDoc: 10 },
 	fields: [
+		{
+			name: "posts",
+			type: "join",
+			collection: "posts",
+			on: "series",
+			defaultLimit: 10,
+			maxDepth: 1,
+		},
 		{
 			name: "title",
 			type: "text",
@@ -80,17 +97,23 @@ export const Series: CollectionConfig = {
 			defaultValue: ({ user }) => user?.id,
 		},
 		{
-			name: "status",
+			name: "progress",
 			type: "select",
 			required: true,
-			defaultValue: "draft",
+			defaultValue: "planned",
 			index: true,
 			options: [
-				{ label: "Draft", value: "draft" },
+				{ label: "Planned", value: "planned" },
 				{ label: "In Progress", value: "in-progress" },
 				{ label: "Completed", value: "completed" },
 				{ label: "On Hold", value: "on-hold" },
 			],
+		},
+		{
+			name: "status",
+			type: "select",
+			admin: { hidden: true, readOnly: true },
+			options: ["draft", "in-progress", "completed", "on-hold"],
 		},
 		{
 			name: "difficulty",
@@ -110,15 +133,6 @@ export const Series: CollectionConfig = {
 			},
 		},
 		{
-			name: "postCount",
-			type: "number",
-			defaultValue: 0,
-			admin: {
-				readOnly: true,
-				description: "Number of posts in this series",
-			},
-		},
-		{
 			name: "featured",
 			type: "checkbox",
 			admin: {
@@ -130,12 +144,15 @@ export const Series: CollectionConfig = {
 			type: "date",
 			admin: {
 				description: "Date when series was completed",
-				condition: (data) => data.status === "completed",
+				condition: (data) => data.progress === "completed",
 			},
 		},
 	],
 	timestamps: true,
 	hooks: {
-		beforeChange: [createBasicTranslationHook()],
+		beforeDelete: [capturePublicDeleteSnapshot("series")],
+		beforeChange: [capturePublicSnapshot("series"), createBasicTranslationHook()],
+		afterChange: [createRevalidationHook("series")],
+		afterDelete: [createRevalidationDeleteHook("series")],
 	},
 }

@@ -15,8 +15,9 @@ export const publishPageTool = {
 		const updatedPage = (await payload.update({
 			collection: "pages",
 			data: {
-				status: "published",
+				_status: "published",
 			},
+			draft: false,
 			id: existingPage.id,
 			overrideAccess: true,
 		})) as Page

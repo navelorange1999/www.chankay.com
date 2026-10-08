@@ -23,7 +23,7 @@ export const createPostDraftTool = {
 				content,
 				excerpt: typeof args.excerpt === "string" ? args.excerpt : undefined,
 				slug: typeof args.slug === "string" ? args.slug : undefined,
-				status: "draft",
+				_status: "draft",
 				title,
 			},
 			draft: true,

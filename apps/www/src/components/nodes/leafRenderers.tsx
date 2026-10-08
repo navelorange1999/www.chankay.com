@@ -2,6 +2,7 @@ import * as React from "react"
 import { cache } from "react"
 
 import type { Page } from "@repo/typescript-config/typings/payload-types"
+import type { SupportedLocale } from "@repo/i18n"
 
 type StructureBlocks = NonNullable<Page["structure"]>
 type StructureBlock = StructureBlocks[number]
@@ -16,12 +17,15 @@ export const leafBlockTypes = [
 	"previewUrl",
 	"spotifyIframe",
 	"heatmap",
+	"topicMap",
 ] as const
 
 export type LeafBlockType = (typeof leafBlockTypes)[number]
 export type LeafBlock = Extract<StructureBlock, { blockType: LeafBlockType }>
 type LeafRendererComponent = (props: {
 	block: LeafBlock
+	locale?: SupportedLocale
+	isPreview?: boolean
 }) => React.ReactNode | Promise<React.ReactNode>
 
 export function isLeafBlockType(value: string): value is LeafBlockType {
@@ -70,11 +74,20 @@ const loadLeafRenderer = cache(async (blockType: LeafBlockType): Promise<LeafRen
 			const { HeatmapNode } = await import("@/components/nodes/HeatmapNode")
 			return HeatmapNode as LeafRendererComponent
 		}
+		case "topicMap": {
+			const { TopicMapNode } = await import("@/components/nodes/TopicMapNode")
+			return TopicMapNode as LeafRendererComponent
+		}
 	}
 })
 
-export async function renderLeafBlock(block: LeafBlock, key: string) {
+export async function renderLeafBlock(
+	block: LeafBlock,
+	key: string,
+	locale: SupportedLocale,
+	isPreview = false
+) {
 	const Renderer = await loadLeafRenderer(block.blockType)
 
-	return <Renderer key={key} block={block} />
+	return <Renderer key={key} block={block} locale={locale} isPreview={isPreview} />
 }

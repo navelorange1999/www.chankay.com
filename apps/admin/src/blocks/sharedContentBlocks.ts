@@ -8,12 +8,14 @@ import { MediaImageBlock } from "./MediaImageBlock"
 import { PreviewUrlBlock } from "./PreviewUrlBlock"
 import { SpotifyIframeBlock } from "./SpotifyIframeBlock"
 import { TextBlock } from "./TextBlock"
+import { TopicMapBlock } from "./TopicMapBlock"
 
 export const sharedContentBlocks: BlockDefinition[] = [
 	TextBlock,
 	MarkdownBlock,
 	HandWritingBlock,
 	HeatmapBlock,
+	TopicMapBlock,
 	MediaImageBlock,
 	PreviewUrlBlock,
 	CardBlock,

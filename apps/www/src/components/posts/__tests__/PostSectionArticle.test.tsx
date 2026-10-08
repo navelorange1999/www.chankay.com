@@ -4,12 +4,14 @@ import { beforeEach, describe, expect, it, vi } from "vitest"
 
 const mocks = vi.hoisted(() => ({
 	getPostBySlugForSection: vi.fn(),
+	getPostBySlug: vi.fn(),
 	getPostsBySection: vi.fn(),
 	getSiteConfig: vi.fn(),
 }))
 
 vi.mock("@/services/payload/posts", () => ({
 	getPostBySlugForSection: mocks.getPostBySlugForSection,
+	getPostBySlug: mocks.getPostBySlug,
 	getPostsBySection: mocks.getPostsBySection,
 }))
 
@@ -35,8 +37,28 @@ import {
 describe("PostSectionArticle", () => {
 	beforeEach(() => {
 		mocks.getPostBySlugForSection.mockReset()
+		mocks.getPostBySlug.mockReset()
 		mocks.getPostsBySection.mockReset()
 		mocks.getSiteConfig.mockReset()
+	})
+
+	it("renders an uncategorized published post with a generic localized canonical", async () => {
+		mocks.getPostBySlug.mockResolvedValue({
+			id: "uncategorized",
+			slug: "notes",
+			title: "Notes",
+			content: "A public note.",
+			_status: "published",
+			category: null,
+		})
+		mocks.getSiteConfig.mockResolvedValue({ siteUrl: "https://example.test" })
+		const metadata = await buildPostSectionArticleMetadata(null, "zh-CN", "notes")
+		expect(metadata.alternates?.canonical).toBe("https://example.test/zh-CN/posts/notes")
+		const markup = renderToStaticMarkup(
+			await PostSectionArticle({ section: null, locale: "zh-CN", slug: "notes" })
+		)
+		expect(markup).toContain("A public note.")
+		expect(mocks.getPostBySlugForSection).not.toHaveBeenCalled()
 	})
 
 	it.each(["technical", "trading"] as const)(
@@ -47,7 +69,6 @@ describe("PostSectionArticle", () => {
 				slug: "article",
 				title: "Article",
 				content: "## Content\nBody.",
-				status: "published",
 				_status: "published",
 			})
 			mocks.getSiteConfig.mockResolvedValue({
@@ -83,7 +104,7 @@ describe("PostSectionArticle", () => {
 			slug: "article",
 			title: "Article",
 			content: "## Content\nBody.",
-			status: "published",
+			_status: "published",
 			commentsEnabled: false,
 		})
 		mocks.getSiteConfig.mockResolvedValue({
@@ -130,6 +151,7 @@ describe("PostSectionArticle", () => {
 			const sectionTag = {
 				id: `${section}-id`,
 				name: section === "technical" ? "Technical" : "Trading",
+				_status: "published",
 			}
 			mocks.getPostBySlugForSection.mockResolvedValue({
 				id: "post-id",
@@ -137,7 +159,7 @@ describe("PostSectionArticle", () => {
 				title: "Market view",
 				content: "## Context\nA short article.",
 				primaryTag,
-				tags: [sectionTag, { id: "topic-id", name: "Macro" }],
+				tags: [sectionTag, { id: "topic-id", name: "Macro", _status: "published" }],
 			})
 
 			const markup = renderToStaticMarkup(

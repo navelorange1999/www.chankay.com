@@ -6,10 +6,17 @@ import type { MediaInterface, Page } from "@repo/typescript-config/typings/paylo
 type MediaImageBlock = Extract<NonNullable<Page["structure"]>[number], { blockType: "mediaImage" }>
 
 export interface MediaImageNodeProps {
+	isPreview?: boolean
 	block: MediaImageBlock
 }
 
-export function MediaImageNode({ block }: MediaImageNodeProps) {
+export function MediaImageNode({ block, isPreview = false }: MediaImageNodeProps) {
+	if (
+		!block.media ||
+		typeof block.media !== "object" ||
+		(!isPreview && block.media._status !== "published")
+	)
+		return null
 	return (
 		<div className="mx-auto w-full max-w-3xl">
 			<ImageMedia

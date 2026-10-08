@@ -1,17 +1,32 @@
+import { mirrorNativePublication } from "@/services/publicationCompatibility"
 import type { CollectionConfig } from "payload"
 import { structureBlocks } from "@/blocks/StructureBlocks"
-import { createRevalidationHook } from "@/hooks/revalidateWww"
+import {
+	capturePublicSnapshot,
+	capturePublicDeleteSnapshot,
+	createRevalidationDeleteHook,
+	createRevalidationHook,
+} from "@/hooks/revalidateWww"
 import { syncPageGeneratedAssets } from "@/services/pageAssets"
+import { createPublishedOrAuthenticated } from "@/access/publishedOrAuthenticated"
+import { authenticated } from "@/access/authenticated"
+import { validatePagePublication } from "@/hooks/validatePublishedMedia"
+import { rejectStalePageAssetUpdate } from "@/services/pageAssets/versionGuard"
 
 export const Pages: CollectionConfig = {
 	slug: "pages",
 	admin: {
 		useAsTitle: "title",
-		defaultColumns: ["title", "slug", "status", "updatedAt"],
+		defaultColumns: ["title", "slug", "_status", "updatedAt"],
 	},
 	access: {
-		read: () => true,
+		read: createPublishedOrAuthenticated("pages"),
+		readVersions: authenticated,
+		create: authenticated,
+		update: authenticated,
+		delete: authenticated,
 	},
+	versions: { drafts: true, maxPerDoc: 10 },
 	fields: [
 		{
 			name: "title",
@@ -35,6 +50,11 @@ export const Pages: CollectionConfig = {
 			type: "select",
 			required: true,
 			defaultValue: "draft",
+			admin: {
+				readOnly: true,
+				description:
+					"Legacy publication state retained for migration. Use the native Publish control.",
+			},
 			options: [
 				{ label: "Draft", value: "draft" },
 				{ label: "Published", value: "published" },
@@ -122,6 +142,14 @@ export const Pages: CollectionConfig = {
 	],
 	timestamps: true,
 	hooks: {
-		afterChange: [syncPageGeneratedAssets, createRevalidationHook("pages")],
+		beforeDelete: [capturePublicDeleteSnapshot("pages")],
+		beforeChange: [
+			rejectStalePageAssetUpdate,
+			capturePublicSnapshot("pages"),
+			mirrorNativePublication,
+			validatePagePublication,
+		],
+		afterChange: [createRevalidationHook("pages"), syncPageGeneratedAssets],
+		afterDelete: [createRevalidationDeleteHook("pages")],
 	},
 }

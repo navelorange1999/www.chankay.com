@@ -2,6 +2,7 @@ import { mcpPlugin } from "@payloadcms/plugin-mcp"
 
 import { mcpCollections } from "./collections"
 import { mcpGlobals } from "./globals"
+import { migrationTools } from "./migration"
 import { pageTools } from "./page"
 import { postTools } from "./post"
 import { siteConfigTools } from "./site-config"
@@ -19,6 +20,6 @@ export const payloadMcpPlugin = mcpPlugin({
 				version: "1.1.0",
 			},
 		},
-		tools: [...postTools, ...pageTools, ...siteConfigTools],
+		tools: [...postTools, ...pageTools, ...siteConfigTools, ...migrationTools],
 	},
 })

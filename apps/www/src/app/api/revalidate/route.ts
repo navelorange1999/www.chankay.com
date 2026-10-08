@@ -49,6 +49,7 @@ const revalidationHandlers: Record<string, RevalidationHandler> = {
 
 	posts(slugs, locales) {
 		for (const locale of locales) {
+			revalidateTag(`topic-map:${locale}`)
 			for (const slug of slugs) {
 				const detailPaths = (Object.keys(POST_SECTIONS) as PostSection[])
 					.map((section) => resolvePostSectionPath(section, slug, locale))
@@ -59,6 +60,7 @@ const revalidationHandlers: Record<string, RevalidationHandler> = {
 				}
 				if (detailPaths.length > 0) {
 					revalidateTag(`post:${slug}:${locale}`)
+					revalidatePath(resolveLocalizedPath(locale, `/posts/${slug}`))
 				}
 			}
 			for (const section of Object.keys(POST_SECTIONS) as PostSection[]) {
@@ -72,16 +74,61 @@ const revalidationHandlers: Record<string, RevalidationHandler> = {
 		revalidatePath("/sitemap.xml")
 	},
 
+	categories(_slugs, locales) {
+		for (const locale of locales) {
+			for (const section of Object.keys(POST_SECTIONS) as PostSection[]) {
+				revalidatePath(resolvePostSectionPath(section, undefined, locale))
+				revalidateTag(`posts:section:${section}:${locale}`)
+				revalidateTag(`category:${POST_SECTIONS[section].categorySlug}:${locale}`)
+			}
+			revalidateTag(`topic-map:${locale}`)
+			revalidateTag(`post-relations:${locale}`)
+			revalidateTag(`posts:${locale}`)
+			revalidateTag(`posts:latest:${locale}`)
+			revalidateTag(`posts:all:${locale}`)
+		}
+		revalidatePath("/", "layout")
+		revalidatePath("/sitemap.xml")
+	},
+
 	tags(_slugs, locales) {
 		for (const locale of locales) {
 			revalidateTag(`posts:details:${locale}`)
 			for (const section of Object.keys(POST_SECTIONS) as PostSection[]) {
 				revalidatePath(resolvePostSectionPath(section, undefined, locale))
 				revalidateTag(`posts:section:${section}:${locale}`)
-				revalidateTag(`tag:${POST_SECTIONS[section].tagSlug}:${locale}`)
+				revalidateTag(`tag:${POST_SECTIONS[section].categorySlug}:${locale}`)
 			}
+			revalidateTag(`topic-map:${locale}`)
+			revalidateTag(`post-relations:${locale}`)
+			revalidateTag(`posts:${locale}`)
+			revalidateTag(`posts:latest:${locale}`)
+			revalidateTag(`posts:all:${locale}`)
 		}
+		revalidatePath("/", "layout")
 		revalidatePath("/sitemap.xml")
+	},
+
+	series(_slugs, locales) {
+		for (const locale of locales) {
+			revalidateTag(`post-relations:${locale}`)
+			revalidateTag(`posts:${locale}`)
+			revalidateTag(`posts:latest:${locale}`)
+			revalidateTag(`posts:all:${locale}`)
+		}
+		revalidatePath("/", "layout")
+	},
+
+	media(_slugs, locales) {
+		for (const locale of locales) {
+			revalidateTag(`post-relations:${locale}`)
+			revalidateTag(`page-media:${locale}`)
+			revalidateTag(`global:site-config:${locale}`)
+			revalidateTag(`posts:${locale}`)
+			revalidateTag(`posts:latest:${locale}`)
+			revalidateTag(`posts:all:${locale}`)
+		}
+		revalidatePath("/", "layout")
 	},
 
 	"site-config"(_slugs, locales) {

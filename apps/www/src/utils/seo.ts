@@ -64,7 +64,7 @@ export function resolveMedia(value: unknown): MediaInterface | null {
 	}
 
 	const media = value as MediaInterface
-	return typeof media === "object" ? media : null
+	return media._status === "published" ? media : null
 }
 
 export function resolveMediaUrl(args: {

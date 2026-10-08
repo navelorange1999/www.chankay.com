@@ -14,6 +14,7 @@ export async function getTagBySlug(
 		return await payloadClient.getBySlug<Tag>("tags", slug, {
 			locale,
 			depth: 0,
+			where: { _status: { equals: "published" } },
 			tags: [`tag:${slug}:${locale}`],
 		})
 	} catch (error) {

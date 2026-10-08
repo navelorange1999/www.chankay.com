@@ -1,23 +1,74 @@
 import { describe, expect, it } from "vitest"
+import { buildVersionCollectionFields } from "payload"
 import { transform } from "@payloadcms/db-mongodb/internal"
 import { migrationReadAdapter } from "../readAdapter"
 
-describe("historical migration reads after schema removal", () => {
-	it("preserves removed fields for audit without relaxing the live adapter", async () => {
-		const db = {
-			allowAdditionalKeys: false,
-			payload: { config: {} },
-			async find(this: object) {
-				const data = { id: "post1", status: "published", primaryTag: "tag1" }
-				transform({ adapter: this, data, fields: [], operation: "read" } as never)
-				return { docs: [data] }
+function fixture() {
+	const collections = Object.fromEntries(
+		["posts", "pages", "series", "tags"].map((slug) => [
+			slug,
+			{
+				config: { slug, fields: [], flattenedFields: [], versions: { drafts: true } },
 			},
-		}
-		const audit = migrationReadAdapter({ db } as never)
-		expect((await audit.find({ collection: "posts" })).docs).toEqual([
-			{ id: "post1", status: "published", primaryTag: "tag1" },
 		])
-		expect(db.allowAdditionalKeys).toBe(false)
-		expect((await db.find()).docs).toEqual([{ id: "post1" }])
-	})
+	)
+	const payload = {
+		collections,
+		config: { collections: Object.values(collections).map(({ config }) => config) },
+	}
+	const record = {
+		id: "record1",
+		status: "published",
+		primaryTag: "tag1",
+		postCount: 3,
+		postsen: [],
+		postszh: [],
+		unknown: "must disappear",
+	}
+	const db = {
+		allowAdditionalKeys: false,
+		payload,
+		async find(this: { payload: typeof payload }, { collection }: { collection: string }) {
+			const data = { ...record }
+			transform({
+				adapter: this,
+				data,
+				fields: this.payload.collections[collection]!.config.fields,
+				operation: "read",
+			} as never)
+			return { docs: [data] }
+		},
+		async findVersions(this: { payload: typeof payload }, { collection }: { collection: string }) {
+			const data = { id: "version1", version: { ...record }, unknown: "must disappear" }
+			const fields = buildVersionCollectionFields(
+				this.payload.config as never,
+				this.payload.collections[collection]!.config as never
+			)
+			transform({ adapter: this, data, fields, operation: "read" } as never)
+			return { docs: [data] }
+		},
+	}
+	return db
+}
+
+describe("historical migration reads after schema removal", () => {
+	it.each([
+		["posts", { status: "published", primaryTag: "tag1" }],
+		["pages", { status: "published" }],
+		["series", { status: "published" }],
+		["tags", {}],
+	] as const)(
+		"restores only retired %s fields in records and versions",
+		async (collection, retired) => {
+			const db = fixture()
+			const audit = migrationReadAdapter({ db } as never)
+			expect((await audit.find({ collection })).docs).toEqual([{ id: "record1", ...retired }])
+			expect((await audit.findVersions({ collection })).docs).toEqual([
+				{ id: "version1", version: { ...retired } },
+			])
+			expect(db.allowAdditionalKeys).toBe(false)
+			expect(db.payload.collections[collection]!.config.fields).toEqual([])
+			expect((await db.find({ collection })).docs).toEqual([{ id: "record1" }])
+		}
+	)
 })

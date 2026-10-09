@@ -385,3 +385,25 @@ import { ThemeToggle } from "@repo/ui"
 Handwriting and heatmap blocks use `duration` in seconds for the complete animation. Handwriting defaults to five seconds; an empty heatmap duration displays immediately. The handwriting renderer scales the generated artifact timeline to the requested duration. Heatmap timing includes the final fade and ignores unfilled calendar cells. Both retain reduced-motion behavior.
 
 The animation-duration migration populates handwriting duration from `7.5 / speed` and heatmap duration from `display.animateFill`, preserving legacy fields and existing explicit durations. It covers pages and stored page versions, including nested block slots. Equal durations align playback lengths; independently mounted blocks do not share a start clock.
+
+## Page Alignment and Content Width
+
+The shared `Container` owns page width and responsive horizontal gutters: a maximum
+width of 80rem, with 1rem / 1.5rem / 2rem gutters at the base / sm / lg breakpoints.
+Navbar, footer, and the locale layout use this same default. Nested containers
+automatically have zero horizontal padding, including containers below Flex and Grid.
+Do not add compensating padding to CMS blocks or require editors to remove containers.
+
+Content blocks fill their parent by default. Sections own vertical spacing and backgrounds;
+Grid and Flex own gaps; cards own internal padding. Topic maps and post indexes must not
+set an independent page maximum width. Heatmap regions fill the available width while
+calendar cells retain their size and overflow behavior. In vertical mode,
+the heatmap uses its intrinsic width and centers the total, calendar, and legend as
+one group when there is spare space; its width remains capped by the parent.
+
+Use `Container size="reading"` for a reading column (48rem maximum). Article layouts
+apply this within their existing table-of-contents grid. Standard lists use the full
+page content width. `size="full"` means the width of the parent, not the viewport.
+Legacy CMS `default`, `wide`, and `full` values remain supported without a data migration.
+Full-bleed section backgrounds must be composed outside the page container and contain
+a standard Container for their text; do not use viewport-width hacks inside nested blocks.

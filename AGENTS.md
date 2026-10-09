@@ -52,6 +52,12 @@ All user-facing content and configurable styling should be modeled through Paylo
 
 Create stateless and reusable UI components in `packages/ui` first. Keep app-specific data fetching and business logic in `apps/www` or `apps/admin`.
 
+### Page Layout Rule
+
+The shared Container owns responsive page gutters. Nested containers must not add
+horizontal padding. Content blocks inherit available width; reading columns use
+`Container size="reading"`. See `docs/frontend-guidelines.md` for alignment rules.
+
 ### Documentation Rule
 
 When a new pattern becomes part of the project standard, update the appropriate file in `docs/` and this index if discoverability changes.

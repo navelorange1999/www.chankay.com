@@ -2,6 +2,7 @@ import * as React from "react"
 import { List } from "lucide-react"
 
 import { cn } from "#utils/classnames"
+import { Container } from "../Container"
 import { Markdown, type MarkdownProps } from "../Markdown"
 import type { MarkdownHeading } from "../Markdown/markdownRenderer"
 import { PostTocNav } from "./PostTocNav"
@@ -184,7 +185,9 @@ function PostTocLayout({
 					</aside>
 				) : null}
 
-				<div className="min-w-0">{children}</div>
+				<Container size="reading" className="px-0 sm:px-0 lg:px-0">
+					{children}
+				</Container>
 
 				{hasToc ? (
 					<aside

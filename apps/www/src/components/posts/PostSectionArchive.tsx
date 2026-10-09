@@ -88,7 +88,7 @@ export async function PostSectionArchive({
 	const description = category?.description || ""
 
 	return (
-		<section className="mx-auto flex max-w-4xl flex-col gap-8">
+		<section className="flex w-full min-w-0 flex-col gap-8">
 			<header className="space-y-3">
 				<p className="text-sm font-medium uppercase tracking-[0.24em] text-muted-foreground">
 					{strings.eyebrow}
@@ -122,7 +122,7 @@ export async function PostSectionArchive({
 											fill
 											priority={false}
 											resource={postImage}
-											size="(min-width: 1024px) 896px, 100vw"
+											size="(min-width: 1280px) 1216px, (min-width: 1024px) calc(100vw - 64px), (min-width: 640px) calc(100vw - 48px), calc(100vw - 32px)"
 											imgClassName="object-cover"
 										/>
 									</PostThumbnail>

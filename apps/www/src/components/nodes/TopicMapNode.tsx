@@ -24,7 +24,7 @@ export async function TopicMapNode({
 		if (!isPreview) return null
 		const strings = getUiStrings(locale).topicMap
 		return (
-			<section className="mx-auto w-full max-w-7xl px-4 py-12" aria-label={block.title}>
+			<section className="w-full min-w-0 py-12" aria-label={block.title}>
 				<p role="status" className="text-sm text-muted-foreground">
 					{data ? strings.emptyMap : strings.unavailableMap}
 				</p>
@@ -32,7 +32,7 @@ export async function TopicMapNode({
 		)
 	}
 	return (
-		<section className="mx-auto w-full max-w-7xl px-4 py-12" aria-label={block.title}>
+		<section className="w-full min-w-0 py-12" aria-label={block.title}>
 			<TopicMapExplorer data={data} locale={locale} />
 		</section>
 	)

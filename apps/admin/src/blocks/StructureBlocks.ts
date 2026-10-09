@@ -223,6 +223,10 @@ function containerBlock(slug: string, childBlocks: BlockDefinition[]): BlockDefi
 				name: "size",
 				type: "radio",
 				label: "Size",
+				admin: {
+					description:
+						"Content inherits the page gutters. Nested containers never add horizontal padding. Full fills the parent; it does not extend beyond the page.",
+				},
 				defaultValue: "default",
 				options: [
 					{ label: "Default", value: "default" },

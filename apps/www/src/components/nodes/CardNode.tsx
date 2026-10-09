@@ -160,7 +160,7 @@ export async function CardNode({ block }: CardNodeProps) {
 	const shouldRenderFooter = showFooter && footerNodes.length > 0
 
 	return (
-		<Card className="mx-auto w-full max-w-2xl">
+		<Card className="w-full min-w-0">
 			{shouldRenderHeader && (
 				<CardHeader>
 					{title && <CardTitle>{title}</CardTitle>}

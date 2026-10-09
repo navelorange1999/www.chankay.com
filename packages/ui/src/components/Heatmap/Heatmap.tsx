@@ -322,7 +322,11 @@ export function Heatmap({
 
 	return (
 		<div
-			className={cn("flex min-w-0 max-w-full flex-col gap-3", "text-foreground", className)}
+			className={cn(
+				"flex min-w-0 max-w-full flex-col gap-3 text-foreground",
+				orientation === "vertical" ? "mx-auto w-fit" : "w-full",
+				className
+			)}
 			{...props}
 		>
 			{shouldAnimate && <style>{fillAnimationStyles}</style>}
